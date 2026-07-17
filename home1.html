@@ -73,11 +73,13 @@
     .section{padding:var(--section) 0;position:relative}
     .eyebrow{
       display:block;
-      font-size:13px;
-      font-weight:700;
-      letter-spacing:.1em;
-      text-transform:uppercase;
-      color:var(--heading-dark);
+      font-family:"Inter",sans-serif;
+      font-size:16px;
+      font-weight:600;
+      letter-spacing:0;
+      text-transform:none;
+      line-height:1.4;
+      color:#0F172A;
       margin:0 0 10px;
       text-align:left;
     }
@@ -2753,22 +2755,6 @@
       });
     });
 
-    document.querySelectorAll('.footer__col-toggle').forEach(function(btn){
-      btn.addEventListener('click',function(){
-        var col=btn.closest('.footer__col');
-        var open=col.classList.contains('is-open');
-        document.querySelectorAll('.footer__col').forEach(function(c){
-          c.classList.remove('is-open');
-          var t=c.querySelector('.footer__col-toggle');
-          if(t)t.setAttribute('aria-expanded','false');
-        });
-        if(!open){
-          col.classList.add('is-open');
-          btn.setAttribute('aria-expanded','true');
-        }
-      });
-    });
-
     /* Interactive hub diagram */
     (function initHub(){
       var ICON='assets/home-icons/';
@@ -2965,6 +2951,7 @@
     startCycle();
   })();
   </script>
+  <script src="js/footer-accordion.js" defer></script>
   <script src="js/site-nav.js" defer></script>
 </body>
 </html>

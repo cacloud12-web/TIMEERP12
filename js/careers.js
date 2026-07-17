@@ -44,6 +44,15 @@
   var testTimer = null;
   var selectedFile = null;
 
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
+    });
+  }
+  function escapeAttr(s) {
+    return escapeHtml(s).replace(/\n/g, ' ');
+  }
+
   function uniq(arr) {
     return arr.filter(function (v, i, a) { return a.indexOf(v) === i; });
   }
@@ -51,20 +60,20 @@
   function populateFilters() {
     if (!filterDept) return;
     uniq(JOBS.map(function (j) { return j.department; })).forEach(function (d) {
-      filterDept.innerHTML += '<option value="' + d + '">' + d + '</option>';
+      filterDept.innerHTML += '<option value="' + escapeAttr(d) + '">' + escapeHtml(d) + '</option>';
     });
     uniq(JOBS.map(function (j) { return j.location; })).forEach(function (l) {
-      filterLocation.innerHTML += '<option value="' + l + '">' + l + '</option>';
+      filterLocation.innerHTML += '<option value="' + escapeAttr(l) + '">' + escapeHtml(l) + '</option>';
     });
     uniq(JOBS.map(function (j) { return j.experience; })).forEach(function (e) {
-      filterExp.innerHTML += '<option value="' + e + '">' + e + '</option>';
+      filterExp.innerHTML += '<option value="' + escapeAttr(e) + '">' + escapeHtml(e) + '</option>';
     });
     uniq(JOBS.map(function (j) { return j.type; })).forEach(function (t) {
-      filterType.innerHTML += '<option value="' + t + '">' + t + '</option>';
+      filterType.innerHTML += '<option value="' + escapeAttr(t) + '">' + escapeHtml(t) + '</option>';
     });
     if (positionSelect) {
       JOBS.forEach(function (j) {
-        positionSelect.innerHTML += '<option value="' + j.title + '">' + j.title + '</option>';
+        positionSelect.innerHTML += '<option value="' + escapeAttr(j.title) + '">' + escapeHtml(j.title) + '</option>';
       });
       positionSelect.innerHTML += '<option value="General Application">General Application</option>';
     }
@@ -94,16 +103,16 @@
     }
     if (jobsEmpty) jobsEmpty.hidden = true;
     jobsGrid.innerHTML = list.map(function (job) {
-      return '<article class="car-job-card" role="listitem" data-job-id="' + job.id + '">' +
-        '<h3 class="car-job-card__title">' + job.title + '</h3>' +
+      return '<article class="car-job-card" role="listitem" data-job-id="' + escapeAttr(job.id) + '">' +
+        '<h3 class="car-job-card__title">' + escapeHtml(job.title) + '</h3>' +
         '<div class="car-job-card__meta">' +
-          '<span><span class="material-symbols-outlined">business_center</span>' + job.department + '</span>' +
-          '<span><span class="material-symbols-outlined">location_on</span>' + job.location + '</span>' +
-          '<span><span class="material-symbols-outlined">work_history</span>' + job.experience + '</span>' +
-          '<span><span class="material-symbols-outlined">schedule</span>' + job.type + '</span>' +
+          '<span><span class="material-symbols-outlined">business_center</span>' + escapeHtml(job.department) + '</span>' +
+          '<span><span class="material-symbols-outlined">location_on</span>' + escapeHtml(job.location) + '</span>' +
+          '<span><span class="material-symbols-outlined">work_history</span>' + escapeHtml(job.experience) + '</span>' +
+          '<span><span class="material-symbols-outlined">schedule</span>' + escapeHtml(job.type) + '</span>' +
         '</div>' +
-        (job.salary ? '<p class="car-job-card__salary">' + job.salary + '</p>' : '') +
-        '<button type="button" class="car-job-card__apply" data-apply="' + job.title + '">Upload Resume</button>' +
+        (job.salary ? '<p class="car-job-card__salary">' + escapeHtml(job.salary) + '</p>' : '') +
+        '<button type="button" class="car-job-card__apply" data-apply="' + escapeAttr(job.title) + '">Upload Resume</button>' +
       '</article>';
     }).join('');
 
@@ -291,7 +300,7 @@
     uploadZone.classList.add('has-file');
     uploadZone.classList.remove('is-error');
     uploadFile.hidden = false;
-    uploadFile.innerHTML = '<span class="material-symbols-outlined">description</span> ' + file.name +
+    uploadFile.innerHTML = '<span class="material-symbols-outlined">description</span> ' + escapeHtml(file.name) +
       ' <button type="button" class="car-upload__remove" aria-label="Remove file">&times;</button>';
     var rm = uploadFile.querySelector('.car-upload__remove');
     if (rm) rm.addEventListener('click', clearFile);

@@ -21,7 +21,7 @@
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
-    body{font-family:Inter,-apple-system,sans-serif;font-size:16px;line-height:1.65;color:var(--text);background:var(--white);overflow-x:hidden;}
+    body{font-family:Inter,-apple-system,sans-serif;font-size:16px;line-height:1.7;color:var(--text);background:var(--white);overflow-x:hidden;}
     a{color:inherit;text-decoration:none;}
     button{font-family:inherit;cursor:pointer;border:none;background:none;}
     img{max-width:100%;display:block;}
@@ -32,8 +32,9 @@
     .section-label{
       display:block;
       margin-bottom:20px;
-      font-size:12px;line-height:14px;font-weight:600;letter-spacing:.08em;
-      text-transform:uppercase;color:#000;
+      font-family:"Inter",sans-serif;
+      font-size:16px;font-weight:600;letter-spacing:0;
+      text-transform:none;line-height:1.4;color:#0F172A;
     }
     .section-lead{max-width:640px;margin-bottom:40px;}
     .section-lead h1,.section-lead h2{font-size:clamp(1.75rem,2.8vw,2.25rem);font-weight:600;color:var(--heading);letter-spacing:-.02em;line-height:1.25;margin-bottom:12px;}
@@ -74,9 +75,9 @@
     /* Hero */
     .sp-hero{padding:calc(72px + 64px) 0 var(--pad);background:linear-gradient(165deg,#3dd5c5 0%,#25b7a7 35%,#0d7a6e 100%);color:#fff;}
     .sp-hero__grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;}
-    .sp-hero .section-label{color:#000;}
+    .sp-hero .section-label{color:#0F172A;}
     .sp-hero
-    .sp-hero h1{font-size:clamp(2rem,3.5vw,2.75rem);font-weight:600;line-height:1.2;letter-spacing:-.03em;margin-bottom:16px;color:#fff;}
+    .sp-hero h1{font-size:clamp(1.75rem,2.8vw,2.25rem);font-weight:600;line-height:1.2;letter-spacing:-.03em;margin-bottom:16px;color:#fff;}
     .sp-hero__sub{font-size:17px;line-height:1.65;color:rgba(255,255,255,.9);max-width:520px;margin-bottom:28px;}
     .sp-hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px;}
     .sp-hero__cta .sp-btn--primary{background:#fff;color:var(--primary);}
@@ -855,7 +856,7 @@
       .sp-nav__links{display:none;}
       .sp-btn--nav{padding:10px 14px;font-size:12px;}
       .mp-command__grid,.mp-onboard__grid,.mp-features__grid,.sp-values__grid,.sp-sec-grid{grid-template-columns:1fr;}
-      .sp-workflow__track{grid-template-columns:repeat(2,1fr);}
+      .sp-workflow__track{grid-template-columns:1fr;}
     }
   </style>
   <link rel="stylesheet" href="css/site-nav.css">
@@ -897,7 +898,7 @@
     <section class="mp-command section" id="command">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Construction pillars</span>
+          <span class="section-label">Construction Pillars</span>
           <h2>Everything your contracting group needs in one platform</h2>
           <p>Click each pillar to explore how TimeERP helps builders run multi-site project control, costing, and secure field access from one platform.</p>
         </div>
@@ -930,7 +931,7 @@
     <section class="sp-values section">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Why builders choose TimeERP</span>
+          <span class="section-label">Why Builders Choose TimeERP</span>
           <h2>From site Excel chaos to one construction command center</h2>
           <p>Replace disconnected spreadsheets, WhatsApp DPRs, and duplicate material entries with one platform your site and head office teams actually use.</p>
         </div>
@@ -957,7 +958,7 @@
     <section class="sp-workflow section" id="workflow">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">End-to-end workflow</span>
+          <span class="section-label">End-to-End Workflow</span>
           <h2>How construction groups run on TimeERP. Click each step</h2>
           <p>From tender award through project close-out. See how each stage connects across sites and head office.</p>
         </div>
@@ -976,7 +977,7 @@
     <section class="sp-proof section">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Construction use cases</span>
+          <span class="section-label">Construction Use Cases</span>
           <h2>How builders use TimeERP</h2>
         </div>
         <div class="sp-proof__slider anim-up">
@@ -1011,7 +1012,7 @@
     <section class="sp-solutions section" id="solutions">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Core solutions</span>
+          <span class="section-label">Core Solutions</span>
           <h2>One platform to plan, build, and bill every project</h2>
           <p>Multi-site governance, field mobile, and workflow automation. Hover or click each card to explore.</p>
         </div>
@@ -1042,7 +1043,7 @@
     <section class="section" id="modules">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Project modules</span>
+          <span class="section-label">Project Modules</span>
           <h2>Built for every layer of construction operations</h2>
         </div>
         <p class="anim-up" style="font-size:16px;color:var(--text);line-height:1.65;margin-bottom:24px;max-width:720px;">BOQ, materials, subcontractors, and project finance each module shares the same site record, approvals, and billing engine.</p>
@@ -1061,7 +1062,7 @@
     <section class="sp-security-section section" id="security">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Code security</span>
+          <span class="section-label">Code Security</span>
           <h2>Security built in</h2>
           <p>Your project and BOQ data is in safe hands. TimeERP prioritizes encryption, site level RBAC, audit trails, and RERA-ready controls.</p>
         </div>
@@ -1081,7 +1082,7 @@
       <div class="shell">
         <div class="mp-apps__grid anim-up">
           <div>
-            <span class="section-label">Field &amp; site mobile</span>
+            <span class="section-label">Field &amp; Site Mobile</span>
             <h2 class="mp-apps__title">Site supervisor apps for daily construction ops</h2>
             <p style="font-size:16px;color:var(--muted);line-height:1.65;margin-bottom:8px;">Supervisors log DPR, issue materials, and submit progress photos from mobile. Head office approves indents and sees site status without shared passwords, with TimeERP role-based field access and enterprise security.</p>
           </div>
@@ -1159,7 +1160,7 @@
     <section class="section">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Built for construction</span>
+          <span class="section-label">Built For Construction</span>
           <h2>Everything you need to run projects at scale</h2>
         </div>
         <div class="mp-features__grid anim-up">
@@ -1354,9 +1355,7 @@
       </div>
     </div>
   </footer>
-
-  <script src="js/site-chrome.js" defer></script>
-  <script src="js/scroll-animations.js" defer></script>
+<script src="js/scroll-animations.js" defer></script>
   <script src="js/footer-accordion.js" defer></script>
   <script src="js/construction.js" defer></script>
   <script src="js/site-nav.js" defer></script>

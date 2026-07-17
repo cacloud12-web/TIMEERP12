@@ -51,6 +51,15 @@
   var discussionSort = document.getElementById('commDiscussionSort');
   var faqItems = document.querySelectorAll('.comm-faq__item');
 
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
+    });
+  }
+  function escapeAttr(s) {
+    return escapeHtml(s).replace(/\n/g, ' ');
+  }
+
   function setBenefit(id) {
     var detail = BENEFIT_DETAILS[id];
     if (!detail || !benefitDetail) return;
@@ -62,9 +71,9 @@
     benefitDetail.classList.remove('is-visible');
     setTimeout(function () {
       benefitDetail.innerHTML =
-        '<div class="comm-benefit-detail__head"><h3>' + detail.title + '</h3></div>' +
-        '<p>' + detail.body + '</p>' +
-        '<ul>' + detail.points.map(function (p) { return '<li>' + p + '</li>'; }).join('') + '</ul>';
+        '<div class="comm-benefit-detail__head"><h3>' + escapeHtml(detail.title) + '</h3></div>' +
+        '<p>' + escapeHtml(detail.body) + '</p>' +
+        '<ul>' + detail.points.map(function (p) { return '<li>' + escapeHtml(p) + '</li>'; }).join('') + '</ul>';
       benefitDetail.classList.add('is-visible');
     }, 60);
   }
@@ -81,9 +90,9 @@
     ];
     var filtered = category === 'all' ? channels : channels.filter(function (c) { return c.cat === category || c.cat === 'all'; });
     channelGrid.innerHTML = filtered.map(function (ch) {
-      return '<button type="button" class="comm-channel-card" data-channel="' + ch.id + '" data-cat="' + ch.cat + '">' +
-        '<span class="comm-channel-card__icon"><span class="material-symbols-outlined">' + ch.icon + '</span></span>' +
-        '<span class="comm-channel-card__name">' + ch.name + '</span>' +
+      return '<button type="button" class="comm-channel-card" data-channel="' + escapeAttr(ch.id) + '" data-cat="' + escapeAttr(ch.cat) + '">' +
+        '<span class="comm-channel-card__icon"><span class="material-symbols-outlined">' + escapeHtml(ch.icon) + '</span></span>' +
+        '<span class="comm-channel-card__name">' + escapeHtml(ch.name) + '</span>' +
         '<span class="comm-channel-card__meta">' + ch.members.toLocaleString() + ' members · ' + ch.topics + ' topics</span>' +
         '<span class="comm-channel-card__live"><span class="comm-channel-card__dot"></span>Active now</span>' +
       '</button>';
@@ -102,7 +111,7 @@
     if (!topicList) return;
     var topics = CHANNEL_TOPICS[category] || CHANNEL_TOPICS.all;
     topicList.innerHTML = topics.slice(0, 5).map(function (t, i) {
-      return '<li class="comm-topic"><span class="comm-topic__num">' + (i + 1) + '</span><span class="comm-topic__text">' + t + '</span></li>';
+      return '<li class="comm-topic"><span class="comm-topic__num">' + (i + 1) + '</span><span class="comm-topic__text">' + escapeHtml(t) + '</span></li>';
     }).join('');
   }
 
@@ -124,12 +133,12 @@
       return;
     }
     discussionList.innerHTML = list.map(function (d) {
-      return '<article class="comm-discussion" data-id="' + d.id + '">' +
+      return '<article class="comm-discussion" data-id="' + escapeAttr(d.id) + '">' +
         '<button type="button" class="comm-discussion__vote" aria-label="Upvote"><span class="comm-discussion__vote-count">' + d.votes + '</span></button>' +
         '<div class="comm-discussion__body">' +
-          '<span class="comm-discussion__tag">' + d.tag + '</span>' +
-          '<h3 class="comm-discussion__title">' + d.title + '</h3>' +
-          '<span class="comm-discussion__meta">' + d.author + ' · ' + d.role + ' · ' + d.time + '</span>' +
+          '<span class="comm-discussion__tag">' + escapeHtml(d.tag) + '</span>' +
+          '<h3 class="comm-discussion__title">' + escapeHtml(d.title) + '</h3>' +
+          '<span class="comm-discussion__meta">' + escapeHtml(d.author) + ' · ' + escapeHtml(d.role) + ' · ' + escapeHtml(d.time) + '</span>' +
           '<span class="comm-discussion__replies"><span class="material-symbols-outlined">chat_bubble</span>' + d.replies + ' replies</span>' +
         '</div>' +
       '</article>';

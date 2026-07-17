@@ -922,15 +922,15 @@
     }
     @media (max-width: 480px) {
       .cb-launcher-wrap {
-        right: 16px;
-        bottom: 16px;
+        right: max(16px, env(safe-area-inset-right));
+        bottom: max(16px, env(safe-area-inset-bottom));
       }
       .cb-panel {
-        right: 8px;
-        left: 8px;
-        bottom: 88px;
+        right: max(8px, env(safe-area-inset-right));
+        left: max(8px, env(safe-area-inset-left));
+        bottom: calc(88px + env(safe-area-inset-bottom));
         width: auto;
-        height: min(78vh, calc(100vh - 100px));
+        height: min(78vh, calc(100vh - 100px - env(safe-area-inset-bottom)));
         border-radius: 16px;
       }
       .cb-tooltip { display: none; }

@@ -1337,8 +1337,9 @@
     .section-label{
       display:block;
       margin-bottom:20px;
-      font-size:12px;line-height:14px;font-weight:600;letter-spacing:.08em;
-      text-transform:uppercase;color:#000;
+      font-family:"Inter",sans-serif;
+      font-size:16px;font-weight:600;letter-spacing:0;
+      text-transform:none;line-height:1.4;color:#0F172A;
     }
     #careers .car-hr h2{
       font-size:clamp(1.75rem,2.8vw,2.25rem);font-weight:600;letter-spacing:-0.02em;line-height:1.25;
@@ -1370,8 +1371,8 @@
     }
     .car-hero__inner{position:relative;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap;}
     .car-hero .section-lead{max-width:680px;margin-bottom:0;}
-    #careers .car-hero .section-label{color:#000;}
-    #careers .car-hero .section-lead h1{font-size:clamp(2rem,3.5vw,2.75rem);font-weight:600;line-height:1.2;letter-spacing:-0.03em;margin-bottom:8px;color:#fff;-webkit-text-fill-color:#fff;background:none;filter:none;}
+    #careers .car-hero .section-label{color:#0F172A;}
+    #careers .car-hero .section-lead h1{font-size:clamp(1.75rem,2.8vw,2.25rem);font-weight:600;line-height:1.2;letter-spacing:-0.03em;margin-bottom:8px;color:#fff;-webkit-text-fill-color:#fff;background:none;filter:none;}
     .car-hero .section-lead p{font-size:16px;line-height:1.65;color:rgba(255,255,255,.88);max-width:620px;letter-spacing:-0.2px;}
     .car-hero__cta{display:flex;flex-direction:column;gap:10px;align-items:flex-start;}
     .car-hero__cta .btn--primary{background:#fff;color:var(--primary);padding:14px 28px;font-size:15px;border-radius:var(--radius-btn);transition:transform .2s,box-shadow .2s;text-decoration:none;}
@@ -1702,6 +1703,7 @@
       .car-hire-steps{grid-template-columns:repeat(2,1fr);}
     }
     @media (max-width:768px){
+      :root{--content-pad-x:20px;}
       .car-hero__decoration{display:none;}
       .car-hero__inner{flex-direction:column;align-items:flex-start;}
       .car-stats__grid,.car-why,.car-offers{grid-template-columns:1fr;}
@@ -2102,7 +2104,7 @@
     <section class="car-why-section section" aria-labelledby="car-why-heading">
       <div class="section-inner">
         <div class="section-lead anim-up">
-          <span class="section-label">Why join</span>
+          <span class="section-label">Why Join</span>
           <h2 id="car-why-heading">Why join TIME ERP</h2>
           <p>We build enterprise software that real businesses rely on every day  with a culture focused on growth, ownership, and meaningful impact.</p>
         </div>
@@ -2171,7 +2173,7 @@
     <section class="car-vacancies-section section" id="vacancies" aria-labelledby="car-vacancies-heading">
       <div class="section-inner">
         <div class="section-lead anim-up">
-          <span class="section-label">Open positions</span>
+          <span class="section-label">Open Positions</span>
           <h2 id="car-vacancies-heading">Open positions</h2>
           <p>Find a role that matches your skills. Every listing includes department, location, experience, and employment type.</p>
         </div>
@@ -2265,7 +2267,7 @@
     <section class="section" aria-labelledby="car-process-heading">
       <div class="section-inner">
         <div class="section-lead anim-up">
-          <span class="section-label">Hiring process</span>
+          <span class="section-label">Hiring Process</span>
           <h2 id="car-process-heading">Our hiring process</h2>
         </div>
         <div class="car-process anim-up stagger-1" id="carProcess" role="list">
@@ -2283,7 +2285,7 @@
     <section class="car-testimonials-section section" aria-labelledby="car-testimonials-heading">
       <div class="section-inner">
         <div class="section-lead anim-up">
-          <span class="section-label">Team voices</span>
+          <span class="section-label">Team Voices</span>
           <h2 id="car-testimonials-heading">What our team says</h2>
         </div>
         <div class="car-testimonials anim-up stagger-1" id="carTestimonials">
@@ -2336,12 +2338,12 @@
       <div class="section-inner">
         <div class="car-hr anim-up">
           <div>
-            <span class="section-label">Need help?</span>
+            <span class="section-label">Need Help?</span>
             <h2 id="car-hr-heading">Contact HR</h2>
             <p style="font-size:15px;color:var(--text-muted);line-height:1.65;margin-top:8px;">Questions about roles, applications, or the hiring process? Reach our recruitment team.</p>
             <div class="car-hr__list">
-              <div class="car-hr__item"><span class="material-symbols-outlined">mail</span><span><strong>HR Email</strong><br><a href="mailto:careers@timeerp.com">careers@timeerp.com</a></span></div>
-              <div class="car-hr__item"><span class="material-symbols-outlined">call</span><span><strong>Recruitment Phone</strong><br><a href="tel:+919876543210">+91 98765 43210</a></span></div>
+              <div class="car-hr__item"><span class="material-symbols-outlined">mail</span><span><strong>HR Email</strong><br><a href="mailto:info@timeerp.com">info@timeerp.com</a></span></div>
+              <div class="car-hr__item"><span class="material-symbols-outlined">call</span><span><strong>Recruitment Phone</strong><br><a href="tel:+919876543210">+91 8595975500</a></span></div>
               <div class="car-hr__item"><span class="material-symbols-outlined">location_on</span><span><strong>Office Address</strong><br>BM-08, Ansal Sumedha Building, RDC, Ghaziabad, Delhi NCR, UP 201002</span></div>
             </div>
           </div>
@@ -2478,10 +2480,10 @@
   </footer>
 
   <button type="button" class="back-top" id="backTop" aria-label="Back to top">↑</button>
-
-  <script src="js/site-chrome.js" defer></script>
-  <script src="js/scroll-animations.js" defer></script>
+<script src="js/scroll-animations.js" defer></script>
 <script src="js/careers.js" defer></script>
   <script src="js/site-nav.js" defer></script>
+  <script src="js/footer-accordion.js" defer></script>
+
 </body>
 </html>

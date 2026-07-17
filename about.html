@@ -121,14 +121,13 @@
 
     /* Typography */
     .eyebrow {
-      font-size: 12px;
+      font-family: "Inter", sans-serif;
+      font-size: 16px;
       font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--heading-deep);
-      text-shadow:
-        0 0 18px var(--heading-glow-soft),
-        0 0 36px rgba(37, 183, 167, 0.15);
+      letter-spacing: 0;
+      text-transform: none;
+      line-height: 1.4;
+      color: #0F172A;
     }
 
     .eyebrow--border {
@@ -1614,12 +1613,14 @@
       max-width: 560px;
     }
     .hero__content .eyebrow {
-      color: rgba(255, 255, 255, 0.72);
+      color: rgba(255, 255, 255, 0.92);
       text-shadow: none;
-      font-size: 12px;
-      line-height: 14px;
-      font-weight: 500;
-      letter-spacing: 2.49px;
+      font-family: "Inter", sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0;
+      text-transform: none;
+      line-height: 1.4;
       margin-bottom: 20px;
     }
     .hero__content .section-lead h1 {
@@ -1628,7 +1629,7 @@
       background-clip: unset;
       color: #fff;
       filter: none;
-      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      font-size: clamp(1.75rem, 2.8vw, 2.25rem);
       font-weight: 600;
       line-height: 1.2;
       margin-bottom: 24px;
@@ -1638,8 +1639,8 @@
       margin-bottom: 0;
       max-width: 480px;
       color: rgba(255, 255, 255, 0.88);
-      font-size: 17px;
-      line-height: 1.65;
+      font-size: 16px;
+      line-height: 1.7;
     }
     .hero__ctas {
       display: flex;
@@ -1885,8 +1886,9 @@
     .section-label{
       display:block;
       margin-bottom:20px;
-      font-size:12px;line-height:14px;font-weight:600;letter-spacing:.08em;
-      text-transform:uppercase;color:#000;
+      font-family:"Inter",sans-serif;
+      font-size:16px;font-weight:600;letter-spacing:0;
+      text-transform:none;line-height:1.4;color:#0F172A;
     }
     .image-gallery-heading {
       font-size: 36px;
@@ -4165,7 +4167,7 @@
       margin-bottom: 48px;
       max-width: 720px;
     }
-    .about-page .section-lead .section-label{margin-bottom:20px;color:#000;}
+    .about-page .section-lead .section-label{margin-bottom:20px;color:#0F172A;}
     .about-page .section-lead h1,
     .about-page .section-lead h2,
     .about-page .section-lead h3 {
@@ -4198,7 +4200,7 @@
       flex-direction: column;
       align-items: flex-start;
       gap: 0;
-      font-size: clamp(1.875rem, 3vw, 2.75rem);
+      font-size: clamp(1.75rem, 2.8vw, 2.25rem);
       font-weight: 600;
       line-height: 1.18;
       letter-spacing: -0.025em;
@@ -4210,7 +4212,7 @@
       filter: none;
     }
     .about-hero .section-lead h1.about-hero__title {
-      font-size: clamp(1.875rem, 3vw, 2.75rem);
+      font-size: clamp(1.75rem, 2.8vw, 2.25rem);
       font-weight: 600;
       line-height: 1.18;
       letter-spacing: -0.025em;
@@ -4303,7 +4305,7 @@
         </div>
         <div class="anim-right">
           <div class="section-lead">
-            <span class="section-label">Our story</span>
+            <span class="section-label">Our Story</span>
             <h2>From shop-floor challenges to a complete ERP platform</h2>
           </div>
           <div class="about-tabs" role="tablist" aria-label="Company story">
@@ -4328,7 +4330,7 @@
   <section class="section" id="values" style="background: var(--bg-light);">
     <div class="section-inner">
       <div class="section-lead anim-up">
-        <span class="section-label">What we stand for</span>
+        <span class="section-label">What We Stand For</span>
         <h2>Values that shape every product decision</h2>
         <p>Hover any card to see how we put these principles into practice.</p>
       </div>
@@ -4382,7 +4384,7 @@
   <section class="section" id="timeline">
     <div class="section-inner">
       <div class="section-lead anim-up">
-        <span class="section-label">Our journey</span>
+        <span class="section-label">Our Journey</span>
         <h2>Milestones that built TimeERP</h2>
         <p>Scroll to explore the active milestone updates as you move up or down.</p>
       </div>
@@ -4556,14 +4558,8 @@
       </div>
     </div>
   </footer>
-
-
-  
-
-
-  <script src="js/site-chrome.js"></script>
-  <script src="js/scroll-animations.js"></script>
-<script src="js/footer-accordion.js"></script>
+<script src="js/scroll-animations.js"></script>
+<script src="js/footer-accordion.js" defer></script>
   <script>
     (function () {
       'use strict';

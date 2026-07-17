@@ -21,7 +21,7 @@
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
-    body{font-family:Inter,-apple-system,sans-serif;font-size:16px;line-height:1.65;color:var(--text);background:var(--white);overflow-x:hidden;}
+    body{font-family:Inter,-apple-system,sans-serif;font-size:16px;line-height:1.7;color:var(--text);background:var(--white);overflow-x:hidden;}
     a{color:inherit;text-decoration:none;}
     button{font-family:inherit;cursor:pointer;border:none;background:none;}
     img{max-width:100%;display:block;}
@@ -32,8 +32,9 @@
     .section-label{
       display:block;
       margin-bottom:20px;
-      font-size:12px;line-height:14px;font-weight:600;letter-spacing:.08em;
-      text-transform:uppercase;color:#000;
+      font-family:"Inter",sans-serif;
+      font-size:16px;font-weight:600;letter-spacing:0;
+      text-transform:none;line-height:1.4;color:#0F172A;
     }
     .section-lead{max-width:640px;margin-bottom:40px;}
     .section-lead h1,.section-lead h2{font-size:clamp(1.75rem,2.8vw,2.25rem);font-weight:600;color:var(--heading);letter-spacing:-.02em;line-height:1.25;margin-bottom:12px;}
@@ -74,8 +75,8 @@
     /* Hero */
     .sp-hero{padding:calc(72px + 64px) 0 var(--pad);background:linear-gradient(165deg,#3dd5c5 0%,#25b7a7 35%,#0d7a6e 100%);color:#fff;}
     .sp-hero__grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;}
-    .sp-hero .section-label{color:#000;}
-    .sp-hero h1{font-size:clamp(2rem,3.5vw,2.75rem);font-weight:600;line-height:1.2;letter-spacing:-.03em;margin-bottom:16px;color:#fff;}
+    .sp-hero .section-label{color:#0F172A;}
+    .sp-hero h1{font-size:clamp(1.75rem,2.8vw,2.25rem);font-weight:600;line-height:1.2;letter-spacing:-.03em;margin-bottom:16px;color:#fff;}
     .sp-hero__sub{font-size:17px;line-height:1.65;color:rgba(255,255,255,.9);max-width:520px;margin-bottom:28px;}
     .sp-hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px;}
     .sp-hero__cta .sp-btn--primary{background:#fff;color:var(--primary);}
@@ -854,7 +855,7 @@
       .sp-nav__links{display:none;}
       .sp-btn--nav{padding:10px 14px;font-size:12px;}
       .mp-command__grid,.mp-onboard__grid,.mp-features__grid,.sp-values__grid,.sp-sec-grid{grid-template-columns:1fr;}
-      .sp-workflow__track{grid-template-columns:repeat(2,1fr);}
+      .sp-workflow__track{grid-template-columns:1fr;}
     }
   </style>
   <link rel="stylesheet" href="css/site-nav.css">
@@ -896,7 +897,7 @@
     <section class="mp-command section" id="command">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">MSME pillars</span>
+          <span class="section-label">MSME Pillars</span>
           <h2>Everything a growing business needs in one platform</h2>
           <p>Unify sales, billing, people, and delivery so MSME teams stop juggling spreadsheets and disconnected tools.</p>
         </div>
@@ -929,7 +930,7 @@
     <section class="sp-values section">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Why MSMEs choose TimeERP</span>
+          <span class="section-label">Why MSMEs Choose TimeERP</span>
           <h2>From spreadsheet chaos to one business platform</h2>
           <p>Replace disconnected tools for sales, billing, HR, and delivery with one cloud ERP your growing team can actually run.</p>
         </div>
@@ -956,7 +957,7 @@
     <section class="sp-workflow section" id="workflow">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">End-to-end workflow</span>
+          <span class="section-label">End-to-End Workflow</span>
           <h2>How MSMEs run on TimeERP. Click each step</h2>
           <p>From lead to GST reports. See how sales, billing, accounting, and compliance connect in one platform.</p>
         </div>
@@ -975,7 +976,7 @@
     <section class="sp-proof section">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">MSME use cases</span>
+          <span class="section-label">MSME Use Cases</span>
           <h2>How growing businesses use TimeERP</h2>
         </div>
         <div class="sp-proof__slider anim-up">
@@ -1010,7 +1011,7 @@
     <section class="sp-solutions section" id="solutions">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Core solutions</span>
+          <span class="section-label">Core Solutions</span>
           <h2>One platform to sell, bill, and deliver</h2>
           <p>Unified operations, team access, and workflow automation. Hover or click each card to explore.</p>
         </div>
@@ -1041,7 +1042,7 @@
     <section class="section" id="modules">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Core modules</span>
+          <span class="section-label">Core Modules</span>
           <h2>Core TimeERP modules for MSMEs</h2>
         </div>
         <p class="anim-up" style="font-size:16px;color:var(--text);line-height:1.65;margin-bottom:24px;max-width:720px;">CRM, billing, HRMS, payroll, projects, tasks, and documents share one customer and employee record across TimeERP.</p>
@@ -1060,7 +1061,7 @@
     <section class="sp-security-section section" id="security">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Code security</span>
+          <span class="section-label">Code Security</span>
           <h2>Security built in</h2>
           <p>Your customer, employee, and financial data is in safe hands. TimeERP prioritizes encryption, role-based access, audit trails, and cloud security controls.</p>
         </div>
@@ -1080,7 +1081,7 @@
       <div class="shell">
         <div class="mp-apps__grid anim-up">
           <div>
-            <span class="section-label">Team access</span>
+            <span class="section-label">Team Access</span>
             <h2 class="mp-apps__title">Team access for daily MSME operations</h2>
             <p style="font-size:16px;color:var(--muted);line-height:1.65;margin-bottom:8px;">Sales, finance, and delivery teams update CRM follow-ups, billing, and tasks from the same TimeERP platform with role-based access and enterprise security.</p>
           </div>
@@ -1158,7 +1159,7 @@
     <section class="section">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Built for MSMEs</span>
+          <span class="section-label">Built For MSMEs</span>
           <h2>Everything you need to run projects at scale</h2>
         </div>
         <div class="mp-features__grid anim-up">
@@ -1205,7 +1206,7 @@
     <section class="section" id="industries-connected">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Industries connected</span>
+          <span class="section-label">Industries Connected</span>
           <h2>TimeERP also serves related industries</h2>
           <p>Explore other industry pages built on the same TimeERP platform.</p>
         </div>
@@ -1384,9 +1385,7 @@
       </div>
     </div>
   </footer>
-
-  <script src="js/site-chrome.js" defer></script>
-  <script src="js/scroll-animations.js" defer></script>
+<script src="js/scroll-animations.js" defer></script>
   <script src="js/footer-accordion.js" defer></script>
   <script src="js/msme.js" defer></script>
   <script src="js/site-nav.js" defer></script>

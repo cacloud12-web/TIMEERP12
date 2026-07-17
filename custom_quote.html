@@ -1365,8 +1365,9 @@
     .section-label{
       display:block;
       margin-bottom:20px;
-      font-size:12px;line-height:14px;font-weight:600;letter-spacing:.08em;
-      text-transform:uppercase;color:#000;
+      font-family:"Inter",sans-serif;
+      font-size:16px;font-weight:600;letter-spacing:0;
+      text-transform:none;line-height:1.4;color:#0F172A;
     }
 
     /* Scroll animations */
@@ -1394,8 +1395,8 @@
     }
     .cq-hero__inner{position:relative;z-index:2;}
     .cq-hero .section-lead{max-width:720px;margin-bottom:0;}
-    .cq-hero .section-label{color:#000;}
-    .cq-hero .section-lead h1{font-size:clamp(2rem,3.5vw,2.75rem);font-weight:600;line-height:1.2;letter-spacing:-0.03em;margin-bottom:8px;color:#fff;-webkit-text-fill-color:#fff;background:none;filter:none;}
+    .cq-hero .section-label{color:#0F172A;}
+    .cq-hero .section-lead h1{font-size:clamp(1.75rem,2.8vw,2.25rem);font-weight:600;line-height:1.2;letter-spacing:-0.03em;margin-bottom:8px;color:#fff;-webkit-text-fill-color:#fff;background:none;filter:none;}
     .cq-hero .section-lead p{font-size:16px;line-height:1.65;color:rgba(255,255,255,.9);max-width:640px;letter-spacing:-0.2px;}
     .cq-hero__badge{
       display:inline-flex;align-items:center;gap:8px;margin-top:20px;padding:8px 14px;
@@ -1532,6 +1533,7 @@
       .cq-form-panel{position:static;}
     }
     @media (max-width:768px){
+      :root{--content-pad-x:20px;}
       .cq-hero__decoration{display:none;}
       .cq-security-stats,.cq-includes{grid-template-columns:1fr;}
       .cq-form-row{grid-template-columns:1fr;}
@@ -1840,7 +1842,7 @@
         <div class="cq-layout anim-up">
           <div class="cq-layout__content">
             <div class="section-lead" style="margin-bottom:28px;">
-              <span class="section-label">Core security</span>
+              <span class="section-label">Core Security</span>
               <h2>Enterprise-grade security for your operations</h2>
               <p>TimeERP protects production data, financial records, and team credentials with the security controls large manufacturing teams require.</p>
             </div>
@@ -2090,10 +2092,7 @@
       </div>
     </div>
   </footer>
-
-  
-  <script src="js/site-chrome.js" defer></script>
-  <script src="js/scroll-animations.js" defer></script>
+<script src="js/scroll-animations.js" defer></script>
 <script src="js/footer-accordion.js" defer></script>
   <script src="js/custom_quote.js" defer></script>
   <script src="js/site-nav.js" defer></script>

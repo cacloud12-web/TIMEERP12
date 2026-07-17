@@ -21,7 +21,7 @@
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
-    body{font-family:Inter,-apple-system,sans-serif;font-size:16px;line-height:1.65;color:var(--text);background:var(--white);overflow-x:hidden;}
+    body{font-family:Inter,-apple-system,sans-serif;font-size:16px;line-height:1.7;color:var(--text);background:var(--white);overflow-x:hidden;}
     a{color:inherit;text-decoration:none;}
     button{font-family:inherit;cursor:pointer;border:none;background:none;}
     img{max-width:100%;display:block;}
@@ -32,8 +32,9 @@
     .section-label{
       display:block;
       margin-bottom:20px;
-      font-size:12px;line-height:14px;font-weight:600;letter-spacing:.08em;
-      text-transform:uppercase;color:#000;
+      font-family:"Inter",sans-serif;
+      font-size:16px;font-weight:600;letter-spacing:0;
+      text-transform:none;line-height:1.4;color:#0F172A;
     }
     .section-lead{max-width:640px;margin-bottom:40px;}
     .section-lead h1,.section-lead h2{font-size:clamp(1.75rem,2.8vw,2.25rem);font-weight:600;color:var(--heading);letter-spacing:-.02em;line-height:1.25;margin-bottom:12px;}
@@ -74,9 +75,9 @@
     /* Hero */
     .sp-hero{padding:calc(72px + 64px) 0 var(--pad);background:linear-gradient(165deg,#3dd5c5 0%,#25b7a7 35%,#0d7a6e 100%);color:#fff;}
     .sp-hero__grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;}
-    .sp-hero .section-label{color:#000;}
+    .sp-hero .section-label{color:#0F172A;}
     .sp-hero
-    .sp-hero h1{font-size:clamp(2rem,3.5vw,2.75rem);font-weight:600;line-height:1.2;letter-spacing:-.03em;margin-bottom:16px;color:#fff;}
+    .sp-hero h1{font-size:clamp(1.75rem,2.8vw,2.25rem);font-weight:600;line-height:1.2;letter-spacing:-.03em;margin-bottom:16px;color:#fff;}
     .sp-hero__sub{font-size:17px;line-height:1.65;color:rgba(255,255,255,.9);max-width:520px;margin-bottom:28px;}
     .sp-hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px;}
     .sp-hero__cta .sp-btn--primary{background:#fff;color:var(--primary);}
@@ -941,7 +942,7 @@
       .sp-nav__links{display:none;}
       .sp-btn--nav{padding:10px 14px;font-size:12px;}
       .mp-command__grid,.mp-onboard__grid,.mp-features__grid,.sp-values__grid,.sp-sec-grid{grid-template-columns:1fr;}
-      .sp-workflow__track{grid-template-columns:repeat(2,1fr);}
+      .sp-workflow__track{grid-template-columns:1fr;}
       .sp-calc__controls,.sp-calc__result-panel{padding:20px;}
     }
   </style>
@@ -984,7 +985,7 @@
     <section class="mp-command section" id="command">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Practice pillars</span>
+          <span class="section-label">Practice Pillars</span>
           <h2>Everything your CA firm needs in one platform</h2>
           <p>Click each pillar to explore how TimeERP helps Indian CA practices deliver secure client portals, workflow automation, and compliance control in one platform.</p>
         </div>
@@ -1017,7 +1018,7 @@
     <section class="sp-values section">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Why CA firms choose TimeERP</span>
+          <span class="section-label">Why CA Firms Choose TimeERP</span>
           <h2>From filing season chaos to a calm, connected practice</h2>
           <p>Replace spreadsheets, WhatsApp threads, and disconnected tools with one platform your team and clients actually use.</p>
         </div>
@@ -1044,7 +1045,7 @@
     <section class="sp-workflow section" id="workflow">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">End-to-end workflow</span>
+          <span class="section-label">End-to-End Workflow</span>
           <h2>How CA firms run on CA Cloud Desk. Click each step</h2>
           <p>From client intake through advisory, see how each stage connects in one practice management flow.</p>
         </div>
@@ -1063,7 +1064,7 @@
     <section class="sp-proof section">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Trusted by CA firms</span>
+          <span class="section-label">Trusted By CA Firms</span>
           <h2>Why Chartered Accountants rely on TimeERP</h2>
         </div>
         <div class="sp-proof__slider anim-up">
@@ -1098,7 +1099,7 @@
     <section class="sp-solutions section" id="solutions">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Core solutions</span>
+          <span class="section-label">Core Solutions</span>
           <h2>One platform to run, grow, and scale your CA practice</h2>
           <p>Client portal, workflow automation, and practice billing. Hover or click each card to explore.</p>
         </div>
@@ -1129,7 +1130,7 @@
     <section class="section" id="modules">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Practice modules</span>
+          <span class="section-label">Practice Modules</span>
           <h2>Built for every service line in your CA firm</h2>
         </div>
         <p class="anim-up" style="font-size:16px;color:var(--text);line-height:1.65;margin-bottom:24px;max-width:720px;">Tax &amp; GST, audit, payroll, and advisory: each module shares the same client record, portal, and billing engine.</p>
@@ -1148,7 +1149,7 @@
     <section class="sp-security-section section" id="security">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Code security</span>
+          <span class="section-label">Code Security</span>
           <h2>Security built in</h2>
           <p>Your clients' data is in safe hands. TimeERP prioritizes data security with encryption, RBAC, audit trails, and industry standard safety measures.</p>
         </div>
@@ -1167,7 +1168,7 @@
     <section class="section ca-dash-section" id="dashboard">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Partner dashboard</span>
+          <span class="section-label">Partner Dashboard</span>
           <h2>See your practice at a glance. Click each view</h2>
           <p>Interactive preview of the partner dashboard filing status, team workload, and revenue in one place.</p>
         </div>
@@ -1186,7 +1187,7 @@
       <div class="shell">
         <div class="mp-apps__grid anim-up">
           <div>
-            <span class="section-label">Mobile &amp; client access</span>
+            <span class="section-label">Mobile &amp; Client Access</span>
             <h2 class="mp-apps__title">Client portal &amp; mobile apps for your practice</h2>
             <p style="font-size:16px;color:var(--muted);line-height:1.65;margin-bottom:8px;">Clients upload GST documents and sign engagement letters from mobile. Staff log time and complete tasks on the go, same secure platform, no shared passwords.</p>
             <div class="mp-apps__stats">
@@ -1251,7 +1252,7 @@
     <section class="section">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Built for CA practices</span>
+          <span class="section-label">Built For CA Practices</span>
           <h2>Everything you need to run a modern Chartered Accountant firm</h2>
         </div>
         <div class="mp-features__grid anim-up">
@@ -1268,7 +1269,7 @@
     <section class="section">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Practice ROI calculator</span>
+          <span class="section-label">Practice ROI Calculator</span>
           <h2>Estimate time and cost savings for your CA firm</h2>
           <p>Adjust client count and team size to see how consolidating tools into TimeERP frees billable hours.</p>
         </div>
@@ -1548,9 +1549,7 @@
       </div>
     </div>
   </footer>
-
-  <script src="js/site-chrome.js" defer></script>
-  <script src="js/scroll-animations.js" defer></script>
+<script src="js/scroll-animations.js" defer></script>
   <script src="js/footer-accordion.js" defer></script>
   <script src="js/ca.js" defer></script>
   <script src="js/site-nav.js" defer></script>

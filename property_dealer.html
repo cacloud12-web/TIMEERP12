@@ -20,7 +20,7 @@
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
-    body{font-family:Inter,-apple-system,sans-serif;font-size:16px;line-height:1.65;color:var(--text);background:var(--white);overflow-x:hidden;}
+    body{font-family:Inter,-apple-system,sans-serif;font-size:16px;line-height:1.7;color:var(--text);background:var(--white);overflow-x:hidden;}
     a{color:inherit;text-decoration:none;}
     button{font-family:inherit;cursor:pointer;border:none;background:none;}
     img{max-width:100%;display:block;}
@@ -30,8 +30,9 @@
     .section-label{
       display:block;
       margin-bottom:20px;
-      font-size:12px;line-height:14px;font-weight:600;letter-spacing:.08em;
-      text-transform:uppercase;color:#1a9e8f;
+      font-family:"Inter",sans-serif;
+      font-size:16px;font-weight:600;letter-spacing:0;
+      text-transform:none;line-height:1.4;color:#0F172A;
     }
     .section-lead{max-width:640px;margin-bottom:40px;}
     .section-lead h1,.section-lead h2{font-size:clamp(1.75rem,2.8vw,2.25rem);font-weight:600;color:var(--heading);letter-spacing:-.02em;line-height:1.25;margin-bottom:12px;}
@@ -72,9 +73,9 @@
     /* Hero */
     .sp-hero{padding:calc(72px + 64px) 0 var(--pad);background:linear-gradient(165deg,#3dd5c5 0%,#25b7a7 35%,#0d7a6e 100%);color:#fff;}
     .sp-hero__grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;}
-    .sp-hero .section-label{color:#1a9e8f;}
+    .sp-hero .section-label{color:#0F172A;}
     .sp-hero
-    .sp-hero h1{font-size:clamp(2rem,3.5vw,2.75rem);font-weight:600;line-height:1.2;letter-spacing:-.03em;margin-bottom:16px;color:#fff;}
+    .sp-hero h1{font-size:clamp(1.75rem,2.8vw,2.25rem);font-weight:600;line-height:1.2;letter-spacing:-.03em;margin-bottom:16px;color:#fff;}
     .sp-hero__sub{font-size:17px;line-height:1.65;color:rgba(255,255,255,.9);max-width:520px;margin-bottom:28px;}
     .sp-hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px;}
     .sp-hero__cta .sp-btn--primary{background:#fff;color:var(--primary);}
@@ -948,7 +949,7 @@
       .sp-nav__links{display:none;}
       .sp-btn--nav{padding:10px 14px;font-size:12px;}
       .mp-command__grid,.mp-onboard__grid,.mp-features__grid,.sp-values__grid,.sp-sec-grid{grid-template-columns:1fr;}
-      .sp-workflow__track{grid-template-columns:repeat(2,1fr);}
+      .sp-workflow__track{grid-template-columns:1fr;}
       .sp-calc__controls,.sp-calc__result-panel{padding:16px;}
       .sp-calc__presets{flex-wrap:wrap;gap:5px;margin-bottom:12px;}
       .sp-calc__preset{padding:4px 9px;font-size:10px;}
@@ -994,7 +995,7 @@
     <section class="mp-command section" id="command">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Brokerage pillars</span>
+          <span class="section-label">Brokerage Pillars</span>
           <h2>Everything your property dealer firm needs in one platform</h2>
           <p>Click each pillar to explore how TimeERP helps brokers capture leads, match listings, close deals, and track commissions without scattered spreadsheets.</p>
         </div>
@@ -1027,7 +1028,7 @@
     <section class="sp-values section">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Why brokers choose TimeERP</span>
+          <span class="section-label">Why Brokers Choose TimeERP</span>
           <h2>From WhatsApp leads to one deal-closing platform</h2>
           <p>Replace scattered lead registers, manual site visit logs, and commission spreadsheets with one platform your agents and back-office team actually use.</p>
         </div>
@@ -1054,7 +1055,7 @@
     <section class="sp-workflow section" id="workflow">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">End-to-end workflow</span>
+          <span class="section-label">End-to-End Workflow</span>
           <h2>How property dealers run on TimeERP. Click each step</h2>
           <p>From lead capture through registration and commission see how each stage connects across your brokerage.</p>
         </div>
@@ -1073,7 +1074,7 @@
     <section class="sp-proof section">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Trusted by brokerages</span>
+          <span class="section-label">Trusted By Brokerages</span>
           <h2>Why property dealers rely on TimeERP</h2>
         </div>
         <div class="sp-proof__slider anim-up">
@@ -1108,7 +1109,7 @@
     <section class="sp-solutions section" id="solutions">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Core solutions</span>
+          <span class="section-label">Core Solutions</span>
           <h2>One platform to list, sell, and earn commission</h2>
           <p>Deal pipeline, agent mobile CRM, and follow-up automation hover or click each card to explore.</p>
         </div>
@@ -1139,7 +1140,7 @@
     <section class="section" id="modules">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Brokerage modules</span>
+          <span class="section-label">Brokerage Modules</span>
           <h2>Built for every layer of property dealing</h2>
         </div>
         <p class="anim-up" style="font-size:16px;color:var(--text);line-height:1.65;margin-bottom:24px;max-width:720px;">Listings, leads, deals, and commissions each module shares the same buyer record, agent assignment, and reporting engine.</p>
@@ -1158,7 +1159,7 @@
     <section class="sp-security-section section" id="security">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Code security</span>
+          <span class="section-label">Code Security</span>
           <h2>Security built in</h2>
           <p>Your lead, deal, and KYC data is in safe hands. TimeERP prioritizes encryption, agent-level RBAC, audit trails, and RERA ready controls.</p>
         </div>
@@ -1177,7 +1178,7 @@
     <section class="section ca-dash-section" id="dashboard">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Brokerage dashboard</span>
+          <span class="section-label">Brokerage Dashboard</span>
           <h2>See your pipeline at a glance. Click each view</h2>
           <p>Interactive preview of the brokerage dashboard pipeline, listings, and commissions in one place.</p>
         </div>
@@ -1196,7 +1197,7 @@
       <div class="shell">
         <div class="mp-apps__grid anim-up">
           <div>
-            <span class="section-label">Agent mobile CRM</span>
+            <span class="section-label">Agent Mobile Crm</span>
             <h2 class="mp-apps__title">Field-ready CRM for property agents</h2>
             <p style="font-size:16px;color:var(--muted);line-height:1.65;margin-bottom:8px;">Agents log site visits, update leads, and share listings from mobile in the field. Managers see real-time pipeline and visit activity without waiting for end-of-day reports.</p>
             <div class="mp-apps__stats">
@@ -1261,7 +1262,7 @@
     <section class="section">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Built for property dealers</span>
+          <span class="section-label">Built For Property Dealers</span>
           <h2>Everything you need to close deals at scale</h2>
         </div>
         <div class="mp-features__grid anim-up">
@@ -1278,7 +1279,7 @@
     <section class="section">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Brokerage ROI calculator</span>
+          <span class="section-label">Brokerage ROI Calculator</span>
           <h2>Estimate time and cost savings for your property dealer firm</h2>
           <p>Adjust listing count and team size to see how replacing Excel lead registers with TimeERP frees operational hours.</p>
         </div>
@@ -1539,9 +1540,9 @@
               <li><a href="careers.html">Careers</a></li>
               <li><a href="contact_sales.html">Contact sales</a></li>
               <li><a href="home1.html#pricing">Pricing</a></li>
-              <li><a href="#">Partners</a></li>
-              <li><a href="#" class="footer-link--external">Roadmap</a></li>
-              <li><a href="#" class="footer-link--external">Status</a></li>
+              <li><a href="contact_sales.html">Partners</a></li>
+              <li><a href="community.html">Roadmap</a></li>
+              <li><a href="real_time_support.html">Status</a></li>
             </ul></div>
           </div>
           <div class="footer-col" data-footer-col>
@@ -1574,19 +1575,19 @@
             <div class="footer-col__head-desktop"><h3 class="footer-col__title">Policy</h3></div>
             <div class="footer-col__panel"><ul>
               <li><a href="privacy.html">Privacy policy</a></li>
-              <li><a href="#">Security policy</a></li>
+              <li><a href="privacy.html">Security policy</a></li>
               <li><a href="terms.html">Terms of service</a></li>
-              <li><a href="#">Cookie policy</a></li>
-              <li><a href="#">Compliance</a></li>
+              <li><a href="privacy.html">Cookie policy</a></li>
+              <li><a href="terms.html">Compliance</a></li>
             </ul></div>
           </div>
           <div class="footer-col" data-footer-col>
             <button type="button" class="footer-col__toggle" aria-expanded="false"><span class="footer-col__title">Partner with us</span><span class="footer-col__chevron" aria-hidden="true">▾</span></button>
             <div class="footer-col__head-desktop"><h3 class="footer-col__title">Partner with us</h3></div>
             <div class="footer-col__panel"><ul>
-              <li><a href="#">Referral program</a></li>
-              <li><a href="#">Partner program</a></li>
-              <li><a href="#">Become a consultant</a></li>
+              <li><a href="contact_sales.html">Referral program</a></li>
+              <li><a href="contact_sales.html">Partner program</a></li>
+              <li><a href="careers.html">Become a consultant</a></li>
             </ul></div>
           </div>
           <div class="footer-col" data-footer-col>
@@ -1665,9 +1666,7 @@
       </div>
     </div>
   </footer>
-
-  <script src="js/site-chrome.js" defer></script>
-  <script src="js/scroll-animations.js" defer></script>
+<script src="js/scroll-animations.js" defer></script>
   <script src="js/footer-accordion.js" defer></script>
   <script src="js/property-dealer.js" defer></script>
   <script src="js/site-nav.js" defer></script>

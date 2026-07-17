@@ -71,12 +71,13 @@
     .section-label {
       display: block;
       margin-bottom: 20px;
-      font-size: 12px;
-      line-height: 14px;
+      font-family: "Inter", sans-serif;
+      font-size: 16px;
       font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #000;
+      letter-spacing: 0;
+      text-transform: none;
+      line-height: 1.4;
+      color: #0F172A;
     }
 
     .section-lead { text-align: left; max-width: 720px; margin-bottom: 48px; }
@@ -165,7 +166,7 @@
     }
     .privacy-hero .section-label { color: #000; }
     .privacy-hero__title {
-      font-size: clamp(1.875rem, 3vw, 2.75rem);
+      font-size: clamp(1.75rem, 2.8vw, 2.25rem);
       font-weight: 600;
       line-height: 1.18;
       letter-spacing: -0.025em;
@@ -558,6 +559,7 @@
       .privacy-highlights__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 1024px) {
+      :root { --content-pad-x: 40px; }
       .privacy-hero__grid { grid-template-columns: 1fr; }
       .privacy-hero__visual { display: none; }
       .privacy-body__grid { grid-template-columns: 1fr; }

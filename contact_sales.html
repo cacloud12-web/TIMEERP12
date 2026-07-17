@@ -19,7 +19,7 @@
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
-    body{font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;line-height:1.6;color:var(--text-body);background:var(--white);overflow-x:hidden;}
+    body{font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;line-height:1.7;color:var(--text-body);background:var(--white);overflow-x:hidden;}
     img{max-width:100%;display:block;}
     a{color:inherit;text-decoration:none;}
     button,input,select{font-family:inherit;font-size:16px;}
@@ -33,8 +33,9 @@
     .cs-label{
       display:block;
       margin-bottom:20px;
-      font-size:12px;line-height:14px;font-weight:600;letter-spacing:.08em;
-      text-transform:uppercase;color:#000;
+      font-family:"Inter",sans-serif;
+      font-size:16px;font-weight:600;letter-spacing:0;
+      text-transform:none;line-height:1.4;color:#0F172A;
     }
     .cs-aside h1{font-size:clamp(1.75rem,2.8vw,2.25rem);font-weight:600;color:#083530;line-height:1.25;margin-bottom:12px;letter-spacing:-0.02em;}
     .cs-aside>p{color:var(--muted);font-size:15px;line-height:1.65;margin-bottom:20px;max-width:440px;}
@@ -96,6 +97,7 @@
     .form-success h2{font-size:20px;color:var(--heading);margin-bottom:8px;}
     .form-success p{font-size:14px;color:var(--muted);}
 
+    @media (max-width:1024px){:root{--content-pad-x:40px;}}
     @media (max-width:900px){.cs-layout{grid-template-columns:1fr;gap:32px;}}
     @media (max-width:640px){
       :root{--content-pad-x:20px;}
@@ -114,7 +116,7 @@
 <main class="cs-main" id="contact-sales">
     <div class="cs-shell cs-layout">
       <aside class="cs-aside">
-        <span class="cs-label">Contact sales</span>
+        <span class="cs-label">Contact Sales</span>
         <h1>Get in touch with TimeERP, one platform for real estate, construction &amp; MSME</h1>
         <p>See how teams in your industry replace disconnected tools with unified ERP: secure, fast, and built for growing operations.</p>
 
@@ -317,9 +319,7 @@
       </div>
     </div>
   </footer>
-
-  <script src="js/site-chrome.js" defer></script>
-  <script src="js/scroll-animations.js" defer></script>
+<script src="js/scroll-animations.js" defer></script>
 <script src="js/contact_sales.js" defer></script>
   <script src="js/footer-accordion.js" defer></script>
   <script src="js/site-nav.js" defer></script>

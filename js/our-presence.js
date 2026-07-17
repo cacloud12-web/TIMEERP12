@@ -62,6 +62,15 @@
     return Array.prototype.slice.call((root || document).querySelectorAll(sel));
   }
 
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
+    });
+  }
+  function escapeAttr(s) {
+    return escapeHtml(s).replace(/\n/g, ' ');
+  }
+
   function animateCounters() {
     $all('[data-count]').forEach(function (el) {
       var target = parseFloat(el.getAttribute('data-count'));
@@ -102,7 +111,7 @@
     return (
       '<div class="presence-marker' + (isActive ? ' is-active' : '') + '">' +
       svg +
-      '<span class="presence-city-label' + (isActive ? ' is-active-label' : '') + '">' + label + '</span>' +
+      '<span class="presence-city-label' + (isActive ? ' is-active-label' : '') + '">' + escapeHtml(label) + '</span>' +
       '</div>'
     );
   }
@@ -128,7 +137,7 @@
 
     var services = $('#drawerServices');
     services.innerHTML = (loc.services || []).map(function (s) {
-      return '<li><span aria-hidden="true">✓</span> ' + s + '</li>';
+      return '<li><span aria-hidden="true">✓</span> ' + escapeHtml(s) + '</li>';
     }).join('');
 
     $('#drawerDirections').href = googleMapsUrl(loc);
@@ -370,8 +379,8 @@
     }
     panel.hidden = false;
     panel.innerHTML = results.map(function (item) {
-      return '<button type="button" class="presence-search__item" data-id="' + item.id + '">' +
-        '<strong>' + item.label + '</strong><span>' + item.sub + '</span></button>';
+      return '<button type="button" class="presence-search__item" data-id="' + escapeAttr(item.id) + '">' +
+        '<strong>' + escapeHtml(item.label) + '</strong><span>' + escapeHtml(item.sub) + '</span></button>';
     }).join('');
   }
 
@@ -495,8 +504,8 @@
         .then(function (maskData) {
           applyIndiaUaeMask(state.map, maskData);
         })
-        .catch(function (err) {
-          console.warn('Presence mask unavailable', err);
+        .catch(function () {
+          /* Mask optional — map still renders without country clip */
         })
         .finally(function () {
           addMarkers(data.locations);
@@ -679,8 +688,7 @@
           buildSearchIndex(data.locations);
           initMap(data);
         })
-        .catch(function (err) {
-          console.error(err);
+        .catch(function () {
           var mapEl = $('#presenceMap');
           if (mapEl) {
             mapEl.innerHTML = '<div class="presence-map__error">Unable to load map data. Please refresh.</div>';
@@ -696,7 +704,7 @@
         buildSearchIndex(data.locations);
         updateMapBadge(data.locations.length);
       })
-      .catch(function (err) { console.error(err); });
+      .catch(function () { /* Badge uses default count if data fails */ });
 
     startMap();
 

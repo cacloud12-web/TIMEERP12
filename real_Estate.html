@@ -21,7 +21,7 @@
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
-    body{font-family:Inter,-apple-system,sans-serif;font-size:16px;line-height:1.65;color:var(--text);background:var(--white);overflow-x:hidden;}
+    body{font-family:Inter,-apple-system,sans-serif;font-size:16px;line-height:1.7;color:var(--text);background:var(--white);overflow-x:hidden;}
     a{color:inherit;text-decoration:none;}
     button{font-family:inherit;cursor:pointer;border:none;background:none;}
     img{max-width:100%;display:block;}
@@ -32,8 +32,9 @@
     .section-label{
       display:block;
       margin-bottom:20px;
-      font-size:12px;line-height:14px;font-weight:600;letter-spacing:.08em;
-      text-transform:uppercase;color:#000;
+      font-family:"Inter",sans-serif;
+      font-size:16px;font-weight:600;letter-spacing:0;
+      text-transform:none;line-height:1.4;color:#0F172A;
     }
     .section-lead{max-width:640px;margin-bottom:40px;}
     .section-lead h1,.section-lead h2{font-size:clamp(1.75rem,2.8vw,2.25rem);font-weight:600;color:var(--heading);letter-spacing:-.02em;line-height:1.25;margin-bottom:12px;}
@@ -74,9 +75,9 @@
     /* Hero */
     .sp-hero{padding:calc(72px + 64px) 0 var(--pad);background:linear-gradient(165deg,#3dd5c5 0%,#25b7a7 35%,#0d7a6e 100%);color:#fff;}
     .sp-hero__grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;}
-    .sp-hero .section-label{color:#000;}
+    .sp-hero .section-label{color:#0F172A;}
     .sp-hero
-    .sp-hero h1{font-size:clamp(2rem,3.5vw,2.75rem);font-weight:600;line-height:1.2;letter-spacing:-.03em;margin-bottom:16px;color:#fff;}
+    .sp-hero h1{font-size:clamp(1.75rem,2.8vw,2.25rem);font-weight:600;line-height:1.2;letter-spacing:-.03em;margin-bottom:16px;color:#fff;}
     .sp-hero__sub{font-size:17px;line-height:1.65;color:rgba(255,255,255,.9);max-width:520px;margin-bottom:28px;}
     .sp-hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px;}
     .sp-hero__cta .sp-btn--primary{background:#fff;color:var(--primary);}
@@ -947,7 +948,7 @@
       .sp-nav__links{display:none;}
       .sp-btn--nav{padding:10px 14px;font-size:12px;}
       .mp-command__grid,.mp-onboard__grid,.mp-features__grid,.sp-values__grid,.sp-sec-grid{grid-template-columns:1fr;}
-      .sp-workflow__track{grid-template-columns:repeat(2,1fr);}
+      .sp-workflow__track{grid-template-columns:1fr;}
       .sp-calc__controls,.sp-calc__result-panel{padding:20px;}
     }
   </style>
@@ -990,7 +991,7 @@
     <section class="mp-command section" id="command">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Real estate operations</span>
+          <span class="section-label">Real Estate Operations</span>
           <h2>Business operations and financial compliance in one platform</h2>
           <p>Click each pillar to explore operations, compliance, and financial control for real estate firms. Use live preview for a snapshot of each area.</p>
         </div>
@@ -1023,7 +1024,7 @@
     <section class="sp-values section">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Why real estate firms choose TimeERP</span>
+          <span class="section-label">Why Real Estate Firms Choose TimeERP</span>
           <h2>From scattered project files to one operations command center</h2>
           <p>Replace disconnected Excel trackers, WhatsApp sales threads, and manual compliance chases with one TimeERP platform your project, sales, and finance teams actually use.</p>
         </div>
@@ -1050,7 +1051,7 @@
     <section class="sp-workflow section" id="workflow">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">End-to-end workflow</span>
+          <span class="section-label">End-to-End Workflow</span>
           <h2>How real estate firms run on TimeERP. Click each step</h2>
           <p>From land acquisition through possession and handover, see how each stage connects across your portfolio.</p>
         </div>
@@ -1069,7 +1070,7 @@
     <section class="sp-proof section">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Trusted by real estate firms</span>
+          <span class="section-label">Trusted By Real Estate Firms</span>
           <h2>Why developers and real estate groups rely on TimeERP</h2>
         </div>
         <div class="sp-proof__slider anim-up">
@@ -1104,7 +1105,7 @@
     <section class="sp-solutions section" id="solutions">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Core solutions</span>
+          <span class="section-label">Core Solutions</span>
           <h2>One platform for projects, stakeholders, and financial compliance</h2>
           <p>Project tracking, stakeholder portals, and tax automation. Hover or click each card, then explore the workflow highlights on the right.</p>
         </div>
@@ -1135,7 +1136,7 @@
     <section class="section" id="modules">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Real estate modules</span>
+          <span class="section-label">Real Estate Modules</span>
           <h2>Built for every layer of real estate operations</h2>
         </div>
         <p class="anim-up" style="font-size:16px;color:var(--text);line-height:1.65;margin-bottom:24px;max-width:720px;">Projects, compliance, sales, and finance on TimeERP. Each module shares the same project record, stakeholder portal, and reporting engine.</p>
@@ -1154,7 +1155,7 @@
     <section class="sp-security-section section" id="security">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Code security</span>
+          <span class="section-label">Code Security</span>
           <h2>Security built in</h2>
           <p>Your project, sales, and compliance data stays protected on TimeERP with encryption, project-level RBAC, audit trails, and RERA-ready controls.</p>
         </div>
@@ -1173,7 +1174,7 @@
     <section class="section ca-dash-section" id="dashboard">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Operations dashboard</span>
+          <span class="section-label">Operations Dashboard</span>
           <h2>See your portfolio at a glance. Click each view</h2>
           <p>Interactive preview of the TimeERP dashboard: projects, compliance, and sales in one place.</p>
         </div>
@@ -1192,7 +1193,7 @@
       <div class="shell">
         <div class="mp-apps__grid anim-up">
           <div>
-            <span class="section-label">Stakeholder portal</span>
+            <span class="section-label">Stakeholder Portal</span>
             <h2 class="mp-apps__title">Branded portal for buyers, partners, and sales teams</h2>
             <p style="font-size:16px;color:var(--muted);line-height:1.65;margin-bottom:8px;">Buyers track bookings and documents online. Channel partners see inventory and commission status from a secure TimeERP dashboard with enterprise-grade security.</p>
             <div class="mp-apps__stats">
@@ -1257,7 +1258,7 @@
     <section class="section">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Built for real estate</span>
+          <span class="section-label">Built For Real Estate</span>
           <h2>Everything you need to run real estate operations at scale</h2>
         </div>
         <div class="mp-features__grid anim-up">
@@ -1274,7 +1275,7 @@
     <section class="section">
       <div class="shell">
         <div class="section-lead anim-up">
-          <span class="section-label">Operations ROI calculator</span>
+          <span class="section-label">Operations ROI Calculator</span>
           <h2>Estimate time and cost savings for your real estate firm</h2>
           <p>Adjust active project count and team size to see how replacing Excel trackers with TimeERP frees operational hours.</p>
         </div>
@@ -1554,9 +1555,7 @@
       </div>
     </div>
   </footer>
-
-  <script src="js/site-chrome.js" defer></script>
-  <script src="js/scroll-animations.js" defer></script>
+<script src="js/scroll-animations.js" defer></script>
   <script src="js/footer-accordion.js" defer></script>
   <script src="js/real-estate.js" defer></script>
   <script src="js/site-nav.js" defer></script>

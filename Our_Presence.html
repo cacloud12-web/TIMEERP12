@@ -73,8 +73,8 @@
         radial-gradient(ellipse 50% 40% at 90% 20%,rgba(36,63,100,.06),transparent 50%),
         var(--bg);
     }
-    .presence-hero__eyebrow{font-size:15px;font-weight:700;letter-spacing:.02em;color:#000;margin-bottom:10px}
-    .presence-hero__title{font-size:clamp(2rem,3.5vw,2.75rem);font-weight:700;color:#000;letter-spacing:-.03em;line-height:1.2;margin-bottom:14px}
+    .presence-hero__eyebrow{font-family:"Inter",sans-serif;font-size:16px;font-weight:600;letter-spacing:0;text-transform:none;line-height:1.4;color:#0F172A;margin-bottom:10px}
+    .presence-hero__title{font-size:clamp(1.75rem,2.8vw,2.25rem);font-weight:700;color:#000;letter-spacing:-.03em;line-height:1.2;margin-bottom:14px}
     .presence-hero__lead{font-size:16px;color:var(--text-muted);max-width:640px;line-height:1.7;margin-bottom:28px}
     .presence-hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:40px}
 
@@ -88,6 +88,10 @@
     .stat-card__num{font-size:32px;font-weight:700;color:var(--heading-dark);letter-spacing:-.03em;line-height:1}
     .stat-card__label{font-size:13px;color:var(--text-muted);margin-top:6px;font-weight:500}
     @media(max-width:900px){.stat-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:480px){
+      .stat-grid{grid-template-columns:1fr}
+      .presence-search{min-width:0;max-width:none;flex:1 1 100%}
+    }
 
     /* Map section */
     .presence-map-section{padding:24px 0 72px}
@@ -484,5 +488,7 @@
   <script src="js/india-uae-mask-data.js"></script>
   <script src="js/our-presence.js"></script>
   <script src="js/site-nav.js" defer></script>
+  <script src="js/footer-accordion.js" defer></script>
+
 </body>
 </html>

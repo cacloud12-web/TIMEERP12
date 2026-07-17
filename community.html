@@ -1328,8 +1328,9 @@
     .section-label{
       display:block;
       margin-bottom:20px;
-      font-size:12px;line-height:14px;font-weight:600;letter-spacing:.08em;
-      text-transform:uppercase;color:#000;
+      font-family:"Inter",sans-serif;
+      font-size:16px;font-weight:600;letter-spacing:0;
+      text-transform:none;line-height:1.4;color:#0F172A;
     }
 
     /* Scroll animations */
@@ -1364,7 +1365,7 @@
     .comm-hero
     .community-page .section-lead .section-label{margin-bottom:20px;}
     .community-page .section-lead
-    .comm-hero .section-lead h1{font-size:clamp(2rem,3.5vw,2.75rem);font-weight:600;line-height:1.2;letter-spacing:-0.03em;margin-bottom:8px;color:#fff;-webkit-text-fill-color:#fff;background:none;filter:none;}
+    .comm-hero .section-lead h1{font-size:clamp(1.75rem,2.8vw,2.25rem);font-weight:600;line-height:1.2;letter-spacing:-0.03em;margin-bottom:8px;color:#fff;-webkit-text-fill-color:#fff;background:none;filter:none;}
     .comm-hero .section-lead p{font-size:16px;line-height:1.65;color:rgba(255,255,255,.88);max-width:580px;letter-spacing:-0.2px;}
     .comm-hero__cta{display:flex;flex-direction:column;gap:10px;align-items:flex-start;}
     .comm-hero__cta .btn--primary{background:#fff;color:var(--primary);padding:14px 28px;font-size:15px;border-radius:var(--radius-btn);transition:transform .2s,box-shadow .2s;}
@@ -1535,6 +1536,7 @@
       .comm-events__grid{grid-template-columns:repeat(2,1fr);}
     }
     @media (max-width:768px){
+      :root{--content-pad-x:20px;}
       .comm-hero__decoration{display:none;}
       .comm-hero__inner{flex-direction:column;align-items:flex-start;}
       .comm-benefits,.comm-channel-grid,.comm-events__grid{grid-template-columns:1fr;}
@@ -1871,7 +1873,7 @@
           <p>Network with plant managers, operations leaders, and ERP teams. Share workflows, discover best practices, and stay ahead in one powerful manufacturing community.</p>
         </div>
         <div class="comm-hero__cta anim-up hero-delay-1">
-          <a href="#" class="btn btn--primary">Join Community</a>
+          <a href="home.html" class="btn btn--primary">Join Community</a>
           <span class="comm-hero__cta-note">Free for all active TimeERP users</span>
         </div>
       </div>
@@ -1880,7 +1882,7 @@
     <section class="comm-benefits-section section" aria-labelledby="comm-benefits-heading">
       <div class="section-inner">
         <div class="section-lead anim-up">
-          <span class="section-label">Why join</span>
+          <span class="section-label">Why Join</span>
           <h2 id="comm-benefits-heading">Why join the TimeERP Community</h2>
           <p>Click a benefit to explore what members get from the community.</p>
         </div>
@@ -1985,7 +1987,7 @@
     <section class="comm-ideas-section section" aria-labelledby="comm-ideas-heading">
       <div class="section-inner">
         <div class="section-lead anim-up">
-          <span class="section-label">Ideas board</span>
+          <span class="section-label">Ideas Board</span>
           <h2 id="comm-ideas-heading">Shape the product</h2>
           <p>Vote on feature ideas submitted by manufacturing professionals.</p>
         </div>
@@ -2068,7 +2070,7 @@
         <div class="comm-cta anim-up">
           <h2>Join 2,400+ members shaping manufacturing operations</h2>
           <p>Get weekly digests with the latest trends, strategies, and product updates from the TimeERP Community.</p>
-          <a href="#" class="btn btn--primary">Join Community</a>
+          <a href="home.html" class="btn btn--primary">Join Community</a>
         </div>
       </div>
     </section>
@@ -2178,10 +2180,7 @@
       </div>
     </div>
   </footer>
-
-  
-  <script src="js/site-chrome.js" defer></script>
-  <script src="js/scroll-animations.js" defer></script>
+<script src="js/scroll-animations.js" defer></script>
 <script src="js/footer-accordion.js" defer></script>
   <script src="js/community.js" defer></script>
   <script src="js/site-nav.js" defer></script>
