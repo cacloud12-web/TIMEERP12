@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="g-organization" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#25b7a7"/>
+      <stop offset="1" stop-color="#0d7a6e"/>
+    </linearGradient>
+    <linearGradient id="gb-organization" x1="12" y1="4" x2="52" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e8f8f6"/>
+      <stop offset="1" stop-color="#c5efe9"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#gb-organization)"/>
+
+  <path d="M18 50V28l14-12 14 12v22" stroke="url(#g-organization)" stroke-width="3.2" stroke-linejoin="round"/>
+  <rect x="26" y="36" width="12" height="14" rx="2" fill="#083530"/>
+  <rect x="22" y="30" width="5" height="5" rx="1" fill="#25b7a7"/>
+  <rect x="37" y="30" width="5" height="5" rx="1" fill="#25b7a7"/>
+</svg>

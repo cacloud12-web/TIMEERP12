@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="g-crm" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#25b7a7"/>
+      <stop offset="1" stop-color="#0d7a6e"/>
+    </linearGradient>
+    <linearGradient id="gb-crm" x1="12" y1="4" x2="52" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e8f8f6"/>
+      <stop offset="1" stop-color="#c5efe9"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#gb-crm)"/>
+
+  <circle cx="24" cy="26" r="8" fill="url(#g-crm)"/>
+  <circle cx="42" cy="26" r="8" fill="#083530"/>
+  <path d="M14 48c2-9 8-12 10-12s8 3 10 12" fill="#1a9e8f"/>
+  <path d="M34 48c1.5-7 6-10 8-10s7 3 9 10" fill="#25b7a7"/>
+</svg>

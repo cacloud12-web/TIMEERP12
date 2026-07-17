@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="g-client-desk" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#25b7a7"/>
+      <stop offset="1" stop-color="#0d7a6e"/>
+    </linearGradient>
+    <linearGradient id="gb-client-desk" x1="12" y1="4" x2="52" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e8f8f6"/>
+      <stop offset="1" stop-color="#c5efe9"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#gb-client-desk)"/>
+
+  <rect x="10" y="18" width="44" height="30" rx="5" stroke="url(#g-client-desk)" stroke-width="3"/>
+  <path d="M10 28h44" stroke="#083530" stroke-width="2.5"/>
+  <circle cx="18" cy="23" r="2" fill="#e11d48"/>
+  <circle cx="25" cy="23" r="2" fill="#f59e0b"/>
+  <circle cx="32" cy="23" r="2" fill="#25b7a7"/>
+  <rect x="20" y="34" width="24" height="6" rx="2" fill="#083530" opacity=".75"/>
+</svg>

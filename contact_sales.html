@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="assets/image0.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Sales | TimeERP</title>
+  <meta name="description" content="Contact TimeERP sales. Share your name, email, WhatsApp number, and firm size, fast and simple.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"><style>
+    :root {
+      --primary:#25b7a7;--primary-dark:#1a9e8f;--primary-light:#e8f8f6;
+      --heading:#083530;--text:#3d5250;--muted:#7a9593;--border:#d0eeec;--white:#fff;
+      --max-width:1400px;--content-pad-x:80px;--radius-btn:8px;--radius-card:12px;
+      --transition-med:200ms ease;--shadow-nav:0 4px 24px rgba(0,0,0,.08);
+      --text-dark:#1a2e2c;--text-body:#3d5250;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;line-height:1.6;color:var(--text-body);background:var(--white);overflow-x:hidden;}
+    img{max-width:100%;display:block;}
+    a{color:inherit;text-decoration:none;}
+    button,input,select{font-family:inherit;font-size:16px;}
+    button{cursor:pointer;border:none;background:none;}
+    ul{list-style:none;}
+
+    .cs-main{padding:calc(72px + 48px) 0 64px;background:linear-gradient(180deg,#f4fafa 0%,#fff 280px);}
+    .cs-shell{max-width:1100px;margin:0 auto;padding:0 var(--content-pad-x);}
+    .cs-layout{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;}
+    .cs-aside{display:flex;flex-direction:column;}
+    .cs-label{
+      display:block;
+      margin-bottom:20px;
+      font-size:12px;line-height:14px;font-weight:600;letter-spacing:.08em;
+      text-transform:uppercase;color:#000;
+    }
+    .cs-aside h1{font-size:clamp(1.75rem,2.8vw,2.25rem);font-weight:600;color:#083530;line-height:1.25;margin-bottom:12px;letter-spacing:-0.02em;}
+    .cs-aside>p{color:var(--muted);font-size:15px;line-height:1.65;margin-bottom:20px;max-width:440px;}
+    .cs-industry{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;}
+    .cs-industry__btn{padding:8px 16px;border:1px solid var(--border);border-radius:999px;font-size:13px;font-weight:600;color:var(--heading);background:var(--white);transition:background .15s,border-color .15s,color .15s,transform .15s;}
+    .cs-industry__btn:hover{border-color:var(--primary);background:var(--primary-light);}
+    .cs-industry__btn.is-active{background:var(--primary);border-color:var(--primary);color:#fff;transform:scale(1.03);}
+    .cs-benefits{display:flex;flex-direction:column;gap:12px;margin-bottom:24px;}
+    .cs-benefits li{display:flex;align-items:flex-start;gap:12px;font-size:14px;line-height:1.5;color:var(--text-body);opacity:1;transform:none;transition:opacity .25s ease,transform .25s ease;}
+    .cs-benefits li.is-highlight{font-weight:600;color:var(--heading);}
+    .cs-benefits__icon{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--primary-light);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;line-height:1;}
+    .cs-highlights{display:grid;grid-template-columns:1fr;gap:10px;}
+    .cs-highlight{display:flex;align-items:flex-start;gap:14px;width:100%;padding:14px 16px;border:1px solid var(--border);border-radius:10px;background:var(--white);text-align:left;cursor:pointer;transition:border-color .2s,background .2s,transform .2s,box-shadow .2s;}
+    .cs-highlight.is-active{border-color:var(--primary);background:linear-gradient(135deg,#e8f8f6 0%,#fff 100%);box-shadow:0 8px 24px rgba(37,183,167,.12);transform:translateX(6px);}
+    .cs-highlight:focus-visible{outline:2px solid var(--primary);outline-offset:2px;}
+    .cs-highlight__icon{flex-shrink:0;width:40px;height:40px;border-radius:10px;background:rgba(37,183,167,.12);display:flex;align-items:center;justify-content:center;}
+    .cs-highlight__icon .material-symbols-outlined{font-size:22px;color:var(--primary);}
+    .cs-highlight.is-active .cs-highlight__icon{background:var(--primary);}
+    .cs-highlight.is-active .cs-highlight__icon .material-symbols-outlined{color:#fff;}
+    .cs-highlight__body{min-width:0;}
+    .cs-highlight__body strong{display:block;font-size:14px;font-weight:700;color:var(--heading);margin-bottom:3px;}
+    .cs-highlight__body span{font-size:13px;color:var(--muted);line-height:1.45;display:block;transition:opacity .2s ease;}
+    .cs-highlight__body span.is-updating{opacity:.35;}
+    .cs-form-panel{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-card);padding:32px;box-shadow:0 12px 40px rgba(37,183,167,.08);transition:box-shadow .25s ease;}
+    .cs-form-panel:focus-within{box-shadow:0 16px 48px rgba(37,183,167,.14);}
+    .cs-form-panel h2{font-size:22px;font-weight:700;color:var(--heading);margin-bottom:10px;}
+    .cs-form-lead{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:24px;min-height:48px;transition:opacity .2s ease;}
+    .cs-form-lead.is-updating{opacity:.4;}
+
+    .cs-form.is-hidden{display:none;}
+    .form-field{position:relative;margin-bottom:18px;}
+    .form-field label{display:block;font-size:13px;font-weight:600;color:var(--heading);margin-bottom:6px;}
+    .form-field label .optional{font-weight:500;color:var(--muted);font-size:12px;}
+    .form-field input{width:100%;padding:12px 40px 12px 14px;border:1px solid var(--border);border-radius:8px;background:var(--white);color:var(--heading);transition:border-color .15s,box-shadow .15s;}
+    .form-field input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,183,167,.12);}
+    .form-field input.valid{border-color:var(--primary);}
+    .form-field input.invalid{border-color:#dc2626;}
+    .form-field__check{position:absolute;right:12px;top:38px;font-size:20px;color:var(--primary);opacity:0;transform:scale(.8);transition:opacity .2s,transform .2s;pointer-events:none;}
+    .form-field.is-valid .form-field__check{opacity:1;transform:scale(1);}
+    .form-field__error{font-size:12px;color:#dc2626;margin-top:4px;min-height:16px;}
+    .form-honeypot{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;}
+    .form-privacy{font-size:12px;color:var(--muted);margin:14px 0 0;line-height:1.5;}
+    .form-privacy a{color:var(--primary);font-weight:600;}
+    .form-error{font-size:13px;color:#dc2626;margin-bottom:12px;min-height:18px;}
+
+    .firm-pills{display:flex;flex-wrap:wrap;gap:8px;}
+    .firm-pill{padding:10px 16px;border:1px solid var(--border);border-radius:999px;font-size:13px;font-weight:600;color:var(--heading);background:var(--white);transition:background .15s,border-color .15s,color .15s,transform .15s;}
+    .firm-pill:hover{border-color:var(--primary);background:var(--primary-light);}
+    .firm-pill.is-selected{background:var(--primary);border-color:var(--primary);color:#fff;transform:scale(1.02);}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 24px;border-radius:var(--radius-btn);font-size:15px;font-weight:600;transition:background .15s,transform .15s,opacity .15s;}
+    .btn--primary{background:var(--primary);color:var(--white);width:100%;margin-top:4px;}
+    .btn--primary:hover:not(:disabled){background:var(--primary-dark);}
+    .btn--primary:disabled{opacity:.45;cursor:not-allowed;}
+
+    .form-success{display:none;text-align:center;padding:48px 16px;}
+    .form-success.is-visible{display:block;}
+    .form-success__icon{width:56px;height:56px;margin:0 auto 16px;border-radius:50%;background:var(--primary-light);color:var(--primary);font-size:28px;font-weight:700;line-height:56px;}
+    .form-success h2{font-size:20px;color:var(--heading);margin-bottom:8px;}
+    .form-success p{font-size:14px;color:var(--muted);}
+
+    @media (max-width:900px){.cs-layout{grid-template-columns:1fr;gap:32px;}}
+    @media (max-width:640px){
+      :root{--content-pad-x:20px;}
+      .cs-form-panel{padding:24px 20px;}
+    }
+
+  </style>
+  <link rel="stylesheet" href="css/footer-bar.css">
+  <link rel="stylesheet" href="css/site-nav.css">
+  <link rel="stylesheet" href="css/site-footer.css">
+</head>
+<body class="contact-sales-page">
+
+
+  <div id="site-header"></div>
+<main class="cs-main" id="contact-sales">
+    <div class="cs-shell cs-layout">
+      <aside class="cs-aside">
+        <span class="cs-label">Contact sales</span>
+        <h1>Get in touch with TimeERP, one platform for real estate, construction &amp; MSME</h1>
+        <p>See how teams in your industry replace disconnected tools with unified ERP: secure, fast, and built for growing operations.</p>
+
+        <div class="cs-industry" id="industryTabs" role="tablist" aria-label="Your industry">
+          <button type="button" class="cs-industry__btn is-active" role="tab" aria-selected="true" data-industry="realestate">Real estate</button>
+          <button type="button" class="cs-industry__btn" role="tab" aria-selected="false" data-industry="construction">Construction</button>
+          <button type="button" class="cs-industry__btn" role="tab" aria-selected="false" data-industry="msme">MSME</button>
+          <button type="button" class="cs-industry__btn" role="tab" aria-selected="false" data-industry="ca">CA Firms</button>
+        </div>
+
+        <ul class="cs-benefits" id="csBenefits">
+          <li data-for="realestate construction msme ca"><span class="cs-benefits__icon" aria-hidden="true">✓</span> Request a personal demo tailored to your sector</li>
+          <li data-for="realestate"><span class="cs-benefits__icon" aria-hidden="true">✓</span> Track projects, leases, and property finances in one place</li>
+          <li data-for="construction"><span class="cs-benefits__icon" aria-hidden="true">✓</span> Unify job costing, site inventory, and subcontractor billing</li>
+          <li data-for="msme"><span class="cs-benefits__icon" aria-hidden="true">✓</span> GST-ready workflows built for small and mid-size manufacturers</li>
+          <li data-for="ca"><span class="cs-benefits__icon" aria-hidden="true">✓</span> Manage clients, compliance deadlines, and practice billing in one place</li>
+          <li data-for="realestate construction msme ca"><span class="cs-benefits__icon" aria-hidden="true">✓</span> Replace spreadsheets with real-time visibility across teams</li>
+          <li data-for="realestate construction msme ca"><span class="cs-benefits__icon" aria-hidden="true">✓</span> Walk away with ROI insights from firms your size, no pressure</li>
+        </ul>
+
+        <div class="cs-highlights" id="csHighlights">
+          <button type="button" class="cs-highlight is-active" data-highlight="0">
+            <span class="cs-highlight__icon"><span class="material-symbols-outlined">schedule</span></span>
+            <span class="cs-highlight__body">
+              <strong>Reply within 1 business day</strong>
+              <span id="highlightText0">Get a callback on WhatsApp with answers for your property portfolio.</span>
+            </span>
+          </button>
+          <button type="button" class="cs-highlight" data-highlight="1">
+            <span class="cs-highlight__icon"><span class="material-symbols-outlined">videocam</span></span>
+            <span class="cs-highlight__body">
+              <strong>Live demo for your sector</strong>
+              <span id="highlightText1">Live demo: leases, tenant billing &amp; project-wise P&amp;L in TimeERP.</span>
+            </span>
+          </button>
+          <button type="button" class="cs-highlight" data-highlight="2">
+            <span class="cs-highlight__icon"><span class="material-symbols-outlined">insights</span></span>
+            <span class="cs-highlight__body">
+              <strong>ROI tailored to your firm</strong>
+              <span id="highlightText2">See how real estate firms your size cut reporting time by 40%.</span>
+            </span>
+          </button>
+        </div>
+      </aside>
+
+      <div class="cs-form-panel">
+        <h2>Reach out to our sales team</h2>
+        <p class="cs-form-lead" id="formLead">Talk to us about property portfolio tracking, lease and tenant management, project-wise costing, and financial visibility across your real estate business.</p>
+
+        <form id="contactSalesForm" class="cs-form" novalidate autocomplete="on">
+          <input type="text" name="website" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="hidden" name="formStarted" id="formStarted" value="">
+          <p class="form-error" id="errForm" aria-live="polite"></p>
+
+          <div class="form-field">
+            <label for="fullName">Full name <span aria-hidden="true">*</span></label>
+            <input type="text" id="fullName" name="fullName" required maxlength="80" autocomplete="name" placeholder="Your name">
+            <span class="form-field__check material-symbols-outlined" aria-hidden="true">check_circle</span>
+            <p class="form-field__error" id="errName" aria-live="polite"></p>
+          </div>
+
+          <div class="form-field">
+            <label for="email">Work email <span aria-hidden="true">*</span></label>
+            <input type="email" id="email" name="email" required maxlength="120" autocomplete="email" placeholder="you@company.com">
+            <span class="form-field__check material-symbols-outlined" aria-hidden="true">check_circle</span>
+            <p class="form-field__error" id="errEmail" aria-live="polite"></p>
+          </div>
+
+          <div class="form-field">
+            <label for="whatsapp">WhatsApp number <span aria-hidden="true">*</span></label>
+            <input type="tel" id="whatsapp" name="whatsapp" required maxlength="20" autocomplete="tel" inputmode="tel" placeholder="+91 98765 43210">
+            <span class="form-field__check material-symbols-outlined" aria-hidden="true">check_circle</span>
+            <p class="form-field__error" id="errWhatsapp" aria-live="polite"></p>
+          </div>
+
+          <div class="form-field">
+            <label>Firm size</label>
+            <div class="firm-pills" id="firmPills" role="group" aria-label="Firm size">
+              <button type="button" class="firm-pill" data-value="1-10">1 to 10</button>
+              <button type="button" class="firm-pill" data-value="11-50">11 to 50</button>
+              <button type="button" class="firm-pill" data-value="51-200">51 to 200</button>
+              <button type="button" class="firm-pill" data-value="201-500">201 to 500</button>
+              <button type="button" class="firm-pill" data-value="500+">500+</button>
+            </div>
+            <input type="hidden" id="firmSize" name="firmSize" value="">
+          </div>
+
+          <button type="submit" class="btn btn--primary" id="submitBtn" disabled>Contact sales</button>
+          <p class="form-privacy">By submitting, you agree to our <a href="privacy.html">Privacy Policy</a>. Your data is never sold or shared.</p>
+        </form>
+
+        <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+          <div class="form-success__icon" aria-hidden="true">✓</div>
+          <h2>Request received</h2>
+          <p>Our sales team will reach out within one business day via email or WhatsApp.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__main">
+        <div class="footer__brand">
+          <a href="home1.html" class="footer__logo" aria-label="TimeERP home">
+            <img src="assets/image01-footer.svg" alt="TimeERP" width="196" height="48" loading="lazy">
+          </a>
+          <p class="footer__desc">One Platform. Complete Business Management. Enterprise ERP for modern businesses.</p>
+          <div class="footer__stats">
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">◆</span><span>650+ Businesses</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">◎</span><span>99.8% Uptime</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">☁</span><span>Cloud ERP</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">⛨</span><span>Secure</span></div>
+          </div>
+        </div>
+
+        <div class="footer__cols">
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Products</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h4 class="footer__col-title">Products</h4>
+            <ul class="footer__links">
+              <li><a href="home1.html#products">Modules</a></li>
+              <li><a href="home1.html#benefits">Benefits</a></li>
+              <li><a href="home1.html#task-management">Project Management</a></li>
+              <li><a href="home1.html#solutions">Platform</a></li>
+              <li><a href="price.html">Pricing</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Industries</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h4 class="footer__col-title">Industries</h4>
+            <ul class="footer__links">
+              <li><a href="construction.html">Construction</a></li>
+              <li><a href="real_Estate.html">Real Estate</a></li>
+              <li><a href="msme.html">MSME</a></li>
+              <li><a href="CA.html">CA Firms</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Company</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h4 class="footer__col-title">Company</h4>
+            <ul class="footer__links">
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="Our_Presence.html">Our Presence</a></li>
+              <li><a href="careers.html">Careers</a></li>
+              <li><a href="contact_sales.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Support</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h4 class="footer__col-title">Support</h4>
+            <ul class="footer__links">
+              <li><a href="real_time_support.html">Help Center</a></li>
+              <li><a href="contact_sales.html">Sales</a></li>
+              <li><a href="custom_quote.html">Get a Quote</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__connect">
+        <div class="footer__connect-item">
+          <span class="footer__connect-label">Visit us</span>
+          <address class="footer__address">
+            BM-08, Ansal Sumedha Building, RDC,<br>
+            Ghaziabad, Delhi NCR, UP 201002
+          </address>
+          <div class="footer__quick">
+            <a class="footer__quick-btn" href="contact_sales.html">Book Demo</a>
+            <a class="footer__quick-btn" href="real_time_support.html">Get Support</a>
+          </div>
+        </div>
+        <div class="footer__connect-item">
+          <span class="footer__connect-label">Follow us</span>
+          <div class="footer__social">
+            <a href="https://www.linkedin.com/in/ca-clouddesk-381510388" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23.5h-4V8.5zM8.5 8.5h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1v8.9h-4v-7.88c0-1.88-.03-4.3-2.62-4.3-2.62 0-3.02 2.05-3.02 4.17v7.01h-4V8.5z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/erptime/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@ERPTime" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.5v-7l6 3.5-6 3.5z"/></svg>
+            </a>
+            <a href="https://x.com/erptime" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke-linecap="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bar">
+        <p class="footer__copy">© 2026 TimeERP · <a href="https://lawseva.com/" target="_blank" rel="noopener noreferrer">Law Seva Management Private Limited</a></p>
+        <nav class="footer__legal" aria-label="Legal">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="contact_sales.html">Contact Us</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/site-chrome.js" defer></script>
+  <script src="js/scroll-animations.js" defer></script>
+<script src="js/contact_sales.js" defer></script>
+  <script src="js/footer-accordion.js" defer></script>
+  <script src="js/site-nav.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Profile — TIME ERP HRMS</title>
+  <meta name="description" content="Complete 360° employee profile — identity, attendance, leave, payroll, documents, assets, performance, and more.">
+  <link rel="icon" href="../assets/image0.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard-shell.css">
+  <link rel="stylesheet" href="css/employee-profile.css">
+</head>
+<body>
+
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="../home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="../assets/image0.png" alt="TimeERP" width="168" height="40">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">3</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <button type="button" class="topbar__icon-btn" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">TE</span>
+                <span class="topbar__profile-meta"><strong>Admin</strong><span>TimeERP</span></span>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="../home.html" class="dropdown__item"><strong>Go to home</strong><span>Module hub overview</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="epr-page" id="eprPage">
+
+          <!-- Breadcrumb -->
+          <nav class="epr-breadcrumb" aria-label="Breadcrumb">
+            <a href="../home.html#hrms">HRMS</a>
+            <span aria-hidden="true">›</span>
+            <a href="viewemployee.html">Employees</a>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">Employee Profile</span>
+          </nav>
+
+          <header class="epr-page__header">
+            <h1>Employee Profile</h1>
+            <div class="epr-page__header-actions">
+              <button type="button" class="epr-header-icon" id="btnDownload" title="Download profile" aria-label="Download profile">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+              </button>
+              <button type="button" class="epr-header-icon" id="btnPrint" title="Print profile" aria-label="Print profile">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              </button>
+              <div class="epr-menu-wrap" id="moreMenuWrap">
+                <button type="button" class="epr-header-icon" id="btnMore" title="More actions" aria-label="More actions" aria-haspopup="menu" aria-expanded="false" aria-controls="moreDropdown">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="5" r="1.75"/><circle cx="12" cy="12" r="1.75"/><circle cx="12" cy="19" r="1.75"/></svg>
+                </button>
+              </div>
+            </div>
+          </header>
+
+          <div class="epr-layout">
+
+            <!-- Main Content -->
+            <div class="epr-main">
+
+              <!-- Profile Hero -->
+              <section class="epr-hero epr-reveal is-visible" aria-label="Employee profile hero">
+                <div class="epr-hero__main">
+                  <div class="epr-hero__identity">
+                    <div class="epr-hero__photo">
+                      <div class="epr-hero__avatar" data-initials aria-label="Employee photo">AS</div>
+                      <span class="epr-hero__online" aria-label="Online status" title="Online"></span>
+                    </div>
+                    <div class="epr-hero__title-block">
+                      <h2 id="heroName">Ananya Sharma</h2>
+                      <p id="heroSub">EMP-001 · Senior Developer · Engineering</p>
+                      <div class="epr-hero__title-row">
+                        <span class="epr-badge epr-badge--active" data-field="statusBadge">Active</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="epr-hero__meta-grid">
+                    <div class="epr-hero__meta-item"><span>Department</span><span data-field="dept">Engineering</span></div>
+                    <div class="epr-hero__meta-item"><span>Designation</span><span data-field="designation">Senior Developer</span></div>
+                    <div class="epr-hero__meta-item"><span>Employment Type</span><span data-field="type">Full-time</span></div>
+                    <div class="epr-hero__meta-item"><span>Reporting Manager</span><span data-field="manager">Rahul Kapoor</span></div>
+                    <div class="epr-hero__meta-item"><span>Work Location</span><span data-field="location">Ghaziabad</span></div>
+                    <div class="epr-hero__meta-item"><span>Joining Date</span><span data-field="joined">Mar 15, 2022</span></div>
+                  </div>
+                </div>
+                <aside class="epr-hero__panel">
+                  <div class="epr-hero__ring-wrap">
+                    <div class="epr-ring" data-pct="95%" style="--pct:95%" aria-label="Profile completion 95 percent"></div>
+                    <div class="epr-ring-label">Profile Completed</div>
+                  </div>
+                  <div class="epr-hero__completion-mini" aria-label="Profile completion details">
+                    <div><span>Completed</span><span>38 / 40</span></div>
+                    <div><span>Pending</span><span>2 fields</span></div>
+                    <div><span>Documents</span><span>1 missing</span></div>
+                  </div>
+                  <div class="epr-hero__panel-actions">
+                    <button type="button" class="epr-btn epr-btn--primary" id="btnEdit">Edit Profile</button>
+                  </div>
+                </aside>
+              </section>
+
+              <!-- Dashboard: KPI + Quick Actions -->
+              <div class="epr-dashboard epr-reveal">
+                <div class="epr-kpi-wrap">
+                  <p class="epr-zone-title">Overview Statistics</p>
+                  <div class="epr-kpi" aria-label="Quick statistics">
+                  <article class="epr-kpi__card">
+                    <div class="epr-kpi__top"><div class="epr-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div></div>
+                    <div class="epr-kpi__value" id="kpiPresent">0</div>
+                    <div class="epr-kpi__label">Present Days</div>
+                  </article>
+                  <article class="epr-kpi__card">
+                    <div class="epr-kpi__top"><div class="epr-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4"/></svg></div></div>
+                    <div class="epr-kpi__value" id="kpiLeave">0</div>
+                    <div class="epr-kpi__label">Leave Balance</div>
+                  </article>
+                  <article class="epr-kpi__card">
+                    <div class="epr-kpi__top"><div class="epr-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div></div>
+                    <div class="epr-kpi__value" id="kpiSalary">₹14 LPA</div>
+                    <div class="epr-kpi__label">Current Salary</div>
+                  </article>
+                  <article class="epr-kpi__card">
+                    <div class="epr-kpi__top"><div class="epr-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg></div></div>
+                    <div class="epr-kpi__value" id="kpiTasks">0</div>
+                    <div class="epr-kpi__label">Pending Tasks</div>
+                  </article>
+                  <article class="epr-kpi__card">
+                    <div class="epr-kpi__top"><div class="epr-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="10"/></svg></div></div>
+                    <div class="epr-kpi__value" id="kpiAnniversary">Mar 15</div>
+                    <div class="epr-kpi__label">Work Anniversary</div>
+                  </article>
+                  <article class="epr-kpi__card">
+                    <div class="epr-kpi__top"><div class="epr-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div></div>
+                    <div class="epr-kpi__value" id="kpiYears">0</div>
+                    <div class="epr-kpi__label">Years of Service</div>
+                  </article>
+                  <article class="epr-kpi__card">
+                    <div class="epr-kpi__top"><div class="epr-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div></div>
+                    <div class="epr-kpi__value" id="kpiAssets">0</div>
+                    <div class="epr-kpi__label">Assigned Assets</div>
+                  </article>
+                  <article class="epr-kpi__card">
+                    <div class="epr-kpi__top"><div class="epr-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 20V10M18 20V4M6 20v-4"/></svg></div></div>
+                    <div class="epr-kpi__value" id="kpiRating">4.6</div>
+                    <div class="epr-kpi__label">Performance Rating</div>
+                  </article>
+                  </div>
+                </div>
+
+                <section class="epr-section epr-reveal" aria-label="Quick actions">
+                  <div class="epr-section__head"><h2>Quick Actions</h2></div>
+                  <div class="epr-section__body epr-section__body--compact">
+                    <div class="epr-quick">
+                    <button type="button" class="epr-quick__card" data-ui="edit-profile" title="Edit Profile"><span class="epr-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span><strong>Edit Profile</strong></button>
+                    <button type="button" class="epr-quick__card" data-ui="attendance" title="Attendance"><span class="epr-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span><strong>Attendance</strong></button>
+                    <button type="button" class="epr-quick__card" data-ui="leave" title="Leave"><span class="epr-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="4" width="18" height="18" rx="2"/></svg></span><strong>Leave</strong></button>
+                    <button type="button" class="epr-quick__card" data-ui="payroll" title="Payroll"><span class="epr-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></span><strong>Payroll</strong></button>
+                    <button type="button" class="epr-quick__card" data-ui="documents" title="Documents"><span class="epr-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg></span><strong>Documents</strong></button>
+                    <button type="button" class="epr-quick__card" data-ui="assets" title="Assets"><span class="epr-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="3" width="20" height="14" rx="2"/></svg></span><strong>Assets</strong></button>
+                    <button type="button" class="epr-quick__card" data-ui="training" title="Training"><span class="epr-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></span><strong>Training</strong></button>
+                    <button type="button" class="epr-quick__card" data-ui="performance" title="Performance"><span class="epr-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 20V10M18 20V4M6 20v-4"/></svg></span><strong>Performance</strong></button>
+                    <button type="button" class="epr-quick__card" data-ui="id-card" title="Generate ID Card"><span class="epr-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="12" r="2"/></svg></span><strong>Generate ID Card</strong></button>
+                    <button type="button" class="epr-quick__card" data-ui="email" title="Send Email"><span class="epr-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg></span><strong>Send Email</strong></button>
+                    <button type="button" class="epr-quick__card" data-ui="reset-password" title="Reset Password"><span class="epr-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><strong>Reset Password</strong></button>
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+              <!-- Personal + Official Information -->
+              <div class="epr-grid-2">
+              <section class="epr-section epr-reveal" id="sectionPersonal" aria-label="Personal information">
+                <div class="epr-section__head"><h2>Personal Information</h2><button type="button" class="epr-btn epr-btn--sm" data-ui="edit-personal">Edit</button></div>
+                <div class="epr-section__body">
+                  <dl class="epr-info-list">
+                    <div class="epr-info-row"><dt>Full Name</dt><dd data-field="name">Ananya Sharma</dd></div>
+                    <div class="epr-info-row"><dt>Gender</dt><dd data-field="gender">Female</dd></div>
+                    <div class="epr-info-row"><dt>Date of Birth</dt><dd data-field="dob">Aug 12, 1996</dd></div>
+                    <div class="epr-info-row"><dt>Blood Group</dt><dd data-field="blood">B+</dd></div>
+                    <div class="epr-info-row"><dt>Nationality</dt><dd data-field="nationality">Indian</dd></div>
+                    <div class="epr-info-row"><dt>Marital Status</dt><dd data-field="marital">Single</dd></div>
+                    <div class="epr-info-row"><dt>Personal Email</dt><dd data-field="personalEmail">ananya.sharma@gmail.com</dd></div>
+                    <div class="epr-info-row"><dt>Mobile Number</dt><dd data-field="phone">+91 98765 43210</dd></div>
+                    <div class="epr-info-row"><dt>Current Address</dt><dd data-field="address">42, Sector 62, Noida, UP 201301</dd></div>
+                    <div class="epr-info-row"><dt>Permanent Address</dt><dd data-field="permanentAddress">15, Civil Lines, Ghaziabad, UP 201001</dd></div>
+                  </dl>
+                </div>
+              </section>
+
+              <section class="epr-section epr-reveal" id="sectionOfficial" aria-label="Official information">
+                <div class="epr-section__head"><h2>Official Information</h2></div>
+                <div class="epr-section__body">
+                  <dl class="epr-info-list">
+                    <div class="epr-info-row"><dt>Employee ID</dt><dd data-field="id">EMP-001</dd></div>
+                    <div class="epr-info-row"><dt>Department</dt><dd data-field="dept">Engineering</dd></div>
+                    <div class="epr-info-row"><dt>Designation</dt><dd data-field="designation">Senior Developer</dd></div>
+                    <div class="epr-info-row"><dt>Grade</dt><dd data-field="grade">L4</dd></div>
+                    <div class="epr-info-row"><dt>Employment Type</dt><dd data-field="type">Full-time</dd></div>
+                    <div class="epr-info-row"><dt>Office Location</dt><dd data-field="office">Ghaziabad HQ</dd></div>
+                    <div class="epr-info-row"><dt>Reporting Manager</dt><dd data-field="manager">Rahul Kapoor</dd></div>
+                    <div class="epr-info-row"><dt>Joining Date</dt><dd data-field="joined">Mar 15, 2022</dd></div>
+                    <div class="epr-info-row"><dt>Confirmation Date</dt><dd data-field="confirmation">Sep 15, 2022</dd></div>
+                    <div class="epr-info-row"><dt>Work Email</dt><dd data-field="email">ananya@timeerp.com</dd></div>
+                    <div class="epr-info-row"><dt>Shift</dt><dd data-field="shift">General (9 AM – 6 PM)</dd></div>
+                    <div class="epr-info-row"><dt>Cost Center</dt><dd data-field="costCenter">CC-ENG-001</dd></div>
+                  </dl>
+                </div>
+              </section>
+              </div>
+
+              <!-- Attendance + Leave -->
+              <div class="epr-grid-2">
+              <section class="epr-section epr-reveal" id="sectionAttendance" aria-label="Attendance summary">
+                <div class="epr-section__head"><h2>Attendance Summary</h2><button type="button" class="epr-btn epr-btn--sm epr-btn--primary" data-ui="view-attendance">View Attendance</button></div>
+                <div class="epr-section__body">
+                  <div class="epr-stat-row">
+                    <div class="epr-stat-pill"><strong data-field="attPresent">18</strong><span>Present</span></div>
+                    <div class="epr-stat-pill"><strong data-field="attAbsent">1</strong><span>Absent</span></div>
+                    <div class="epr-stat-pill"><strong data-field="attLate">2</strong><span>Late</span></div>
+                    <div class="epr-stat-pill"><strong data-field="attLeave">2</strong><span>Leave</span></div>
+                    <div class="epr-stat-pill"><strong data-field="attOvertime">4h</strong><span>Overtime</span></div>
+                  </div>
+                  <p class="epr-caption">Working Hours: <strong data-field="attHours">152 hrs</strong> this month</p>
+                  <div class="epr-chart-placeholder" aria-label="Attendance chart placeholder">
+                    <div class="epr-chart-bar" style="height:45%"></div>
+                    <div class="epr-chart-bar" style="height:70%"></div>
+                    <div class="epr-chart-bar" style="height:55%"></div>
+                    <div class="epr-chart-bar" style="height:80%"></div>
+                    <div class="epr-chart-bar" style="height:60%"></div>
+                    <div class="epr-chart-bar" style="height:90%"></div>
+                    <div class="epr-chart-bar" style="height:75%"></div>
+                  </div>
+                  <p class="epr-label-upper">March 2026 Calendar</p>
+                  <div class="epr-calendar-placeholder" aria-label="Monthly attendance calendar">
+                    <span>1</span><span class="is-present">2</span><span class="is-present">3</span><span class="is-present">4</span><span class="is-present">5</span><span>6</span><span>7</span>
+                    <span class="is-present">8</span><span class="is-present">9</span><span class="is-present">10</span><span class="is-absent">11</span><span class="is-present">12</span><span>13</span><span>14</span>
+                    <span class="is-present">15</span><span class="is-leave">16</span><span class="is-leave">17</span><span class="is-present">18</span><span class="is-present">19</span><span>20</span><span>21</span>
+                  </div>
+                </div>
+              </section>
+
+              <section class="epr-section epr-reveal" id="sectionLeave" aria-label="Leave summary">
+                <div class="epr-section__head"><h2>Leave Summary</h2></div>
+                <div class="epr-section__body">
+                  <div class="epr-leave-grid">
+                    <div class="epr-leave-card"><strong>6</strong><span>Casual Leave</span></div>
+                    <div class="epr-leave-card"><strong>4</strong><span>Sick Leave</span></div>
+                    <div class="epr-leave-card"><strong>12</strong><span>Earned Leave</span></div>
+                    <div class="epr-leave-card"><strong>2</strong><span>Comp Off</span></div>
+                    <div class="epr-leave-card"><strong>1</strong><span>Optional Leave</span></div>
+                  </div>
+                  <div class="epr-subcard-grid">
+                    <div class="epr-subcard">
+                      <span class="epr-subcard__title">Upcoming Leave</span>
+                      <p>Apr 14–15, 2026 — Casual Leave</p>
+                    </div>
+                    <div class="epr-subcard">
+                      <span class="epr-subcard__title">Recent History</span>
+                      <p>Mar 16–17 — Sick Leave (Approved)</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              </div>
+
+              <!-- Payroll Summary -->
+              <section class="epr-section epr-reveal" id="sectionPayroll" aria-label="Payroll summary">
+                <div class="epr-section__head">
+                  <h2>Payroll Summary</h2>
+                  <div class="epr-btn-group">
+                    <button type="button" class="epr-btn epr-btn--sm" data-ui="view-payslips">View Payslips</button>
+                    <button type="button" class="epr-btn epr-btn--sm epr-btn--primary" data-ui="download-payslip">Download Payslip</button>
+                  </div>
+                </div>
+                <div class="epr-section__body">
+                  <div class="epr-pay-grid">
+                    <div class="epr-pay-card"><span>Monthly Salary</span><strong data-field="monthlySalary">₹1,16,667</strong></div>
+                    <div class="epr-pay-card"><span>Last Payslip</span><strong data-field="lastPayslip">Feb 2026</strong></div>
+                    <div class="epr-pay-card"><span>Bonus</span><strong data-field="bonus">₹25,000</strong></div>
+                    <div class="epr-pay-card"><span>Incentives</span><strong>₹8,500</strong></div>
+                    <div class="epr-pay-card"><span>PF</span><strong>₹1,800</strong></div>
+                    <div class="epr-pay-card"><span>ESI</span><strong>₹450</strong></div>
+                    <div class="epr-pay-card"><span>Professional Tax</span><strong>₹200</strong></div>
+                    <div class="epr-pay-card epr-pay-card--highlight"><span>Net Salary</span><strong data-field="netSalary">₹1,08,217</strong></div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Documents + Assets -->
+              <div class="epr-grid-2">
+              <section class="epr-section epr-reveal" id="sectionDocuments" aria-label="Document center">
+                <div class="epr-section__head"><h2>Documents</h2><button type="button" class="epr-btn epr-btn--sm" data-ui="upload-document">Upload</button></div>
+                <div class="epr-section__body">
+                  <div class="epr-doc-grid" id="eprDocuments"></div>
+                </div>
+              </section>
+
+              <section class="epr-section epr-reveal" id="sectionAssets" aria-label="Assigned assets">
+                <div class="epr-section__head"><h2>Assigned Assets</h2></div>
+                <div class="epr-section__body">
+                  <div class="epr-asset-grid" id="eprAssets"></div>
+                </div>
+              </section>
+              </div>
+
+              <!-- Performance + Training -->
+              <div class="epr-grid-2">
+              <section class="epr-section epr-reveal" id="sectionPerformance" aria-label="Performance">
+                <div class="epr-section__head"><h2>Performance</h2></div>
+                <div class="epr-section__body">
+                  <div class="epr-perf-grid">
+                    <div class="epr-perf-card"><strong>4.6</strong><span>Performance Rating</span></div>
+                    <div class="epr-perf-card"><strong>8/10</strong><span>Goals Completed</span></div>
+                    <div class="epr-perf-card"><strong>92%</strong><span>KPI Achievement</span></div>
+                    <div class="epr-perf-card"><strong>4.5</strong><span>Manager Rating</span></div>
+                  </div>
+                  <div class="epr-list">
+                    <div class="epr-training__item"><span>Last Appraisal — Q4 2025</span><span class="epr-badge epr-badge--verified">Exceeds</span></div>
+                    <div class="epr-training__item"><span>Promotion — Senior Developer (Jan 2024)</span><span class="epr-badge epr-badge--assigned">Promoted</span></div>
+                    <div class="epr-training__item"><span>Employee of the Month — Dec 2025</span><span class="epr-badge epr-badge--verified">Recognition</span></div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="epr-section epr-reveal" id="sectionTraining" aria-label="Training and certifications">
+                <div class="epr-section__head"><h2>Training &amp; Certifications</h2></div>
+                <div class="epr-section__body">
+                  <div class="epr-training" id="eprTrainingList"></div>
+                  <div class="epr-subcard epr-subcard--spaced">
+                    <span class="epr-subcard__title">Certifications</span>
+                    <p>AWS Cloud Practitioner · Scrum Master (PSM I)</p>
+                  </div>
+                </div>
+              </section>
+              </div>
+
+              <!-- Reporting Structure -->
+              <section class="epr-section epr-reveal" id="sectionOrg" aria-label="Reporting structure">
+                <div class="epr-section__head">
+                  <h2>Reporting Structure</h2>
+                  <span class="epr-org__legend">
+                    <span class="epr-org__legend-item epr-org__legend-item--you">You</span>
+                    <span class="epr-org__legend-item epr-org__legend-item--manager">Manager</span>
+                  </span>
+                </div>
+                <div class="epr-section__body">
+                  <div class="epr-org" role="list" aria-label="Organization hierarchy">
+
+                    <article class="epr-org__card" role="listitem">
+                      <div class="epr-org__avatar" aria-hidden="true">VM</div>
+                      <div class="epr-org__meta">
+                        <strong>Vikram Mehta</strong>
+                        <span>CEO</span>
+                      </div>
+                    </article>
+                    <div class="epr-org__connector" aria-hidden="true"></div>
+
+                    <article class="epr-org__card" role="listitem">
+                      <div class="epr-org__avatar" aria-hidden="true">PN</div>
+                      <div class="epr-org__meta">
+                        <strong>Priya Nair</strong>
+                        <span>Business Head</span>
+                      </div>
+                    </article>
+                    <div class="epr-org__connector" aria-hidden="true"></div>
+
+                    <article class="epr-org__card" role="listitem">
+                      <div class="epr-org__avatar" aria-hidden="true">SM</div>
+                      <div class="epr-org__meta">
+                        <strong>Suresh Menon</strong>
+                        <span>Department Head</span>
+                      </div>
+                    </article>
+                    <div class="epr-org__connector" aria-hidden="true"></div>
+
+                    <article class="epr-org__card epr-org__card--manager" data-org-manager role="listitem">
+                      <div class="epr-org__avatar epr-org__avatar--manager" aria-hidden="true">RK</div>
+                      <div class="epr-org__meta">
+                        <strong data-org-manager-name>Rahul Kapoor</strong>
+                        <span>Reporting Manager</span>
+                      </div>
+                      <span class="epr-org__tag">Manager</span>
+                    </article>
+                    <div class="epr-org__connector" aria-hidden="true"></div>
+
+                    <article class="epr-org__card epr-org__card--you" data-org-self role="listitem" aria-current="true">
+                      <div class="epr-org__avatar epr-org__avatar--you" aria-hidden="true">AS</div>
+                      <div class="epr-org__meta">
+                        <strong data-org-name>Ananya Sharma</strong>
+                        <span data-org-role>Senior Developer</span>
+                      </div>
+                      <span class="epr-org__tag epr-org__tag--you">You</span>
+                    </article>
+
+                    <div class="epr-org__branch" aria-hidden="true">
+                      <div class="epr-org__branch-stem"></div>
+                      <div class="epr-org__branch-bar"></div>
+                    </div>
+
+                    <div class="epr-org__reports" role="group" aria-label="Direct reportees">
+                      <article class="epr-org__card epr-org__card--report" role="listitem">
+                        <div class="epr-org__avatar epr-org__avatar--report" aria-hidden="true">KS</div>
+                        <div class="epr-org__meta">
+                          <strong>Karan Singh</strong>
+                          <span>Direct Reportee</span>
+                        </div>
+                      </article>
+                      <article class="epr-org__card epr-org__card--report" role="listitem">
+                        <div class="epr-org__avatar epr-org__avatar--report" aria-hidden="true">NG</div>
+                        <div class="epr-org__meta">
+                          <strong>Neha Gupta</strong>
+                          <span>Direct Reportee</span>
+                        </div>
+                      </article>
+                    </div>
+
+                  </div>
+                </div>
+              </section>
+
+              <!-- Emergency Contacts -->
+              <section class="epr-section epr-reveal" id="sectionEmergency" aria-label="Emergency contacts">
+                <div class="epr-section__head"><h2>Emergency Contacts</h2></div>
+                <div class="epr-section__body">
+                  <div class="epr-contact-grid">
+                    <article class="epr-contact-card">
+                      <h4>Rajesh Sharma</h4>
+                      <p><strong>Relationship:</strong> Father</p>
+                      <p><strong>Phone:</strong> +91 98100 12345</p>
+                      <p><strong>Alternate:</strong> +91 98100 54321</p>
+                      <p><strong>Address:</strong> Ghaziabad, UP</p>
+                    </article>
+                    <article class="epr-contact-card">
+                      <h4>Priya Sharma</h4>
+                      <p><strong>Relationship:</strong> Sister</p>
+                      <p><strong>Phone:</strong> +91 98760 11111</p>
+                      <p><strong>Alternate:</strong> —</p>
+                      <p><strong>Address:</strong> Noida, UP</p>
+                    </article>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Bank + Compliance -->
+              <div class="epr-grid-2">
+              <section class="epr-section epr-reveal" id="sectionBank" aria-label="Bank information">
+                <div class="epr-section__head"><h2>Bank Information</h2></div>
+                <div class="epr-section__body">
+                  <dl class="epr-info-list">
+                    <div class="epr-info-row"><dt>Bank Name</dt><dd>HDFC Bank</dd></div>
+                    <div class="epr-info-row"><dt>Account Number</dt><dd>XXXX XXXX 4521</dd></div>
+                    <div class="epr-info-row"><dt>IFSC</dt><dd>HDFC0001234</dd></div>
+                    <div class="epr-info-row"><dt>Branch</dt><dd>Sector 62, Noida</dd></div>
+                    <div class="epr-info-row"><dt>UPI ID</dt><dd>ananya@hdfcbank</dd></div>
+                    <div class="epr-info-row"><dt>Salary Account</dt><dd>Yes</dd></div>
+                  </dl>
+                </div>
+              </section>
+
+              <section class="epr-section epr-reveal" id="sectionCompliance" aria-label="Compliance">
+                <div class="epr-section__head"><h2>Compliance</h2></div>
+                <div class="epr-section__body">
+                  <div class="epr-pay-grid">
+                    <div class="epr-pay-card"><span>PAN</span><strong>ABCDE1234F</strong></div>
+                    <div class="epr-pay-card"><span>Aadhaar</span><strong>XXXX XXXX 7890</strong></div>
+                    <div class="epr-pay-card"><span>PF Number</span><strong>DLCPM0012345</strong></div>
+                    <div class="epr-pay-card"><span>UAN</span><strong>100123456789</strong></div>
+                    <div class="epr-pay-card"><span>ESI Number</span><strong>31001234567890123</strong></div>
+                    <div class="epr-pay-card"><span>Professional Tax</span><strong>Registered</strong></div>
+                    <div class="epr-pay-card"><span>Nominee</span><strong>Rajesh Sharma</strong></div>
+                    <div class="epr-pay-card"><span>Verification</span><strong><span class="epr-badge epr-badge--verified">Verified</span></strong></div>
+                  </div>
+                </div>
+              </section>
+              </div>
+
+              <!-- Timeline + Manager Notes -->
+              <div class="epr-grid-2">
+              <section class="epr-section epr-reveal" id="sectionTimeline" aria-label="Activity timeline">
+                <div class="epr-section__head"><h2>Activity Timeline</h2></div>
+                <div class="epr-section__body">
+                  <div class="epr-timeline" id="eprTimeline"></div>
+                </div>
+              </section>
+
+              <section class="epr-section epr-reveal" id="sectionNotes" aria-label="Manager notes">
+                <div class="epr-section__head"><h2>Manager Notes</h2><span class="epr-badge epr-badge--pending">Private</span></div>
+                <div class="epr-section__body">
+                  <div class="epr-notes">
+                    <article class="epr-note">
+                      <strong>Performance Comment</strong>
+                      <p>Consistently delivers high-quality code. Strong team player with excellent communication skills.</p>
+                      <time datetime="2026-03-01">Mar 1, 2026 — Rahul Kapoor</time>
+                    </article>
+                    <article class="epr-note">
+                      <strong>Promotion Recommendation</strong>
+                      <p>Recommended for Tech Lead role in Q3 2026 based on leadership potential and project ownership.</p>
+                      <time datetime="2026-02-15">Feb 15, 2026 — Rahul Kapoor</time>
+                    </article>
+                    <article class="epr-note">
+                      <strong>HR Remarks</strong>
+                      <p>All onboarding documents verified. Compliance check completed successfully.</p>
+                      <time datetime="2026-01-20">Jan 20, 2026 — HR Team</time>
+                    </article>
+                    <article class="epr-note">
+                      <strong>Recent Meeting</strong>
+                      <p>1:1 discussion on career growth path and upcoming project assignments.</p>
+                      <time datetime="2026-03-08">Mar 8, 2026 — Rahul Kapoor</time>
+                    </article>
+                  </div>
+                </div>
+              </section>
+              </div>
+
+            </div>
+
+            <!-- Right Sidebar -->
+            <aside class="epr-sidebar" aria-label="Profile summary">
+              <div class="epr-sidebar__card">
+                <div class="epr-sidebar__avatar" data-initials aria-hidden="true">AS</div>
+                <h3 id="sidebarName">Ananya Sharma</h3>
+                <p id="sidebarId">EMP-001</p>
+                <span class="epr-badge epr-badge--active" data-field="statusBadge">Active</span>
+                <div class="epr-sidebar__ring epr-hero__ring-wrap">
+                  <div class="epr-ring" data-pct="95%" style="--pct:95%"></div>
+                  <div class="epr-ring-label">Profile Progress</div>
+                </div>
+              </div>
+              <div class="epr-sidebar__card epr-sidebar__contact">
+                <h3 class="epr-sidebar__card-title">Quick Contact</h3>
+                <div><span>Phone</span><span data-field="sidePhone">+91 98765 43210</span></div>
+                <div><span>Email</span><span data-field="sideEmail">ananya@timeerp.com</span></div>
+                <div><span>Teams</span><span data-field="sideTeams">ananya.sharma</span></div>
+              </div>
+              <div class="epr-sidebar__card">
+                <h3 class="epr-sidebar__card-title">Quick Links</h3>
+                <nav class="epr-sidebar__links epr-sidebar__nav" aria-label="Quick links">
+                  <a href="#sectionPersonal">Personal Info</a>
+                  <a href="#sectionAttendance">Attendance</a>
+                  <a href="#sectionPayroll">Payroll</a>
+                  <a href="#sectionLeave">Leave</a>
+                  <a href="#sectionDocuments">Documents</a>
+                  <a href="#sectionPerformance">Performance</a>
+                  <a href="#sectionTimeline">Timeline</a>
+                </nav>
+              </div>
+            </aside>
+
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+  <!-- More actions menu (fixed portal — avoids overflow clipping) -->
+  <div class="epr-dropdown epr-dropdown--actions" id="moreDropdown" role="menu" aria-labelledby="btnMore" hidden>
+    <button type="button" role="menuitem" data-ui="transfer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M7 16V4M7 4L3 8M7 4l4 4M17 8v12M17 20l4-4M17 20l-4-4"/></svg>
+      Transfer Employee
+    </button>
+    <button type="button" role="menuitem" data-ui="export">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
+      Export Data
+    </button>
+    <button type="button" role="menuitem" data-ui="audit">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      View Audit Log
+    </button>
+    <div class="epr-dropdown__divider" role="separator"></div>
+    <button type="button" class="epr-dropdown__danger" role="menuitem" data-ui="deactivate">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M4.93 4.93l14.14 14.14"/></svg>
+      Deactivate Account
+    </button>
+  </div>
+
+  <!-- Mobile sticky actions -->
+  <div class="epr-mobile-bar" aria-label="Quick profile actions">
+    <button type="button" class="epr-mobile-bar__btn" data-ui="edit-profile" aria-label="Edit profile">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      Edit
+    </button>
+    <button type="button" class="epr-mobile-bar__btn epr-mobile-bar__btn--primary" data-ui="view-attendance" aria-label="Attendance">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      Attendance
+    </button>
+    <button type="button" class="epr-mobile-bar__btn" data-ui="leave" aria-label="Leave">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="4" width="18" height="18" rx="2"/></svg>
+      Leave
+    </button>
+    <button type="button" class="epr-mobile-bar__btn" data-ui="documents" aria-label="Documents">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>
+      Docs
+    </button>
+  </div>
+
+  <script src="js/dashboard-shell.js"></script>
+  <script src="js/employee-profile.js?v=2"></script>
+</body>
+</html>

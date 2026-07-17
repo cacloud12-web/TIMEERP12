@@ -1,0 +1,2129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TimeERP — Home</title>
+  <meta name="description" content="TimeERP home — 17 modules for HRMS, CRM, billing, projects, and operations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #25b7a7;
+      --primary-dark: #1a9e8f;
+      --primary-light: #e8f8f6;
+      --primary-deeper: #0d7a6e;
+      --heading: #083530;
+      --heading-deep: #0d524c;
+      --heading-mid: #1a8c80;
+      --text: #3d5250;
+      --text-body: #3d5250;
+      --muted: #7a9593;
+      --bg: #f0f7f6;
+      --bg-light: #f4fafa;
+      --white: #ffffff;
+      --border: #d0eeec;
+      --sidebar-w: 250px;
+      --topbar-h: 56px;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --shadow: 0 8px 28px rgba(8, 53, 48, 0.08);
+      --shadow-hover: 0 14px 36px rgba(37, 183, 167, 0.16);
+      --max-width: 1400px;
+      --content-pad-x: 28px;
+      --heading-title-line-height: 1.35;
+      --heading-title-gap: 12px;
+      --fs-body: 16px;
+      --fs-h1: clamp(1.75rem, 2.8vw, 2.25rem);
+      --fs-h2: clamp(1.75rem, 2.8vw, 2.25rem);
+      --fs-h3: 18px;
+      --fs-ui: 14px;
+      --fs-small: 12px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+      height: 100%;
+      overflow: hidden;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: var(--fs-body);
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--text-body);
+      background: #f4f6f8;
+      height: 100%;
+      overflow: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    input, textarea, select { font-family: inherit; font-size: var(--fs-body); }
+    ul { list-style: none; }
+    img { display: block; max-width: 100%; }
+    .is-hidden { display: none !important; }
+
+    h1, h2, h3 {
+      color: var(--heading);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: var(--heading-title-line-height);
+    }
+    h1 { font-size: var(--fs-h1); }
+    h2 { font-size: var(--fs-h2); }
+    h3 { font-size: var(--fs-h3); }
+
+    /* Layout: sidebar fixed | content scrolls (CA Cloud Desk) */
+    .app-shell {
+      display: grid;
+      grid-template-columns: var(--sidebar-w) 1fr;
+      height: 100vh;
+      max-height: 100vh;
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      gap: 0;
+      align-items: stretch;
+      overflow: hidden;
+    }
+    .sidebar {
+      --sidebar-item-h: 42px;
+      position: relative;
+      height: 100%;
+      max-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: #ffffff;
+      border: none;
+      border-right: 1px solid #e6eaee;
+      border-radius: 0;
+      padding: 0;
+      box-shadow: none;
+      z-index: 210;
+    }
+    .sidebar__nav {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 4px 0 16px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .sidebar__nav::-webkit-scrollbar { width: 0; height: 0; display: none; }
+    .sidebar__brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: var(--topbar-h);
+      padding: 10px 14px;
+      border-bottom: 1px solid #eef1f4;
+      flex-shrink: 0;
+    }
+    .sidebar__brand-logo {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+    }
+    .sidebar__brand-logo img {
+      height: 32px;
+      width: auto;
+      object-fit: contain;
+    }
+    .sidebar__label { display: none; }
+
+    .sidebar__toolbar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 12px 14px 8px;
+      padding: 0;
+      height: auto;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      overflow: visible;
+      flex-shrink: 0;
+    }
+    .sidebar__search-btn {
+      flex: 0 0 36px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #5a6a76;
+      border: 1px solid #d7dee4;
+      border-radius: 999px;
+      background: #fff;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .sidebar__search-btn:hover,
+    .sidebar__search-btn.is-active {
+      background: #f5f9fc;
+      color: #3d89c5;
+      border-color: #c5d2db;
+    }
+    .sidebar__search-btn svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .sidebar__create-btn {
+      flex: 1;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 12px;
+      font-size: var(--fs-ui);
+      font-weight: 500;
+      color: #3a4650;
+      background: #fff;
+      border: 1px solid #d7dee4;
+      border-radius: 999px;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+    .sidebar__create-btn:hover {
+      background: #f8fafb;
+      color: var(--primary-deeper);
+      border-color: #c5d2db;
+    }
+    .sidebar__create-icon {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1.5px solid #6b7785;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      line-height: 1;
+      font-weight: 500;
+      color: #6b7785;
+    }
+    .sidebar__create-btn:hover .sidebar__create-icon {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .sidebar__search-panel { display: none !important; }
+
+    .sidebar__item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      min-height: var(--sidebar-item-h);
+      padding: 10px 16px;
+      margin-bottom: 0;
+      border-radius: 0;
+      font-size: 14px;
+      font-weight: 500;
+      color: #44515a;
+      text-align: left;
+      background: transparent;
+      border: none;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .sidebar__item::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      bottom: 10px;
+      width: 3px;
+      border-radius: 0 3px 3px 0;
+      background: transparent;
+      transition: background 0.15s ease;
+    }
+    .sidebar__item:hover {
+      background: #f5f8fa;
+      color: #1f2a32;
+    }
+    .sidebar__item.is-active {
+      background: #eef8f6;
+      color: var(--primary-deeper);
+      font-weight: 600;
+      box-shadow: none;
+    }
+    .sidebar__item.is-active::before { background: var(--primary); }
+    .sidebar__icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: transparent;
+      overflow: visible;
+    }
+    .sidebar__icon img {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+      display: block;
+      filter: grayscale(1) brightness(0.45);
+      opacity: 0.9;
+    }
+    .sidebar__item:hover .sidebar__icon img,
+    .sidebar__item.is-active .sidebar__icon img {
+      filter: none;
+      opacity: 1;
+    }
+    .sidebar__item.is-active .sidebar__icon {
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .content-shell {
+      min-width: 0;
+      min-height: 0;
+      height: 100%;
+      max-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: #f4f6f8;
+      border-left: none;
+      overflow: hidden;
+    }
+
+    .topbar {
+      position: relative;
+      z-index: 200;
+      height: var(--topbar-h);
+      flex-shrink: 0;
+      background: transparent;
+      border-bottom: none;
+      backdrop-filter: none;
+    }
+    .topbar__inner {
+      height: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: 1fr minmax(0, 420px) 1fr;
+      align-items: center;
+      gap: 12px;
+    }
+    .topbar__logo { display: none; }
+    .sidebar-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      font-size: 20px;
+      color: var(--heading);
+      align-items: center;
+      justify-content: center;
+      justify-self: start;
+    }
+    .topbar__search {
+      width: 100%;
+      min-width: 0;
+      max-width: 420px;
+      margin: 0;
+      position: relative;
+      grid-column: 2;
+      justify-self: stretch;
+    }
+    .topbar__search input {
+      width: 100%;
+      height: 36px;
+      padding: 0 12px;
+      border: 1px solid #dde3ea;
+      border-radius: 6px;
+      background: #ffffff;
+      font-size: var(--fs-ui);
+      color: #334155;
+      box-shadow: none;
+    }
+    .topbar__search input::placeholder { color: #94a3b8; }
+    .topbar__search input:focus {
+      outline: none;
+      border-color: #cbd5e1;
+      box-shadow: 0 0 0 3px rgba(148, 163, 184, 0.16);
+    }
+    .topbar__actions {
+      margin-left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      flex-shrink: 0;
+      grid-column: 3;
+      justify-self: end;
+    }
+    .topbar__icon-btn {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+    }
+    .topbar__icon-btn:hover { background: #e8eef2; color: var(--primary-dark); }
+    .topbar__icon-btn svg { width: 20px; height: 20px; }
+    .topbar__badge {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      min-width: 16px;
+      height: 16px;
+      padding: 0 4px;
+      border-radius: 8px;
+      background: #e11d48;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 16px;
+      text-align: center;
+    }
+    .topbar__profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 10px 4px 4px;
+      border-radius: 999px;
+    }
+    .topbar__profile:hover { background: #e8eef2; }
+    .topbar__avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-deeper));
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .topbar__profile-meta strong { display: block; font-size: var(--fs-ui); color: var(--heading); line-height: 1.2; font-weight: 600; }
+    .topbar__profile-meta span { font-size: 11px; color: var(--muted); }
+
+    .main {
+      min-width: 0;
+      min-height: 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding: 24px var(--content-pad-x) 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: #c5cdd4 transparent;
+      text-align: left;
+    }
+    .main::-webkit-scrollbar { width: 8px; }
+    .main::-webkit-scrollbar-track { background: transparent; }
+    .main::-webkit-scrollbar-thumb {
+      background: #c5cdd4;
+      border-radius: 99px;
+      border: 2px solid transparent;
+      background-clip: content-box;
+    }
+    .main::-webkit-scrollbar-thumb:hover { background: #a8b3bc; background-clip: content-box; }
+
+    .panel {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      text-align: left;
+    }
+    .panel__head {
+      margin-bottom: var(--heading-title-gap);
+      text-align: left;
+      max-width: 720px;
+    }
+    .panel__head h2 {
+      font-size: var(--fs-h2);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: var(--heading-title-line-height);
+      color: var(--heading);
+      margin: 0 0 8px;
+    }
+    .panel__head p {
+      font-size: var(--fs-ui);
+      line-height: 1.55;
+      color: var(--muted);
+      margin: 0;
+      max-width: 640px;
+    }
+
+    /* Quick actions */
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 10px;
+    }
+    .quick-action {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--bg);
+      text-align: left;
+    }
+    .quick-action:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      transform: translateY(-2px);
+    }
+    .quick-action__icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: transform 0.2s ease;
+    }
+    .quick-action__icon img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+    }
+    .quick-action:hover .quick-action__icon { transform: scale(1.12); }
+    .quick-action span { font-size: var(--fs-ui); font-weight: 600; color: var(--heading); }
+
+    /* Module grid */
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+    }
+    .module-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      background: linear-gradient(180deg, #fff 0%, #f8fcfb 100%);
+      cursor: pointer;
+      text-align: left;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .module-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(37, 183, 167, 0.45);
+    }
+    .module-card__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      overflow: hidden;
+      transition: transform 0.25s ease;
+    }
+    .module-card__icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .module-card:hover .module-card__icon { transform: scale(1.1) rotate(-3deg); }
+    .module-card h3 {
+      font-size: var(--fs-h3);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: var(--heading-title-line-height);
+      color: var(--heading);
+      margin-bottom: 6px;
+    }
+    .module-card p {
+      font-size: var(--fs-small);
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .no-results {
+      display: none;
+      text-align: center;
+      padding: 28px;
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .no-results.is-visible { display: block; }
+
+    /* Recent activity + deadlines */
+    .split-row {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 16px;
+    }
+    .list-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      background: var(--bg);
+      margin-bottom: 10px;
+      width: 100%;
+      text-align: left;
+      border: none;
+      color: inherit;
+      cursor: pointer;
+      transition: background 0.15s ease, box-shadow 0.15s ease;
+    }
+    .list-item:hover {
+      background: #e8f4f2;
+      box-shadow: inset 0 0 0 1px rgba(37, 183, 167, 0.25);
+    }
+    .list-item:last-child { margin-bottom: 0; }
+    .list-item strong { display: block; font-size: var(--fs-ui); color: var(--heading); margin-bottom: 2px; font-weight: 600; }
+    .list-item span { font-size: var(--fs-small); color: var(--muted); line-height: 1.5; }
+    .activity-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-top: 5px;
+      flex-shrink: 0;
+      background: var(--primary);
+    }
+    .deadline-day {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--primary-light);
+      color: var(--primary-deeper);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      line-height: 1.1;
+    }
+    .deadline-day strong { font-size: 14px; color: var(--primary-deeper); }
+    .deadline-day span { font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--primary-dark); }
+
+    /* Module task view — CA Cloud Desk style */
+    .module-view {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      animation: fadeIn 0.22s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .module-view__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .module-view__head h1 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.35;
+      color: var(--heading);
+      margin: 0;
+    }
+    .module-view__back {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      font-size: var(--fs-ui);
+      font-weight: 600;
+      color: var(--text);
+    }
+    .module-view__back:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary-deeper);
+    }
+    .task-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .task-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 14px 18px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .task-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(37, 183, 167, 0.45);
+    }
+    .task-card__art {
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(160deg, var(--primary-light), #fff 70%);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .task-card__art img {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+    }
+    .task-card:hover .task-card__art {
+      transform: translateY(-4px) scale(1.06);
+      box-shadow: 0 10px 20px rgba(37, 183, 167, 0.2);
+    }
+    .task-card__label {
+      font-size: var(--fs-small);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--primary-deeper);
+      line-height: 1.35;
+    }
+    .task-card.is-active {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-hover);
+      background: linear-gradient(180deg, #f3fbfa 0%, #fff 55%);
+    }
+    .task-empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 36px 16px;
+      color: var(--muted);
+      font-size: 14px;
+      background: var(--white);
+      border: 1px dashed var(--border);
+      border-radius: 14px;
+    }
+
+    .topbar__actions { position: relative; }
+    .dropdown {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      width: min(320px, calc(100vw - 32px));
+      background: #fff;
+      border: 1px solid #e6eaee;
+      border-radius: 12px;
+      box-shadow: 0 12px 32px rgba(8, 53, 48, 0.12);
+      padding: 8px;
+      z-index: 300;
+      display: none;
+    }
+    .dropdown.is-open { display: block; }
+    .dropdown__title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 8px 10px 6px;
+    }
+    .dropdown__item {
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      text-align: left;
+      padding: 10px;
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 13px;
+    }
+    .dropdown__item:hover { background: #f5f8fa; }
+    .dropdown__item strong { display: block; color: var(--heading); font-weight: 600; margin-bottom: 2px; }
+    .dropdown__item span { color: var(--muted); font-size: 12px; }
+    .dropdown__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--primary);
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+    .dropdown__footer {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+      margin-top: 4px;
+      border-top: 1px solid #eef1f4;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary-deeper);
+      border-radius: 0 0 8px 8px;
+    }
+    .dropdown__footer:hover { background: var(--primary-light); }
+
+    .toast-stack {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 400;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+    .toast {
+      min-width: 240px;
+      max-width: 360px;
+      background: #083530;
+      color: #fff;
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      box-shadow: 0 10px 28px rgba(8, 53, 48, 0.25);
+      animation: toastIn 0.2s ease;
+      pointer-events: auto;
+    }
+    .toast strong { display: block; margin-bottom: 2px; font-weight: 600; }
+    .toast span { opacity: 0.85; font-size: 12px; }
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .task-modal-scrim {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 53, 48, 0.35);
+      z-index: 350;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .task-modal-scrim.is-open { display: flex; }
+    .task-modal {
+      width: min(440px, 100%);
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 20px 48px rgba(8, 53, 48, 0.18);
+      animation: fadeIn 0.2s ease;
+    }
+    .task-modal__icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: linear-gradient(160deg, var(--primary-light), #fff 70%);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+    .task-modal__icon img { width: 40px; height: 40px; object-fit: contain; }
+    .task-modal h3 {
+      font-size: var(--fs-h3);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--heading);
+      margin-bottom: 6px;
+    }
+    .task-modal p { font-size: var(--fs-ui); line-height: 1.55; color: var(--muted); margin-bottom: 18px; }
+    .task-modal__actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .task-modal__btn {
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: var(--fs-ui);
+      font-weight: 600;
+    }
+    .task-modal__btn--primary {
+      background: var(--primary);
+      color: #fff;
+    }
+    .task-modal__btn--primary:hover { background: var(--primary-dark); }
+    .task-modal__btn--ghost {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+    }
+    .task-modal__btn--ghost:hover { background: #f5f8fa; }
+
+    .recent-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .recent-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--border);
+      font-size: var(--fs-ui);
+      font-weight: 500;
+      color: var(--heading);
+    }
+    .recent-chip:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      color: var(--primary-deeper);
+    }
+    .recent-chip img { width: 18px; height: 18px; object-fit: contain; }
+
+    /* My Tasks — CA Cloud Desk style */
+    .my-tasks {
+      background: #fff;
+      border: 1px solid #e6eaee;
+      border-radius: 12px;
+      padding: 0;
+      box-shadow: none;
+      overflow: hidden;
+    }
+    .my-tasks__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 16px 18px 10px;
+    }
+    .my-tasks__head h2 {
+      font-size: var(--fs-h2);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: var(--heading-title-line-height);
+      color: var(--heading);
+      margin: 0;
+    }
+    .my-tasks__tools {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .my-tasks__search {
+      width: 180px;
+      max-width: 40vw;
+    }
+    .my-tasks__search input {
+      width: 100%;
+      height: 36px;
+      padding: 0 12px;
+      border: 1px solid #dde3ea;
+      border-radius: 6px;
+      background: #fff;
+      font-size: var(--fs-ui);
+      color: #334155;
+    }
+    .my-tasks__search input::placeholder { color: #94a3b8; }
+    .my-tasks__search input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 183, 167, 0.15);
+    }
+    .my-tasks__add {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid #dde3ea;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: var(--primary-deeper);
+      background: #fff;
+      flex-shrink: 0;
+    }
+    .my-tasks__add:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+    }
+    .my-tasks__tabs {
+      display: flex;
+      gap: 4px;
+      padding: 0 12px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .my-tasks__tabs::-webkit-scrollbar { display: none; }
+    .my-tasks__tab {
+      flex-shrink: 0;
+      padding: 10px 12px;
+      font-size: var(--fs-ui);
+      font-weight: 500;
+      color: #64748b;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+    }
+    .my-tasks__tab:hover { color: var(--heading); }
+    .my-tasks__tab.is-active {
+      color: var(--primary-deeper);
+      font-weight: 600;
+      border-bottom-color: var(--primary);
+    }
+    .my-tasks__tab-count {
+      display: inline-block;
+      margin-left: 4px;
+      font-size: 11px;
+      color: #94a3b8;
+    }
+    .my-tasks__tab.is-active .my-tasks__tab-count { color: var(--primary); }
+    .my-tasks__table-wrap {
+      overflow-x: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #c5cdd4 transparent;
+    }
+    .my-tasks__table {
+      width: 100%;
+      min-width: 640px;
+      border-collapse: collapse;
+    }
+    .my-tasks__table th {
+      text-align: left;
+      font-size: var(--fs-small);
+      font-weight: 600;
+      color: #64748b;
+      padding: 12px 16px;
+      background: #f8fafb;
+      border-bottom: 1px solid #eef1f4;
+      white-space: nowrap;
+    }
+    .my-tasks__table td {
+      padding: 12px 16px;
+      font-size: var(--fs-ui);
+      color: var(--text);
+      border-bottom: 1px solid #f1f4f6;
+      vertical-align: middle;
+    }
+    .my-tasks__table tbody tr {
+      cursor: pointer;
+      transition: background 0.12s ease;
+    }
+    .my-tasks__table tbody tr:hover { background: #f5fbfa; }
+    .my-tasks__id {
+      font-weight: 600;
+      color: var(--primary-deeper);
+      font-variant-numeric: tabular-nums;
+    }
+    .my-tasks__empty {
+      text-align: center;
+      padding: 48px 16px;
+      color: #94a3b8;
+    }
+    .my-tasks__empty-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 10px;
+      border: 2px dashed #d0d7dc;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: #c5cdd4;
+    }
+    .my-tasks__foot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 16px;
+      background: #f8fafb;
+      border-top: 1px solid #eef1f4;
+      font-size: 12px;
+      color: #64748b;
+    }
+    .my-tasks__page-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: 1px solid #dde3ea;
+      background: #fff;
+      color: #475569;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .my-tasks__page-btn:hover:not(:disabled) { background: #f1f5f9; }
+    .my-tasks__page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .my-tasks__page-info {
+      min-width: 64px;
+      text-align: center;
+      padding: 4px 8px;
+      border: 1px solid #dde3ea;
+      border-radius: 6px;
+      background: #fff;
+    }
+
+    .content-footer {
+      margin-top: auto;
+      flex-shrink: 0;
+      padding-top: 24px;
+    }
+    .content-footer .td-footer {
+      margin-top: 0;
+    }
+
+    /* Footer — same as contact_sales.html */
+    .td-footer {
+      background: transparent;
+      border-top: none;
+      margin-top: 8px;
+    }
+    .td-footer__top {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 28px var(--content-pad-x);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px 48px;
+      flex-wrap: wrap;
+    }
+    .td-footer__logo {
+      display: inline-flex;
+      align-items: center;
+      background: transparent;
+    }
+    .td-footer__logo img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+      background: transparent;
+      display: block;
+    }
+    .td-footer__contact {
+      flex: 1;
+      min-width: 200px;
+      text-align: center;
+    }
+    .td-footer__address {
+      margin: 0;
+      font-style: normal;
+      font-size: 13px;
+      line-height: 1.55;
+      color: #6b7280;
+    }
+    .td-footer__social {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .td-footer__social a {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #e5e7eb;
+      border-radius: 50%;
+      color: #6b7280;
+      background: #fff;
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
+    }
+    .td-footer__social a:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+    .td-footer__social svg { width: 17px; height: 17px; }
+    .td-footer__bar { border-top: none; }
+    .td-footer__bar-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 16px var(--content-pad-x);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .td-footer__rating { font-size: 13px; color: #6b7280; margin: 0; }
+    .td-footer__rating strong { color: #111827; }
+    .td-footer__cookie {
+      font-size: 13px;
+      color: #6b7280;
+      text-decoration: none;
+    }
+    .td-footer__cookie:hover { color: var(--primary); }
+    .td-footer__copy { font-size: 13px; color: #6b7280; margin: 0; }
+
+    @media (max-width: 1200px) {
+      .module-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 1100px) {
+      .task-grid { grid-template-columns: repeat(3, 1fr); }
+      .split-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 900px) {
+      .sidebar-toggle { display: flex; }
+      .app-shell { grid-template-columns: 1fr; }
+      .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: min(280px, 86vw);
+        height: 100vh;
+        max-height: 100vh;
+        z-index: 250;
+        border-radius: 0;
+        transform: translateX(-105%);
+        transition: transform 0.3s ease;
+      }
+      .sidebar.is-open { transform: translateX(0); }
+      .sidebar-scrim {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(8, 53, 48, 0.35);
+        z-index: 240;
+      }
+      .sidebar-scrim.is-open { display: block; }
+      .topbar__profile-meta { display: none; }
+      .my-tasks__search { width: 140px; }
+    }
+    @media (max-width: 640px) {
+      .module-grid { grid-template-columns: 1fr 1fr; }
+      .task-grid { grid-template-columns: 1fr 1fr; }
+      .td-footer__top {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+      }
+      .td-footer__contact { text-align: left; }
+      .td-footer__bar-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="#top" class="sidebar__brand-logo" id="logoHome" aria-label="TimeERP home">
+          <img src="assets/image0.png" alt="TimeERP" width="168" height="40">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate" data-open="task-management">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <div class="sidebar__nav" id="sidebarList"></div>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge" id="notifBadge">5</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+                <button type="button" class="dropdown__footer" id="notifMarkRead">Mark all as read</button>
+              </div>
+            </div>
+            <button type="button" class="topbar__icon-btn" id="calBtn" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">TE</span>
+                <span class="topbar__profile-meta"><strong>Admin</strong><span>TimeERP</span></span>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <button type="button" class="dropdown__item" data-action="home"><strong>Go to home</strong><span>Module hub overview</span></button>
+                <button type="button" class="dropdown__item" data-open="task-management"><strong>Create task</strong><span>Open Project Management</span></button>
+                <button type="button" class="dropdown__item" data-open="reports"><strong>Reports</strong><span>Analytics & custom reports</span></button>
+                <button type="button" class="dropdown__item" data-action="shortcut"><strong>Keyboard tips</strong><span>/ focus search · Esc goes back</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+      <div class="home-view" id="homeView">
+        <section class="panel" id="recent-modules">
+          <div class="panel__head">
+            <h2>Recently opened</h2>
+            <p>Pick up where you left off.</p>
+          </div>
+          <div class="recent-strip" id="recentStrip">
+            <span class="task-empty" style="padding:14px;border:none;background:transparent">Open a module to see it here.</span>
+          </div>
+        </section>
+
+        <section class="panel" id="quick-actions">
+          <div class="panel__head">
+            <h2>Quick actions</h2>
+            <p>Jump into common workflows.</p>
+          </div>
+          <div class="quick-actions" id="quickActions"></div>
+        </section>
+
+        <section class="my-tasks" id="my-tasks" aria-label="My Tasks">
+          <div class="my-tasks__head">
+            <h2>My Tasks</h2>
+            <div class="my-tasks__tools">
+              <div class="my-tasks__search" role="search">
+                <input type="search" id="taskSearch" placeholder="Search Tasks" autocomplete="off" aria-label="Search tasks">
+              </div>
+              <button type="button" class="my-tasks__add" id="taskAddBtn" data-open="task-management" aria-label="Create task">+</button>
+            </div>
+          </div>
+          <div class="my-tasks__tabs" id="taskTabs" role="tablist" aria-label="Task status"></div>
+          <div class="my-tasks__table-wrap">
+            <table class="my-tasks__table">
+              <thead>
+                <tr>
+                  <th>Task ID</th>
+                  <th>Task Name</th>
+                  <th>Reviewer</th>
+                  <th>Client</th>
+                  <th>Due Date</th>
+                </tr>
+              </thead>
+              <tbody id="taskTableBody"></tbody>
+            </table>
+          </div>
+          <div class="my-tasks__foot">
+            <button type="button" class="my-tasks__page-btn" id="taskPrev" aria-label="Previous page">‹</button>
+            <span class="my-tasks__page-info" id="taskPageInfo">1 of 1</span>
+            <button type="button" class="my-tasks__page-btn" id="taskNext" aria-label="Next page">›</button>
+            <span id="taskCountInfo">0 / 0</span>
+          </div>
+        </section>
+
+        <section class="panel" id="modules">
+          <div class="panel__head">
+            <h2>All modules</h2>
+            <p>17 modules · open a card or use the sidebar.</p>
+          </div>
+          <div class="no-results" id="noResults">
+            <p><strong>No modules match your search.</strong></p>
+          </div>
+          <div class="module-grid" id="moduleGrid"></div>
+        </section>
+
+        <div class="split-row">
+          <section class="panel">
+            <div class="panel__head">
+              <h2>Recent activity</h2>
+              <p>Latest updates.</p>
+            </div>
+            <div id="activityList"></div>
+          </section>
+          <section class="panel">
+            <div class="panel__head">
+              <h2>Upcoming deadlines</h2>
+              <p>Stay ahead of due dates.</p>
+            </div>
+            <div id="deadlineList"></div>
+          </section>
+        </div>
+      </div>
+
+      <section class="module-view is-hidden" id="moduleView" aria-live="polite">
+        <div class="module-view__head">
+          <h1 id="moduleViewTitle">Dashboard</h1>
+          <button type="button" class="module-view__back" id="backToHome">← Back to home</button>
+        </div>
+        <div class="task-grid" id="taskGrid"></div>
+      </section>
+
+      <div class="content-footer">
+  <footer class="td-footer">
+    <div class="td-footer__top">
+      <a href="#top" class="td-footer__logo" aria-label="TimeERP home">
+        <img src="assets/image0-transparent.png" alt="TimeERP" width="168" height="40">
+      </a>
+      <div class="td-footer__contact">
+        <address class="td-footer__address">
+          Law Seva Management Private Limited<br>
+          BM-08, Ansal Sumedha Building, RDC,<br>
+          Ghaziabad, Delhi NCR, Uttar Pradesh – 201001, India
+        </address>
+      </div>
+      <div class="td-footer__social">
+        <a href="https://www.linkedin.com/in/ca-clouddesk-381510388" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 9h3v10H6V9zm1.5-5A1.75 1.75 0 118 7.5 1.75 1.75 0 017.5 4zM10 9h3v1.4h.05c.45-.85 1.55-1.75 3.2-1.75 3.4 0 4 2.1 4 4.85V19h-3v-5.6c0-1.35-.02-3.1-1.9-3.1-1.9 0-2.2 1.45-2.2 3v5.7H10V9z"/></svg></a>
+        <a href="https://www.instagram.com/erptime/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.youtube.com/@ERPTime" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 8.5a2 2 0 00-1.4-1.5C17 6.5 12 6.5 12 6.5s-5 0-6.6.5A2 2 0 004 8.5 21 21 0 004 12a21 21 0 00.4 3.5 2 2 0 001.4 1.5c1.6.5 6.6.5 6.6.5s5 0 6.6-.5a2 2 0 001.4-1.5A21 21 0 0020 12a21 21 0 00-.4-3.5zM10 15.5v-7l6 3.5-6 3.5z"/></svg></a>
+        <a href="https://x.com/erptime" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M5 5l14 14M19 5L5 19" stroke-linecap="round"/></svg></a>
+      </div>
+    </div>
+    <div class="td-footer__bar">
+      <div class="td-footer__bar-inner">
+        <p class="td-footer__rating"><strong>650+</strong> MSME · <strong>4.8/5</strong> customer rating · <strong>4+</strong> industries served</p>
+        <a href="#" class="td-footer__cookie">Cookie preferences</a>
+        <p class="td-footer__copy">© 2026 TimeERP</p>
+      </div>
+    </div>
+  </footer>
+      </div>
+    </main>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+  <div class="task-modal-scrim" id="taskModal" role="dialog" aria-modal="true" aria-labelledby="taskModalTitle" hidden>
+    <div class="task-modal">
+      <div class="task-modal__icon" id="taskModalIcon"></div>
+      <h3 id="taskModalTitle">Task</h3>
+      <p id="taskModalDesc">Open this feature from the module workspace.</p>
+      <div class="task-modal__actions">
+        <button type="button" class="task-modal__btn task-modal__btn--primary" id="taskModalOpen">Continue</button>
+        <button type="button" class="task-modal__btn task-modal__btn--ghost" id="taskModalClose">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    'use strict';
+
+    /* 17 modules — icons in assets/home-icons/ */
+    var ICON_BASE = 'assets/home-icons/';
+    var MODULES = [
+      { id: 'dashboard', title: 'Dashboard', desc: 'Business overview, KPIs, and analytics.', topics: ['Business Overview', 'Revenue Analytics', 'Employee Analytics', 'Task Analytics', 'Attendance Summary', 'Project Status', 'Recent Activities', 'Notifications', 'Quick Actions'] },
+      { id: 'hrms', title: 'HRMS', desc: 'Employees, recruitment, and profiles.', topics: ['View Employees', 'Recruitment', 'Onboarding', 'Employee Profile', 'Attendance', 'Leave Management', 'Exit Management', 'Assets Allocation', 'Policies', 'Documents'] },
+      { id: 'attendance', title: 'Attendance', desc: 'Shifts, biometric, and overtime.', topics: ['Daily Attendance', 'Shift Management', 'Biometric', 'Geo Attendance', 'Attendance Lock', 'Overtime', 'Late Entry', 'Reports'] },
+      { id: 'leave', title: 'Leave Management', desc: 'Leave types, requests, and balance.', topics: ['Leave Types', 'Leave Requests', 'Approval Workflow', 'Holiday Calendar', 'Leave Balance', 'Leave Reports'] },
+      { id: 'payroll', title: 'Payroll', desc: 'Salary, PF, ESI, TDS, payslips.', topics: ['Salary Structure', 'Payroll Processing', 'Payslips', 'PF', 'ESI', 'TDS', 'Bonus', 'Payroll Reports'] },
+      { id: 'timesheet', title: 'Timesheet', desc: 'Daily and weekly billable hours.', topics: ['Daily Timesheet', 'Weekly Timesheet', 'Approval', 'Billable Hours', 'Productivity', 'Reports'] },
+      { id: 'expense', title: 'Expense', desc: 'Claims, travel, reimbursement.', topics: ['Expense Claims', 'Travel', 'Reimbursement', 'Approval Workflow', 'Reports'] },
+      { id: 'crm', title: 'CRM', desc: 'Leads, pipeline, and follow-ups.', topics: ['Leads', 'Opportunities', 'Customers', 'Quotations', 'Follow-ups', 'Sales Pipeline', 'Activities', 'Reports'] },
+      { id: 'client-desk', title: 'Client Desk', desc: 'Portal, documents, and requests.', topics: ['Client Portal', 'Client Documents', 'Service Requests', 'Client Tasks', 'Client Messages', 'Agreements'] },
+      { id: 'communication', title: 'Communication Center', desc: 'SMS, email, WhatsApp, campaigns.', topics: ['Notifications', 'SMS', 'Email', 'WhatsApp', 'Broadcast', 'Templates', 'Campaigns', 'Logs'] },
+      { id: 'whatsapp-api', title: 'WhatsApp API', desc: 'Templates, webhooks, automation.', topics: ['Templates', 'Webhooks', 'Automation', 'Chat History', 'Broadcast', 'Delivery Reports', 'API Settings'] },
+      { id: 'document-vault', title: 'Document Vault', desc: 'Store, agreements, DSC, assets.', topics: ['Store Documents', 'Folder Management', 'OCR Search', 'Create Agreement', 'Inward Register', 'Outward Register', 'DSC Tracker', 'Fixed Asset Register', 'Version Control', 'Audit Logs'] },
+      { id: 'project-management', title: 'Project Management', desc: 'Plan, execute, monitor, and deliver projects from initiation to completion with centralized project planning, team collaboration, task execution, worklogs, billing, and profitability tracking.', topics: ['Multi Assign', 'Multi Customer', 'Multi Client', 'Create Task', 'Recurring Task', 'Task Service Master', 'Task in Mobile App', 'Share Task with Client', 'Bulk Action in Task', 'Task Reminder', 'Task Timesheet', 'Task Permission', 'Task Billing', 'Profit / Loss Report'] },
+      { id: 'task-management', title: 'Project Management', desc: 'Plan, execute, monitor, and deliver projects from initiation to completion with centralized project planning, team collaboration, task execution, worklogs, billing, and profitability tracking.', topics: ['Multi Assign', 'Multi Customer', 'Multi Client', 'Create Task', 'Recurring Task', 'Task Service Master', 'Task in Mobile App', 'Share Task with Client', 'Bulk Action in Task', 'Task Reminder', 'Task Timesheet', 'Task Permission', 'Task Billing', 'Profit / Loss Report'] },
+      { id: 'billing', title: 'Billing', desc: 'Invoice, receipt, ledger, GST.', topics: ['Billing Setup', 'Branch Setup', 'Invoice', 'Proforma Invoice', 'Receipt', 'Ledger', 'Adjustment', 'Credit Note', 'Debit Note', 'Reported Transactions', 'Payment Collection', 'GST Reports'] },
+      { id: 'website', title: 'Website', desc: 'Builder, pages, blog, SEO.', topics: ['Website Builder', 'Landing Pages', 'Blog', 'Forms', 'SEO', 'Media Library', 'Analytics'] },
+      { id: 'reports', title: 'Reports & Analytics', desc: 'HR, CRM, billing, custom reports.', topics: ['HR Reports', 'Payroll Reports', 'Attendance Reports', 'CRM Reports', 'Task Reports', 'Billing Reports', 'Project Reports', 'Financial Reports', 'Custom Reports'] }
+    ];
+
+    var TASK_ICON_MAP = {
+      'Business Overview': 'overview', 'Revenue Analytics': 'analytics', 'Employee Analytics': 'users',
+      'Task Analytics': 'analytics', 'Attendance Summary': 'clock', 'Project Status': 'progress', 'Recent Activities': 'worklog',
+      'Notifications': 'bell', 'Quick Actions': 'bolt', 'Company Setup': 'building', 'Branch Management': 'branch',
+      'Departments': 'dept', 'Designations': 'role', 'Cost Centers': 'cost', 'Financial Year': 'year', 'User Roles': 'role',
+      'View Employees': 'employee', 'Recruitment': 'recruit', 'Onboarding': 'onboard', 'Employee Profile': 'users',
+      'Attendance': 'calendar', 'Leave Management': 'holiday',
+      'Exit Management': 'exit', 'Assets Allocation': 'asset', 'Policies': 'policy', 'Documents': 'report',
+      'Daily Attendance': 'calendar', 'Shift Management': 'clock', 'Biometric': 'fingerprint', 'Geo Attendance': 'pin',
+      'Attendance Lock': 'lock', 'Overtime': 'overtime', 'Late Entry': 'warning', 'Reports': 'report',
+      'Leave Types': 'category', 'Leave Requests': 'form', 'Approval Workflow': 'approve', 'Holiday Calendar': 'holiday',
+      'Leave Balance': 'balance', 'Leave Reports': 'report', 'Salary Structure': 'salary', 'Payroll Processing': 'setup',
+      'Payslips': 'payslip', 'PF': 'pf', 'ESI': 'esi', 'TDS': 'tds', 'Bonus': 'bonus', 'Payroll Reports': 'report',
+      'Daily Timesheet': 'clock', 'Weekly Timesheet': 'calendar', 'Approval': 'approve', 'Billable Hours': 'billable',
+      'Productivity': 'productivity', 'Expense Claims': 'expense', 'Travel': 'travel', 'Reimbursement': 'payment',
+      'Leads': 'lead', 'Opportunities': 'bonus', 'Customers': 'users', 'Quotations': 'quote', 'Follow-ups': 'followup',
+      'Sales Pipeline': 'pipeline', 'Activities': 'worklog', 'Client Portal': 'portal', 'Client Documents': 'folder',
+      'Service Requests': 'service', 'Client Tasks': 'approve', 'Client Messages': 'message', 'Agreements': 'agreement',
+      'SMS': 'sms', 'Email': 'email', 'WhatsApp': 'whatsapp', 'Broadcast': 'broadcast', 'Templates': 'template',
+      'Campaigns': 'campaign', 'Logs': 'worklog', 'Webhooks': 'webhook', 'Automation': 'automation', 'Chat History': 'chat',
+      'Delivery Reports': 'delivery', 'API Settings': 'api', 'Store Documents': 'folder', 'Folder Management': 'folder',
+      'OCR Search': 'ocr', 'Create Agreement': 'agreement', 'Inward Register': 'inward', 'Outward Register': 'outward',
+      'DSC Tracker': 'dsc', 'Fixed Asset Register': 'asset', 'Version Control': 'version', 'Audit Logs': 'audit',
+      'Projects': 'project', 'Milestones': 'milestone', 'Kanban': 'kanban', 'Gantt Chart': 'gantt',
+      'Multi Client': 'multi', 'Multi Customer': 'multi', 'Multi Assign': 'share', 'Budget': 'budget', 'Progress': 'progress',
+      'Create Task': 'create', 'Task Service Master': 'service', 'Task Categories': 'category', 'Recurring Tasks': 'recurring',
+      'Recurring Task': 'recurring', 'Bulk Actions': 'bulk', 'Bulk Action in Task': 'bulk', 'Share with Client': 'share',
+      'Share Task with Client': 'share', 'Task Reminder': 'reminder', 'Mobile Tasks': 'mobile', 'Task in Mobile App': 'mobile',
+      'Task Timesheet': 'clock', 'Task Billing': 'invoice', 'Task Permissions': 'permission', 'Task Permission': 'permission',
+      'Profit & Loss Report': 'pnl', 'Profit / Loss Report': 'pnl', 'SLA Monitoring': 'sla', 'Worklogs': 'worklog',
+      'Billing Setup': 'setup', 'Branch Setup': 'branch', 'Invoice': 'invoice', 'Proforma Invoice': 'quote',
+      'Receipt': 'receipt', 'Ledger': 'ledger', 'Adjustment': 'adjust', 'Credit Note': 'credit', 'Debit Note': 'debit',
+      'Reported Transactions': 'transaction', 'Payment Collection': 'payment', 'GST Reports': 'gst',
+      'Website Builder': 'builder', 'Landing Pages': 'landing', 'Blog': 'blog', 'Forms': 'form', 'SEO': 'seo',
+      'Media Library': 'media', 'Analytics': 'analytics', 'HR Reports': 'hr', 'Attendance Reports': 'clock',
+      'CRM Reports': 'users', 'Task Reports': 'approve', 'Billing Reports': 'invoice', 'Project Reports': 'project',
+      'Financial Reports': 'financial', 'Custom Reports': 'custom'
+    };
+
+    var QUICK = [
+      { icon: 'task-create', label: 'Create task', module: 'task-management' },
+      { icon: 'billing', label: 'New invoice', module: 'billing' },
+      { icon: 'hrms', label: 'Add employee', module: 'hrms' },
+      { icon: 'attendance', label: 'Mark attendance', module: 'attendance' },
+      { icon: 'crm', label: 'Add lead', module: 'crm' },
+      { icon: 'document-vault', label: 'Upload document', module: 'document-vault' }
+    ];
+
+    var ACTIVITY = [
+      { text: 'Invoice INV-1042 marked as paid', time: '12 min ago' },
+      { text: 'Leave request approved for A. Sharma', time: '45 min ago' },
+      { text: 'New lead added from website form', time: '1 hr ago' },
+      { text: 'Task shared with client', time: '2 hr ago' }
+    ];
+
+    var DEADLINES = [
+      { day: '12', mon: 'Mar', title: 'PF / ESI remittance', meta: 'Payroll' },
+      { day: '15', mon: 'Mar', title: 'GST return filing', meta: 'Billing' },
+      { day: '20', mon: 'Mar', title: 'Agreement renewals', meta: 'Document Vault' }
+    ];
+
+    var TASK_TABS = [
+      { id: 'processing', label: 'Processing' },
+      { id: 'open', label: 'Open' },
+      { id: 'finalized', label: 'Finalized for Submission' },
+      { id: 'overdue', label: 'Overdue' },
+      { id: 'stuck', label: 'Stuck' },
+      { id: 'completed', label: 'Completed' },
+      { id: 'consultation', label: 'Under Consultation' }
+    ];
+
+    var MY_TASKS = [
+      { id: 'T-1042', name: 'GST monthly return', reviewer: 'Admin', client: 'Sharma Traders', due: '12 Mar 2026', status: 'processing' },
+      { id: 'T-1043', name: 'Payroll review — Feb', reviewer: 'HR Lead', client: 'Internal', due: '14 Mar 2026', status: 'processing' },
+      { id: 'T-1038', name: 'ITR draft — Verma', reviewer: 'Tax Associate', client: 'R. Verma', due: '18 Mar 2026', status: 'open' },
+      { id: 'T-1031', name: 'Agreement renewal pack', reviewer: 'Legal', client: 'Nexus Pvt Ltd', due: '20 Mar 2026', status: 'open' },
+      { id: 'T-1020', name: 'Bank reconciliation', reviewer: 'Admin', client: 'Orbit Foods', due: '08 Mar 2026', status: 'overdue' },
+      { id: 'T-1015', name: 'TDS challan review', reviewer: 'Finance', client: 'Pixel Soft', due: '05 Mar 2026', status: 'stuck' },
+      { id: 'T-1009', name: 'Onboarding checklist', reviewer: 'HR Lead', client: 'Internal', due: '01 Mar 2026', status: 'completed' },
+      { id: 'T-1004', name: 'Invoice batch — Jan', reviewer: 'Billing', client: 'CA Clients', due: '28 Feb 2026', status: 'completed' },
+      { id: 'T-1048', name: 'Audit query response', reviewer: 'Partner', client: 'Mehta & Co', due: '22 Mar 2026', status: 'consultation' },
+      { id: 'T-1049', name: 'Final GSTR pack', reviewer: 'Admin', client: 'Sharma Traders', due: '15 Mar 2026', status: 'finalized' }
+    ];
+
+    var NOTIFS = [
+      { id: 1, title: 'Invoice INV-1042 paid', detail: 'Client payment received', unread: true, module: 'billing' },
+      { id: 2, title: 'Leave approved', detail: 'A. Sharma · casual leave', unread: true, module: 'leave' },
+      { id: 3, title: 'New website lead', detail: 'Form submission logged in CRM', unread: true, module: 'crm' },
+      { id: 4, title: 'Task shared with client', detail: 'GST review package', unread: true, module: 'task-management' },
+      { id: 5, title: 'Attendance anomaly', detail: '3 late entries today', unread: true, module: 'attendance' }
+    ];
+
+    var sidebarList = document.getElementById('sidebarList');
+    var moduleGrid = document.getElementById('moduleGrid');
+    var quickActions = document.getElementById('quickActions');
+    var activityList = document.getElementById('activityList');
+    var deadlineList = document.getElementById('deadlineList');
+    var homeView = document.getElementById('homeView');
+    var moduleView = document.getElementById('moduleView');
+    var taskGrid = document.getElementById('taskGrid');
+    var noResults = document.getElementById('noResults');
+    var globalSearch = document.getElementById('globalSearch');
+    var recentStrip = document.getElementById('recentStrip');
+    var notifDropdown = document.getElementById('notifDropdown');
+    var profileDropdown = document.getElementById('profileDropdown');
+    var notifBtn = document.getElementById('notifBtn');
+    var profileBtn = document.getElementById('profileBtn');
+    var taskModal = document.getElementById('taskModal');
+    var toastStack = document.getElementById('toastStack');
+    var contentScroller = document.querySelector('.main');
+    var taskTabsEl = document.getElementById('taskTabs');
+    var taskTableBody = document.getElementById('taskTableBody');
+    var taskSearch = document.getElementById('taskSearch');
+    var activeModule = null;
+    var activeTask = null;
+    var updatingHash = false;
+    var recentModules = loadRecent();
+    var taskStatus = 'processing';
+    var taskPage = 1;
+    var TASK_PAGE_SIZE = 5;
+
+    function scrollContent(top) {
+      if (contentScroller) contentScroller.scrollTo({ top: top || 0, behavior: 'smooth' });
+      else window.scrollTo({ top: top || 0, behavior: 'smooth' });
+    }
+
+    function scrollElIntoView(el) {
+      if (!el) return;
+      if (contentScroller && contentScroller.contains(el)) {
+        var top = el.getBoundingClientRect().top - contentScroller.getBoundingClientRect().top + contentScroller.scrollTop - 12;
+        contentScroller.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+      } else {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function moduleIcon(id) {
+      return ICON_BASE + id + '.svg';
+    }
+
+    function taskIcon(topic, moduleId) {
+      var key = TASK_ICON_MAP[topic];
+      if (key) return ICON_BASE + 'task-' + key + '.svg';
+      return moduleIcon(moduleId);
+    }
+
+    function imgTag(src, alt) {
+      return '<img src="' + src + '" alt="' + (alt || '') + '" loading="lazy" width="64" height="64">';
+    }
+
+    function getModule(id) {
+      for (var i = 0; i < MODULES.length; i++) if (MODULES[i].id === id) return MODULES[i];
+      return null;
+    }
+
+    function loadRecent() {
+      try {
+        var raw = localStorage.getItem('timeerp-recent-modules');
+        var list = raw ? JSON.parse(raw) : [];
+        return Array.isArray(list) ? list.filter(function (id) { return !!getModule(id); }).slice(0, 6) : [];
+      } catch (e) { return []; }
+    }
+
+    function saveRecent() {
+      try { localStorage.setItem('timeerp-recent-modules', JSON.stringify(recentModules.slice(0, 6))); } catch (e) {}
+    }
+
+    function pushRecent(id) {
+      recentModules = [id].concat(recentModules.filter(function (x) { return x !== id; })).slice(0, 6);
+      saveRecent();
+      renderRecent();
+    }
+
+    function setHash(path) {
+      updatingHash = true;
+      if (location.hash !== path) location.hash = path;
+      setTimeout(function () { updatingHash = false; }, 0);
+    }
+
+    function toast(title, detail) {
+      var el = document.createElement('div');
+      el.className = 'toast';
+      el.innerHTML = '<strong>' + title + '</strong>' + (detail ? '<span>' + detail + '</span>' : '');
+      toastStack.appendChild(el);
+      setTimeout(function () {
+        el.style.opacity = '0';
+        el.style.transition = 'opacity 0.25s ease';
+        setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 260);
+      }, 2600);
+    }
+
+    function closeDropdowns() {
+      notifDropdown.classList.remove('is-open');
+      profileDropdown.classList.remove('is-open');
+      notifBtn.setAttribute('aria-expanded', 'false');
+      profileBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    function closeTaskModal() {
+      taskModal.classList.remove('is-open');
+      taskModal.hidden = true;
+      activeTask = null;
+    }
+
+    function openTaskModal(moduleId, topic) {
+      var m = getModule(moduleId);
+      if (!m) return;
+      activeTask = { moduleId: moduleId, topic: topic };
+      document.getElementById('taskModalIcon').innerHTML = imgTag(taskIcon(topic, moduleId), topic);
+      document.getElementById('taskModalTitle').textContent = topic;
+      document.getElementById('taskModalDesc').textContent =
+        'Ready to open “' + topic + '” inside ' + m.title + '. This screen stays in-page — wire your ERP route when backend is connected.';
+      taskModal.hidden = false;
+      taskModal.classList.add('is-open');
+      document.getElementById('taskModalOpen').focus();
+    }
+
+    function unreadCount() {
+      return NOTIFS.filter(function (n) { return n.unread; }).length;
+    }
+
+    function renderNotifs() {
+      var list = document.getElementById('notifList');
+      list.innerHTML = NOTIFS.map(function (n) {
+        return '<button type="button" class="dropdown__item" data-notif="' + n.id + '" data-open="' + n.module + '">' +
+          (n.unread ? '<span class="dropdown__dot"></span>' : '<span class="dropdown__dot" style="background:#d0d7dc"></span>') +
+          '<div><strong>' + n.title + '</strong><span>' + n.detail + '</span></div></button>';
+      }).join('');
+      var count = unreadCount();
+      var badge = document.getElementById('notifBadge');
+      badge.textContent = String(count);
+      badge.style.display = count ? '' : 'none';
+    }
+
+    function renderRecent() {
+      if (!recentModules.length) {
+        recentStrip.innerHTML = '<span class="task-empty" style="padding:14px;border:none;background:transparent">Open a module to see it here.</span>';
+        return;
+      }
+      recentStrip.innerHTML = recentModules.map(function (id) {
+        var m = getModule(id);
+        if (!m) return '';
+        return '<button type="button" class="recent-chip" data-open="' + m.id + '">' +
+          imgTag(moduleIcon(m.id), m.title) + '<span>' + m.title + '</span></button>';
+      }).join('');
+    }
+
+    function renderSidebar() {
+      sidebarList.innerHTML = MODULES.map(function (m) {
+        return '<button type="button" class="sidebar__item' + (m.id === activeModule ? ' is-active' : '') + '" data-module="' + m.id + '">' +
+          '<span class="sidebar__icon">' + imgTag(moduleIcon(m.id), m.title) + '</span><span>' + m.title + '</span></button>';
+      }).join('');
+    }
+
+    function renderModules(filter) {
+      var q = (filter || '').trim().toLowerCase();
+      var html = '';
+      var visible = 0;
+      MODULES.forEach(function (m) {
+        var hay = (m.title + ' ' + m.desc + ' ' + m.topics.join(' ')).toLowerCase();
+        if (q && hay.indexOf(q) === -1) return;
+        visible++;
+        html += '<button type="button" class="module-card" data-open="' + m.id + '">' +
+          '<div class="module-card__icon">' + imgTag(moduleIcon(m.id), m.title) + '</div>' +
+          '<h3>' + m.title + '</h3><p>' + m.topics.length + ' features</p></button>';
+      });
+      moduleGrid.innerHTML = html;
+      noResults.classList.toggle('is-visible', visible === 0);
+    }
+
+    function renderTasks(filter) {
+      var m = getModule(activeModule);
+      if (!m) return;
+      var q = (filter || '').trim().toLowerCase();
+      var topics = m.topics.filter(function (t) {
+        return !q || t.toLowerCase().indexOf(q) !== -1;
+      });
+      if (!topics.length) {
+        taskGrid.innerHTML = '<div class="task-empty">No features match your search in this module.</div>';
+        return;
+      }
+      taskGrid.innerHTML = topics.map(function (t) {
+        var active = activeTask && activeTask.topic === t ? ' is-active' : '';
+        return '<button type="button" class="task-card' + active + '" data-task="' + t.replace(/"/g, '&quot;') + '">' +
+          '<span class="task-card__art" aria-hidden="true">' + imgTag(taskIcon(t, m.id), t) + '</span>' +
+          '<span class="task-card__label">' + t + '</span></button>';
+      }).join('');
+    }
+
+    function renderQuick() {
+      quickActions.innerHTML = QUICK.map(function (q) {
+        var src = q.icon.indexOf('task-') === 0 ? ICON_BASE + q.icon + '.svg' : moduleIcon(q.icon);
+        return '<button type="button" class="quick-action" data-open="' + q.module + '">' +
+          '<span class="quick-action__icon">' + imgTag(src, q.label) + '</span><span>' + q.label + '</span></button>';
+      }).join('');
+    }
+
+    function renderActivity() {
+      activityList.innerHTML = ACTIVITY.map(function (a) {
+        return '<div class="list-item"><span class="activity-dot"></span><div><strong>' + a.text + '</strong><span>' + a.time + '</span></div></div>';
+      }).join('');
+    }
+
+    function renderDeadlines() {
+      deadlineList.innerHTML = DEADLINES.map(function (d) {
+        return '<button type="button" class="list-item" data-open="' + (
+          d.meta === 'Payroll' ? 'payroll' : d.meta === 'Billing' ? 'billing' : 'document-vault'
+        ) + '" style="width:100%;cursor:pointer">' +
+          '<div class="deadline-day"><strong>' + d.day + '</strong><span>' + d.mon + '</span></div>' +
+          '<div><strong>' + d.title + '</strong><span>' + d.meta + '</span></div></button>';
+      }).join('');
+    }
+
+    function filteredMyTasks() {
+      var q = (taskSearch.value || '').trim().toLowerCase();
+      return MY_TASKS.filter(function (t) {
+        if (t.status !== taskStatus) return false;
+        if (!q) return true;
+        var hay = (t.id + ' ' + t.name + ' ' + t.reviewer + ' ' + t.client).toLowerCase();
+        return hay.indexOf(q) !== -1;
+      });
+    }
+
+    function renderMyTasks() {
+      taskTabsEl.innerHTML = TASK_TABS.map(function (tab) {
+        var count = MY_TASKS.filter(function (t) { return t.status === tab.id; }).length;
+        return '<button type="button" class="my-tasks__tab' + (taskStatus === tab.id ? ' is-active' : '') +
+          '" role="tab" aria-selected="' + (taskStatus === tab.id) + '" data-status="' + tab.id + '">' +
+          tab.label + '<span class="my-tasks__tab-count">(' + count + ')</span></button>';
+      }).join('');
+
+      var rows = filteredMyTasks();
+      var totalPages = Math.max(1, Math.ceil(rows.length / TASK_PAGE_SIZE));
+      if (taskPage > totalPages) taskPage = totalPages;
+      var start = (taskPage - 1) * TASK_PAGE_SIZE;
+      var pageRows = rows.slice(start, start + TASK_PAGE_SIZE);
+
+      if (!pageRows.length) {
+        taskTableBody.innerHTML =
+          '<tr><td colspan="5"><div class="my-tasks__empty">' +
+          '<div class="my-tasks__empty-icon" aria-hidden="true">▢</div>' +
+          '<div>No data</div></div></td></tr>';
+      } else {
+        taskTableBody.innerHTML = pageRows.map(function (t) {
+          return '<tr data-task-row="' + t.id + '">' +
+            '<td class="my-tasks__id">' + t.id + '</td>' +
+            '<td>' + t.name + '</td>' +
+            '<td>' + t.reviewer + '</td>' +
+            '<td>' + t.client + '</td>' +
+            '<td>' + t.due + '</td></tr>';
+        }).join('');
+      }
+
+      document.getElementById('taskPageInfo').textContent = taskPage + ' of ' + totalPages;
+      document.getElementById('taskCountInfo').textContent = rows.length + ' / ' + MY_TASKS.length;
+      document.getElementById('taskPrev').disabled = taskPage <= 1;
+      document.getElementById('taskNext').disabled = taskPage >= totalPages;
+    }
+
+    function applySearch() {
+      var q = globalSearch.value;
+      if (activeModule) {
+        renderTasks(q);
+      } else {
+        renderModules(q);
+      }
+    }
+
+    function openModule(id, opts) {
+      var m = getModule(id);
+      if (!m) return;
+      opts = opts || {};
+      activeModule = id;
+      activeTask = null;
+      closeDropdowns();
+      closeTaskModal();
+      renderSidebar();
+      pushRecent(id);
+      homeView.classList.add('is-hidden');
+      moduleView.classList.remove('is-hidden');
+      document.getElementById('moduleViewTitle').textContent = m.title;
+      globalSearch.placeholder = 'Search in ' + m.title + '…';
+      if (!opts.keepSearch) globalSearch.value = '';
+      renderTasks(globalSearch.value);
+      closeSidebar();
+      if (!opts.fromHash) setHash('#module/' + id);
+      if (!opts.silent) scrollContent(0);
+    }
+
+    function showHome(opts) {
+      opts = opts || {};
+      activeModule = null;
+      activeTask = null;
+      closeDropdowns();
+      closeTaskModal();
+      renderSidebar();
+      moduleView.classList.add('is-hidden');
+      homeView.classList.remove('is-hidden');
+      globalSearch.placeholder = 'Search modules…';
+      if (!opts.keepSearch) {
+        globalSearch.value = '';
+        renderModules('');
+      } else {
+        renderModules(globalSearch.value);
+      }
+      if (!opts.fromHash) setHash('#home');
+      if (!opts.silent) scrollContent(0);
+    }
+
+    function openSidebar() {
+      document.getElementById('sidebar').classList.add('is-open');
+      document.getElementById('sidebarScrim').classList.add('is-open');
+    }
+    function closeSidebar() {
+      document.getElementById('sidebar').classList.remove('is-open');
+      document.getElementById('sidebarScrim').classList.remove('is-open');
+    }
+
+    function routeFromHash() {
+      if (updatingHash) return;
+      var hash = (location.hash || '#home').replace(/^#/, '');
+      if (hash.indexOf('module/') === 0) {
+        var id = hash.slice(7).split('/')[0];
+        if (getModule(id)) openModule(id, { fromHash: true, silent: true, keepSearch: true });
+        else showHome({ fromHash: true, silent: true });
+      } else {
+        showHome({ fromHash: true, silent: true, keepSearch: true });
+      }
+    }
+
+    renderSidebar();
+    renderModules('');
+    renderQuick();
+    renderActivity();
+    renderDeadlines();
+    renderMyTasks();
+    renderNotifs();
+    renderRecent();
+    routeFromHash();
+
+    sidebarList.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-module]');
+      if (btn) openModule(btn.getAttribute('data-module'));
+    });
+
+    taskTabsEl.addEventListener('click', function (e) {
+      var tab = e.target.closest('[data-status]');
+      if (!tab) return;
+      taskStatus = tab.getAttribute('data-status');
+      taskPage = 1;
+      renderMyTasks();
+    });
+
+    taskSearch.addEventListener('input', function () {
+      taskPage = 1;
+      renderMyTasks();
+    });
+
+    document.getElementById('taskPrev').addEventListener('click', function () {
+      if (taskPage > 1) { taskPage--; renderMyTasks(); }
+    });
+    document.getElementById('taskNext').addEventListener('click', function () {
+      taskPage++;
+      renderMyTasks();
+    });
+
+    taskTableBody.addEventListener('click', function (e) {
+      var row = e.target.closest('[data-task-row]');
+      if (!row) return;
+      var id = row.getAttribute('data-task-row');
+      var task = null;
+      for (var i = 0; i < MY_TASKS.length; i++) if (MY_TASKS[i].id === id) task = MY_TASKS[i];
+      if (!task) return;
+      toast(task.id, task.name + ' · ' + task.client);
+      openModule('task-management');
+    });
+
+    document.addEventListener('click', function (e) {
+      var openBtn = e.target.closest('[data-open]');
+      if (openBtn) {
+        e.preventDefault();
+        var notifId = openBtn.getAttribute('data-notif');
+        if (notifId) {
+          NOTIFS.forEach(function (n) {
+            if (String(n.id) === notifId) n.unread = false;
+          });
+          renderNotifs();
+        }
+        closeDropdowns();
+        openModule(openBtn.getAttribute('data-open'));
+        return;
+      }
+
+      var taskBtn = e.target.closest('[data-task]');
+      if (taskBtn && activeModule) {
+        var topic = taskBtn.getAttribute('data-task');
+        if (activeModule === 'hrms' && topic === 'View Employees') {
+          window.location.href = 'HRMS/viewemployee.html';
+          return;
+        }
+        if (activeModule === 'hrms' && topic === 'Recruitment') {
+          window.location.href = 'HRMS/recruitment.html';
+          return;
+        }
+        if (activeModule === 'hrms' && topic === 'Onboarding') {
+          window.location.href = 'HRMS/onboarding.html';
+          return;
+        }
+        if (activeModule === 'hrms' && topic === 'Employee Profile') {
+          window.location.href = 'HRMS/employee_profile.html';
+          return;
+        }
+        if (activeModule === 'hrms' && topic === 'Attendance') {
+          window.location.href = 'HRMS/attendance.html';
+          return;
+        }
+        if (activeModule === 'hrms' && topic === 'Leave Management') {
+          openModule('leave');
+          return;
+        }
+        if (activeModule === 'hrms' && topic === 'Exit Management') {
+          window.location.href = 'HRMS/exitmanagement.html';
+          return;
+        }
+        if (activeModule === 'hrms' && topic === 'Assets Allocation') {
+          window.location.href = 'HRMS/assets_allocation.html';
+          return;
+        }
+        openTaskModal(activeModule, topic);
+        renderTasks(globalSearch.value);
+        return;
+      }
+
+      var actionBtn = e.target.closest('[data-action]');
+      if (actionBtn) {
+        var action = actionBtn.getAttribute('data-action');
+        closeDropdowns();
+        if (action === 'home') showHome();
+        if (action === 'shortcut') toast('Shortcuts', '/ focus search · Esc close / go home · click tasks to open');
+        return;
+      }
+
+      var scrollBtn = e.target.closest('[data-scroll]');
+      if (scrollBtn) {
+        showHome();
+        setTimeout(function () {
+          var el = document.querySelector(scrollBtn.getAttribute('data-scroll'));
+          if (el) scrollElIntoView(el);
+        }, 40);
+      }
+
+      if (!e.target.closest('.topbar__menu')) closeDropdowns();
+    });
+
+    document.getElementById('backToHome').addEventListener('click', function () { showHome(); });
+    document.getElementById('logoHome').addEventListener('click', function (e) {
+      e.preventDefault();
+      showHome();
+    });
+
+    globalSearch.addEventListener('input', applySearch);
+
+    document.getElementById('sidebarSearchToggle').addEventListener('click', function () {
+      globalSearch.focus();
+      globalSearch.select();
+    });
+
+    document.getElementById('sidebarToggle').addEventListener('click', openSidebar);
+    document.getElementById('sidebarScrim').addEventListener('click', closeSidebar);
+
+    notifBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = !notifDropdown.classList.contains('is-open');
+      closeDropdowns();
+      if (open) {
+        notifDropdown.classList.add('is-open');
+        notifBtn.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    profileBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = !profileDropdown.classList.contains('is-open');
+      closeDropdowns();
+      if (open) {
+        profileDropdown.classList.add('is-open');
+        profileBtn.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    document.getElementById('notifMarkRead').addEventListener('click', function (e) {
+      e.stopPropagation();
+      NOTIFS.forEach(function (n) { n.unread = false; });
+      renderNotifs();
+      toast('Notifications cleared', 'All items marked as read');
+    });
+
+    document.getElementById('calBtn').addEventListener('click', function () {
+      closeDropdowns();
+      showHome();
+      setTimeout(function () { scrollElIntoView(deadlineList); }, 40);
+      toast('Upcoming deadlines', 'Jump to the deadlines panel');
+    });
+
+    document.getElementById('taskModalClose').addEventListener('click', closeTaskModal);
+    document.getElementById('taskModalOpen').addEventListener('click', function () {
+      if (!activeTask) return;
+      if (activeTask.moduleId === 'hrms' && activeTask.topic === 'View Employees') {
+        window.location.href = 'HRMS/viewemployee.html';
+        return;
+      }
+      if (activeTask.moduleId === 'hrms' && activeTask.topic === 'Recruitment') {
+        window.location.href = 'HRMS/recruitment.html';
+        return;
+      }
+      if (activeTask.moduleId === 'hrms' && activeTask.topic === 'Onboarding') {
+        window.location.href = 'HRMS/onboarding.html';
+        return;
+      }
+      if (activeTask.moduleId === 'hrms' && activeTask.topic === 'Employee Profile') {
+        window.location.href = 'HRMS/employee_profile.html';
+        return;
+      }
+      if (activeTask.moduleId === 'hrms' && activeTask.topic === 'Attendance') {
+        window.location.href = 'HRMS/attendance.html';
+        return;
+      }
+      if (activeTask.moduleId === 'hrms' && activeTask.topic === 'Leave Management') {
+        openModule('leave');
+        return;
+      }
+      if (activeTask.moduleId === 'hrms' && activeTask.topic === 'Exit Management') {
+        window.location.href = 'HRMS/exitmanagement.html';
+        return;
+      }
+      if (activeTask.moduleId === 'hrms' && activeTask.topic === 'Assets Allocation') {
+        window.location.href = 'HRMS/assets_allocation.html';
+        return;
+      }
+      toast(activeTask.topic, 'Opened from ' + (getModule(activeTask.moduleId) || {}).title);
+      closeTaskModal();
+    });
+    taskModal.addEventListener('click', function (e) {
+      if (e.target === taskModal) closeTaskModal();
+    });
+
+    window.addEventListener('hashchange', routeFromHash);
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        if (taskModal.classList.contains('is-open')) { closeTaskModal(); return; }
+        if (notifDropdown.classList.contains('is-open') || profileDropdown.classList.contains('is-open')) {
+          closeDropdowns();
+          return;
+        }
+        closeSidebar();
+        if (!moduleView.classList.contains('is-hidden')) showHome({ keepSearch: true });
+      }
+      if (e.key === '/' && document.activeElement !== globalSearch && !e.metaKey && !e.ctrlKey) {
+        var tag = (document.activeElement && document.activeElement.tagName) || '';
+        if (tag !== 'INPUT' && tag !== 'TEXTAREA') {
+          e.preventDefault();
+          globalSearch.focus();
+          globalSearch.select();
+        }
+      }
+    });
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="gt-fingerprint" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#25b7a7"/>
+      <stop offset="1" stop-color="#0d7a6e"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#e8f8f6"/>
+<path d="M32 14c8 0 14 6 14 14v8c0 10-6 16-14 16s-14-6-14-16v-4" stroke="url(#gt-fingerprint)" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M32 20c5 0 8 3 8 8v6c0 6-3 10-8 10s-8-4-8-10" stroke="#083530" stroke-width="2.5" fill="none"/>
+</svg>

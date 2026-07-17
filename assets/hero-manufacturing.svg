@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 520" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="400" y2="520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1a9e8f"/>
+      <stop offset="1" stop-color="#083530"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="200" y1="80" x2="200" y2="400" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#25b7a7" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#25b7a7" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="520" fill="url(#bg)"/>
+  <ellipse cx="200" cy="260" rx="160" ry="200" fill="url(#glow)"/>
+  <rect x="60" y="120" width="280" height="180" rx="8" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+  <rect x="80" y="150" width="80" height="120" rx="4" fill="rgba(37,183,167,0.4)"/>
+  <rect x="180" y="140" width="60" height="130" rx="4" fill="rgba(37,183,167,0.25)"/>
+  <rect x="260" y="160" width="60" height="110" rx="4" fill="rgba(37,183,167,0.35)"/>
+  <circle cx="200" cy="380" r="48" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+  <path d="M185 380 L200 365 L215 380 L200 395 Z" fill="#25b7a7" opacity="0.8"/>
+  <text x="200" y="460" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-family="Inter,sans-serif" font-size="13">Replace with your image</text>
+</svg>

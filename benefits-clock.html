@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TimeERP – Benefits Clock</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#fff}
+.wt,.wb{display:block;width:100%;line-height:0}
+.wt svg,.wb svg{display:block;width:100%;height:80px}
+#benefits{background:#0b1d33;padding:80px 0 100px}
+.bi{max-width:1180px;margin:0 auto;padding:0 56px}
+.badge{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(255,255,255,0.2);border-radius:4px;padding:5px 13px;margin-bottom:22px;font-size:10.5px;font-weight:700;letter-spacing:2.5px;color:#fff}
+.bsq{width:6px;height:6px;background:#25b7a7;border-radius:1px;flex-shrink:0}
+.bh{font-size:40px;font-weight:700;color:#fff;line-height:1.22;margin-bottom:56px}
+.bg{display:grid;grid-template-columns:1fr 360px 1fr;gap:0 24px;align-items:center}
+.bc{display:flex;flex-direction:column}
+.bcc{display:flex;align-items:center;justify-content:center;overflow:visible}
+.item{padding:26px 0;cursor:pointer}
+.ln{width:100%;height:1px;background:rgba(255,255,255,0.1);margin-bottom:16px;transition:background .5s ease,box-shadow .5s ease}
+.rw{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+.dot{width:5px;height:5px;background:rgba(255,255,255,0.2);border-radius:1px;flex-shrink:0;transition:background .5s}
+.item h3{font-size:14.5px;font-weight:600;color:rgba(255,255,255,0.32);transition:color .5s;line-height:1.4}
+.item p{font-size:13.5px;line-height:1.72;color:rgba(255,255,255,0.22);padding-left:13px;transition:color .5s}
+.item.on .ln{background:#25b7a7;box-shadow:0 0 10px rgba(37,183,167,.95),0 0 26px rgba(37,183,167,.42)}
+.item.on .dot{background:#25b7a7}
+.item.on h3{color:#25b7a7}
+.item.on p{color:rgba(255,255,255,.62)}
+@keyframes rotateMin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes rotateHr{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes glow1{0%,100%{opacity:.3}50%{opacity:.8}}
+@keyframes glow2{0%,100%{opacity:.15}50%{opacity:.5}}
+@keyframes floatClock{0%{transform:translateY(0)}100%{transform:translateY(-12px)}}
+#clock-wrap{animation:floatClock 3.5s ease-in-out infinite alternate}
+.min-hand{transform-origin:200px 200px;animation:rotateMin 10s linear infinite}
+.hr-hand{transform-origin:200px 200px;animation:rotateHr 120s linear infinite}
+.spin-ring{transform-origin:200px 200px;animation:spin 20s linear infinite}
+.pulse1{animation:glow1 2.5s ease-in-out infinite}
+.pulse2{animation:glow2 3s ease-in-out infinite 0.5s}
+.pulse3{animation:glow2 3.5s ease-in-out infinite 1s}
+@media(max-width:900px){
+  .bg{grid-template-columns:1fr}
+  .bl{order:1}.bcc{order:2;margin:32px 0}.br{order:3}
+  .bh{font-size:28px}.bi{padding:0 24px}
+  #clock-svg{width:260px!important;height:260px!important}
+}
+</style>
+</head>
+<body>
+<p style="padding:16px;text-align:center;color:#64748b;font-size:14px">Standalone preview — integrated version lives in <code>home1.html</code> #benefits</p>
+<script>location.replace('home1.html#benefits');</script>
+</body>
+</html>

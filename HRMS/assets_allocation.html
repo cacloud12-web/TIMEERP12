@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asset Allocation — TIME ERP HRMS</title>
+  <meta name="description" content="Allocate, monitor, transfer, maintain, and recover company assets from one centralized TIME ERP dashboard.">
+  <link rel="icon" href="../assets/image0.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard-shell.css">
+  <link rel="stylesheet" href="css/assets-allocation.css">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="../home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="../assets/image0.png" alt="TimeERP" width="168" height="40">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">5</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <button type="button" class="topbar__icon-btn" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">TE</span>
+                <span class="topbar__profile-meta"><strong>Admin</strong><span>TimeERP</span></span>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="../home.html" class="dropdown__item"><strong>Go to home</strong><span>Module hub overview</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="ast-page" id="astPage">
+          <nav class="ast-breadcrumb" aria-label="Breadcrumb">
+            <a href="../home.html#hrms">HRMS</a>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">Asset Allocation</span>
+          </nav>
+
+          <header class="ast-page__header">
+            <div class="ast-page__header-text">
+              <h1>Asset Allocation</h1>
+            </div>
+            <div class="ast-page__actions" role="group" aria-label="Page actions">
+              <button type="button" class="ast-btn ast-btn--icon ast-btn--primary" id="btnAllocate" aria-label="Allocate Asset" title="Allocate Asset">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+              </button>
+              <button type="button" class="ast-btn ast-btn--icon" id="btnExport" aria-label="Export" title="Export">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+              </button>
+              <button type="button" class="ast-btn ast-btn--icon" id="btnRefresh" aria-label="Refresh" title="Refresh">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M4 4v6h6M20 20v-6h-6"/><path d="M5 19a9 9 0 0014-7M19 5a9 9 0 00-14 7"/></svg>
+              </button>
+            </div>
+          </header>
+
+          <div class="ast-layout">
+            <div class="ast-main">
+
+              <section class="ast-kpi ast-reveal" aria-label="Asset KPIs">
+                <article class="ast-kpi__card"><div class="ast-kpi__top"><div class="ast-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="3" width="20" height="14" rx="2"/></svg></div><span class="ast-kpi__trend ast-kpi__trend--flat">All</span></div><div class="ast-kpi__value" id="kpiTotal">0</div><div class="ast-kpi__label">Total Assets</div><div class="ast-kpi__desc">Company inventory</div></article>
+                <article class="ast-kpi__card"><div class="ast-kpi__top"><div class="ast-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><span class="ast-kpi__trend ast-kpi__trend--up">In use</span></div><div class="ast-kpi__value" id="kpiAllocated">0</div><div class="ast-kpi__label">Allocated Assets</div><div class="ast-kpi__desc">Assigned to employees</div></article>
+                <article class="ast-kpi__card"><div class="ast-kpi__top"><div class="ast-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div><span class="ast-kpi__trend ast-kpi__trend--up">Ready</span></div><div class="ast-kpi__value" id="kpiAvailable">0</div><div class="ast-kpi__label">Available Assets</div><div class="ast-kpi__desc">In IT store</div></article>
+                <article class="ast-kpi__card"><div class="ast-kpi__top"><div class="ast-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div><span class="ast-kpi__trend ast-kpi__trend--warn">Service</span></div><div class="ast-kpi__value" id="kpiMaintenance">0</div><div class="ast-kpi__label">Under Maintenance</div><div class="ast-kpi__desc">Repair / AMC</div></article>
+                <article class="ast-kpi__card"><div class="ast-kpi__top"><div class="ast-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><span class="ast-kpi__trend ast-kpi__trend--warn">Action</span></div><div class="ast-kpi__value" id="kpiRequests">0</div><div class="ast-kpi__label">Pending Asset Requests</div><div class="ast-kpi__desc">Awaiting approval</div></article>
+                <article class="ast-kpi__card"><div class="ast-kpi__top"><div class="ast-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="10"/></svg></div><span class="ast-kpi__trend ast-kpi__trend--warn">Watch</span></div><div class="ast-kpi__value" id="kpiWarranty">0</div><div class="ast-kpi__label">Warranty Expiring</div><div class="ast-kpi__desc">Expiring / expired</div></article>
+                <article class="ast-kpi__card"><div class="ast-kpi__top"><div class="ast-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9 11l3 3L22 4"/></svg></div><span class="ast-kpi__trend ast-kpi__trend--flat">Store</span></div><div class="ast-kpi__value" id="kpiReturned">0</div><div class="ast-kpi__label">Returned Assets</div><div class="ast-kpi__desc">Back in inventory</div></article>
+                <article class="ast-kpi__card"><div class="ast-kpi__top"><div class="ast-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg></div><span class="ast-kpi__trend ast-kpi__trend--down">Alert</span></div><div class="ast-kpi__value" id="kpiDamaged">0</div><div class="ast-kpi__label">Damaged Assets</div><div class="ast-kpi__desc">Needs inspection</div></article>
+              </section>
+
+              <section class="ast-panel ast-reveal" aria-label="Quick actions">
+                <div class="ast-panel__head"><h2>Quick Actions</h2></div>
+                <div class="ast-panel__body">
+                  <div class="ast-quick">
+                    <button type="button" class="ast-quick__card" data-ui="allocate-asset" title="Allocate Asset"><span class="ast-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 5v14M5 12h14"/></svg></span><strong>Allocate Asset</strong></button>
+                    <button type="button" class="ast-quick__card" data-ui="request-asset" title="Request Asset"><span class="ast-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></span><strong>Request Asset</strong></button>
+                    <button type="button" class="ast-quick__card" data-ui="transfer-asset" title="Transfer Asset"><span class="ast-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 014-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg></span><strong>Transfer Asset</strong></button>
+                    <button type="button" class="ast-quick__card" data-ui="return-asset" title="Return Asset"><span class="ast-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 12a9 9 0 109-9"/><path d="M3 3v6h6"/></svg></span><strong>Return Asset</strong></button>
+                    <button type="button" class="ast-quick__card" data-ui="maintenance" title="Maintenance"><span class="ast-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></span><strong>Maintenance</strong></button>
+                    <button type="button" class="ast-quick__card" data-ui="warranty" title="Warranty"><span class="ast-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><strong>Warranty</strong></button>
+                    <button type="button" class="ast-quick__card" data-ui="licenses" title="Software Licenses"><span class="ast-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><strong>Software Licenses</strong></button>
+                    <button type="button" class="ast-quick__card" data-ui="qr-code" title="Generate Asset QR Code"><span class="ast-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 14v6M14 20h3"/></svg></span><strong>Generate Asset QR Code</strong></button>
+                    <button type="button" class="ast-quick__card" data-ui="download-report" title="Download Asset Report"><span class="ast-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg></span><strong>Download Asset Report</strong></button>
+                  </div>
+                </div>
+              </section>
+
+              <section class="ast-panel ast-reveal" id="sectionFilters" aria-label="Search and filters">
+                <div class="ast-panel__head"><h2>Search &amp; Smart Filters</h2>
+                  <button type="button" class="ast-btn ast-btn--sm" id="btnResetFilters">Reset Filters</button>
+                </div>
+                <div class="ast-panel__body">
+                  <div class="ast-filters">
+                    <input type="search" id="filterQ" placeholder="Asset name, ID, employee, serial…" aria-label="Global search">
+                    <select id="filterCategory" aria-label="Category"><option value="">Category</option></select>
+                    <select id="filterStatus" aria-label="Status"><option value="">Status</option></select>
+                    <select id="filterDept" aria-label="Department"><option value="">Department</option></select>
+                    <select id="filterLocation" aria-label="Location"><option value="">Location</option></select>
+                    <select id="filterWarranty" aria-label="Warranty"><option value="">Warranty</option></select>
+                    <select id="filterVendor" aria-label="Vendor"><option value="">Vendor</option></select>
+                  </div>
+                </div>
+              </section>
+
+              <section class="ast-panel ast-reveal" id="sectionInventory" aria-label="Asset inventory">
+                <div class="ast-panel__head">
+                  <h2>Asset Inventory</h2>
+                  <div class="ast-view-toggle" role="group" aria-label="View mode">
+                    <button type="button" data-view="grid" class="is-active">Grid</button>
+                    <button type="button" data-view="table">Table</button>
+                  </div>
+                </div>
+                <div class="ast-panel__body">
+                  <div class="ast-inventory-grid" id="astInventoryGrid"></div>
+                  <div class="ast-table-wrap is-hidden" id="astInventoryTable">
+                    <table class="ast-table">
+                      <thead>
+                        <tr>
+                          <th data-sort="id">Asset ID</th>
+                          <th data-sort="name">Asset Name</th>
+                          <th data-sort="category">Category</th>
+                          <th data-sort="employee">Employee</th>
+                          <th data-sort="dept">Department</th>
+                          <th data-sort="purchased">Purchase Date</th>
+                          <th data-sort="warranty">Warranty</th>
+                          <th data-sort="status">Status</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody id="astInventoryTableBody"></tbody>
+                    </table>
+                  </div>
+                  <div class="ast-empty is-hidden" id="astInventoryEmpty">
+                    <strong>No Assets Available</strong>
+                    <p>Try adjusting filters or add a new asset to inventory.</p>
+                    <button type="button" class="ast-btn ast-btn--primary" data-ui="add-asset" style="margin-top:12px">Add New Asset</button>
+                  </div>
+                </div>
+              </section>
+
+              <section class="ast-panel ast-reveal" id="sectionAllocation" aria-label="Allocation workflow">
+                <div class="ast-panel__head"><h2>Asset Allocation Workflow</h2></div>
+                <div class="ast-panel__body">
+                  <div class="ast-workflow" role="list">
+                    <div class="ast-workflow__step is-done" role="listitem" title="Asset is available in IT store"><div class="ast-workflow__dot">1</div><div class="ast-workflow__label">Available</div></div>
+                    <div class="ast-workflow__step is-done" role="listitem" title="Employee or manager submitted allocation request"><div class="ast-workflow__dot">2</div><div class="ast-workflow__label">Allocation Request</div></div>
+                    <div class="ast-workflow__step is-current" role="listitem" title="Awaiting reporting manager approval"><div class="ast-workflow__dot">3</div><div class="ast-workflow__label">Manager Approval</div></div>
+                    <div class="ast-workflow__step" role="listitem" title="IT verifies asset condition and readiness"><div class="ast-workflow__dot">4</div><div class="ast-workflow__label">IT Verification</div></div>
+                    <div class="ast-workflow__step" role="listitem" title="Asset assigned in inventory"><div class="ast-workflow__dot">5</div><div class="ast-workflow__label">Asset Assigned</div></div>
+                    <div class="ast-workflow__step" role="listitem" title="Employee confirms receipt"><div class="ast-workflow__dot">6</div><div class="ast-workflow__label">Employee Confirmation</div></div>
+                  </div>
+                </div>
+              </section>
+
+              <div class="ast-grid-2">
+                <section class="ast-panel ast-reveal" id="sectionRequests" aria-label="Asset requests">
+                  <div class="ast-panel__head"><h2>Asset Requests</h2></div>
+                  <div class="ast-panel__body"><div class="ast-req-list" id="astRequests"></div></div>
+                </section>
+                <section class="ast-panel ast-reveal" id="sectionReturns" aria-label="Asset return">
+                  <div class="ast-panel__head"><h2>Asset Return</h2></div>
+                  <div class="ast-panel__body"><div class="ast-card-list" id="astReturns"></div></div>
+                </section>
+              </div>
+
+              <div class="ast-grid-2">
+                <section class="ast-panel ast-reveal" id="sectionTransfers" aria-label="Asset transfer">
+                  <div class="ast-panel__head"><h2>Asset Transfer</h2></div>
+                  <div class="ast-panel__body"><div class="ast-card-list" id="astTransfers"></div></div>
+                </section>
+                <section class="ast-panel ast-reveal" id="sectionMaintenance" aria-label="Maintenance tracker">
+                  <div class="ast-panel__head"><h2>Maintenance Tracker</h2></div>
+                  <div class="ast-panel__body"><div class="ast-card-list" id="astMaintenance"></div></div>
+                </section>
+              </div>
+
+              <section class="ast-panel ast-reveal" id="sectionWarranty" aria-label="Warranty tracker">
+                <div class="ast-panel__head"><h2>Warranty Tracker</h2></div>
+                <div class="ast-panel__body"><div class="ast-card-list" id="astWarranty"></div></div>
+              </section>
+
+              <section class="ast-panel ast-reveal" id="sectionLicenses" aria-label="Software licenses">
+                <div class="ast-panel__head"><h2>Software License Management</h2></div>
+                <div class="ast-panel__body"><div class="ast-card-list" id="astLicenses"></div></div>
+              </section>
+
+              <section class="ast-panel ast-reveal" id="sectionDocuments" aria-label="Document center">
+                <div class="ast-panel__head">
+                  <h2>Document Center</h2>
+                  <button type="button" class="ast-btn ast-btn--sm" data-ui="upload-doc">Upload</button>
+                </div>
+                <div class="ast-panel__body"><div class="ast-docs" id="astDocs"></div></div>
+              </section>
+
+              <section class="ast-panel ast-reveal" id="sectionTimeline" aria-label="Asset timeline">
+                <div class="ast-panel__head"><h2>Asset Timeline</h2></div>
+                <div class="ast-panel__body"><div class="ast-timeline" id="astTimeline"></div></div>
+              </section>
+
+              <section class="ast-panel ast-reveal" id="sectionAnalytics" aria-label="Analytics">
+                <div class="ast-panel__head"><h2>Analytics Dashboard</h2></div>
+                <div class="ast-panel__body">
+                  <div class="ast-analytics">
+                    <div class="ast-chart"><h3>Asset Distribution</h3><div class="ast-chart__bars" aria-hidden="true"><i class="ast-chart__bar" style="height:70%"></i><i class="ast-chart__bar" style="height:45%"></i><i class="ast-chart__bar" style="height:85%"></i><i class="ast-chart__bar" style="height:35%"></i><i class="ast-chart__bar" style="height:55%"></i></div><div class="ast-chart__legend">Laptops · Monitors · Mobile · Accessories · Other</div></div>
+                    <div class="ast-chart"><h3>Department-wise Allocation</h3><div class="ast-chart__bars" aria-hidden="true"><i class="ast-chart__bar" style="height:90%"></i><i class="ast-chart__bar" style="height:50%"></i><i class="ast-chart__bar" style="height:40%"></i><i class="ast-chart__bar" style="height:65%"></i></div><div class="ast-chart__legend">Engineering · HR · Sales · Design</div></div>
+                    <div class="ast-chart"><h3>Asset Utilization</h3><div class="ast-chart__bars" aria-hidden="true"><i class="ast-chart__bar" style="height:80%"></i><i class="ast-chart__bar" style="height:60%"></i><i class="ast-chart__bar" style="height:75%"></i><i class="ast-chart__bar" style="height:30%"></i></div><div class="ast-chart__legend">Allocated · Available · Maintenance · Idle</div></div>
+                    <div class="ast-chart"><h3>Maintenance Cost</h3><div class="ast-chart__bars" aria-hidden="true"><i class="ast-chart__bar" style="height:40%"></i><i class="ast-chart__bar" style="height:55%"></i><i class="ast-chart__bar" style="height:35%"></i><i class="ast-chart__bar" style="height:70%"></i><i class="ast-chart__bar" style="height:48%"></i></div><div class="ast-chart__legend">Jan–May (placeholder)</div></div>
+                    <div class="ast-chart"><h3>Warranty Status</h3><div class="ast-chart__bars" aria-hidden="true"><i class="ast-chart__bar" style="height:75%"></i><i class="ast-chart__bar" style="height:25%"></i><i class="ast-chart__bar" style="height:15%"></i></div><div class="ast-chart__legend">Active · Expiring · Expired</div></div>
+                    <div class="ast-chart"><h3>Category Distribution</h3><div class="ast-chart__bars" aria-hidden="true"><i class="ast-chart__bar" style="height:65%"></i><i class="ast-chart__bar" style="height:50%"></i><i class="ast-chart__bar" style="height:35%"></i><i class="ast-chart__bar" style="height:45%"></i><i class="ast-chart__bar" style="height:20%"></i></div><div class="ast-chart__legend">UI placeholders — wire charts later</div></div>
+                  </div>
+                </div>
+              </section>
+
+            </div>
+
+            <aside class="ast-sidebar" aria-label="Asset summary">
+              <div class="ast-sidebar__card ast-sidebar__hero">
+                <div class="ast-sidebar__hero-icon" id="sideIcon" aria-hidden="true"></div>
+                <strong id="sideName">—</strong>
+                <span id="sideId">—</span>
+                <div class="ast-sidebar__rows">
+                  <div><span>Employee</span><b id="sideEmp">—</b></div>
+                  <div><span>Department</span><b id="sideDept">—</b></div>
+                  <div><span>Status</span><b id="sideStatus">—</b></div>
+                  <div><span>Warranty</span><b id="sideWarranty">—</b></div>
+                </div>
+              </div>
+              <div class="ast-sidebar__card">
+                <h3>Notifications</h3>
+                <div class="ast-notif" id="astNotifs"></div>
+              </div>
+              <div class="ast-sidebar__card">
+                <h3>Quick Links</h3>
+                <nav class="ast-sidebar__links" aria-label="Quick links">
+                  <a href="#sectionInventory">Inventory</a>
+                  <a href="#sectionRequests">Requests</a>
+                  <a href="#sectionMaintenance">Maintenance</a>
+                  <a href="#sectionWarranty">Warranty</a>
+                  <a href="#sectionDocuments">Documents</a>
+                  <a href="#sectionTimeline">Timeline</a>
+                  <a href="#sectionAnalytics">Analytics</a>
+                </nav>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+  <div class="ast-modal-backdrop" id="astModal" role="dialog" aria-modal="true" aria-labelledby="astModalTitle" aria-hidden="true">
+    <div class="ast-modal">
+      <div class="ast-modal__head">
+        <h2 id="astModalTitle">Asset Details</h2>
+        <button type="button" class="ast-btn ast-btn--sm" id="astModalClose" aria-label="Close">✕</button>
+      </div>
+      <div class="ast-modal__body" id="astModalBody"></div>
+      <div class="ast-modal__foot">
+        <button type="button" class="ast-btn" id="astModalEdit">Edit</button>
+        <button type="button" class="ast-btn" id="astModalPrint">Print</button>
+        <button type="button" class="ast-btn ast-btn--primary" id="astModalClose2">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/dashboard-shell.js"></script>
+  <script src="js/assets-allocation.js"></script>
+</body>
+</html>

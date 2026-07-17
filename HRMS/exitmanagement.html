@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exit Management — TIME ERP HRMS</title>
+  <meta name="description" content="Manage employee resignations, approvals, clearance, settlements, and separation from one centralized dashboard.">
+  <link rel="icon" href="../assets/image0.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard-shell.css">
+  <link rel="stylesheet" href="css/exitmanagement.css">
+</head>
+<body>
+
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="../home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="../assets/image0.png" alt="TimeERP" width="168" height="40">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">3</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <button type="button" class="topbar__icon-btn" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">TE</span>
+                <span class="topbar__profile-meta"><strong>Admin</strong><span>TimeERP</span></span>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="../home.html" class="dropdown__item"><strong>Go to home</strong><span>Module hub overview</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="exm-page" id="exmPage">
+
+          <nav class="exm-breadcrumb" aria-label="Breadcrumb">
+            <a href="../home.html#hrms">HRMS</a>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">Exit Management</span>
+          </nav>
+
+          <header class="exm-page__header">
+            <div class="exm-page__header-text">
+              <h1>Exit Management</h1>
+              <p>Manage employee resignations, approvals, clearance, settlements, and separation from one centralized dashboard.</p>
+            </div>
+            <div class="exm-page__actions">
+              <button type="button" class="exm-btn exm-btn--primary" id="btnNewExit">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                New Exit Request
+              </button>
+              <button type="button" class="exm-btn" id="btnExport">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+                Export
+              </button>
+              <button type="button" class="exm-btn" id="btnRefresh" aria-label="Refresh">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 4v6h6M20 20v-6h-6"/><path d="M5 19a9 9 0 0014-7M19 5a9 9 0 00-14 7"/></svg>
+                Refresh
+              </button>
+            </div>
+          </header>
+
+          <div class="exm-layout">
+            <div class="exm-main">
+
+              <!-- KPI Dashboard -->
+              <section class="exm-kpi exm-reveal" aria-label="Exit KPIs">
+                <article class="exm-kpi__card">
+                  <div class="exm-kpi__top"><div class="exm-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg></div><span class="exm-kpi__trend exm-kpi__trend--warn">Active</span></div>
+                  <div class="exm-kpi__value" id="kpiActive">0</div>
+                  <div class="exm-kpi__label">Active Exit Requests</div>
+                  <div class="exm-kpi__desc">In progress</div>
+                </article>
+                <article class="exm-kpi__card">
+                  <div class="exm-kpi__top"><div class="exm-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><span class="exm-kpi__trend exm-kpi__trend--flat">Notice</span></div>
+                  <div class="exm-kpi__value" id="kpiNotice">0</div>
+                  <div class="exm-kpi__label">Notice Period Employees</div>
+                  <div class="exm-kpi__desc">Serving notice</div>
+                </article>
+                <article class="exm-kpi__card">
+                  <div class="exm-kpi__top"><div class="exm-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div><span class="exm-kpi__trend exm-kpi__trend--warn">Action</span></div>
+                  <div class="exm-kpi__value" id="kpiApprovals">0</div>
+                  <div class="exm-kpi__label">Pending Approvals</div>
+                  <div class="exm-kpi__desc">Awaiting decision</div>
+                </article>
+                <article class="exm-kpi__card">
+                  <div class="exm-kpi__top"><div class="exm-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><span class="exm-kpi__trend exm-kpi__trend--warn">IT</span></div>
+                  <div class="exm-kpi__value" id="kpiAssets">0</div>
+                  <div class="exm-kpi__label">Assets Pending Return</div>
+                  <div class="exm-kpi__desc">Across exits</div>
+                </article>
+                <article class="exm-kpi__card">
+                  <div class="exm-kpi__top"><div class="exm-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><span class="exm-kpi__trend exm-kpi__trend--up">HR</span></div>
+                  <div class="exm-kpi__value" id="kpiInterviews">0</div>
+                  <div class="exm-kpi__label">Exit Interviews Scheduled</div>
+                  <div class="exm-kpi__desc">This week</div>
+                </article>
+                <article class="exm-kpi__card">
+                  <div class="exm-kpi__top"><div class="exm-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><span class="exm-kpi__trend exm-kpi__trend--warn">Finance</span></div>
+                  <div class="exm-kpi__value" id="kpiSettlement">0</div>
+                  <div class="exm-kpi__label">Settlement Pending</div>
+                  <div class="exm-kpi__desc">Full &amp; final</div>
+                </article>
+                <article class="exm-kpi__card">
+                  <div class="exm-kpi__top"><div class="exm-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div><span class="exm-kpi__trend exm-kpi__trend--up">+3</span></div>
+                  <div class="exm-kpi__value" id="kpiCompleted">0</div>
+                  <div class="exm-kpi__label">Completed Exits</div>
+                  <div class="exm-kpi__desc">YTD</div>
+                </article>
+                <article class="exm-kpi__card">
+                  <div class="exm-kpi__top"><div class="exm-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 20V10M18 20V4M6 20v-4"/></svg></div><span class="exm-kpi__trend exm-kpi__trend--flat">Avg</span></div>
+                  <div class="exm-kpi__value" id="kpiAvgTime">0</div>
+                  <div class="exm-kpi__label">Avg Exit Processing Time</div>
+                  <div class="exm-kpi__desc">Days to close</div>
+                </article>
+              </section>
+
+              <!-- Quick Actions -->
+              <section class="exm-panel exm-reveal" aria-label="Quick actions">
+                <div class="exm-panel__head"><h2>Quick Actions</h2></div>
+                <div class="exm-panel__body">
+                  <div class="exm-quick">
+                    <button type="button" class="exm-quick__card" data-ui="initiate-exit" title="Initiate Exit"><span class="exm-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg></span><strong>Initiate Exit</strong></button>
+                    <button type="button" class="exm-quick__card" data-ui="approve-request" title="Approve Request"><span class="exm-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></span><strong>Approve Request</strong></button>
+                    <button type="button" class="exm-quick__card" data-ui="schedule-interview" title="Schedule Exit Interview"><span class="exm-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></span><strong>Schedule Exit Interview</strong></button>
+                    <button type="button" class="exm-quick__card" data-ui="assign-kt" title="Assign Knowledge Transfer"><span class="exm-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></span><strong>Assign Knowledge Transfer</strong></button>
+                    <button type="button" class="exm-quick__card" data-ui="asset-verification" title="Assign Asset Verification"><span class="exm-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="3" width="20" height="14" rx="2"/></svg></span><strong>Assign Asset Verification</strong></button>
+                    <button type="button" class="exm-quick__card" data-ui="experience-letter" title="Generate Experience Letter"><span class="exm-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg></span><strong>Generate Experience Letter</strong></button>
+                    <button type="button" class="exm-quick__card" data-ui="relieving-letter" title="Generate Relieving Letter"><span class="exm-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><strong>Generate Relieving Letter</strong></button>
+                    <button type="button" class="exm-quick__card" data-ui="fnf-statement" title="Generate Full & Final Statement"><span class="exm-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></span><strong>Generate Full &amp; Final Statement</strong></button>
+                    <button type="button" class="exm-quick__card" data-ui="archive-employee" title="Archive Employee"><span class="exm-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M21 8v13H3V8"/><path d="M1 3h22v5H1z"/><path d="M10 12h4"/></svg></span><strong>Archive Employee</strong></button>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Search & Filters -->
+              <section class="exm-reveal" aria-label="Search and filters">
+                <div class="exm-filters">
+                  <div class="exm-search">
+                    <label for="exmSearch">Search</label>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                    <input type="search" id="exmSearch" placeholder="Name, ID, manager…" aria-label="Search exits">
+                  </div>
+                  <div>
+                    <label for="exmDept">Department</label>
+                    <select id="exmDept"><option value="">All</option><option>Engineering</option><option>HR</option><option>Sales</option><option>Finance</option><option>IT</option><option>Marketing</option></select>
+                  </div>
+                  <div>
+                    <label for="exmStatus">Status</label>
+                    <select id="exmStatus"><option value="">All</option><option value="active">Active</option><option value="pending">Pending</option><option value="notice">Notice</option><option value="settlement">Settlement</option><option value="archived">Archived</option></select>
+                  </div>
+                  <div>
+                    <label for="exmType">Exit Type</label>
+                    <select id="exmType"><option value="">All</option><option>Resignation</option><option>Termination</option><option>Retirement</option></select>
+                  </div>
+                  <div>
+                    <label for="exmLwd">Last Working Date</label>
+                    <input type="date" id="exmLwd">
+                  </div>
+                  <button type="button" class="exm-btn exm-btn--sm" id="btnResetFilters">Reset</button>
+                </div>
+              </section>
+
+              <!-- Exit Requests -->
+              <section class="exm-panel exm-reveal" id="sectionRequests" aria-label="Exit requests">
+                <div class="exm-panel__head">
+                  <h2>Exit Requests</h2>
+                  <div class="exm-view-toggle" role="group" aria-label="View mode">
+                    <button type="button" data-view="grid" class="is-active">Grid</button>
+                    <button type="button" data-view="table">Table</button>
+                  </div>
+                </div>
+                <div class="exm-panel__body">
+                  <div class="exm-cards" id="exmCards"></div>
+                  <div class="exm-table-wrap" id="exmTableWrap" hidden>
+                    <table class="exm-table">
+                      <thead>
+                        <tr>
+                          <th data-sort="name">Employee</th>
+                          <th data-sort="empId">ID</th>
+                          <th data-sort="dept">Department</th>
+                          <th data-sort="designation">Designation</th>
+                          <th data-sort="manager">Manager</th>
+                          <th data-sort="notice">Notice Period</th>
+                          <th data-sort="lwd">Last Working Day</th>
+                          <th data-sort="stage">Exit Stage</th>
+                          <th data-sort="status">Status</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody id="exmTableBody"></tbody>
+                    </table>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Approval Workflow -->
+              <section class="exm-panel exm-reveal" id="sectionWorkflow" aria-label="Exit workflow">
+                <div class="exm-panel__head"><h2>Approval Workflow</h2></div>
+                <div class="exm-panel__body">
+                  <div class="exm-workflow" role="list">
+                    <div class="exm-workflow__step is-done" role="listitem" title="Resignation Submitted"><div class="exm-workflow__dot">✓</div><div class="exm-workflow__label">Resignation Submitted</div></div>
+                    <div class="exm-workflow__step is-done" role="listitem" title="Manager Approval"><div class="exm-workflow__dot">✓</div><div class="exm-workflow__label">Manager Approval</div></div>
+                    <div class="exm-workflow__step is-done" role="listitem" title="HR Approval"><div class="exm-workflow__dot">✓</div><div class="exm-workflow__label">HR Approval</div></div>
+                    <div class="exm-workflow__step is-current" role="listitem" title="Notice Period"><div class="exm-workflow__dot">4</div><div class="exm-workflow__label">Notice Period</div></div>
+                    <div class="exm-workflow__step" role="listitem" title="Knowledge Transfer"><div class="exm-workflow__dot">5</div><div class="exm-workflow__label">Knowledge Transfer</div></div>
+                    <div class="exm-workflow__step" role="listitem" title="Asset Return"><div class="exm-workflow__dot">6</div><div class="exm-workflow__label">Asset Return</div></div>
+                    <div class="exm-workflow__step" role="listitem" title="IT Clearance"><div class="exm-workflow__dot">7</div><div class="exm-workflow__label">IT Clearance</div></div>
+                    <div class="exm-workflow__step" role="listitem" title="Finance Clearance"><div class="exm-workflow__dot">8</div><div class="exm-workflow__label">Finance Clearance</div></div>
+                    <div class="exm-workflow__step" role="listitem" title="Exit Interview"><div class="exm-workflow__dot">9</div><div class="exm-workflow__label">Exit Interview</div></div>
+                    <div class="exm-workflow__step" role="listitem" title="Full & Final Settlement"><div class="exm-workflow__dot">10</div><div class="exm-workflow__label">Full &amp; Final</div></div>
+                    <div class="exm-workflow__step" role="listitem" title="Experience Letter"><div class="exm-workflow__dot">11</div><div class="exm-workflow__label">Experience Letter</div></div>
+                    <div class="exm-workflow__step" role="listitem" title="Relieving Letter"><div class="exm-workflow__dot">12</div><div class="exm-workflow__label">Relieving Letter</div></div>
+                    <div class="exm-workflow__step" role="listitem" title="Employee Archived"><div class="exm-workflow__dot">13</div><div class="exm-workflow__label">Archived</div></div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Notice Period Tracker -->
+              <section class="exm-panel exm-reveal" id="sectionNotice" aria-label="Notice period tracker">
+                <div class="exm-panel__head"><h2>Notice Period Tracker</h2><span class="exm-badge exm-badge--notice">Rohan Mehta</span></div>
+                <div class="exm-panel__body">
+                  <div class="exm-notice">
+                    <div>
+                      <div class="exm-notice__stats">
+                        <div class="exm-notice__stat"><strong>20 Feb</strong><span>Start Date</span></div>
+                        <div class="exm-notice__stat"><strong>22 Mar</strong><span>End Date</span></div>
+                        <div class="exm-notice__stat"><strong>18 / 30</strong><span>Days Done</span></div>
+                      </div>
+                      <p style="font-size:12px;color:var(--muted);margin:0 0 8px">Attendance during notice: <strong style="color:var(--heading)">16 present · 1 leave · 1 WFH</strong></p>
+                      <div class="exm-progress"><div class="exm-progress__bar" style="width:60%"></div></div>
+                      <div class="exm-card__progress-label"><span>Notice progress</span><span>12 days remaining</span></div>
+                    </div>
+                    <div class="exm-countdown" style="--pct:60%" data-days="12
+days left" aria-label="12 days remaining"></div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Clearance Checklist -->
+              <section class="exm-panel exm-reveal" id="sectionChecklist" aria-label="Clearance checklist">
+                <div class="exm-panel__head"><h2>Clearance Checklist</h2></div>
+                <div class="exm-panel__body">
+                  <div class="exm-checklist">
+                    <div class="exm-check-group">
+                      <h3>HR</h3>
+                      <div class="exm-check-item"><label><input type="checkbox" checked> Offer Closure</label><span class="exm-badge exm-badge--completed">Done</span></div>
+                      <div class="exm-check-item"><label><input type="checkbox"> Exit Interview</label><span class="exm-badge exm-badge--pending">Pending</span></div>
+                      <div class="exm-check-item"><label><input type="checkbox"> Experience Letter</label><span class="exm-badge exm-badge--pending">Pending</span></div>
+                      <div class="exm-check-item"><label><input type="checkbox"> Relieving Letter</label><span class="exm-badge exm-badge--pending">Pending</span></div>
+                    </div>
+                    <div class="exm-check-group">
+                      <h3>IT</h3>
+                      <div class="exm-check-item"><label><input type="checkbox" checked> Disable Email</label><span class="exm-badge exm-badge--completed">Done</span></div>
+                      <div class="exm-check-item"><label><input type="checkbox"> Disable ERP Access</label><span class="exm-badge exm-badge--pending">Pending</span></div>
+                      <div class="exm-check-item"><label><input type="checkbox"> Disable VPN</label><span class="exm-badge exm-badge--pending">Pending</span></div>
+                      <div class="exm-check-item"><label><input type="checkbox"> Recover Laptop</label><span class="exm-badge exm-badge--pending">Pending</span></div>
+                    </div>
+                    <div class="exm-check-group">
+                      <h3>Admin</h3>
+                      <div class="exm-check-item"><label><input type="checkbox" checked> ID Card</label><span class="exm-badge exm-badge--completed">Done</span></div>
+                      <div class="exm-check-item"><label><input type="checkbox"> Access Card</label><span class="exm-badge exm-badge--pending">Pending</span></div>
+                      <div class="exm-check-item"><label><input type="checkbox"> Parking Card</label><span class="exm-badge exm-badge--pending">Pending</span></div>
+                      <div class="exm-check-item"><label><input type="checkbox"> Locker</label><span class="exm-badge exm-badge--pending">Pending</span></div>
+                    </div>
+                    <div class="exm-check-group">
+                      <h3>Finance</h3>
+                      <div class="exm-check-item"><label><input type="checkbox"> Pending Salary</label><span class="exm-badge exm-badge--pending">Pending</span></div>
+                      <div class="exm-check-item"><label><input type="checkbox"> Expense Claims</label><span class="exm-badge exm-badge--pending">Pending</span></div>
+                      <div class="exm-check-item"><label><input type="checkbox" checked> Loan Recovery</label><span class="exm-badge exm-badge--completed">Done</span></div>
+                      <div class="exm-check-item"><label><input type="checkbox"> Bonus</label><span class="exm-badge exm-badge--pending">Pending</span></div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Asset Return + Knowledge Transfer -->
+              <div class="exm-grid-2">
+                <section class="exm-panel exm-reveal" id="sectionAssets" aria-label="Asset return">
+                  <div class="exm-panel__head"><h2>Asset Return</h2></div>
+                  <div class="exm-panel__body">
+                    <div class="exm-asset-grid">
+                      <div class="exm-asset-card"><strong>Laptop</strong><span class="exm-badge exm-badge--pending">Pending</span></div>
+                      <div class="exm-asset-card"><strong>Monitor</strong><span class="exm-badge exm-badge--returned">Returned</span></div>
+                      <div class="exm-asset-card"><strong>Keyboard</strong><span class="exm-badge exm-badge--returned">Returned</span></div>
+                      <div class="exm-asset-card"><strong>Mouse</strong><span class="exm-badge exm-badge--returned">Returned</span></div>
+                      <div class="exm-asset-card"><strong>Headset</strong><span class="exm-badge exm-badge--pending">Pending</span></div>
+                      <div class="exm-asset-card"><strong>Mobile</strong><span class="exm-badge exm-badge--damaged">Damaged</span></div>
+                      <div class="exm-asset-card"><strong>SIM</strong><span class="exm-badge exm-badge--pending">Pending</span></div>
+                      <div class="exm-asset-card"><strong>ID Card</strong><span class="exm-badge exm-badge--returned">Returned</span></div>
+                      <div class="exm-asset-card"><strong>Access Card</strong><span class="exm-badge exm-badge--pending">Pending</span></div>
+                      <div class="exm-asset-card"><strong>Software License</strong><span class="exm-badge exm-badge--pending">Pending</span></div>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="exm-panel exm-reveal" id="sectionKT" aria-label="Knowledge transfer">
+                  <div class="exm-panel__head"><h2>Knowledge Transfer</h2></div>
+                  <div class="exm-panel__body">
+                    <div class="exm-kt-grid">
+                      <div class="exm-kt-card"><strong>Successor Assigned</strong><span class="exm-badge exm-badge--completed">Done</span><div class="exm-progress"><div class="exm-progress__bar" style="width:100%"></div></div></div>
+                      <div class="exm-kt-card"><strong>Project Handover</strong><span class="exm-badge exm-badge--pending">70%</span><div class="exm-progress"><div class="exm-progress__bar" style="width:70%"></div></div></div>
+                      <div class="exm-kt-card"><strong>Client Handover</strong><span class="exm-badge exm-badge--pending">40%</span><div class="exm-progress"><div class="exm-progress__bar" style="width:40%"></div></div></div>
+                      <div class="exm-kt-card"><strong>Documentation</strong><span class="exm-badge exm-badge--pending">55%</span><div class="exm-progress"><div class="exm-progress__bar" style="width:55%"></div></div></div>
+                      <div class="exm-kt-card"><strong>Internal Training</strong><span class="exm-badge exm-badge--pending">30%</span><div class="exm-progress"><div class="exm-progress__bar" style="width:30%"></div></div></div>
+                      <div class="exm-kt-card"><strong>Manager Approval</strong><span class="exm-badge exm-badge--pending">Pending</span><div class="exm-progress"><div class="exm-progress__bar" style="width:10%"></div></div></div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+              <!-- Exit Interview + Settlement -->
+              <div class="exm-grid-2">
+                <section class="exm-panel exm-reveal" id="sectionInterview" aria-label="Exit interview">
+                  <div class="exm-panel__head"><h2>Exit Interview</h2><span class="exm-badge exm-badge--pending">Scheduled</span></div>
+                  <div class="exm-panel__body">
+                    <dl class="exm-info-list">
+                      <div class="exm-info-row"><dt>Interview Date</dt><dd>Mar 18, 2026 · 3:00 PM</dd></div>
+                      <div class="exm-info-row"><dt>HR Representative</dt><dd>Priya Nair</dd></div>
+                      <div class="exm-info-row"><dt>Manager</dt><dd>Rahul Kapoor</dd></div>
+                      <div class="exm-info-row"><dt>Reason for Leaving</dt><dd>Better Opportunity</dd></div>
+                      <div class="exm-info-row"><dt>Feedback</dt><dd>Positive culture; seeking growth in product domain.</dd></div>
+                      <div class="exm-info-row"><dt>Suggestions</dt><dd>Faster promotion cycles for mid-level engineers.</dd></div>
+                      <div class="exm-info-row"><dt>Rehire Eligibility</dt><dd><span class="exm-badge exm-badge--approved">Eligible</span></dd></div>
+                    </dl>
+                  </div>
+                </section>
+
+                <section class="exm-panel exm-reveal" id="sectionSettlement" aria-label="Full and final settlement">
+                  <div class="exm-panel__head">
+                    <h2>Full &amp; Final Settlement</h2>
+                    <div style="display:flex;gap:8px">
+                      <button type="button" class="exm-btn exm-btn--sm" data-ui="generate-statement">Generate Statement</button>
+                      <button type="button" class="exm-btn exm-btn--sm exm-btn--primary" data-ui="download-pdf">Download PDF</button>
+                    </div>
+                  </div>
+                  <div class="exm-panel__body">
+                    <div class="exm-pay-grid">
+                      <div class="exm-pay-card"><span>Pending Salary</span><strong>₹48,000</strong></div>
+                      <div class="exm-pay-card"><span>Leave Encashment</span><strong>₹12,500</strong></div>
+                      <div class="exm-pay-card"><span>Bonus</span><strong>₹8,000</strong></div>
+                      <div class="exm-pay-card"><span>Incentives</span><strong>₹3,200</strong></div>
+                      <div class="exm-pay-card"><span>Recoveries</span><strong>−₹2,000</strong></div>
+                      <div class="exm-pay-card"><span>Loan Deductions</span><strong>−₹5,000</strong></div>
+                      <div class="exm-pay-card"><span>Expense Claims</span><strong>₹1,800</strong></div>
+                      <div class="exm-pay-card"><span>Status</span><strong><span class="exm-badge exm-badge--settlement">Pending</span></strong></div>
+                      <div class="exm-pay-card exm-pay-card--net"><span>Net Payable</span><strong>₹66,500</strong></div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+              <!-- Documents -->
+              <section class="exm-panel exm-reveal" id="sectionDocuments" aria-label="Document center">
+                <div class="exm-panel__head"><h2>Documents</h2><button type="button" class="exm-btn exm-btn--sm" data-ui="upload-document">Upload</button></div>
+                <div class="exm-panel__body">
+                  <div class="exm-doc-grid">
+                    <div class="exm-doc-card"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.75"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg><strong>Resignation Letter</strong><span class="exm-badge exm-badge--verified">Verified</span><div class="exm-doc-card__actions"><button type="button" data-ui="preview">Preview</button><button type="button" data-ui="download">Download</button></div></div>
+                    <div class="exm-doc-card"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.75"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg><strong>Acceptance Letter</strong><span class="exm-badge exm-badge--verified">Verified</span><div class="exm-doc-card__actions"><button type="button" data-ui="preview">Preview</button><button type="button" data-ui="download">Download</button></div></div>
+                    <div class="exm-doc-card"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.75"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg><strong>Clearance Form</strong><span class="exm-badge exm-badge--pending">Pending</span><div class="exm-doc-card__actions"><button type="button" data-ui="preview">Preview</button><button type="button" data-ui="upload">Upload</button></div></div>
+                    <div class="exm-doc-card"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.75"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg><strong>Experience Letter</strong><span class="exm-badge exm-badge--pending">Pending</span><div class="exm-doc-card__actions"><button type="button" data-ui="generate">Generate</button></div></div>
+                    <div class="exm-doc-card"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.75"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg><strong>Relieving Letter</strong><span class="exm-badge exm-badge--pending">Pending</span><div class="exm-doc-card__actions"><button type="button" data-ui="generate">Generate</button></div></div>
+                    <div class="exm-doc-card"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.75"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg><strong>Settlement Letter</strong><span class="exm-badge exm-badge--pending">Pending</span><div class="exm-doc-card__actions"><button type="button" data-ui="generate">Generate</button></div></div>
+                    <div class="exm-doc-card"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.75"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg><strong>NDA</strong><span class="exm-badge exm-badge--verified">Verified</span><div class="exm-doc-card__actions"><button type="button" data-ui="preview">Preview</button><button type="button" data-ui="download">Download</button></div></div>
+                    <div class="exm-doc-card"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.75"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg><strong>Other Documents</strong><span class="exm-badge exm-badge--pending">Optional</span><div class="exm-doc-card__actions"><button type="button" data-ui="upload">Upload</button></div></div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Timeline + Analytics -->
+              <div class="exm-grid-2">
+                <section class="exm-panel exm-reveal" id="sectionTimeline" aria-label="Activity timeline">
+                  <div class="exm-panel__head"><h2>Activity Timeline</h2></div>
+                  <div class="exm-panel__body">
+                    <div class="exm-timeline">
+                      <div class="exm-timeline__item"><div class="exm-timeline__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/></svg></div><div class="exm-timeline__body"><strong>Exit Requested</strong><span>Feb 20, 2026 · 10:15 AM</span></div></div>
+                      <div class="exm-timeline__item"><div class="exm-timeline__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9 11l3 3L22 4"/></svg></div><div class="exm-timeline__body"><strong>Manager Approved</strong><span>Feb 21, 2026 · 2:40 PM</span></div></div>
+                      <div class="exm-timeline__item"><div class="exm-timeline__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9 11l3 3L22 4"/></svg></div><div class="exm-timeline__body"><strong>HR Approved</strong><span>Feb 22, 2026 · 11:05 AM</span></div></div>
+                      <div class="exm-timeline__item"><div class="exm-timeline__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/></svg></div><div class="exm-timeline__body"><strong>Notice Started</strong><span>Feb 20, 2026</span></div></div>
+                      <div class="exm-timeline__item"><div class="exm-timeline__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/></svg></div><div class="exm-timeline__body"><strong>Knowledge Transfer In Progress</strong><span>Mar 5, 2026</span></div></div>
+                      <div class="exm-timeline__item"><div class="exm-timeline__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="3" width="20" height="14" rx="2"/></svg></div><div class="exm-timeline__body"><strong>Asset Return Pending</strong><span>Upcoming</span></div></div>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="exm-panel exm-reveal" id="sectionAnalytics" aria-label="Analytics">
+                  <div class="exm-panel__head"><h2>Analytics Dashboard</h2></div>
+                  <div class="exm-panel__body">
+                    <div class="exm-analytics">
+                      <div class="exm-chart">
+                        <h3>Monthly Exit Trend</h3>
+                        <div class="exm-chart-bars" aria-hidden="true"><span style="height:40%"></span><span style="height:55%"></span><span style="height:35%"></span><span style="height:70%"></span><span style="height:50%"></span><span style="height:80%"></span></div>
+                      </div>
+                      <div class="exm-chart">
+                        <h3>Department-wise Attrition</h3>
+                        <div class="exm-chart-bars" aria-hidden="true"><span style="height:60%"></span><span style="height:30%"></span><span style="height:45%"></span><span style="height:25%"></span><span style="height:50%"></span></div>
+                      </div>
+                      <div class="exm-chart">
+                        <h3>Exit Reasons</h3>
+                        <div class="exm-chart-pills"><span>Better Opportunity</span><span>Relocation</span><span>Career Growth</span><span>Personal</span><span>Higher Studies</span></div>
+                      </div>
+                      <div class="exm-chart"><h3>Avg Notice Period</h3><p style="font-size:1.5rem;font-weight:700;color:var(--heading);margin:0">28 days</p></div>
+                      <div class="exm-chart"><h3>Settlement Time</h3><p style="font-size:1.5rem;font-weight:700;color:var(--heading);margin:0">7 days</p></div>
+                      <div class="exm-chart"><h3>Retention Rate</h3><p style="font-size:1.5rem;font-weight:700;color:var(--heading);margin:0">91%</p></div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+              <!-- Upcoming Exits -->
+              <section class="exm-panel exm-reveal" id="sectionUpcoming" aria-label="Upcoming exits">
+                <div class="exm-panel__head"><h2>Upcoming Exit Calendar</h2></div>
+                <div class="exm-panel__body">
+                  <div class="exm-upcoming">
+                    <div class="exm-upcoming__item"><div class="exm-avatar">RM</div><div style="flex:1"><strong>Rohan Mehta</strong><span>Engineering · LWD Mar 22</span></div><span class="exm-badge exm-badge--notice">This Month</span></div>
+                    <div class="exm-upcoming__item"><div class="exm-avatar">SI</div><div style="flex:1"><strong>Sneha Iyer</strong><span>HR · LWD Mar 28</span></div><span class="exm-badge exm-badge--pending">This Month</span></div>
+                    <div class="exm-upcoming__item"><div class="exm-avatar">AP</div><div style="flex:1"><strong>Arjun Patel</strong><span>Sales · LWD Mar 31</span></div><span class="exm-badge exm-badge--active">This Week</span></div>
+                    <div class="exm-upcoming__item"><div class="exm-avatar">DR</div><div style="flex:1"><strong>Divya Reddy</strong><span>Marketing · LWD Apr 5</span></div><span class="exm-badge exm-badge--flat" style="background:#f1f5f9;color:#64748b">Next Month</span></div>
+                  </div>
+                </div>
+              </section>
+
+            </div>
+
+            <!-- Right Sidebar -->
+            <aside class="exm-sidebar" aria-label="Exit summary">
+              <div class="exm-sidebar__card">
+                <div class="exm-sidebar__avatar" id="sideAvatar">RM</div>
+                <h3 id="sideName">Rohan Mehta</h3>
+                <p id="sideMeta">Engineering · Backend Developer</p>
+                <div class="exm-progress"><div class="exm-progress__bar" id="sideProgress" style="width:45%"></div></div>
+                <p id="sideProgressLabel" style="font-size:11px;margin:6px 0 0;color:var(--muted)">45% complete</p>
+                <p id="sideDays" style="font-size:12px;font-weight:700;color:var(--primary-deeper);margin:8px 0 0">12 days left</p>
+              </div>
+              <div class="exm-sidebar__card exm-sidebar__contact">
+                <h3 class="exm-sidebar__title">Quick Contact</h3>
+                <div><span>Email</span><span id="sideEmail">rohan@timeerp.com</span></div>
+                <div><span>Phone</span><span id="sidePhone">+91 98765 11001</span></div>
+              </div>
+              <div class="exm-sidebar__card">
+                <h3 class="exm-sidebar__title">Quick Links</h3>
+                <nav class="exm-sidebar__links">
+                  <a href="#sectionDocuments">Documents</a>
+                  <a href="#sectionSettlement">Settlement</a>
+                  <a href="#sectionTimeline">Timeline</a>
+                  <a href="#sectionChecklist">Checklist</a>
+                </nav>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+  <!-- Exit Drawer -->
+  <div class="exm-drawer-scrim" id="exmDrawerScrim" aria-hidden="true">
+    <aside class="exm-drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+      <div class="exm-drawer__head">
+        <div>
+          <h2 id="drawerTitle">Employee</h2>
+          <p id="drawerSubtitle"></p>
+        </div>
+        <button type="button" class="exm-btn exm-btn--sm" id="drawerClose" aria-label="Close">✕</button>
+      </div>
+      <div class="exm-drawer__body" id="drawerBody"></div>
+      <div class="exm-drawer__foot">
+        <button type="button" class="exm-btn exm-btn--primary" id="drawerApprove">Approve</button>
+        <button type="button" class="exm-btn exm-btn--danger" id="drawerReject">Reject</button>
+        <button type="button" class="exm-btn" id="drawerClose2">Close</button>
+      </div>
+    </aside>
+  </div>
+
+  <script src="js/dashboard-shell.js"></script>
+  <script src="js/exitmanagement.js"></script>
+</body>
+</html>

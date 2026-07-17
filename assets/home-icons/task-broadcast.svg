@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="gt-broadcast" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#25b7a7"/>
+      <stop offset="1" stop-color="#0d7a6e"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#e8f8f6"/>
+<circle cx="22" cy="32" r="6" fill="url(#gt-broadcast)"/><path d="M30 24c6 4 6 12 0 16M36 18c10 6 10 22 0 28" stroke="#083530" stroke-width="3" fill="none" stroke-linecap="round"/>
+</svg>

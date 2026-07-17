@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Employee — TIME ERP HRMS</title>
+  <meta name="description" content="View, manage, and organize all employees from one centralized TIME ERP workspace.">
+  <link rel="icon" href="../assets/image0.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard-shell.css">
+  <link rel="stylesheet" href="css/viewemployee.css">
+</head>
+<body>
+
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="../home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="../assets/image0.png" alt="TimeERP" width="168" height="40">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">3</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <button type="button" class="topbar__icon-btn" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">TE</span>
+                <span class="topbar__profile-meta"><strong>Admin</strong><span>TimeERP</span></span>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="../home.html" class="dropdown__item"><strong>Go to home</strong><span>Module hub overview</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="emp-page" id="empPage">
+
+          <header class="emp-page__header">
+            <div class="emp-page__header-text">
+              <h1>View Employee</h1>
+            </div>
+            <div class="emp-page__actions">
+              <button type="button" class="emp-btn" id="btnManageDesignations">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                Designations
+              </button>
+              <button type="button" class="emp-btn emp-btn--primary" id="btnAddEmployee">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                Add Employee
+              </button>
+              <button type="button" class="emp-btn" id="btnExport">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+                Export
+              </button>
+              <button type="button" class="emp-btn" id="btnRefresh" aria-label="Refresh">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 4v6h6M20 20v-6h-6"/><path d="M5 19a9 9 0 0014-7M19 5a9 9 0 00-14 7"/></svg>
+                Refresh
+              </button>
+            </div>
+          </header>
+
+          <section class="emp-kpi" aria-label="Employee statistics">
+            <article class="emp-kpi__card">
+              <div class="emp-kpi__top">
+                <div class="emp-kpi__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                </div>
+              </div>
+              <div class="emp-kpi__value" id="kpiTotal" data-count="0">0</div>
+              <div class="emp-kpi__label">Total Employees</div>
+            </article>
+            <article class="emp-kpi__card">
+              <div class="emp-kpi__top">
+                <div class="emp-kpi__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+                </div>
+                <span class="emp-kpi__badge emp-kpi__badge--green">Active</span>
+              </div>
+              <div class="emp-kpi__value" id="kpiActive">0</div>
+              <div class="emp-kpi__label">Active Employees</div>
+            </article>
+            <article class="emp-kpi__card">
+              <div class="emp-kpi__top">
+                <div class="emp-kpi__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                </div>
+                <span class="emp-kpi__badge emp-kpi__badge--orange">Leave</span>
+              </div>
+              <div class="emp-kpi__value" id="kpiLeave">0</div>
+              <div class="emp-kpi__label">On Leave</div>
+            </article>
+            <article class="emp-kpi__card">
+              <div class="emp-kpi__top">
+                <div class="emp-kpi__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
+                </div>
+                <span class="emp-kpi__badge emp-kpi__badge--blue">New</span>
+              </div>
+              <div class="emp-kpi__value" id="kpiNew">0</div>
+              <div class="emp-kpi__label">New Joiners</div>
+            </article>
+            <article class="emp-kpi__card">
+              <div class="emp-kpi__top">
+                <div class="emp-kpi__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/><path d="M9 9v.01M9 12v.01M9 15v.01M9 18v.01"/></svg>
+                </div>
+                <span class="emp-kpi__badge emp-kpi__badge--purple">Dept</span>
+              </div>
+              <div class="emp-kpi__value" id="kpiDept">0</div>
+              <div class="emp-kpi__label">Departments</div>
+            </article>
+            <article class="emp-kpi__card">
+              <div class="emp-kpi__top">
+                <div class="emp-kpi__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                </div>
+                <span class="emp-kpi__badge emp-kpi__badge--red">Pending</span>
+              </div>
+              <div class="emp-kpi__value" id="kpiPending">0</div>
+              <div class="emp-kpi__label">Pending Approvals</div>
+            </article>
+          </section>
+
+          <div class="emp-toolbar">
+            <div class="emp-search" role="search">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+              <input type="search" id="empSearch" placeholder="Search employee by name, employee ID, email, or phone…" autocomplete="off" aria-label="Search employees">
+            </div>
+
+            <form class="emp-filters" id="empFilters" aria-label="Advanced filters">
+              <div><label for="filterDept">Department</label><select id="filterDept"></select></div>
+              <div><label for="filterDesignation">Designation</label><select id="filterDesignation"></select></div>
+              <div><label for="filterLocation">Location</label><select id="filterLocation"></select></div>
+              <div><label for="filterType">Employment Type</label><select id="filterType"></select></div>
+              <div><label for="filterStatus">Employee Status</label><select id="filterStatus"></select></div>
+              <div><label for="filterManager">Reporting Manager</label><select id="filterManager"></select></div>
+              <div><label for="filterJoined">Joining Date</label><input type="date" id="filterJoined"></div>
+              <button type="button" class="emp-btn" id="filterReset">Reset Filter</button>
+            </form>
+          </div>
+
+          <div class="emp-bar">
+            <div class="emp-view-toggle" role="tablist" aria-label="Employee view">
+              <button type="button" class="is-active" data-view="table" role="tab" aria-selected="true">Table View</button>
+              <button type="button" data-view="card" role="tab" aria-selected="false">Card View</button>
+              <button type="button" data-view="grid" role="tab" aria-selected="false">Grid View</button>
+            </div>
+            <div class="emp-bulk" id="empBulkBar" hidden>
+              <div class="emp-bulk__group" role="group" aria-label="Bulk employee actions">
+                <div class="emp-btn emp-btn--select" aria-live="polite" aria-atomic="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                    <path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M22 21v-2a4 4 0 00-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 010 7.75"/>
+                  </svg>
+                  <span><strong id="empBulkCount">0</strong> Selected</span>
+                </div>
+                <span class="emp-bulk__sep" aria-hidden="true"></span>
+                <button type="button" class="emp-btn" data-action="export">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+                  Export
+                </button>
+                <button type="button" class="emp-btn" data-bulk="assign-dept">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/></svg>
+                  Assign Department
+                </button>
+                <button type="button" class="emp-btn" data-bulk="assign-desig">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M20 7h-9M14 3v4M6 17h9M10 13v4"/></svg>
+                  Assign Designation
+                </button>
+                <button type="button" class="emp-btn" data-bulk="email">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+                  Send Email
+                </button>
+                <button type="button" class="emp-btn emp-btn--ghost" id="empBulkClear">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  Clear
+                </button>
+              </div>
+            </div>
+            <span id="empResultCount" style="font-size:13px;color:var(--muted);margin-left:auto"></span>
+          </div>
+
+          <div class="emp-empty" id="empEmpty" hidden>
+            <div class="emp-empty__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <h3>No Employees Found</h3>
+            <p>No employee records match your search.</p>
+            <div class="emp-empty__actions">
+              <button type="button" class="emp-btn" id="emptyReset">Reset Filter</button>
+              <button type="button" class="emp-btn emp-btn--primary" id="emptyAdd">Add Employee</button>
+            </div>
+          </div>
+
+          <section class="emp-panel" id="empContentPanel" aria-label="Employee list">
+            <div class="emp-table-wrap emp-view-panel is-active" id="empTableView" data-view-panel="table">
+              <table class="emp-table" aria-label="Employees table">
+                <thead>
+                  <tr>
+                    <th scope="col" class="emp-select-cell">
+                      <label class="emp-select-label">
+                        <input type="checkbox" class="emp-check" id="empSelectAll" aria-label="Select all employees on this page">
+                      </label>
+                    </th>
+                    <th scope="col" data-sort="name">Employee Name</th>
+                    <th scope="col" data-sort="id">Employee ID</th>
+                    <th scope="col" data-sort="dept">Department</th>
+                    <th scope="col" data-sort="designation">Designation</th>
+                    <th scope="col" data-sort="email">Email</th>
+                    <th scope="col" data-sort="phone">Phone</th>
+                    <th scope="col" data-sort="joined">Joining Date</th>
+                    <th scope="col" data-sort="type">Employment Type</th>
+                    <th scope="col" data-sort="status">Status</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="empTableBody"></tbody>
+              </table>
+            </div>
+            <div class="emp-cards emp-view-panel" id="empCardView" data-view-panel="card" hidden></div>
+            <div class="emp-grid emp-view-panel" id="empGridView" data-view-panel="grid" hidden></div>
+            <div class="emp-pagination">
+              <div class="emp-pagination__left">
+                <label for="empPageSize">Rows</label>
+                <select id="empPageSize" aria-label="Rows per page">
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+              </div>
+              <div class="emp-pagination__right">
+                <button type="button" class="emp-btn emp-btn--icon" id="empPrev" aria-label="Previous page" title="Previous">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <div class="emp-pagination__pages" id="empPages"></div>
+                <span id="empPageInfo">Page 1 of 1</span>
+                <button type="button" class="emp-btn emp-btn--icon" id="empNext" aria-label="Next page" title="Next">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <button type="button" class="emp-mobile-fab" id="mobileFab" aria-label="Add employee">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+  </button>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+  <div class="emp-drawer-scrim" id="empDrawerScrim" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+    <aside class="emp-drawer" role="document">
+      <div class="emp-drawer__head">
+        <div>
+          <h2 id="drawerTitle">Employee</h2>
+          <p id="drawerSubtitle" style="font-size:13px;color:var(--muted);margin:4px 0 0"></p>
+        </div>
+        <button type="button" class="emp-action-btn" id="empDrawerClose" aria-label="Close drawer">✕</button>
+      </div>
+      <div class="emp-drawer__tabs" id="drawerTabs" role="tablist"></div>
+      <div class="emp-drawer__body" id="drawerBody"></div>
+      <div class="emp-drawer__foot">
+        <button type="button" class="emp-btn emp-btn--primary" id="drawerEdit">Edit Employee</button>
+        <button type="button" class="emp-btn" id="empDrawerClose2">Close</button>
+      </div>
+    </aside>
+  </div>
+
+  <div class="emp-modal-scrim" id="desigModal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="desigModalTitle">
+    <div class="emp-modal">
+      <div class="emp-modal__head">
+        <h3 id="desigModalTitle">Designation Management</h3>
+        <button type="button" class="emp-action-btn" id="desigModalClose" aria-label="Close">✕</button>
+      </div>
+      <div class="emp-modal__body">
+        <form class="emp-desig-form" id="desigForm">
+          <input type="text" id="desigInput" placeholder="Enter designation title" aria-label="Designation title" required>
+          <input type="hidden" id="desigEditIndex" value="">
+          <button type="submit" class="emp-btn emp-btn--primary" id="desigSubmitBtn">Add Designation</button>
+        </form>
+        <ul class="emp-desig-list" id="desigList" aria-label="Designations"></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="emp-modal-scrim" id="assignDesigModal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="assignDesigTitle">
+    <div class="emp-modal emp-modal--sm">
+      <div class="emp-modal__head">
+        <h3 id="assignDesigTitle">Assign Designation</h3>
+        <button type="button" class="emp-action-btn" id="assignDesigClose" aria-label="Close">✕</button>
+      </div>
+      <div class="emp-modal__body">
+        <p class="emp-modal__hint" id="assignDesigHint">Select a designation for selected employees.</p>
+        <select id="assignDesigSelect" aria-label="Designation to assign"></select>
+        <div class="emp-modal__foot">
+          <button type="button" class="emp-btn emp-btn--primary" id="assignDesigConfirm">Assign</button>
+          <button type="button" class="emp-btn" id="assignDesigCancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/dashboard-shell.js"></script>
+  <script src="js/viewemployee.js"></script>
+  <script>
+    document.getElementById('empDrawerClose2') && document.getElementById('empDrawerClose2').addEventListener('click', function () {
+      document.getElementById('empDrawerClose').click();
+    });
+  </script>
+</body>
+</html>

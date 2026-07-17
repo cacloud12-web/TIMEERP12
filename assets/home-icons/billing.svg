@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="g-billing" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#25b7a7"/>
+      <stop offset="1" stop-color="#0d7a6e"/>
+    </linearGradient>
+    <linearGradient id="gb-billing" x1="12" y1="4" x2="52" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e8f8f6"/>
+      <stop offset="1" stop-color="#c5efe9"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#gb-billing)"/>
+
+  <rect x="16" y="12" width="32" height="40" rx="4" fill="url(#g-billing)"/>
+  <path d="M24 20h16M24 28h16M24 36h10" stroke="#fff" stroke-width="2.3" stroke-linecap="round"/>
+  <circle cx="40" cy="44" r="8" fill="#083530"/>
+  <text x="40" y="48" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700" fill="#3dd5c5">$</text>
+</svg>

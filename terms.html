@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="assets/image0.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms &amp; Conditions — TimeERP</title>
+  <meta name="description" content="Terms governing use of TimeERP cloud ERP by Law Seva Management Private Limited. Accounts, acceptable use, subscriptions, and liability.">
+  <link rel="canonical" href="https://timeerp.com/terms.html">
+  <meta name="theme-color" content="#25B7A7">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Terms &amp; Conditions — TimeERP">
+  <meta property="og:description" content="Terms governing use of TimeERP cloud ERP. Accounts, acceptable use, subscriptions, billing, and liability.">
+  <meta property="og:url" content="https://timeerp.com/terms.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Terms &amp; Conditions — TimeERP">
+  <meta name="twitter:description" content="Terms governing use of TimeERP cloud ERP by Law Seva Management Private Limited.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #25b7a7;
+      --primary-dark: #1a9e8f;
+      --primary-light: #e8f8f6;
+      --primary-deeper: #0d7a6e;
+      --accent: #17C3B2;
+      --heading: #083530;
+      --heading-dark: #083530;
+      --heading-deep: #0d524c;
+      --text-body: #3d5250;
+      --text-muted: #7a9593;
+      --text-dark: #1a2e2c;
+      --white: #ffffff;
+      --bg-light: #f4fafa;
+      --border: #d0eeec;
+      --max-width: 1400px;
+      --content-pad-x: 80px;
+      --section-pad: 100px;
+      --radius-btn: 8px;
+      --radius-card: 12px;
+      --transition-med: 200ms ease;
+      --shadow-card: 0 12px 32px rgba(37, 183, 167, 0.12);
+      --heading-title-gap: 32px;
+      --heading-title-line-height: 1.35;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text-body);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    .section-inner {
+      width: 100%;
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: var(--content-pad-x);
+    }
+
+    .section-label {
+      display: block;
+      margin-bottom: 20px;
+      font-size: 12px;
+      line-height: 14px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #000;
+    }
+
+    .section-lead { text-align: left; max-width: 720px; margin-bottom: 48px; }
+    .section-lead h2 {
+      margin-bottom: var(--heading-title-gap);
+      line-height: var(--heading-title-line-height);
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 600;
+      color: var(--heading-dark);
+      letter-spacing: -0.02em;
+    }
+    .section-lead p { margin: 0; max-width: 640px; color: var(--text-muted); font-size: 16px; line-height: 1.65; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: var(--radius-btn);
+      padding: 0 24px;
+      height: 48px;
+      transition: all var(--transition-med);
+      white-space: nowrap;
+    }
+    .btn--primary { background: var(--primary); color: var(--white); }
+    .btn--primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(37, 183, 167, 0.35);
+    }
+    .btn--ghost { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
+    .btn--ghost:hover { background: var(--primary-light); }
+    .btn--white { background: var(--white); color: var(--primary); font-weight: 700; }
+    .btn--white:hover {
+      background: #f0fffe;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+    .btn:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+
+    .anim-fade, .anim-up {
+      opacity: 0;
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+    .anim-up { transform: translateY(24px); }
+    .anim-fade.in-view, .anim-up.in-view { opacity: 1; transform: none; }
+    .stagger-0 { transition-delay: 0ms; }
+    .stagger-1 { transition-delay: 80ms; }
+    .stagger-2 { transition-delay: 160ms; }
+    .stagger-3 { transition-delay: 240ms; }
+
+  /* Hero */
+    .privacy-hero {
+      position: relative;
+      padding: calc(72px + 64px) 0 var(--section-pad);
+      background: linear-gradient(165deg, #3dd5c5 0%, #25b7a7 28%, #1a9e8f 52%, #0d7a6e 78%, #083530 100%);
+      overflow: hidden;
+    }
+    .privacy-hero__grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .privacy-hero__decoration {
+      position: absolute;
+      right: -80px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      pointer-events: none;
+    }
+    .privacy-hero__decoration::after {
+      content: '';
+      position: absolute;
+      inset: 40px;
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+    }
+    .privacy-hero .section-label { color: #000; }
+    .privacy-hero__title {
+      font-size: clamp(1.875rem, 3vw, 2.75rem);
+      font-weight: 600;
+      line-height: 1.18;
+      letter-spacing: -0.025em;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+    .privacy-hero__sub {
+      font-size: 16px;
+      line-height: 1.65;
+      color: rgba(255, 255, 255, 0.92);
+      max-width: 560px;
+      margin-bottom: 24px;
+    }
+    .privacy-hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+      backdrop-filter: blur(8px);
+    }
+    .privacy-hero__badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fff;
+      flex-shrink: 0;
+    }
+    .privacy-hero__visual {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+      flex-shrink: 0;
+    }
+    .privacy-hero__visual .material-symbols-outlined {
+      font-size: 72px;
+      color: #fff;
+      font-variation-settings: 'FILL' 1;
+    }
+
+  /* Highlights */
+    .privacy-highlights {
+      margin-top: -56px;
+      position: relative;
+      z-index: 3;
+      padding-bottom: 72px;
+    }
+    .privacy-highlights__grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .privacy-highlight-card {
+      position: relative;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 22px 20px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      box-shadow: 0 4px 20px rgba(8, 53, 48, 0.05);
+      overflow: hidden;
+      transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .privacy-highlight-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, #25b7a7, #3dd5c5);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.25s ease;
+    }
+    .privacy-highlight-card:hover,
+    .privacy-highlight-card:focus-within {
+      transform: translateY(-6px);
+      border-color: rgba(37, 183, 167, 0.35);
+      box-shadow: 0 16px 40px rgba(37, 183, 167, 0.14);
+    }
+    .privacy-highlight-card:hover::before,
+    .privacy-highlight-card:focus-within::before { transform: scaleY(1); }
+    .privacy-highlight-card__icon {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      background: rgba(37, 183, 167, 0.12);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(37, 183, 167, 0.1);
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+    .privacy-highlight-card__icon .material-symbols-outlined {
+      font-size: 24px;
+      color: var(--primary);
+      line-height: 1;
+    }
+    .privacy-highlight-card:hover .privacy-highlight-card__icon {
+      background: linear-gradient(145deg, #25b7a7, #3dd5c5);
+      transform: scale(1.08);
+    }
+    .privacy-highlight-card:hover .privacy-highlight-card__icon .material-symbols-outlined { color: #fff; }
+    .privacy-highlight-card h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--heading-dark);
+      line-height: 1.35;
+      margin-bottom: 6px;
+    }
+    .privacy-highlight-card p {
+      font-size: 13px;
+      line-height: 1.55;
+      color: #616365;
+      margin: 0;
+    }
+
+  /* Content layout + TOC */
+    .privacy-body { background: var(--bg-light); padding: 72px 0 var(--section-pad); }
+    .privacy-body__grid {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 40px;
+      align-items: start;
+    }
+    .privacy-toc { position: sticky; top: calc(72px + 24px); }
+    .privacy-toc__toggle {
+      display: none;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 18px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      background: var(--white);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--heading-dark);
+      margin-bottom: 12px;
+      box-shadow: 0 4px 16px rgba(37, 183, 167, 0.08);
+    }
+    .privacy-toc__toggle .material-symbols-outlined { transition: transform 0.25s ease; color: var(--text-muted); }
+    .privacy-toc.is-open .privacy-toc__toggle .material-symbols-outlined { transform: rotate(180deg); color: var(--primary); }
+    .privacy-toc__nav {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 16px;
+      box-shadow: 0 8px 24px rgba(37, 183, 167, 0.08);
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+    }
+    .privacy-toc__label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 4px 12px 12px;
+    }
+    .privacy-toc__link {
+      display: block;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-body);
+      border-left: 3px solid transparent;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+    .privacy-toc__link:hover { background: var(--primary-light); color: var(--heading-deep); }
+    .privacy-toc__link.is-active {
+      background: var(--primary-light);
+      color: var(--primary-deeper);
+      border-left-color: var(--primary);
+      font-weight: 600;
+    }
+    .privacy-toc__link:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+    .privacy-sections { display: flex; flex-direction: column; gap: 20px; }
+
+    .privacy-tools {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      box-shadow: 0 4px 16px rgba(37, 183, 167, 0.06);
+      margin-bottom: 4px;
+    }
+    .privacy-tools__search {
+      flex: 1 1 200px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 14px;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg-light);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .privacy-tools__search:focus-within {
+      border-color: rgba(37, 183, 167, 0.45);
+      box-shadow: 0 0 0 3px rgba(37, 183, 167, 0.1);
+    }
+    .privacy-tools__search .material-symbols-outlined {
+      font-size: 20px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+    .privacy-tools__search input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      font-size: 14px;
+      color: var(--text-body);
+      outline: none;
+      min-width: 0;
+    }
+    .privacy-tools__search input::placeholder { color: var(--text-muted); }
+    .privacy-tools__actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+    .privacy-tools__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 16px;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--white);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-body);
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+    .privacy-tools__btn .material-symbols-outlined { font-size: 18px; color: var(--primary); }
+    .privacy-tools__btn:hover {
+      background: var(--primary-light);
+      border-color: rgba(37, 183, 167, 0.35);
+      color: var(--heading-deep);
+    }
+    .privacy-tools__btn:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+    .privacy-tools__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 14px;
+      height: 42px;
+      border-radius: 8px;
+      background: rgba(37, 183, 167, 0.1);
+      border: 1px solid rgba(37, 183, 167, 0.2);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary-deeper);
+    }
+    .privacy-tools__badge .material-symbols-outlined { font-size: 18px; color: var(--primary); }
+    .privacy-content-card.is-hidden { display: none; }
+    .privacy-tools__empty {
+      display: none;
+      padding: 32px 24px;
+      text-align: center;
+      background: var(--white);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius-card);
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+    .privacy-tools__empty.is-visible { display: block; }
+
+    .privacy-content-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 28px 28px 24px;
+      box-shadow: 0 4px 20px rgba(8, 53, 48, 0.04);
+      scroll-margin-top: calc(72px + 24px);
+    }
+    .privacy-content-card__head {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .privacy-content-card__icon {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      border-radius: 10px;
+      background: rgba(37, 183, 167, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .privacy-content-card__icon .material-symbols-outlined {
+      font-size: 22px;
+      color: var(--primary);
+    }
+    .privacy-content-card h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--heading-dark);
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      padding-top: 8px;
+    }
+    .privacy-content-card p {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text-body);
+      margin-bottom: 12px;
+    }
+    .privacy-content-card p:last-child { margin-bottom: 0; }
+    .privacy-content-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .privacy-content-card li {
+      position: relative;
+      padding-left: 22px;
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text-body);
+    }
+    .privacy-content-card li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+    .privacy-content-card a {
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .privacy-content-card a:hover { color: var(--primary-dark); }
+
+    .privacy-note {
+      display: flex;
+      gap: 10px;
+      padding: 14px 16px;
+      margin: 12px 0 0;
+      background: rgba(37, 183, 167, 0.06);
+      border: 1px dashed rgba(37, 183, 167, 0.28);
+      border-radius: 10px;
+      font-size: 13px;
+      color: var(--text-body);
+      line-height: 1.55;
+    }
+    .privacy-note .material-symbols-outlined {
+      font-size: 18px;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+  /* Back to top */
+    .back-to-top {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(37, 183, 167, 0.4);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(12px);
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease, background 0.15s ease;
+      z-index: 90;
+    }
+    .back-to-top.is-visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .back-to-top:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+    .back-to-top .material-symbols-outlined { font-size: 24px; }
+    .back-to-top:focus-visible { outline: 2px solid var(--primary-deeper); outline-offset: 3px; }
+
+  /* FAQ */
+    .privacy-faq { padding: var(--section-pad) 0; background: var(--white); }
+    .sp-faq { max-width: 760px; display: flex; flex-direction: column; gap: 8px; }
+    .sp-faq__item {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      background: #fff;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .sp-faq__item:hover:not(.is-open) {
+      border-color: rgba(37, 183, 167, 0.28);
+      box-shadow: 0 4px 16px rgba(37, 183, 167, 0.08);
+    }
+    .sp-faq__item.is-open {
+      border-color: rgba(37, 183, 167, 0.35);
+      box-shadow: 0 8px 24px rgba(37, 183, 167, 0.1);
+    }
+    .sp-faq__trigger {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 22px;
+      text-align: left;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--heading);
+    }
+    .sp-faq__trigger:hover { background: rgba(37, 183, 167, 0.04); }
+    .sp-faq__trigger:focus-visible { outline: 2px solid var(--primary); outline-offset: -2px; }
+    .sp-faq__chevron { transition: transform 0.25s; color: var(--text-muted); }
+    .sp-faq__item.is-open .sp-faq__chevron { transform: rotate(180deg); color: var(--primary); }
+    .sp-faq__panel { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .sp-faq__panel p { padding: 0 22px 18px; font-size: 15px; color: var(--text-body); line-height: 1.65; }
+    .sp-faq__panel a { color: var(--primary); font-weight: 600; }
+
+  /* Support card */
+    .privacy-support { padding: 0 0 var(--section-pad); background: var(--white); }
+    .privacy-support__card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: center;
+      padding: 36px 40px;
+      border-radius: var(--radius-card);
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, var(--primary-light) 0%, #fff 55%);
+      box-shadow: var(--shadow-card);
+    }
+    .privacy-support__card h2 {
+      font-size: clamp(1.25rem, 2vw, 1.5rem);
+      font-weight: 600;
+      color: var(--heading-dark);
+      margin-bottom: 10px;
+    }
+    .privacy-support__card > div > p {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      max-width: 520px;
+    }
+    .privacy-support__meta { display: flex; flex-direction: column; gap: 12px; }
+    .privacy-support__row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--text-body);
+    }
+    .privacy-support__row .material-symbols-outlined {
+      font-size: 20px;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+    .privacy-support__row a { color: var(--primary); font-weight: 600; }
+    .privacy-support__actions { display: flex; flex-direction: column; gap: 12px; }
+
+  /* CTA */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      padding: 80px 0;
+      text-align: center;
+      color: var(--white);
+    }
+    .cta-banner .section-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .cta-banner .section-lead {
+      margin-bottom: 28px;
+      text-align: center;
+      margin-inline: auto;
+    }
+    .cta-banner .section-lead h2 {
+      color: #fff;
+      margin-bottom: 16px;
+      text-shadow: 0 2px 8px rgba(8, 53, 48, 0.2);
+    }
+    .cta-banner .section-lead p { color: rgba(255, 255, 255, 0.9); margin-inline: auto; }
+    .cta-banner__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+    .cta-banner .btn--ghost {
+      border-color: rgba(255, 255, 255, 0.55);
+      color: #fff;
+    }
+    .cta-banner .btn--ghost:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: #fff;
+      color: #fff;
+    }
+
+    @media print {
+      .privacy-toc, .privacy-tools, .back-to-top, #site-header, .footer, .privacy-faq, .privacy-support, .cta-banner, .privacy-highlights { display: none !important; }
+      .privacy-body__grid { grid-template-columns: 1fr; }
+      .privacy-content-card { break-inside: avoid; box-shadow: none; }
+    }
+
+    @media (max-width: 1100px) {
+      .privacy-highlights__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 1024px) {
+      .privacy-hero__grid { grid-template-columns: 1fr; }
+      .privacy-hero__visual { display: none; }
+      .privacy-body__grid { grid-template-columns: 1fr; }
+      .privacy-toc { position: static; }
+      .privacy-toc__toggle { display: flex; }
+      .privacy-toc__nav {
+        display: none;
+        margin-bottom: 8px;
+      }
+      .privacy-toc.is-open .privacy-toc__nav { display: block; }
+      .privacy-support__card { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      :root { --content-pad-x: 24px; --section-pad: 72px; }
+      .privacy-hero__decoration { display: none; }
+      .privacy-highlights { margin-top: -40px; padding-bottom: 56px; }
+      .privacy-content-card { padding: 22px 20px; }
+      .privacy-support__card { padding: 28px 24px; }
+      .cta-banner { padding: 56px 0; }
+      .back-to-top { bottom: 20px; right: 20px; width: 44px; height: 44px; }
+    }
+    @media (max-width: 480px) {
+      :root { --content-pad-x: 20px; }
+      .privacy-highlights__grid { grid-template-columns: 1fr; }
+      .cta-banner__actions { flex-direction: column; width: 100%; max-width: 320px; }
+      .cta-banner__actions .btn { width: 100%; }
+      .privacy-support__actions .btn { width: 100%; }
+      .privacy-tools__actions { width: 100%; }
+      .privacy-tools__btn, .privacy-tools__badge { flex: 1; justify-content: center; }
+    }
+  </style>
+  <link rel="stylesheet" href="css/site-nav.css">
+  <link rel="stylesheet" href="css/site-footer.css">
+</head>
+<body class="terms-page">
+
+  <div id="site-header"></div>
+
+  <section class="privacy-hero" aria-labelledby="terms-hero-title">
+    <div class="privacy-hero__decoration" aria-hidden="true"></div>
+    <div class="section-inner privacy-hero__grid">
+      <div class="anim-up">
+        <span class="section-label">Legal</span>
+        <h1 class="privacy-hero__title" id="terms-hero-title">Terms &amp; Conditions</h1>
+        <p class="privacy-hero__sub">Read the terms governing your use of TimeERP and our services.</p>
+      </div>
+      <div class="privacy-hero__visual anim-up stagger-1" aria-hidden="true">
+        <span class="material-symbols-outlined">gavel</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="privacy-highlights" aria-label="Terms highlights">
+    <div class="section-inner">
+      <div class="privacy-highlights__grid">
+        <article class="privacy-highlight-card anim-up stagger-0" tabindex="0">
+          <div class="privacy-highlight-card__icon"><span class="material-symbols-outlined" aria-hidden="true">handshake</span></div>
+          <div>
+            <h3>Acceptance of Terms</h3>
+            <p>Using TimeERP means you agree to these Terms and our Privacy Policy.</p>
+          </div>
+        </article>
+        <article class="privacy-highlight-card anim-up stagger-1" tabindex="0">
+          <div class="privacy-highlight-card__icon"><span class="material-symbols-outlined" aria-hidden="true">person</span></div>
+          <div>
+            <h3>User Responsibilities</h3>
+            <p>Keep credentials secure and use the platform only for lawful business purposes.</p>
+          </div>
+        </article>
+        <article class="privacy-highlight-card anim-up stagger-2" tabindex="0">
+          <div class="privacy-highlight-card__icon"><span class="material-symbols-outlined" aria-hidden="true">verified_user</span></div>
+          <div>
+            <h3>Secure Platform Usage</h3>
+            <p>Role-based access and responsible use of HRMS, CRM, projects, and billing modules.</p>
+          </div>
+        </article>
+        <article class="privacy-highlight-card anim-up stagger-3" tabindex="0">
+          <div class="privacy-highlight-card__icon"><span class="material-symbols-outlined" aria-hidden="true">payments</span></div>
+          <div>
+            <h3>Billing &amp; Subscription</h3>
+            <p>Plans on Pricing; invoices and renewals as agreed with sales.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="privacy-body" aria-label="Terms and conditions content">
+    <div class="section-inner privacy-body__grid">
+      <nav class="privacy-toc" id="terms-toc" aria-label="Table of contents">
+        <button type="button" class="privacy-toc__toggle" id="terms-toc-toggle" aria-expanded="false" aria-controls="terms-toc-nav">
+          On this page
+          <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+        </button>
+        <div class="privacy-toc__nav" id="terms-toc-nav">
+          <p class="privacy-toc__label">Contents</p>
+          <a class="privacy-toc__link is-active" href="#introduction">Introduction</a>
+          <a class="privacy-toc__link" href="#definitions">Definitions</a>
+          <a class="privacy-toc__link" href="#eligibility">Eligibility</a>
+          <a class="privacy-toc__link" href="#user-accounts">User Accounts</a>
+          <a class="privacy-toc__link" href="#acceptable-use">Acceptable Use</a>
+          <a class="privacy-toc__link" href="#prohibited-activities">Prohibited Activities</a>
+          <a class="privacy-toc__link" href="#subscription">Subscription</a>
+          <a class="privacy-toc__link" href="#billing">Billing</a>
+          <a class="privacy-toc__link" href="#payments">Payments</a>
+          <a class="privacy-toc__link" href="#refund-policy">Refund Policy</a>
+          <a class="privacy-toc__link" href="#intellectual-property">Intellectual Property</a>
+          <a class="privacy-toc__link" href="#software-license">Software License</a>
+          <a class="privacy-toc__link" href="#data-protection">Data Protection</a>
+          <a class="privacy-toc__link" href="#privacy">Privacy</a>
+          <a class="privacy-toc__link" href="#third-party-services">Third-Party Services</a>
+          <a class="privacy-toc__link" href="#support">Support</a>
+          <a class="privacy-toc__link" href="#availability">Availability</a>
+          <a class="privacy-toc__link" href="#termination">Termination</a>
+          <a class="privacy-toc__link" href="#limitation-of-liability">Limitation of Liability</a>
+          <a class="privacy-toc__link" href="#indemnification">Indemnification</a>
+          <a class="privacy-toc__link" href="#changes-to-terms">Changes to Terms</a>
+          <a class="privacy-toc__link" href="#governing-law">Governing Law</a>
+          <a class="privacy-toc__link" href="#contact-information">Contact Information</a>
+        </div>
+      </nav>
+
+      <div class="privacy-sections">
+        <div class="privacy-tools anim-up" role="toolbar" aria-label="Page tools">
+          <label class="privacy-tools__search" for="terms-search">
+            <span class="material-symbols-outlined" aria-hidden="true">search</span>
+            <input type="search" id="terms-search" placeholder="Search terms sections…" autocomplete="off" aria-controls="terms-sections-list">
+          </label>
+          <div class="privacy-tools__actions">
+            <button type="button" class="privacy-tools__btn" id="terms-print-btn" aria-label="Print this page">
+              <span class="material-symbols-outlined" aria-hidden="true">print</span>
+              Print
+            </button>
+            <span class="privacy-tools__badge">
+              <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
+              ~12 min read
+            </span>
+          </div>
+        </div>
+
+        <p class="privacy-tools__empty" id="terms-search-empty" role="status">No sections match your search. Try different keywords.</p>
+
+        <div id="terms-sections-list">
+          <article class="privacy-content-card anim-up" id="introduction">
+            <div class="privacy-content-card__head">
+              <div class="privacy-content-card__icon"><span class="material-symbols-outlined" aria-hidden="true">info</span></div>
+              <h2>Introduction</h2>
+            </div>
+            <p>Last updated: July 2026. These Terms &amp; Conditions ("Terms") govern access to and use of TimeERP, an enterprise cloud ERP platform operated by Law Seva Management Private Limited ("we," "us," or "our").</p>
+            <p>TimeERP serves businesses in Construction, Real Estate, MSME, and CA firms with modules including HRMS, CRM, payroll, projects, billing, and documents. By visiting our website, requesting a demo, contacting sales, or using the platform, you agree to these Terms and our <a href="privacy.html">Privacy Policy</a>.</p>
+            <div class="privacy-note">
+              <span class="material-symbols-outlined" aria-hidden="true">info</span>
+              <span>If you are using TimeERP on behalf of an organization, you represent that you have authority to bind that organization to these Terms.</span>
+            </div>
+          </article>
+
+          <article class="privacy-content-card anim-up" id="definitions">
+            <div class="privacy-content-card__head">
+              <div class="privacy-content-card__icon"><span class="material-symbols-outlined" aria-hidden="true">menu_book</span></div>
+              <h2>Definitions</h2>
+            </div>
+            <p>For clarity throughout these Terms, the following definitions apply:</p>
+            <ul>
+              <li><strong>"TimeERP"</strong> means the cloud ERP software, website, demos, help center, and related services we provide.</li>
+              <li><strong>"Customer"</strong> means the business entity that subscribes to or is authorized to use TimeERP.</li>
+              <li><strong>"User"</strong> means any individual granted access to a Customer account, including administrators and employees.</li>
+              <li><strong>"Customer Data"</strong> means information, files, and records uploaded or entered into TimeERP by or on behalf of a Customer.</li>
+              <li><strong>"Subscription"</strong> means the paid or trial access plan selected for TimeERP, as described on our <a href="price.html">Pricing</a> page or in a custom quote.</li>
+            </ul>
+          </article>
+
+          <article class="privacy-content-card anim-up" id="eligibility">
+            <div class="privacy-content-card__head">
+              <div class="privacy-content-card__icon"><span class="material-symbols-outlined" aria-hidden="true">badge</span></div>
+              <h2>Eligibility</h2>
+            </div>
+            <p>TimeERP is a business platform intended for organizations and authorized professionals. You must be at least 18 years old and capable of entering a binding agreement to create or manage an account.</p>
+            <p>By using TimeERP, you confirm that your use complies with applicable laws in your jurisdiction and that you will not provide access to individuals who are not authorized by your organization.</p>
+          </article>
+
+          <article class="privacy-content-card anim-up" id="user-accounts">
+            <div class="privacy-content-card__head">
+              <div class="privacy-content-card__icon"><span class="material-symbols-outlined" aria-hidden="true">manage_accounts</span></div>
+              <h2>User Accounts</h2>
+            </div>
+            <p>Account access is provisioned by your organization or our sales team. You are responsible for maintaining the confidentiality of login credentials and for all activity under your account.</p>
+            <p>Customers should assign roles appropriately using TimeERP's role-based access controls. Notify us promptly via <a href="contact_sales.html">Contact Sales</a> or the <a href="real_time_support.html">Help Center</a> if you suspect unauthorized access.</p>
+            <ul>
+              <li>Provide accurate registration and billing information</li>
+              <li>Keep user lists current when employees join or leave</li>
+              <li>Do not share accounts across individuals</li>
+            </ul>
+          </article>
+
+          <article class="privacy-content-card anim-up" id="acceptable-use">
+            <div class="privacy-content-card__head">
+              <div class="privacy-content-card__icon"><span class="material-symbols-outlined" aria-hidden="true">check_circle</span></div>
+              <h2>Acceptable Use</h2>
+            </div>
+            <p>You may use TimeERP only for lawful business operations aligned with the modules enabled for your subscription—such as managing HR, CRM, projects, payroll, billing, and documents within your organization.</p>
+            <p>You agree to use the platform responsibly, respect the rights of others, and follow any usage guidelines provided in onboarding, documentation, or support communications.</p>
+          </article>
+
+          <article class="privacy-content-card anim-up" id="prohibited-activities">
+            <div class="privacy-content-card__head">
+              <div class="privacy-content-card__icon"><span class="material-symbols-outlined" aria-hidden="true">block</span></div>
+              <h2>Prohibited Activities</h2>
+            </div>
+            <p>You must not misuse TimeERP or interfere with its operation. Prohibited activities include, without limitation:</p>
+            <ul>
+              <li>Attempting to gain unauthorized access to systems, accounts, or data</li>
+              <li>Uploading malware, harmful code, or unlawful content</li>
+              <li>Reverse engineering, scraping, or circumventing security or usage limits</li>
+              <li>Using the service to send spam or harass others</li>
+              <li>Reselling or sublicensing access except as expressly permitted in writing</li>
+            </ul>
+            <p>We may suspend or restrict access if we reasonably believe prohibited activity has occurred.</p>
+          </article>
+
+          <article class="privacy-content-card anim-up" id="subscription">
+            <div class="privacy-content-card__head">
+              <div class="privacy-content-card__icon"><span class="material-symbols-outlined" aria-hidden="true">subscriptions</span></div>
+              <h2>Subscription</h2>
+            </div>
+            <p>TimeERP is offered on subscription plans such as Essentials, Pro, and Business, as shown on our <a href="price.html">Pricing</a> page. Features and module availability may vary by plan.</p>
+            <p>Custom deployments or enterprise requirements may be covered by a separate quote via <a href="custom_quote.html">Get a Quote</a>. Subscription term, user limits, and included modules are as agreed at the time of purchase or renewal.</p>
+          </article>
+
+          <article class="privacy-content-card anim-up" id="billing">
+            <div class="privacy-content-card__head">
+              <div class="privacy-content-card__icon"><span class="material-symbols-outlined" aria-hidden="true">receipt_long</span></div>
+              <h2>Billing</h2>
+            </div>
+            <p>Fees are billed according to your selected plan and any add-ons agreed with our sales team. Invoices will reflect the pricing, billing cycle, and taxes applicable at the time of billing.</p>
+            <p>Unless otherwise stated in your agreement, subscriptions renew automatically for successive terms at then-current rates unless you cancel or change your plan before the renewal date.</p>
+          </article>
+
+          <article class="privacy-content-card anim-up" id="payments">
+            <div class="privacy-content-card__head">
+              <div class="privacy-content-card__icon"><span class="material-symbols-outlined" aria-hidden="true">credit_card</span></div>
+              <h2>Payments</h2>
+            </div>
+            <p>Payment terms and accepted methods are communicated during onboarding or on your invoice. You agree to pay all fees when due and to keep billing contact details up to date.</p>
+            <p>Late or failed payments may result in restricted access until the account is brought current. We may charge interest or recovery costs where permitted by law and your agreement.</p>
+            <div class="privacy-note">
+              <span class="material-symbols-outlined" aria-hidden="true">payments</span>
+              <span>For billing questions or to update payment details, contact our team through <a href="contact_sales.html">Contact Sales</a>.</span>
+            </div>
+          </article>
+
+          <article class="privacy-content-card anim-up" id="refund-policy">
+            <div class="privacy-content-card__head">
+              <div class="privacy-content-card__icon"><span class="material-symbols-outlined" aria-hidden="true">currency_exchange</span></div>
+              <h2>Refund Policy</h2>
+            </div>
+            <p>Subscription fees are generally non-refundable except where required by applicable law or expressly stated in your commercial agreement with us.</p>
+            <p>If you believe a charge was made in error, contact us promptly with invoice details. We will review good-faith requests in line with our billing practices and any signed contract terms.</p>
+          </article>
+
+          <article class="privacy-content-card anim-up" id="intellectual-property">
+            <div class="privacy-content-card__head">
+              <div class="privacy-content-card__icon"><span class="material-symbols-outlined" aria-hidden="true">copyright</span></div>
+              <h2>Intellectual Property</h2>
+            </div>
+            <p>TimeERP, including its software, design, branding, documentation, and website content, is owned by Law Seva Management Private Limited or its licensors and is protected by intellectual property laws.</p>
+            <p>These Terms do not transfer ownership of TimeERP to you. You may not copy, modify, or create derivative works of our platform except as expressly permitted under your license.</p>
+          </article>
+
+          <article class="privacy-content-card anim-up" id="software-license">
+            <div class="privacy-content-card__head">
+              <div class="privacy-content-card__icon"><span class="material-symbols-outlined" aria-hidden="true">key</span></div>
+              <h2>Software License</h2>
+            </div>
+            <p>Subject to these Terms and payment of applicable fees, we grant you a limited, non-exclusive, non-transferable license to access and use TimeERP for your internal business purposes during your subscription term.</p>
+            <p>This license covers authorized Users within your organization and the modules included in your plan. Additional users or modules may require an upgrade or separate agreement.</p>
+          </article>
+
+          <article class="privacy-content-card anim-up" id="data-protection">
+            <div class="privacy-content-card__head">
+              <div class="privacy-content-card__icon"><span class="material-symbols-outlined" aria-hidden="true">encrypted</span></div>
+              <h2>Data Protection</h2>
+            </div>
+            <p>We implement safeguards appropriate for enterprise cloud software, including access controls and encryption in transit, to protect Customer Data processed through TimeERP.</p>
+            <p>You are responsible for the accuracy and legality of Customer Data you upload and for obtaining any consents required to process personal information of your employees, clients, or partners within the platform.</p>
+          </article>
+
+          <article class="privacy-content-card anim-up" id="privacy">
+            <div class="privacy-content-card__head">
+              <div class="privacy-content-card__icon"><span class="material-symbols-outlined" aria-hidden="true">shield</span></div>
+              <h2>Privacy</h2>
+            </div>
+            <p>Our collection and use of personal information is described in our <a href="privacy.html">Privacy Policy</a>, which is incorporated into these Terms by reference.</p>
+            <p>By using TimeERP, you acknowledge that you have read and understand how we handle information related to website visitors, account holders, and platform usage.</p>
+          </article>
+
+          <article class="privacy-content-card anim-up" id="third-party-services">
+            <div class="privacy-content-card__head">
+              <div class="privacy-content-card__icon"><span class="material-symbols-outlined" aria-hidden="true">hub</span></div>
+              <h2>Third-Party Services</h2>
+            </div>
+            <p>TimeERP may integrate with or rely on third-party infrastructure and tools for hosting, communications, analytics, or support. Those providers process data only as needed to deliver services to us.</p>
+            <p>Links to external websites or services are provided for convenience. We are not responsible for third-party terms, privacy practices, or content outside TimeERP.</p>
+          </article>
+
+          <article class="privacy-content-card anim-up" id="support">
+            <div class="privacy-content-card__head">
+              <div class="privacy-content-card__icon"><span class="material-symbols-outlined" aria-hidden="true">support_agent</span></div>
+              <h2>Support</h2>
+            </div>
+            <p>Support is available through our <a href="real_time_support.html">Help Center</a> and via <a href="contact_sales.html">Contact Sales</a> for account, billing, and onboarding questions. Response times may vary by plan and issue severity.</p>
+            <p>We may provide updates, patches, and guidance to keep TimeERP secure and operational. Scheduled maintenance will be communicated when practicable.</p>
+          </article>
+
+          <article class="privacy-content-card anim-up" id="availability">
+            <div class="privacy-content-card__head">
+              <div class="privacy-content-card__icon"><span class="material-symbols-outlined" aria-hidden="true">cloud_done</span></div>
+              <h2>Availability</h2>
+            </div>
+            <p>We strive to maintain reliable cloud access to TimeERP but do not guarantee uninterrupted or error-free service. Temporary downtime may occur for maintenance, upgrades, or factors outside our reasonable control.</p>
+            <p>Any uptime commitments applicable to your organization will be set out in your subscription agreement or service-level terms, if provided.</p>
+          </article>
+
+          <article class="privacy-content-card anim-up" id="termination">
+            <div class="privacy-content-card__head">
+              <div class="privacy-content-card__icon"><span class="material-symbols-outlined" aria-hidden="true">cancel</span></div>
+              <h2>Termination</h2>
+            </div>
+            <p>Either party may terminate access as provided in your agreement or by giving notice in accordance with billing terms. You may request account closure by contacting our team.</p>
+            <p>Upon termination, your license ends and access may be disabled. We may retain or delete Customer Data according to our retention practices, applicable law, and any data-export window agreed at termination.</p>
+            <div class="privacy-note">
+              <span class="material-symbols-outlined" aria-hidden="true">warning</span>
+              <span>Export any records you need before requesting closure. After the retention period, deleted data may not be recoverable.</span>
+            </div>
+          </article>
+
+          <article class="privacy-content-card anim-up" id="limitation-of-liability">
+            <div class="privacy-content-card__head">
+              <div class="privacy-content-card__icon"><span class="material-symbols-outlined" aria-hidden="true">balance</span></div>
+              <h2>Limitation of Liability</h2>
+            </div>
+            <p>To the maximum extent permitted by law, Law Seva Management Private Limited shall not be liable for indirect, incidental, special, consequential, or punitive damages, or for loss of profits, revenue, data, or business opportunities arising from your use of TimeERP.</p>
+            <p>Our total liability for claims related to the service shall not exceed the fees paid by you for TimeERP in the twelve (12) months preceding the event giving rise to the claim, except where liability cannot be limited under applicable law.</p>
+          </article>
+
+          <article class="privacy-content-card anim-up" id="indemnification">
+            <div class="privacy-content-card__head">
+              <div class="privacy-content-card__icon"><span class="material-symbols-outlined" aria-hidden="true">gpp_maybe</span></div>
+              <h2>Indemnification</h2>
+            </div>
+            <p>You agree to indemnify and hold harmless Law Seva Management Private Limited and its officers, employees, and agents from claims, damages, and expenses arising from your misuse of TimeERP, violation of these Terms, or infringement of third-party rights through Customer Data or your conduct.</p>
+            <p>We will notify you of relevant claims where practicable and cooperate in their defense, subject to your assumption of control where appropriate.</p>
+          </article>
+
+          <article class="privacy-content-card anim-up" id="changes-to-terms">
+            <div class="privacy-content-card__head">
+              <div class="privacy-content-card__icon"><span class="material-symbols-outlined" aria-hidden="true">edit_document</span></div>
+              <h2>Changes to Terms</h2>
+            </div>
+            <p>We may update these Terms from time to time to reflect product changes, legal requirements, or business practices. Material updates will be reflected on this page with a revised date.</p>
+            <p>Material changes will be communicated through the website, email, or in-product notice where appropriate. Continued use of TimeERP after changes take effect constitutes acceptance of the updated Terms.</p>
+          </article>
+
+          <article class="privacy-content-card anim-up" id="governing-law">
+            <div class="privacy-content-card__head">
+              <div class="privacy-content-card__icon"><span class="material-symbols-outlined" aria-hidden="true">account_balance</span></div>
+              <h2>Governing Law</h2>
+            </div>
+            <p>These Terms are governed by the laws of India, without regard to conflict-of-law principles. Courts located in Uttar Pradesh, India shall have exclusive jurisdiction over disputes arising from or relating to these Terms, subject to any mandatory consumer protections in your jurisdiction.</p>
+            <p>We encourage you to contact us first to resolve concerns informally before pursuing formal proceedings.</p>
+          </article>
+
+          <article class="privacy-content-card anim-up" id="contact-information">
+            <div class="privacy-content-card__head">
+              <div class="privacy-content-card__icon"><span class="material-symbols-outlined" aria-hidden="true">mail</span></div>
+              <h2>Contact Information</h2>
+            </div>
+            <p>For questions about these Terms, contact us via <a href="contact_sales.html">Contact Sales</a> or visit <a href="https://lawseva.com/" target="_blank" rel="noopener noreferrer">lawseva.com</a>.</p>
+            <p>Law Seva Management Private Limited · BM-08, Ansal Sumedha Building, RDC, Ghaziabad, Delhi NCR, UP 201002, India.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="privacy-faq" aria-labelledby="terms-faq-title">
+    <div class="section-inner">
+      <div class="section-lead anim-up">
+        <span class="section-label">FAQ</span>
+        <h2 id="terms-faq-title">Common terms questions</h2>
+        <p>Quick answers about using TimeERP under these Terms.</p>
+      </div>
+      <div class="sp-faq anim-up" id="terms-faq-list">
+        <div class="sp-faq__item is-open">
+          <button type="button" class="sp-faq__trigger" aria-expanded="true" aria-controls="terms-faq-a-1" id="terms-faq-q-1">
+            Who can use TimeERP?
+            <span class="sp-faq__chevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="sp-faq__panel" id="terms-faq-a-1" role="region" aria-labelledby="terms-faq-q-1">
+            <p>TimeERP is designed for businesses and authorized professionals. Users must be at least 18 and use the platform for lawful business purposes. Access is typically provisioned by your organization or our sales team under a subscription plan.</p>
+          </div>
+        </div>
+        <div class="sp-faq__item">
+          <button type="button" class="sp-faq__trigger" aria-expanded="false" aria-controls="terms-faq-a-2" id="terms-faq-q-2">
+            Can these Terms change?
+            <span class="sp-faq__chevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="sp-faq__panel" id="terms-faq-a-2" role="region" aria-labelledby="terms-faq-q-2">
+            <p>Yes. We may update these Terms to reflect product, legal, or operational changes. We will post revisions on this page and notify you of material updates when appropriate. Continued use after changes take effect means you accept the updated Terms.</p>
+          </div>
+        </div>
+        <div class="sp-faq__item">
+          <button type="button" class="sp-faq__trigger" aria-expanded="false" aria-controls="terms-faq-a-3" id="terms-faq-q-3">
+            How are subscriptions handled?
+            <span class="sp-faq__chevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="sp-faq__panel" id="terms-faq-a-3" role="region" aria-labelledby="terms-faq-q-3">
+            <p>Plans such as Essentials, Pro, and Business are described on our <a href="price.html">Pricing</a> page. Custom quotes may apply for larger deployments. Fees, billing cycles, and renewals follow the terms agreed at purchase unless otherwise stated in your contract.</p>
+          </div>
+        </div>
+        <div class="sp-faq__item">
+          <button type="button" class="sp-faq__trigger" aria-expanded="false" aria-controls="terms-faq-a-4" id="terms-faq-q-4">
+            How can an account be terminated?
+            <span class="sp-faq__chevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="sp-faq__panel" id="terms-faq-a-4" role="region" aria-labelledby="terms-faq-q-4">
+            <p>Either party may end access according to your agreement or billing terms. You may request closure via <a href="contact_sales.html">Contact Sales</a>. We may suspend or terminate access for non-payment or material breach of these Terms.</p>
+          </div>
+        </div>
+        <div class="sp-faq__item">
+          <button type="button" class="sp-faq__trigger" aria-expanded="false" aria-controls="terms-faq-a-5" id="terms-faq-q-5">
+            Who owns uploaded data?
+            <span class="sp-faq__chevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="sp-faq__panel" id="terms-faq-a-5" role="region" aria-labelledby="terms-faq-q-5">
+            <p>You retain ownership of Customer Data you upload to TimeERP. We process that data only to provide, secure, and support the service as described in these Terms and our <a href="privacy.html">Privacy Policy</a>.</p>
+          </div>
+        </div>
+        <div class="sp-faq__item">
+          <button type="button" class="sp-faq__trigger" aria-expanded="false" aria-controls="terms-faq-a-6" id="terms-faq-q-6">
+            How is customer information protected?
+            <span class="sp-faq__chevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="sp-faq__panel" id="terms-faq-a-6" role="region" aria-labelledby="terms-faq-q-6">
+            <p>We apply safeguards appropriate for enterprise cloud software, including access controls and encryption in transit. Details on collection, use, and retention are in our <a href="privacy.html">Privacy Policy</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="privacy-support" aria-labelledby="terms-support-title">
+    <div class="section-inner">
+      <div class="privacy-support__card anim-up">
+        <div>
+          <h2 id="terms-support-title">Legal team &amp; support</h2>
+          <p>Our team can help with questions about these Terms, subscriptions, billing, and account access.</p>
+          <div class="privacy-support__meta">
+            <div class="privacy-support__row">
+              <span class="material-symbols-outlined" aria-hidden="true">mail</span>
+              <span>Reach us via <a href="contact_sales.html">Contact Us</a></span>
+            </div>
+            <div class="privacy-support__row">
+              <span class="material-symbols-outlined" aria-hidden="true">language</span>
+              <span>Website: <a href="https://lawseva.com/" target="_blank" rel="noopener noreferrer">lawseva.com</a></span>
+            </div>
+            <div class="privacy-support__row">
+              <span class="material-symbols-outlined" aria-hidden="true">corporate_fare</span>
+              <span>Law Seva Management Private Limited</span>
+            </div>
+          </div>
+        </div>
+        <div class="privacy-support__actions">
+          <a href="contact_sales.html" class="btn btn--primary">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-banner" aria-labelledby="terms-cta-title">
+    <div class="section-inner">
+      <div class="section-lead anim-up">
+        <h2 id="terms-cta-title">Questions about our Terms?</h2>
+        <p>Our team is available to clarify subscription, usage, and legal questions about TimeERP.</p>
+      </div>
+      <div class="cta-banner__actions anim-up stagger-1">
+        <a href="contact_sales.html" class="btn btn--white">Contact Support</a>
+        <a href="home1.html" class="btn btn--ghost">Back to Home</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__main">
+        <div class="footer__brand">
+          <a href="home1.html" class="footer__logo" aria-label="TimeERP home">
+            <img src="assets/image01-footer.svg" alt="TimeERP" width="196" height="48" loading="lazy">
+          </a>
+          <p class="footer__desc">One Platform. Complete Business Management. Enterprise ERP for modern businesses.</p>
+          <div class="footer__stats">
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">◆</span><span>650+ Businesses</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">◎</span><span>99.8% Uptime</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">☁</span><span>Cloud ERP</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">⛨</span><span>Secure</span></div>
+          </div>
+        </div>
+
+        <div class="footer__cols">
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Products</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Products</h3>
+            <ul class="footer__links">
+              <li><a href="home1.html#products">Modules</a></li>
+              <li><a href="home1.html#benefits">Benefits</a></li>
+              <li><a href="home1.html#project-management">Project Management</a></li>
+              <li><a href="home1.html#solutions">Platform</a></li>
+              <li><a href="price.html">Pricing</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Industries</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Industries</h3>
+            <ul class="footer__links">
+              <li><a href="construction.html">Construction</a></li>
+              <li><a href="real_Estate.html">Real Estate</a></li>
+              <li><a href="msme.html">MSME</a></li>
+              <li><a href="CA.html">CA Firms</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Company</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Company</h3>
+            <ul class="footer__links">
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="Our_Presence.html">Our Presence</a></li>
+              <li><a href="careers.html">Careers</a></li>
+              <li><a href="contact_sales.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Support</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Support</h3>
+            <ul class="footer__links">
+              <li><a href="real_time_support.html">Help Center</a></li>
+              <li><a href="contact_sales.html">Sales</a></li>
+              <li><a href="custom_quote.html">Get a Quote</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__connect">
+        <div class="footer__connect-item">
+          <span class="footer__connect-label">Visit us</span>
+          <address class="footer__address">
+            BM-08, Ansal Sumedha Building, RDC,<br>
+            Ghaziabad, Delhi NCR, UP 201002
+          </address>
+          <div class="footer__quick">
+            <a class="footer__quick-btn" href="contact_sales.html">Book Demo</a>
+            <a class="footer__quick-btn" href="real_time_support.html">Get Support</a>
+          </div>
+        </div>
+        <div class="footer__connect-item">
+          <span class="footer__connect-label">Follow us</span>
+          <div class="footer__social">
+            <a href="https://www.linkedin.com/in/ca-clouddesk-381510388" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23.5h-4V8.5zM8.5 8.5h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1v8.9h-4v-7.88c0-1.88-.03-4.3-2.62-4.3-2.62 0-3.02 2.05-3.02 4.17v7.01h-4V8.5z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/erptime/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@ERPTime" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.5v-7l6 3.5-6 3.5z"/></svg>
+            </a>
+            <a href="https://x.com/erptime" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke-linecap="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bar">
+        <p class="footer__copy">© 2026 TimeERP · <a href="https://lawseva.com/" target="_blank" rel="noopener noreferrer">Law Seva Management Private Limited</a></p>
+        <nav class="footer__legal" aria-label="Legal">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="contact_sales.html">Contact Us</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <span class="material-symbols-outlined" aria-hidden="true">arrow_upward</span>
+  </button>
+
+  <script src="js/site-nav.js" defer></script>
+  <script src="js/scroll-animations.js" defer></script>
+  <script src="js/footer-accordion.js" defer></script>
+  <script>
+    (function () {
+      'use strict';
+
+      var toc = document.getElementById('terms-toc');
+      var tocToggle = document.getElementById('terms-toc-toggle');
+      var tocLinks = document.querySelectorAll('#terms-toc-nav .privacy-toc__link');
+      var sections = document.querySelectorAll('#terms-sections-list .privacy-content-card[id]');
+      var searchInput = document.getElementById('terms-search');
+      var searchEmpty = document.getElementById('terms-search-empty');
+      var printBtn = document.getElementById('terms-print-btn');
+      var backToTop = document.getElementById('back-to-top');
+
+      if (tocToggle && toc) {
+        tocToggle.addEventListener('click', function () {
+          var open = toc.classList.toggle('is-open');
+          tocToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      }
+
+      tocLinks.forEach(function (link) {
+        link.addEventListener('click', function () {
+          if (window.innerWidth <= 1024 && toc) {
+            toc.classList.remove('is-open');
+            if (tocToggle) tocToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+
+      if ('IntersectionObserver' in window && sections.length) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var id = entry.target.getAttribute('id');
+            tocLinks.forEach(function (link) {
+              var active = link.getAttribute('href') === '#' + id;
+              link.classList.toggle('is-active', active);
+              if (active) link.setAttribute('aria-current', 'true');
+              else link.removeAttribute('aria-current');
+            });
+          });
+        }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+        sections.forEach(function (section) { observer.observe(section); });
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener('input', function () {
+          var query = searchInput.value.trim().toLowerCase();
+          var visibleCount = 0;
+          sections.forEach(function (card) {
+            var text = card.textContent.toLowerCase();
+            var match = !query || text.indexOf(query) !== -1;
+            card.classList.toggle('is-hidden', !match);
+            if (match) visibleCount++;
+          });
+          if (searchEmpty) searchEmpty.classList.toggle('is-visible', query.length > 0 && visibleCount === 0);
+        });
+      }
+
+      if (printBtn) {
+        printBtn.addEventListener('click', function () { window.print(); });
+      }
+
+      if (backToTop) {
+        window.addEventListener('scroll', function () {
+          backToTop.classList.toggle('is-visible', window.scrollY > 400);
+        }, { passive: true });
+        backToTop.addEventListener('click', function () {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+
+      document.querySelectorAll('#terms-faq-list .sp-faq__item').forEach(function (item) {
+        var trigger = item.querySelector('.sp-faq__trigger');
+        if (!trigger) return;
+        var panel = item.querySelector('.sp-faq__panel');
+        if (item.classList.contains('is-open') && panel) {
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        }
+        trigger.addEventListener('click', function () {
+          var open = item.classList.toggle('is-open');
+          trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+          if (panel) panel.style.maxHeight = open ? panel.scrollHeight + 'px' : '0';
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

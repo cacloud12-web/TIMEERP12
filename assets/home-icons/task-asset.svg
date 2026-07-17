@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="gt-asset" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#25b7a7"/>
+      <stop offset="1" stop-color="#0d7a6e"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#e8f8f6"/>
+<rect x="16" y="28" width="32" height="20" rx="3" fill="url(#gt-asset)"/><path d="M22 28V22a10 10 0 0120 0v6" stroke="#083530" stroke-width="3"/>
+</svg>

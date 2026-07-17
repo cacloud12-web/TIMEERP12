@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="gt-travel" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#25b7a7"/>
+      <stop offset="1" stop-color="#0d7a6e"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#e8f8f6"/>
+<path d="M14 40l34-18-8 2-4 10 8-4" stroke="url(#gt-travel)" stroke-width="3" fill="none" stroke-linejoin="round"/><circle cx="18" cy="44" r="4" fill="#083530"/><circle cx="40" cy="44" r="4" fill="#083530"/>
+</svg>

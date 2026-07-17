@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TIME ERP Assistant — Chatbot</title>
+  <meta name="description" content="TIME ERP virtual assistant — explore products, pricing, demos, and documentation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/chatbot-widget.css">
+  <style>
+    .cb-page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 24px 120px;
+      text-align: center;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    .cb-page__eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #25b7a7;
+      margin-bottom: 12px;
+    }
+    .cb-page__title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700;
+      color: #083530;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .cb-page__lead {
+      color: #7a9593;
+      max-width: 480px;
+      margin: 0 auto 28px;
+      line-height: 1.6;
+    }
+    .cb-page__hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: #fff;
+      border: 1px solid #d0eeec;
+      border-radius: 999px;
+      font-size: 13px;
+      color: #3d5250;
+      box-shadow: 0 12px 32px rgba(37, 183, 167, 0.12);
+    }
+    body.cb-standalone {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse 80% 50% at 10% 0%, rgba(37, 183, 167, 0.12), transparent 50%),
+        radial-gradient(ellipse 60% 40% at 90% 100%, rgba(37, 183, 167, 0.08), transparent 45%),
+        linear-gradient(180deg, #f7fbfb 0%, #eef6f5 100%);
+    }
+
+  </style>
+</head>
+<body class="cb-standalone">
+  <main class="cb-page">
+    <span class="cb-page__eyebrow">TIME ERP</span>
+    <h1 class="cb-page__title">Meet your ERP Assistant</h1>
+    <p class="cb-page__lead">
+      A premium conversational interface for demos, pricing, modules, and documentation —
+      ready for future AI and Laravel API integration.
+    </p>
+    <p class="cb-page__hint">Tap the chat icon at the bottom right to start</p>
+  </main>
+
+<!-- ========== TIME ERP Chat Widget ========== -->
+  <div class="cb-widget" id="cbWidget" data-api-ready="false">
+    <div class="cb-launcher-wrap">
+      <button
+        type="button"
+        class="cb-launcher"
+        id="cbLauncher"
+        aria-label="Open TIME ERP Assistant"
+        aria-controls="cbPanel"
+        aria-expanded="false"
+      >
+        <!-- Dual speech-bubble icon -->
+        <svg class="cb-launcher__icon cb-launcher__icon--chat" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9.2 5h6.6A2.7 2.7 0 0118.5 7.7v3.9A2.7 2.7 0 0115.8 14.3h-1.7l-1.6 1.35a.45.45 0 01-.72-.36V14.3" stroke="#fff" stroke-width="1.8" stroke-linejoin="round" opacity="0.55"/>
+          <path d="M5 8h8.2A2.7 2.7 0 0115.9 10.7v4.2A2.7 2.7 0 0113.2 17.6H8.1L6.1 19.25a.5.5 0 01-.82-.39v-1.26H5A2.7 2.7 0 012.3 14.9v-4.2A2.7 2.7 0 015 8z" stroke="#fff" stroke-width="1.85" stroke-linejoin="round"/>
+        </svg>
+        <svg class="cb-launcher__icon cb-launcher__icon--close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+        <span class="cb-badge" id="cbBadge" aria-label="1 unread message">1</span>
+      </button>
+      <div class="cb-tooltip" id="cbTooltip" role="tooltip">Need Help?</div>
+    </div>
+
+    <section
+      class="cb-panel"
+      id="cbPanel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cbTitle"
+      aria-hidden="true"
+    >
+            <header class="cb-header">
+        <div class="cb-header__brand">
+          <div class="cb-header__avatar" aria-hidden="true">
+            <img class="cb-header__ai-icon" src="assets/chatbot-ai-icon.svg" alt="" width="40" height="40">
+            <span class="cb-header__online" title="Online"></span>
+          </div>
+          <div class="cb-header__text">
+            <div class="cb-header__title" id="cbTitle" role="heading" aria-level="2"><span class="cb-header__title-time">Time</span><span class="cb-header__title-erp">ERP</span></div>
+            <p class="cb-header__status">Powered by AI</p>
+          </div>
+        </div>
+        <button type="button" class="cb-icon-btn" id="cbMenuBtn" hidden aria-hidden="true"></button>
+        <button type="button" class="cb-icon-btn" id="cbMinimizeBtn" hidden aria-hidden="true"></button>
+        <div class="cb-header__actions">
+          <button type="button" class="cb-icon-btn" id="cbCloseBtn" aria-label="Close chat">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="cb-panel__body">
+        <!-- Slide-out sidebar -->
+        <div class="cb-sidebar" id="cbSidebar" aria-hidden="true">
+          <div class="cb-sidebar__panel" role="navigation" aria-label="Assistant menu">
+            <div class="cb-sidebar__title">
+              Menu
+              <button type="button" class="cb-icon-btn" id="cbSidebarClose" aria-label="Close menu" style="color:var(--heading-dark)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+              </button>
+            </div>
+            <nav class="cb-sidebar__nav">
+              <button type="button" data-sidebar="history"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Conversation History</button>
+              <button type="button" data-sidebar="faqs"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg> FAQs</button>
+              <button type="button" data-sidebar="docs"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg> Documentation</button>
+              <button type="button" data-sidebar="searches"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg> Recent Searches</button>
+              <button type="button" data-sidebar="settings"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg> Settings</button>
+            </nav>
+            <div class="cb-sidebar__section">
+              <h4>Recent</h4>
+              <ul class="cb-sidebar__history" id="cbHistoryList"></ul>
+            </div>
+            <div class="cb-sidebar__section">
+              <h4>Recent searches</h4>
+              <ul class="cb-sidebar__searches" id="cbSearchList"></ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="cb-messages" id="cbMessages" role="log" aria-live="polite" aria-relevant="additions"></div>
+
+        <div class="cb-typing" id="cbTyping" aria-hidden="true">
+          <div class="cb-msg__avatar cb-msg__avatar--bot" aria-hidden="true">AI</div>
+          <div class="cb-typing__dots" aria-label="Assistant is typing">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <div class="cb-panel__quick" id="cbQuickActions">
+          <div class="cb-quick-grid">
+            <button type="button" class="cb-quick-btn" data-action="demo">📅 Book a demo</button>
+            <button type="button" class="cb-quick-btn" data-action="training">🎓 Get training</button>
+            <button type="button" class="cb-quick-btn" data-action="modules">🚀 Explore modules</button>
+            <button type="button" class="cb-quick-btn" data-action="contact">💬 Chat with sales</button>
+          </div>
+        </div>
+        <div class="cb-chips" id="cbChips" hidden aria-hidden="true"></div>
+      </div>
+
+      <footer class="cb-panel__footer">
+        <form class="cb-input-row" id="cbForm" autocomplete="off">
+          <button type="button" class="cb-attach-btn" id="cbAttachBtn" aria-label="Attach file (coming soon)" title="Attach">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>
+          </button>
+          <label class="visually-hidden" for="cbInput" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Message</label>
+          <input
+            type="text"
+            id="cbInput"
+            class="cb-input"
+            name="message"
+            placeholder="Ask me anything..."
+            maxlength="500"
+            aria-label="Ask me anything"
+          >
+          <button type="submit" class="cb-send-btn" id="cbSendBtn" aria-label="Send message">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </button>
+        </form>
+        <p class="cb-footer-note">AI-generated content may be inaccurate.</p>
+      </footer>
+    </section>
+  </div>
+
+  <!-- Demo Modal (opens from Book Live Demo — no navigation) -->
+  <div class="cb-modal-backdrop" id="demoModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="cb-modal" id="modalCard">
+      <button type="button" class="cb-modal__close" id="closeModalBtn" aria-label="Close demo modal">×</button>
+      <div class="cb-modal__grid" id="modalFormWrap">
+        <div class="cb-modal__left">
+          <h2 id="modalTitle">An ERP, unlike any other</h2>
+          <p>See how Time ERP brings your business vision to life.</p>
+          <ul>
+            <li>Grounded in your business goals and workflows</li>
+            <li>Adapted to your industry and stage of growth</li>
+            <li>Focused on how everything works together, end to end</li>
+            <li>Covers our premium plan offering comprehensively</li>
+          </ul>
+        </div>
+        <div class="cb-modal__right">
+          <p class="cb-modal__form-title">Request a demo</p>
+          <form id="demoForm">
+            <div class="cb-form-field">
+              <label for="fullName">Full Name</label>
+              <input type="text" id="fullName" name="fullName" required>
+            </div>
+            <div class="cb-form-field">
+              <label for="companyWebsite">Company Website</label>
+              <input type="url" id="companyWebsite" name="companyWebsite" placeholder="https://">
+            </div>
+            <div class="cb-form-field">
+              <label for="demoEmail">Work Email</label>
+              <input type="email" id="demoEmail" name="demoEmail" required>
+            </div>
+            <div class="cb-form-field">
+              <label for="demoPhone">Phone Number</label>
+              <input type="tel" id="demoPhone" name="demoPhone">
+            </div>
+            <div class="cb-form-field">
+              <label for="industry">Industry</label>
+              <select id="industry" name="industry" required>
+                <option value="">Select industry</option>
+                <option>Manufacturing</option>
+                <option>Construction</option>
+                <option>Real Estate</option>
+                <option>Law Firm / CA</option>
+                <option>Services</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="cb-form-field">
+              <label for="companySize">Company Size</label>
+              <select id="companySize" name="companySize" required>
+                <option value="">Select size</option>
+                <option>&lt;50</option>
+                <option>50–100</option>
+                <option>101–500</option>
+                <option>500–1000</option>
+                <option>1000+</option>
+              </select>
+            </div>
+            <div class="cb-form-field">
+              <label for="requirements">Describe your requirements</label>
+              <textarea id="requirements" name="requirements" rows="3"></textarea>
+            </div>
+            <button type="submit" class="cb-btn-primary">Request a Demo</button>
+            <p class="cb-form-privacy">By clicking Submit, you agree to our <a href="privacy.html">Privacy Policy</a></p>
+          </form>
+        </div>
+      </div>
+      <div class="cb-modal__success" id="modalSuccess" aria-live="polite">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#25b7a7" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+        <h3>Request received</h3>
+        <p>Our team will contact you shortly to schedule your TIME ERP demo.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/chatbot-widget.js"></script>
+</body>
+</html>

@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="assets/image0.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Dealer | TimeERP</title>
+  <meta name="description" content="TimeERP for property dealers and brokerages: listing inventory, lead CRM, site visits, deal pipeline, commission tracking, and RERA-ready KYC. Built for Indian real estate brokers.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' mailto:">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"><style>
+    :root {
+      --primary: #25b7a7; --primary-dark: #1a9e8f; --primary-light: #e8f8f6;
+      --heading: #083530; --text: #3d5250; --muted: #616365; --border: #e8f2f1;
+      --white: #fff; --max: 1100px; --pad: 80px; --pad-x: 48px; --radius: 12px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:Inter,-apple-system,sans-serif;font-size:16px;line-height:1.65;color:var(--text);background:var(--white);overflow-x:hidden;}
+    a{color:inherit;text-decoration:none;}
+    button{font-family:inherit;cursor:pointer;border:none;background:none;}
+    img{max-width:100%;display:block;}
+
+    .shell{max-width:var(--max);margin:0 auto;padding:0 var(--pad-x);}
+    .section{padding:var(--pad) 0;}
+    .section-label{
+      display:block;
+      margin-bottom:20px;
+      font-size:12px;line-height:14px;font-weight:600;letter-spacing:.08em;
+      text-transform:uppercase;color:#1a9e8f;
+    }
+    .section-lead{max-width:640px;margin-bottom:40px;}
+    .section-lead h1,.section-lead h2{font-size:clamp(1.75rem,2.8vw,2.25rem);font-weight:600;color:var(--heading);letter-spacing:-.02em;line-height:1.25;margin-bottom:12px;}
+    .section-lead p{font-size:16px;color:var(--muted);line-height:1.65;}
+
+    .anim-up,.anim-fade{opacity:0;transition:opacity .5s,transform .5s;}
+    .anim-up{transform:translateY(20px);}
+    .anim-up.in-view,.anim-fade.in-view{opacity:1;transform:none;}
+
+    /* Nav */
+    .sp-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);transition:box-shadow .2s;}
+    .sp-nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.08);}
+    .sp-nav__inner{
+      max-width:var(--max);margin:0 auto;padding:0 var(--pad-x);height:72px;
+      display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px 20px;
+    }
+    .sp-nav__logo{flex-shrink:0;display:flex;align-items:center;}
+    .sp-nav__logo img{height:40px;width:auto;}
+    .sp-nav__links{
+      display:flex;align-items:center;justify-content:center;gap:2px;
+      flex-wrap:nowrap;min-width:0;overflow:hidden;
+    }
+    .sp-nav__links a{
+      font-size:13px;font-weight:500;padding:8px 10px;border-radius:6px;color:var(--text);
+      white-space:nowrap;transition:background .15s,color .15s;
+    }
+    .sp-nav__links a:hover{color:var(--primary);background:rgba(37,183,167,.08);}
+    .sp-nav__links a:focus-visible{color:var(--primary);background:rgba(37,183,167,.08);outline:2px solid var(--primary);outline-offset:2px;}
+    .sp-nav__actions{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+    .sp-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 18px;font-size:13px;font-weight:600;border-radius:8px;white-space:nowrap;transition:transform .2s ease,box-shadow .2s ease,background .2s ease,border-color .2s ease,color .2s ease;}
+    .sp-btn--nav{padding:10px 16px;}
+    .sp-btn--primary{background:var(--primary);color:#fff;}
+    .sp-btn--primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,183,167,.4);}
+    .sp-btn--ghost{border:1px solid var(--border);color:var(--heading);background:#fff;}
+    .sp-btn--ghost:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-light);transform:translateY(-1px);}
+    .sp-btn:focus-visible{outline:2px solid var(--primary);outline-offset:2px;}
+
+    /* Hero */
+    .sp-hero{padding:calc(72px + 64px) 0 var(--pad);background:linear-gradient(165deg,#3dd5c5 0%,#25b7a7 35%,#0d7a6e 100%);color:#fff;}
+    .sp-hero__grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;}
+    .sp-hero .section-label{color:#1a9e8f;}
+    .sp-hero
+    .sp-hero h1{font-size:clamp(2rem,3.5vw,2.75rem);font-weight:600;line-height:1.2;letter-spacing:-.03em;margin-bottom:16px;color:#fff;}
+    .sp-hero__sub{font-size:17px;line-height:1.65;color:rgba(255,255,255,.9);max-width:520px;margin-bottom:28px;}
+    .sp-hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px;}
+    .sp-hero__cta .sp-btn--primary{background:#fff;color:var(--primary);}
+    .sp-hero__cta .sp-btn--primary:hover{background:#fff;color:var(--primary-dark);box-shadow:0 8px 28px rgba(0,0,0,.15);}
+    .sp-hero__cta .sp-btn--ghost{border-color:rgba(255,255,255,.45);color:#fff;background:rgba(255,255,255,.1);}
+    .sp-hero__cta .sp-btn--ghost:hover{background:rgba(255,255,255,.22);border-color:#fff;color:#fff;}
+    .sp-hero__trust{display:flex;flex-wrap:wrap;gap:16px 24px;font-size:13px;color:rgba(255,255,255,.85);}
+    .sp-hero__trust span{display:inline-flex;align-items:center;gap:6px;}
+    .sp-hero__trust .material-symbols-outlined{font-size:18px;}
+    .sp-hero__card{
+      padding:28px;border-radius:var(--radius);background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(8px);
+      transition:border-color .25s ease,box-shadow .25s ease,transform .25s ease,background .25s ease;
+    }
+    @media (hover:hover){
+      .sp-hero__card:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.45);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.12);}
+    }
+    .sp-hero__card h3{font-size:15px;font-weight:600;margin-bottom:12px;color:#fff;}
+    .sp-hero__card ul{display:flex;flex-direction:column;gap:10px;}
+    .sp-hero__card li{display:flex;align-items:flex-start;gap:8px;font-size:14px;color:rgba(255,255,255,.92);line-height:1.45;}
+    .sp-hero__card li .material-symbols-outlined{font-size:18px;color:#fff;flex-shrink:0;}
+
+    /* Value cards — TimeERP layout */
+    .sp-values{background:var(--primary-light);}
+    .sp-values__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+    .sp-value{
+      position:relative;padding:24px 22px;background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+      transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+    }
+    .sp-value::before{
+      content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+      background:linear-gradient(180deg,#25b7a7,#3dd5c5);border-radius:var(--radius) 0 0 var(--radius);
+      transform:scaleY(0);transform-origin:top;transition:transform .25s ease;
+    }
+    @media (hover:hover){
+      .sp-value:hover{transform:translateY(-6px);border-color:rgba(37,183,167,.35);box-shadow:0 16px 40px rgba(37,183,167,.14);}
+      .sp-value:hover::before{transform:scaleY(1);}
+      .sp-value:hover .sp-value__icon{background:linear-gradient(145deg,#25b7a7,#3dd5c5);transform:scale(1.08);box-shadow:0 8px 20px rgba(37,183,167,.3);}
+      .sp-value:hover .sp-value__icon .material-symbols-outlined{color:#fff;}
+    }
+    .sp-value__icon{
+      width:44px;height:44px;border-radius:10px;background:rgba(37,183,167,.12);
+      display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+      transition:background .25s ease,transform .25s ease,box-shadow .25s ease;
+    }
+    .sp-value__icon .material-symbols-outlined{font-size:24px;color:var(--primary);}
+    .sp-value h3{font-size:16px;font-weight:600;color:var(--heading);margin-bottom:8px;}
+    .sp-value p{font-size:14px;color:var(--muted);line-height:1.55;}
+
+    /* Solutions cards */
+    .sp-solutions{background:#fafcfc;}
+    .sp-solutions__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+    .sp-solution-card{
+      background:#fff;border-radius:14px;padding:28px 28px 26px;
+      border:1px solid var(--border);cursor:pointer;text-align:left;width:100%;
+      transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease,background .25s ease;
+    }
+    .sp-solution-card.is-active{
+      border-color:rgba(37,183,167,.5);background:linear-gradient(165deg,#f0fbf9,#fff);
+      box-shadow:0 12px 32px rgba(37,183,167,.14);transform:translateY(-4px);
+    }
+    @media (hover:hover){
+      .sp-solution-card:hover:not(.is-active){transform:translateY(-5px);box-shadow:0 16px 40px rgba(37,183,167,.12);border-color:rgba(37,183,167,.3);}
+      .sp-solution-card:hover .sp-solution-card__icon{background:linear-gradient(145deg,#25b7a7,#3dd5c5);transform:scale(1.06);}
+      .sp-solution-card:hover .sp-solution-card__icon .material-symbols-outlined{color:#fff;}
+      .sp-solution-card.is-active:hover{transform:translateY(-5px);}
+    }
+    .sp-solution-card:focus-visible{outline:2px solid var(--primary);outline-offset:3px;}
+    .sp-solution-card__icon{
+      width:52px;height:52px;border-radius:14px;background:var(--primary-light);
+      display:flex;align-items:center;justify-content:center;margin-bottom:18px;
+      transition:background .25s ease,transform .25s ease;
+    }
+    .sp-solution-card.is-active .sp-solution-card__icon{background:linear-gradient(145deg,#25b7a7,#3dd5c5);}
+    .sp-solution-card.is-active .sp-solution-card__icon .material-symbols-outlined{color:#fff;}
+    .sp-solution-card__icon .material-symbols-outlined{font-size:26px;color:var(--primary);transition:color .25s ease;}
+    .sp-solution-card h3{font-size:18px;font-weight:700;color:var(--heading);margin-bottom:10px;line-height:1.3;}
+    .sp-solution-card p{font-size:15px;color:var(--muted);margin-bottom:18px;line-height:1.6;}
+    .sp-solution-link{
+      display:inline-flex;align-items:center;gap:4px;font-size:14px;font-weight:600;color:var(--primary);
+      pointer-events:none;
+    }
+    .sp-solution-link .arrow{display:inline-block;transition:transform .2s ease;}
+    .sp-solution-card.is-active .sp-solution-link .arrow{transform:translateX(3px);}
+    .sp-solutions__panel{
+      margin-top:24px;padding:24px 28px;background:#fff;border:1px solid rgba(37,183,167,.25);
+      border-radius:14px;box-shadow:0 8px 28px rgba(37,183,167,.08);
+      opacity:0;transform:translateY(10px);max-height:0;overflow:hidden;padding-top:0;padding-bottom:0;
+      transition:opacity .35s ease,transform .35s ease,max-height .4s ease,padding .35s ease,margin .35s ease;
+    }
+    .sp-solutions__panel.is-visible{
+      opacity:1;transform:none;max-height:480px;padding:24px 28px;margin-top:24px;
+    }
+    .sp-solutions__panel-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:18px;}
+    .sp-solutions__panel-icon{
+      width:48px;height:48px;border-radius:12px;background:var(--primary-light);
+      display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    }
+    .sp-solutions__panel-icon .material-symbols-outlined{font-size:24px;color:var(--primary);}
+    .sp-solutions__panel-head h3{font-size:20px;font-weight:700;color:var(--heading);margin-bottom:6px;}
+    .sp-solutions__panel-head p{font-size:15px;color:var(--text);line-height:1.6;}
+    .sp-solutions__panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+    .sp-solutions__panel-list h4{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:10px;}
+    .sp-solutions__panel-list ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+    .sp-solutions__panel-list li{
+      display:flex;align-items:flex-start;gap:8px;font-size:14px;color:var(--text);line-height:1.5;
+    }
+    .sp-solutions__panel-list li .material-symbols-outlined{font-size:18px;color:var(--primary);flex-shrink:0;margin-top:1px;}
+    .sp-solutions__panel-stat{
+      padding:16px;border-radius:10px;background:linear-gradient(145deg,#eefaf8,#fff);
+      border:1px solid rgba(37,183,167,.2);
+    }
+    .sp-solutions__panel-stat strong{display:block;font-size:22px;font-weight:700;color:var(--primary);margin-bottom:4px;}
+    .sp-solutions__panel-stat span{font-size:13px;color:var(--muted);line-height:1.4;}
+
+    /* Workflow timeline */
+    .sp-workflow{background:#fff;}
+    .sp-workflow__track{
+      display:grid;grid-template-columns:repeat(6,1fr);gap:8px;position:relative;
+    }
+    .sp-workflow__track::before{
+      content:'';position:absolute;top:28px;left:8%;right:8%;height:3px;
+      background:linear-gradient(90deg,#e8f2f1,#25b7a7);border-radius:999px;z-index:0;
+    }
+    .sp-workflow__step{
+      position:relative;z-index:1;padding:12px 10px 16px;border-radius:12px;border:1px solid transparent;
+      background:transparent;text-align:center;cursor:pointer;
+      transition:border-color .2s,background .2s,transform .2s;
+    }
+    .sp-workflow__step.is-active{background:#f0fbf9;border-color:rgba(37,183,167,.35);transform:translateY(-3px);}
+    @media (hover:hover){
+      .sp-workflow__step:hover:not(.is-active){background:rgba(37,183,167,.06);transform:translateY(-2px);}
+    }
+    .sp-workflow__num{
+      width:36px;height:36px;margin:0 auto 10px;border-radius:50%;background:#fff;
+      border:2px solid var(--border);display:flex;align-items:center;justify-content:center;
+      font-size:13px;font-weight:700;color:var(--muted);transition:all .25s ease;
+    }
+    .sp-workflow__step.is-active .sp-workflow__num{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:0 4px 14px rgba(37,183,167,.35);}
+    .sp-workflow__step h4{font-size:12px;font-weight:700;color:var(--heading);line-height:1.3;margin-bottom:0;}
+    .sp-workflow__detail{
+      margin-top:24px;padding:24px 28px;background:linear-gradient(165deg,#f0fbf9,#fff);
+      border:1px solid rgba(37,183,167,.22);border-radius:14px;
+      opacity:0;transform:translateY(8px);max-height:0;overflow:hidden;padding-top:0;padding-bottom:0;
+      transition:opacity .35s,transform .35s,max-height .4s,padding .35s;
+    }
+    .sp-workflow__detail.is-visible{opacity:1;transform:none;max-height:280px;padding:24px 28px;}
+
+    /* Command center */
+    .mp-command{background:#fafcfc;}
+    .mp-command__grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:20px;}
+    .mp-command__card{
+      padding:20px 16px;background:#fff;border:1px solid var(--border);border-radius:12px;
+      text-align:left;cursor:pointer;transition:transform .25s,box-shadow .25s,border-color .25s,background .25s;
+    }
+    .mp-command__card.is-active{
+      border-color:rgba(37,183,167,.45);background:linear-gradient(165deg,#eefaf8,#fff);
+      box-shadow:0 12px 32px rgba(37,183,167,.14);transform:translateY(-4px);
+    }
+    @media (hover:hover){
+      .mp-command__card:hover:not(.is-active){transform:translateY(-3px);border-color:rgba(37,183,167,.3);box-shadow:0 8px 24px rgba(37,183,167,.1);}
+    }
+    .mp-command__card__icon{
+      width:40px;height:40px;border-radius:10px;background:var(--primary-light);
+      display:flex;align-items:center;justify-content:center;margin-bottom:12px;
+      transition:background .25s,transform .25s;
+    }
+    .mp-command__card.is-active .mp-command__card__icon{background:var(--primary);transform:scale(1.06);}
+    .mp-command__card__icon .material-symbols-outlined{font-size:22px;color:var(--primary);transition:color .25s;}
+    .mp-command__card.is-active .mp-command__card__icon .material-symbols-outlined{color:#fff;}
+    .mp-command__card h3{font-size:13px;font-weight:700;color:var(--heading);line-height:1.35;}
+    #mpCommandDetail{
+      padding:22px 26px;background:#fff;border:1px solid rgba(37,183,167,.25);border-radius:14px;
+      opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s;
+    }
+    #mpCommandDetail.is-visible{opacity:1;transform:none;}
+    #mpCommandDetail h3{font-size:17px;font-weight:700;color:var(--heading);margin-bottom:8px;}
+    #mpCommandDetail p{font-size:15px;color:var(--text);line-height:1.65;}
+
+    /* Onboarding cards */
+    .mp-onboard{background:var(--primary-light);}
+    .mp-onboard__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;}
+    .mp-onboard__card{
+      padding:22px 18px;background:#fff;border:1px solid var(--border);border-radius:12px;
+      cursor:pointer;text-align:left;transition:transform .25s,box-shadow .25s,border-color .25s;
+    }
+    .mp-onboard__card.is-active{border-color:rgba(37,183,167,.45);box-shadow:0 12px 28px rgba(37,183,167,.12);transform:translateY(-3px);}
+    @media (hover:hover){
+      .mp-onboard__card:hover:not(.is-active){transform:translateY(-2px);border-color:rgba(37,183,167,.28);}
+    }
+    .mp-onboard__card .material-symbols-outlined{font-size:28px;color:var(--primary);margin-bottom:10px;}
+    .mp-onboard__card h3{font-size:14px;font-weight:700;color:var(--heading);line-height:1.35;}
+    #mpOnboardDetail{
+      padding:22px 26px;background:#fff;border:1px solid var(--border);border-radius:14px;
+      opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s;
+    }
+    #mpOnboardDetail.is-visible{opacity:1;transform:none;}
+    #mpOnboardDetail h3{font-size:17px;font-weight:700;color:var(--heading);margin-bottom:8px;}
+    #mpOnboardDetail p{font-size:15px;color:var(--text);line-height:1.65;}
+
+    /* Integrations marquee */
+    .mp-marquee{overflow:hidden;padding:20px 0;background:#fff;border:1px solid var(--border);border-radius:12px;}
+    .mp-marquee__track{display:flex;gap:32px;animation:mp-scroll 28s linear infinite;width:max-content;}
+    .mp-marquee__track:hover{animation-play-state:paused;}
+    .mp-marquee__item{
+      flex-shrink:0;padding:10px 20px;font-size:14px;font-weight:600;color:var(--heading);
+      background:var(--primary-light);border-radius:999px;white-space:nowrap;
+    }
+    @keyframes mp-scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+    /* Mobile apps highlight */
+    .mp-apps__grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;}
+    .mp-apps__title{font-size:clamp(1.75rem,2.8vw,2.25rem);font-weight:600;color:var(--heading);letter-spacing:-.02em;line-height:1.25;margin-bottom:12px;}
+    .mp-apps__stats{display:flex;gap:32px;margin-top:24px;}
+    .mp-apps__stat strong{display:block;font-size:2rem;font-weight:700;color:var(--primary);}
+    .mp-apps__stat span{font-size:13px;color:var(--muted);}
+    .mp-apps__visual{
+      padding:32px;border-radius:14px;background:linear-gradient(165deg,#eefaf8,#fff);
+      border:1px solid rgba(37,183,167,.25);text-align:center;
+    }
+    .mp-apps__visual .material-symbols-outlined{font-size:64px;color:var(--primary);margin-bottom:12px;}
+    .mp-apps__visual h3{font-size:18px;font-weight:700;color:var(--heading);margin-bottom:8px;}
+    .mp-apps__visual p{font-size:14px;color:var(--muted);line-height:1.55;}
+
+    /* Feature grid */
+    .mp-features__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+    .mp-feature{
+      padding:22px;background:#fff;border:1px solid var(--border);border-radius:12px;
+      transition:transform .25s,box-shadow .25s,border-color .25s;
+    }
+    @media (hover:hover){
+      .mp-feature:hover{transform:translateY(-4px);border-color:rgba(37,183,167,.35);box-shadow:0 12px 32px rgba(37,183,167,.1);}
+    }
+    .mp-feature .material-symbols-outlined{font-size:28px;color:var(--primary);margin-bottom:10px;}
+    .mp-feature h3{font-size:15px;font-weight:700;color:var(--heading);margin-bottom:8px;}
+    .mp-feature p{font-size:14px;color:var(--muted);line-height:1.55;}
+    .sp-workflow__detail h3{font-size:18px;font-weight:700;color:var(--heading);margin-bottom:8px;}
+    .sp-workflow__detail p{font-size:15px;color:var(--text);line-height:1.65;}
+
+    /* Testimonials carousel */
+    .sp-proof{background:var(--primary-light);}
+    .sp-proof__slider{position:relative;overflow:hidden;border-radius:14px;background:#fff;border:1px solid var(--border);}
+    .sp-proof__slides{display:flex;transition:transform .45s cubic-bezier(.22,1,.36,1);}
+    .sp-proof__slide{min-width:100%;padding:32px 36px;box-sizing:border-box;}
+    .sp-proof__quote{font-size:17px;line-height:1.65;color:var(--heading);margin-bottom:20px;font-weight:500;}
+    .sp-proof__author{display:flex;align-items:center;gap:14px;}
+    .sp-proof__avatar{
+      width:48px;height:48px;border-radius:50%;background:linear-gradient(145deg,#25b7a7,#0d7a6e);
+      display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;
+    }
+    .sp-proof__author strong{display:block;font-size:14px;color:var(--heading);}
+    .sp-proof__author span{font-size:13px;color:var(--muted);}
+    .sp-proof__meta{display:flex;flex-wrap:wrap;gap:16px;margin-top:16px;font-size:13px;color:var(--muted);}
+    .sp-proof__meta span{display:inline-flex;align-items:center;gap:4px;}
+    .sp-proof__meta strong{color:var(--primary);font-weight:700;}
+    .sp-proof__nav{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:20px;}
+    .sp-proof__dot{
+      width:8px;height:8px;border-radius:50%;background:#c5ddd9;border:none;padding:0;cursor:pointer;
+      transition:transform .2s,background .2s;
+    }
+    .sp-proof__dot.is-active{background:var(--primary);transform:scale(1.25);}
+    .sp-proof__arrow{
+      width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:#fff;
+      display:flex;align-items:center;justify-content:center;color:var(--primary);
+      transition:background .2s,border-color .2s,transform .2s;
+    }
+    @media (hover:hover){
+      .sp-proof__arrow:hover{background:var(--primary-light);border-color:var(--primary);transform:scale(1.05);}
+    }
+
+    /* Sector + modules */
+    .sp-sector-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
+    .sp-sector-tab{
+      display:inline-flex;align-items:center;gap:6px;padding:10px 18px;font-size:13px;font-weight:600;
+      border:1px solid var(--border);border-radius:999px;background:#fff;
+      transition:background .2s ease,border-color .2s ease,color .2s ease,transform .2s ease,box-shadow .2s ease;
+    }
+    .sp-sector-tab .material-symbols-outlined{font-size:18px;transition:color .2s ease;}
+    .sp-sector-tab.is-active{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:0 4px 14px rgba(37,183,167,.35);}
+    @media (hover:hover){
+      .sp-sector-tab:hover:not(.is-active){border-color:var(--primary);color:var(--primary);background:var(--primary-light);transform:translateY(-2px);box-shadow:0 4px 12px rgba(37,183,167,.12);}
+    }
+    .sp-sector-tab:focus-visible{outline:2px solid var(--primary);outline-offset:2px;}
+    #spSectorLead{font-size:16px;color:var(--text);line-height:1.65;margin-bottom:24px;max-width:720px;transition:opacity .2s;}
+    #spSectorLead.is-updating{opacity:.4;}
+    .sp-module-layout{display:grid;grid-template-columns:220px 1fr;gap:20px;align-items:start;}
+    .sp-module-tabs{display:flex;flex-direction:column;gap:4px;}
+    .sp-module-tab{
+      position:relative;display:flex;align-items:center;gap:10px;padding:12px 14px;text-align:left;
+      font-size:14px;font-weight:600;color:var(--text);border:1px solid transparent;border-radius:10px;
+      background:#fff;transition:background .2s ease,border-color .2s ease,color .2s ease,transform .2s ease,box-shadow .2s ease;
+    }
+    .sp-module-tab::before{
+      content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+      background:linear-gradient(180deg,#25b7a7,#3dd5c5);border-radius:10px 0 0 10px;
+      transform:scaleY(0);transform-origin:top;transition:transform .2s ease;
+    }
+    .sp-module-tab .material-symbols-outlined{font-size:20px;color:var(--muted);transition:color .2s ease;}
+    .sp-module-tab.is-active{
+      background:linear-gradient(165deg,#eefaf8 0%,#fff 70%);border-color:rgba(37,183,167,.35);
+      color:var(--primary-dark);box-shadow:0 6px 20px rgba(37,183,167,.1);transform:translateX(4px);
+    }
+    .sp-module-tab.is-active::before{transform:scaleY(1);}
+    .sp-module-tab.is-active .material-symbols-outlined{color:var(--primary);}
+    @media (hover:hover){
+      .sp-module-tab:hover:not(.is-active){background:#f4fafa;border-color:rgba(37,183,167,.25);color:var(--primary-dark);transform:translateX(3px);}
+      .sp-module-tab:hover:not(.is-active) .material-symbols-outlined{color:var(--primary);}
+    }
+    .sp-module-tab:focus-visible{outline:2px solid rgba(37,183,167,.45);outline-offset:2px;}
+    [id$="ModulePanel"]{padding:24px 28px;border:1px solid var(--border);border-left:4px solid var(--primary);border-radius:0 var(--radius) var(--radius) 0;background:#fff;opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s;}
+    [id$="ModulePanel"].is-visible{opacity:1;transform:none;}
+    [id$="ModulePanel"] h3{font-size:17px;font-weight:600;color:var(--heading);margin-bottom:12px;}
+    [id$="ModulePanel"] ul{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;}
+    [id$="ModulePanel"] li{font-size:14px;color:var(--text);padding-left:18px;position:relative;line-height:1.5;}
+    [id$="ModulePanel"] li::before{content:'✓';position:absolute;left:0;color:var(--primary);font-weight:700;font-size:12px;}
+
+    /* Security */
+    .sp-security-section{background:var(--primary-light);}
+    .sp-sec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
+    .sp-sec-card{
+      padding:18px 16px;background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+      text-align:left;cursor:pointer;
+      transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease,background .25s ease;
+    }
+    .sp-sec-card::before{
+      content:'';display:block;width:100%;height:3px;background:linear-gradient(90deg,#25b7a7,#3dd5c5);
+      border-radius:999px;margin-bottom:12px;transform:scaleX(0);transform-origin:left;transition:transform .25s ease;
+    }
+    .sp-sec-card.is-active{
+      transform:translateY(-4px);border-color:rgba(37,183,167,.4);
+      box-shadow:0 12px 32px rgba(37,183,167,.15);background:linear-gradient(165deg,#eefaf8 0%,#fff 60%);
+    }
+    .sp-sec-card.is-active::before{transform:scaleX(1);}
+    @media (hover:hover){
+      .sp-sec-card:hover:not(.is-active){transform:translateY(-3px);border-color:rgba(37,183,167,.3);box-shadow:0 8px 24px rgba(37,183,167,.1);}
+      .sp-sec-card:hover:not(.is-active)::before{transform:scaleX(1);}
+      .sp-sec-card:hover:not(.is-active) .sp-sec-card__icon{background:var(--primary);}
+      .sp-sec-card:hover:not(.is-active) .sp-sec-card__icon .material-symbols-outlined{color:#fff;}
+      .sp-sec-card.is-active:hover{transform:translateY(-5px);box-shadow:0 16px 36px rgba(37,183,167,.18);}
+    }
+    .sp-sec-card:focus-visible{outline:2px solid rgba(37,183,167,.45);outline-offset:2px;}
+    .sp-sec-card__icon{
+      width:40px;height:40px;border-radius:10px;background:rgba(37,183,167,.1);
+      display:flex;align-items:center;justify-content:center;margin-bottom:10px;
+      transition:background .25s ease,transform .25s ease;
+    }
+    .sp-sec-card.is-active .sp-sec-card__icon{background:var(--primary);transform:scale(1.06);}
+    .sp-sec-card__icon .material-symbols-outlined{font-size:22px;color:var(--primary);transition:color .25s ease;}
+    .sp-sec-card.is-active .sp-sec-card__icon .material-symbols-outlined{color:#fff;}
+    .sp-sec-card h3{font-size:14px;font-weight:600;color:var(--heading);}
+    #spSecurityDetail{padding:22px 26px;background:#fff;border:1px solid var(--border);border-radius:var(--radius);opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s;}
+    #spSecurityDetail.is-visible{opacity:1;transform:none;}
+    #spSecurityDetail h3{font-size:16px;font-weight:600;color:var(--heading);margin-bottom:8px;}
+    #spSecurityDetail p{font-size:15px;color:var(--text);line-height:1.65;}
+
+    /* Calculator */
+    .sp-calc{
+      display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:0;
+      background:#fff;border:1px solid var(--border);border-radius:16px;
+      box-shadow:0 12px 40px rgba(8,53,48,.07);overflow:hidden;
+    }
+    .sp-calc__controls{padding:22px 24px 26px;border-right:1px solid var(--border);background:#fafcfc;}
+    .sp-calc__presets{
+      display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:6px;margin-bottom:14px;
+    }
+    .sp-calc__preset{
+      padding:5px 10px;font-size:11px;font-weight:600;color:var(--text);white-space:nowrap;
+      background:#fff;border:1px solid var(--border);border-radius:999px;flex-shrink:0;
+      transition:background .2s,border-color .2s,color .2s,transform .2s,box-shadow .2s;
+    }
+    @media (hover:hover){
+      .sp-calc__preset:hover:not(.is-active){border-color:rgba(37,183,167,.45);color:var(--primary-dark);transform:translateY(-1px);box-shadow:0 4px 12px rgba(37,183,167,.1);}
+    }
+    .sp-calc__preset.is-active{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:0 4px 14px rgba(37,183,167,.3);}
+    .sp-calc__preset:focus-visible{outline:2px solid var(--primary);outline-offset:2px;}
+    .sp-calc__fields{display:flex;flex-direction:column;gap:22px;}
+    .sp-calc__field{
+      padding:16px 18px;background:#fff;border:1px solid var(--border);border-radius:12px;
+      transition:border-color .25s,box-shadow .25s,transform .25s;
+    }
+    .sp-calc__field.is-active{border-color:rgba(37,183,167,.45);box-shadow:0 6px 20px rgba(37,183,167,.1);transform:translateY(-1px);}
+    .sp-calc__field-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+    .sp-calc__field-icon{
+      width:36px;height:36px;border-radius:10px;background:var(--primary-light);
+      display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    }
+    .sp-calc__field-icon .material-symbols-outlined{font-size:20px;color:var(--primary);}
+    .sp-calc__field-head label{flex:1;font-size:13px;font-weight:600;color:var(--heading);line-height:1.35;}
+    .sp-calc__stepper{display:flex;align-items:center;gap:4px;background:#f4fafa;border:1px solid var(--border);border-radius:10px;padding:3px;}
+    .sp-calc__step{
+      width:28px;height:28px;border-radius:8px;font-size:16px;font-weight:600;color:var(--primary-dark);
+      display:flex;align-items:center;justify-content:center;
+      transition:background .15s,color .15s,transform .15s;
+    }
+    @media (hover:hover){
+      .sp-calc__step:hover:not(:disabled){background:var(--primary-light);}
+      .sp-calc__step:active:not(:disabled){transform:scale(.92);}
+    }
+    .sp-calc__step:disabled{opacity:.35;cursor:not-allowed;}
+    .sp-calc__stepper-val{min-width:28px;text-align:center;font-size:14px;font-weight:700;color:var(--heading);}
+    .sp-calc__range-wrap{position:relative;padding-top:2px;}
+    .sp-calc__range-track{
+      position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);
+      height:6px;border-radius:999px;background:#e8f2f1;pointer-events:none;overflow:hidden;
+    }
+    .sp-calc__range-fill{height:100%;width:var(--fill,0%);background:linear-gradient(90deg,var(--primary),#3dd5c5);border-radius:999px;transition:width .15s ease;}
+    .sp-calc__field input[type=range]{
+      position:relative;width:100%;height:28px;margin:0;background:transparent;cursor:pointer;
+      -webkit-appearance:none;appearance:none;z-index:1;
+    }
+    .sp-calc__field input[type=range]::-webkit-slider-runnable-track{height:6px;background:transparent;border:none;}
+    .sp-calc__field input[type=range]::-webkit-slider-thumb{
+      -webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:#fff;
+      border:3px solid var(--primary);box-shadow:0 2px 8px rgba(37,183,167,.35);
+      margin-top:-7px;transition:transform .15s,box-shadow .15s;
+    }
+    .sp-calc__field input[type=range]:active::-webkit-slider-thumb{transform:scale(1.12);box-shadow:0 4px 14px rgba(37,183,167,.45);}
+    .sp-calc__field input[type=range]::-moz-range-track{height:6px;background:transparent;border:none;}
+    .sp-calc__field input[type=range]::-moz-range-thumb{
+      width:20px;height:20px;border-radius:50%;background:#fff;border:3px solid var(--primary);
+      box-shadow:0 2px 8px rgba(37,183,167,.35);transition:transform .15s;
+    }
+    .sp-calc__range-labels{display:flex;justify-content:space-between;margin-top:6px;font-size:11px;color:var(--muted);font-weight:500;}
+    .sp-calc__result-panel{
+      padding:28px 32px 32px;display:flex;flex-direction:column;gap:20px;
+      background:linear-gradient(165deg,#f0fbf9 0%,#fff 55%);
+    }
+    .sp-calc__result{
+      padding:24px;border-radius:14px;text-align:center;
+      background:linear-gradient(145deg,rgba(37,183,167,.12),rgba(37,183,167,.04));
+      border:1px solid rgba(37,183,167,.22);
+      transition:transform .3s ease,box-shadow .3s ease;
+    }
+    .sp-calc__result.is-pulse{transform:scale(1.02);box-shadow:0 10px 28px rgba(37,183,167,.18);}
+    .sp-calc__result-label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:10px;}
+    .sp-calc__big{font-size:clamp(28px,4vw,38px);font-weight:700;color:var(--primary);line-height:1.1;letter-spacing:-.02em;}
+    .sp-calc__sub{font-size:14px;color:var(--text);margin-top:10px;}
+    .sp-calc__metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+    .sp-calc__metric{
+      display:flex;align-items:flex-start;gap:8px;padding:12px;background:#fff;
+      border:1px solid var(--border);border-radius:10px;
+      transition:border-color .2s,transform .2s,box-shadow .2s;
+    }
+    @media (hover:hover){
+      .sp-calc__metric:hover{border-color:rgba(37,183,167,.3);transform:translateY(-2px);box-shadow:0 6px 16px rgba(37,183,167,.08);}
+    }
+    .sp-calc__metric .material-symbols-outlined{font-size:20px;color:var(--primary);flex-shrink:0;margin-top:1px;}
+    .sp-calc__metric strong{display:block;font-size:15px;font-weight:700;color:var(--heading);line-height:1.2;}
+    .sp-calc__metric span{display:block;font-size:11px;color:var(--muted);margin-top:2px;line-height:1.3;}
+    .sp-calc__bar{padding:14px 16px;background:#fff;border:1px solid var(--border);border-radius:10px;}
+    .sp-calc__bar-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:12px;font-weight:600;color:var(--heading);}
+    .sp-calc__bar-head span:last-child{color:var(--primary);font-size:13px;}
+    .sp-calc__bar-track{height:8px;border-radius:999px;background:#e8f2f1;overflow:hidden;}
+    .sp-calc__bar-fill{
+      height:100%;width:0;border-radius:999px;
+      background:linear-gradient(90deg,var(--primary),#3dd5c5);
+      transition:width .45s cubic-bezier(.22,1,.36,1);
+    }
+    .sp-calc__cta-note{
+      display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--muted);line-height:1.5;
+      padding:12px 14px;background:rgba(37,183,167,.06);border-radius:10px;border:1px dashed rgba(37,183,167,.25);
+    }
+    .sp-calc__cta-note .material-symbols-outlined{font-size:18px;color:var(--primary);flex-shrink:0;}
+
+    /* Compare */
+    .sp-compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .sp-compare__col{
+      padding:24px;border-radius:var(--radius);border:1px solid var(--border);
+      transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+    }
+    .sp-compare__col--bad{background:#fafafa;}
+    .sp-compare__col--good{background:linear-gradient(165deg,#eefaf8,#fff);border-color:rgba(37,183,167,.3);}
+    @media (hover:hover){
+      .sp-compare__col--good:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(37,183,167,.12);border-color:rgba(37,183,167,.45);}
+    }
+    .sp-compare__col h3{font-size:15px;font-weight:600;margin-bottom:14px;color:var(--heading);}
+    .sp-compare__col ul{display:flex;flex-direction:column;gap:10px;}
+    .sp-compare__col li{font-size:14px;display:flex;align-items:flex-start;gap:8px;line-height:1.45;}
+    .sp-compare__col .material-symbols-outlined{font-size:18px;flex-shrink:0;}
+    .sp-compare__col--bad .material-symbols-outlined{color:#dc2626;}
+    .sp-compare__col--good .material-symbols-outlined{color:var(--primary);}
+
+    /* FAQ */
+    .sp-faq{max-width:760px;display:flex;flex-direction:column;gap:8px;}
+    .sp-faq__item{
+      border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:#fff;
+      transition:border-color .25s ease,box-shadow .25s ease;
+    }
+    @media (hover:hover){
+      .sp-faq__item:hover:not(.is-open){border-color:rgba(37,183,167,.28);box-shadow:0 4px 16px rgba(37,183,167,.08);}
+    }
+    .sp-faq__item.is-open{border-color:rgba(37,183,167,.35);box-shadow:0 8px 24px rgba(37,183,167,.1);}
+    .sp-faq__trigger{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 22px;text-align:left;font-size:15px;font-weight:600;color:var(--heading);}
+    .sp-faq__trigger:hover{background:rgba(37,183,167,.04);}
+    .sp-faq__chevron{transition:transform .25s;color:var(--muted);}
+    .sp-faq__item.is-open .sp-faq__chevron{transform:rotate(180deg);color:var(--primary);}
+    .sp-faq__panel{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+    .sp-faq__panel p{padding:0 22px 18px;font-size:15px;color:var(--text);line-height:1.65;}
+
+    /* CTA */
+    .sp-cta{padding:48px;border-radius:var(--radius);background:linear-gradient(135deg,#083530,#0d7a6e);color:#fff;text-align:center;}
+    .sp-cta h2{font-size:clamp(1.5rem,2.5vw,2rem);font-weight:600;margin-bottom:12px;color:#fff;}
+    .sp-cta p{font-size:16px;color:rgba(255,255,255,.88);max-width:520px;margin:0 auto 28px;line-height:1.65;}
+    .sp-form{max-width:480px;margin:0 auto;display:grid;gap:12px;text-align:left;}
+    .sp-form input{padding:12px 14px;border:1px solid rgba(255,255,255,.25);border-radius:8px;background:rgba(255,255,255,.1);color:#fff;font-size:15px;}
+    .sp-form input::placeholder{color:rgba(255,255,255,.5);}
+    .sp-form input:focus{outline:none;border-color:#fff;background:rgba(255,255,255,.15);}
+    .sp-form select{padding:12px 14px;border:1px solid rgba(255,255,255,.25);border-radius:8px;background:rgba(255,255,255,.1);color:#fff;font-size:15px;width:100%;}
+    .sp-form select option{color:#083530;background:#fff;}
+    .sp-form .hp{position:absolute;left:-9999px;opacity:0;height:0;width:0;}
+    #spFormMsg{font-size:14px;color:#a7f3ea;margin-top:8px;opacity:0;transition:opacity .3s;}
+    #spFormMsg.is-visible{opacity:1;}
+
+    #pdPillarDetail,#pdOnboardDetail{
+      padding:22px 26px;background:#fff;border:1px solid rgba(37,183,167,.25);border-radius:14px;
+      opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s;
+    }
+    #pdPillarDetail.is-visible,#pdOnboardDetail.is-visible{opacity:1;transform:none;}
+    #pdPillarDetail h3,#pdOnboardDetail h3{font-size:17px;font-weight:700;color:var(--heading);margin-bottom:8px;}
+    #pdPillarDetail p,#pdOnboardDetail p{font-size:15px;color:var(--text);line-height:1.65;}
+    #pdModulePanel{padding:24px 28px;border:1px solid var(--border);border-left:4px solid var(--primary);border-radius:0 var(--radius) var(--radius) 0;background:#fff;opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s;}
+    #pdModulePanel.is-visible{opacity:1;transform:none;}
+    #pdModulePanel h3{font-size:17px;font-weight:600;color:var(--heading);margin-bottom:12px;}
+    #pdModulePanel ul{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;}
+    #pdModulePanel li{font-size:14px;color:var(--text);padding-left:18px;position:relative;line-height:1.5;}
+    #pdModulePanel li::before{content:'✓';position:absolute;left:0;color:var(--primary);font-weight:700;font-size:12px;}
+    .ca-dash-section{background:#fafcfc;}
+    .ca-dash{max-width:640px;margin:0 auto;padding:24px;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 8px 28px rgba(37,183,167,.08);}
+    .ca-dash__tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+    .ca-dash__tab{padding:8px 16px;font-size:13px;font-weight:600;border:1px solid var(--border);border-radius:999px;background:#fff;color:var(--text);transition:all .2s;}
+    .ca-dash__tab.is-active{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:0 4px 12px rgba(37,183,167,.3);}
+    .ca-dash__tab:hover:not(.is-active){border-color:var(--primary);color:var(--primary);}
+    .ca-dash__panel{opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s;}
+    .ca-dash__panel.is-visible{opacity:1;transform:none;}
+    .ca-dash__panel h4{font-size:15px;font-weight:700;color:var(--heading);margin-bottom:14px;}
+    .ca-dash__row{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-radius:8px;margin-bottom:8px;font-size:14px;background:#f4fafa;border:1px solid var(--border);}
+    .ca-dash__row strong{font-weight:700;color:var(--heading);}
+    .ca-dash__row--warn{border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.08);}
+    .ca-dash__row--warn strong{color:#b45309;}
+    .ca-dash__row--done{border-color:rgba(37,183,167,.35);background:rgba(37,183,167,.08);}
+    .ca-dash__row--done strong{color:var(--primary-dark);}
+    #pdFormMsg{font-size:14px;color:#a7f3ea;margin-top:8px;opacity:0;transition:opacity .3s;}
+    #pdFormMsg.is-visible{opacity:1;}
+
+    .footer-shell{max-width:var(--max);margin:0 auto;padding-left:var(--pad-x);padding-right:var(--pad-x);}
+    .site-footer {
+      background: #ffffff;
+      color: #111827;
+      font-family: inherit;
+      border-top: 1px solid #e5e7eb;
+    }
+    .footer-main {
+      background: #ffffff;
+    }
+    .footer-main .footer-shell {
+      padding-top: 64px;
+      padding-bottom: 48px;
+    }
+    .footer-mega__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px 32px;
+      margin-bottom: 48px;
+    }
+    .footer-mega__grid:last-child {
+      margin-bottom: 0;
+      grid-template-columns: 0.9fr 0.9fr 0.9fr 1.3fr;
+    }
+    .footer-col__title {
+      font-size: 15px;
+      font-weight: 600;
+      text-transform: none;
+      letter-spacing: -0.01em;
+      color: #111827;
+      margin: 0 0 16px;
+      background: none;
+      -webkit-text-fill-color: #111827;
+      background-clip: unset;
+      filter: none;
+    }
+    .footer-col__rule {
+      display: none;
+    }
+    .footer-col ul {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+    }
+    .footer-col ul a {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #4b5563;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      position: relative;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+    .footer-col ul a:hover {
+      color: #25b7a7;
+      transform: translateX(3px);
+    }
+    .footer-link--external::after {
+      content: "↗";
+      font-size: 11px;
+      opacity: 0.55;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .footer-col ul a:hover.footer-link--external::after {
+      opacity: 1;
+      transform: translate(2px, -2px);
+    }
+    .footer-apps {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px 20px;
+      margin-top: 4px;
+    }
+    .footer-app-block {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-app-block__title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #111827;
+      margin: 0;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+    .footer-app-block__stores {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .footer-store-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      width: 100%;
+      padding: 11px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.2;
+      color: #111827;
+      background: #eef1f8;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      text-decoration: none;
+    }
+    .footer-store-btn__icon {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+    }
+    .footer-store-btn__icon--play {
+      width: 26px;
+      height: 26px;
+      background: linear-gradient(145deg, #fff 0%, #f6f8fc 100%);
+      border: 1px solid rgba(17, 24, 39, 0.07);
+      border-radius: 7px;
+      box-shadow: 0 2px 6px rgba(17, 24, 39, 0.08);
+    }
+    .footer-store-btn svg {
+      display: block;
+      width: 18px;
+      height: 18px;
+    }
+    .footer-store-btn__icon--play svg {
+      width: 15px;
+      height: 15px;
+    }
+    .footer-store-btn:focus-visible {
+      outline: 2px solid rgba(37, 183, 167, 0.5);
+      outline-offset: 2px;
+    }
+    .footer-bottom {
+      background: #ffffff;
+      padding: 0;
+    }
+    .footer-bottom__inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px var(--pad-x);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px 48px;
+    }
+    .footer-bottom__brand {
+      flex-shrink: 0;
+    }
+    .footer-brand__logo {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .footer-brand__logo-img {
+      display: block;
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+      object-position: left center;
+    }
+    .footer-bottom__contact {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      min-width: 0;
+    }
+    .footer-contact-address {
+      max-width: 360px;
+      margin: 0;
+      text-align: left;
+      font-style: normal;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #6b7280;
+    }
+    .footer-bottom__social {
+      flex-shrink: 0;
+    }
+    .footer-social {
+      display: flex;
+      gap: 8px;
+      margin: 0;
+    }
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #e5e7eb;
+      border-radius: 50%;
+      color: #6b7280;
+      background: #fff;
+    }
+    .footer-social a svg {
+      width: 17px;
+      height: 17px;
+    }
+    .footer-bottom__bar {
+      border-top: 1px solid #e5e7eb;
+    }
+    .footer-bottom__bar-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 16px var(--pad-x);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .footer-brand__rating {
+      font-size: 13px;
+      color: #6b7280;
+      margin: 0;
+    }
+    .footer-brand__rating strong {
+      color: #111827;
+    }
+    .footer-bottom__cookie {
+      font-size: 13px;
+      color: #6b7280;
+      text-decoration: none;
+    }
+    .footer-bottom__copy {
+      font-size: 13px;
+      color: #6b7280;
+      margin: 0;
+    }
+    .footer-col__head-desktop {
+      display: block;
+    }
+    .footer-col__toggle {
+      display: none;
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 16px 0;
+      text-align: left;
+      cursor: pointer;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-col__chevron {
+      color: #94a3b8;
+      font-size: 12px;
+      transition: transform 0.3s ease;
+    }
+    .footer-col.is-open .footer-col__chevron {
+      transform: rotate(180deg);
+    }
+    @media (max-width: 1100px) {
+      .footer-mega__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-bottom__inner {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px var(--pad-x);
+      }
+      .footer-bottom__contact {
+        justify-content: center;
+      }
+      .footer-contact-address {
+        text-align: center;
+      }
+      .footer-bottom__bar-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+    @media (max-width: 768px) {
+      .footer-main .footer-shell { padding-top: 40px; padding-bottom: 24px; }
+      .footer-mega__grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+        margin-bottom: 0;
+      }
+      .footer-col {
+        border-bottom: 1px solid #e8f2f1;
+      }
+      .footer-col__toggle { display: flex; }
+      .footer-col__head-desktop { display: none !important; }
+      .footer-col__panel {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.35s ease, opacity 0.3s ease;
+        padding-bottom: 0;
+      }
+      .footer-col.is-open .footer-col__panel {
+        max-height: 640px;
+        opacity: 1;
+        padding-bottom: 20px;
+      }
+      .footer-apps { grid-template-columns: 1fr; gap: 24px; }
+    }
+    @media (min-width: 769px) {
+      .footer-col__panel { display: block !important; max-height: none !important; opacity: 1 !important; }
+    }
+
+    @media(max-width:1024px){
+      :root{--pad-x:32px;}
+      .sp-nav__inner{grid-template-columns:auto 1fr auto;gap:12px;}
+      .sp-nav__links a{font-size:12px;padding:8px 7px;}
+      .sp-hero__grid,.sp-calc,.sp-compare,.sp-module-layout,.mp-apps__grid{grid-template-columns:1fr;}
+      .mp-command__grid{grid-template-columns:repeat(2,1fr);}
+      .mp-onboard__grid{grid-template-columns:repeat(2,1fr);}
+      .mp-features__grid{grid-template-columns:repeat(2,1fr);}
+      .sp-calc__controls{border-right:none;border-bottom:1px solid var(--border);}
+      .sp-calc__metrics{grid-template-columns:1fr;}
+      .sp-values__grid,.sp-sec-grid{grid-template-columns:repeat(2,1fr);}
+      .sp-solutions__grid{grid-template-columns:1fr;}
+      .sp-solutions__panel-grid{grid-template-columns:1fr;}
+      .sp-workflow__track{grid-template-columns:repeat(3,1fr);}
+      .sp-workflow__track::before{display:none;}
+      [id$="ModulePanel"] ul{grid-template-columns:1fr;}
+    }
+    @media(max-width:640px){
+      :root{--pad:64px;--pad-x:20px;}
+      .sp-nav__links{display:none;}
+      .sp-btn--nav{padding:10px 14px;font-size:12px;}
+      .mp-command__grid,.mp-onboard__grid,.mp-features__grid,.sp-values__grid,.sp-sec-grid{grid-template-columns:1fr;}
+      .sp-workflow__track{grid-template-columns:repeat(2,1fr);}
+      .sp-calc__controls,.sp-calc__result-panel{padding:16px;}
+      .sp-calc__presets{flex-wrap:wrap;gap:5px;margin-bottom:12px;}
+      .sp-calc__preset{padding:4px 9px;font-size:10px;}
+    }
+  </style>
+  <link rel="stylesheet" href="css/footer-bar.css">
+  <link rel="stylesheet" href="css/site-nav.css">
+</head>
+<body>
+
+  
+  <div id="site-header"></div>
+<main>
+    <section class="sp-hero">
+      <div class="shell sp-hero__grid">
+        <div class="anim-up">
+          <span class="section-label">Property Dealer</span>
+          <h1>Brokerage software built to close more deals</h1>
+          <p class="sp-hero__sub">Unify listings, buyer CRM, site visits, deal pipeline, and commission tracking on TimeERP, built for Indian property dealers and real estate brokers.</p>
+          <div class="sp-hero__cta">
+            <a href="custom_quote.html" class="sp-btn sp-btn--primary">Get a custom quote</a>
+            <a href="#demo" class="sp-btn sp-btn--ghost">Book a demo</a>
+          </div>
+          <div class="sp-hero__trust">
+            <span><span class="material-symbols-outlined">real_estate_agent</span> Agent mobile CRM</span>
+            <span><span class="material-symbols-outlined">shield</span> RERA &amp; KYC ready</span>
+            <span><span class="material-symbols-outlined">handshake</span> Builder tie-up support</span>
+          </div>
+        </div>
+        <div class="sp-hero__card anim-up">
+          <h3>Your brokerage command center</h3>
+          <ul>
+            <li><span class="material-symbols-outlined">check_circle</span> Listing inventory &amp; builder projects</li>
+            <li><span class="material-symbols-outlined">check_circle</span> Buyer &amp; seller lead CRM</li>
+            <li><span class="material-symbols-outlined">check_circle</span> Site visit scheduling &amp; feedback</li>
+            <li><span class="material-symbols-outlined">check_circle</span> Deal pipeline to registration</li>
+            <li><span class="material-symbols-outlined">check_circle</span> Commission splits &amp; Tally sync</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="mp-command section" id="command">
+      <div class="shell">
+        <div class="section-lead anim-up">
+          <span class="section-label">Brokerage pillars</span>
+          <h2>Everything your property dealer firm needs in one platform</h2>
+          <p>Click each pillar to explore how TimeERP helps brokers capture leads, match listings, close deals, and track commissions without scattered spreadsheets.</p>
+        </div>
+        <div class="mp-command__grid anim-up" role="tablist" aria-label="Brokerage pillars">
+          <button type="button" class="mp-command__card is-active" data-pillar="listings" role="tab" aria-selected="true">
+            <div class="mp-command__card__icon"><span class="material-symbols-outlined">home_work</span></div>
+            <h3>Listings</h3>
+          </button>
+          <button type="button" class="mp-command__card" data-pillar="leads" role="tab">
+            <div class="mp-command__card__icon"><span class="material-symbols-outlined">person_search</span></div>
+            <h3>Lead CRM</h3>
+          </button>
+          <button type="button" class="mp-command__card" data-pillar="visits" role="tab">
+            <div class="mp-command__card__icon"><span class="material-symbols-outlined">location_on</span></div>
+            <h3>Site visits</h3>
+          </button>
+          <button type="button" class="mp-command__card" data-pillar="deals" role="tab">
+            <div class="mp-command__card__icon"><span class="material-symbols-outlined">handshake</span></div>
+            <h3>Deal pipeline</h3>
+          </button>
+          <button type="button" class="mp-command__card" data-pillar="commissions" role="tab">
+            <div class="mp-command__card__icon"><span class="material-symbols-outlined">payments</span></div>
+            <h3>Commissions</h3>
+          </button>
+        </div>
+        <div id="pdPillarDetail" class="is-visible anim-up" role="tabpanel" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="sp-values section">
+      <div class="shell">
+        <div class="section-lead anim-up">
+          <span class="section-label">Why brokers choose TimeERP</span>
+          <h2>From WhatsApp leads to one deal-closing platform</h2>
+          <p>Replace scattered lead registers, manual site visit logs, and commission spreadsheets with one platform your agents and back-office team actually use.</p>
+        </div>
+        <div class="sp-values__grid anim-up">
+          <article class="sp-value">
+            <div class="sp-value__icon"><span class="material-symbols-outlined">timeline</span></div>
+            <h3>Live deal pipeline</h3>
+            <p>See every deal stage, value, and aging agent in one board. Spot stalled negotiations and coach agents before buyers go to a competitor.</p>
+          </article>
+          <article class="sp-value">
+            <div class="sp-value__icon"><span class="material-symbols-outlined">notifications_active</span></div>
+            <h3>Never miss a follow-up</h3>
+            <p>Automated reminders for cold leads, visit confirmations, and post-visit callbacks. Telecallers and field agents stay on schedule without manual chasing.</p>
+          </article>
+          <article class="sp-value">
+            <div class="sp-value__icon"><span class="material-symbols-outlined">smartphone</span></div>
+            <h3>Agent CRM on any device</h3>
+            <p>Agents log visits, update leads, and share listings from mobile in the field reducing lost deals from delayed office updates.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sp-workflow section" id="workflow">
+      <div class="shell">
+        <div class="section-lead anim-up">
+          <span class="section-label">End-to-end workflow</span>
+          <h2>How property dealers run on TimeERP. Click each step</h2>
+          <p>From lead capture through registration and commission see how each stage connects across your brokerage.</p>
+        </div>
+        <div class="sp-workflow__track anim-up" role="tablist" aria-label="Property dealer workflow">
+          <button type="button" class="sp-workflow__step is-active" data-step="capture" role="tab" aria-selected="true"><span class="sp-workflow__num">1</span><h4>Lead capture</h4></button>
+          <button type="button" class="sp-workflow__step" data-step="qualify" role="tab"><span class="sp-workflow__num">2</span><h4>Qualify</h4></button>
+          <button type="button" class="sp-workflow__step" data-step="visit" role="tab"><span class="sp-workflow__num">3</span><h4>Site visit</h4></button>
+          <button type="button" class="sp-workflow__step" data-step="negotiate" role="tab"><span class="sp-workflow__num">4</span><h4>Negotiate</h4></button>
+          <button type="button" class="sp-workflow__step" data-step="booking" role="tab"><span class="sp-workflow__num">5</span><h4>Booking</h4></button>
+          <button type="button" class="sp-workflow__step" data-step="closure" role="tab"><span class="sp-workflow__num">6</span><h4>Closure</h4></button>
+        </div>
+        <div id="pdWorkflowDetail" class="sp-workflow__detail is-visible anim-up" role="tabpanel" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="sp-proof section">
+      <div class="shell">
+        <div class="section-lead anim-up">
+          <span class="section-label">Trusted by brokerages</span>
+          <h2>Why property dealers rely on TimeERP</h2>
+        </div>
+        <div class="sp-proof__slider anim-up">
+          <div class="sp-proof__slides" id="pdProofSlides">
+            <div class="sp-proof__slide">
+              <p class="sp-proof__quote">"We had 300+ active listings across WhatsApp groups and Excel. Now agents share live inventory, log visits on mobile, and our deal pipeline actually reflects reality."</p>
+              <div class="sp-proof__author"><div class="sp-proof__avatar">VS</div><div><strong>Vikram Singh</strong><span>Director, Prime Realty Brokers</span></div></div>
+              <div class="sp-proof__meta"><span><strong>320+</strong> listings</span><span><strong>22</strong> agents</span><span><strong>3</strong> branches</span></div>
+            </div>
+            <div class="sp-proof__slide">
+              <p class="sp-proof__quote">"Site visit follow-up used to slip through the cracks. Automated reminders and visit notes doubled our visit-to-token conversion within three months."</p>
+              <div class="sp-proof__author"><div class="sp-proof__avatar">PK</div><div><strong>Priya Khanna</strong><span>Founder, UrbanKeys Properties</span></div></div>
+              <div class="sp-proof__meta"><span><strong>18</strong> builder tie-ups</span><span><strong>2.1x</strong> visit conversion</span><span><strong>45</strong> deals closed</span></div>
+            </div>
+            <div class="sp-proof__slide">
+              <p class="sp-proof__quote">"Commission tracking with builder payouts was a monthly nightmare. Agent splits and TDS now reconcile in hours, not five days of Excel."</p>
+              <div class="sp-proof__author"><div class="sp-proof__avatar">AM</div><div><strong>Arjun Mehta</strong><span>CEO, Landmark Channel Partners</span></div></div>
+              <div class="sp-proof__meta"><span><strong>₹2.4 Cr</strong> commission tracked</span><span><strong>12</strong> builders</span><span><strong>80%</strong> faster payouts</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="sp-proof__nav anim-up">
+          <button type="button" class="sp-proof__arrow" id="pdProofPrev" aria-label="Previous testimonial"><span class="material-symbols-outlined">chevron_left</span></button>
+          <button type="button" class="pd-proof__dot sp-proof__dot is-active" data-slide="0" aria-label="Slide 1"></button>
+          <button type="button" class="pd-proof__dot sp-proof__dot" data-slide="1" aria-label="Slide 2"></button>
+          <button type="button" class="pd-proof__dot sp-proof__dot" data-slide="2" aria-label="Slide 3"></button>
+          <button type="button" class="sp-proof__arrow" id="pdProofNext" aria-label="Next testimonial"><span class="material-symbols-outlined">chevron_right</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="sp-solutions section" id="solutions">
+      <div class="shell">
+        <div class="section-lead anim-up">
+          <span class="section-label">Core solutions</span>
+          <h2>One platform to list, sell, and earn commission</h2>
+          <p>Deal pipeline, agent mobile CRM, and follow-up automation hover or click each card to explore.</p>
+        </div>
+        <div class="sp-solutions__grid anim-up" role="tablist" aria-label="Core solutions">
+          <button type="button" class="sp-solution-card is-active" data-solution="pipeline" role="tab" aria-selected="true">
+            <div class="sp-solution-card__icon"><span class="material-symbols-outlined">timeline</span></div>
+            <h3>Deal pipeline</h3>
+            <p>Stages, value &amp; agent ownership.</p>
+            <span class="sp-solution-link">Explore <span class="arrow">→</span></span>
+          </button>
+          <button type="button" class="sp-solution-card" data-solution="mobile" role="tab" aria-selected="false">
+            <div class="sp-solution-card__icon"><span class="material-symbols-outlined">smartphone</span></div>
+            <h3>Agent mobile CRM</h3>
+            <p>Leads, visits &amp; listings on the go.</p>
+            <span class="sp-solution-link">Explore <span class="arrow">→</span></span>
+          </button>
+          <button type="button" class="sp-solution-card" data-solution="automate" role="tab" aria-selected="false">
+            <div class="sp-solution-card__icon"><span class="material-symbols-outlined">autorenew</span></div>
+            <h3>Follow-up automation</h3>
+            <p>Reminders, nurture &amp; escalations.</p>
+            <span class="sp-solution-link">Explore <span class="arrow">→</span></span>
+          </button>
+        </div>
+        <div id="pdSolutionPanel" class="sp-solutions__panel is-visible anim-up" role="tabpanel" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="section" id="modules">
+      <div class="shell">
+        <div class="section-lead anim-up">
+          <span class="section-label">Brokerage modules</span>
+          <h2>Built for every layer of property dealing</h2>
+        </div>
+        <p class="anim-up" style="font-size:16px;color:var(--text);line-height:1.65;margin-bottom:24px;max-width:720px;">Listings, leads, deals, and commissions each module shares the same buyer record, agent assignment, and reporting engine.</p>
+        <div class="sp-module-layout anim-up">
+          <div class="sp-module-tabs" role="tablist" aria-label="Brokerage modules">
+            <button type="button" class="sp-module-tab is-active" data-module="listings" role="tab"><span class="material-symbols-outlined">home_work</span> Listings</button>
+            <button type="button" class="sp-module-tab" data-module="leads" role="tab"><span class="material-symbols-outlined">person_search</span> Leads</button>
+            <button type="button" class="sp-module-tab" data-module="deals" role="tab"><span class="material-symbols-outlined">handshake</span> Deals</button>
+            <button type="button" class="sp-module-tab" data-module="commissions" role="tab"><span class="material-symbols-outlined">payments</span> Commissions</button>
+          </div>
+          <div id="pdModulePanel" class="is-visible" role="tabpanel" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sp-security-section section" id="security">
+      <div class="shell">
+        <div class="section-lead anim-up">
+          <span class="section-label">Code security</span>
+          <h2>Security built in</h2>
+          <p>Your lead, deal, and KYC data is in safe hands. TimeERP prioritizes encryption, agent-level RBAC, audit trails, and RERA ready controls.</p>
+        </div>
+        <div class="sp-sec-grid anim-up" role="tablist" aria-label="Security practices">
+          <button type="button" class="sp-sec-card is-active" data-security="encrypt" role="tab"><div class="sp-sec-card__icon"><span class="material-symbols-outlined">lock</span></div><h3>Encryption</h3></button>
+          <button type="button" class="sp-sec-card" data-security="rbac" role="tab"><div class="sp-sec-card__icon"><span class="material-symbols-outlined">admin_panel_settings</span></div><h3>Access control</h3></button>
+          <button type="button" class="sp-sec-card" data-security="mfa" role="tab"><div class="sp-sec-card__icon"><span class="material-symbols-outlined">phonelink_lock</span></div><h3>MFA &amp; sessions</h3></button>
+          <button type="button" class="sp-sec-card" data-security="audit" role="tab"><div class="sp-sec-card__icon"><span class="material-symbols-outlined">history</span></div><h3>Audit logs</h3></button>
+          <button type="button" class="sp-sec-card" data-security="validate" role="tab"><div class="sp-sec-card__icon"><span class="material-symbols-outlined">bug_report</span></div><h3>Input validation</h3></button>
+          <button type="button" class="sp-sec-card" data-security="backup" role="tab"><div class="sp-sec-card__icon"><span class="material-symbols-outlined">backup</span></div><h3>Backups</h3></button>
+        </div>
+        <div id="pdSecurityDetail" class="is-visible anim-up" role="tabpanel" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="section ca-dash-section" id="dashboard">
+      <div class="shell">
+        <div class="section-lead anim-up">
+          <span class="section-label">Brokerage dashboard</span>
+          <h2>See your pipeline at a glance. Click each view</h2>
+          <p>Interactive preview of the brokerage dashboard pipeline, listings, and commissions in one place.</p>
+        </div>
+        <div class="ca-dash anim-up">
+          <div class="ca-dash__tabs" role="tablist">
+            <button type="button" class="ca-dash__tab is-active" data-dash="pipeline" role="tab">Pipeline</button>
+            <button type="button" class="ca-dash__tab" data-dash="listings" role="tab">Listings</button>
+            <button type="button" class="ca-dash__tab" data-dash="commissions" role="tab">Commissions</button>
+          </div>
+          <div id="pdDashPanel" class="ca-dash__panel is-visible" role="tabpanel" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="mp-apps__grid anim-up">
+          <div>
+            <span class="section-label">Agent mobile CRM</span>
+            <h2 class="mp-apps__title">Field-ready CRM for property agents</h2>
+            <p style="font-size:16px;color:var(--muted);line-height:1.65;margin-bottom:8px;">Agents log site visits, update leads, and share listings from mobile in the field. Managers see real-time pipeline and visit activity without waiting for end-of-day reports.</p>
+            <div class="mp-apps__stats">
+              <div class="mp-apps__stat"><strong>480+</strong><span>Brokerages on TimeERP</span></div>
+              <div class="mp-apps__stat"><strong>4.8/5</strong><span>Customer rating</span></div>
+            </div>
+          </div>
+          <div class="mp-apps__visual">
+            <span class="material-symbols-outlined">smartphone</span>
+            <h3>Agent mobile app</h3>
+            <p>Lead updates, visit check-ins, listing shares, and follow-up reminders, white-labeled to your brokerage brand.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mp-onboard section">
+      <div class="shell">
+        <div class="section-lead anim-up">
+          <span class="section-label">Onboarding</span>
+          <h2>Onboarding built for property dealer firms</h2>
+          <p>Moving from Excel lead registers and legacy CRM tools. Click each step to see how we guide your brokerage from discovery to first live deal.</p>
+        </div>
+        <div class="mp-onboard__grid anim-up" role="tablist" aria-label="Onboarding steps">
+          <button type="button" class="mp-onboard__card is-active" data-onboard="discovery" role="tab" aria-selected="true">
+            <span class="material-symbols-outlined">forum</span>
+            <h3>Discovery call</h3>
+          </button>
+          <button type="button" class="mp-onboard__card" data-onboard="migration" role="tab">
+            <span class="material-symbols-outlined">cloud_upload</span>
+            <h3>Data migration</h3>
+          </button>
+          <button type="button" class="mp-onboard__card" data-onboard="training" role="tab">
+            <span class="material-symbols-outlined">school</span>
+            <h3>Team training</h3>
+          </button>
+          <button type="button" class="mp-onboard__card" data-onboard="success" role="tab">
+            <span class="material-symbols-outlined">handshake</span>
+            <h3>Success partner</h3>
+          </button>
+        </div>
+        <div id="pdOnboardDetail" class="is-visible anim-up" role="tabpanel" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-lead anim-up">
+          <span class="section-label">Integrations</span>
+          <h2>Bring your tech stack together</h2>
+          <p>Connect TimeERP with your favorite tools. Eliminate switching between apps to accomplish tasks.</p>
+        </div>
+        <div class="mp-marquee anim-up" aria-hidden="true">
+          <div class="mp-marquee__track">
+            <span class="mp-marquee__item">Tally</span><span class="mp-marquee__item">Zoho Books</span><span class="mp-marquee__item">99acres</span><span class="mp-marquee__item">MagicBricks</span><span class="mp-marquee__item">Housing.com</span><span class="mp-marquee__item">WhatsApp Business</span><span class="mp-marquee__item">Email &amp; SMS</span><span class="mp-marquee__item">REST API</span><span class="mp-marquee__item">Webhooks</span><span class="mp-marquee__item">GST billing</span>
+            <span class="mp-marquee__item">Tally</span><span class="mp-marquee__item">Zoho Books</span><span class="mp-marquee__item">99acres</span><span class="mp-marquee__item">MagicBricks</span><span class="mp-marquee__item">Housing.com</span><span class="mp-marquee__item">WhatsApp Business</span><span class="mp-marquee__item">Email &amp; SMS</span><span class="mp-marquee__item">REST API</span><span class="mp-marquee__item">Webhooks</span><span class="mp-marquee__item">GST billing</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-lead anim-up">
+          <span class="section-label">Built for property dealers</span>
+          <h2>Everything you need to close deals at scale</h2>
+        </div>
+        <div class="mp-features__grid anim-up">
+          <article class="mp-feature"><span class="material-symbols-outlined">home_work</span><h3>Listing inventory</h3><p>Residential, commercial, plots, and builder projects with photos, pricing, and availability one catalog your whole team shares.</p></article>
+          <article class="mp-feature"><span class="material-symbols-outlined">person_search</span><h3>Buyer &amp; seller CRM</h3><p>Multi-source lead capture, budget tagging, and agent assignment stop losing hot buyers to slow follow-up.</p></article>
+          <article class="mp-feature"><span class="material-symbols-outlined">location_on</span><h3>Site visit management</h3><p>Schedule visits, send reminders, and log feedback on mobile track visit-to-offer conversion by agent.</p></article>
+          <article class="mp-feature"><span class="material-symbols-outlined">handshake</span><h3>Deal pipeline</h3><p>Stage-based boards from inquiry to registration with deal value, documents, and milestone tracking.</p></article>
+          <article class="mp-feature"><span class="material-symbols-outlined">payments</span><h3>Commission tracking</h3><p>Agent splits, builder payouts, referral fees, and TDS brokerage finance without month-end Excel chaos.</p></article>
+          <article class="mp-feature"><span class="material-symbols-outlined">support_agent</span><h3>Brokerage onboarding</h3><p>Listing and lead migration, agent training, and dedicated success partner live before your next builder launch.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-lead anim-up">
+          <span class="section-label">Brokerage ROI calculator</span>
+          <h2>Estimate time and cost savings for your property dealer firm</h2>
+          <p>Adjust listing count and team size to see how replacing Excel lead registers with TimeERP frees operational hours.</p>
+        </div>
+        <div class="sp-calc anim-up">
+          <div class="sp-calc__controls">
+            <div class="sp-calc__presets" role="group" aria-label="Quick scenarios">
+              <button type="button" class="sp-calc__preset is-active" data-preset="small">Boutique broker</button>
+              <button type="button" class="sp-calc__preset" data-preset="growing">Growing brokerage</button>
+              <button type="button" class="sp-calc__preset" data-preset="mid">Mid-size firm</button>
+              <button type="button" class="sp-calc__preset" data-preset="large">Large network</button>
+            </div>
+            <div class="sp-calc__fields">
+              <div class="sp-calc__field is-active" data-field="listings">
+                <div class="sp-calc__field-head">
+                  <div class="sp-calc__field-icon"><span class="material-symbols-outlined">home_work</span></div>
+                  <label for="pdCalcListings">Active listings</label>
+                  <div class="sp-calc__stepper">
+                    <button type="button" class="sp-calc__step" data-target="pdCalcListings" data-step="-5" aria-label="Decrease listings">−</button>
+                    <span class="sp-calc__stepper-val" id="pdCalcListingsVal">25</span>
+                    <button type="button" class="sp-calc__step" data-target="pdCalcListings" data-step="5" aria-label="Increase listings">+</button>
+                  </div>
+                </div>
+                <div class="sp-calc__range-wrap">
+                  <div class="sp-calc__range-track"><div class="sp-calc__range-fill" id="pdCalcListingsFill"></div></div>
+                  <input type="range" id="pdCalcListings" min="10" max="600" value="25" step="5" aria-valuemin="10" aria-valuemax="600" aria-valuenow="25">
+                  <div class="sp-calc__range-labels"><span>10</span><span>600</span></div>
+                </div>
+              </div>
+              <div class="sp-calc__field" data-field="staff">
+                <div class="sp-calc__field-head">
+                  <div class="sp-calc__field-icon"><span class="material-symbols-outlined">groups</span></div>
+                  <label for="pdCalcStaff">Agents &amp; staff</label>
+                  <div class="sp-calc__stepper">
+                    <button type="button" class="sp-calc__step" data-target="pdCalcStaff" data-step="-1" aria-label="Decrease team size">−</button>
+                    <span class="sp-calc__stepper-val" id="pdCalcStaffVal">8</span>
+                    <button type="button" class="sp-calc__step" data-target="pdCalcStaff" data-step="1" aria-label="Increase team size">+</button>
+                  </div>
+                </div>
+                <div class="sp-calc__range-wrap">
+                  <div class="sp-calc__range-track"><div class="sp-calc__range-fill" id="pdCalcStaffFill"></div></div>
+                  <input type="range" id="pdCalcStaff" min="3" max="100" value="8" step="1" aria-valuemin="3" aria-valuemax="100" aria-valuenow="8">
+                  <div class="sp-calc__range-labels"><span>3</span><span>100</span></div>
+                </div>
+              </div>
+              <div class="sp-calc__field" data-field="hours">
+                <div class="sp-calc__field-head">
+                  <div class="sp-calc__field-icon"><span class="material-symbols-outlined">schedule</span></div>
+                  <label for="pdCalcHours">Manual admin hours / person / week</label>
+                  <div class="sp-calc__stepper">
+                    <button type="button" class="sp-calc__step" data-target="pdCalcHours" data-step="-1" aria-label="Decrease hours">−</button>
+                    <span class="sp-calc__stepper-val" id="pdCalcHoursVal">5</span>
+                    <button type="button" class="sp-calc__step" data-target="pdCalcHours" data-step="1" aria-label="Increase hours">+</button>
+                  </div>
+                </div>
+                <div class="sp-calc__range-wrap">
+                  <div class="sp-calc__range-track"><div class="sp-calc__range-fill" id="pdCalcHoursFill"></div></div>
+                  <input type="range" id="pdCalcHours" min="3" max="10" value="5" step="1" aria-valuemin="3" aria-valuemax="10" aria-valuenow="5">
+                  <div class="sp-calc__range-labels"><span>3 hrs</span><span>10 hrs</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sp-calc__result-panel">
+            <div class="sp-calc__result" id="pdCalcResult">
+              <p class="sp-calc__result-label">Estimated monthly savings</p>
+              <div class="sp-calc__big" id="pdCalcSavings">₹0</div>
+              <p class="sp-calc__sub">≈ <span id="pdCalcTime">0</span> hrs/month recovered for brokerage operations</p>
+            </div>
+            <div class="sp-calc__metrics">
+              <div class="sp-calc__metric">
+                <span class="material-symbols-outlined">calendar_month</span>
+                <div><strong id="pdCalcAnnual">₹0</strong><span>Projected annual savings</span></div>
+              </div>
+              <div class="sp-calc__metric">
+                <span class="material-symbols-outlined">trending_up</span>
+                <div><strong id="pdCalcEfficiency">0%</strong><span>Admin time recovered</span></div>
+              </div>
+              <div class="sp-calc__metric">
+                <span class="material-symbols-outlined">person</span>
+                <div><strong id="pdCalcPerPerson">0 hrs</strong><span>Per person / month</span></div>
+              </div>
+            </div>
+            <div class="sp-calc__bar">
+              <div class="sp-calc__bar-head">
+                <span>Time recovered vs manual admin</span>
+                <span id="pdCalcBarPct">0%</span>
+              </div>
+              <div class="sp-calc__bar-track"><div class="sp-calc__bar-fill" id="pdCalcBarFill"></div></div>
+            </div>
+            <p class="sp-calc__cta-note">
+              <span class="material-symbols-outlined">info</span>
+              Estimates assume 28–46% reduction in manual brokerage admin after replacing Excel lead registers with TimeERP.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-lead anim-up">
+          <span class="section-label">Compare</span>
+          <h2>Excel registers vs TimeERP for property dealers</h2>
+        </div>
+        <div class="sp-compare anim-up">
+          <div class="sp-compare__col sp-compare__col--bad">
+            <h3>Without TimeERP</h3>
+            <ul>
+              <li><span class="material-symbols-outlined">close</span> Leads scattered across WhatsApp &amp; Excel</li>
+              <li><span class="material-symbols-outlined">close</span> Site visits logged on paper or not at all</li>
+              <li><span class="material-symbols-outlined">close</span> No visibility into deal pipeline stages</li>
+              <li><span class="material-symbols-outlined">close</span> Commission splits reconciled manually</li>
+            </ul>
+          </div>
+          <div class="sp-compare__col sp-compare__col--good">
+            <h3>With TimeERP</h3>
+            <ul>
+              <li><span class="material-symbols-outlined">check_circle</span> Unified lead CRM with source tracking</li>
+              <li><span class="material-symbols-outlined">check_circle</span> Mobile site visit logs &amp; reminders</li>
+              <li><span class="material-symbols-outlined">check_circle</span> Visual deal pipeline to registration</li>
+              <li><span class="material-symbols-outlined">check_circle</span> Automated commission &amp; payout reports</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-lead anim-up">
+          <span class="section-label">FAQ</span>
+          <h2>Common questions from property dealer firms</h2>
+        </div>
+        <div class="sp-faq anim-up">
+          <div class="sp-faq__item">
+            <button type="button" class="sp-faq__trigger" aria-expanded="false">Is TimeERP built for property dealers and brokerages? <span class="sp-faq__chevron">▾</span></button>
+            <div class="sp-faq__panel"><p>Yes. TimeERP supports property dealers, channel partners, and brokerages with listing inventory, lead CRM, site visits, deal pipeline, and commission tracking from solo agents to 100+ person networks.</p></div>
+          </div>
+          <div class="sp-faq__item">
+            <button type="button" class="sp-faq__trigger" aria-expanded="false">Can agents update leads and log visits from mobile? <span class="sp-faq__chevron">▾</span></button>
+            <div class="sp-faq__panel"><p>Yes. Field agents log site visits, update lead status, and share listings from mobile. Managers see real-time pipeline and visit activity without waiting for end-of-day reports.</p></div>
+          </div>
+          <div class="sp-faq__item">
+            <button type="button" class="sp-faq__trigger" aria-expanded="false">Does TimeERP support builder tie-ups and channel partner inventory? <span class="sp-faq__chevron">▾</span></button>
+            <div class="sp-faq__panel"><p>Track builder projects, channel partner commission rules, and project-wise deal pipelines. Agents see live inventory from every tie-up in one searchable catalog.</p></div>
+          </div>
+          <div class="sp-faq__item">
+            <button type="button" class="sp-faq__trigger" aria-expanded="false">How does commission tracking work? <span class="sp-faq__chevron">▾</span></button>
+            <div class="sp-faq__panel"><p>Define commission splits per deal, agent, and builder. Track earned vs received commission, referral partner payouts, and TDS. Month-end brokerage statements generate without manual Excel reconciliation.</p></div>
+          </div>
+          <div class="sp-faq__item">
+            <button type="button" class="sp-faq__trigger" aria-expanded="false">Can we import leads from portals like 99acres and MagicBricks? <span class="sp-faq__chevron">▾</span></button>
+            <div class="sp-faq__panel"><p>Yes. Import leads from property portals, your website, and walk-in registers. Source tagging and duplicate detection show which channels deliver closed deals.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="demo">
+      <div class="shell">
+        <div class="sp-cta anim-up">
+          <h2>Ready to close more deals with less admin?</h2>
+          <p>Book a demo to see listing inventory, lead CRM, site visits, deal pipeline, and commission tracking built for Indian property dealers.</p>
+          <form class="sp-form" id="pdDemoForm" action="mailto:sales@timeerp.com" method="get" novalidate>
+            <input type="text" name="_hp" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <input type="text" name="name" placeholder="Full name" required maxlength="80" autocomplete="name">
+            <input type="email" name="email" placeholder="Work email" required maxlength="120" autocomplete="email">
+            <input type="tel" name="phone" placeholder="Phone / WhatsApp (optional)" maxlength="20" autocomplete="tel">
+            <input type="text" name="company" placeholder="Company name (optional)" maxlength="120" autocomplete="organization">
+            <button type="submit" class="sp-btn sp-btn--primary" style="justify-content:center;width:100%;">Request property dealer demo</button>
+            <p id="pdFormMsg" role="status"></p>
+          </form>
+          <p style="margin-top:16px;font-size:14px;"><a href="custom_quote.html" style="color:#a7f3ea;font-weight:600;">Get a custom quote →</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="resources">
+    <div class="footer-main">
+      <div class="footer-shell footer-mega">
+        <div class="footer-mega__grid anim-up">
+          <div class="footer-col" data-footer-col>
+            <button type="button" class="footer-col__toggle" aria-expanded="false"><span class="footer-col__title">Product</span><span class="footer-col__chevron" aria-hidden="true">▾</span></button>
+            <div class="footer-col__head-desktop"><h3 class="footer-col__title">Product</h3></div>
+            <div class="footer-col__panel"><ul>
+              <li><a href="home1.html#products">Product overview</a></li>
+              <li><a href="home1.html#pricing">Pricing</a></li>
+              <li><a href="home1.html#products">Manufacturing execution</a></li>
+              <li><a href="home1.html#products">Core capabilities</a></li>
+              <li><a href="home1.html#top">Start free trial</a></li>
+            </ul></div>
+          </div>
+          <div class="footer-col" data-footer-col>
+            <button type="button" class="footer-col__toggle" aria-expanded="false"><span class="footer-col__title">Operations management</span><span class="footer-col__chevron" aria-hidden="true">▾</span></button>
+            <div class="footer-col__head-desktop"><h3 class="footer-col__title">Operations management</h3></div>
+            <div class="footer-col__panel"><ul>
+              <li><a href="home1.html#products">Production planning</a></li>
+              <li><a href="home1.html#products">Bill of Materials</a></li>
+              <li><a href="home1.html#products">Work center management</a></li>
+              <li><a href="home1.html#products">Job cards</a></li>
+              <li><a href="home1.html#products">Quality checkpoints</a></li>
+              <li><a href="home1.html#products">Real-time WIP tracking</a></li>
+            </ul></div>
+          </div>
+          <div class="footer-col" data-footer-col>
+            <button type="button" class="footer-col__toggle" aria-expanded="false"><span class="footer-col__title">Supply chain</span><span class="footer-col__chevron" aria-hidden="true">▾</span></button>
+            <div class="footer-col__head-desktop"><h3 class="footer-col__title">Supply chain</h3></div>
+            <div class="footer-col__panel"><ul>
+              <li><a href="home1.html#products">Inventory management</a></li>
+              <li><a href="home1.html#products">Procurement workflows</a></li>
+              <li><a href="home1.html#products">Warehouse transfers</a></li>
+              <li><a href="home1.html#products">Batch &amp; serial tracking</a></li>
+              <li><a href="home1.html#products">Dispatch orchestration</a></li>
+            </ul></div>
+          </div>
+          <div class="footer-col" data-footer-col>
+            <button type="button" class="footer-col__toggle" aria-expanded="false"><span class="footer-col__title">Financial control</span><span class="footer-col__chevron" aria-hidden="true">▾</span></button>
+            <div class="footer-col__head-desktop"><h3 class="footer-col__title">Financial control</h3></div>
+            <div class="footer-col__panel"><ul>
+              <li><a href="home1.html#products">Product costing</a></li>
+              <li><a href="home1.html#products">Core ledger</a></li>
+              <li><a href="home1.html#products">Receivables &amp; payables</a></li>
+              <li><a href="home1.html#products">Margin analysis</a></li>
+              <li><a href="home1.html#products">Spend management</a></li>
+            </ul></div>
+          </div>
+        </div>
+
+        <div class="footer-mega__grid anim-up">
+          <div class="footer-col" data-footer-col>
+            <button type="button" class="footer-col__toggle" aria-expanded="false"><span class="footer-col__title">Workforce &amp; HR</span><span class="footer-col__chevron" aria-hidden="true">▾</span></button>
+            <div class="footer-col__head-desktop"><h3 class="footer-col__title">Workforce &amp; HR</h3></div>
+            <div class="footer-col__panel"><ul>
+              <li><a href="#solutions">Payroll processing</a></li>
+              <li><a href="#solutions">Shift scheduling</a></li>
+              <li><a href="#solutions">Attendance tracking</a></li>
+              <li><a href="#solutions">Labor cost allocation</a></li>
+            </ul></div>
+          </div>
+          <div class="footer-col" data-footer-col>
+            <button type="button" class="footer-col__toggle" aria-expanded="false"><span class="footer-col__title">Integrations</span><span class="footer-col__chevron" aria-hidden="true">▾</span></button>
+            <div class="footer-col__head-desktop"><h3 class="footer-col__title">Integrations</h3></div>
+            <div class="footer-col__panel"><ul>
+              <li><a href="home1.html#resources">Integrations overview</a></li>
+              <li><a href="home1.html#resources">QuickBooks Online</a></li>
+              <li><a href="home1.html#resources">REST API</a></li>
+              <li><a href="home1.html#resources">Webhooks</a></li>
+              <li><a href="home1.html#resources">Zapier</a></li>
+              <li><a href="home1.html#resources">Payment providers</a></li>
+            </ul></div>
+          </div>
+          <div class="footer-col" data-footer-col>
+            <button type="button" class="footer-col__toggle" aria-expanded="false"><span class="footer-col__title">Company</span><span class="footer-col__chevron" aria-hidden="true">▾</span></button>
+            <div class="footer-col__head-desktop"><h3 class="footer-col__title">Company</h3></div>
+            <div class="footer-col__panel"><ul>
+              <li><a href="about.html">About us</a></li>
+              <li><a href="careers.html">Careers</a></li>
+              <li><a href="contact_sales.html">Contact sales</a></li>
+              <li><a href="home1.html#pricing">Pricing</a></li>
+              <li><a href="#">Partners</a></li>
+              <li><a href="#" class="footer-link--external">Roadmap</a></li>
+              <li><a href="#" class="footer-link--external">Status</a></li>
+            </ul></div>
+          </div>
+          <div class="footer-col" data-footer-col>
+            <button type="button" class="footer-col__toggle" aria-expanded="false"><span class="footer-col__title">Industries</span><span class="footer-col__chevron" aria-hidden="true">▾</span></button>
+            <div class="footer-col__head-desktop"><h3 class="footer-col__title">Industries</h3></div>
+            <div class="footer-col__panel"><ul>
+              <li><a href="CA.html">Chartered Accountant</a></li>
+              <li><a href="construction.html">Construction</a></li>
+              <li><a href="real_Estate.html">Real Estate</a></li>
+              <li><a href="property_dealer.html">Property Dealer</a></li>
+            </ul></div>
+          </div>
+        </div>
+
+        <div class="footer-mega__grid anim-up">
+          <div class="footer-col" data-footer-col>
+            <button type="button" class="footer-col__toggle" aria-expanded="false"><span class="footer-col__title">Resources</span><span class="footer-col__chevron" aria-hidden="true">▾</span></button>
+            <div class="footer-col__head-desktop"><h3 class="footer-col__title">Resources</h3></div>
+            <div class="footer-col__panel"><ul>
+              <li><a href="home1.html#resources">Help center</a></li>
+              <li><a href="home1.html#resources">Documentation</a></li>
+              <li><a href="home1.html#resources">Blog</a></li>
+              <li><a href="home1.html#resources">Case studies</a></li>
+              <li><a href="home1.html#resources">Product updates</a></li>
+              <li><a href="home1.html#resources">Migration guide</a></li>
+            </ul></div>
+          </div>
+          <div class="footer-col" data-footer-col>
+            <button type="button" class="footer-col__toggle" aria-expanded="false"><span class="footer-col__title">Policy</span><span class="footer-col__chevron" aria-hidden="true">▾</span></button>
+            <div class="footer-col__head-desktop"><h3 class="footer-col__title">Policy</h3></div>
+            <div class="footer-col__panel"><ul>
+              <li><a href="privacy.html">Privacy policy</a></li>
+              <li><a href="#">Security policy</a></li>
+              <li><a href="terms.html">Terms of service</a></li>
+              <li><a href="#">Cookie policy</a></li>
+              <li><a href="#">Compliance</a></li>
+            </ul></div>
+          </div>
+          <div class="footer-col" data-footer-col>
+            <button type="button" class="footer-col__toggle" aria-expanded="false"><span class="footer-col__title">Partner with us</span><span class="footer-col__chevron" aria-hidden="true">▾</span></button>
+            <div class="footer-col__head-desktop"><h3 class="footer-col__title">Partner with us</h3></div>
+            <div class="footer-col__panel"><ul>
+              <li><a href="#">Referral program</a></li>
+              <li><a href="#">Partner program</a></li>
+              <li><a href="#">Become a consultant</a></li>
+            </ul></div>
+          </div>
+          <div class="footer-col" data-footer-col>
+            <button type="button" class="footer-col__toggle" aria-expanded="false"><span class="footer-col__title">Mobile apps</span><span class="footer-col__chevron" aria-hidden="true">▾</span></button>
+            <div class="footer-col__head-desktop"><h3 class="footer-col__title">Mobile apps</h3></div>
+            <div class="footer-col__panel">
+              <div class="footer-apps">
+                <div class="footer-app-block">
+                  <p class="footer-app-block__title">Shop floor app</p>
+                  <div class="footer-app-block__stores">
+                    <a href="#" class="footer-store-btn footer-store-btn--apple">
+                      <span class="footer-store-btn__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.63 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                      </span>
+                      App Store
+                    </a>
+                    <a href="#" class="footer-store-btn footer-store-btn--google">
+                      <span class="footer-store-btn__icon footer-store-btn__icon--play" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12 3.84 21.85C3.34 21.6 3 21.09 3 20.5z"/><path fill="#FBBC04" d="M16.81 15.12 6.05 21.34l8.49-8.49 2.27 2.27z"/><path fill="#4285F4" d="M20.16 10.81c.34.27.59.69.59 1.19s-.22.82-.57 1.1l-2.29 1.32-2.5-2.5 2.5-2.5 2.27 1.31z"/><path fill="#34A853" d="M6.05 2.66 16.81 8.88 14.54 11.15 6.05 2.66z"/></svg>
+                      </span>
+                      Google Play
+                    </a>
+                  </div>
+                </div>
+                <div class="footer-app-block">
+                  <p class="footer-app-block__title">Manager app</p>
+                  <div class="footer-app-block__stores">
+                    <a href="#" class="footer-store-btn footer-store-btn--apple">
+                      <span class="footer-store-btn__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.63 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                      </span>
+                      App Store
+                    </a>
+                    <a href="#" class="footer-store-btn footer-store-btn--google">
+                      <span class="footer-store-btn__icon footer-store-btn__icon--play" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12 3.84 21.85C3.34 21.6 3 21.09 3 20.5z"/><path fill="#FBBC04" d="M16.81 15.12 6.05 21.34l8.49-8.49 2.27 2.27z"/><path fill="#4285F4" d="M20.16 10.81c.34.27.59.69.59 1.19s-.22.82-.57 1.1l-2.29 1.32-2.5-2.5 2.5-2.5 2.27 1.31z"/><path fill="#34A853" d="M6.05 2.66 16.81 8.88 14.54 11.15 6.05 2.66z"/></svg>
+                      </span>
+                      Google Play
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom__inner anim-up">
+        <div class="footer-bottom__brand">
+          <a href="home1.html" class="footer-brand__logo" aria-label="TimeERP home">
+            <img src="assets/image0.png" alt="TimeERP" class="footer-brand__logo-img" width="168" height="40">
+          </a>
+        </div>
+        <div class="footer-bottom__contact">
+          <address class="footer-contact-address">
+            Law Seva Management Private Limited<br>BM-08, Ansal Sumedha Building, RDC,<br>Ghaziabad, Delhi NCR,<br>Uttar Pradesh – 201001, India.
+          </address>
+        </div>
+        <div class="footer-bottom__social">
+          <div class="footer-social">
+            <a href="https://www.linkedin.com/in/ca-clouddesk-381510388" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 9h3v10H6V9zm1.5-5A1.75 1.75 0 118 7.5 1.75 1.75 0 017.5 4zM10 9h3v1.4h.05c.45-.85 1.55-1.75 3.2-1.75 3.4 0 4 2.1 4 4.85V19h-3v-5.6c0-1.35-.02-3.1-1.9-3.1-1.9 0-2.2 1.45-2.2 3v5.7H10V9z"/></svg></a>
+            <a href="https://www.instagram.com/erptime/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg></a>
+            <a href="https://www.youtube.com/@ERPTime" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 8.5a2 2 0 00-1.4-1.5C17 6.5 12 6.5 12 6.5s-5 0-6.6.5A2 2 0 004 8.5 21 21 0 004 12a21 21 0 00.4 3.5 2 2 0 001.4 1.5c1.6.5 6.6.5 6.6.5s5 0 6.6-.5a2 2 0 001.4-1.5A21 21 0 0020 12a21 21 0 00-.4-3.5zM10 15.5v-7l6 3.5-6 3.5z"/></svg></a>
+            <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M5 5l14 14M19 5L5 19" stroke-linecap="round"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom__bar">
+        <div class="footer-bottom__bar-inner anim-up">
+          <p class="footer-brand__rating"><strong>650+</strong> MSME · <strong>4.8/5</strong> customer rating · <strong>4+</strong> industries served</p>
+          <a href="#" class="footer-bottom__cookie">Cookie preferences</a>
+          <p class="footer-bottom__copy">© 2026 TimeERP</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/site-chrome.js" defer></script>
+  <script src="js/scroll-animations.js" defer></script>
+  <script src="js/footer-accordion.js" defer></script>
+  <script src="js/property-dealer.js" defer></script>
+  <script src="js/site-nav.js" defer></script>
+</body>
+</html>

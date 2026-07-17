@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="g-whatsapp-api" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#25b7a7"/>
+      <stop offset="1" stop-color="#0d7a6e"/>
+    </linearGradient>
+    <linearGradient id="gb-whatsapp-api" x1="12" y1="4" x2="52" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e8f8f6"/>
+      <stop offset="1" stop-color="#c5efe9"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#gb-whatsapp-api)"/>
+
+  <circle cx="32" cy="32" r="18" fill="url(#g-whatsapp-api)"/>
+  <path d="M24 40l-4 8 9-4c2 .7 4 1 6 1 9 0 16-7 16-15S44 15 35 15s-16 7-16 15c0 3 1 6 3 8z" fill="#083530"/>
+  <path d="M28 30c1.5 3 4 5 7 6" stroke="#3dd5c5" stroke-width="2.2" stroke-linecap="round"/>
+</svg>

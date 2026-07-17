@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Onboarding — TIME ERP HRMS</title>
+  <meta name="description" content="Track, manage, and complete every onboarding activity from employee joining to workplace readiness.">
+  <link rel="icon" href="../assets/image0.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard-shell.css">
+  <link rel="stylesheet" href="css/onboarding.css">
+</head>
+<body>
+
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="../home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="../assets/image0.png" alt="TimeERP" width="168" height="40">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">3</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <button type="button" class="topbar__icon-btn" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">TE</span>
+                <span class="topbar__profile-meta"><strong>Admin</strong><span>TimeERP</span></span>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="../home.html" class="dropdown__item"><strong>Go to home</strong><span>Module hub overview</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="onb-page" id="onbPage">
+
+          <!-- Breadcrumb -->
+          <nav class="onb-breadcrumb" aria-label="Breadcrumb">
+            <a href="../home.html#hrms">HRMS</a>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">Employee Onboarding</span>
+          </nav>
+
+          <!-- Page Header -->
+          <header class="onb-page__header">
+            <div class="onb-page__header-text">
+              <h1>Employee Onboarding</h1>
+            </div>
+            <div class="onb-page__actions">
+              <button type="button" class="onb-btn onb-btn--primary" id="btnStart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                Start Onboarding
+              </button>
+              <button type="button" class="onb-btn" id="btnExport">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+                Export
+              </button>
+              <button type="button" class="onb-btn" id="btnRefresh" aria-label="Refresh">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 4v6h6M20 20v-6h-6"/><path d="M5 19a9 9 0 0014-7M19 5a9 9 0 00-14 7"/></svg>
+                Refresh
+              </button>
+            </div>
+          </header>
+
+          <!-- KPI Dashboard -->
+          <section class="onb-kpi" aria-label="Onboarding statistics">
+            <article class="onb-kpi__card">
+              <div class="onb-kpi__top"><div class="onb-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div><span class="onb-kpi__trend onb-kpi__trend--up">Today</span></div>
+              <div class="onb-kpi__value" id="kpiToday">0</div>
+              <div class="onb-kpi__label">Joining Today</div>
+              <div class="onb-kpi__desc">New hires starting</div>
+            </article>
+            <article class="onb-kpi__card">
+              <div class="onb-kpi__top"><div class="onb-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><span class="onb-kpi__trend onb-kpi__trend--warn">Active</span></div>
+              <div class="onb-kpi__value" id="kpiPending">0</div>
+              <div class="onb-kpi__label">Pending Onboarding</div>
+              <div class="onb-kpi__desc">In progress</div>
+            </article>
+            <article class="onb-kpi__card">
+              <div class="onb-kpi__top"><div class="onb-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div><span class="onb-kpi__trend onb-kpi__trend--up">+2</span></div>
+              <div class="onb-kpi__value" id="kpiCompleted">0</div>
+              <div class="onb-kpi__label">Completed</div>
+              <div class="onb-kpi__desc">Fully onboarded</div>
+            </article>
+            <article class="onb-kpi__card">
+              <div class="onb-kpi__top"><div class="onb-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg></div><span class="onb-kpi__trend onb-kpi__trend--warn">4</span></div>
+              <div class="onb-kpi__value" id="kpiDocs">0</div>
+              <div class="onb-kpi__label">Documents Pending</div>
+              <div class="onb-kpi__desc">Awaiting upload</div>
+            </article>
+            <article class="onb-kpi__card">
+              <div class="onb-kpi__top"><div class="onb-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="3" width="20" height="14" rx="2"/></svg></div><span class="onb-kpi__trend onb-kpi__trend--warn">3</span></div>
+              <div class="onb-kpi__value" id="kpiAssets">0</div>
+              <div class="onb-kpi__label">Assets Pending</div>
+              <div class="onb-kpi__desc">To be assigned</div>
+            </article>
+            <article class="onb-kpi__card">
+              <div class="onb-kpi__top"><div class="onb-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><span class="onb-kpi__trend onb-kpi__trend--warn">2</span></div>
+              <div class="onb-kpi__value" id="kpiIt">0</div>
+              <div class="onb-kpi__label">IT Setup Pending</div>
+              <div class="onb-kpi__desc">Accounts & access</div>
+            </article>
+            <article class="onb-kpi__card">
+              <div class="onb-kpi__top"><div class="onb-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div><span class="onb-kpi__trend onb-kpi__trend--warn">5</span></div>
+              <div class="onb-kpi__value" id="kpiTraining">0</div>
+              <div class="onb-kpi__label">Training Pending</div>
+              <div class="onb-kpi__desc">Sessions to complete</div>
+            </article>
+            <article class="onb-kpi__card">
+              <div class="onb-kpi__top"><div class="onb-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 20V10M18 20V4M6 20v-4"/></svg></div><span class="onb-kpi__trend onb-kpi__trend--up">+4%</span></div>
+              <div class="onb-kpi__value" id="kpiRate">0%</div>
+              <div class="onb-kpi__label">Completion Rate</div>
+              <div class="onb-kpi__desc">Overall progress</div>
+            </article>
+          </section>
+
+          <!-- Search & Filters -->
+          <div class="onb-toolbar">
+            <div class="onb-search" role="search">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+              <input type="search" id="onbSearch" placeholder="Search employee, ID, email, department…" autocomplete="off" aria-label="Search onboarding">
+            </div>
+            <form class="onb-filters" aria-label="Onboarding filters">
+              <div><label for="filterDept">Department</label><select id="filterDept"></select></div>
+              <div><label for="filterDesignation">Designation</label><select id="filterDesignation"></select></div>
+              <div><label for="filterLocation">Location</label><select id="filterLocation"></select></div>
+              <div><label for="filterJoined">Joining Date</label><input type="date" id="filterJoined"></div>
+              <div><label for="filterManager">Manager</label><select id="filterManager"></select></div>
+              <div><label for="filterProgress">Progress</label><select id="filterProgress"></select></div>
+              <div><label for="filterStatus">Status</label><select id="filterStatus"></select></div>
+              <button type="button" class="onb-btn" id="filterReset">Reset Filters</button>
+            </form>
+          </div>
+
+          <!-- Notifications -->
+          <section class="onb-section" aria-label="Notifications">
+            <div class="onb-notifs">
+              <div class="onb-notif"><strong>Joining Today</strong><span>Sana Khan starts as QA Engineer</span></div>
+              <div class="onb-notif"><strong>Document Pending</strong><span>Aditya Rao — PAN verification</span></div>
+              <div class="onb-notif"><strong>IT Pending</strong><span>Neha Verma — email account</span></div>
+              <div class="onb-notif"><strong>Training Reminder</strong><span>ERP training for Sana Khan</span></div>
+              <div class="onb-notif"><strong>Asset Pending</strong><span>Laptop for Aditya Rao</span></div>
+              <div class="onb-notif"><strong>Orientation Tomorrow</strong><span>HR session for Neha Verma</span></div>
+            </div>
+          </section>
+
+          <!-- Quick Actions -->
+          <section class="onb-section" aria-label="Quick actions">
+            <div class="onb-section__head"><h2>Quick Actions</h2></div>
+            <div class="onb-quick">
+              <button type="button" class="onb-quick__card" data-ui="start-onboarding"><span class="onb-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg></span><span><strong>Start Onboarding</strong><span>Begin new hire journey</span></span></button>
+              <button type="button" class="onb-quick__card" data-ui="upload-documents"><span class="onb-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg></span><span><strong>Upload Documents</strong><span>Add employee files</span></span></button>
+              <button type="button" class="onb-quick__card" data-ui="assign-assets"><span class="onb-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="3" width="20" height="14" rx="2"/></svg></span><span><strong>Assign Assets</strong><span>Hardware & tools</span></span></button>
+              <button type="button" class="onb-quick__card" data-ui="generate-id"><span class="onb-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h6"/></svg></span><span><strong>Generate Employee ID</strong><span>Create ID card</span></span></button>
+              <button type="button" class="onb-quick__card" data-ui="create-email"><span class="onb-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span><strong>Create Email Account</strong><span>IT provisioning</span></span></button>
+              <button type="button" class="onb-quick__card" data-ui="schedule-orientation"><span class="onb-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><span><strong>Schedule Orientation</strong><span>Book HR session</span></span></button>
+              <button type="button" class="onb-quick__card" data-ui="assign-training"><span class="onb-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></span><span><strong>Assign Training</strong><span>Learning modules</span></span></button>
+              <button type="button" class="onb-quick__card" data-ui="verify-documents"><span class="onb-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></span><span><strong>Verify Documents</strong><span>HR approval</span></span></button>
+            </div>
+          </section>
+
+          <!-- Empty State -->
+          <div class="onb-empty" id="onbEmpty" hidden>
+            <div class="onb-empty__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
+            </div>
+            <h3>No Employees Currently in Onboarding</h3>
+            <p>Start onboarding your first employee.</p>
+            <button type="button" class="onb-btn onb-btn--primary" id="emptyStart">Start Onboarding</button>
+          </div>
+
+          <div id="onbContent">
+
+            <!-- New Joiners -->
+            <section class="onb-section" aria-label="New joiners">
+              <div class="onb-section__head">
+                <h2>New Joiners</h2>
+                <div class="onb-view-toggle" role="tablist" aria-label="Joiner view">
+                  <button type="button" class="is-active" data-view="grid" role="tab">Grid View</button>
+                  <button type="button" data-view="table" role="tab">Table View</button>
+                </div>
+              </div>
+              <div class="onb-cards" id="onbCardView"></div>
+              <div class="onb-panel onb-table-wrap" id="onbTableView" hidden>
+                <table class="onb-table" aria-label="New joiners table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Photo</th>
+                      <th scope="col" data-sort="name">Employee</th>
+                      <th scope="col" data-sort="id">Employee ID</th>
+                      <th scope="col" data-sort="dept">Department</th>
+                      <th scope="col" data-sort="designation">Designation</th>
+                      <th scope="col" data-sort="manager">Manager</th>
+                      <th scope="col" data-sort="joined">Joining Date</th>
+                      <th scope="col" data-sort="progress">Progress</th>
+                      <th scope="col" data-sort="status">Status</th>
+                      <th scope="col">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="onbTableBody"></tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- Onboarding Workflow -->
+            <section class="onb-section" aria-label="Onboarding workflow">
+              <div class="onb-section__head"><h2>Onboarding Progress</h2><p>Horizontal workflow tracker</p></div>
+              <div class="onb-workflow-wrap">
+                <div class="onb-workflow" id="onbWorkflow" role="list" aria-label="Onboarding steps"></div>
+              </div>
+            </section>
+
+            <div class="onb-split">
+              <!-- Progress Dashboard -->
+              <section class="onb-section" aria-label="Progress dashboard">
+                <div class="onb-section__head"><h2>Progress Dashboard</h2></div>
+                <div class="onb-panel" style="padding:24px;text-align:center">
+                  <div class="onb-progress-ring" id="progressRing" data-pct="86%" style="--pct:86%"></div>
+                  <p style="font-size:13px;color:var(--muted);margin-bottom:16px">Overall Completion</p>
+                  <div class="onb-progress-stats">
+                    <div><span>Completed Tasks</span><span>24</span></div>
+                    <div><span>Pending Tasks</span><span>4</span></div>
+                    <div><span>Estimated Finish</span><span>Jul 14, 2026</span></div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Upcoming Joinings -->
+              <section class="onb-section" aria-label="Upcoming joinings">
+                <div class="onb-section__head"><h2>Upcoming Joinings</h2></div>
+                <div class="onb-panel" style="padding:16px">
+                  <div class="onb-calendar" id="onbCalendar"></div>
+                </div>
+              </section>
+            </div>
+
+            <!-- Checklist -->
+            <section class="onb-section" aria-label="Onboarding checklist">
+              <div class="onb-section__head">
+                <h2>Employee Checklist</h2>
+                <span class="onb-checklist__stat" id="checklistStat">0 / 14 completed</span>
+              </div>
+              <div class="onb-panel" style="padding:16px">
+                <div class="onb-checklist" id="onbChecklist"></div>
+              </div>
+            </section>
+
+            <!-- Document Center -->
+            <section class="onb-section" aria-label="Document center">
+              <div class="onb-section__head"><h2>Document Center</h2></div>
+              <div class="onb-doc-grid" id="onbDocuments"></div>
+            </section>
+
+            <div class="onb-split">
+              <!-- Asset Allocation -->
+              <section class="onb-section" aria-label="Asset allocation">
+                <div class="onb-section__head"><h2>Asset Allocation</h2></div>
+                <div class="onb-asset-grid" id="onbAssets"></div>
+              </section>
+
+              <!-- IT Account Setup -->
+              <section class="onb-section" aria-label="IT account setup">
+                <div class="onb-section__head"><h2>IT Account Setup</h2></div>
+                <div class="onb-it-grid" id="onbIt"></div>
+              </section>
+            </div>
+
+            <!-- Training -->
+            <section class="onb-section" aria-label="Training and orientation">
+              <div class="onb-section__head"><h2>Training &amp; Orientation</h2></div>
+              <div class="onb-training" id="onbTraining"></div>
+            </section>
+
+            <div class="onb-split">
+              <!-- Reporting Structure -->
+              <section class="onb-section" aria-label="Reporting structure">
+                <div class="onb-section__head"><h2>Reporting Structure</h2></div>
+                <div class="onb-panel">
+                  <div class="onb-org" role="list" aria-label="Organization hierarchy">
+                    <div class="onb-org__node">CEO — Admin</div>
+                    <div class="onb-org__line" aria-hidden="true"></div>
+                    <div class="onb-org__node">HR Head — Priya Mehta</div>
+                    <div class="onb-org__line" aria-hidden="true"></div>
+                    <div class="onb-org__node">Dept Head — Rahul Kapoor</div>
+                    <div class="onb-org__line" aria-hidden="true"></div>
+                    <div class="onb-org__node">Reporting Manager — Rahul Kapoor</div>
+                    <div class="onb-org__line" aria-hidden="true"></div>
+                    <div class="onb-org__node is-employee">Employee — Sana Khan</div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Activity Timeline -->
+              <section class="onb-section" aria-label="Activity timeline">
+                <div class="onb-section__head"><h2>Activity Timeline</h2></div>
+                <div class="onb-panel" style="padding:16px">
+                  <div class="onb-timeline" id="onbTimeline"></div>
+                </div>
+              </section>
+            </div>
+
+            <!-- Analytics -->
+            <section class="onb-section" aria-label="Analytics">
+              <div class="onb-section__head"><h2>Analytics</h2><p>Placeholder widgets</p></div>
+              <div class="onb-charts">
+                <article class="onb-chart-card">
+                  <h3>Monthly Joining Trend</h3>
+                  <div class="onb-chart-bars" aria-hidden="true">
+                    <div class="onb-chart-bar" style="height:45%"></div>
+                    <div class="onb-chart-bar" style="height:60%"></div>
+                    <div class="onb-chart-bar" style="height:35%"></div>
+                    <div class="onb-chart-bar" style="height:80%"></div>
+                    <div class="onb-chart-bar" style="height:55%"></div>
+                    <div class="onb-chart-bar" style="height:90%"></div>
+                  </div>
+                </article>
+                <article class="onb-chart-card">
+                  <h3>Department-wise Joining</h3>
+                  <div class="onb-chart-bars" aria-hidden="true">
+                    <div class="onb-chart-bar" style="height:70%"></div>
+                    <div class="onb-chart-bar" style="height:50%"></div>
+                    <div class="onb-chart-bar" style="height:85%"></div>
+                    <div class="onb-chart-bar" style="height:40%"></div>
+                  </div>
+                </article>
+                <article class="onb-chart-card">
+                  <h3>Completion Rate</h3>
+                  <div style="text-align:center;padding:20px;font-size:2rem;font-weight:700;color:var(--primary-deeper)">86%</div>
+                </article>
+                <article class="onb-chart-card">
+                  <h3>Average Onboarding Time</h3>
+                  <div style="text-align:center;padding:20px;font-size:2rem;font-weight:700;color:var(--heading)">7.2 days</div>
+                </article>
+                <article class="onb-chart-card" style="grid-column:1/-1">
+                  <h3>Pending Tasks</h3>
+                  <div class="onb-chart-bars" aria-hidden="true">
+                    <div class="onb-chart-bar" style="height:30%"></div>
+                    <div class="onb-chart-bar" style="height:55%"></div>
+                    <div class="onb-chart-bar" style="height:40%"></div>
+                    <div class="onb-chart-bar" style="height:25%"></div>
+                    <div class="onb-chart-bar" style="height:60%"></div>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+  <!-- Employee Profile Drawer -->
+  <div class="onb-drawer-scrim" id="onbDrawerScrim" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+    <aside class="onb-drawer" role="document">
+      <div class="onb-drawer__head">
+        <div>
+          <h2 id="drawerTitle">Employee</h2>
+          <p id="drawerSubtitle" style="font-size:13px;color:var(--muted);margin:4px 0 0"></p>
+        </div>
+        <button type="button" class="onb-action-btn" id="drawerClose" aria-label="Close">✕</button>
+      </div>
+      <div class="onb-drawer__body" id="drawerBody"></div>
+      <div class="onb-drawer__foot">
+        <button type="button" class="onb-btn onb-btn--primary" data-ui="edit">Edit</button>
+        <button type="button" class="onb-btn" id="drawerClose2">Close</button>
+      </div>
+    </aside>
+  </div>
+
+  <script src="js/dashboard-shell.js"></script>
+  <script src="js/onboarding.js"></script>
+</body>
+</html>

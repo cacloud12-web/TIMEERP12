@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="g-payroll" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#25b7a7"/>
+      <stop offset="1" stop-color="#0d7a6e"/>
+    </linearGradient>
+    <linearGradient id="gb-payroll" x1="12" y1="4" x2="52" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e8f8f6"/>
+      <stop offset="1" stop-color="#c5efe9"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#gb-payroll)"/>
+
+  <rect x="14" y="18" width="36" height="28" rx="5" fill="url(#g-payroll)"/>
+  <path d="M14 28h36" stroke="#fff" stroke-width="2" opacity=".5"/>
+  <text x="32" y="40" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" fill="#fff">₹</text>
+  <circle cx="48" cy="18" r="7" fill="#083530"/>
+  <path d="M48 14v8M45 16.5h6" stroke="#3dd5c5" stroke-width="1.8" stroke-linecap="round"/>
+</svg>

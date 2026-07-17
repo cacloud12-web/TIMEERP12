@@ -1,0 +1,1762 @@
+{
+  "meta": {
+    "defaultCenter": [
+      22.5,
+      72
+    ],
+    "defaultZoom": 5,
+    "maxInitialZoom": 6,
+    "countries": [
+      {
+        "id": "india",
+        "name": "India",
+        "flag": "🇮🇳",
+        "center": [
+          22.9734,
+          78.6569
+        ],
+        "zoom": 5
+      },
+      {
+        "id": "uae",
+        "name": "United Arab Emirates",
+        "flag": "🇦🇪",
+        "center": [
+          24.5,
+          54.5
+        ],
+        "zoom": 8
+      }
+    ]
+  },
+  "locations": [
+    {
+      "id": "delhi-ncr",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Delhi NCR",
+      "latitude": 28.6692,
+      "longitude": 77.4538,
+      "officeType": "Head Office",
+      "markerType": "head",
+      "address": "BM-08, Ansal Sumedha Building, RDC Raj Nagar, Ghaziabad",
+      "services": [
+        "Sales",
+        "Customer Success",
+        "Demo",
+        "Implementation",
+        "Technical Support"
+      ],
+      "featured": true,
+      "aliases": [
+        "Delhi",
+        "Ghaziabad HO",
+        "NCR"
+      ]
+    },
+    {
+      "id": "new-delhi",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "New Delhi",
+      "latitude": 28.6139,
+      "longitude": 77.209,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "New Delhi, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Delhi",
+        "Nw Delhi",
+        "New Delhi"
+      ]
+    },
+    {
+      "id": "nsp-delhi",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "NSP Delhi",
+      "latitude": 28.7216,
+      "longitude": 77.1869,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Netaji Subhash Place, New Delhi",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "NSP",
+        "Netaji Subhash Place",
+        "NSP Delhi"
+      ]
+    },
+    {
+      "id": "mayur-vihar",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Mayur Vihar",
+      "latitude": 28.6079,
+      "longitude": 77.2905,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Mayur Vihar, New Delhi",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "agra",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Agra",
+      "latitude": 27.1767,
+      "longitude": 78.0081,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Agra, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "amritsar",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Amritsar",
+      "latitude": 31.634,
+      "longitude": 74.8723,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Amritsar, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "bareilly",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Bareilly",
+      "latitude": 28.367,
+      "longitude": 79.4304,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Bareilly, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Bareili"
+      ]
+    },
+    {
+      "id": "bhiwani",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Bhiwani",
+      "latitude": 28.793,
+      "longitude": 76.1395,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Bhiwani, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "chandigarh",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Chandigarh",
+      "latitude": 30.7333,
+      "longitude": 76.7794,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Chandigarh, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "dehradun",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Dehradun",
+      "latitude": 30.3165,
+      "longitude": 78.0322,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Dehradun, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "faridabad",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Faridabad",
+      "latitude": 28.4089,
+      "longitude": 77.3178,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Faridabad, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "ghaziabad",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Ghaziabad",
+      "latitude": 28.6692,
+      "longitude": 77.4538,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Ghaziabad, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "gorakhpur",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Gorakhpur",
+      "latitude": 26.7606,
+      "longitude": 83.3732,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Gorakhpur, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "gurgaon",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Gurgaon",
+      "latitude": 28.4595,
+      "longitude": 77.0266,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Gurgaon, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Gurugram",
+        "Gurgoan",
+        "Gurgaon"
+      ]
+    },
+    {
+      "id": "jaipur",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Jaipur",
+      "latitude": 26.9124,
+      "longitude": 75.7873,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Jaipur, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Rajasthan"
+      ]
+    },
+    {
+      "id": "jalandhar",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Jalandhar",
+      "latitude": 31.326,
+      "longitude": 75.5762,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Jalandhar, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Jalender",
+        "Jalan",
+        "Jalandhar"
+      ]
+    },
+    {
+      "id": "kapurthala",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Kapurthala",
+      "latitude": 31.38,
+      "longitude": 75.38,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Kapurthala, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "kharar",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Kharar",
+      "latitude": 30.746,
+      "longitude": 76.645,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Kharar, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "lucknow",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Lucknow",
+      "latitude": 26.8467,
+      "longitude": 80.9462,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Lucknow, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "ludhiana",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Ludhiana",
+      "latitude": 30.901,
+      "longitude": 75.8573,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Ludhiana, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "mau",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Mau",
+      "latitude": 25.9417,
+      "longitude": 83.5611,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Mau, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "mohali",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Mohali",
+      "latitude": 30.7046,
+      "longitude": 76.7179,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Mohali, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "moradabad",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Moradabad",
+      "latitude": 28.8386,
+      "longitude": 78.7733,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Moradabad, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Mooradabad"
+      ]
+    },
+    {
+      "id": "noida",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Noida",
+      "latitude": 28.5355,
+      "longitude": 77.391,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Noida, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "patna",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Patna",
+      "latitude": 25.5941,
+      "longitude": 85.1376,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Patna, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Bihar"
+      ]
+    },
+    {
+      "id": "pithoragarh",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Pithoragarh",
+      "latitude": 29.5828,
+      "longitude": 80.2181,
+      "officeType": "Coming Soon",
+      "markerType": "soon",
+      "address": "Pithoragarh, India",
+      "services": [
+        "Coming Soon"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "rishikesh",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Rishikesh",
+      "latitude": 30.0869,
+      "longitude": 78.2676,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Rishikesh, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "roorkee",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Roorkee",
+      "latitude": 29.8543,
+      "longitude": 77.888,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Roorkee, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "rudrapur",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Rudrapur",
+      "latitude": 28.98,
+      "longitude": 79.4,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Rudrapur, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Rudarpur"
+      ]
+    },
+    {
+      "id": "udaipur",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Udaipur",
+      "latitude": 24.5854,
+      "longitude": 73.7125,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Udaipur, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "varanasi",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Varanasi",
+      "latitude": 25.3176,
+      "longitude": 82.9739,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Varanasi, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "bikaner",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Bikaner",
+      "latitude": 28.0229,
+      "longitude": 73.3119,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Bikaner, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "gwalior",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Gwalior",
+      "latitude": 26.2183,
+      "longitude": 78.1828,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Gwalior, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "shamgarh",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Shamgarh",
+      "latitude": 24.188,
+      "longitude": 75.639,
+      "officeType": "Coming Soon",
+      "markerType": "soon",
+      "address": "Shamgarh, India",
+      "services": [
+        "Coming Soon"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "trimohini",
+      "country": "India",
+      "countryId": "india",
+      "region": "North India",
+      "city": "Trimohini",
+      "latitude": 26.45,
+      "longitude": 89.97,
+      "officeType": "Coming Soon",
+      "markerType": "soon",
+      "address": "Trimohini, West Bengal / Assam corridor",
+      "services": [
+        "Coming Soon"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "ahmedabad",
+      "country": "India",
+      "countryId": "india",
+      "region": "West India",
+      "city": "Ahmedabad",
+      "latitude": 23.0225,
+      "longitude": 72.5714,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Ahmedabad, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Ahemdabad",
+        "Amdavad",
+        "Gujrat",
+        "Gujarat"
+      ]
+    },
+    {
+      "id": "ajmer",
+      "country": "India",
+      "countryId": "india",
+      "region": "West India",
+      "city": "Ajmer",
+      "latitude": 26.4499,
+      "longitude": 74.6399,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Ajmer, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "aurangabad",
+      "country": "India",
+      "countryId": "india",
+      "region": "West India",
+      "city": "Aurangabad",
+      "latitude": 19.8762,
+      "longitude": 75.3433,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Aurangabad, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Chhatrapati Sambhajinagar"
+      ]
+    },
+    {
+      "id": "banswara",
+      "country": "India",
+      "countryId": "india",
+      "region": "West India",
+      "city": "Banswara",
+      "latitude": 23.5461,
+      "longitude": 74.4349,
+      "officeType": "Coming Soon",
+      "markerType": "soon",
+      "address": "Banswara, India",
+      "services": [
+        "Coming Soon"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "bhopal",
+      "country": "India",
+      "countryId": "india",
+      "region": "West India",
+      "city": "Bhopal",
+      "latitude": 23.2599,
+      "longitude": 77.4126,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Bhopal, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "indore",
+      "country": "India",
+      "countryId": "india",
+      "region": "West India",
+      "city": "Indore",
+      "latitude": 22.7196,
+      "longitude": 75.8577,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Indore, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "jabalpur",
+      "country": "India",
+      "countryId": "india",
+      "region": "West India",
+      "city": "Jabalpur",
+      "latitude": 23.1815,
+      "longitude": 79.9864,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Jabalpur, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "mumbai",
+      "country": "India",
+      "countryId": "india",
+      "region": "West India",
+      "city": "Mumbai",
+      "latitude": 19.076,
+      "longitude": 72.8777,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Mumbai, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Bombay",
+        "Maharashtra",
+        "Maharastra"
+      ]
+    },
+    {
+      "id": "nagpur",
+      "country": "India",
+      "countryId": "india",
+      "region": "West India",
+      "city": "Nagpur",
+      "latitude": 21.1458,
+      "longitude": 79.0882,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Nagpur, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "nashik",
+      "country": "India",
+      "countryId": "india",
+      "region": "West India",
+      "city": "Nashik",
+      "latitude": 19.9975,
+      "longitude": 73.7898,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Nashik, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "pune",
+      "country": "India",
+      "countryId": "india",
+      "region": "West India",
+      "city": "Pune",
+      "latitude": 18.5204,
+      "longitude": 73.8567,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Pune, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "raipur",
+      "country": "India",
+      "countryId": "india",
+      "region": "West India",
+      "city": "Raipur",
+      "latitude": 21.2514,
+      "longitude": 81.6296,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Raipur, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "surat",
+      "country": "India",
+      "countryId": "india",
+      "region": "West India",
+      "city": "Surat",
+      "latitude": 21.1702,
+      "longitude": 72.8311,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Surat, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "thane",
+      "country": "India",
+      "countryId": "india",
+      "region": "West India",
+      "city": "Thane",
+      "latitude": 19.2183,
+      "longitude": 72.9781,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Thane, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "vadodara",
+      "country": "India",
+      "countryId": "india",
+      "region": "West India",
+      "city": "Vadodara",
+      "latitude": 22.3072,
+      "longitude": 73.1812,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Vadodara, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Vaddodra",
+        "Baroda"
+      ]
+    },
+    {
+      "id": "vapi",
+      "country": "India",
+      "countryId": "india",
+      "region": "West India",
+      "city": "Vapi",
+      "latitude": 20.3893,
+      "longitude": 72.9106,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Vapi, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "bengaluru",
+      "country": "India",
+      "countryId": "india",
+      "region": "South India",
+      "city": "Bengaluru",
+      "latitude": 12.9716,
+      "longitude": 77.5946,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Bengaluru, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Bangalore",
+        "Banglore",
+        "Karnataka"
+      ]
+    },
+    {
+      "id": "ballari",
+      "country": "India",
+      "countryId": "india",
+      "region": "South India",
+      "city": "Ballari",
+      "latitude": 15.1394,
+      "longitude": 76.9214,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Ballari, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Bellary"
+      ]
+    },
+    {
+      "id": "chennai",
+      "country": "India",
+      "countryId": "india",
+      "region": "South India",
+      "city": "Chennai",
+      "latitude": 13.0827,
+      "longitude": 80.2707,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Chennai, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Madras",
+        "Tamilnadu",
+        "Tamil Nadu"
+      ]
+    },
+    {
+      "id": "coimbatore",
+      "country": "India",
+      "countryId": "india",
+      "region": "South India",
+      "city": "Coimbatore",
+      "latitude": 11.0168,
+      "longitude": 76.9558,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Coimbatore, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Coiambatore"
+      ]
+    },
+    {
+      "id": "kozhikode",
+      "country": "India",
+      "countryId": "india",
+      "region": "South India",
+      "city": "Kozhikode",
+      "latitude": 11.2588,
+      "longitude": 75.7804,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Kozhikode, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Calicut"
+      ]
+    },
+    {
+      "id": "hosur",
+      "country": "India",
+      "countryId": "india",
+      "region": "South India",
+      "city": "Hosur",
+      "latitude": 12.7409,
+      "longitude": 77.8253,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Hosur, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Hossur"
+      ]
+    },
+    {
+      "id": "hubli",
+      "country": "India",
+      "countryId": "india",
+      "region": "South India",
+      "city": "Hubli",
+      "latitude": 15.3647,
+      "longitude": 75.124,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Hubli, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Hubballi"
+      ]
+    },
+    {
+      "id": "hyderabad",
+      "country": "India",
+      "countryId": "india",
+      "region": "South India",
+      "city": "Hyderabad",
+      "latitude": 17.385,
+      "longitude": 78.4867,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Hyderabad, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Heydrabad"
+      ]
+    },
+    {
+      "id": "kakinada",
+      "country": "India",
+      "countryId": "india",
+      "region": "South India",
+      "city": "Kakinada",
+      "latitude": 16.9891,
+      "longitude": 82.2475,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Kakinada, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "kochi",
+      "country": "India",
+      "countryId": "india",
+      "region": "South India",
+      "city": "Kochi",
+      "latitude": 9.9312,
+      "longitude": 76.2673,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Kochi, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Cochin",
+        "Coachin",
+        "Kerala"
+      ]
+    },
+    {
+      "id": "kottayam",
+      "country": "India",
+      "countryId": "india",
+      "region": "South India",
+      "city": "Kottayam",
+      "latitude": 9.5916,
+      "longitude": 76.5222,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Kottayam, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "mysuru",
+      "country": "India",
+      "countryId": "india",
+      "region": "South India",
+      "city": "Mysuru",
+      "latitude": 12.2958,
+      "longitude": 76.6394,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Mysuru, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Mysore"
+      ]
+    },
+    {
+      "id": "nellore",
+      "country": "India",
+      "countryId": "india",
+      "region": "South India",
+      "city": "Nellore",
+      "latitude": 14.4426,
+      "longitude": 79.9865,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Nellore, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "secunderabad",
+      "country": "India",
+      "countryId": "india",
+      "region": "South India",
+      "city": "Secunderabad",
+      "latitude": 17.4399,
+      "longitude": 78.4983,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Secunderabad, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "sivakasi",
+      "country": "India",
+      "countryId": "india",
+      "region": "South India",
+      "city": "Sivakasi",
+      "latitude": 9.453,
+      "longitude": 77.8024,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Sivakasi, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Shivakasi"
+      ]
+    },
+    {
+      "id": "thanjavur",
+      "country": "India",
+      "countryId": "india",
+      "region": "South India",
+      "city": "Thanjavur",
+      "latitude": 10.787,
+      "longitude": 79.1378,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Thanjavur, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "thiruvananthapuram",
+      "country": "India",
+      "countryId": "india",
+      "region": "South India",
+      "city": "Thiruvananthapuram",
+      "latitude": 8.5241,
+      "longitude": 76.9366,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Thiruvananthapuram, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Trivandrum",
+        "Trivendrum",
+        "Thiruvanthapuram"
+      ]
+    },
+    {
+      "id": "bhubaneswar",
+      "country": "India",
+      "countryId": "india",
+      "region": "East India",
+      "city": "Bhubaneswar",
+      "latitude": 20.2961,
+      "longitude": 85.8245,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Bhubaneswar, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Odisha",
+        "ODISHA",
+        "Orissa"
+      ]
+    },
+    {
+      "id": "bokaro",
+      "country": "India",
+      "countryId": "india",
+      "region": "East India",
+      "city": "Bokaro",
+      "latitude": 23.6693,
+      "longitude": 86.1511,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Bokaro, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Bokaro Jharkhand",
+        "Jharkhand"
+      ]
+    },
+    {
+      "id": "cuttack",
+      "country": "India",
+      "countryId": "india",
+      "region": "East India",
+      "city": "Cuttack",
+      "latitude": 20.4625,
+      "longitude": 85.883,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Cuttack, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "guwahati",
+      "country": "India",
+      "countryId": "india",
+      "region": "East India",
+      "city": "Guwahati",
+      "latitude": 26.1445,
+      "longitude": 91.7362,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Guwahati, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Assam"
+      ]
+    },
+    {
+      "id": "jagdalpur",
+      "country": "India",
+      "countryId": "india",
+      "region": "East India",
+      "city": "Jagdalpur",
+      "latitude": 19.0741,
+      "longitude": 82.008,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Jagdalpur, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "jharsuguda",
+      "country": "India",
+      "countryId": "india",
+      "region": "East India",
+      "city": "Jharsuguda",
+      "latitude": 21.8554,
+      "longitude": 84.0062,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Jharsuguda, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "kolkata",
+      "country": "India",
+      "countryId": "india",
+      "region": "East India",
+      "city": "Kolkata",
+      "latitude": 22.5726,
+      "longitude": 88.3639,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Kolkata, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Calcutta"
+      ]
+    },
+    {
+      "id": "koraput",
+      "country": "India",
+      "countryId": "india",
+      "region": "East India",
+      "city": "Koraput",
+      "latitude": 18.856,
+      "longitude": 82.7347,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Koraput, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "jeypore",
+      "country": "India",
+      "countryId": "india",
+      "region": "East India",
+      "city": "Jeypore",
+      "latitude": 18.8566,
+      "longitude": 82.5714,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Jeypore, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Koraput Jeypore"
+      ]
+    },
+    {
+      "id": "malda",
+      "country": "India",
+      "countryId": "india",
+      "region": "East India",
+      "city": "Malda",
+      "latitude": 25.0108,
+      "longitude": 88.1411,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Malda, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "ranchi",
+      "country": "India",
+      "countryId": "india",
+      "region": "East India",
+      "city": "Ranchi",
+      "latitude": 23.3441,
+      "longitude": 85.3096,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Ranchi, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "Jharkhand"
+      ]
+    },
+    {
+      "id": "shillong",
+      "country": "India",
+      "countryId": "india",
+      "region": "East India",
+      "city": "Shillong",
+      "latitude": 25.5788,
+      "longitude": 91.8933,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Shillong, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "siliguri",
+      "country": "India",
+      "countryId": "india",
+      "region": "East India",
+      "city": "Siliguri",
+      "latitude": 26.7271,
+      "longitude": 88.3953,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Siliguri, India",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "dubai-business-bay",
+      "country": "United Arab Emirates",
+      "countryId": "uae",
+      "region": "Dubai",
+      "city": "Dubai Business Bay",
+      "latitude": 25.185,
+      "longitude": 55.273,
+      "officeType": "Regional Office",
+      "markerType": "regional",
+      "address": "Business Bay, Dubai, UAE",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo",
+        "Implementation"
+      ],
+      "featured": true,
+      "aliases": [
+        "Dubai",
+        "UAE",
+        "Business Bay"
+      ]
+    },
+    {
+      "id": "dubai-silicon-oasis",
+      "country": "United Arab Emirates",
+      "countryId": "uae",
+      "region": "Dubai",
+      "city": "Dubai Silicon Oasis",
+      "latitude": 25.126,
+      "longitude": 55.386,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Dubai Silicon Oasis, Dubai, UAE",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "DSO"
+      ]
+    },
+    {
+      "id": "dubai-jlt",
+      "country": "United Arab Emirates",
+      "countryId": "uae",
+      "region": "Dubai",
+      "city": "Jumeirah Lake Towers",
+      "latitude": 25.069,
+      "longitude": 55.141,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Jumeirah Lake Towers, Dubai, UAE",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": [
+        "JLT"
+      ]
+    },
+    {
+      "id": "abu-dhabi",
+      "country": "United Arab Emirates",
+      "countryId": "uae",
+      "region": "Abu Dhabi",
+      "city": "Abu Dhabi",
+      "latitude": 24.4539,
+      "longitude": 54.3773,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Abu Dhabi, UAE",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    },
+    {
+      "id": "sharjah",
+      "country": "United Arab Emirates",
+      "countryId": "uae",
+      "region": "Sharjah",
+      "city": "Sharjah",
+      "latitude": 25.3463,
+      "longitude": 55.4209,
+      "officeType": "Partner Office",
+      "markerType": "partner",
+      "address": "Sharjah, UAE",
+      "services": [
+        "Sales",
+        "Support",
+        "Demo"
+      ],
+      "featured": false,
+      "aliases": []
+    }
+  ]
+}

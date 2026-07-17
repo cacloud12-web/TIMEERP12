@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recruitment Management — TIME ERP HRMS</title>
+  <meta name="description" content="Manage job openings, candidates, interviews, and hiring progress from one centralized TIME ERP workspace.">
+  <link rel="icon" href="../assets/image0.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard-shell.css">
+  <link rel="stylesheet" href="css/recruitment.css">
+</head>
+<body>
+
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="../home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="../assets/image0.png" alt="TimeERP" width="168" height="40">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">3</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <button type="button" class="topbar__icon-btn" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">TE</span>
+                <span class="topbar__profile-meta"><strong>Admin</strong><span>TimeERP</span></span>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="../home.html" class="dropdown__item"><strong>Go to home</strong><span>Module hub overview</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="rec-page" id="recPage">
+
+          <header class="rec-page__header">
+            <div class="rec-page__header-text">
+              <h1>Recruitment Management</h1>
+            </div>
+            <div class="rec-page__actions">
+              <button type="button" class="rec-btn rec-btn--primary" id="btnCreateJob">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                Create Job Opening
+              </button>
+              <button type="button" class="rec-btn" id="btnExport">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+                Export
+              </button>
+              <button type="button" class="rec-btn" id="btnRefresh" aria-label="Refresh">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 4v6h6M20 20v-6h-6"/><path d="M5 19a9 9 0 0014-7M19 5a9 9 0 00-14 7"/></svg>
+                Refresh
+              </button>
+            </div>
+          </header>
+
+          <section class="rec-kpi" aria-label="Recruitment statistics">
+            <article class="rec-kpi__card">
+              <div class="rec-kpi__top">
+                <div class="rec-kpi__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+                </div>
+                <span class="rec-kpi__trend rec-kpi__trend--up">+2</span>
+              </div>
+              <div class="rec-kpi__value" id="kpiJobs">0</div>
+              <div class="rec-kpi__label">Active Job Openings</div>
+            </article>
+            <article class="rec-kpi__card">
+              <div class="rec-kpi__top">
+                <div class="rec-kpi__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                </div>
+                <span class="rec-kpi__trend rec-kpi__trend--up">+12%</span>
+              </div>
+              <div class="rec-kpi__value" id="kpiApplicants">0</div>
+              <div class="rec-kpi__label">Total Applicants</div>
+            </article>
+            <article class="rec-kpi__card">
+              <div class="rec-kpi__top">
+                <div class="rec-kpi__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                </div>
+                <span class="rec-kpi__trend rec-kpi__trend--flat">Today</span>
+              </div>
+              <div class="rec-kpi__value" id="kpiInterviews">0</div>
+              <div class="rec-kpi__label">Interviews Scheduled</div>
+            </article>
+            <article class="rec-kpi__card">
+              <div class="rec-kpi__top">
+                <div class="rec-kpi__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+                </div>
+                <span class="rec-kpi__trend rec-kpi__trend--up">+3</span>
+              </div>
+              <div class="rec-kpi__value" id="kpiShortlisted">0</div>
+              <div class="rec-kpi__label">Candidates Shortlisted</div>
+            </article>
+            <article class="rec-kpi__card">
+              <div class="rec-kpi__top">
+                <div class="rec-kpi__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+                </div>
+                <span class="rec-kpi__trend rec-kpi__trend--up">+1</span>
+              </div>
+              <div class="rec-kpi__value" id="kpiOffers">0</div>
+              <div class="rec-kpi__label">Offers Released</div>
+            </article>
+            <article class="rec-kpi__card">
+              <div class="rec-kpi__top">
+                <div class="rec-kpi__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
+                </div>
+                <span class="rec-kpi__trend rec-kpi__trend--up">+1</span>
+              </div>
+              <div class="rec-kpi__value" id="kpiHired">0</div>
+              <div class="rec-kpi__label">Hired Candidates</div>
+            </article>
+          </section>
+
+          <div class="rec-toolbar">
+            <div class="rec-search" role="search">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+              <input type="search" id="recSearch" placeholder="Search candidates, job titles, skills, or email…" autocomplete="off" aria-label="Search recruitment">
+            </div>
+            <form class="rec-filters" id="recFilters" aria-label="Recruitment filters">
+              <div><label for="filterPosition">Job Position</label><select id="filterPosition"></select></div>
+              <div><label for="filterDept">Department</label><select id="filterDept"></select></div>
+              <div><label for="filterStage">Hiring Stage</label><select id="filterStage"></select></div>
+              <div><label for="filterExp">Experience</label><select id="filterExp"></select></div>
+              <div><label for="filterLocation">Location</label><select id="filterLocation"></select></div>
+              <div><label for="filterType">Employment Type</label><select id="filterType"></select></div>
+              <div><label for="filterApplied">Date Applied</label><input type="date" id="filterApplied"></div>
+              <button type="button" class="rec-btn" id="filterReset">Reset Filters</button>
+            </form>
+          </div>
+
+          <section class="rec-section" aria-label="Quick actions">
+            <div class="rec-section__head"><h2>Quick Actions</h2></div>
+            <div class="rec-quick">
+              <button type="button" class="rec-quick__card" data-ui="quick-job">
+                <span class="rec-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></span>
+                <span><strong>Create Job</strong><span>Post a new opening</span></span>
+              </button>
+              <button type="button" class="rec-quick__card" data-ui="quick-candidate">
+                <span class="rec-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg></span>
+                <span><strong>Add Candidate</strong><span>Register applicant</span></span>
+              </button>
+              <button type="button" class="rec-quick__card" data-ui="quick-interview">
+                <span class="rec-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+                <span><strong>Schedule Interview</strong><span>Book a slot</span></span>
+              </button>
+              <button type="button" class="rec-quick__card" data-ui="quick-offer">
+                <span class="rec-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></span>
+                <span><strong>Generate Offer</strong><span>Release offer letter</span></span>
+              </button>
+              <button type="button" class="rec-quick__card" data-ui="quick-export">
+                <span class="rec-quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg></span>
+                <span><strong>Export Applicants</strong><span>Download report</span></span>
+              </button>
+            </div>
+          </section>
+
+          <div class="rec-empty" id="recEmpty" hidden>
+            <div class="rec-empty__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
+            </div>
+            <h3>No Recruitment Data Available</h3>
+            <p>Start by creating your first job opening to begin the hiring process.</p>
+            <button type="button" class="rec-btn rec-btn--primary" id="emptyCreateJob">Create Job Opening</button>
+          </div>
+
+          <div id="recContent">
+
+            <section class="rec-section" aria-label="Recruitment pipeline">
+              <div class="rec-section__head">
+                <h2>Recruitment Pipeline</h2>
+                <p>Kanban view of candidates across hiring stages</p>
+              </div>
+              <div class="rec-kanban-wrap">
+                <div class="rec-kanban" id="recKanban" role="list" aria-label="Hiring pipeline columns"></div>
+              </div>
+            </section>
+
+            <section class="rec-section" aria-label="Job openings">
+              <div class="rec-section__head"><h2>Job Openings</h2></div>
+              <div class="rec-jobs" id="recJobs"></div>
+            </section>
+
+            <section class="rec-section" aria-label="Recent applicants">
+              <div class="rec-section__head"><h2>Recent Applicants</h2></div>
+              <div class="rec-panel">
+                <div class="rec-table-wrap">
+                  <table class="rec-table" aria-label="Recent applicants">
+                    <thead>
+                      <tr>
+                        <th scope="col">Photo</th>
+                        <th scope="col">Candidate Name</th>
+                        <th scope="col">Applied Position</th>
+                        <th scope="col">Experience</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Application Date</th>
+                        <th scope="col">Current Stage</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="recTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+
+            <div class="rec-split">
+              <section class="rec-section" aria-label="Upcoming interviews">
+                <div class="rec-section__head"><h2>Upcoming Interviews</h2></div>
+                <div class="rec-interviews" id="recInterviews"></div>
+              </section>
+
+              <section class="rec-section" aria-label="Hiring activity">
+                <div class="rec-section__head"><h2>Hiring Activity Timeline</h2></div>
+                <div class="rec-panel" style="padding:16px">
+                  <div class="rec-timeline" id="recTimeline"></div>
+                </div>
+              </section>
+            </div>
+
+            <section class="rec-section" aria-label="Reports preview">
+              <div class="rec-section__head"><h2>Reports Preview</h2><p>Placeholder analytics widgets</p></div>
+              <div class="rec-reports">
+                <article class="rec-report-card">
+                  <h3>Hiring Funnel</h3>
+                  <div class="rec-funnel">
+                    <div class="rec-funnel__row"><span class="rec-funnel__label">Applied</span><div class="rec-funnel__bar" style="width:100%"></div></div>
+                    <div class="rec-funnel__row"><span class="rec-funnel__label">Screening</span><div class="rec-funnel__bar" style="width:75%"></div></div>
+                    <div class="rec-funnel__row"><span class="rec-funnel__label">Interview</span><div class="rec-funnel__bar" style="width:50%"></div></div>
+                    <div class="rec-funnel__row"><span class="rec-funnel__label">Offer</span><div class="rec-funnel__bar" style="width:30%"></div></div>
+                    <div class="rec-funnel__row"><span class="rec-funnel__label">Hired</span><div class="rec-funnel__bar" style="width:15%"></div></div>
+                  </div>
+                </article>
+                <article class="rec-report-card">
+                  <h3>Monthly Hiring</h3>
+                  <div class="rec-chart-placeholder" aria-hidden="true">
+                    <div class="rec-chart-bar" style="height:45%"></div>
+                    <div class="rec-chart-bar" style="height:65%"></div>
+                    <div class="rec-chart-bar" style="height:40%"></div>
+                    <div class="rec-chart-bar" style="height:80%"></div>
+                    <div class="rec-chart-bar" style="height:55%"></div>
+                    <div class="rec-chart-bar" style="height:90%"></div>
+                  </div>
+                </article>
+                <article class="rec-report-card">
+                  <h3>Applications by Department</h3>
+                  <div class="rec-chart-placeholder" aria-hidden="true">
+                    <div class="rec-chart-bar" style="height:70%"></div>
+                    <div class="rec-chart-bar" style="height:50%"></div>
+                    <div class="rec-chart-bar" style="height:85%"></div>
+                    <div class="rec-chart-bar" style="height:35%"></div>
+                  </div>
+                </article>
+                <article class="rec-report-card">
+                  <h3>Interview Success Rate</h3>
+                  <div class="rec-donut" aria-label="72% interview success rate placeholder"></div>
+                </article>
+                <article class="rec-report-card" style="grid-column:1/-1">
+                  <h3>Offer Acceptance Rate</h3>
+                  <div class="rec-funnel">
+                    <div class="rec-funnel__row"><span class="rec-funnel__label">Offers Sent</span><div class="rec-funnel__bar" style="width:100%"></div></div>
+                    <div class="rec-funnel__row"><span class="rec-funnel__label">Accepted</span><div class="rec-funnel__bar" style="width:68%"></div></div>
+                    <div class="rec-funnel__row"><span class="rec-funnel__label">Declined</span><div class="rec-funnel__bar" style="width:22%"></div></div>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+          </div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+  <script src="js/dashboard-shell.js"></script>
+  <script src="js/recruitment.js"></script>
+</body>
+</html>

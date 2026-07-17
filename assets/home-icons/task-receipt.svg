@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="gt-receipt" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#25b7a7"/>
+      <stop offset="1" stop-color="#0d7a6e"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#e8f8f6"/>
+<path d="M18 12h28v40l-4-3-4 3-4-3-4 3-4-3-4 3-4-3V12z" fill="url(#gt-receipt)"/><path d="M26 24h12M26 32h12" stroke="#fff" stroke-width="2.3"/>
+</svg>
