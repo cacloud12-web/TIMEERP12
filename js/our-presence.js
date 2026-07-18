@@ -650,7 +650,7 @@
             '<a class="nav__link" href="Our_Presence.html">Our Presence</a>' +
             '<a class="nav__link" href="price.html">Pricing</a>' +
             '<a class="nav__link" href="contact_sales.html">Contact</a>' +
-            '<a class="btn btn--primary" href="contact_sales.html">Book Demo</a>';
+            '<a class="btn btn--primary" href="#" data-book-demo>Book Demo</a>';
         }
         drawer.classList.toggle('is-open');
       });

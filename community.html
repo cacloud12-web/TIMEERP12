@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <link rel="icon" href="assets/image0.png" type="image/png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Community — TimeERP</title>
-  <meta name="description" content="TimeERP Community — connect with manufacturing professionals. Network, share workflows, join events, and shape the product.">
+  <title>Community | TimeERP</title>
+  <meta name="description" content="TIME ERP Community — connect with professionals across CA firms, construction, real estate, MSME, and professional services. Share module workflows, join learning sessions, and stay close to product updates.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -1367,10 +1367,12 @@
     .community-page .section-lead
     .comm-hero .section-lead h1{font-size:clamp(1.75rem,2.8vw,2.25rem);font-weight:600;line-height:1.2;letter-spacing:-0.03em;margin-bottom:8px;color:#fff;-webkit-text-fill-color:#fff;background:none;filter:none;}
     .comm-hero .section-lead p{font-size:16px;line-height:1.65;color:rgba(255,255,255,.88);max-width:580px;letter-spacing:-0.2px;}
-    .comm-hero__cta{display:flex;flex-direction:column;gap:10px;align-items:flex-start;}
+    .comm-hero__cta{display:flex;flex-direction:row;flex-wrap:wrap;gap:10px;align-items:center;}
     .comm-hero__cta .btn--primary{background:#fff;color:var(--primary);padding:14px 28px;font-size:15px;border-radius:var(--radius-btn);transition:transform .2s,box-shadow .2s;}
     .comm-hero__cta .btn--primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15);}
-    .comm-hero__cta-note{font-size:13px;color:rgba(255,255,255,.75);}
+    .comm-hero__cta .btn--ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.55);padding:14px 28px;font-size:15px;border-radius:var(--radius-btn);transition:background .2s,border-color .2s,transform .2s;}
+    .comm-hero__cta .btn--ghost:hover{background:rgba(255,255,255,.12);border-color:#fff;transform:translateY(-2px);}
+    .comm-hero__cta-note{width:100%;font-size:13px;color:rgba(255,255,255,.75);}
 
     .comm-benefits-section{background:var(--bg-light);}
     .comm-benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
@@ -1527,6 +1529,8 @@
     .comm-cta p{font-size:16px;color:var(--text-body);max-width:520px;margin:0 auto 24px;line-height:1.65;}
     .comm-cta .btn--primary{display:inline-flex;background:var(--primary);color:#fff;padding:14px 32px;border-radius:var(--radius-btn);font-size:15px;font-weight:600;transition:transform .2s,box-shadow .2s;}
     .comm-cta .btn--primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,183,167,.35);}
+    .comm-cta .btn--ghost{display:inline-flex;background:#fff;color:var(--primary-dark, #1a9e8f);border:1.5px solid var(--border, #d0eeec);padding:14px 32px;border-radius:var(--radius-btn);font-size:15px;font-weight:600;margin-left:8px;transition:transform .2s,border-color .2s,background .2s;}
+    .comm-cta .btn--ghost:hover{transform:translateY(-2px);border-color:var(--primary);background:var(--primary-light, #e8f8f6);}
 
     @media (max-width:1024px){
       :root{--content-pad-x:40px;--section-pad:80px;}
@@ -1869,12 +1873,13 @@
       <div class="comm-hero__decoration" aria-hidden="true"></div>
       <div class="section-inner comm-hero__inner">
         <div class="section-lead anim-up">
-          <h1>Connect with manufacturing professionals</h1>
-          <p>Network with plant managers, operations leaders, and ERP teams. Share workflows, discover best practices, and stay ahead in one powerful manufacturing community.</p>
+          <h1>Connect with TIME ERP professionals</h1>
+          <p>Share workflows, learn module best practices, and grow with peers across CA firms, construction, real estate, MSME, and professional services — all using TIME ERP.</p>
         </div>
         <div class="comm-hero__cta anim-up hero-delay-1">
-          <a href="home.html" class="btn btn--primary">Join Community</a>
-          <span class="comm-hero__cta-note">Free for all active TimeERP users</span>
+          <a href="contact_sales.html" class="btn btn--primary">Join Community</a>
+          <a href="Academy.html" class="btn btn--ghost">Explore Academy</a>
+          <span class="comm-hero__cta-note">Open to TIME ERP customers and teams evaluating the platform</span>
         </div>
       </div>
     </section>
@@ -1883,29 +1888,29 @@
       <div class="section-inner">
         <div class="section-lead anim-up">
           <span class="section-label">Why Join</span>
-          <h2 id="comm-benefits-heading">Why join the TimeERP Community</h2>
-          <p>Click a benefit to explore what members get from the community.</p>
+          <h2 id="comm-benefits-heading">Why join the TIME ERP Community</h2>
+          <p>Click a benefit to see how the community supports real TIME ERP modules and industries.</p>
         </div>
         <div class="comm-benefits anim-up stagger-1" role="tablist" aria-label="Community benefits">
           <button type="button" class="comm-benefit is-active" role="tab" data-benefit="network" aria-selected="true">
             <span class="comm-benefit__icon"><span class="material-symbols-outlined">groups</span></span>
-            <span class="comm-benefit__title">Network with leaders</span>
-            <span class="comm-benefit__desc">Connect with manufacturing professionals worldwide</span>
+            <span class="comm-benefit__title">Network with peers</span>
+            <span class="comm-benefit__desc">Connect across CA, construction, real estate &amp; MSME teams</span>
           </button>
           <button type="button" class="comm-benefit" role="tab" data-benefit="events" aria-selected="false">
             <span class="comm-benefit__icon"><span class="material-symbols-outlined">event</span></span>
-            <span class="comm-benefit__title">Events and meetups</span>
-            <span class="comm-benefit__desc">Webinars, roundtables, and industry summits</span>
+            <span class="comm-benefit__title">Learning sessions</span>
+            <span class="comm-benefit__desc">Academy paths, training, and product walkthroughs</span>
           </button>
           <button type="button" class="comm-benefit" role="tab" data-benefit="knowledge" aria-selected="false">
             <span class="comm-benefit__icon"><span class="material-symbols-outlined">menu_book</span></span>
             <span class="comm-benefit__title">Share knowledge</span>
-            <span class="comm-benefit__desc">Workflow tips from teams running TimeERP daily</span>
+            <span class="comm-benefit__desc">HRMS, CRM, projects, billing &amp; compliance tips</span>
           </button>
           <button type="button" class="comm-benefit" role="tab" data-benefit="updates" aria-selected="false">
             <span class="comm-benefit__icon"><span class="material-symbols-outlined">notifications</span></span>
-            <span class="comm-benefit__title">Product updates first</span>
-            <span class="comm-benefit__desc">Feature previews and direct team access</span>
+            <span class="comm-benefit__title">Product updates</span>
+            <span class="comm-benefit__desc">Module news, docs updates, and feedback paths</span>
           </button>
         </div>
         <div class="comm-benefit-detail is-visible anim-up stagger-2" id="commBenefitDetail" role="tabpanel" aria-live="polite"></div>
@@ -1917,19 +1922,20 @@
         <div class="comm-channels__head anim-up">
           <div class="section-lead" style="margin-bottom:0;">
             <span class="section-label">Channels</span>
-            <h2 id="comm-channels-heading">Topic-specific channels</h2>
+            <h2 id="comm-channels-heading">Module-focused channels</h2>
           </div>
           <div class="comm-channel-tabs" role="tablist" aria-label="Channel categories">
             <button type="button" class="comm-channel-tab is-active" role="tab" data-channel-cat="all" aria-selected="true">All</button>
-            <button type="button" class="comm-channel-tab" role="tab" data-channel-cat="production" aria-selected="false">Production</button>
-            <button type="button" class="comm-channel-tab" role="tab" data-channel-cat="inventory" aria-selected="false">Inventory</button>
-            <button type="button" class="comm-channel-tab" role="tab" data-channel-cat="quality" aria-selected="false">Quality</button>
-            <button type="button" class="comm-channel-tab" role="tab" data-channel-cat="workflows" aria-selected="false">Workflows</button>
+            <button type="button" class="comm-channel-tab" role="tab" data-channel-cat="hrms" aria-selected="false">HRMS</button>
+            <button type="button" class="comm-channel-tab" role="tab" data-channel-cat="crm" aria-selected="false">CRM</button>
+            <button type="button" class="comm-channel-tab" role="tab" data-channel-cat="projects" aria-selected="false">Projects</button>
+            <button type="button" class="comm-channel-tab" role="tab" data-channel-cat="billing" aria-selected="false">Billing</button>
+            <button type="button" class="comm-channel-tab" role="tab" data-channel-cat="compliance" aria-selected="false">Compliance</button>
           </div>
         </div>
         <div class="comm-channel-grid anim-up stagger-1" id="commChannelGrid" role="list"></div>
         <div class="comm-topics anim-up stagger-2">
-          <p class="comm-topics__title">Trending topics</p>
+          <p class="comm-topics__title">Suggested topics</p>
           <ul id="commTopicList"></ul>
         </div>
       </div>
@@ -1939,15 +1945,15 @@
       <div class="section-inner">
         <div class="section-lead anim-up">
           <span class="section-label">Discussions</span>
-          <h2 id="comm-discussions-heading">Featured discussions</h2>
-          <p>Search and sort community threads from manufacturing professionals.</p>
+          <h2 id="comm-discussions-heading">Conversation themes by role</h2>
+          <p>Browse suggested discussion themes mapped to real TIME ERP modules. Continue learning in Academy or Help Centre.</p>
         </div>
         <div class="comm-discussions__toolbar anim-up stagger-1">
-          <input type="search" class="comm-discussions__search" id="commDiscussionSearch" placeholder="Search discussions..." aria-label="Search discussions">
+          <input type="search" class="comm-discussions__search" id="commDiscussionSearch" placeholder="Search topics, roles, or modules..." aria-label="Search discussions">
           <select class="comm-discussions__sort" id="commDiscussionSort" aria-label="Sort discussions">
-            <option value="latest">Latest</option>
-            <option value="top">Top voted</option>
-            <option value="replies">Most replies</option>
+            <option value="latest">Default</option>
+            <option value="alpha">A–Z</option>
+            <option value="module">By module</option>
           </select>
         </div>
         <div class="comm-discussions__list anim-up stagger-2" id="commDiscussionList"></div>
@@ -1957,28 +1963,28 @@
     <section class="comm-events-section section" aria-labelledby="comm-events-heading">
       <div class="section-inner">
         <div class="section-lead anim-up">
-          <span class="section-label">Events</span>
-          <h2 id="comm-events-heading">Upcoming events</h2>
-          <p>Live sessions, roundtables, and meetups for manufacturing professionals.</p>
+          <span class="section-label">Learning &amp; Events</span>
+          <h2 id="comm-events-heading">Ways to learn with TIME ERP</h2>
+          <p>Use Academy, consultants, onboarding, and the event calendar — all aligned to verified TIME ERP capabilities.</p>
         </div>
         <div class="comm-events__grid anim-up stagger-1">
           <article class="comm-event">
-            <p class="comm-event__date">Jun 24 · Virtual</p>
-            <h3 class="comm-event__title">Production scheduling masterclass</h3>
-            <p class="comm-event__meta">Live webinar with plant managers sharing multi-line scheduling strategies.</p>
-            <button type="button" class="comm-event__register">Register interest</button>
+            <p class="comm-event__date">Self-paced · Online</p>
+            <h3 class="comm-event__title">TIME ERP Academy paths</h3>
+            <p class="comm-event__meta">Structured guides for HRMS, CRM, projects, billing, compliance, and more.</p>
+            <button type="button" class="comm-event__register" data-href="Academy.html">Open Academy</button>
           </article>
           <article class="comm-event">
-            <p class="comm-event__date">Jul 2 · Virtual</p>
-            <h3 class="comm-event__title">Inventory optimization roundtable</h3>
-            <p class="comm-event__meta">Peer discussion on reorder automation, cycle counts, and stockout prevention.</p>
-            <button type="button" class="comm-event__register">Register interest</button>
+            <p class="comm-event__date">Guided · With experts</p>
+            <h3 class="comm-event__title">Implementation training</h3>
+            <p class="comm-event__meta">Work with TIME ERP consultants on configuration, roles, and go-live readiness.</p>
+            <button type="button" class="comm-event__register" data-href="consultants.html">Talk to consultant</button>
           </article>
           <article class="comm-event">
-            <p class="comm-event__date">Jul 15 · In person</p>
-            <h3 class="comm-event__title">Manufacturing ERP summit</h3>
-            <p class="comm-event__meta">Meet community members and TimeERP product experts at our annual summit.</p>
-            <button type="button" class="comm-event__register">Register interest</button>
+            <p class="comm-event__date">Team calendar</p>
+            <h3 class="comm-event__title">Workplace event calendar</h3>
+            <p class="comm-event__meta">Track meetings, deadlines, and workplace events from TIME ERP Resources.</p>
+            <button type="button" class="comm-event__register" data-href="event_calendar.html">View calendar</button>
           </article>
         </div>
       </div>
@@ -1987,42 +1993,45 @@
     <section class="comm-ideas-section section" aria-labelledby="comm-ideas-heading">
       <div class="section-inner">
         <div class="section-lead anim-up">
-          <span class="section-label">Ideas Board</span>
-          <h2 id="comm-ideas-heading">Shape the product</h2>
-          <p>Vote on feature ideas submitted by manufacturing professionals.</p>
+          <span class="section-label">Feedback</span>
+          <h2 id="comm-ideas-heading">Help shape TIME ERP</h2>
+          <p>Share improvement themes for modules you use. Mark ideas that matter to your team, then send feedback through sales or support.</p>
         </div>
         <div class="comm-ideas anim-up stagger-1">
           <article class="comm-idea">
-            <button type="button" class="comm-idea__vote" aria-label="Vote for this idea">
-              <span class="comm-idea__vote-count">127</span>
-              <span class="comm-idea__vote-label">votes</span>
+            <button type="button" class="comm-idea__vote" aria-label="Mark this theme as important">
+              <span class="comm-idea__vote-count">★</span>
+              <span class="comm-idea__vote-label">Priority</span>
             </button>
             <div class="comm-idea__body">
-              <h3 class="comm-idea__title">Drag-and-drop production Gantt view</h3>
-              <span class="comm-idea__status comm-idea__status--planned">Planned</span>
+              <h3 class="comm-idea__title">Clearer GST and statutory report exports</h3>
+              <span class="comm-idea__status comm-idea__status--planned">Compliance</span>
             </div>
           </article>
           <article class="comm-idea">
-            <button type="button" class="comm-idea__vote" aria-label="Vote for this idea">
-              <span class="comm-idea__vote-count">89</span>
-              <span class="comm-idea__vote-label">votes</span>
+            <button type="button" class="comm-idea__vote" aria-label="Mark this theme as important">
+              <span class="comm-idea__vote-count">★</span>
+              <span class="comm-idea__vote-label">Priority</span>
             </button>
             <div class="comm-idea__body">
-              <h3 class="comm-idea__title">Mobile quality inspection with photo capture</h3>
-              <span class="comm-idea__status comm-idea__status--review">In review</span>
+              <h3 class="comm-idea__title">Stronger Client Desk collaboration for document requests</h3>
+              <span class="comm-idea__status comm-idea__status--review">CRM</span>
             </div>
           </article>
           <article class="comm-idea">
-            <button type="button" class="comm-idea__vote" aria-label="Vote for this idea">
-              <span class="comm-idea__vote-count">64</span>
-              <span class="comm-idea__vote-label">votes</span>
+            <button type="button" class="comm-idea__vote" aria-label="Mark this theme as important">
+              <span class="comm-idea__vote-count">★</span>
+              <span class="comm-idea__vote-label">Priority</span>
             </button>
             <div class="comm-idea__body">
-              <h3 class="comm-idea__title">Multi-warehouse transfer approval workflow</h3>
-              <span class="comm-idea__status comm-idea__status--review">In review</span>
+              <h3 class="comm-idea__title">Richer project P/L and timesheet billing visibility</h3>
+              <span class="comm-idea__status comm-idea__status--review">Projects</span>
             </div>
           </article>
         </div>
+        <p class="comm-topics__title" style="margin-top:20px">
+          <a href="contact_sales.html" style="color:var(--primary-dark);font-weight:600">Share detailed feedback with TIME ERP →</a>
+        </p>
       </div>
     </section>
 
@@ -2035,31 +2044,31 @@
         <div class="comm-faq anim-up stagger-1">
           <div class="comm-faq__item">
             <button type="button" class="comm-faq__trigger" aria-expanded="false">
-              Who can join the TimeERP Community?
+              Who is the TIME ERP Community for?
               <span class="comm-faq__chevron" aria-hidden="true">▾</span>
             </button>
-            <div class="comm-faq__panel"><p>The community is open to all active TimeERP users — plant managers, operations directors, inventory leads, QA teams, and ERP administrators.</p></div>
+            <div class="comm-faq__panel"><p>Customers and teams using or evaluating TIME ERP — including CA firms, construction companies, real estate and property dealer teams, MSMEs, and professional services organizations.</p></div>
           </div>
           <div class="comm-faq__item">
             <button type="button" class="comm-faq__trigger" aria-expanded="false">
               How do I join the community?
               <span class="comm-faq__chevron" aria-hidden="true">▾</span>
             </button>
-            <div class="comm-faq__panel"><p>Click Join Community on this page and sign in with your TimeERP account. Set up your profile and start connecting with manufacturing professionals.</p></div>
+            <div class="comm-faq__panel"><p>Contact TIME ERP sales or your account team to get community access guidance. You can also start learning immediately in Academy and Help Centre.</p></div>
           </div>
           <div class="comm-faq__item">
             <button type="button" class="comm-faq__trigger" aria-expanded="false">
-              What kind of content will I find?
+              What topics are covered?
               <span class="comm-faq__chevron" aria-hidden="true">▾</span>
             </button>
-            <div class="comm-faq__panel"><p>Practical workflow tips, feature updates, event announcements, and curated industry news — plus direct input from the TimeERP product team.</p></div>
+            <div class="comm-faq__panel"><p>Module workflows across HRMS, payroll, attendance, leave, CRM, Client Desk, projects, billing, compliance, Document Vault, marketing, and communication — plus setup, training, and implementation practices.</p></div>
           </div>
           <div class="comm-faq__item">
             <button type="button" class="comm-faq__trigger" aria-expanded="false">
-              Is access to the community free?
+              Where else can I learn TIME ERP?
               <span class="comm-faq__chevron" aria-hidden="true">▾</span>
             </button>
-            <div class="comm-faq__panel"><p>Yes. Access to the TimeERP Community is completely free for all active users.</p></div>
+            <div class="comm-faq__panel"><p>Use TIME ERP Academy for structured learning paths, Help Centre for guides and FAQs, Consultants for implementation support, and Paid onboarding for guided setup.</p></div>
           </div>
         </div>
       </div>
@@ -2068,9 +2077,10 @@
     <section class="section">
       <div class="section-inner">
         <div class="comm-cta anim-up">
-          <h2>Join 2,400+ members shaping manufacturing operations</h2>
-          <p>Get weekly digests with the latest trends, strategies, and product updates from the TimeERP Community.</p>
-          <a href="home.html" class="btn btn--primary">Join Community</a>
+          <h2>Grow with the TIME ERP Community</h2>
+          <p>Connect with peers, learn every module, and get implementation guidance from Academy, Help Centre, and consultants.</p>
+          <a href="contact_sales.html" class="btn btn--primary">Join Community</a>
+          <a href="help_centre.html" class="btn btn--ghost" style="margin-left:8px">Visit Help Centre</a>
         </div>
       </div>
     </section>
@@ -2147,7 +2157,7 @@
             Ghaziabad, Delhi NCR, UP 201002
           </address>
           <div class="footer__quick">
-            <a class="footer__quick-btn" href="contact_sales.html">Book Demo</a>
+            <a class="footer__quick-btn" href="#" data-book-demo>Book Demo</a>
             <a class="footer__quick-btn" href="real_time_support.html">Get Support</a>
           </div>
         </div>

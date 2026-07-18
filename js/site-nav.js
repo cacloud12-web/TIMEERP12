@@ -45,10 +45,8 @@
     +       '<a class="nav__link" href="contact_sales.html">Contact</a>'
     +     '</nav>'
     +     '<div class="nav__actions">'
-    +       (isHome
-          ? '<a class="btn btn--primary" href="#" data-book-demo>Book Demo</a>'
-            + '<a class="btn btn--ghost" href="home.html">Login</a>'
-          : '')
+    +       '<a class="btn btn--primary" href="#" data-book-demo>Book Demo</a>'
+    +       (isHome ? '<a class="btn btn--ghost" href="home.html">Login</a>' : '')
     +       '<button type="button" class="nav__toggle" id="navToggle" aria-label="Open menu">☰</button>'
     +     '</div>'
     +   '</div>'
@@ -95,16 +93,16 @@
     +       '<h2 class="resources-mega__heading">Resources</h2>'
     +       '<div class="resources-mega__columns">'
     +         '<div class="resources-mega__col">'
-    +           resourcesItem('community.html', 'school', 'Academy', 'Self-paced, expert-led courses')
+    +           resourcesItem('Academy.html', 'school', 'Academy', 'Self-paced, expert-led courses')
     +           resourcesItem('event_calendar.html', 'calendar_month', 'Event calendar', 'Meetings, deadlines & workplace events')
     +         '</div>'
     +         '<div class="resources-mega__col">'
-    +           resourcesItem(hash('faq'), 'help', 'Help Centre', 'Guides, FAQs, platform resources')
-    +           resourcesItem('contact_sales.html', 'support_agent', 'Consultants', 'Hire TimeERP implementation experts')
+    +           resourcesItem('help_centre.html', 'help', 'Help Centre', 'Guides, FAQs, platform resources')
+    +           resourcesItem('consultants.html', 'support_agent', 'Consultants', 'Hire TimeERP implementation experts')
     +         '</div>'
     +         '<div class="resources-mega__col">'
     +           resourcesItem('onboarding_services.html', 'person_add', 'Paid onboarding services', 'Get hands-on guidance and expert setup')
-    +           resourcesItem('contact_sales.html', 'storefront', 'Marketplace', 'Templates and add-ons for your workflow')
+    +           resourcesItem('market.html', 'campaign', 'Marketing', 'Campaigns, leads, email, SMS & WhatsApp')
     +         '</div>'
     +       '</div>'
     +     '</div>'
@@ -123,7 +121,7 @@
     +           companyItem('custom_quote.html', 'request_quote', 'Get a custom quote', 'Designed for firms with 25+ seats')
     +         '</div>'
     +         '<div class="company-mega__col">'
-    +           companyItem('community.html', 'forum', 'Community', 'Connect with manufacturing professionals')
+    +           companyItem('community.html', 'forum', 'Community', 'Connect with TIME ERP professionals')
     +           companyItem('contact_sales.html', 'call', 'Contact sales', 'Get in touch for tailored solutions')
     +         '</div>'
     +         '<div class="company-mega__col">'
@@ -251,38 +249,21 @@
         href: hash('crm')
       },
       {
-        id: 'litigation',
-        name: 'Litigation',
-        icon: 'gavel',
-        detailDesc: 'Manage legal cases, track litigation matters, deadlines, and court proceedings for your practice.',
-        features: [
-          { name: 'Case Management', icon: 'folder_special' },
-          { name: 'Court Dates', icon: 'event' },
-          { name: 'Deadlines', icon: 'alarm' },
-          { name: 'Hearings', icon: 'balance' },
-          { name: 'Documents', icon: 'description' },
-          { name: 'Client Updates', icon: 'campaign' },
-          { name: 'Cause List', icon: 'list_alt' },
-          { name: 'Matter Reports', icon: 'summarize' }
-        ],
-        href: hash('products')
-      },
-      {
         id: 'marketing',
         name: 'Marketing',
         icon: 'campaign',
-        detailDesc: 'Run client outreach, email and WhatsApp campaigns, and promotional activities from one marketing workspace.',
+        detailDesc: 'Manage leads, website presence, email, SMS, WhatsApp, ads, and broadcast campaigns from one marketing workspace.',
         features: [
-          { name: 'Email Campaigns', icon: 'mail' },
+          { name: 'Website Management', icon: 'language' },
+          { name: 'Lead Management', icon: 'filter_alt' },
+          { name: 'Community', icon: 'groups' },
+          { name: 'Email Marketing', icon: 'mail' },
           { name: 'WhatsApp Marketing', icon: 'chat' },
-          { name: 'SMS Outreach', icon: 'sms' },
-          { name: 'Templates', icon: 'dashboard_customize' },
-          { name: 'Audience Segments', icon: 'group' },
-          { name: 'Automation', icon: 'bolt' },
-          { name: 'Analytics', icon: 'insights' },
-          { name: 'Campaign Reports', icon: 'bar_chart' }
+          { name: 'SMS Campaigns', icon: 'sms' },
+          { name: 'Google Ads', icon: 'ads_click' },
+          { name: 'Broadcast Campaigns', icon: 'campaign' }
         ],
-        href: hash('marketing')
+        href: 'market.html'
       },
       {
         id: 'compliance',
@@ -404,7 +385,7 @@
       +           '<span class="products-mega__news-thumb" aria-hidden="true"><span class="material-symbols-outlined">manage_search</span></span>'
       +           '<span class="products-mega__news-text">Compliance Dashboard: GST, TDS, EPFO &amp; ESIC reports in one place</span>'
       +         '</a>'
-      +         '<a class="products-mega__news" href="' + hash('marketing') + '">'
+      +         '<a class="products-mega__news" href="market.html">'
       +           '<span class="products-mega__news-thumb" aria-hidden="true"><span class="material-symbols-outlined">campaign</span></span>'
       +           '<span class="products-mega__news-text">WhatsApp Marketing: campaigns, templates &amp; automation for outreach</span>'
       +         '</a>'
@@ -800,22 +781,21 @@
           + '<button type="button" class="nav__link is-trigger" data-open-company>Company</button>'
           + '<a class="nav__link" href="price.html">Pricing</a>'
           + '<a class="nav__link" href="contact_sales.html">Contact</a>'
-          + (isHome
-            ? '<a class="btn btn--primary" href="#" data-book-demo>Book Demo</a>'
-              + '<a class="btn btn--ghost" href="home.html">Login</a>'
-            : '');
+          + '<a class="btn btn--primary" href="#" data-book-demo>Book Demo</a>'
+          + (isHome ? '<a class="btn btn--ghost" href="home.html">Login</a>' : '');
       }
       d.classList.toggle('is-open');
     });
   }
 
-  /* Book Demo fallback when modal is not on the page */
-  document.addEventListener('click', function (e) {
-    var btn = e.target.closest('[data-book-demo]');
-    if (!btn) return;
-    if (!document.getElementById('bookDemoModal')) {
-      e.preventDefault();
-      window.location.href = 'contact_sales.html';
-    }
-  });
+  /* Ensure Book Demo modal is available on every page */
+  (function ensureBookDemoModal() {
+    if (window.__TIMEERP_BOOK_DEMO_READY) return;
+    if (document.querySelector('script[src*="book-demo-modal.js"]')) return;
+    var s = document.createElement('script');
+    s.src = 'js/book-demo-modal.js';
+    s.defer = true;
+    s.setAttribute('data-book-demo-src', '1');
+    document.body.appendChild(s);
+  })();
 })();

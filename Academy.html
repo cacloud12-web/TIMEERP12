@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="assets/image0.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TIME ERP Academy | TimeERP</title>
+  <meta name="description" content="TIME ERP Academy — structured learning paths, module guides, and implementation best practices for HRMS, CRM, Billing, Projects, Compliance, and more.">
+  <meta name="theme-color" content="#25B7A7">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <link rel="stylesheet" href="css/site-nav.css">
+  <link rel="stylesheet" href="css/site-footer.css">
+  <link rel="stylesheet" href="css/academy.css">
+</head>
+<body data-anim-threshold="0.12">
+  <div id="site-header"></div>
+
+  <main class="ac-page" id="academy">
+    <header class="ac-hero" id="hero">
+      <div class="container">
+        <nav class="ac-crumb" aria-label="Breadcrumb">
+          <a href="home1.html">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="help_centre.html">Resources</a>
+          <span aria-hidden="true">/</span>
+          <span>Academy</span>
+        </nav>
+        <h1 class="section-title anim-up">TIME ERP Academy</h1>
+        <p class="section-lead anim-up stagger-1">Learn every TIME ERP module with structured courses, step-by-step guides, practical tutorials, and implementation best practices.</p>
+
+        <div class="ac-search anim-up stagger-2" id="acSearchWrap">
+          <span class="ac-search__icon" aria-hidden="true"><span class="material-symbols-outlined">search</span></span>
+          <input class="ac-search__input" id="acSearch" type="search" placeholder="Search courses, modules, tutorials..." autocomplete="off" aria-label="Search Academy" aria-controls="acSearchDropdown" aria-expanded="false">
+          <div class="ac-search__dropdown" id="acSearchDropdown" role="listbox"></div>
+        </div>
+
+        <div class="ac-hero__actions anim-up stagger-3">
+          <a class="btn btn--primary" href="#featured"><span class="material-symbols-outlined" aria-hidden="true">menu_book</span> Browse Courses</a>
+          <a class="btn btn--ghost" href="#paths"><span class="material-symbols-outlined" aria-hidden="true">school</span> Start Learning</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="container" style="padding-bottom:88px">
+      <div class="ac-shell">
+        <aside class="ac-side" aria-label="Academy sections">
+          <span class="ac-side__label">On this page</span>
+          <a class="ac-side__link is-active" href="#paths"><span class="material-symbols-outlined" aria-hidden="true">route</span> Learning Paths</a>
+          <a class="ac-side__link" href="#featured"><span class="material-symbols-outlined" aria-hidden="true">star</span> Featured Courses</a>
+          <a class="ac-side__link" href="#journey"><span class="material-symbols-outlined" aria-hidden="true">timeline</span> Learning Journey</a>
+          <a class="ac-side__link" href="#categories"><span class="material-symbols-outlined" aria-hidden="true">category</span> Categories</a>
+          <a class="ac-side__link" href="#popular"><span class="material-symbols-outlined" aria-hidden="true">trending_up</span> Popular</a>
+          <a class="ac-side__link" href="#recent"><span class="material-symbols-outlined" aria-hidden="true">update</span> Recently Updated</a>
+          <a class="ac-side__link" href="#resources"><span class="material-symbols-outlined" aria-hidden="true">folder_open</span> Resources</a>
+          <a class="ac-side__link" href="#help"><span class="material-symbols-outlined" aria-hidden="true">support_agent</span> Need Help?</a>
+
+          <div class="ac-progress-wrap" aria-live="polite">
+            <strong>Your learning progress</strong>
+            <div class="ac-progress-bar" aria-hidden="true"><span id="acProgressBar"></span></div>
+            <p class="ac-progress-meta" id="acProgressMeta">0 of 0 courses started</p>
+          </div>
+        </aside>
+
+        <div class="ac-main">
+          <div class="ac-filters" role="group" aria-label="Course filters">
+            <span style="font-size:13px;font-weight:700;color:var(--heading-dark)">Filters</span>
+            <label class="visually-hidden" for="acModuleFilter" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Module</label>
+            <select class="ac-filter-select" id="acModuleFilter" aria-label="Filter by module">
+              <option value="all">All modules</option>
+              <option value="setup">Setup &amp; Admin</option>
+              <option value="hrms">HRMS</option>
+              <option value="crm">CRM</option>
+              <option value="projects">Projects</option>
+              <option value="billing">Billing</option>
+              <option value="compliance">Compliance</option>
+              <option value="documents">Documents</option>
+              <option value="marketing">Marketing</option>
+              <option value="communication">Communication</option>
+              <option value="reports">Reports</option>
+            </select>
+            <label class="visually-hidden" for="acLevelFilter" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Difficulty</label>
+            <select class="ac-filter-select" id="acLevelFilter" aria-label="Filter by difficulty">
+              <option value="all">All levels</option>
+              <option value="Beginner">Beginner</option>
+              <option value="Intermediate">Intermediate</option>
+              <option value="Advanced">Advanced</option>
+            </select>
+          </div>
+
+          <!-- Learning Paths -->
+          <section class="ac-section" id="paths" aria-labelledby="paths-title" style="padding-top:8px">
+            <div class="section-head">
+              <p class="eyebrow">Learning Paths</p>
+              <h2 class="section-title" id="paths-title">Structured paths by TIME ERP module</h2>
+              <p class="section-lead">Each path maps to a real TIME ERP product area. Expand a card to see what you will cover.</p>
+            </div>
+            <div class="ac-grid-3" id="acPaths"></div>
+            <div class="ac-empty" id="acPathsEmpty">
+              <span class="material-symbols-outlined" aria-hidden="true">search_off</span>
+              No learning paths match your filters. Clear filters or try another module.
+            </div>
+          </section>
+
+          <!-- Featured Courses -->
+          <section class="ac-section ac-section--soft" id="featured" aria-labelledby="featured-title" style="border-radius:22px;padding-left:24px;padding-right:24px">
+            <div class="section-head">
+              <p class="eyebrow">Featured Courses</p>
+              <h2 class="section-title" id="featured-title">Start with core module guides</h2>
+              <p class="section-lead">Practical guides based on published TIME ERP modules — from HRMS and CRM to Billing, Compliance, and Document Vault.</p>
+            </div>
+            <div class="ac-skeleton" id="acSkeleton" aria-hidden="true">
+              <div class="ac-skel"></div><div class="ac-skel"></div><div class="ac-skel"></div>
+            </div>
+            <div class="ac-grid-3" id="acFeatured"></div>
+            <div class="ac-empty" id="acFeaturedEmpty">
+              <span class="material-symbols-outlined" aria-hidden="true">search_off</span>
+              No featured courses match your search or filters.
+            </div>
+          </section>
+
+          <!-- Learning Journey -->
+          <section class="ac-section" id="journey" aria-labelledby="journey-title">
+            <div class="section-head">
+              <p class="eyebrow">Interactive Learning Journey</p>
+              <h2 class="section-title" id="journey-title">From setup to go-live</h2>
+              <p class="section-lead">Follow the recommended implementation roadmap. Tap a step to mark it complete — progress stays on this device.</p>
+            </div>
+            <div class="ac-journey" id="acJourney"></div>
+            <p class="ac-note">For guided setup, use <a href="onboarding_services.html" style="color:var(--primary-dark);font-weight:600">Paid onboarding</a> or talk to a <a href="consultants.html" style="color:var(--primary-dark);font-weight:600">consultant</a>.</p>
+          </section>
+
+          <!-- Categories -->
+          <section class="ac-section ac-section--white" id="categories" aria-labelledby="categories-title" style="border-radius:22px;padding-left:24px;padding-right:24px">
+            <div class="section-head">
+              <p class="eyebrow">Learning Categories</p>
+              <h2 class="section-title" id="categories-title">Choose how you want to learn</h2>
+              <p class="section-lead">Browse tutorials, guides, documentation, troubleshooting, and FAQs from the TIME ERP Help Centre and implementation resources.</p>
+            </div>
+            <div class="ac-grid-2" id="acCategories"></div>
+          </section>
+
+          <!-- Popular -->
+          <section class="ac-section" id="popular" aria-labelledby="popular-title">
+            <div class="section-head">
+              <p class="eyebrow">Popular Courses</p>
+              <h2 class="section-title" id="popular-title">Most requested learning topics</h2>
+              <p class="section-lead">High-demand guides covering dashboard, HRMS, attendance, payroll, CRM, projects, and billing.</p>
+            </div>
+            <div class="ac-grid-3" id="acPopular"></div>
+            <div class="ac-empty" id="acPopularEmpty">
+              <span class="material-symbols-outlined" aria-hidden="true">search_off</span>
+              No popular courses match your filters.
+            </div>
+          </section>
+
+          <!-- Recently Updated -->
+          <section class="ac-section ac-section--soft" id="recent" aria-labelledby="recent-title" style="border-radius:22px;padding-left:24px;padding-right:24px">
+            <div class="section-head">
+              <p class="eyebrow">Recently Updated</p>
+              <h2 class="section-title" id="recent-title">Latest learning improvements</h2>
+              <p class="section-lead">Guides refreshed to match current TIME ERP module capabilities and Help Centre documentation.</p>
+            </div>
+            <div class="ac-grid-3" id="acRecent"></div>
+            <div class="ac-empty" id="acRecentEmpty">
+              <span class="material-symbols-outlined" aria-hidden="true">search_off</span>
+              No recently updated courses match your filters.
+            </div>
+          </section>
+
+          <!-- Knowledge Resources -->
+          <section class="ac-section" id="resources" aria-labelledby="resources-title">
+            <div class="section-head">
+              <p class="eyebrow">Knowledge Resources</p>
+              <h2 class="section-title" id="resources-title">Guides, checklists &amp; templates</h2>
+              <p class="section-lead">Reference materials aligned to TIME ERP setup. Templates and checklists are shared during onboarding rather than as public downloads.</p>
+            </div>
+            <div class="ac-grid-3" id="acResources"></div>
+          </section>
+
+          <!-- CTA -->
+          <section class="ac-section" id="help" aria-labelledby="help-title">
+            <div class="ac-support">
+              <p class="eyebrow">Need Help Learning?</p>
+              <h2 class="section-title" id="help-title">Get training support from TIME ERP experts</h2>
+              <p class="section-lead" style="margin-bottom:0">Connect with consultants for implementation training, book a product walkthrough, or continue in the Help Centre.</p>
+              <div class="ac-support__actions">
+                <a class="btn btn--primary" href="consultants.html"><span class="material-symbols-outlined" aria-hidden="true">school</span> Contact Trainer</a>
+                <a class="btn btn--ghost" href="#" data-book-demo><span class="material-symbols-outlined" aria-hidden="true">event</span> Book Training</a>
+                <a class="btn btn--ghost" href="help_centre.html"><span class="material-symbols-outlined" aria-hidden="true">help_center</span> Visit Help Centre</a>
+                <a class="btn btn--ghost" href="onboarding_services.html"><span class="material-symbols-outlined" aria-hidden="true">rocket_launch</span> Paid Onboarding</a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <button type="button" class="ac-top" id="acTop" aria-label="Back to top"><span class="material-symbols-outlined">arrow_upward</span></button>
+
+  <div class="ac-drawer-backdrop" id="acDrawerBackdrop" hidden>
+    <aside class="ac-drawer" id="acDrawer" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="acDrawerTitle">
+      <div class="ac-drawer__head">
+        <h3 id="acDrawerTitle">Course</h3>
+        <button type="button" class="btn btn--ghost btn--sm" id="acDrawerClose" aria-label="Close"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <div class="ac-drawer__body" id="acDrawerBody"></div>
+    </aside>
+  </div>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__main">
+        <div class="footer__brand">
+          <a href="home1.html" class="footer__logo" aria-label="TimeERP home">
+            <img src="assets/image01-footer.svg" alt="TimeERP" width="196" height="48" loading="lazy">
+          </a>
+          <p class="footer__desc">One Platform. Complete Business Management. Enterprise ERP for modern businesses.</p>
+          <div class="footer__stats">
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">◆</span><span>650+ Businesses</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">◎</span><span>99.8% Uptime</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">☁</span><span>Cloud ERP</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">⛨</span><span>Secure</span></div>
+          </div>
+        </div>
+        <div class="footer__cols">
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Products</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Products</h3>
+            <ul class="footer__links">
+              <li><a href="home1.html#products">Modules</a></li>
+              <li><a href="home1.html#benefits">Benefits</a></li>
+              <li><a href="home1.html#project-management">Project Management</a></li>
+              <li><a href="home1.html#solutions">Platform</a></li>
+              <li><a href="price.html">Pricing</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Industries</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Industries</h3>
+            <ul class="footer__links">
+              <li><a href="construction.html">Construction</a></li>
+              <li><a href="real_Estate.html">Real Estate</a></li>
+              <li><a href="msme.html">MSME</a></li>
+              <li><a href="CA.html">CA Firms</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Company</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Company</h3>
+            <ul class="footer__links">
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="Our_Presence.html">Our Presence</a></li>
+              <li><a href="careers.html">Careers</a></li>
+              <li><a href="contact_sales.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Support</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Support</h3>
+            <ul class="footer__links">
+              <li><a href="help_centre.html">Help Center</a></li>
+              <li><a href="Academy.html">Academy</a></li>
+              <li><a href="contact_sales.html">Sales</a></li>
+              <li><a href="custom_quote.html">Get a Quote</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer__connect">
+        <div class="footer__connect-item">
+          <span class="footer__connect-label">Visit us</span>
+          <address class="footer__address">
+            BM-08, Ansal Sumedha Building, RDC,<br>
+            Ghaziabad, Delhi NCR, UP 201002
+          </address>
+          <div class="footer__quick">
+            <a class="footer__quick-btn" href="#" data-book-demo>Book Demo</a>
+            <a class="footer__quick-btn" href="real_time_support.html">Get Support</a>
+          </div>
+        </div>
+        <div class="footer__connect-item">
+          <span class="footer__connect-label">Follow us</span>
+          <div class="footer__social">
+            <a href="https://www.linkedin.com/in/ca-clouddesk-381510388" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23.5h-4V8.5zM8.5 8.5h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1v8.9h-4v-7.88c0-1.88-.03-4.3-2.62-4.3-2.62 0-3.02 2.05-3.02 4.17v7.01h-4V8.5z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/erptime/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@ERPTime" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.5v-7l6 3.5-6 3.5z"/></svg>
+            </a>
+            <a href="https://x.com/erptime" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke-linecap="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bar">
+        <p class="footer__copy">© 2026 TimeERP · <a href="https://lawseva.com/" target="_blank" rel="noopener noreferrer">Law Seva Management Private Limited</a></p>
+        <nav class="footer__legal" aria-label="Legal">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="contact_sales.html">Contact Us</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/academy.js" defer></script>
+  <script src="js/site-nav.js" defer></script>
+  <script src="js/footer-accordion.js" defer></script>
+</body>
+</html>
