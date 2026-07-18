@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="assets/image0.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onboarding Setup | TimeERP</title>
+  <meta name="description" content="Configure your TimeERP organization — company profile, branches, teams, modules, billing, compliance, documents, and projects.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <link rel="stylesheet" href="css/site-nav.css">
+  <link rel="stylesheet" href="css/site-footer.css">
+  <style>
+    :root {
+      --primary: #25b7a7;
+      --primary-dark: #1a9e8f;
+      --primary-light: #e8f8f6;
+      --heading: #083530;
+      --text: #3d5250;
+      --muted: #7a9593;
+      --border: #d0eeec;
+      --white: #fff;
+      --bg: #f4fafa;
+      --shadow: 0 20px 60px rgba(8, 53, 48, .08);
+      --shadow-lg: 0 28px 64px rgba(37, 183, 167, .14);
+      --radius: 18px;
+      --pad-x: 80px;
+      --max: 1280px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px; line-height: 1.7; color: var(--text);
+      background: var(--bg); overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font-family: inherit; font-size: 15px; }
+    button { cursor: pointer; border: none; background: none; }
+    ul { list-style: none; }
+
+    .ob-main {
+      position: relative;
+      padding: calc(76px + 36px) 0 88px;
+      min-height: 80vh;
+      overflow: hidden;
+    }
+    .ob-main::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 8% 0%, rgba(37,183,167,.16), transparent 55%),
+        radial-gradient(ellipse 50% 40% at 100% 20%, rgba(23,195,178,.1), transparent 50%),
+        linear-gradient(180deg, #eef9f8 0%, var(--bg) 280px, var(--bg) 100%);
+      pointer-events: none;
+    }
+    .ob-shell {
+      position: relative; z-index: 1;
+      width: min(var(--max), 100% - var(--pad-x) * 2);
+      margin-inline: auto;
+    }
+    .ob-label {
+      display: block; margin-bottom: 8px;
+      font-size: 16px; font-weight: 600; line-height: 1.4; color: #0F172A;
+    }
+    .ob-intro {
+      margin-bottom: 28px; max-width: 640px;
+    }
+    .ob-intro h1 {
+      font-size: clamp(1.75rem, 2.8vw, 2.25rem);
+      font-weight: 700; color: var(--heading);
+      letter-spacing: -.02em; line-height: 1.3; margin-bottom: 8px;
+    }
+    .ob-intro p { color: var(--muted); font-size: 16px; }
+
+    /* TaxDome-style split: left rail + right stage */
+    .ob-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+    .ob-rail {
+      position: sticky; top: 96px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px 16px;
+      max-height: calc(100vh - 120px);
+      overflow: auto;
+    }
+    .ob-rail__top {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 8px; margin-bottom: 14px; padding: 0 6px;
+    }
+    .ob-rail__top strong { font-size: 13px; font-weight: 700; color: var(--heading); }
+    .ob-rail__top span { font-size: 12px; font-weight: 600; color: var(--primary-dark); }
+    .ob-rail__track {
+      height: 4px; border-radius: 999px; background: #eef6f5; overflow: hidden; margin: 0 6px 18px;
+    }
+    .ob-rail__fill {
+      height: 100%; width: 8.33%; border-radius: inherit;
+      background: linear-gradient(90deg, var(--primary), #17c3b2);
+      transition: width .4s cubic-bezier(.2,0,0,1);
+    }
+    .ob-rail__list { display: flex; flex-direction: column; gap: 4px; }
+    .ob-rail__item {
+      display: flex; align-items: center; gap: 12px;
+      width: 100%; text-align: left;
+      padding: 10px 12px; border-radius: 12px;
+      color: var(--muted); transition: background .18s, color .18s, transform .18s;
+    }
+    .ob-rail__item:hover { background: #f4fafa; color: var(--heading); transform: translateX(2px); }
+    .ob-rail__item.is-active {
+      background: linear-gradient(135deg, #e8f8f6 0%, #fff 100%);
+      color: var(--heading);
+      box-shadow: inset 0 0 0 1px #b8e8e2;
+    }
+    .ob-rail__item.is-done { color: var(--heading); }
+    .ob-rail__num {
+      flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+      display: grid; place-items: center;
+      font-size: 12px; font-weight: 700;
+      background: #eef6f5; color: var(--muted);
+      transition: background .2s, color .2s, transform .2s;
+    }
+    .ob-rail__item.is-active .ob-rail__num {
+      background: var(--primary); color: #fff;
+      transform: scale(1.06);
+      box-shadow: 0 6px 16px rgba(37,183,167,.35);
+    }
+    .ob-rail__item.is-done .ob-rail__num {
+      background: var(--primary); color: #fff;
+    }
+    .ob-rail__item.is-done .ob-rail__num .material-symbols-outlined { font-size: 16px; }
+    .ob-rail__text { min-width: 0; }
+    .ob-rail__text strong {
+      display: block; font-size: 13px; font-weight: 650; line-height: 1.3;
+    }
+    .ob-rail__text span {
+      display: block; font-size: 11px; color: var(--muted); margin-top: 2px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .ob-rail__item.is-active .ob-rail__text span { color: var(--primary-dark); }
+
+    .ob-stage {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      min-height: 560px;
+      display: flex; flex-direction: column;
+    }
+    .ob-stage__body { flex: 1; padding: 36px 36px 20px; }
+    .ob-stage__foot {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      flex-wrap: wrap;
+      padding: 18px 36px;
+      border-top: 1px solid #eef4f3;
+      background: linear-gradient(180deg, #fafefe 0%, #fff 100%);
+    }
+    .ob-stage__foot-right { display: flex; gap: 10px; flex-wrap: wrap; margin-left: auto; }
+
+    .ob-panel { display: none; animation: obIn .38s cubic-bezier(.2,0,0,1); }
+    .ob-panel.is-active { display: block; }
+    @keyframes obIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    .ob-panel__head { margin-bottom: 26px; max-width: 620px; }
+    .ob-panel__head .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-bottom: 10px; font-size: 13px; font-weight: 700; color: var(--primary-dark);
+    }
+    .ob-panel__head .eyebrow .dot {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--primary);
+      box-shadow: 0 0 0 4px rgba(37,183,167,.18);
+    }
+    .ob-panel__head h2 {
+      font-size: clamp(1.5rem, 2.4vw, 1.85rem);
+      font-weight: 700; color: var(--heading);
+      letter-spacing: -.02em; line-height: 1.3; margin-bottom: 8px;
+    }
+    .ob-panel__head p { color: var(--muted); font-size: 15px; }
+
+    /* Welcome */
+    .ob-welcome { text-align: left; }
+    .ob-welcome__hero {
+      display: grid; grid-template-columns: 1.1fr .9fr; gap: 28px; align-items: center;
+      margin-bottom: 28px;
+    }
+    .ob-welcome__badge {
+      width: 64px; height: 64px; border-radius: 18px; margin-bottom: 18px;
+      background: linear-gradient(145deg, #2ec4b6, #1a9e8f);
+      display: grid; place-items: center; color: #fff;
+      box-shadow: 0 14px 32px rgba(37,183,167,.35);
+      animation: obPulse 2.8s ease-in-out infinite;
+    }
+    .ob-welcome__badge .material-symbols-outlined { font-size: 32px; }
+    @keyframes obPulse {
+      0%, 100% { transform: translateY(0); box-shadow: 0 14px 32px rgba(37,183,167,.35); }
+      50% { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(37,183,167,.45); }
+    }
+    .ob-welcome h2 {
+      font-size: clamp(1.75rem, 2.8vw, 2.25rem);
+      font-weight: 700; color: var(--heading); letter-spacing: -.02em; line-height: 1.25; margin-bottom: 10px;
+    }
+    .ob-welcome > p, .ob-welcome__copy p {
+      color: var(--muted); font-size: 16px; margin-bottom: 22px; max-width: 460px;
+    }
+    .ob-welcome__actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .ob-preview {
+      position: relative;
+      background: linear-gradient(160deg, #083530 0%, #0d524c 45%, #1a8c80 100%);
+      border-radius: 18px; padding: 22px; color: #fff; min-height: 260px;
+      box-shadow: var(--shadow-lg); overflow: hidden;
+    }
+    .ob-preview::before {
+      content: ''; position: absolute; inset: auto -20% -30% auto;
+      width: 180px; height: 180px; border-radius: 50%;
+      background: rgba(37,183,167,.35); filter: blur(8px);
+    }
+    .ob-preview__title {
+      position: relative; font-size: 12px; font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase; opacity: .75; margin-bottom: 14px;
+    }
+    .ob-preview__list { position: relative; display: flex; flex-direction: column; gap: 10px; }
+    .ob-preview__row {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 12px; border-radius: 12px;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(8px);
+      transition: transform .2s, background .2s;
+    }
+    .ob-preview__row:hover { transform: translateX(4px); background: rgba(255,255,255,.16); }
+    .ob-preview__row .material-symbols-outlined { font-size: 18px; color: #3dd5c5; }
+    .ob-preview__row strong { display: block; font-size: 13px; font-weight: 650; }
+    .ob-preview__row span { font-size: 11px; opacity: .75; }
+
+    .ob-journey {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px;
+    }
+    .ob-journey__card {
+      padding: 16px; border-radius: 14px; border: 1px solid var(--border);
+      background: #fafefe; text-align: left; transition: transform .2s, box-shadow .2s, border-color .2s;
+    }
+    .ob-journey__card:hover {
+      transform: translateY(-4px); border-color: var(--primary);
+      box-shadow: 0 12px 28px rgba(37,183,167,.12);
+    }
+    .ob-journey__card .material-symbols-outlined {
+      font-size: 22px; color: var(--primary); margin-bottom: 8px;
+    }
+    .ob-journey__card strong { display: block; font-size: 13px; color: var(--heading); margin-bottom: 4px; }
+    .ob-journey__card span { font-size: 12px; color: var(--muted); line-height: 1.45; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 13px 26px; border-radius: 999px; font-size: 15px; font-weight: 600;
+      transition: transform .2s, box-shadow .2s, background .2s, border-color .2s, color .2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn--primary {
+      background: linear-gradient(135deg, var(--primary), #17c3b2);
+      color: #fff; box-shadow: 0 12px 32px rgba(37,183,167,.35);
+    }
+    .btn--primary:hover { box-shadow: 0 16px 40px rgba(37,183,167,.45); }
+    .btn--ghost {
+      background: #fff; border: 1.5px solid var(--border); color: #243F64;
+    }
+    .btn--ghost:hover {
+      border-color: var(--primary); color: var(--primary-dark); background: var(--primary-light);
+    }
+
+    .ob-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .ob-card {
+      display: flex; align-items: flex-start; gap: 14px; width: 100%;
+      padding: 16px; border: 1px solid var(--border); border-radius: 14px;
+      background: #fff; text-align: left;
+      transition: border-color .2s, background .2s, box-shadow .2s, transform .2s;
+    }
+    .ob-card:hover {
+      transform: translateY(-3px); border-color: #b8e8e2;
+      box-shadow: 0 10px 28px rgba(37,183,167,.1);
+    }
+    .ob-card.is-selected {
+      border-color: var(--primary);
+      background: linear-gradient(135deg, #e8f8f6 0%, #fff 70%);
+      box-shadow: 0 10px 28px rgba(37,183,167,.12);
+    }
+    .ob-card__icon {
+      flex-shrink: 0; width: 42px; height: 42px; border-radius: 12px;
+      background: rgba(37,183,167,.12); color: var(--primary);
+      display: grid; place-items: center; transition: background .2s, color .2s;
+    }
+    .ob-card.is-selected .ob-card__icon { background: var(--primary); color: #fff; }
+    .ob-card__icon .material-symbols-outlined { font-size: 22px; }
+    .ob-card__body { flex: 1; min-width: 0; }
+    .ob-card__body strong { display: block; font-size: 14px; font-weight: 700; color: var(--heading); }
+    .ob-card__body span { display: block; font-size: 12px; color: var(--muted); margin-top: 3px; line-height: 1.45; }
+    .ob-card__check {
+      flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+      border: 1.5px solid var(--border); display: grid; place-items: center; color: transparent;
+      transition: background .2s, border-color .2s, color .2s, transform .2s;
+    }
+    .ob-card.is-selected .ob-card__check {
+      background: var(--primary); border-color: var(--primary); color: #fff; transform: scale(1.05);
+    }
+    .ob-card__check .material-symbols-outlined { font-size: 15px; }
+
+    .ob-form {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 18px;
+    }
+    .ob-field { display: flex; flex-direction: column; gap: 6px; }
+    .ob-field--full { grid-column: 1 / -1; }
+    .ob-field label { font-size: 13px; font-weight: 600; color: var(--heading); }
+    .ob-field input, .ob-field select, .ob-field textarea {
+      width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 10px;
+      background: #fff; color: var(--heading); transition: border-color .15s, box-shadow .15s;
+    }
+    .ob-field textarea { min-height: 90px; resize: vertical; }
+    .ob-field input:focus, .ob-field select:focus, .ob-field textarea:focus {
+      outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,183,167,.12);
+    }
+    .ob-upload {
+      display: flex; align-items: center; gap: 14px; padding: 16px;
+      border: 1.5px dashed var(--border); border-radius: 12px; background: #fafefe;
+      transition: border-color .2s, background .2s;
+    }
+    .ob-upload:hover { border-color: var(--primary); background: var(--primary-light); }
+    .ob-upload__icon {
+      width: 48px; height: 48px; border-radius: 12px; background: var(--primary-light);
+      display: grid; place-items: center; color: var(--primary);
+    }
+    .ob-upload strong { display: block; font-size: 14px; color: var(--heading); }
+    .ob-upload span { font-size: 12px; color: var(--muted); }
+    .ob-upload input[type="file"] { margin-top: 8px; font-size: 13px; max-width: 100%; }
+
+    .ob-module-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .ob-module {
+      display: flex; align-items: center; gap: 12px; width: 100%;
+      padding: 13px 14px; border: 1px solid var(--border); border-radius: 12px;
+      background: #fff; text-align: left;
+      transition: border-color .2s, background .2s, transform .2s, box-shadow .2s;
+    }
+    .ob-module:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37,183,167,.08); }
+    .ob-module.is-on {
+      border-color: var(--primary); background: var(--primary-light);
+    }
+    .ob-module__icon {
+      width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0;
+      background: rgba(37,183,167,.12); color: var(--primary);
+      display: grid; place-items: center; transition: background .2s, color .2s;
+    }
+    .ob-module.is-on .ob-module__icon { background: var(--primary); color: #fff; }
+    .ob-module__icon .material-symbols-outlined { font-size: 20px; }
+    .ob-module__name { flex: 1; font-size: 14px; font-weight: 600; color: var(--heading); }
+    .ob-toggle {
+      width: 42px; height: 24px; border-radius: 999px; background: #d7e8e6;
+      position: relative; flex-shrink: 0; transition: background .2s;
+    }
+    .ob-toggle::after {
+      content: ''; position: absolute; top: 3px; left: 3px;
+      width: 18px; height: 18px; border-radius: 50%; background: #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,.15); transition: transform .2s;
+    }
+    .ob-module.is-on .ob-toggle { background: var(--primary); }
+    .ob-module.is-on .ob-toggle::after { transform: translateX(18px); }
+
+    .ob-finish { text-align: center; max-width: 560px; margin: 12px auto; padding: 12px 0; }
+    .ob-finish__badge {
+      width: 88px; height: 88px; margin: 0 auto 20px; border-radius: 50%;
+      background: linear-gradient(145deg, var(--primary), #17c3b2);
+      display: grid; place-items: center; color: #fff;
+      box-shadow: 0 18px 44px rgba(37,183,167,.4);
+      animation: obPulse 2.8s ease-in-out infinite;
+    }
+    .ob-finish__badge .material-symbols-outlined { font-size: 44px; }
+    .ob-finish h2 {
+      font-size: clamp(1.6rem, 2.5vw, 2rem); font-weight: 700; color: var(--heading);
+      letter-spacing: -.02em; margin-bottom: 10px;
+    }
+    .ob-finish p { color: var(--muted); margin-bottom: 22px; }
+    .ob-finish__list {
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 28px;
+    }
+    .ob-finish__chip {
+      padding: 7px 12px; border-radius: 999px; background: var(--primary-light);
+      border: 1px solid #b8e8e2; font-size: 12px; font-weight: 600; color: var(--primary-dark);
+    }
+    .ob-note { margin-top: 16px; font-size: 13px; color: var(--muted); }
+
+    @media (max-width: 1100px) {
+      :root { --pad-x: 40px; }
+      .ob-layout { grid-template-columns: 240px minmax(0, 1fr); gap: 20px; }
+      .ob-welcome__hero { grid-template-columns: 1fr; }
+      .ob-journey { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 860px) {
+      :root { --pad-x: 20px; }
+      .ob-layout { grid-template-columns: 1fr; }
+      .ob-rail {
+        position: relative; top: 0; max-height: none;
+        padding: 14px;
+      }
+      .ob-rail__list {
+        display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px;
+      }
+      .ob-rail__text span { display: none; }
+      .ob-stage__body, .ob-stage__foot { padding-left: 18px; padding-right: 18px; }
+      .ob-grid, .ob-form, .ob-module-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="ob-main" id="top">
+    <div class="ob-shell">
+      <p class="ob-label">Workspace Onboarding</p>
+      <div class="ob-intro">
+        <h1>Set up your TIME ERP workspace</h1>
+        <p>Follow the guided steps to configure organization settings and core modules — the same structure used across TIME ERP.</p>
+      </div>
+
+      <div class="ob-layout">
+        <aside class="ob-rail" aria-label="Onboarding steps">
+          <div class="ob-rail__top">
+            <strong id="obStepTitle">Welcome</strong>
+            <span id="obStepCount">1 / 12</span>
+          </div>
+          <div class="ob-rail__track" role="progressbar" aria-valuemin="1" aria-valuemax="12" aria-valuenow="1" id="obProgressBar">
+            <div class="ob-rail__fill" id="obProgressFill"></div>
+          </div>
+          <div class="ob-rail__list" id="obRailList"></div>
+        </aside>
+
+        <div class="ob-stage">
+          <div class="ob-stage__body">
+            <!-- 1 Welcome -->
+            <section class="ob-panel is-active" data-step="1" aria-labelledby="ob-s1-title">
+              <div class="ob-welcome">
+                <div class="ob-welcome__hero">
+                  <div class="ob-welcome__copy">
+                    <div class="ob-welcome__badge" aria-hidden="true">
+                      <span class="material-symbols-outlined">rocket_launch</span>
+                    </div>
+                    <h2 id="ob-s1-title">Welcome to TIME ERP</h2>
+                    <p>Let's configure your organization and get your workspace ready.</p>
+                    <div class="ob-welcome__actions">
+                      <button type="button" class="btn btn--primary" data-ob-next>Start Setup</button>
+                      <a class="btn btn--ghost" href="home.html">Skip for Now</a>
+                    </div>
+                  </div>
+                  <div class="ob-preview" aria-hidden="true">
+                    <p class="ob-preview__title">Your setup path</p>
+                    <div class="ob-preview__list">
+                      <div class="ob-preview__row">
+                        <span class="material-symbols-outlined">apartment</span>
+                        <div><strong>Company &amp; Branch</strong><span>Profile, FY, currency, locations</span></div>
+                      </div>
+                      <div class="ob-preview__row">
+                        <span class="material-symbols-outlined">groups</span>
+                        <div><strong>Organization &amp; Team</strong><span>Departments, roles, employees</span></div>
+                      </div>
+                      <div class="ob-preview__row">
+                        <span class="material-symbols-outlined">apps</span>
+                        <div><strong>Modules &amp; Workflows</strong><span>HRMS, Billing, Documents, Projects</span></div>
+                      </div>
+                      <div class="ob-preview__row">
+                        <span class="material-symbols-outlined">verified</span>
+                        <div><strong>Compliance ready</strong><span>GST, EPFO, ESIC, TDS, Gratuity</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="ob-journey">
+                  <article class="ob-journey__card">
+                    <span class="material-symbols-outlined" aria-hidden="true">tune</span>
+                    <strong>Accurate TIME ERP setup</strong>
+                    <span>Company, branch, roles, and permissions from Setup.</span>
+                  </article>
+                  <article class="ob-journey__card">
+                    <span class="material-symbols-outlined" aria-hidden="true">toggle_on</span>
+                    <strong>Enable real modules</strong>
+                    <span>HRMS, Attendance, Payroll, CRM, Billing, Documents.</span>
+                  </article>
+                  <article class="ob-journey__card">
+                    <span class="material-symbols-outlined" aria-hidden="true">dashboard</span>
+                    <strong>Go live faster</strong>
+                    <span>Finish and open the dashboard to start daily work.</span>
+                  </article>
+                </div>
+              </div>
+            </section>
+
+            <!-- 2 Company -->
+            <section class="ob-panel" data-step="2" aria-labelledby="ob-s2-title" hidden>
+              <div class="ob-panel__head">
+                <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Organization foundation</p>
+                <h2 id="ob-s2-title">Company Setup</h2>
+                <p>Configure company profile, logo, financial year, time zone, currency, and registered address.</p>
+              </div>
+              <div class="ob-form">
+                <div class="ob-field">
+                  <label for="obCompanyName">Company Profile</label>
+                  <input id="obCompanyName" type="text" placeholder="Legal / trading name" autocomplete="organization">
+                </div>
+                <div class="ob-field">
+                  <label for="obFinancialYear">Financial Year</label>
+                  <select id="obFinancialYear">
+                    <option value="">Select financial year</option>
+                    <option value="apr-mar">April – March</option>
+                    <option value="jan-dec">January – December</option>
+                  </select>
+                </div>
+                <div class="ob-field">
+                  <label for="obTimezone">Time Zone</label>
+                  <select id="obTimezone">
+                    <option value="">Select time zone</option>
+                    <option value="Asia/Kolkata">Asia/Kolkata (IST)</option>
+                    <option value="Asia/Dubai">Asia/Dubai (GST)</option>
+                  </select>
+                </div>
+                <div class="ob-field">
+                  <label for="obCurrency">Currency</label>
+                  <select id="obCurrency">
+                    <option value="">Select currency</option>
+                    <option value="INR">INR — Indian Rupee</option>
+                    <option value="AED">AED — UAE Dirham</option>
+                    <option value="USD">USD — US Dollar</option>
+                  </select>
+                </div>
+                <div class="ob-field ob-field--full">
+                  <label for="obCompanyAddress">Company Address</label>
+                  <textarea id="obCompanyAddress" placeholder="Registered address"></textarea>
+                </div>
+                <div class="ob-field ob-field--full">
+                  <label for="obCompanyLogo">Company Logo</label>
+                  <div class="ob-upload">
+                    <div class="ob-upload__icon" aria-hidden="true"><span class="material-symbols-outlined">upload_file</span></div>
+                    <div style="flex:1;min-width:0">
+                      <strong>Upload logo</strong>
+                      <span>PNG or SVG · used in invoices and workspace header</span>
+                      <input id="obCompanyLogo" type="file" accept=".png,.svg,.jpg,.jpeg">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- 3 Branch -->
+            <section class="ob-panel" data-step="3" aria-labelledby="ob-s3-title" hidden>
+              <div class="ob-panel__head">
+                <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Locations</p>
+                <h2 id="ob-s3-title">Branch Setup</h2>
+                <p>Add your first branch with address and contact details. More branches can be added later from Setup.</p>
+              </div>
+              <div class="ob-form">
+                <div class="ob-field">
+                  <label for="obBranchName">Add Branch</label>
+                  <input id="obBranchName" type="text" placeholder="Branch name">
+                </div>
+                <div class="ob-field">
+                  <label for="obBranchPhone">Branch Contact</label>
+                  <input id="obBranchPhone" type="tel" placeholder="Phone number" autocomplete="tel">
+                </div>
+                <div class="ob-field ob-field--full">
+                  <label for="obBranchEmail">Branch Email</label>
+                  <input id="obBranchEmail" type="email" placeholder="branch@company.com" autocomplete="email">
+                </div>
+                <div class="ob-field ob-field--full">
+                  <label for="obBranchAddress">Branch Address</label>
+                  <textarea id="obBranchAddress" placeholder="Branch address"></textarea>
+                </div>
+              </div>
+            </section>
+
+            <!-- 4 Organization -->
+            <section class="ob-panel" data-step="4" aria-labelledby="ob-s4-title" hidden>
+              <div class="ob-panel__head">
+                <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Structure</p>
+                <h2 id="ob-s4-title">Organization Setup</h2>
+                <p>Select what to configure for departments, designations, employee roles, and permissions.</p>
+              </div>
+              <div class="ob-grid" data-ob-cards>
+                <button type="button" class="ob-card is-selected" data-card>
+                  <span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">group_work</span></span>
+                  <span class="ob-card__body"><strong>Departments</strong><span>Organize teams by function</span></span>
+                  <span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span>
+                </button>
+                <button type="button" class="ob-card is-selected" data-card>
+                  <span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">badge</span></span>
+                  <span class="ob-card__body"><strong>Designations</strong><span>Job titles across the firm</span></span>
+                  <span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span>
+                </button>
+                <button type="button" class="ob-card is-selected" data-card>
+                  <span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">manage_accounts</span></span>
+                  <span class="ob-card__body"><strong>Employee Roles</strong><span>Access levels for users</span></span>
+                  <span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span>
+                </button>
+                <button type="button" class="ob-card is-selected" data-card>
+                  <span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">admin_panel_settings</span></span>
+                  <span class="ob-card__body"><strong>Permissions</strong><span>Module and action controls</span></span>
+                  <span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span>
+                </button>
+              </div>
+              <p class="ob-note">Maps to Setup → Organization in TIME ERP.</p>
+            </section>
+
+            <!-- 5 Team -->
+            <section class="ob-panel" data-step="5" aria-labelledby="ob-s5-title" hidden>
+              <div class="ob-panel__head">
+                <p class="eyebrow"><span class="dot" aria-hidden="true"></span> People</p>
+                <h2 id="ob-s5-title">Team Setup</h2>
+                <p>Prepare employee onboarding under HRMS — add people and assign structure.</p>
+              </div>
+              <div class="ob-grid" data-ob-cards>
+                <button type="button" class="ob-card is-selected" data-card>
+                  <span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">person_add</span></span>
+                  <span class="ob-card__body"><strong>Add Employees</strong><span>Create employee records</span></span>
+                  <span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span>
+                </button>
+                <button type="button" class="ob-card is-selected" data-card>
+                  <span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">account_tree</span></span>
+                  <span class="ob-card__body"><strong>Assign Departments</strong><span>Map people to departments</span></span>
+                  <span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span>
+                </button>
+                <button type="button" class="ob-card is-selected" data-card>
+                  <span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">supervisor_account</span></span>
+                  <span class="ob-card__body"><strong>Assign Reporting Manager</strong><span>Set reporting lines</span></span>
+                  <span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span>
+                </button>
+                <button type="button" class="ob-card is-selected" data-card>
+                  <span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">verified_user</span></span>
+                  <span class="ob-card__body"><strong>Assign Roles</strong><span>Link employees to roles</span></span>
+                  <span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span>
+                </button>
+              </div>
+            </section>
+
+            <!-- 6 Modules -->
+            <section class="ob-panel" data-step="6" aria-labelledby="ob-s6-title" hidden>
+              <div class="ob-panel__head">
+                <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Product modules</p>
+                <h2 id="ob-s6-title">Module Configuration</h2>
+                <p>Enable TIME ERP modules your organization will use. Toggle any module on or off.</p>
+              </div>
+              <div class="ob-module-grid" id="obModules">
+                <button type="button" class="ob-module is-on" data-module="Dashboard" aria-pressed="true"><span class="ob-module__icon" aria-hidden="true"><span class="material-symbols-outlined">dashboard</span></span><span class="ob-module__name">Dashboard</span><span class="ob-toggle" aria-hidden="true"></span></button>
+                <button type="button" class="ob-module is-on" data-module="HRMS" aria-pressed="true"><span class="ob-module__icon" aria-hidden="true"><span class="material-symbols-outlined">groups</span></span><span class="ob-module__name">HRMS</span><span class="ob-toggle" aria-hidden="true"></span></button>
+                <button type="button" class="ob-module is-on" data-module="Attendance" aria-pressed="true"><span class="ob-module__icon" aria-hidden="true"><span class="material-symbols-outlined">fingerprint</span></span><span class="ob-module__name">Attendance</span><span class="ob-toggle" aria-hidden="true"></span></button>
+                <button type="button" class="ob-module is-on" data-module="Leave Management" aria-pressed="true"><span class="ob-module__icon" aria-hidden="true"><span class="material-symbols-outlined">beach_access</span></span><span class="ob-module__name">Leave Management</span><span class="ob-toggle" aria-hidden="true"></span></button>
+                <button type="button" class="ob-module is-on" data-module="Payroll" aria-pressed="true"><span class="ob-module__icon" aria-hidden="true"><span class="material-symbols-outlined">payments</span></span><span class="ob-module__name">Payroll</span><span class="ob-toggle" aria-hidden="true"></span></button>
+                <button type="button" class="ob-module is-on" data-module="Project Management" aria-pressed="true"><span class="ob-module__icon" aria-hidden="true"><span class="material-symbols-outlined">view_kanban</span></span><span class="ob-module__name">Project Management</span><span class="ob-toggle" aria-hidden="true"></span></button>
+                <button type="button" class="ob-module is-on" data-module="Task Management" aria-pressed="true"><span class="ob-module__icon" aria-hidden="true"><span class="material-symbols-outlined">task_alt</span></span><span class="ob-module__name">Task Management</span><span class="ob-toggle" aria-hidden="true"></span></button>
+                <button type="button" class="ob-module is-on" data-module="CRM" aria-pressed="true"><span class="ob-module__icon" aria-hidden="true"><span class="material-symbols-outlined">handshake</span></span><span class="ob-module__name">CRM</span><span class="ob-toggle" aria-hidden="true"></span></button>
+                <button type="button" class="ob-module is-on" data-module="Billing Management" aria-pressed="true"><span class="ob-module__icon" aria-hidden="true"><span class="material-symbols-outlined">receipt_long</span></span><span class="ob-module__name">Billing Management</span><span class="ob-toggle" aria-hidden="true"></span></button>
+                <button type="button" class="ob-module is-on" data-module="Document Vault" aria-pressed="true"><span class="ob-module__icon" aria-hidden="true"><span class="material-symbols-outlined">folder_open</span></span><span class="ob-module__name">Document Vault</span><span class="ob-toggle" aria-hidden="true"></span></button>
+                <button type="button" class="ob-module is-on" data-module="Compliance" aria-pressed="true"><span class="ob-module__icon" aria-hidden="true"><span class="material-symbols-outlined">manage_search</span></span><span class="ob-module__name">Compliance</span><span class="ob-toggle" aria-hidden="true"></span></button>
+                <button type="button" class="ob-module is-on" data-module="Communication" aria-pressed="true"><span class="ob-module__icon" aria-hidden="true"><span class="material-symbols-outlined">forum</span></span><span class="ob-module__name">Communication</span><span class="ob-toggle" aria-hidden="true"></span></button>
+                <button type="button" class="ob-module is-on" data-module="Marketing" aria-pressed="true"><span class="ob-module__icon" aria-hidden="true"><span class="material-symbols-outlined">campaign</span></span><span class="ob-module__name">Marketing</span><span class="ob-toggle" aria-hidden="true"></span></button>
+                <button type="button" class="ob-module is-on" data-module="Reports" aria-pressed="true"><span class="ob-module__icon" aria-hidden="true"><span class="material-symbols-outlined">analytics</span></span><span class="ob-module__name">Reports</span><span class="ob-toggle" aria-hidden="true"></span></button>
+              </div>
+            </section>
+
+            <!-- 7 Communication -->
+            <section class="ob-panel" data-step="7" aria-labelledby="ob-s7-title" hidden>
+              <div class="ob-panel__head">
+                <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Communication Center</p>
+                <h2 id="ob-s7-title">Communication Setup</h2>
+                <p>Enable channels used for outreach and alerts.</p>
+              </div>
+              <div class="ob-grid" data-ob-cards>
+                <button type="button" class="ob-card is-selected" data-card>
+                  <span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">mail</span></span>
+                  <span class="ob-card__body"><strong>Email</strong><span>Transactional and campaign email</span></span>
+                  <span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span>
+                </button>
+                <button type="button" class="ob-card is-selected" data-card>
+                  <span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">sms</span></span>
+                  <span class="ob-card__body"><strong>SMS</strong><span>SMS notifications and outreach</span></span>
+                  <span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span>
+                </button>
+                <button type="button" class="ob-card is-selected" data-card>
+                  <span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">chat</span></span>
+                  <span class="ob-card__body"><strong>WhatsApp</strong><span>WhatsApp messaging workflows</span></span>
+                  <span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span>
+                </button>
+                <button type="button" class="ob-card is-selected" data-card>
+                  <span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">notifications</span></span>
+                  <span class="ob-card__body"><strong>Notifications</strong><span>In-app alerts and reminders</span></span>
+                  <span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span>
+                </button>
+              </div>
+            </section>
+
+            <!-- 8 Billing -->
+            <section class="ob-panel" data-step="8" aria-labelledby="ob-s8-title" hidden>
+              <div class="ob-panel__head">
+                <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Billing Management</p>
+                <h2 id="ob-s8-title">Billing Configuration</h2>
+                <p>Enable billing documents and payment integrations.</p>
+              </div>
+              <div class="ob-grid" data-ob-cards>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">request_quote</span></span><span class="ob-card__body"><strong>Invoice</strong><span>Client invoicing</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">description</span></span><span class="ob-card__body"><strong>Proforma Invoice</strong><span>Advance billing documents</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">receipt</span></span><span class="ob-card__body"><strong>Receipt</strong><span>Payment receipts</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">menu_book</span></span><span class="ob-card__body"><strong>Ledger</strong><span>Account ledger tracking</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">note_add</span></span><span class="ob-card__body"><strong>Credit Note</strong><span>Credit Note (CN)</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">note</span></span><span class="ob-card__body"><strong>Debit Note</strong><span>Debit Note (DN)</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">payments</span></span><span class="ob-card__body"><strong>BharatPe Integration</strong><span>Digital payment collection</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">account_balance_wallet</span></span><span class="ob-card__body"><strong>UPI AutoPay</strong><span>Automated UPI collections</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+              </div>
+            </section>
+
+            <!-- 9 Compliance -->
+            <section class="ob-panel" data-step="9" aria-labelledby="ob-s9-title" hidden>
+              <div class="ob-panel__head">
+                <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Compliance Management</p>
+                <h2 id="ob-s9-title">Compliance Configuration</h2>
+                <p>Select statutory areas for reporting and management.</p>
+              </div>
+              <div class="ob-grid" data-ob-cards>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">receipt_long</span></span><span class="ob-card__body"><strong>GST</strong><span>GST Reports</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">account_balance</span></span><span class="ob-card__body"><strong>EPFO</strong><span>EPFO Reports</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">health_and_safety</span></span><span class="ob-card__body"><strong>ESIC</strong><span>ESIC Reports</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">percent</span></span><span class="ob-card__body"><strong>TDS</strong><span>TDS Reports</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">savings</span></span><span class="ob-card__body"><strong>Gratuity</strong><span>Gratuity Management</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+              </div>
+            </section>
+
+            <!-- 10 Documents -->
+            <section class="ob-panel" data-step="10" aria-labelledby="ob-s10-title" hidden>
+              <div class="ob-panel__head">
+                <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Document Management</p>
+                <h2 id="ob-s10-title">Document Vault</h2>
+                <p>Enable Document Management capabilities for your organization.</p>
+              </div>
+              <div class="ob-grid" data-ob-cards>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">folder</span></span><span class="ob-card__body"><strong>Store Documents</strong><span>Secure document storage</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">handshake</span></span><span class="ob-card__body"><strong>Create Agreement</strong><span>Agreement workflows</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">move_to_inbox</span></span><span class="ob-card__body"><strong>Inward Documents</strong><span>Inward register</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">outbox</span></span><span class="ob-card__body"><strong>Outward Documents</strong><span>Outward register</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">verified</span></span><span class="ob-card__body"><strong>DSC Tracker</strong><span>Digital signature tracking</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">inventory_2</span></span><span class="ob-card__body"><strong>Fixed Asset Register</strong><span>Asset documentation</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+              </div>
+            </section>
+
+            <!-- 11 Projects -->
+            <section class="ob-panel" data-step="11" aria-labelledby="ob-s11-title" hidden>
+              <div class="ob-panel__head">
+                <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Project Management</p>
+                <h2 id="ob-s11-title">Project Management</h2>
+                <p>Configure project and task workflows for client delivery.</p>
+              </div>
+              <div class="ob-grid" data-ob-cards>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">folder_special</span></span><span class="ob-card__body"><strong>Create Project</strong><span>Start project workspaces</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">add_task</span></span><span class="ob-card__body"><strong>Create Task</strong><span>Task creation workflow</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">group_add</span></span><span class="ob-card__body"><strong>Multi Assign</strong><span>Assign multiple owners</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">groups</span></span><span class="ob-card__body"><strong>Multi Customer</strong><span>Multi-customer delivery</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">business</span></span><span class="ob-card__body"><strong>Multi Client</strong><span>Multi-client workspaces</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">autorenew</span></span><span class="ob-card__body"><strong>Recurring Task</strong><span>Repeat schedules</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">notifications</span></span><span class="ob-card__body"><strong>Task Reminder</strong><span>Due reminders</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+                <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">schedule</span></span><span class="ob-card__body"><strong>Timesheet</strong><span>Task timesheet tracking</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
+              </div>
+            </section>
+
+            <!-- 12 Finish -->
+            <section class="ob-panel" data-step="12" aria-labelledby="ob-s12-title" hidden>
+              <div class="ob-finish">
+                <div class="ob-finish__badge" aria-hidden="true"><span class="material-symbols-outlined">check</span></div>
+                <h2 id="ob-s12-title">Your TIME ERP Workspace is Ready</h2>
+                <p>Setup preferences for this session are complete. Open the dashboard to continue with your enabled modules.</p>
+                <div class="ob-finish__list" id="obFinishChips" aria-label="Enabled modules"></div>
+                <a class="btn btn--primary" href="home.html">Go to Dashboard</a>
+              </div>
+            </section>
+          </div>
+
+          <div class="ob-stage__foot" id="obFoot">
+            <button type="button" class="btn btn--ghost" data-ob-back id="obBackBtn" hidden>Back</button>
+            <div class="ob-stage__foot-right" id="obFootRight">
+              <button type="button" class="btn btn--ghost" data-ob-skip id="obSkipBtn" hidden>Skip</button>
+              <button type="button" class="btn btn--primary" data-ob-next id="obNextBtn" hidden>Continue</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__main">
+        <div class="footer__brand">
+          <a href="home1.html" class="footer__logo" aria-label="TimeERP home">
+            <img src="assets/image01-footer.svg" alt="TimeERP" width="196" height="48" loading="lazy">
+          </a>
+          <p class="footer__desc">One Platform. Complete Business Management. Enterprise ERP for modern businesses.</p>
+          <div class="footer__stats">
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">◆</span><span>650+ Businesses</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">◎</span><span>99.8% Uptime</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">☁</span><span>Cloud ERP</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">⛨</span><span>Secure</span></div>
+          </div>
+        </div>
+        <div class="footer__cols">
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Products</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Products</h3>
+            <ul class="footer__links">
+              <li><a href="home1.html#products">Modules</a></li>
+              <li><a href="home1.html#benefits">Benefits</a></li>
+              <li><a href="home1.html#project-management">Project Management</a></li>
+              <li><a href="home1.html#solutions">Platform</a></li>
+              <li><a href="price.html">Pricing</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Industries</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Industries</h3>
+            <ul class="footer__links">
+              <li><a href="construction.html">Construction</a></li>
+              <li><a href="real_Estate.html">Real Estate</a></li>
+              <li><a href="msme.html">MSME</a></li>
+              <li><a href="CA.html">CA Firms</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Company</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Company</h3>
+            <ul class="footer__links">
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="Our_Presence.html">Our Presence</a></li>
+              <li><a href="careers.html">Careers</a></li>
+              <li><a href="contact_sales.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Support</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Support</h3>
+            <ul class="footer__links">
+              <li><a href="real_time_support.html">Help Center</a></li>
+              <li><a href="contact_sales.html">Sales</a></li>
+              <li><a href="custom_quote.html">Get a Quote</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__connect">
+        <div class="footer__connect-item">
+          <span class="footer__connect-label">Visit us</span>
+          <address class="footer__address">
+            BM-08, Ansal Sumedha Building, RDC,<br>
+            Ghaziabad, Delhi NCR, UP 201002
+          </address>
+          <div class="footer__quick">
+            <a class="footer__quick-btn" href="contact_sales.html">Book Demo</a>
+            <a class="footer__quick-btn" href="real_time_support.html">Get Support</a>
+          </div>
+        </div>
+        <div class="footer__connect-item">
+          <span class="footer__connect-label">Follow us</span>
+          <div class="footer__social">
+            <a href="https://www.linkedin.com/in/ca-clouddesk-381510388" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23.5h-4V8.5zM8.5 8.5h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1v8.9h-4v-7.88c0-1.88-.03-4.3-2.62-4.3-2.62 0-3.02 2.05-3.02 4.17v7.01h-4V8.5z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/erptime/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@ERPTime" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.5v-7l6 3.5-6 3.5z"/></svg>
+            </a>
+            <a href="https://x.com/erptime" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke-linecap="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bar">
+        <p class="footer__copy">© 2026 TimeERP · <a href="https://lawseva.com/" target="_blank" rel="noopener noreferrer">Law Seva Management Private Limited</a></p>
+        <nav class="footer__legal" aria-label="Legal">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="contact_sales.html">Contact Us</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  (function () {
+    'use strict';
+    var TOTAL = 12;
+    var step = 1;
+    var titles = [
+      'Welcome', 'Company Setup', 'Branch Setup', 'Organization Setup', 'Team Setup',
+      'Module Configuration', 'Communication Setup', 'Billing Configuration',
+      'Compliance Configuration', 'Document Vault', 'Project Management', 'Finish Setup'
+    ];
+    var hints = [
+      'Get started', 'Profile & branding', 'Locations', 'Structure', 'People',
+      'Enable modules', 'Channels', 'Invoicing', 'Statutory', 'Documents', 'Delivery', 'Go live'
+    ];
+
+    var panels = Array.prototype.slice.call(document.querySelectorAll('.ob-panel[data-step]'));
+    var fill = document.getElementById('obProgressFill');
+    var bar = document.getElementById('obProgressBar');
+    var titleEl = document.getElementById('obStepTitle');
+    var countEl = document.getElementById('obStepCount');
+    var railList = document.getElementById('obRailList');
+    var chipsEl = document.getElementById('obFinishChips');
+    var backBtn = document.getElementById('obBackBtn');
+    var skipBtn = document.getElementById('obSkipBtn');
+    var nextBtn = document.getElementById('obNextBtn');
+    var foot = document.getElementById('obFoot');
+
+    function buildRail() {
+      if (!railList) return;
+      railList.innerHTML = titles.map(function (t, i) {
+        var n = i + 1;
+        return '<button type="button" class="ob-rail__item" data-goto="' + n + '">'
+          + '<span class="ob-rail__num" data-num="' + n + '">' + n + '</span>'
+          + '<span class="ob-rail__text"><strong>' + t + '</strong><span>' + hints[i] + '</span></span>'
+          + '</button>';
+      }).join('');
+    }
+
+    function updateFoot() {
+      if (!foot) return;
+      var isWelcome = step === 1;
+      var isFinish = step === 12;
+      foot.style.display = isWelcome ? 'none' : 'flex';
+      if (backBtn) backBtn.hidden = isWelcome;
+      if (skipBtn) skipBtn.hidden = isWelcome || isFinish;
+      if (nextBtn) {
+        nextBtn.hidden = isFinish;
+        nextBtn.textContent = step === 11 ? 'Finish Setup' : 'Continue';
+      }
+    }
+
+    function updateProgress() {
+      if (fill) fill.style.width = ((step / TOTAL) * 100) + '%';
+      if (bar) bar.setAttribute('aria-valuenow', String(step));
+      if (titleEl) titleEl.textContent = titles[step - 1] || '';
+      if (countEl) countEl.textContent = step + ' / ' + TOTAL;
+      if (railList) {
+        railList.querySelectorAll('.ob-rail__item').forEach(function (item) {
+          var n = parseInt(item.getAttribute('data-goto'), 10);
+          var num = item.querySelector('.ob-rail__num');
+          item.classList.toggle('is-active', n === step);
+          item.classList.toggle('is-done', n < step);
+          if (num) {
+            if (n < step) num.innerHTML = '<span class="material-symbols-outlined">check</span>';
+            else num.textContent = String(n);
+          }
+        });
+      }
+      updateFoot();
+    }
+
+    function showStep(n) {
+      step = Math.max(1, Math.min(TOTAL, n));
+      panels.forEach(function (panel) {
+        var s = parseInt(panel.getAttribute('data-step'), 10);
+        var active = s === step;
+        panel.classList.toggle('is-active', active);
+        if (active) panel.removeAttribute('hidden');
+        else panel.setAttribute('hidden', '');
+      });
+      updateProgress();
+      if (step === 12) renderFinishChips();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderFinishChips() {
+      if (!chipsEl) return;
+      var on = Array.prototype.slice.call(document.querySelectorAll('.ob-module.is-on'))
+        .map(function (m) { return m.getAttribute('data-module'); })
+        .filter(Boolean);
+      chipsEl.innerHTML = on.map(function (name) {
+        return '<span class="ob-finish__chip">' + name + '</span>';
+      }).join('');
+    }
+
+    document.addEventListener('click', function (e) {
+      var goto = e.target.closest('[data-goto]');
+      var next = e.target.closest('[data-ob-next]');
+      var back = e.target.closest('[data-ob-back]');
+      var skip = e.target.closest('[data-ob-skip]');
+      var card = e.target.closest('[data-card]');
+      var mod = e.target.closest('[data-module]');
+
+      if (goto) {
+        e.preventDefault();
+        var target = parseInt(goto.getAttribute('data-goto'), 10);
+        if (target <= step || target === step + 1 || target < step) showStep(target);
+        else if (target > step) showStep(Math.min(target, step + 1));
+        return;
+      }
+      if (next) { e.preventDefault(); showStep(step + 1); return; }
+      if (back) { e.preventDefault(); showStep(step - 1); return; }
+      if (skip) { e.preventDefault(); showStep(step + 1); return; }
+      if (card) { e.preventDefault(); card.classList.toggle('is-selected'); return; }
+      if (mod) {
+        e.preventDefault();
+        mod.classList.toggle('is-on');
+        mod.setAttribute('aria-pressed', mod.classList.contains('is-on') ? 'true' : 'false');
+      }
+    });
+
+    buildRail();
+    showStep(1);
+  })();
+  </script>
+  <script src="js/site-nav.js" defer></script>
+  <script src="js/footer-accordion.js" defer></script>
+</body>
+</html>

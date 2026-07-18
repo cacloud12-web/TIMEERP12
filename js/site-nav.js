@@ -86,7 +86,6 @@
     +     '</div>'
     +     '<div class="industries-mega__footer">'
     +       '<a class="industries-mega__footer-btn" href="contact_sales.html">' + svgIcon('<path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.1-8.7A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.6a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.5-1.1a2 2 0 012.1-.4c.9.3 1.7.5 2.6.6a2 2 0 011.7 2z"/>') + ' Contact sales</a>'
-    +       '<a class="industries-mega__footer-btn" href="#" data-book-demo">' + svgIcon('<path d="M8 7V3m8 4V3M3 11h18M5 5h14a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z"/>') + ' Book Demo</a>'
     +     '</div>'
     +   '</div>'
     + '</div>'
@@ -104,7 +103,7 @@
     +           resourcesItem('contact_sales.html', 'support_agent', 'Consultants', 'Hire TimeERP implementation experts')
     +         '</div>'
     +         '<div class="resources-mega__col">'
-    +           resourcesItem('contact_sales.html', 'person_add', 'Paid onboarding services', 'Get hands-on guidance and expert setup')
+    +           resourcesItem('onboarding_services.html', 'person_add', 'Paid onboarding services', 'Get hands-on guidance and expert setup')
     +           resourcesItem('contact_sales.html', 'storefront', 'Marketplace', 'Templates and add-ons for your workflow')
     +         '</div>'
     +       '</div>'
@@ -194,18 +193,22 @@
       },
       {
         id: 'billing',
-        name: 'Billing',
+        name: 'Billing Management',
         icon: 'receipt_long',
-        detailDesc: 'Generate invoices, manage billing cycles, track payments, and handle client billing with full tax compliance.',
+        detailDesc: 'Configure billing setup and branches, then manage invoices, receipts, ledgers, adjustments, and integrated digital payments in one flow.',
         features: [
-          { name: 'Invoices', icon: 'request_quote' },
-          { name: 'Recurring Billing', icon: 'autorenew' },
-          { name: 'Receipts', icon: 'receipt' },
-          { name: 'Credit Notes', icon: 'note_add' },
-          { name: 'Debit Notes', icon: 'note' },
-          { name: 'Payment Tracking', icon: 'account_balance_wallet' },
+          { name: 'Setup', icon: 'settings' },
+          { name: 'Add New Branch', icon: 'add_business' },
+          { name: 'Invoice', icon: 'request_quote' },
+          { name: 'Proforma Invoice', icon: 'description' },
+          { name: 'Receipt', icon: 'receipt' },
           { name: 'Ledger', icon: 'menu_book' },
-          { name: 'Tax Reports', icon: 'analytics' }
+          { name: 'Adjustment', icon: 'tune' },
+          { name: 'Credit Note (CN)', icon: 'note_add' },
+          { name: 'Debit Note (DN)', icon: 'note' },
+          { name: 'Reported Transactions', icon: 'sync_alt' },
+          { name: 'BharatPe Integration', icon: 'payments' },
+          { name: 'UPI AutoPay', icon: 'account_balance_wallet' }
         ],
         href: hash('billing')
       },
@@ -213,16 +216,20 @@
         id: 'document-management',
         name: 'Document Management',
         icon: 'folder_open',
-        detailDesc: 'Organize, store, and manage client documents securely with version control, sharing, and document workflows.',
+        detailDesc: 'Store, organize, and control business documents with secure sharing, version tracking, approvals, and compliance-ready records.',
         features: [
-          { name: 'Secure Vault', icon: 'lock' },
-          { name: 'Version Control', icon: 'history' },
-          { name: 'Inward Register', icon: 'move_to_inbox' },
-          { name: 'Outward Register', icon: 'outbox' },
-          { name: 'Agreements', icon: 'handshake' },
-          { name: 'DSC Tracking', icon: 'verified' },
-          { name: 'Sharing', icon: 'share' },
-          { name: 'OCR Capture', icon: 'document_scanner' }
+          { name: 'Store Documents', icon: 'lock' },
+          { name: 'Create Agreement', icon: 'handshake' },
+          { name: 'Inward Documents', icon: 'move_to_inbox' },
+          { name: 'Outward Documents', icon: 'outbox' },
+          { name: 'Document Sharing', icon: 'share' },
+          { name: 'Document Version Control', icon: 'history' },
+          { name: 'Document Search', icon: 'search' },
+          { name: 'Document Categories', icon: 'category' },
+          { name: 'Document Approval Workflow', icon: 'rule' },
+          { name: 'Document History', icon: 'schedule' },
+          { name: 'DSC Tracker', icon: 'verified' },
+          { name: 'Fixed Asset Register', icon: 'inventory_2' }
         ],
         href: hash('document-vault')
       },
@@ -279,18 +286,15 @@
       },
       {
         id: 'compliance',
-        name: 'Compliance',
+        name: 'Compliance Management',
         icon: 'manage_search',
-        detailDesc: 'Automate statutory compliance, payroll compliance, tax reporting, and government filings with one centralized compliance management system.',
+        detailDesc: 'Stay audit-ready with centralized statutory reporting for GST, ESIC, EPFO, gratuity, and TDS across your organization.',
         features: [
           { name: 'GST Reports', icon: 'receipt_long' },
-          { name: 'TDS Reports', icon: 'percent' },
           { name: 'ESIC Reports', icon: 'health_and_safety' },
           { name: 'EPFO Reports', icon: 'account_balance' },
-          { name: 'Professional Tax', icon: 'request_quote' },
-          { name: 'Gratuity', icon: 'savings' },
-          { name: 'Compliance Dashboard', icon: 'dashboard' },
-          { name: 'Government Filing', icon: 'upload_file' }
+          { name: 'Gratuity Management', icon: 'savings' },
+          { name: 'TDS Reports', icon: 'percent' }
         ],
         href: hash('compliance')
       },
@@ -315,16 +319,22 @@
         id: 'project-management',
         name: 'Project Management',
         icon: 'view_kanban',
-        detailDesc: 'Plan, execute, monitor, and deliver projects from initiation to completion with team collaboration and profitability tracking.',
+        detailDesc: 'Plan, assign, and deliver client work across teams with recurring tasks, mobile access, timesheets, billing, and profit visibility in one workspace.',
         features: [
-          { name: 'Project Planning', icon: 'map' },
-          { name: 'Kanban Boards', icon: 'view_kanban' },
-          { name: 'Milestones', icon: 'flag' },
-          { name: 'Gantt View', icon: 'view_timeline' },
-          { name: 'Worklogs', icon: 'timer' },
-          { name: 'Budgets', icon: 'savings' },
-          { name: 'Billing', icon: 'receipt_long' },
-          { name: 'P&L Reports', icon: 'monitoring' }
+          { name: 'Multi Assign', icon: 'group_add' },
+          { name: 'Multi Customer', icon: 'groups' },
+          { name: 'Multi Client', icon: 'business' },
+          { name: 'Create Task', icon: 'add_task' },
+          { name: 'Recurring Task', icon: 'autorenew' },
+          { name: 'Task Service Master', icon: 'home_repair_service' },
+          { name: 'Task in Mobile App', icon: 'smartphone' },
+          { name: 'Share Task with Client', icon: 'share' },
+          { name: 'Bulk Action in Task', icon: 'dynamic_feed' },
+          { name: 'Task Reminder', icon: 'notifications' },
+          { name: 'Task Timesheet', icon: 'schedule' },
+          { name: 'Task Permission', icon: 'admin_panel_settings' },
+          { name: 'Task Billing', icon: 'receipt_long' },
+          { name: 'Profit / Loss Report', icon: 'monitoring' }
         ],
         href: hash('project-management')
       },
