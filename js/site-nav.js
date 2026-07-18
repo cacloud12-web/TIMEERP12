@@ -96,7 +96,7 @@
     +       '<div class="resources-mega__columns">'
     +         '<div class="resources-mega__col">'
     +           resourcesItem('community.html', 'school', 'Academy', 'Self-paced, expert-led courses')
-    +           resourcesItem('contact_sales.html', 'calendar_month', 'Event calendar', 'Online and in-person events')
+    +           resourcesItem('event_calendar.html', 'calendar_month', 'Event calendar', 'Meetings, deadlines & workplace events')
     +         '</div>'
     +         '<div class="resources-mega__col">'
     +           resourcesItem(hash('faq'), 'help', 'Help Centre', 'Guides, FAQs, platform resources')
