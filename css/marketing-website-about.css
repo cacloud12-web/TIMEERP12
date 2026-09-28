@@ -1,0 +1,162 @@
+/* TIME ERP — About Us (marketing_website_about.html) */
+a.sidebar__item { color: inherit; text-decoration: none; }
+
+.mwa-top-checkout {
+  height: 32px; padding: 0 14px; border: none; border-radius: 4px;
+  background: #25b7a7; color: #fff; font-size: 13px; font-weight: 600; cursor: pointer;
+}
+.mwa-top-clock {
+  font-size: 16px; font-weight: 600; color: #25B7A7;
+  font-variant-numeric: tabular-nums; min-width: 46px; text-align: center;
+}
+.mwa-top-icon { color: #25B7A7 !important; }
+.mwa-profile-caret { width: 14px; height: 14px; color: #94a3b8; flex-shrink: 0; }
+
+.mwa-page {
+  min-height: 100%;
+  margin: -16px calc(var(--content-pad-x, 16px) * -1) -24px;
+  padding: 14px 18px 24px;
+  background: #f3f5f7;
+}
+
+.mwa-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.mwa-back {
+  width: 28px; height: 28px; border-radius: 4px; background: #25B7A7; color: #fff;
+  display: inline-flex; align-items: center; justify-content: center; text-decoration: none;
+}
+.mwa-back svg { width: 16px; height: 16px; stroke: #fff; }
+.mwa-back:hover { background: #1fa396; }
+.mwa-crumb { font-size: 14px; font-weight: 500; color: #374151; }
+
+.mwa-panel {
+  background: #fff; border: 1px solid #e8edf2; border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, .04); overflow: hidden;
+}
+
+.mwa-tabs {
+  display: flex; flex-wrap: wrap; gap: 16px; padding: 0 16px;
+  border-bottom: 1px solid #eef2f6; overflow-x: auto;
+}
+.mwa-tab {
+  border: none; background: none; padding: 12px 2px;
+  font-size: 14px; font-weight: 500; color: rgba(0, 0, 0, .45);
+  cursor: pointer; font-family: inherit; white-space: nowrap; position: relative;
+}
+.mwa-tab.is-active { color: #25B7A7; }
+.mwa-tab.is-active::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+  height: 2px; background: #25B7A7;
+}
+
+.mwa-tab-panel { padding: 16px 20px 24px; }
+.mwa-tab-panel[hidden] { display: none !important; }
+
+.mwa-section-title {
+  margin: 0 0 20px; font-size: 22px; font-weight: 600; color: #25B7A7;
+}
+
+.mwa-form { max-width: 860px; display: flex; flex-direction: column; gap: 14px; }
+
+.mwa-row {
+  display: grid; grid-template-columns: 160px 1fr; gap: 12px; align-items: center;
+}
+.mwa-row--top { align-items: start; }
+.mwa-row--top .mwa-label { padding-top: 8px; }
+.mwa-row--points {
+  grid-template-columns: 100px 1fr 110px 1fr; gap: 10px; align-items: center;
+}
+
+.mwa-label {
+  text-align: right; font-size: 14px; font-weight: 500; color: rgba(0, 0, 0, .85);
+}
+.mwa-req { color: #ff4d4f; margin-left: 2px; }
+
+.mwa-input, .mwa-textarea {
+  width: 100%; border: 1px solid #d9d9d9; border-radius: 4px;
+  font-size: 14px; font-family: inherit; color: #374151; background: #fff;
+}
+.mwa-input { height: 32px; padding: 0 10px; }
+.mwa-textarea { padding: 8px 10px; resize: vertical; min-height: 80px; line-height: 1.5; }
+.mwa-input:focus, .mwa-textarea:focus {
+  outline: none; border-color: #25B7A7; box-shadow: 0 0 0 2px rgba(37,183,167,.12);
+}
+
+.mwa-upload {
+  display: inline-flex; align-items: center; gap: 8px;
+  height: 32px; padding: 0 12px; border: 1px solid #d9d9d9; border-radius: 4px;
+  background: #fff; cursor: pointer; font-size: 13px; color: rgba(0, 0, 0, .65); font-family: inherit;
+}
+.mwa-upload svg { width: 14px; height: 14px; color: rgba(0, 0, 0, .45); }
+.mwa-upload:hover { border-color: #25B7A7; color: #25B7A7; }
+
+.mwa-save {
+  align-self: flex-start; height: 32px; padding: 0 20px; border: none; border-radius: 4px;
+  background: #25B7A7; color: #fff; font-size: 14px; font-weight: 600;
+  cursor: pointer; font-family: inherit; margin-top: 4px;
+}
+.mwa-save:hover { background: #1fa396; }
+
+.mwa-team-head {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;
+}
+.mwa-team-head .mwa-section-title { margin: 0; }
+.mwa-plus {
+  width: 28px; height: 28px; border: none; border-radius: 4px;
+  background: #25B7A7; color: #fff; font-size: 18px; line-height: 1; cursor: pointer;
+}
+
+.mwa-table-wrap { position: relative; min-height: 280px; overflow: auto; border: 1px solid #eef2f6; }
+.mwa-table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 560px; }
+.mwa-table th {
+  text-align: left; padding: 10px 12px; font-weight: 600; color: rgba(0, 0, 0, .65);
+  background: #fafafa; border-bottom: 1px solid #eef2f6; white-space: nowrap;
+}
+.mwa-table td {
+  padding: 10px 12px; color: rgba(0, 0, 0, .85);
+  border-bottom: 1px solid #f0f0f0; vertical-align: middle;
+}
+.mwa-thumb { width: 36px; height: 36px; border-radius: 4px; object-fit: cover; background: #f5f5f5; }
+.mwa-del { border: none; background: none; color: #ff4d4f; cursor: pointer; font-size: 13px; font-family: inherit; }
+
+.mwa-empty {
+  position: absolute; inset: 48px 0 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; color: rgba(0, 0, 0, .25); pointer-events: none;
+}
+.mwa-empty svg { width: 64px; height: 41px; margin-bottom: 8px; }
+.mwa-empty p { margin: 0; font-size: 14px; }
+.mwa-table-wrap.has-rows .mwa-empty { display: none; }
+
+.mwa-modal-scrim {
+  position: fixed; inset: 0; z-index: 100; background: rgba(0, 0, 0, .45);
+  display: flex; align-items: center; justify-content: center; padding: 16px;
+}
+.mwa-modal-scrim[hidden] { display: none !important; }
+.mwa-modal {
+  width: min(420px, 100%); background: #fff; border-radius: 6px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .18);
+}
+.mwa-modal__head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px; border-bottom: 1px solid #f0f0f0;
+}
+.mwa-modal__head h2 { margin: 0; font-size: 16px; font-weight: 600; color: #1f2937; }
+.mwa-modal__close {
+  border: none; background: none; font-size: 22px; line-height: 1; color: #94a3b8; cursor: pointer;
+}
+.mwa-modal__body { padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+.mwa-field { display: flex; flex-direction: column; gap: 6px; }
+.mwa-field label { font-size: 14px; font-weight: 500; color: rgba(0, 0, 0, .85); }
+.mwa-field input[type="text"] {
+  height: 36px; border: 1px solid #d9d9d9; border-radius: 4px; padding: 0 12px;
+  font-size: 14px; font-family: inherit;
+}
+.mwa-field input[type="text"]:focus {
+  outline: none; border-color: #25B7A7; box-shadow: 0 0 0 2px rgba(37,183,167,.12);
+}
+.mwa-check { display: flex; align-items: center; gap: 8px; font-size: 14px; color: rgba(0, 0, 0, .85); }
+.mwa-check input { width: 16px; height: 16px; accent-color: #25B7A7; }
+
+@media (max-width: 768px) {
+  .mwa-row, .mwa-row--points { grid-template-columns: 1fr; gap: 6px; }
+  .mwa-label { text-align: left; padding-top: 0 !important; }
+}

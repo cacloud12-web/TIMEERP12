@@ -32,7 +32,7 @@ a.sidebar__item { color: inherit; text-decoration: none; }
 
 .ast-badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 999px; font-size: 10px; font-weight: 700; text-transform: capitalize; letter-spacing: .02em; }
 .ast-badge--available { background: #dcfce7; color: #166534; }
-.ast-badge--allocated { background: #dbeafe; color: #1d4ed8; }
+.ast-badge--allocated { background: #e8f8f6; color: #1a9e8f; }
 .ast-badge--maintenance { background: #ffedd5; color: #c2410c; }
 .ast-badge--damaged { background: #fee2e2; color: #b91c1c; }
 .ast-badge--returned { background: #e0e7ff; color: #4338ca; }

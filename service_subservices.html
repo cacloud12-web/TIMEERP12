@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sub-services — TimeERP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/service-subservices.css?v=1">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="dv-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="dv-top-clock" id="dvTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn dv-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn dv-top-icon" id="notifBtn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="dv-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="home.html" class="dropdown__item"><strong>Dashboard</strong><span>Back to home</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="ss-page">
+          <div class="ss-top">
+            <a class="ss-back" id="ssBack" href="service_master.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+              Back to list
+            </a>
+            <button type="button" class="ss-add" id="ssAddSub">+ Add sub-service</button>
+          </div>
+
+          <h1 class="ss-title" id="ssTitle">24G Return – Sub-services</h1>
+
+          <nav class="ss-tabs" aria-label="Sub-service tabs">
+            <button type="button" class="ss-tab is-active" data-tab="active">Sub-service</button>
+            <button type="button" class="ss-tab" data-tab="hidden">Hidden sub-services</button>
+          </nav>
+
+          <div class="ss-boards-label">MY BOARDS (1)</div>
+          <div class="ss-boards">
+            <div class="ss-board-card" id="ssBoardCard">
+              <div class="ss-board-card__head">
+                <span class="ss-board-card__name" id="ssBoardName">24G Return</span>
+                <div class="ss-board-more-wrap" id="ssBoardMoreWrap">
+                  <button type="button" class="ss-board-more" id="ssBoardMore" title="More" aria-label="More" aria-expanded="false" aria-haspopup="true">···</button>
+                  <div class="ss-board-more-dd" id="ssBoardMoreDD" hidden role="menu">
+                    <button type="button" class="ss-board-more-dd__item" id="ssBoardEdit" role="menuitem">Edit</button>
+                    <button type="button" class="ss-board-more-dd__item" id="ssBoardHide" role="menuitem">Hide</button>
+                  </div>
+                </div>
+              </div>
+              <span class="ss-board-card__person" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="ss-table-wrap" id="ssTableWrap">
+            <table class="ss-table" id="ssTable">
+              <thead>
+                <tr>
+                  <th>Sub-service ID</th>
+                  <th>Name</th>
+                  <th>Priority</th>
+                  <th>TAT</th>
+                  <th>Share with client</th>
+                </tr>
+              </thead>
+              <tbody id="ssTableBody">
+                <tr>
+                  <td>U4000</td>
+                  <td id="ssRowName">24G Return</td>
+                  <td>No Priority</td>
+                  <td>--</td>
+                  <td>No</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="ss-table-wrap" id="ssHiddenWrap" hidden>
+            <p class="ss-empty">No hidden sub-services.</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="ss-modal-scrim" id="ssEditModal" hidden>
+    <div class="ss-modal" role="dialog" aria-modal="true" aria-labelledby="ssEditTitle">
+      <div class="ss-modal__head">
+        <h2 class="ss-modal__title" id="ssEditTitle">Edit Workboard</h2>
+        <button type="button" class="ss-modal__close" id="ssEditClose" aria-label="Close">×</button>
+      </div>
+      <div class="ss-modal__body">
+        <label class="ss-field">
+          <span class="ss-field__label">Board Name <em>*</em></span>
+          <input type="text" id="ssBoardNameInput" value="24G Return" autocomplete="off">
+        </label>
+        <label class="ss-field">
+          <span class="ss-field__label">Service</span>
+          <input type="text" id="ssServiceInput" placeholder="Service Name..." autocomplete="off">
+        </label>
+        <p class="ss-field__hint">Only clients associated with the selected services will be visible in this Board.</p>
+
+        <div class="ss-field">
+          <span class="ss-field__label">Select board color</span>
+          <div class="ss-colors" id="ssColors" role="group" aria-label="Board color">
+            <button type="button" class="ss-color" data-color="#bfdbfe" style="--c:#bfdbfe" aria-label="Light blue"></button>
+            <button type="button" class="ss-color" data-color="#fbcfe8" style="--c:#fbcfe8" aria-label="Pink"></button>
+            <button type="button" class="ss-color is-selected" data-color="#ffe8d6" style="--c:#ffe8d6" aria-label="Peach"></button>
+            <button type="button" class="ss-color" data-color="#ddd6fe" style="--c:#ddd6fe" aria-label="Lavender"></button>
+            <button type="button" class="ss-color" data-color="#fef08a" style="--c:#fef08a" aria-label="Yellow"></button>
+            <button type="button" class="ss-color" data-color="#bbf7d0" style="--c:#bbf7d0" aria-label="Mint"></button>
+            <button type="button" class="ss-color" data-color="#a5f3fc" style="--c:#a5f3fc" aria-label="Sky"></button>
+          </div>
+        </div>
+
+        <div class="ss-uploads">
+          <div class="ss-upload">
+            <span class="ss-field__label">Logo</span>
+            <label class="ss-upload__btn">
+              <input type="file" id="ssLogoFile" accept="image/*" hidden>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 16V8M8 12l4-4 4 4"/><path d="M4 18h16"/></svg>
+              Click to Upload
+            </label>
+          </div>
+          <div class="ss-upload">
+            <span class="ss-field__label">Board image</span>
+            <label class="ss-upload__btn">
+              <input type="file" id="ssBoardFile" accept="image/*" hidden>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 16V8M8 12l4-4 4 4"/><path d="M4 18h16"/></svg>
+              Click to Upload
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="ss-modal__foot">
+        <button type="button" class="ss-modal__update" id="ssEditUpdate">Update</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/service-subservices.js?v=1"></script>
+</body>
+</html>

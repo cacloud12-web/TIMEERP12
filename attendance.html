@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance Management | Biometric, Geo &amp; Shifts | TimeERP</title>
+  <meta name="description" content="TimeERP Attendance: daily check-in and check-out, biometric and geo attendance, shift management, late entry, overtime approval, attendance lock, and workforce reports for offices and field teams.">
+  <meta name="keywords" content="attendance management, biometric attendance, geo attendance, shift roster, overtime ERP, TimeERP attendance, daily attendance">
+  <link rel="canonical" href="https://timeerp.com/attendance.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Attendance Management | TimeERP">
+  <meta property="og:description" content="Biometric, geo, and shift-based attendance with real-time tracking in TimeERP.">
+  <meta property="og:url" content="https://timeerp.com/attendance.html">
+  <meta property="og:image" content="https://timeerp.com/assets/image0-transparent.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Attendance Management | TimeERP">
+  <meta name="twitter:description" content="Daily attendance, shifts, biometric, overtime, and approvals inside TimeERP.">
+  <meta name="twitter:image" content="https://timeerp.com/assets/image0-transparent.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "TimeERP Attendance Management",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "url": "https://timeerp.com/attendance.html",
+        "description": "Enterprise attendance for biometric and geo punches, shift rosters, late entry, overtime, lock periods, and workforce reports.",
+        "provider": { "@type": "Organization", "name": "TimeERP", "url": "https://timeerp.com/" }
+      },
+      {
+        "@type": "Product",
+        "name": "TimeERP Attendance",
+        "description": "Biometric, geo, and shift-based attendance with real-time tracking.",
+        "brand": { "@type": "Brand", "name": "TimeERP" },
+        "url": "https://timeerp.com/attendance.html"
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <link rel="stylesheet" href="css/site-nav.css?v=13">
+  <link rel="stylesheet" href="css/site-footer.css">
+  <link rel="stylesheet" href="css/attendance.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="att-page" id="attendance" aria-labelledby="att-title">
+    <!-- Hero: product intro + live-style attendance mock -->
+    <section class="att-hero" aria-label="Attendance Management hero">
+      <div class="att-hero__bg" aria-hidden="true">
+        <div class="att-hero__grid-pattern"></div>
+        <span class="att-hero__orb att-hero__orb--1"></span>
+        <span class="att-hero__orb att-hero__orb--2"></span>
+        <span class="att-hero__dot att-hero__dot--1"></span>
+        <span class="att-hero__dot att-hero__dot--2"></span>
+        <span class="att-hero__dot att-hero__dot--3"></span>
+      </div>
+
+      <div class="container att-hero__layout">
+        <div class="att-reveal att-reveal--left">
+          <h1 id="att-title">Attendance Management</h1>
+          <p class="att-hero__lead">Biometric, geo, and shift-based attendance with real-time tracking across office and field teams.</p>
+
+          <ul class="att-feat-grid" aria-label="Attendance capabilities">
+            <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span> Daily Attendance</li>
+            <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span> Shift Management</li>
+            <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span> Late Entry</li>
+            <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span> Overtime Tracking</li>
+            <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span> Attendance Lock</li>
+            <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span> Attendance Approval</li>
+            <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span> Desktop &amp; Mobile Mark</li>
+            <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span> Face Upload Option</li>
+            <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span> Leave Context</li>
+            <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span> Attendance Reports</li>
+          </ul>
+
+          <div class="att-hero__actions">
+            <a class="btn btn--primary" href="home.html#module/attendance">
+              Explore Attendance
+              <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+            </a>
+            <a class="btn btn--ghost" href="#" data-book-demo>Book Demo</a>
+            <a class="btn btn--ghost" href="contact_sales.html">Contact Sales</a>
+          </div>
+        </div>
+
+        <div class="att-visual att-reveal att-reveal--right" aria-hidden="true">
+          <div class="att-float att-float--1"><span class="material-symbols-outlined">how_to_reg</span> 142 present</div>
+          <div class="att-float att-float--2"><span class="material-symbols-outlined">schedule</span> 11 late</div>
+          <div class="att-float att-float--3"><span class="material-symbols-outlined">fingerprint</span> Biometric OK</div>
+          <div class="att-float att-float--4"><span class="material-symbols-outlined">more_time</span> OT pending</div>
+          <div class="att-float att-float--5"><span class="material-symbols-outlined">location_on</span> Geo field</div>
+
+          <div class="att-visual__scene">
+            <div class="att-card">
+              <div class="att-card__top">
+                <div class="att-card__user">
+                  <div class="att-card__avatar">AM</div>
+                  <div>
+                    <strong>Today · Head Office</strong>
+                    <span>Live attendance snapshot</span>
+                  </div>
+                </div>
+                <span class="att-card__status">
+                  <span class="material-symbols-outlined" style="font-size:14px">sync</span>
+                  Devices synced
+                </span>
+              </div>
+              <div class="att-card__metrics">
+                <div class="att-card__metric"><em>Present</em><strong>142</strong></div>
+                <div class="att-card__metric"><em>Late</em><strong>11</strong></div>
+                <div class="att-card__metric"><em>On Leave</em><strong>8</strong></div>
+              </div>
+              <div class="att-card__progress">
+                <div class="att-card__progress-label"><span>Presence rate</span><strong>94%</strong></div>
+                <div class="att-card__bar"><span></span></div>
+              </div>
+              <div class="att-card__bottom">
+                <div>
+                  <div class="att-card__progress-label" style="margin-bottom:8px">
+                    <span>Punch volume (week)</span>
+                    <strong>OT 36h pend.</strong>
+                  </div>
+                  <div class="att-card__chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                </div>
+                <div class="att-ring">
+                  <svg viewBox="0 0 88 88" aria-hidden="true">
+                    <circle class="att-ring__bg" cx="44" cy="44" r="36"></circle>
+                    <circle class="att-ring__fg" cx="44" cy="44" r="36"></circle>
+                  </svg>
+                  <div class="att-ring__label"><strong>94%</strong><span>On time</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="att-trust" aria-label="Attendance use cases">
+      <div class="container att-trust__inner">
+        <p>Built for multi-site workforce control</p>
+        <div class="att-trust__stats">
+          <span class="att-trust__chip">Office biometric punches</span>
+          <span class="att-trust__chip">Field geo attendance</span>
+          <span class="att-trust__chip">Multi-shift rosters</span>
+          <span class="att-trust__chip">Payroll-ready lock periods</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Summary metrics -->
+    <section class="att-section att-section--panel" id="attDash" aria-labelledby="att-dash-title">
+      <div class="container">
+        <div class="att-section__head att-reveal">
+          <p class="eyebrow">Today at a glance</p>
+          <h2 class="section-title" id="att-dash-title">Workforce presence you can act on</h2>
+          <p class="section-lead">Illustrative metrics for a multi-branch day. Live numbers depend on headcount, devices, and shift rules.</p>
+        </div>
+        <div class="att-dash att-reveal">
+          <div class="att-dash__main">
+            <h3>Attendance health</h3>
+            <p>Present, late, leave, and overtime signals for leadership and HR.</p>
+            <div class="att-dash__metrics">
+              <div class="att-metric"><strong data-count="142">0</strong><span>Total present</span></div>
+              <div class="att-metric"><strong data-count="11">0</strong><span>Late arrivals</span></div>
+              <div class="att-metric"><strong data-count="8">0</strong><span>On leave</span></div>
+              <div class="att-metric"><strong data-count="36" data-suffix="h">0h</strong><span>Overtime hours</span></div>
+              <div class="att-metric"><strong data-count="6">0</strong><span>Pending approval</span></div>
+              <div class="att-metric"><strong data-count="3">0</strong><span>Devices online</span></div>
+            </div>
+          </div>
+          <div class="att-dash__side">
+            <div class="att-dash__card">
+              <h4>On-time rate</h4>
+              <div class="att-bar" data-width="94"><span></span></div>
+              <p>Most punches meet shift start windows before late flags fire.</p>
+            </div>
+            <div class="att-dash__card">
+              <h4>Biometric sync</h4>
+              <div class="att-bar" data-width="98"><span></span></div>
+              <p>Device health stays green when last sync stays inside policy windows.</p>
+            </div>
+            <div class="att-dash__card">
+              <h4>OT awaiting approval</h4>
+              <div class="att-bar" data-width="42"><span></span></div>
+              <p>Managers clear overtime before locked periods feed payroll.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why -->
+    <section class="att-section att-section--soft" aria-labelledby="att-why-title">
+      <div class="container">
+        <div class="att-section__head att-reveal">
+          <p class="eyebrow">Why TimeERP Attendance</p>
+          <h2 class="section-title" id="att-why-title">Presence that payroll and managers can trust</h2>
+          <p class="section-lead">Home Attendance spans daily records, shifts, biometric, geo, lock, overtime, late entry, and reports, so people ops stay consistent across channels.</p>
+        </div>
+        <div class="att-why att-reveal">
+          <article class="att-why__card">
+            <div class="att-why__icon"><span class="material-symbols-outlined">fingerprint</span></div>
+            <h3>Device-grade capture</h3>
+            <p>Biometric and geo punches reduce manual mark attendance for office and field staff.</p>
+          </article>
+          <article class="att-why__card">
+            <div class="att-why__icon"><span class="material-symbols-outlined">schedule</span></div>
+            <h3>Shift-aware rules</h3>
+            <p>Late and OT logic follows rosters, not a single generic 9-to-5 assumption.</p>
+          </article>
+          <article class="att-why__card">
+            <div class="att-why__icon"><span class="material-symbols-outlined">fact_check</span></div>
+            <h3>Exception workflows</h3>
+            <p>Approvals and lock periods keep disputed days out of salary runs until resolved.</p>
+          </article>
+          <article class="att-why__card">
+            <div class="att-why__icon"><span class="material-symbols-outlined">analytics</span></div>
+            <h3>Period reports</h3>
+            <p>Summaries and exports give managers and finance a clean presence story.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive features -->
+    <section class="att-section" id="features" aria-labelledby="att-feat-title">
+      <div class="container">
+        <div class="att-section__head att-reveal">
+          <p class="eyebrow">Core capabilities</p>
+          <h2 class="section-title" id="att-feat-title">Everything TimeERP Attendance is built to do</h2>
+          <p class="section-lead">Explore capture, operations, control, and insight capabilities that match the Attendance module and HRMS attendance workflows.</p>
+        </div>
+        <div class="att-filters att-reveal" role="tablist" aria-label="Filter attendance features">
+          <button type="button" class="att-filter is-active" data-filter="all" aria-selected="true">All</button>
+          <button type="button" class="att-filter" data-filter="capture" aria-selected="false">Capture</button>
+          <button type="button" class="att-filter" data-filter="ops" aria-selected="false">Operations</button>
+          <button type="button" class="att-filter" data-filter="control" aria-selected="false">Control</button>
+          <button type="button" class="att-filter" data-filter="insight" aria-selected="false">Insight</button>
+        </div>
+        <div class="att-feat-layout att-reveal">
+          <div class="att-feat-list" id="attFeatList" role="tablist" aria-label="Attendance features"></div>
+          <aside class="att-panel" role="tabpanel" aria-live="polite">
+            <div class="att-panel__inner">
+              <span class="att-panel__badge"><span class="material-symbols-outlined" id="attPanelIcon" aria-hidden="true">how_to_reg</span> TIME ERP</span>
+              <h3 id="attPanelName">Daily Attendance</h3>
+              <p class="att-panel__desc" id="attPanelDesc"></p>
+              <span class="att-panel__label">Key capabilities</span>
+              <ul class="att-caps" id="attPanelCaps"></ul>
+              <span class="att-panel__label">Business value</span>
+              <p class="att-benefits-box" id="attPanelBenefits"></p>
+              <div class="att-panel__actions">
+                <a class="btn btn--primary" href="#" data-book-demo>Book Demo</a>
+                <a class="btn btn--ghost" href="contact_sales.html">Contact Sales</a>
+                <a class="btn btn--ghost" href="home.html#module/attendance">Open Attendance</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ops preview with tabs -->
+    <section class="att-section att-section--soft" aria-labelledby="att-ops-title">
+      <div class="container">
+        <div class="att-section__head att-reveal">
+          <p class="eyebrow">Module preview</p>
+          <h2 class="section-title" id="att-ops-title">How teams operate Attendance day to day</h2>
+          <p class="section-lead">Sample tables and panels. Your live registers and device list reflect organisation configuration.</p>
+        </div>
+
+        <div class="att-reveal">
+          <div class="att-ops-tabs" role="tablist" aria-label="Attendance preview panels">
+            <button type="button" class="att-ops-tab is-active" data-panel="panel-daily" aria-selected="true">Daily Attendance</button>
+            <button type="button" class="att-ops-tab" data-panel="panel-shifts" aria-selected="false">Shift Management</button>
+            <button type="button" class="att-ops-tab" data-panel="panel-bio" aria-selected="false">Biometric Sync</button>
+            <button type="button" class="att-ops-tab" data-panel="panel-ot" aria-selected="false">Overtime Tracker</button>
+          </div>
+
+          <div id="panel-daily" class="att-ops-panel is-active" role="tabpanel">
+            <div class="att-table-wrap">
+              <table class="att-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Employee</th>
+                    <th scope="col">Check-in</th>
+                    <th scope="col">Check-out</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Location / source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>A. Sharma</strong></td>
+                    <td>09:02</td>
+                    <td>18:11</td>
+                    <td><span class="att-badge att-badge--ok">Present</span></td>
+                    <td>Biometric · HO Gate 1</td>
+                  </tr>
+                  <tr>
+                    <td><strong>R. Kapoor</strong></td>
+                    <td>09:28</td>
+                    <td>-</td>
+                    <td><span class="att-badge att-badge--late">Late</span></td>
+                    <td>Desktop check-in</td>
+                  </tr>
+                  <tr>
+                    <td><strong>M. Verma</strong></td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td><span class="att-badge att-badge--leave">On leave</span></td>
+                    <td>Leave Management</td>
+                  </tr>
+                  <tr>
+                    <td><strong>S. Iqbal</strong></td>
+                    <td>08:55</td>
+                    <td>17:40</td>
+                    <td><span class="att-badge att-badge--ok">Present</span></td>
+                    <td>Geo · Client site Noida</td>
+                  </tr>
+                  <tr>
+                    <td><strong>P. Mehta</strong></td>
+                    <td>09:00</td>
+                    <td>20:05</td>
+                    <td><span class="att-badge att-badge--ot">OT candidate</span></td>
+                    <td>Biometric · HO Gate 2</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div id="panel-shifts" class="att-ops-panel" role="tabpanel">
+            <div class="att-shift-grid">
+              <article class="att-shift-card">
+                <h4>General shift</h4>
+                <p>09:00 – 18:00 · Grace 10 min · Active roster</p>
+              </article>
+              <article class="att-shift-card">
+                <h4>Morning plant</h4>
+                <p>06:00 – 14:00 · Rotational · Branch: Unit B</p>
+              </article>
+              <article class="att-shift-card">
+                <h4>Evening support</h4>
+                <p>14:00 – 22:00 · OT after 22:00 · Customer desk</p>
+              </article>
+            </div>
+          </div>
+
+          <div id="panel-bio" class="att-ops-panel" role="tabpanel">
+            <div class="att-device-list">
+              <div class="att-device">
+                <div>
+                  <strong>HO Gate Device A</strong>
+                  <span>Last synced · 2 min ago</span>
+                </div>
+                <span class="att-badge att-badge--ok">Online</span>
+              </div>
+              <div class="att-device">
+                <div>
+                  <strong>HO Gate Device B</strong>
+                  <span>Last synced · 4 min ago</span>
+                </div>
+                <span class="att-badge att-badge--ok">Online</span>
+              </div>
+              <div class="att-device">
+                <div>
+                  <strong>Warehouse Unit B</strong>
+                  <span>Last synced · 48 min ago</span>
+                </div>
+                <span class="att-badge att-badge--late">Review sync</span>
+              </div>
+            </div>
+          </div>
+
+          <div id="panel-ot" class="att-ops-panel" role="tabpanel">
+            <div class="att-ot-row">
+              <div><strong>P. Mehta · Delivery</strong><br><em>Beyond evening shift end</em></div>
+              <em>2h 05m</em>
+              <span class="att-badge att-badge--late">Pending</span>
+            </div>
+            <div class="att-ot-row">
+              <div><strong>N. Singh · Ops</strong><br><em>Saturday extended shift</em></div>
+              <em>3h 30m</em>
+              <span class="att-badge att-badge--ok">Approved</span>
+            </div>
+            <div class="att-ot-row">
+              <div><strong>K. Bose · Site</strong><br><em>Client go-live cover</em></div>
+              <em>1h 40m</em>
+              <span class="att-badge att-badge--late">Pending</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Workflow -->
+    <section class="att-section" aria-labelledby="att-flow-title">
+      <div class="container">
+        <div class="att-section__head att-reveal">
+          <p class="eyebrow">Workflow</p>
+          <h2 class="section-title" id="att-flow-title">From punch to payroll-ready register</h2>
+        </div>
+        <div class="att-flow att-reveal" aria-label="Attendance workflow">
+          <div class="att-flow__step is-on">
+            <span class="att-flow__num">1</span>
+            <strong>Punch captured</strong>
+            <span>Biometric, geo, or self mark</span>
+          </div>
+          <span class="att-flow__arrow material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          <div class="att-flow__step">
+            <span class="att-flow__num">2</span>
+            <strong>Shift applied</strong>
+            <span>Expected window evaluated</span>
+          </div>
+          <span class="att-flow__arrow material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          <div class="att-flow__step">
+            <span class="att-flow__num">3</span>
+            <strong>Status set</strong>
+            <span>Present, late, leave, OT</span>
+          </div>
+          <span class="att-flow__arrow material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          <div class="att-flow__step">
+            <span class="att-flow__num">4</span>
+            <strong>Exceptions reviewed</strong>
+            <span>Manager / HR approval</span>
+          </div>
+          <span class="att-flow__arrow material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          <div class="att-flow__step">
+            <span class="att-flow__num">5</span>
+            <strong>Period locked</strong>
+            <span>Stable register for payroll</span>
+          </div>
+          <span class="att-flow__arrow material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          <div class="att-flow__step">
+            <span class="att-flow__num">6</span>
+            <strong>Reports generated</strong>
+            <span>Summaries and exports</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Industries -->
+    <section class="att-section att-section--soft" aria-labelledby="att-cases-title">
+      <div class="container">
+        <div class="att-section__head att-reveal">
+          <p class="eyebrow">Industries</p>
+          <h2 class="section-title" id="att-cases-title">Where attendance discipline pays off</h2>
+        </div>
+        <div class="att-cases att-reveal">
+          <article class="att-case">
+            <span class="material-symbols-outlined">apartment</span>
+            <h3>Multi-office firms</h3>
+            <p>Standard daily registers across branches with device health visibility.</p>
+          </article>
+          <article class="att-case">
+            <span class="material-symbols-outlined">engineering</span>
+            <h3>Construction sites</h3>
+            <p>Shift and geo patterns help account for crew presence outside head office.</p>
+          </article>
+          <article class="att-case">
+            <span class="material-symbols-outlined">storefront</span>
+            <h3>Retail &amp; MSME</h3>
+            <p>Early/late shifts map cleanly so late and OT stay fair store by store.</p>
+          </article>
+          <article class="att-case">
+            <span class="material-symbols-outlined">account_balance</span>
+            <h3>Professional services</h3>
+            <p>Office biometric plus mobile mark for hybrid consultants without two systems.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="att-section" aria-labelledby="att-ben-title">
+      <div class="container">
+        <div class="att-section__head att-reveal">
+          <p class="eyebrow">Outcomes</p>
+          <h2 class="section-title" id="att-ben-title">Benefits across the organisation</h2>
+        </div>
+        <div class="att-ben att-reveal">
+          <article class="att-ben__card">
+            <h3><span class="material-symbols-outlined">groups</span> Employees</h3>
+            <ul>
+              <li>Clear check-in paths on desk or mobile</li>
+              <li>Transparent late and OT statuses</li>
+              <li>Leave days reflected on the register</li>
+            </ul>
+          </article>
+          <article class="att-ben__card">
+            <h3><span class="material-symbols-outlined">supervisor_account</span> Managers</h3>
+            <ul>
+              <li>Who is in today without chasing chats</li>
+              <li>Exception queues instead of manual sheets</li>
+              <li>OT control before bill shocks</li>
+            </ul>
+          </article>
+          <article class="att-ben__card">
+            <h3><span class="material-symbols-outlined">badge</span> HR</h3>
+            <ul>
+              <li>Approval and lock discipline</li>
+              <li>Consistent inputs for payroll</li>
+              <li>Reports for policy conversations</li>
+            </ul>
+          </article>
+          <article class="att-ben__card">
+            <h3><span class="material-symbols-outlined">payments</span> Finance</h3>
+            <ul>
+              <li>Fewer payroll rework cycles</li>
+              <li>OT that is reviewed first</li>
+              <li>Audit-friendly attendance history</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Integrations -->
+    <section class="att-section att-section--soft" aria-labelledby="att-int-title">
+      <div class="container">
+        <div class="att-section__head att-reveal">
+          <p class="eyebrow">Integrations</p>
+          <h2 class="section-title" id="att-int-title">Works with the rest of TimeERP</h2>
+          <p class="section-lead">Integrate attendance with HR, leave, payroll, timesheets, and reporting for unified workforce control.</p>
+        </div>
+        <div class="att-int att-reveal">
+          <a class="att-int__card" href="hrms.html">
+            <span class="att-int__icon"><span class="material-symbols-outlined">groups</span></span>
+            <span><h3>HRMS</h3><p>Employee masters, managers, and org hierarchy for ownership of punches.</p></span>
+          </a>
+          <a class="att-int__card" href="payroll.html">
+            <span class="att-int__icon"><span class="material-symbols-outlined">account_balance_wallet</span></span>
+            <span><h3>Payroll</h3><p>Reviewed present, absent, and OT signals feed compensation cycles.</p></span>
+          </a>
+          <a class="att-int__card" href="hrms.html">
+            <span class="att-int__icon"><span class="material-symbols-outlined">beach_access</span></span>
+            <span><h3>Leave</h3><p>Approved leave appears on the daily register next to attendance status.</p></span>
+          </a>
+          <a class="att-int__card" href="timesheet.html">
+            <span class="att-int__icon"><span class="material-symbols-outlined">schedule</span></span>
+            <span><h3>Timesheet</h3><p>Presence and effort stay complementary for delivery and capacity views.</p></span>
+          </a>
+          <a class="att-int__card" href="dashboard.html">
+            <span class="att-int__icon"><span class="material-symbols-outlined">dashboard</span></span>
+            <span><h3>Dashboard</h3><p>Attendance summaries surface in broader business oversight widgets.</p></span>
+          </a>
+          <a class="att-int__card" href="project_management.html">
+            <span class="att-int__icon"><span class="material-symbols-outlined">view_kanban</span></span>
+            <span><h3>Projects</h3><p>Site and field presence context for project operations.</p></span>
+          </a>
+          <a class="att-int__card" href="expense.html">
+            <span class="att-int__icon"><span class="material-symbols-outlined">receipt_long</span></span>
+            <span><h3>Expense</h3><p>Travel and site days often align with geo attendance trails.</p></span>
+          </a>
+          <a class="att-int__card" href="compliance_management.html">
+            <span class="att-int__icon"><span class="material-symbols-outlined">gavel</span></span>
+            <span><h3>Compliance</h3><p>Stable registers support labour control reviews with payroll.</p></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="att-section" aria-labelledby="att-faq-title">
+      <div class="container">
+        <div class="att-section__head att-reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2 class="section-title" id="att-faq-title">Questions HR and operations ask</h2>
+        </div>
+        <div class="att-faq att-reveal">
+          <div class="att-faq__item">
+            <button type="button" class="att-faq__q" aria-expanded="false">What capture methods does Attendance support?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="att-faq__a">Daily attendance can come from biometric devices, geo mark attendance, desktop check-in, and mobile mark attendance with optional face upload, depending on configuration.</div>
+          </div>
+          <div class="att-faq__item">
+            <button type="button" class="att-faq__q" aria-expanded="false">How do shifts affect late and overtime?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="att-faq__a">Shift timings define expected windows. Late flags and overtime calculations follow those windows so multi-shift teams are not forced into one schedule.</div>
+          </div>
+          <div class="att-faq__item">
+            <button type="button" class="att-faq__q" aria-expanded="false">Can managers approve attendance exceptions?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="att-faq__a">Yes. Attendance approval workflows let teams review pending or irregular punches and clear them before payroll cycles.</div>
+          </div>
+          <div class="att-faq__item">
+            <button type="button" class="att-faq__q" aria-expanded="false">What is attendance lock?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="att-faq__a">After review, periods can be locked so registers remain stable for payroll processing and audits.</div>
+          </div>
+          <div class="att-faq__item">
+            <button type="button" class="att-faq__q" aria-expanded="false">How does leave show on attendance?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="att-faq__a">Approved leave from Leave Management can appear as on-leave status so those days are not treated as unexplained absences.</div>
+          </div>
+          <div class="att-faq__item">
+            <button type="button" class="att-faq__q" aria-expanded="false">Is this the same as Timesheet?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="att-faq__a">No. Attendance records presence (are they here and when). Timesheet records what work was done and whether it is billable. Both sit in TimeERP and complement each other.</div>
+          </div>
+          <div class="att-faq__item">
+            <button type="button" class="att-faq__q" aria-expanded="false">How do we open Attendance in the product?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="att-faq__a">Use Explore Attendance on this page to open the Attendance module in TimeERP home, or open Attendance from the product navigation after you sign in.</div>
+          </div>
+          <div class="att-faq__item">
+            <button type="button" class="att-faq__q" aria-expanded="false">What reports are available?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="att-faq__a">Attendance reports cover daily and period summaries, late signals, overtime views, and packs suitable for managers and payroll coordination.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="att-section att-section--soft" aria-labelledby="att-cta-title">
+      <div class="container">
+        <div class="att-cta att-reveal">
+          <h2 id="att-cta-title">Capture every punch. Approve every exception. Lock with confidence.</h2>
+          <p>See biometric, geo, shift, and overtime workflows for your workforce model in a live TimeERP walkthrough.</p>
+          <div class="att-cta__actions">
+            <a class="btn btn--primary" href="#" data-book-demo>Book Demo</a>
+            <a class="btn btn--ghost-dark" href="contact_sales.html">Contact Sales</a>
+            <a class="btn btn--ghost-dark" href="home.html#module/attendance">Open Attendance</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__main">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo" aria-label="TimeERP home">
+            <img src="assets/image01-footer.svg" alt="TimeERP" width="196" height="48" loading="lazy">
+          </a>
+          <p class="footer__desc">One Platform. Complete Business Management. Enterprise ERP for modern businesses.</p>
+          <div class="footer__stats">
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">◆</span><span>650+ Businesses</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">◎</span><span>99.8% Uptime</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">☁</span><span>Cloud ERP</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">⛨</span><span>Secure</span></div>
+          </div>
+        </div>
+        <div class="footer__cols">
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Products</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Products</h3>
+            <ul class="footer__links">
+              <li><a href="index.html#products">Modules</a></li>
+              <li><a href="index.html#benefits">Benefits</a></li>
+              <li><a href="project_management.html">Project Management</a></li>
+              <li><a href="price.html">Pricing</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Industries</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Industries</h3>
+            <ul class="footer__links">
+              <li><a href="construction.html">Construction</a></li>
+              <li><a href="real_Estate.html">Real Estate</a></li>
+              <li><a href="msme.html">MSME</a></li>
+              <li><a href="CA.html">CA Firms</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Company</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Company</h3>
+            <ul class="footer__links">
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="Our_Presence.html">Our Presence</a></li>
+              <li><a href="careers.html">Careers</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="contact_sales.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Support</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Support</h3>
+            <ul class="footer__links">
+              <li><a href="help_centre.html">Help Center</a></li>
+              <li><a href="contact_sales.html">Sales</a></li>
+              <li><a href="custom_quote.html">Get a Quote</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer__connect">
+        <div class="footer__connect-item">
+          <span class="footer__connect-label">Visit us</span>
+          <address class="footer__address">
+            <a class="footer__address-link" href="https://www.google.com/maps/search/?api=1&query=Ansal+Sumedha+Building+RDC+Ghaziabad+201002" target="_blank" rel="noopener noreferrer" aria-label="View office location on Google Maps">
+              BM-08, Ansal Sumedha Building, RDC,<br>
+              Ghaziabad, Delhi NCR, UP 201002
+            </a>
+          </address>
+          <div class="footer__quick">
+            <a class="footer__quick-btn" href="#" data-book-demo>Book Demo</a>
+            <a class="footer__quick-btn" href="real_time_support.html">Get Support</a>
+          </div>
+        </div>
+        <div class="footer__connect-item">
+          <span class="footer__connect-label">Follow us</span>
+          <div class="footer__social">
+            <a href="https://www.linkedin.com/in/ca-clouddesk-381510388" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23.5h-4V8.5zM8.5 8.5h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1v8.9h-4v-7.88c0-1.88-.03-4.3-2.62-4.3-2.62 0-3.02 2.05-3.02 4.17v7.01h-4V8.5z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/erptime/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@ERPTime" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.5v-7l6 3.5-6 3.5z"/></svg>
+            </a>
+            <a href="https://x.com/erptime" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke-linecap="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bar">
+        <p class="footer__copy">© 2026 TimeERP <a href="https://lawseva.com/" target="_blank" rel="noopener noreferrer">Law Seva Management Private Limited</a></p>
+        <nav class="footer__legal" aria-label="Legal">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="security.html">Security</a>
+          <a href="contact_sales.html">Contact Us</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/attendance.js" defer></script>
+  <script src="js/footer-accordion.js" defer></script>
+  <script src="js/site-nav.js?v=13" defer></script>
+  <script src="js/site-footer.js?v=6"></script>
+</body>
+</html>

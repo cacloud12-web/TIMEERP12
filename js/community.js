@@ -18,7 +18,7 @@
     },
     knowledge: {
       title: 'Share workflow knowledge',
-      body: 'Exchange practical guidance on HRMS, attendance, payroll, CRM, Client Desk, projects, billing, compliance, Document Vault, marketing, and communication.',
+      body: 'Exchange practical guidance on HRMS, payroll, attendance, leave, CRM, Client Desk, Project Management, Billing Management, Compliance Management, Document Vault, marketing, and Communication Center.',
       points: ['Module-focused discussions', 'Links to Help Centre guides', 'Implementation tips from peers']
     },
     updates: {
@@ -30,51 +30,53 @@
 
   var CHANNEL_TOPICS = {
     all: [
-      'How we configure roles before go-live',
-      'Attendance and leave setup for multi-branch teams',
-      'CRM follow-ups that stay inside Client Desk',
-      'Project milestones with timesheet billing',
-      'GST and TDS reporting checklist'
+      'Employee onboarding and policies in HRMS',
+      'CRM leads, pipeline, and Client Desk requests',
+      'Project tasks with timesheet billing and P/L',
+      'Billing setup, invoices, receipts, and ledgers',
+      'GST, ESIC, EPFO, gratuity, and TDS reports'
     ],
     hrms: [
-      'Employee onboarding checklist in HRMS',
-      'Biometric vs geo attendance for field teams',
-      'Leave balance and holiday calendar tips',
-      'Payroll inputs from attendance and leave'
+      'Recruitment and onboarding checklist in HRMS',
+      'Biometric, geo, and shift attendance setup',
+      'Leave types, approvals, and holiday calendar',
+      'Payroll salary structure, PF & ESI, and payslips',
+      'Expense claims, travel, and reimbursements'
     ],
     crm: [
-      'Lead capture and assignment in CRM',
-      'Quotation follow-up discipline',
-      'Client Desk document sharing with clients',
-      'Pipeline visibility for sales managers'
+      'Lead capture, pipeline, and quotations in CRM',
+      'Follow-up discipline for sales teams',
+      'Client Desk portal, documents, and service requests',
+      'Messages and collaboration with clients'
     ],
     projects: [
-      'Creating the first project and milestones',
-      'Task and recurring task patterns',
-      'Timesheets for billable delivery',
-      'Project P/L visibility for owners'
+      'Create task, multi-assign, and multi-client delivery',
+      'Recurring tasks and task reminders',
+      'Task timesheet and task billing for billable work',
+      'Profit / Loss report visibility for owners'
     ],
     billing: [
-      'Billing branch setup tips',
-      'Invoice to receipt workflow',
-      'Ledger checks after posting',
-      'Digital payment options in Billing'
+      'Billing setup and add new branch tips',
+      'Invoice, proforma invoice, and receipt workflow',
+      'Ledger, adjustment, credit note, and debit note',
+      'BharatPe integration and UPI AutoPay options'
     ],
     compliance: [
       'GST report readiness checklist',
       'ESIC and EPFO reporting notes',
+      'Gratuity management practices',
       'TDS report preparation',
       'Keeping compliance records audit-ready'
     ]
   };
 
   var DISCUSSIONS = [
-    { id: 1, title: 'Best order to configure roles before enabling HRMS and Billing', audience: 'Administrators', category: 'hrms', tag: 'Setup' },
-    { id: 2, title: 'Attendance methods that work for site and office teams', audience: 'HR Managers', category: 'hrms', tag: 'HRMS' },
+    { id: 1, title: 'Best order to configure roles before enabling HRMS and Billing Management', audience: 'Administrators', category: 'hrms', tag: 'Setup' },
+    { id: 2, title: 'Attendance, leave, and payroll inputs for multi-branch teams', audience: 'HR Managers', category: 'hrms', tag: 'HRMS' },
     { id: 3, title: 'Keeping CRM leads and Client Desk requests in one flow', audience: 'Sales & Client teams', category: 'crm', tag: 'CRM' },
-    { id: 4, title: 'Project milestones, tasks, and timesheets for delivery teams', audience: 'Project Managers', category: 'projects', tag: 'Projects' },
-    { id: 5, title: 'Invoice, receipt, and ledger checks for finance teams', audience: 'Finance teams', category: 'billing', tag: 'Billing' },
-    { id: 6, title: 'GST, ESIC, EPFO, and TDS reporting in Compliance Management', audience: 'Compliance & CA practices', category: 'compliance', tag: 'Compliance' }
+    { id: 4, title: 'Tasks, recurring work, timesheets, and P/L in Project Management', audience: 'Project Managers', category: 'projects', tag: 'Projects' },
+    { id: 5, title: 'Invoice, receipt, ledger, and digital payments in Billing Management', audience: 'Finance teams', category: 'billing', tag: 'Billing' },
+    { id: 6, title: 'GST, ESIC, EPFO, gratuity, and TDS in Compliance Management', audience: 'Compliance & CA practices', category: 'compliance', tag: 'Compliance' }
   ];
 
   var benefitCards = document.querySelectorAll('.comm-benefit');
@@ -117,13 +119,13 @@
   function renderChannels(category) {
     if (!channelGrid) return;
     var channels = [
-      { id: 'hrms', icon: 'badge', name: 'HRMS & Payroll', desc: 'Employees, attendance, leave, payroll', cat: 'hrms' },
-      { id: 'crm', icon: 'handshake', name: 'CRM & Client Desk', desc: 'Leads, pipeline, client portal', cat: 'crm' },
-      { id: 'projects', icon: 'account_tree', name: 'Project Management', desc: 'Projects, tasks, timesheets', cat: 'projects' },
-      { id: 'billing', icon: 'receipt_long', name: 'Billing & Finance', desc: 'Invoices, receipts, ledgers', cat: 'billing' },
-      { id: 'compliance', icon: 'gavel', name: 'Compliance', desc: 'GST, ESIC, EPFO, TDS', cat: 'compliance' },
-      { id: 'documents', icon: 'folder_open', name: 'Document Vault', desc: 'Store, share, approve documents', cat: 'all' },
-      { id: 'marketing', icon: 'campaign', name: 'Marketing & Comms', desc: 'Campaigns, email, SMS, WhatsApp', cat: 'all' },
+      { id: 'hrms', icon: 'badge', name: 'HRMS & Workforce', desc: 'Employees, attendance, leave, payroll, expense', cat: 'hrms' },
+      { id: 'crm', icon: 'handshake', name: 'CRM & Client Desk', desc: 'Leads, pipeline, quotations, client portal', cat: 'crm' },
+      { id: 'projects', icon: 'account_tree', name: 'Project Management', desc: 'Tasks, timesheets, billing, P/L', cat: 'projects' },
+      { id: 'billing', icon: 'receipt_long', name: 'Billing Management', desc: 'Invoices, receipts, ledgers, digital payments', cat: 'billing' },
+      { id: 'compliance', icon: 'gavel', name: 'Compliance Management', desc: 'GST, ESIC, EPFO, gratuity, TDS', cat: 'compliance' },
+      { id: 'documents', icon: 'folder_open', name: 'Document Vault', desc: 'Store, share, approve, agreements, DSC', cat: 'all' },
+      { id: 'marketing', icon: 'campaign', name: 'Marketing & Communication', desc: 'Campaigns, email, SMS, WhatsApp, website', cat: 'all' },
       { id: 'ideas', icon: 'lightbulb', name: 'Feedback & Ideas', desc: 'Share product improvement themes', cat: 'all' }
     ];
     var filtered = category === 'all' ? channels : channels.filter(function (c) { return c.cat === category || c.cat === 'all'; });

@@ -9,11 +9,16 @@
   var root = document.getElementById('site-header');
   if (!root) return;
 
-  var path = (window.location.pathname || '').split('/').pop() || 'home1.html';
-  var isHome = /^(home1\.html)?$/i.test(path) || path === '' || path === 'index.html';
-  var home = isHome ? '' : 'home1.html';
+  var pathname = (window.location.pathname || '').replace(/\\/g, '/');
+  var path = pathname.split('/').pop() || 'index.html';
+  var isHome = /^(index\.html)?$/i.test(path) || path === '' || path === 'index.html';
+  var dirSegs = pathname.split('/').filter(Boolean);
+  if (dirSegs.length && /\.[a-z0-9]+$/i.test(dirSegs[dirSegs.length - 1])) dirSegs.pop();
+  var rootPrefix = dirSegs.length ? dirSegs.map(function () { return '..'; }).join('/') + '/' : '';
+  var home = isHome ? '' : (rootPrefix + 'index.html');
   var hash = function (id) { return home ? home + '#' + id : '#' + id; };
-  var logoHref = isHome ? '#top' : 'home1.html';
+  var logoMarkHref = rootPrefix + 'index.html';
+  var logoTextHref = rootPrefix + 'home.html';
 
   function svgIcon(paths) {
     return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">' + paths + '</svg>';
@@ -22,15 +27,28 @@
   var html = ''
     + '<header class="nav' + (isHome ? ' nav--home' : ' nav--inner') + '" id="nav" role="banner">'
     +   '<div class="container nav__inner nav__container">'
-    +     '<a href="' + logoHref + '" class="nav__logo" aria-label="TimeERP home">'
-    +       '<img src="assets/image0-transparent.png" alt="TimeERP" width="168" height="40" loading="eager">'
-    +     '</a>'
+    +     '<div class="nav__logo" role="group" aria-label="TimeERP">'
+    +       '<a href="' + logoMarkHref + '" class="nav__logo-mark" aria-label="TimeERP marketing home">'
+    +         '<svg class="nav__logo-svg nav__logo-svg--mark" viewBox="0 0 48 48" width="48" height="48" role="img" focusable="false" aria-hidden="true">'
+    +           '<g class="logo-mark" transform="translate(2 2)">'
+    +             '<circle cx="22" cy="22" r="20" fill="#25b7a7"/>'
+    +             '<path d="M22 2a20 20 0 0 0-14.14 5.86A20 20 0 0 0 2 22h6a16 16 0 0 1 14-14V2z" fill="#1a3354"/>'
+    +             '<circle cx="22" cy="22" r="13.5" fill="#fff"/>'
+    +             '<g class="logo-hands" transform="translate(22 22)">'
+    +               '<g class="logo-hand logo-hand--hour"><line x1="0" y1="0" x2="-5.63" y2="-3.25" stroke="#25b7a7" stroke-width="2.4" stroke-linecap="round"/></g>'
+    +               '<g class="logo-hand logo-hand--minute"><line x1="0" y1="0" x2="7.36" y2="-4.25" stroke="#1a3354" stroke-width="2.4" stroke-linecap="round"/></g>'
+    +               '<circle cx="0" cy="0" r="2.2" fill="#25b7a7"/>'
+    +             '</g>'
+    +           '</g>'
+    +         '</svg>'
+    +       '</a>'
+    +       '<a href="' + logoTextHref + '" class="nav__logo-wordmark" aria-label="TimeERP app login">'
+    +         '<span class="nav__logo-time">Time</span><span class="nav__logo-erp">ERP</span>'
+    +       '</a>'
+    +     '</div>'
     +     '<nav class="nav__menu" aria-label="Main navigation">'
     +       '<button type="button" class="nav__link is-trigger" id="productsNavBtn" aria-expanded="false" aria-haspopup="true" aria-controls="productsMega">'
     +         'Products <span class="nav__chevron" aria-hidden="true">▾</span>'
-    +       '</button>'
-    +       '<button type="button" class="nav__link is-trigger" id="solutionsNavBtn" aria-expanded="false" aria-haspopup="true" aria-controls="solutionsMega">'
-    +         'Solutions <span class="nav__chevron" aria-hidden="true">▾</span>'
     +       '</button>'
     +       '<button type="button" class="nav__link is-trigger" id="industriesNavBtn" aria-expanded="false" aria-haspopup="true" aria-controls="industriesMega">'
     +         'Industries <span class="nav__chevron" aria-hidden="true">▾</span>'
@@ -54,7 +72,6 @@
     + '</header>'
     + '<div class="industries-backdrop" id="industriesBackdrop" hidden></div>'
     + buildProductsMega()
-    + buildSolutionsMega()
     + '<div class="industries-mega" id="industriesMega" role="menu" aria-label="Industries menu" aria-hidden="true">'
     +   '<div class="industries-mega__inner">'
     +     '<div class="industries-mega__layout">'
@@ -71,12 +88,12 @@
     +       '<div class="industries-mega__main">'
     +         '<p class="industries-mega__label">Popular modules</p>'
     +         '<div class="industries-mega__grid">'
-    +           '<a class="industries-mega__link" href="' + hash('hrms') + '" role="menuitem"><span class="industries-mega__link-icon" aria-hidden="true">' + svgIcon('<path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>') + '</span><span class="industries-mega__link-name">HRMS</span></a>'
-    +           '<a class="industries-mega__link" href="' + hash('crm') + '" role="menuitem"><span class="industries-mega__link-icon" aria-hidden="true">' + svgIcon('<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>') + '</span><span class="industries-mega__link-name">CRM</span></a>'
-    +           '<a class="industries-mega__link" href="' + hash('payroll') + '" role="menuitem"><span class="industries-mega__link-icon" aria-hidden="true">' + svgIcon('<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/>') + '</span><span class="industries-mega__link-name">Payroll</span></a>'
-    +           '<a class="industries-mega__link" href="' + hash('billing') + '" role="menuitem"><span class="industries-mega__link-icon" aria-hidden="true">' + svgIcon('<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>') + '</span><span class="industries-mega__link-name">Billing</span></a>'
-    +           '<a class="industries-mega__link" href="' + hash('project-management') + '" role="menuitem"><span class="industries-mega__link-icon" aria-hidden="true">' + svgIcon('<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>') + '</span><span class="industries-mega__link-name">Projects</span></a>'
-    +           '<a class="industries-mega__link" href="' + hash('document-vault') + '" role="menuitem"><span class="industries-mega__link-icon" aria-hidden="true">' + svgIcon('<path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/>') + '</span><span class="industries-mega__link-name">Documents</span></a>'
+    +           '<a class="industries-mega__link" href="hrms.html" role="menuitem"><span class="industries-mega__link-icon" aria-hidden="true">' + svgIcon('<path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>') + '</span><span class="industries-mega__link-name">HRMS</span></a>'
+    +           '<a class="industries-mega__link" href="crm.html" role="menuitem"><span class="industries-mega__link-icon" aria-hidden="true">' + svgIcon('<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>') + '</span><span class="industries-mega__link-name">CRM</span></a>'
+    +           '<a class="industries-mega__link" href="payroll.html" role="menuitem"><span class="industries-mega__link-icon" aria-hidden="true">' + svgIcon('<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/>') + '</span><span class="industries-mega__link-name">Payroll</span></a>'
+    +           '<a class="industries-mega__link" href="billing.html" role="menuitem"><span class="industries-mega__link-icon" aria-hidden="true">' + svgIcon('<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>') + '</span><span class="industries-mega__link-name">Billing</span></a>'
+    +           '<a class="industries-mega__link" href="project_management.html" role="menuitem"><span class="industries-mega__link-icon" aria-hidden="true">' + svgIcon('<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>') + '</span><span class="industries-mega__link-name">Projects</span></a>'
+    +           '<a class="industries-mega__link" href="document_management.html" role="menuitem"><span class="industries-mega__link-icon" aria-hidden="true">' + svgIcon('<path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/>') + '</span><span class="industries-mega__link-name">Documents</span></a>'
     +           '<a class="industries-mega__link" href="property_dealer.html" role="menuitem"><span class="industries-mega__link-icon" aria-hidden="true">' + svgIcon('<path d="M15 7h3a2 2 0 012 2v9a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2h3"/><path d="M9 7V5a3 3 0 016 0v2"/>') + '</span><span class="industries-mega__link-name">Property Dealer</span></a>'
     +         '</div>'
     +         '<a class="industries-mega__view-all" href="' + hash('industries') + '">View all industries →</a>'
@@ -93,11 +110,13 @@
     +       '<h2 class="resources-mega__heading">Resources</h2>'
     +       '<div class="resources-mega__columns">'
     +         '<div class="resources-mega__col">'
+    +           resourcesItem('features.html', 'grid_view', 'Features', 'Explore attendance, shift planning, and automated tracking capabilities')
     +           resourcesItem('Academy.html', 'school', 'Academy', 'Self-paced, expert-led courses')
     +           resourcesItem('event_calendar.html', 'calendar_month', 'Event calendar', 'Meetings, deadlines & workplace events')
     +         '</div>'
     +         '<div class="resources-mega__col">'
     +           resourcesItem('help_centre.html', 'help', 'Help Centre', 'Guides, FAQs, platform resources')
+    +           resourcesItem('setup.html', 'settings', 'Setup', 'Designations, HR, branches, SMTP & pay setup')
     +           resourcesItem('consultants.html', 'support_agent', 'Consultants', 'Hire TimeERP implementation experts')
     +         '</div>'
     +         '<div class="resources-mega__col">'
@@ -119,14 +138,17 @@
     +         '<div class="company-mega__col">'
     +           companyItem('about.html', 'info', 'About us', 'Explore our mission and values')
     +           companyItem('custom_quote.html', 'request_quote', 'Get a custom quote', 'Designed for firms with 25+ seats')
+    +           companyItem('team.html', 'groups', 'Team', 'Meet the people behind TimeERP')
     +         '</div>'
     +         '<div class="company-mega__col">'
     +           companyItem('community.html', 'forum', 'Community', 'Connect with TIME ERP professionals')
     +           companyItem('contact_sales.html', 'call', 'Contact sales', 'Get in touch for tailored solutions')
+    +           companyItem('security.html', 'shield', 'Security &amp; Trust', 'Cloud protection for workforce and business data')
     +         '</div>'
     +         '<div class="company-mega__col">'
     +           companyItem('real_time_support.html', 'monitor_heart', 'Real-time support status', 'Live support performance data')
     +           companyItem('careers.html', 'trending_up', 'Careers', 'Join the TimeERP team')
+    +           companyItem('blog.html', 'article', 'Blog', 'Product insights and updates')
     +         '</div>'
     +       '</div>'
     +     '</div>'
@@ -156,84 +178,41 @@
   function getProducts() {
     return [
       {
-        id: 'setup',
-        name: 'Setup',
-        icon: 'settings',
-        detailDesc: 'Configure organization-level settings, reset configurations, and manage practice-wide defaults and preferences from one control panel.',
+        id: 'dashboard',
+        name: 'Dashboard',
+        icon: 'dashboard',
+        detailDesc: 'Real-time business overview with revenue analytics, attendance summary, and project status in one view.',
         features: [
-          { name: 'Organization Profile', icon: 'apartment' },
-          { name: 'Roles & Permissions', icon: 'admin_panel_settings' },
-          { name: 'Branches', icon: 'account_tree' },
-          { name: 'Departments', icon: 'group_work' },
-          { name: 'Defaults', icon: 'tune' },
-          { name: 'Integrations', icon: 'hub' },
-          { name: 'Preferences', icon: 'manage_accounts' },
-          { name: 'Reset Config', icon: 'restart_alt' }
+          { name: 'Business Overview', icon: 'travel_explore' },
+          { name: 'Revenue Analytics', icon: 'show_chart' },
+          { name: 'Attendance Summary', icon: 'how_to_reg' },
+          { name: 'Project Status', icon: 'pending_actions' },
+          { name: 'Alerts', icon: 'notifications_active' },
+          { name: 'Custom Widgets', icon: 'widgets' },
+          { name: 'Exports', icon: 'download' }
         ],
-        href: hash('products')
+        href: 'dashboard.html'
       },
       {
         id: 'hrms',
-        name: 'HRMS',
+        name: 'HRMS & Payroll',
         icon: 'groups',
-        detailDesc: 'Human Resource Management System to hire, onboard, manage, and retain your workforce from one intelligent HR hub.',
+        detailDesc: 'Hire, onboard, manage people, and run payroll with attendance, leave, PF, ESI, TDS, and payslips in one HR hub.',
         features: [
           { name: 'Attendance', icon: 'fingerprint' },
           { name: 'Leave', icon: 'beach_access' },
-          { name: 'Payroll', icon: 'payments' },
-          { name: 'Shift', icon: 'schedule' },
           { name: 'Employee Records', icon: 'badge' },
-          { name: 'Performance', icon: 'trending_up' },
           { name: 'Recruitment', icon: 'person_search' },
-          { name: 'HR Reports', icon: 'summarize' }
+          { name: 'Salary Structure', icon: 'account_balance_wallet' },
+          { name: 'PF & ESI', icon: 'shield' },
+          { name: 'Payslips', icon: 'receipt' },
+          { name: 'Payroll Reports', icon: 'analytics' }
         ],
-        href: hash('hrms')
-      },
-      {
-        id: 'billing',
-        name: 'Billing Management',
-        icon: 'receipt_long',
-        detailDesc: 'Configure billing setup and branches, then manage invoices, receipts, ledgers, adjustments, and integrated digital payments in one flow.',
-        features: [
-          { name: 'Setup', icon: 'settings' },
-          { name: 'Add New Branch', icon: 'add_business' },
-          { name: 'Invoice', icon: 'request_quote' },
-          { name: 'Proforma Invoice', icon: 'description' },
-          { name: 'Receipt', icon: 'receipt' },
-          { name: 'Ledger', icon: 'menu_book' },
-          { name: 'Adjustment', icon: 'tune' },
-          { name: 'Credit Note (CN)', icon: 'note_add' },
-          { name: 'Debit Note (DN)', icon: 'note' },
-          { name: 'Reported Transactions', icon: 'sync_alt' },
-          { name: 'BharatPe Integration', icon: 'payments' },
-          { name: 'UPI AutoPay', icon: 'account_balance_wallet' }
-        ],
-        href: hash('billing')
-      },
-      {
-        id: 'document-management',
-        name: 'Document Management',
-        icon: 'folder_open',
-        detailDesc: 'Store, organize, and control business documents with secure sharing, version tracking, approvals, and compliance-ready records.',
-        features: [
-          { name: 'Store Documents', icon: 'lock' },
-          { name: 'Create Agreement', icon: 'handshake' },
-          { name: 'Inward Documents', icon: 'move_to_inbox' },
-          { name: 'Outward Documents', icon: 'outbox' },
-          { name: 'Document Sharing', icon: 'share' },
-          { name: 'Document Version Control', icon: 'history' },
-          { name: 'Document Search', icon: 'search' },
-          { name: 'Document Categories', icon: 'category' },
-          { name: 'Document Approval Workflow', icon: 'rule' },
-          { name: 'Document History', icon: 'schedule' },
-          { name: 'DSC Tracker', icon: 'verified' },
-          { name: 'Fixed Asset Register', icon: 'inventory_2' }
-        ],
-        href: hash('document-vault')
+        href: 'hrms.html'
       },
       {
         id: 'crm',
-        name: 'CRM : Client Desk',
+        name: 'CRM',
         icon: 'handshake',
         detailDesc: 'Comprehensive Customer Relationship Management to manage leads, pipeline, client interactions, and relationships.',
         features: [
@@ -246,7 +225,7 @@
           { name: 'Activity Timeline', icon: 'history' },
           { name: 'Customer Portal', icon: 'web' }
         ],
-        href: hash('crm')
+        href: 'crm.html'
       },
       {
         id: 'marketing',
@@ -266,35 +245,25 @@
         href: 'market.html'
       },
       {
-        id: 'compliance',
-        name: 'Compliance Management',
-        icon: 'manage_search',
-        detailDesc: 'Stay audit-ready with centralized statutory reporting for GST, ESIC, EPFO, gratuity, and TDS across your organization.',
+        id: 'document-management',
+        name: 'Document Vault',
+        icon: 'folder_open',
+        detailDesc: 'Store, organize, and control business documents with secure sharing, version tracking, approvals, and compliance-ready records.',
         features: [
-          { name: 'GST Reports', icon: 'receipt_long' },
-          { name: 'ESIC Reports', icon: 'health_and_safety' },
-          { name: 'EPFO Reports', icon: 'account_balance' },
-          { name: 'Gratuity Management', icon: 'savings' },
-          { name: 'TDS Reports', icon: 'percent' }
+          { name: 'Store Documents', icon: 'lock' },
+          { name: 'Create Agreement', icon: 'handshake' },
+          { name: 'Inward Documents', icon: 'move_to_inbox' },
+          { name: 'Outward Documents', icon: 'outbox' },
+          { name: 'Document Sharing', icon: 'share' },
+          { name: 'Document Version Control', icon: 'history' },
+          { name: 'Document Search', icon: 'search' },
+          { name: 'Document Categories', icon: 'category' },
+          { name: 'Document Approval Workflow', icon: 'rule' },
+          { name: 'Document History', icon: 'schedule' },
+          { name: 'DSC Tracker', icon: 'verified' },
+          { name: 'Fixed Asset Register', icon: 'inventory_2' }
         ],
-        href: hash('compliance')
-      },
-      {
-        id: 'payroll',
-        name: 'Payroll',
-        icon: 'payments',
-        detailDesc: 'Automate salary processing, statutory compliance, and payslip distribution with full PF, ESI, and TDS support.',
-        features: [
-          { name: 'Salary Structure', icon: 'account_balance_wallet' },
-          { name: 'PF & ESI', icon: 'shield' },
-          { name: 'TDS', icon: 'percent' },
-          { name: 'Payslips', icon: 'receipt' },
-          { name: 'Bonuses', icon: 'emoji_events' },
-          { name: 'Reimbursements', icon: 'currency_exchange' },
-          { name: 'Bank Transfer', icon: 'account_balance' },
-          { name: 'Payroll Reports', icon: 'analytics' }
-        ],
-        href: hash('payroll')
+        href: 'document_management.html'
       },
       {
         id: 'project-management',
@@ -317,30 +286,37 @@
           { name: 'Task Billing', icon: 'receipt_long' },
           { name: 'Profit / Loss Report', icon: 'monitoring' }
         ],
-        href: hash('project-management')
+        href: 'project_management.html'
       },
       {
-        id: 'dashboard',
-        name: 'Dashboard',
-        icon: 'dashboard',
-        detailDesc: 'Real-time business overview with KPIs, revenue analytics, attendance summary, and project status in one view.',
+        id: 'billing',
+        name: 'Billing Management',
+        icon: 'receipt_long',
+        detailDesc: 'Configure billing setup and branches, then manage invoices, receipts, ledgers, adjustments, and integrated digital payments in one flow.',
         features: [
-          { name: 'Business Overview', icon: 'travel_explore' },
-          { name: 'Revenue Analytics', icon: 'show_chart' },
-          { name: 'Attendance Summary', icon: 'how_to_reg' },
-          { name: 'Project Status', icon: 'pending_actions' },
-          { name: 'KPIs', icon: 'speed' },
-          { name: 'Alerts', icon: 'notifications_active' },
-          { name: 'Custom Widgets', icon: 'widgets' },
-          { name: 'Exports', icon: 'download' }
+          { name: 'Setup', icon: 'settings' },
+          { name: 'Add New Branch', icon: 'add_business' },
+          { name: 'Invoice', icon: 'request_quote' },
+          { name: 'Proforma Invoice', icon: 'description' },
+          { name: 'Receipt', icon: 'receipt' },
+          { name: 'Ledger', icon: 'menu_book' },
+          { name: 'Adjustment', icon: 'tune' },
+          { name: 'Credit Note (CN)', icon: 'note_add' },
+          { name: 'Debit Note (DN)', icon: 'note' },
+          { name: 'Reported Transactions', icon: 'sync_alt' },
+          { name: 'BharatPe Integration', icon: 'payments' },
+          { name: 'UPI AutoPay', icon: 'account_balance_wallet' }
         ],
-        href: hash('dashboard')
+        href: 'billing.html'
       }
     ];
   }
 
   function productNavItem(p, index) {
-    return '<button type="button" class="products-mega__item' + (index === 0 ? ' is-active' : '') + '" role="menuitem" data-product-id="' + p.id + '" aria-pressed="' + (index === 0 ? 'true' : 'false') + '">' + p.name + '</button>';
+    return '<button type="button" class="products-mega__item' + (index === 0 ? ' is-active' : '') + '" role="menuitem" data-product-id="' + p.id + '" aria-pressed="' + (index === 0 ? 'true' : 'false') + '">'
+      + '<span class="products-mega__item-label">' + p.name + '</span>'
+      + '<span class="products-mega__item-arrow" aria-hidden="true">→</span>'
+      + '</button>';
   }
 
   function productFeatures(features) {
@@ -369,19 +345,22 @@
       +       '</aside>'
       +       '<div class="products-mega__main" id="productsMegaDetail" aria-live="polite">'
       +         '<div class="products-mega__detail-inner" id="productsMegaDetailInner">'
-      +           '<div class="products-mega__intro">'
+      +           '<a class="products-mega__intro" id="productsMegaIntro" href="' + first.href + '" aria-label="Open ' + first.name + ' details — More">'
       +             '<div class="products-mega__intro-text">'
       +               '<h3 class="products-mega__detail-title" id="productsMegaTitle">' + first.name + '</h3>'
       +               '<p class="products-mega__detail-desc" id="productsMegaDesc">' + first.detailDesc + '</p>'
+      +               '<span class="products-mega__more" id="productsMegaLearn">More <span aria-hidden="true">→</span></span>'
       +             '</div>'
-      +             '<a class="products-mega__more" id="productsMegaLearn" href="' + first.href + '">More <span aria-hidden="true">→</span></a>'
-      +           '</div>'
+      +             '<span class="products-mega__intro-visual" aria-hidden="true">'
+      +               '<span class="material-symbols-outlined" id="productsMegaIcon">' + (first.icon || 'apps') + '</span>'
+      +             '</span>'
+      +           '</a>'
       +           '<div class="products-mega__features" id="productsMegaFeatures">' + productFeatures(first.features) + '</div>'
       +         '</div>'
       +       '</div>'
       +       '<aside class="products-mega__aside">'
       +         '<p class="products-mega__aside-title"><span aria-hidden="true">🔥</span> Recently released</p>'
-      +         '<a class="products-mega__news" href="' + hash('compliance') + '">'
+      +         '<a class="products-mega__news" href="compliance_management.html">'
       +           '<span class="products-mega__news-thumb" aria-hidden="true"><span class="material-symbols-outlined">manage_search</span></span>'
       +           '<span class="products-mega__news-text">Compliance Dashboard: GST, TDS, EPFO &amp; ESIC reports in one place</span>'
       +         '</a>'
@@ -399,49 +378,16 @@
       + '</div>';
   }
 
-  function buildSolutionsMega() {
-    function item(href, icon, title) {
-      return '<a href="' + href + '" class="solutions-mega__item" role="menuitem">'
-        + '<span class="solutions-mega__icon" aria-hidden="true"><span class="material-symbols-outlined">' + icon + '</span></span>'
-        + '<span class="solutions-mega__title">' + title + '</span>'
-        + '</a>';
-    }
-    return ''
-      + '<div class="solutions-mega" id="solutionsMega" role="menu" aria-label="Solutions menu" aria-hidden="true">'
-      +   '<div class="solutions-mega__inner">'
-      +     '<div class="solutions-mega__layout">'
-      +       '<h2 class="solutions-mega__heading">Solutions</h2>'
-      +       '<div class="solutions-mega__columns">'
-      +         '<div class="solutions-mega__col">'
-      +           '<p class="solutions-mega__col-title">Business Solutions</p>'
-      +           item(hash('hrms'), 'groups', 'Human Resource Management')
-      +           item(hash('billing'), 'account_balance', 'Finance &amp; Accounting')
-      +           item(hash('project-management'), 'view_kanban', 'Project Management')
-      +           item(hash('crm'), 'handshake', 'Sales &amp; CRM')
-      +           item(hash('document-vault'), 'folder_open', 'Document Management')
-      +           item(hash('compliance'), 'manage_search', 'Compliance Management')
-      +           item(hash('dashboard'), 'insights', 'Business Intelligence')
-      +         '</div>'
-      +         '<div class="solutions-mega__col">'
-      +           '<p class="solutions-mega__col-title">Enterprise Solutions</p>'
-      +           item(hash('solutions'), 'account_tree', 'Multi-Branch')
-      +           item(hash('solutions'), 'domain', 'Multi-Company')
-      +           item(hash('solutions'), 'bolt', 'Workflow Automation')
-      +           item(hash('solutions'), 'cloud', 'Cloud ERP')
-      +           item(hash('solutions'), 'smartphone', 'Mobile Workforce')
-      +           item(hash('solutions'), 'rocket_launch', 'Digital Transformation')
-      +         '</div>'
-      +       '</div>'
-      +     '</div>'
-      +     '<div class="solutions-mega__footer">'
-      +       '<a href="contact_sales.html" class="solutions-mega__footer-btn"><span class="material-symbols-outlined" aria-hidden="true">call</span> Contact Sales</a>'
-      +     '</div>'
-      +   '</div>'
-      + '</div>';
-  }
-
   root.innerHTML = html;
   root.removeAttribute('id');
+
+  if (rootPrefix) {
+    root.querySelectorAll('a[href]').forEach(function (a) {
+      var h = a.getAttribute('href');
+      if (!h || h.charAt(0) === '#' || /^(https?:|mailto:|tel:|javascript:)/i.test(h) || h.indexOf('../') === 0 || h.charAt(0) === '/') return;
+      a.setAttribute('href', rootPrefix + h);
+    });
+  }
 
   /* Scroll state */
   var navEl = document.getElementById('nav');
@@ -463,11 +409,6 @@
         mega: document.getElementById('productsMega'),
         btn: document.getElementById('productsNavBtn'),
         openAttr: 'products-mega-open'
-      },
-      solutions: {
-        mega: document.getElementById('solutionsMega'),
-        btn: document.getElementById('solutionsNavBtn'),
-        openAttr: 'solutions-mega-open'
       },
       industries: {
         mega: document.getElementById('industriesMega'),
@@ -549,15 +490,18 @@
       var title = document.getElementById('productsMegaTitle');
       var desc = document.getElementById('productsMegaDesc');
       var features = document.getElementById('productsMegaFeatures');
-      var learn = document.getElementById('productsMegaLearn');
+      var intro = document.getElementById('productsMegaIntro');
+      var iconEl = document.getElementById('productsMegaIcon');
       var detailInner = document.getElementById('productsMegaDetailInner');
-      if (!title || !desc || !features || !learn) return;
+      if (!title || !desc || !features || !intro) return;
 
       function apply() {
         title.textContent = p.name;
         desc.textContent = p.detailDesc;
         features.innerHTML = productFeatures(p.features);
-        learn.setAttribute('href', p.href);
+        intro.setAttribute('href', rootPrefix + p.href);
+        intro.setAttribute('aria-label', 'Open ' + p.name + ' details — More');
+        if (iconEl) iconEl.textContent = p.icon || 'apps';
         if (detailInner) detailInner.classList.remove('is-animating');
       }
 
@@ -607,6 +551,23 @@
       var layoutEl = productsMega.querySelector('.products-mega__layout');
       var detailEl = document.getElementById('productsMegaDetail');
       var listEl = document.getElementById('productsMegaGrid');
+      var introLink = document.getElementById('productsMegaIntro');
+
+      if (introLink) {
+        introLink.addEventListener('click', function (e) {
+          var href = introLink.getAttribute('href') || '';
+          if (!href || href === '#') {
+            e.preventDefault();
+            return;
+          }
+          e.preventDefault();
+          e.stopPropagation();
+          setOpen('products', false);
+          window.setTimeout(function () {
+            window.location.href = href;
+          }, 40);
+        });
+      }
 
       function placeDetailAfterItem(item) {
         if (!detailEl || !listEl || !item) return;
@@ -626,6 +587,22 @@
 
       items.forEach(function (item) {
         var id = item.getAttribute('data-product-id');
+
+        function openProductPage() {
+          var p = productMap[id];
+          var href = p && p.href ? p.href : '';
+          if (!href || href === '#') return false;
+          /* Always resolve from site root so /HRMS/ and nested folders work after deploy */
+          if (href.charAt(0) !== '/' && href.indexOf('http') !== 0 && href.indexOf('../') !== 0) {
+            href = rootPrefix + href;
+          }
+          setOpen('products', false);
+          window.setTimeout(function () {
+            window.location.href = href;
+          }, 40);
+          return true;
+        }
+
         item.addEventListener('mouseenter', function () {
           if (window.matchMedia('(max-width: 980px)').matches) return;
           setProductDetail(id, true);
@@ -639,9 +616,7 @@
             var already = item.classList.contains('is-expanded');
             items.forEach(function (c) { c.classList.remove('is-expanded'); });
             if (already) {
-              detailEl.classList.remove('is-mobile-visible');
-              var mainSlot = productsMega.querySelector('.products-mega__nav');
-              if (mainSlot) mainSlot.insertAdjacentElement('afterend', detailEl);
+              openProductPage();
               return;
             }
             setProductDetail(id, true);
@@ -649,7 +624,9 @@
             placeDetailAfterItem(item);
             return;
           }
-          setProductDetail(id, true);
+          /* Desktop (TaxDome-style): hover previews, click opens the page */
+          setProductDetail(id, false);
+          openProductPage();
         });
         item.addEventListener('keydown', function (e) {
           if (e.key !== 'Enter' && e.key !== ' ') return;
@@ -675,12 +652,6 @@
         e.preventDefault();
         e.stopPropagation();
         setOpen('products', true);
-        return;
-      }
-      if (e.target.closest('[data-open-solutions]')) {
-        e.preventDefault();
-        e.stopPropagation();
-        setOpen('solutions', true);
         return;
       }
       if (e.target.closest('[data-open-industries]')) {
@@ -775,14 +746,13 @@
       if (!d.innerHTML) {
         d.innerHTML = ''
           + '<button type="button" class="nav__link is-trigger" data-open-products>Products</button>'
-          + '<button type="button" class="nav__link is-trigger" data-open-solutions>Solutions</button>'
           + '<button type="button" class="nav__link is-trigger" data-open-industries>Industries</button>'
           + '<button type="button" class="nav__link is-trigger" data-open-resources>Resources</button>'
           + '<button type="button" class="nav__link is-trigger" data-open-company>Company</button>'
-          + '<a class="nav__link" href="price.html">Pricing</a>'
-          + '<a class="nav__link" href="contact_sales.html">Contact</a>'
+          + '<a class="nav__link" href="' + rootPrefix + 'price.html">Pricing</a>'
+          + '<a class="nav__link" href="' + rootPrefix + 'contact_sales.html">Contact</a>'
           + '<a class="btn btn--primary" href="#" data-book-demo>Book Demo</a>'
-          + (isHome ? '<a class="btn btn--ghost" href="home.html">Login</a>' : '');
+          + (isHome ? '<a class="btn btn--ghost" href="' + rootPrefix + 'home.html">Login</a>' : '');
       }
       d.classList.toggle('is-open');
     });
@@ -793,9 +763,48 @@
     if (window.__TIMEERP_BOOK_DEMO_READY) return;
     if (document.querySelector('script[src*="book-demo-modal.js"]')) return;
     var s = document.createElement('script');
-    s.src = 'js/book-demo-modal.js';
+    s.src = rootPrefix + 'js/book-demo-modal.js?v=21';
     s.defer = true;
     s.setAttribute('data-book-demo-src', '1');
     document.body.appendChild(s);
+  })();
+
+  /* Ensure Inter + Material Symbols for nav icons/fonts on every page */
+  (function ensureSiteNavFonts() {
+    function hasStylesheet(match) {
+      var links = document.querySelectorAll('link[rel="stylesheet"]');
+      for (var i = 0; i < links.length; i++) {
+        var href = links[i].getAttribute('href') || '';
+        if (href.indexOf(match) !== -1) return true;
+      }
+      return false;
+    }
+    function addStylesheet(href, marker) {
+      if (hasStylesheet(marker)) return;
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = href;
+      link.setAttribute('data-site-nav-font', marker);
+      document.head.appendChild(link);
+    }
+    if (!document.querySelector('link[rel="preconnect"][href*="fonts.googleapis.com"]')) {
+      var pre1 = document.createElement('link');
+      pre1.rel = 'preconnect';
+      pre1.href = 'https://fonts.googleapis.com';
+      document.head.appendChild(pre1);
+      var pre2 = document.createElement('link');
+      pre2.rel = 'preconnect';
+      pre2.href = 'https://fonts.gstatic.com';
+      pre2.crossOrigin = 'anonymous';
+      document.head.appendChild(pre2);
+    }
+    addStylesheet(
+      'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap',
+      'family=Inter'
+    );
+    addStylesheet(
+      'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap',
+      'Material+Symbols+Outlined'
+    );
   })();
 })();

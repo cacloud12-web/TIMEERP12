@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="../assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="../assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day Book Dashboard — TIME ERP HRMS</title>
+  <meta name="description" content="Day Book Dashboard: today tasks, notes, attendance, birthdays, hearings, and appointments.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/day-book.css?v=11">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="../home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="../assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search day book..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="shell-top-checkin is-checked-in is-orange" id="shellTopCheckInBtn">Check Out</button>
+            <time class="shell-top-clock" id="shellTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn shell-top-icon" id="shellCalBtn" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn shell-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <a class="shell-account" id="profileBtn" href="../my_profile.html" aria-label="Open profile">
+              <span class="shell-account__org" aria-hidden="true">
+                <img src="../assets/favicon-mark.png" alt="" width="28" height="28">
+              </span>
+              <span class="shell-account__name">CA Cloud..</span>
+              <span class="shell-account__user" aria-hidden="true">
+                <img src="../assets/favicon-mark.png" alt="" width="28" height="28">
+              </span>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="db-page" id="dbPage">
+          <div class="db-sticky" id="dbSticky">
+            <div class="db-crumb">
+              <a class="db-crumb__back" href="../home.html#module/hrms" aria-label="Back to HRMS">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+              </a>
+              <span class="db-crumb__label">Day Book</span>
+            </div>
+
+            <div class="db-banner">
+              <h1 class="db-banner__title">Day Book Dashboard</h1>
+              <div class="db-banner__date">
+                <button type="button" class="db-banner__nav" id="dbDatePrev" aria-label="Previous day">&lt;</button>
+                <span class="db-banner__day" id="dbDateLabel">27 Aug 2026</span>
+                <button type="button" class="db-banner__nav" id="dbDateNext" aria-label="Next day">&gt;</button>
+              </div>
+            </div>
+
+            <nav class="db-tabs" role="tablist" aria-label="Day Book sections">
+              <button type="button" class="db-tab is-active" role="tab" aria-selected="true" data-tab="today">Today Task</button>
+              <button type="button" class="db-tab" role="tab" aria-selected="false" data-tab="notes">My Notes</button>
+              <button type="button" class="db-tab" role="tab" aria-selected="false" data-tab="attendance">Attendance</button>
+              <button type="button" class="db-tab" role="tab" aria-selected="false" data-tab="birthday">Birthday &amp; Anniversary</button>
+              <button type="button" class="db-tab" role="tab" aria-selected="false" data-tab="hearing">Hearing / Compliance</button>
+              <button type="button" class="db-tab" role="tab" aria-selected="false" data-tab="appointment">Appointment</button>
+            </nav>
+          </div>
+
+          <div class="db-scroll" id="dbScroll">
+          <!-- TODAY TASK -->
+          <section class="db-section" id="dbSecToday" data-panel="today">
+            <p class="db-section__eyebrow">Task / Day Book</p>
+            <h2 class="db-section__title">Today Task</h2>
+            <div class="db-stats" id="dbTaskStats">
+              <div class="db-stat db-stat--total"><span class="db-stat__val" data-stat="total">0</span><span class="db-stat__label">TOTAL TASKS</span></div>
+              <div class="db-stat db-stat--pending"><span class="db-stat__val" data-stat="pending">0</span><span class="db-stat__label">PENDING TASKS</span></div>
+              <div class="db-stat db-stat--completed"><span class="db-stat__val" data-stat="completed">0</span><span class="db-stat__label">COMPLETED TASKS</span></div>
+              <div class="db-stat db-stat--overdue"><span class="db-stat__val" data-stat="overdue">0</span><span class="db-stat__label">OVERDUE TASKS</span></div>
+            </div>
+            <div class="db-table-wrap">
+              <table class="db-table" id="dbTaskTable">
+                <thead>
+                  <tr>
+                    <th>Task Name</th><th>Assignees</th><th>Service</th><th>Status</th>
+                    <th>Created By</th><th>Target Date</th><th>Priority</th><th>Client Group</th>
+                  </tr>
+                  <tr class="db-filter-row">
+                    <th><input class="db-filter" placeholder="Task Name"></th>
+                    <th><input class="db-filter" placeholder="Assignees"></th>
+                    <th><input class="db-filter" placeholder="Service"></th>
+                    <th><input class="db-filter" placeholder="Status"></th>
+                    <th><input class="db-filter" placeholder="Created By"></th>
+                    <th><input class="db-filter" placeholder="Target Date"></th>
+                    <th><input class="db-filter" placeholder="Priority"></th>
+                    <th><input class="db-filter" placeholder="Client Group"></th>
+                  </tr>
+                </thead>
+                <tbody id="dbTaskBody"></tbody>
+              </table>
+            </div>
+            <div class="db-pager">
+              <select class="db-page-size" aria-label="Rows per page">
+                <option value="10" selected>10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="500">500</option>
+                <option value="1000">1000</option>
+              </select>
+              <div class="db-pager__nav">
+                <button type="button" class="db-pager__btn" aria-label="Previous page" disabled>&lt;</button>
+                <input type="text" class="db-page-input" value="1" readonly aria-label="Current page">
+                <span class="db-pager__of">of 1</span>
+                <button type="button" class="db-pager__btn" aria-label="Next page" disabled>&gt;</button>
+              </div>
+              <span class="db-pager__count" id="dbTaskCount">0 / 0</span>
+            </div>
+          </section>
+
+          <!-- MY NOTES -->
+          <section class="db-section" id="dbSecNotes" data-panel="notes">
+            <div class="db-notes-head">
+              <h2 class="db-notes-title">My Notes</h2>
+              <button type="button" class="db-add-btn" id="dbNoteAdd" title="Add note" aria-label="Add note">+</button>
+            </div>
+            <div class="db-notes-compose" id="dbNotesCompose" hidden></div>
+            <div class="db-notes-list" id="dbNotesList"></div>
+            <div class="db-pager">
+              <select class="db-page-size" aria-label="Rows per page">
+                <option value="10" selected>10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="500">500</option>
+                <option value="1000">1000</option>
+              </select>
+              <div class="db-pager__nav">
+                <button type="button" class="db-pager__btn" aria-label="Previous page" disabled>&lt;</button>
+                <input type="text" class="db-page-input" value="1" readonly aria-label="Current page">
+                <span class="db-pager__of">of 1</span>
+                <button type="button" class="db-pager__btn" aria-label="Next page" disabled>&gt;</button>
+              </div>
+              <span class="db-pager__count" id="dbNotesCount">0 / 0</span>
+            </div>
+          </section>
+
+          <!-- ATTENDANCE -->
+          <section class="db-section" id="dbSecAttendance" data-panel="attendance">
+            <h2 class="db-section__title">Today Attendance</h2>
+            <p class="db-section__sub">Today's attendance summary</p>
+            <div class="db-att-banner">
+              <strong>My Attendance Today</strong>
+              <span>Your personal attendance for the selected date</span>
+            </div>
+            <div class="db-att-grid" id="dbAttGrid">
+              <div class="db-att-field"><span class="db-att-field__label">DATE</span><span class="db-att-field__val" id="dbAttDate">27-08-2026</span></div>
+              <div class="db-att-field"><span class="db-att-field__label">EMPLOYEE</span><span class="db-att-field__val">Saurabh Bhardwaj</span></div>
+              <div class="db-att-field"><span class="db-att-field__label">STATUS</span><span class="db-att-field__val"><span class="db-status-a" title="Absent">A</span></span></div>
+              <div class="db-att-field"><span class="db-att-field__label">CHECK IN</span><span class="db-att-field__val">—</span></div>
+              <div class="db-att-field"><span class="db-att-field__label">CHECK OUT</span><span class="db-att-field__val">—</span></div>
+              <div class="db-att-field"><span class="db-att-field__label">WORKING HOURS</span><span class="db-att-field__val">—</span></div>
+            </div>
+            <div class="db-att-actions">
+              <a class="db-btn" href="my_leave.html">Apply Leave</a>
+              <a class="db-btn db-btn--teal" href="attendance.html">View Attendance History</a>
+            </div>
+          </section>
+
+          <!-- BIRTHDAY & ANNIVERSARY -->
+          <section class="db-section" id="dbSecBirthday" data-panel="birthday">
+            <h2 class="db-section__title">Birthday &amp; Anniversary</h2>
+            <p class="db-section__sub">Today's Employees birthdays and anniversaries</p>
+            <div class="db-toggle-wrap">
+              <button type="button" class="db-toggle" id="dbBdayToggle" aria-pressed="false">
+                <span class="db-toggle__track" aria-hidden="true"></span>
+              </button>
+              <span class="db-toggle__label" id="dbBdayToggleLabel">Birthday</span>
+            </div>
+            <div class="db-table-wrap">
+              <table class="db-table" id="dbBdayTable">
+                <thead>
+                  <tr><th>Name</th><th>Mobile</th><th>Email</th><th>Company Name</th><th>DOB</th><th>Action</th></tr>
+                </thead>
+                <tbody id="dbBdayBody"></tbody>
+              </table>
+            </div>
+            <div class="db-pager">
+              <select class="db-page-size" aria-label="Rows per page">
+                <option value="10" selected>10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="500">500</option>
+                <option value="1000">1000</option>
+              </select>
+              <div class="db-pager__nav">
+                <button type="button" class="db-pager__btn" aria-label="Previous page" disabled>&lt;</button>
+                <input type="text" class="db-page-input" value="1" readonly aria-label="Current page">
+                <span class="db-pager__of">of 1</span>
+                <button type="button" class="db-pager__btn" aria-label="Next page" disabled>&gt;</button>
+              </div>
+              <span class="db-pager__count" id="dbBdayCount">0 / 0</span>
+            </div>
+          </section>
+
+          <!-- HEARING / COMPLIANCE -->
+          <section class="db-section" id="dbSecHearing" data-panel="hearing">
+            <h2 class="db-section__title">Hearing / Compliance</h2>
+            <p class="db-section__sub">Upcoming hearings and compliance cases for the selected date</p>
+            <div class="db-search-row">
+              <div class="db-search-field">
+                <label for="dbHearingSearch">SEARCH</label>
+                <input id="dbHearingSearch" type="text" placeholder="Client / case name">
+              </div>
+              <div class="db-search-actions">
+                <button type="button" class="db-btn db-btn--solid" id="dbHearingApply">Apply Filter</button>
+                <button type="button" class="db-btn" id="dbHearingClear">Clear</button>
+              </div>
+            </div>
+            <div class="db-table-wrap">
+              <table class="db-table" id="dbHearingTable">
+                <thead>
+                  <tr>
+                    <th>Case No</th><th>Client</th><th>Case / Compliance Name</th><th>Court</th>
+                    <th>Next Hearing Date</th><th>Assigned Employee</th><th>Status</th><th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="dbHearingBody"></tbody>
+              </table>
+            </div>
+            <div class="db-pager">
+              <select class="db-page-size" aria-label="Rows per page">
+                <option value="10" selected>10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="500">500</option>
+                <option value="1000">1000</option>
+              </select>
+              <div class="db-pager__nav">
+                <button type="button" class="db-pager__btn" aria-label="Previous page" disabled>&lt;</button>
+                <input type="text" class="db-page-input" value="1" readonly aria-label="Current page">
+                <span class="db-pager__of">of 1</span>
+                <button type="button" class="db-pager__btn" aria-label="Next page" disabled>&gt;</button>
+              </div>
+              <span class="db-pager__count" id="dbHearingCount">0 / 0</span>
+            </div>
+          </section>
+
+          <!-- APPOINTMENTS -->
+          <section class="db-section" id="dbSecAppointment" data-panel="appointment">
+            <h2 class="db-section__title">Appointments</h2>
+            <p class="db-section__sub">Approved appointments for the selected date</p>
+            <div style="margin-bottom:12px">
+              <button type="button" class="db-btn db-btn--solid" id="dbAddAppointment">+ Add Appointment</button>
+            </div>
+            <div class="db-table-wrap">
+              <table class="db-table" id="dbApptTable">
+                <thead>
+                  <tr>
+                    <th>S. No.</th><th>Date</th><th>Client</th><th>Partner</th><th>Created by</th>
+                    <th>Reason</th><th>Link</th><th>Status</th><th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="dbApptBody"></tbody>
+              </table>
+            </div>
+            <div class="db-pager">
+              <select class="db-page-size" aria-label="Rows per page">
+                <option value="10" selected>10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="500">500</option>
+                <option value="1000">1000</option>
+              </select>
+              <div class="db-pager__nav">
+                <button type="button" class="db-pager__btn" aria-label="Previous page" disabled>&lt;</button>
+                <input type="text" class="db-page-input" value="1" readonly aria-label="Current page">
+                <span class="db-pager__of">of 1</span>
+                <button type="button" class="db-pager__btn" aria-label="Next page" disabled>&gt;</button>
+              </div>
+              <span class="db-pager__count" id="dbApptCount">0 / 0</span>
+            </div>
+          </section>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Create appointment modal -->
+  <div class="db-modal" id="dbApptModal" hidden aria-hidden="true">
+    <div class="db-modal__overlay" data-db-appt-close></div>
+    <div class="db-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="dbApptTitle">
+      <header class="db-modal__head">
+        <h2 id="dbApptTitle">Create appointment</h2>
+        <button type="button" class="db-modal__close" data-db-appt-close aria-label="Close">×</button>
+      </header>
+
+      <form class="db-modal__body" id="dbApptForm" novalidate>
+        <div class="db-field db-combo" data-combo="client">
+          <label>Client <span class="db-req">*</span></label>
+          <div class="db-combo__control">
+            <input type="text" id="dbApptClient" class="db-combo__input" placeholder="" autocomplete="off" aria-autocomplete="list">
+            <span class="db-combo__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+            </span>
+          </div>
+          <ul class="db-combo__list" id="dbApptClientList" hidden>
+            <li data-value="(IN1) Internal">(IN1) Internal</li>
+            <li data-value="(KA2) Kamal Kant Sharma">(KA2) Kamal Kant Sharma</li>
+            <li data-value="(TE4) testing">(TE4) testing</li>
+          </ul>
+        </div>
+
+        <div class="db-field db-combo" data-combo="employee">
+          <label>Employee <span class="db-req">*</span></label>
+          <div class="db-combo__control">
+            <input type="text" id="dbApptEmployee" class="db-combo__input" placeholder="Employee" autocomplete="off" aria-autocomplete="list">
+            <span class="db-combo__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+            </span>
+          </div>
+          <ul class="db-combo__list" id="dbApptEmployeeList" hidden>
+            <li data-value="Saurabh Bhardwaj">Saurabh Bhardwaj</li>
+            <li data-value="Kamal Sharma">Kamal Sharma</li>
+            <li data-value="Ankur Gupta">Ankur Gupta</li>
+            <li data-value="Akash">Akash</li>
+            <li data-value="Dev Aggarwal">Dev Aggarwal</li>
+            <li data-value="Anupam">Anupam</li>
+          </ul>
+        </div>
+
+        <div class="db-field">
+          <label for="dbApptDate">Date &amp; time <span class="db-req">*</span></label>
+          <div class="db-dt-field" id="dbDtField">
+            <input type="text" id="dbApptDate" placeholder="Select date" readonly required autocomplete="off" aria-haspopup="dialog" aria-expanded="false">
+            <svg class="db-dt-field__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            <div class="db-dt-pop" id="dbDtPop" hidden role="dialog" aria-label="Pick date and time">
+              <div class="db-dt-pop__main">
+                <div class="db-dt-cal" id="dbDtCal"></div>
+                <div class="db-dt-time">
+                  <div class="db-dt-time__col" data-part="h" id="dbDtHours"></div>
+                  <div class="db-dt-time__col" data-part="m" id="dbDtMins"></div>
+                  <div class="db-dt-time__col" data-part="s" id="dbDtSecs"></div>
+                </div>
+              </div>
+              <div class="db-dt-pop__foot">
+                <button type="button" class="db-dt-now" id="dbDtNow">Now</button>
+                <button type="button" class="db-dt-ok" id="dbDtOk">OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="db-field">
+          <label for="dbApptReason">Reason</label>
+          <input type="text" id="dbApptReason" placeholder="Reason">
+        </div>
+
+        <div class="db-field">
+          <label for="dbApptDesc">Description</label>
+          <textarea id="dbApptDesc" rows="3" placeholder="Description"></textarea>
+        </div>
+
+        <div class="db-field">
+          <label for="dbApptLink">Meeting link</label>
+          <input type="url" id="dbApptLink" placeholder="https://...">
+        </div>
+
+        <div class="db-field db-status-field" data-combo="status">
+          <label>Status <span class="db-req">*</span></label>
+          <button type="button" class="db-status-trigger has-value" id="dbApptStatusBtn" aria-expanded="false">
+            <span class="db-status-trigger__text" id="dbApptStatusText"><span class="db-status-pill db-status-pill--scheduled">Scheduled</span></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <input type="hidden" id="dbApptStatus" value="Scheduled">
+          <ul class="db-status-list" id="dbApptStatusList" hidden>
+            <li><button type="button" class="db-status-pill db-status-pill--scheduled" data-status="Scheduled">Scheduled</button></li>
+            <li><button type="button" class="db-status-pill db-status-pill--cancelled" data-status="Cancelled">Cancelled</button></li>
+            <li><button type="button" class="db-status-pill db-status-pill--completed" data-status="Completed">Completed</button></li>
+          </ul>
+        </div>
+
+        <div class="db-field-row">
+          <div class="db-field">
+            <label for="dbApptRemindVal">Remind before (value)</label>
+            <input type="number" id="dbApptRemindVal" min="0" placeholder="e.g. 15">
+          </div>
+          <div class="db-field">
+            <label for="dbApptRemindUnit">Remind before (unit)</label>
+            <select id="dbApptRemindUnit">
+              <option value="">Select unit</option>
+              <option>Minutes</option>
+              <option>Hours</option>
+              <option>Days</option>
+            </select>
+          </div>
+        </div>
+      </form>
+
+      <footer class="db-modal__foot">
+        <button type="button" class="db-modal__btn db-modal__btn--ghost" data-db-appt-close>Cancel</button>
+        <button type="submit" form="dbApptForm" class="db-modal__btn db-modal__btn--primary" id="dbApptCreate">Create</button>
+      </footer>
+    </div>
+  </div>
+
+  <script src="js/dashboard-shell.js?v=unlock2"></script>
+  <script src="js/day-book.js?v=10"></script>
+</body>
+</html>

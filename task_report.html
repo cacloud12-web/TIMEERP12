@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Report — TimeERP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/task-report.css?v=3">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="dv-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="dv-top-clock" id="dvTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn dv-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn dv-top-icon" id="notifBtn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="dv-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="home.html" class="dropdown__item"><strong>Dashboard</strong><span>Back to home</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="tr-page">
+          <div class="tr-back-row">
+            <a class="tr-back" href="home.html#reports" aria-label="Back to Reports">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <span class="tr-back-title">Task Report</span>
+          </div>
+
+          <section class="tr-card" id="trFilterCard" aria-labelledby="trTitle">
+            <div class="tr-card__head">
+              <h1 class="tr-card__title" id="trTitle">
+                Task Report
+                <button type="button" class="tr-play" title="Play" aria-label="Play report guide">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+              </h1>
+              <select class="tr-type-select" id="trReportType" aria-label="Report type">
+                <option selected>Daily Task</option>
+                <option>Monthly Task</option>
+                <option>Detailed Task</option>
+                <option>Task Planing</option>
+                <option>Task Status</option>
+                <option>Yearly Status</option>
+                <option>Task Employee Status</option>
+                <option>Employee Wise report</option>
+              </select>
+              <button type="button" class="tr-collapse" id="trCollapseBtn" aria-expanded="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                Collapse
+              </button>
+            </div>
+
+            <div class="tr-filters">
+              <div class="tr-field">
+                <label for="trDate">Date</label>
+                <div class="tr-date-wrap" id="trDateWrap">
+                  <input type="text" id="trDate" value="21-08-2026" readonly aria-haspopup="dialog" aria-expanded="false">
+                  <svg class="tr-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                  <div class="tr-datepicker" id="trDatepicker" hidden role="dialog" aria-label="Choose date">
+                    <div class="tr-datepicker__head">
+                      <button type="button" class="tr-datepicker__nav" data-nav="prev-year" aria-label="Previous year">&lt;&lt;</button>
+                      <button type="button" class="tr-datepicker__nav" data-nav="prev-month" aria-label="Previous month">&lt;</button>
+                      <span class="tr-datepicker__label" id="trCalLabel">Aug 2026</span>
+                      <button type="button" class="tr-datepicker__nav" data-nav="next-month" aria-label="Next month">&gt;</button>
+                      <button type="button" class="tr-datepicker__nav" data-nav="next-year" aria-label="Next year">&gt;&gt;</button>
+                    </div>
+                    <div class="tr-datepicker__weekdays" aria-hidden="true">
+                      <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+                    </div>
+                    <div class="tr-datepicker__grid" id="trCalGrid"></div>
+                    <div class="tr-datepicker__foot">
+                      <button type="button" class="tr-datepicker__today" id="trCalToday">Today</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tr-field">
+                <label for="trEmployee">Employee</label>
+                <div class="tr-combo" data-placeholder="Select Employee">
+                  <input type="text" id="trEmployee" class="tr-combo__input" placeholder="Select Employee" autocomplete="off">
+                  <ul class="tr-combo__list" hidden>
+                    <li data-value="All">All</li>
+                    <li data-value="Kamal Kant Sharma">Kamal Kant Sharma</li>
+                    <li data-value="Dev Aggarwal">Dev Aggarwal</li>
+                    <li data-value="CA CloudDesk">CA CloudDesk</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="tr-field">
+                <label for="trCustomer">Customer</label>
+                <div class="tr-combo" data-placeholder="Select Customer">
+                  <input type="text" id="trCustomer" class="tr-combo__input" placeholder="Select Customer" autocomplete="off">
+                  <ul class="tr-combo__list" hidden>
+                    <li data-value="All">All</li>
+                    <li data-value="(21) Internal">(21) Internal</li>
+                    <li data-value="(174) SAURABH BHARDWAJ">(174) SAURABH BHARDWAJ</li>
+                    <li data-value="(173) SAURABH BHARDWAJ HUF">(173) SAURABH BHARDWAJ HUF</li>
+                    <li data-value="(TH296) THE GOLD REALTY">(TH296) THE GOLD REALTY</li>
+                    <li data-value="(LA3720) law seva management private limited">(LA3720) law seva management private limited</li>
+                    <li data-value="(145) PERFECT PAIR">(145) PERFECT PAIR</li>
+                    <li data-value="(TA119098) TATA MOTORS PASSENGER VEHICLES">(TA119098) TATA MOTORS PASSENGER VEHICLES</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="tr-field">
+                <label for="trCustomerGroup">Customer Group</label>
+                <div class="tr-combo" data-placeholder="Select Customer Group">
+                  <input type="text" id="trCustomerGroup" class="tr-combo__input" placeholder="Select Customer Group" autocomplete="off">
+                  <ul class="tr-combo__list" hidden>
+                    <li data-value="All">All</li>
+                    <li data-value="Tax Audit">Tax Audit</li>
+                    <li data-value="ITR">ITR</li>
+                    <li data-value="ABC Client">ABC Client</li>
+                    <li data-value="GST Filling Monthly">GST Filling Monthly</li>
+                    <li data-value="GST">GST</li>
+                    <li data-value="TDS">TDS</li>
+                    <li data-value="LLP">LLP</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="tr-field">
+                <label for="trTeam">Team</label>
+                <div class="tr-combo" data-placeholder="Select Team">
+                  <input type="text" id="trTeam" class="tr-combo__input" placeholder="Select Team" autocomplete="off">
+                  <ul class="tr-combo__list" hidden>
+                    <li data-value="GST">GST</li>
+                    <li data-value="Team 1">Team 1</li>
+                    <li data-value="GST Team">GST Team</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="tr-field">
+                <label>&nbsp;</label>
+                <label class="tr-as-on"><input type="checkbox" id="trAsOn"> As On</label>
+              </div>
+            </div>
+
+            <div class="tr-generate">
+              <button type="button" class="tr-btn" id="trGenerateBtn">Generate Report</button>
+            </div>
+          </section>
+
+          <section class="tr-card tr-result is-visible" id="trResult" aria-label="Task report results">
+            <div class="tr-chart-block">
+              <div class="tr-donut" aria-hidden="true">
+                <div class="tr-donut__ring"></div>
+                <div class="tr-donut__center">
+                  <span>Total Task Created</span>
+                  <strong>5</strong>
+                </div>
+              </div>
+              <div class="tr-legend">
+                <div class="tr-legend__item"><span class="tr-legend__dot"></span> OPEN</div>
+              </div>
+            </div>
+
+            <div class="tr-summary-row">
+              <span>Total Task : 5</span>
+              <span>Cancelled Task : 0</span>
+              <button type="button" class="tr-excel" id="trExcelBtn" title="Export Excel">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.7"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9.2 12.2l5.6 5.6M14.8 12.2l-5.6 5.6"/></svg>
+                EXCEL
+              </button>
+            </div>
+
+            <div class="tr-table-wrap">
+              <table class="tr-table" id="trStatusTable">
+                <thead>
+                  <tr>
+                    <th>Task Status</th>
+                    <th>Count</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>OPEN</td><td>5</td></tr>
+                  <tr><td>PROCESSING</td><td>--</td></tr>
+                  <tr><td>COMPLETED</td><td>--</td></tr>
+                  <tr><td>UNDER REVIEW</td><td>--</td></tr>
+                  <tr><td>UNDER CONSULTATION</td><td>--</td></tr>
+                  <tr><td>REVIEWED</td><td>--</td></tr>
+                  <tr><td>STUCK</td><td>--</td></tr>
+                  <tr><td>FINALISED FOR SUBMISSION</td><td>--</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/task-report.js?v=2"></script>
+</body>
+</html>

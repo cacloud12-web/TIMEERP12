@@ -2,12 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TimeERP — Home</title>
-  <meta name="description" content="TimeERP home — 17 modules for HRMS, CRM, billing, projects, and operations.">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TimeERP | Home</title>
+  <meta name="description" content="TimeERP home — modules for HRMS, CRM, billing, projects, and operations.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/workspace-loader.css?v=1">
+  <link rel="stylesheet" href="css/home-dashboard.css?v=41">
+  <link rel="stylesheet" href="css/split-logo.css?v=1">
+  <link rel="stylesheet" href="css/notification-panel.css?v=1">
+  <link rel="stylesheet" href="css/running-task-panel.css?v=1">
+  <link rel="stylesheet" href="css/search-routes-panel.css?v=1">
+  <link rel="stylesheet" href="css/sidebar-collapse.css?v=5">
+  <link rel="stylesheet" href="css/sidebar-footer.css?v=4">
   <style>
     :root {
       --primary: #25b7a7;
@@ -104,15 +117,51 @@
       z-index: 210;
     }
     .sidebar__nav {
-      flex: 1;
+      flex: 1 1 auto;
       min-height: 0;
       overflow-y: auto;
       overflow-x: hidden;
-      padding: 4px 0 16px;
+      padding: 4px 0 12px;
       scrollbar-width: none;
       -ms-overflow-style: none;
     }
     .sidebar__nav::-webkit-scrollbar { width: 0; height: 0; display: none; }
+    .sidebar__footer {
+      flex: 0 0 48px;
+      margin-top: auto;
+      position: sticky;
+      bottom: 0;
+      z-index: 6;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      gap: 4px;
+      height: 48px;
+      min-height: 48px;
+      padding: 0 10px;
+      background: #25b7a7;
+      border-top: 1px solid rgba(255, 255, 255, .12);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .sidebar__footer-btn {
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: transparent;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background .15s ease;
+      flex-shrink: 0;
+    }
+    .sidebar__footer-btn:hover { background: rgba(255, 255, 255, .16); color: #fff; }
+    .sidebar__footer-btn svg { width: 22px; height: 22px; display: block; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .sidebar__footer-btn svg .sidebar-footer-fill { fill: currentColor; stroke: none; }
     .sidebar__brand {
       display: flex;
       align-items: center;
@@ -126,11 +175,16 @@
       display: flex;
       align-items: center;
       min-width: 0;
+      flex-shrink: 0;
     }
     .sidebar__brand-logo img {
+      display: block;
       height: 32px;
       width: auto;
+      max-width: 131px;
+      aspect-ratio: 196 / 48;
       object-fit: contain;
+      flex-shrink: 0;
     }
     .sidebar__label { display: none; }
 
@@ -271,8 +325,8 @@
       height: 18px;
       object-fit: contain;
       display: block;
-      filter: grayscale(1) brightness(0.45);
-      opacity: 0.9;
+      filter: none;
+      opacity: 1;
     }
     .sidebar__item:hover .sidebar__icon img,
     .sidebar__item.is-active .sidebar__icon img {
@@ -358,10 +412,54 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      gap: 8px;
+      gap: 12px;
       flex-shrink: 0;
+      flex-wrap: nowrap;
       grid-column: 3;
       justify-self: end;
+      min-width: max-content;
+    }
+    .home-top-checkin {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 34px;
+      min-height: 34px;
+      padding: 0 16px;
+      border: none;
+      border-radius: 6px;
+      background: #25b7a7;
+      color: #fff;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1;
+      white-space: nowrap;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .home-top-checkin:hover { background: #1a9e8f; }
+    .home-top-checkin.is-checked-in { background: #ef4444; }
+    .home-top-checkin.is-checked-in:hover { background: #dc2626; }
+    .home-top-clock {
+      font-size: 15px;
+      font-weight: 600;
+      color: #25b7a7;
+      font-variant-numeric: tabular-nums;
+      min-width: 3.2em;
+      text-align: center;
+      white-space: nowrap;
+      flex-shrink: 0;
+      letter-spacing: 0.01em;
+    }
+    .topbar__icon-btn.home-top-icon,
+    .home-top-icon {
+      color: #25b7a7;
+    }
+    .topbar__icon-btn.home-top-icon:hover,
+    .home-top-icon:hover {
+      color: #1a9e8f;
+      background: #e8f8f6;
     }
     .topbar__icon-btn {
       position: relative;
@@ -390,28 +488,56 @@
       line-height: 16px;
       text-align: center;
     }
-    .topbar__profile {
-      display: flex;
+    .shell-account {
+      display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 4px 10px 4px 4px;
+      gap: 8px;
+      height: 40px;
+      padding: 4px 6px;
+      border: 1px solid #d1d5db;
       border-radius: 999px;
+      background: #fff;
+      cursor: pointer;
+      font: inherit;
+      color: #111827;
+      flex-shrink: 0;
+      text-decoration: none;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, .04);
     }
-    .topbar__profile:hover { background: #e8eef2; }
-    .topbar__avatar {
-      width: 34px;
-      height: 34px;
+    .shell-account:hover { border-color: #9ca3af; background: #f9fafb; }
+    .shell-account__org,
+    .shell-account__user {
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), var(--primary-deeper));
-      color: #fff;
-      font-size: 13px;
-      font-weight: 700;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
     }
-    .topbar__profile-meta strong { display: block; font-size: var(--fs-ui); color: var(--heading); line-height: 1.2; font-weight: 600; }
-    .topbar__profile-meta span { font-size: 11px; color: var(--muted); }
+    .shell-account__org { background: #25b7a7; }
+    .shell-account__user {
+      background: #fff;
+      border: 1.5px dashed #cbd5e1;
+      box-sizing: border-box;
+    }
+    .shell-account__org img,
+    .shell-account__user img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .shell-account__name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #111827;
+      white-space: nowrap;
+      max-width: 110px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
     .main {
       min-width: 0;
@@ -419,7 +545,7 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 16px;
       padding: 24px var(--content-pad-x) 0;
       overflow-x: hidden;
       overflow-y: auto;
@@ -636,10 +762,14 @@
     }
     .module-view__head {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       gap: 16px;
       flex-wrap: wrap;
+    }
+    .module-view__intro {
+      flex: 1;
+      min-width: min(100%, 280px);
     }
     .module-view__head h1 {
       font-size: 1.25rem;
@@ -647,7 +777,15 @@
       letter-spacing: -0.01em;
       line-height: 1.35;
       color: var(--heading);
+      margin: 0 0 6px;
+    }
+    .module-view__sub {
       margin: 0;
+      max-width: 42rem;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.55;
+      color: var(--muted);
     }
     .module-view__back {
       padding: 10px 18px;
@@ -657,16 +795,55 @@
       font-size: var(--fs-ui);
       font-weight: 600;
       color: var(--text);
+      flex-shrink: 0;
+      margin-top: 2px;
     }
     .module-view__back:hover {
       background: var(--primary-light);
       border-color: var(--primary);
       color: var(--primary-deeper);
     }
+
+    /* Sectioned modules (HRMS / CRM) — same card size as Dashboard */
+    .mgmt-areas {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .mgmt-section__title {
+      margin: 0 0 14px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--heading);
+      line-height: 1.35;
+    }
+    .mgmt-areas .task-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .mgmt-areas .task-card {
+      min-height: 160px;
+      height: 100%;
+    }
+    .task-card--static {
+      cursor: default;
+      pointer-events: none;
+    }
+    .task-card--static:hover {
+      transform: none;
+      box-shadow: var(--shadow);
+      border-color: var(--border);
+    }
+    .task-card--static:hover .task-card__art {
+      transform: none;
+      box-shadow: none;
+    }
+
     .task-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 16px;
+      align-items: stretch;
     }
     .task-card {
       background: var(--white);
@@ -680,8 +857,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: flex-start;
       gap: 12px;
       transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      color: inherit;
+      text-decoration: none;
+      font: inherit;
+      width: 100%;
+      box-sizing: border-box;
     }
     .task-card:hover {
       transform: translateY(-4px);
@@ -699,6 +882,7 @@
       border: 1px solid var(--border);
       overflow: hidden;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
+      flex-shrink: 0;
     }
     .task-card__art img {
       width: 56px;
@@ -716,6 +900,61 @@
       text-transform: uppercase;
       color: var(--primary-deeper);
       line-height: 1.35;
+      margin: 0;
+    }
+
+    /* Day Book-style row card (illustration + title + description) */
+    .task-card--row {
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: left;
+      gap: 14px;
+      padding: 16px 18px;
+      min-height: 112px;
+      border-radius: 18px;
+    }
+    .task-card--row .task-card__art {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      background: #fff;
+      border: 0;
+      box-shadow: none;
+    }
+    .task-card--row .task-card__art img {
+      width: 68px;
+      height: 68px;
+      object-fit: contain;
+    }
+    .task-card--row:hover .task-card__art {
+      transform: none;
+      box-shadow: none;
+    }
+    .task-card__body {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      align-items: flex-start;
+    }
+    .task-card__title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #243F64;
+      letter-spacing: 0;
+      text-transform: none;
+      line-height: 1.3;
+    }
+    .task-card__desc {
+      font-size: 12px;
+      font-weight: 500;
+      color: #94a3b8;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
     .task-card.is-active {
       border-color: var(--primary);
@@ -1090,60 +1329,86 @@
     .content-footer {
       margin-top: auto;
       flex-shrink: 0;
-      padding-top: 24px;
+      padding-top: 12px;
     }
     .content-footer .td-footer {
       margin-top: 0;
     }
 
-    /* Footer — same as contact_sales.html */
+    /* Footer — compact 3-column layout */
     .td-footer {
       background: transparent;
-      border-top: none;
-      margin-top: 8px;
+      border-top: 1px solid #e8ecef;
+      margin-top: 0;
+      padding-top: 0;
     }
-    .td-footer__top {
+    .td-footer__top,
+    .td-footer__bar-inner {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 28px var(--content-pad-x);
-      display: flex;
+      padding-inline: var(--content-pad-x);
+      display: grid;
+      grid-template-columns: minmax(120px, 1fr) minmax(280px, 2fr) minmax(120px, 1fr);
       align-items: center;
-      justify-content: space-between;
-      gap: 32px 48px;
-      flex-wrap: wrap;
+      gap: 8px 16px;
     }
+    .td-footer__top { padding-block: 8px 6px; }
     .td-footer__logo {
       display: inline-flex;
       align-items: center;
+      justify-self: start;
       background: transparent;
     }
     .td-footer__logo img {
-      height: 40px;
+      height: 28px;
       width: auto;
+      max-width: 120px;
+      aspect-ratio: 196 / 48;
       object-fit: contain;
       background: transparent;
       display: block;
+      flex-shrink: 0;
     }
     .td-footer__contact {
-      flex: 1;
-      min-width: 200px;
+      justify-self: center;
       text-align: center;
+      max-width: none;
+      min-width: 0;
     }
     .td-footer__address {
       margin: 0;
       font-style: normal;
-      font-size: 13px;
-      line-height: 1.55;
+      font-size: 11px;
+      line-height: 1.35;
       color: #6b7280;
+    }
+    .td-footer__address-link {
+      color: inherit;
+      text-decoration: none;
+      background-image: linear-gradient(currentColor, currentColor);
+      background-position: 0 100%;
+      background-repeat: no-repeat;
+      background-size: 0 1px;
+      transition: color .2s ease, background-size .25s ease;
+    }
+    .td-footer__address-link:hover,
+    .td-footer__address-link:focus-visible {
+      color: #25b7a7;
+      background-size: 100% 1px;
+    }
+    .td-footer__address-link:focus-visible {
+      outline: 2px solid #25b7a7;
+      outline-offset: 3px;
     }
     .td-footer__social {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       flex-shrink: 0;
+      justify-self: end;
     }
     .td-footer__social a {
-      width: 40px;
-      height: 40px;
+      width: 28px;
+      height: 28px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1158,37 +1423,87 @@
       color: var(--primary);
       background: var(--primary-light);
     }
-    .td-footer__social svg { width: 17px; height: 17px; }
-    .td-footer__bar { border-top: none; }
+    .td-footer__social svg { width: 13px; height: 13px; }
+    .td-footer__bar {
+      border-top: 1px solid #eef1f4;
+    }
     .td-footer__bar-inner {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 16px var(--content-pad-x);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
+      padding-block: 6px 10px;
     }
-    .td-footer__rating { font-size: 13px; color: #6b7280; margin: 0; }
-    .td-footer__rating strong { color: #111827; }
-    .td-footer__cookie {
-      font-size: 13px;
+    .td-footer__rating {
+      font-size: 11px;
       color: #6b7280;
-      text-decoration: none;
+      margin: 0;
+      justify-self: start;
+      line-height: 1.3;
     }
-    .td-footer__cookie:hover { color: var(--primary); }
-    .td-footer__copy { font-size: 13px; color: #6b7280; margin: 0; }
+    .td-footer__rating strong { color: #111827; }
+    .td-footer__legal {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      justify-self: center;
+      gap: 2px 14px;
+    }
+    .td-footer__legal a {
+      font-size: 11px;
+      font-weight: 500;
+      color: #4b5563;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .td-footer__legal a:hover { color: var(--primary); }
+    .td-footer__copy {
+      font-size: 11px;
+      color: #6b7280;
+      margin: 0;
+      justify-self: end;
+      text-align: right;
+      white-space: nowrap;
+    }
 
     @media (max-width: 1200px) {
       .module-grid { grid-template-columns: repeat(3, 1fr); }
     }
     @media (max-width: 1100px) {
-      .task-grid { grid-template-columns: repeat(3, 1fr); }
+      .task-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .mgmt-areas .task-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .split-row { grid-template-columns: 1fr; }
     }
     @media (max-width: 900px) {
       .sidebar-toggle { display: flex; }
+      .topbar { height: auto; }
+      .topbar__inner {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        height: auto;
+        padding: 8px 10px;
+      }
+      .sidebar-toggle { order: 1; flex: 0 0 auto; }
+      .topbar__actions {
+        order: 2;
+        flex: 1 1 auto;
+        min-width: 0;
+        grid-column: auto;
+        justify-content: flex-end;
+        gap: 6px;
+      }
+      .topbar__search {
+        order: 3;
+        flex: 1 1 100%;
+        grid-column: auto;
+        width: 100%;
+        max-width: none;
+      }
+      .home-top-checkin { padding: 0 12px; }
+      .home-top-clock { font-size: 14px; min-width: 0; }
+      .topbar__icon-btn { width: 34px; height: 34px; }
+      .shell-account { gap: 4px; height: 34px; padding: 3px 4px; }
+      .shell-account__org,
+      .shell-account__user { width: 24px; height: 24px; }
       .app-shell { grid-template-columns: 1fr; }
       .sidebar {
         position: fixed;
@@ -1212,46 +1527,101 @@
         z-index: 240;
       }
       .sidebar-scrim.is-open { display: block; }
-      .topbar__profile-meta { display: none; }
+      .shell-account__name { display: none; }
       .my-tasks__search { width: 140px; }
+    }
+    @media (max-width: 900px) {
+      .td-footer__top,
+      .td-footer__bar-inner {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+        gap: 16px;
+      }
+      .td-footer__logo,
+      .td-footer__contact,
+      .td-footer__social,
+      .td-footer__rating,
+      .td-footer__legal,
+      .td-footer__copy {
+        justify-self: center;
+        text-align: center;
+      }
     }
     @media (max-width: 640px) {
       .module-grid { grid-template-columns: 1fr 1fr; }
-      .task-grid { grid-template-columns: 1fr 1fr; }
-      .td-footer__top {
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: left;
-      }
-      .td-footer__contact { text-align: left; }
-      .td-footer__bar-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+      .task-grid,
+      .mgmt-areas .task-grid { grid-template-columns: 1fr 1fr; }
+      .td-footer__top { padding-block: 8px 6px; }
+      .td-footer__bar-inner { padding-block: 6px 10px; }
+      .td-footer__rating { max-width: 36ch; }
     }
   </style>
 </head>
-<body>
+<body class="ws-loading">
+  <div class="ws-loader" id="wsLoader" role="status" aria-live="polite" aria-label="Loading TimeERP workspace">
+    <div class="ws-loader__card">
+      <div class="ws-loader__brand">
+        <img src="assets/favicon-mark.png" alt="" width="36" height="36">
+        <div class="ws-loader__brand-text">Time<span>ERP</span></div>
+      </div>
+      <div class="ws-loader__spinner" aria-hidden="true">
+        <span class="ws-loader__ring"></span>
+        <span class="ws-loader__ring"></span>
+        <span class="ws-loader__ring"></span>
+      </div>
+      <h1 class="ws-loader__title">TimeERP</h1>
+      <p class="ws-loader__sub">Loading your workspace</p>
+      <div class="ws-loader__dots" aria-hidden="true"><span></span><span></span><span></span></div>
+    </div>
+  </div>
 
   <div class="sidebar-scrim" id="sidebarScrim"></div>
 
   <div class="app-shell" id="top">
     <aside class="sidebar" id="sidebar" aria-label="Modules">
       <div class="sidebar__brand">
-        <a href="#top" class="sidebar__brand-logo" id="logoHome" aria-label="TimeERP home">
-          <img src="assets/image0.png" alt="TimeERP" width="168" height="40">
-        </a>
+        <div class="sidebar__brand-split" role="group" aria-label="TimeERP">
+          <a href="index.html" class="sidebar__brand-mark" aria-label="TimeERP marketing home">
+            <svg class="sidebar__logo-svg sidebar__logo-svg--mark" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true" focusable="false">
+              <g class="logo-mark" transform="translate(2 2)">
+                <circle cx="22" cy="22" r="20" fill="#25b7a7"/>
+                <path d="M22 2a20 20 0 0 0-14.14 5.86A20 20 0 0 0 2 22h6a16 16 0 0 1 14-14V2z" fill="#1a3354"/>
+                <circle cx="22" cy="22" r="13.5" fill="#fff"/>
+                <g class="logo-hands" transform="translate(22 22)">
+                  <g class="logo-hand logo-hand--hour"><line x1="0" y1="0" x2="-5.63" y2="-3.25" stroke="#25b7a7" stroke-width="2.4" stroke-linecap="round"/></g>
+                  <g class="logo-hand logo-hand--minute"><line x1="0" y1="0" x2="7.36" y2="-4.25" stroke="#1a3354" stroke-width="2.4" stroke-linecap="round"/></g>
+                  <circle cx="0" cy="0" r="2.2" fill="#25b7a7"/>
+                </g>
+              </g>
+            </svg>
+          </a>
+          <a href="home.html" class="sidebar__brand-wordmark" id="logoHome" aria-label="TimeERP dashboard">
+            <span class="sidebar__logo-time">Time</span><span class="sidebar__logo-erp">ERP</span>
+          </a>
+        </div>
       </div>
       <div class="sidebar__toolbar" role="group" aria-label="Search and create">
         <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
         </button>
-        <button type="button" class="sidebar__create-btn" id="sidebarCreate" data-open="task-management">
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate" aria-haspopup="true" aria-expanded="false">
           <span class="sidebar__create-icon" aria-hidden="true">+</span>
           <span>Create</span>
         </button>
       </div>
       <div class="sidebar__nav" id="sidebarList"></div>
+      <div class="sidebar__footer" role="group" aria-label="Sidebar shortcuts">
+        <button type="button" class="sidebar__footer-btn" id="sidebarTrashBtn" aria-label="Trash" title="Trash">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5h6"/><path d="M10 5V4h4v1"/><path d="M4.5 7.5h15"/><path d="M7 7.5l.9 12.2a1 1 0 0 0 1 .9h6.2a1 1 0 0 0 1-.9L17 7.5"/></svg>
+        </button>
+        <a class="sidebar__footer-btn" href="whatsapp_chat.html" id="sidebarWhatsAppBtn" aria-label="WhatsApp" title="WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2c-4.75 0-8.6 3.58-8.6 8 0 1.55.5 3 1.4 4.2L3.4 20.6l5-1.32A8.9 8.9 0 0 0 12 20.4c4.75 0 8.6-3.58 8.6-8S16.75 3.2 12 3.2z"/><path class="sidebar-footer-fill" d="M14.85 13.95c-.2-.1-1.15-.57-1.33-.63-.18-.07-.31-.1-.44.1-.13.2-.5.63-.61.76-.11.13-.23.15-.42.05-.2-.1-.82-.3-1.57-.97-.58-.52-.97-1.16-1.08-1.36-.12-.2-.01-.3.08-.4.09-.09.2-.23.3-.34.1-.11.13-.2.2-.33.07-.13.03-.24-.02-.34-.05-.1-.44-1.06-.6-1.45-.16-.38-.32-.33-.44-.33h-.37c-.13 0-.34.05-.52.24-.17.2-.67.65-.67 1.6s.69 1.85.78 1.98c.1.13 1.35 2.06 3.28 2.89.46.2.82.31 1.1.4.46.15.88.13 1.21.08.37-.06 1.13-.46 1.29-.9.16-.45.16-.83.11-.91-.04-.08-.18-.13-.38-.23z"/></svg>
+        </a>
+        <button type="button" class="sidebar__footer-btn" id="sidebarLogoutBtn" aria-label="Logout" title="Logout">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4a8 8 0 1 0 0 16"/><path d="M12 12h8"/><path d="M17.5 9l3 3-3 3"/></svg>
+        </button>
+      </div>
     </aside>
 
     <div class="content-shell">
@@ -1262,8 +1632,13 @@
             <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
           </div>
           <div class="topbar__actions">
+            <button type="button" class="home-top-checkin" id="homeCheckInBtn">Check In</button>
+            <time class="home-top-clock" id="homeTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn home-top-icon" id="calBtn" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
             <div class="topbar__menu" style="position:relative">
-              <button type="button" class="topbar__icon-btn" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+              <button type="button" class="topbar__icon-btn home-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
                 <span class="topbar__badge" id="notifBadge">5</span>
               </button>
@@ -1273,111 +1648,30 @@
                 <button type="button" class="dropdown__footer" id="notifMarkRead">Mark all as read</button>
               </div>
             </div>
-            <button type="button" class="topbar__icon-btn" id="calBtn" aria-label="Calendar">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
-            </button>
             <div class="topbar__menu" style="position:relative">
-              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
-                <span class="topbar__avatar">TE</span>
-                <span class="topbar__profile-meta"><strong>Admin</strong><span>TimeERP</span></span>
-              </button>
-              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
-                <div class="dropdown__title">Account</div>
-                <button type="button" class="dropdown__item" data-action="home"><strong>Go to home</strong><span>Module hub overview</span></button>
-                <button type="button" class="dropdown__item" data-open="task-management"><strong>Create task</strong><span>Open Project Management</span></button>
-                <button type="button" class="dropdown__item" data-open="reports"><strong>Reports</strong><span>Analytics & custom reports</span></button>
-                <button type="button" class="dropdown__item" data-action="shortcut"><strong>Keyboard tips</strong><span>/ focus search · Esc goes back</span></button>
-              </div>
+              <a class="shell-account" id="profileBtn" href="my_profile.html" aria-label="Open profile">
+                <span class="shell-account__org" aria-hidden="true">
+                  <img src="assets/favicon-mark.png" alt="" width="28" height="28">
+                </span>
+                <span class="shell-account__name">Ca Ram Kumar</span>
+                <span class="shell-account__user" aria-hidden="true">
+                  <img src="assets/favicon-mark.png" alt="" width="28" height="28">
+                </span>
+              </a>
             </div>
           </div>
         </div>
       </header>
 
       <main class="main">
-      <div class="home-view" id="homeView">
-        <section class="panel" id="recent-modules">
-          <div class="panel__head">
-            <h2>Recently opened</h2>
-            <p>Pick up where you left off.</p>
-          </div>
-          <div class="recent-strip" id="recentStrip">
-            <span class="task-empty" style="padding:14px;border:none;background:transparent">Open a module to see it here.</span>
-          </div>
-        </section>
-
-        <section class="panel" id="quick-actions">
-          <div class="panel__head">
-            <h2>Quick actions</h2>
-            <p>Jump into common workflows.</p>
-          </div>
-          <div class="quick-actions" id="quickActions"></div>
-        </section>
-
-        <section class="my-tasks" id="my-tasks" aria-label="My Tasks">
-          <div class="my-tasks__head">
-            <h2>My Tasks</h2>
-            <div class="my-tasks__tools">
-              <div class="my-tasks__search" role="search">
-                <input type="search" id="taskSearch" placeholder="Search Tasks" autocomplete="off" aria-label="Search tasks">
-              </div>
-              <button type="button" class="my-tasks__add" id="taskAddBtn" data-open="task-management" aria-label="Create task">+</button>
-            </div>
-          </div>
-          <div class="my-tasks__tabs" id="taskTabs" role="tablist" aria-label="Task status"></div>
-          <div class="my-tasks__table-wrap">
-            <table class="my-tasks__table">
-              <thead>
-                <tr>
-                  <th>Task ID</th>
-                  <th>Task Name</th>
-                  <th>Reviewer</th>
-                  <th>Client</th>
-                  <th>Due Date</th>
-                </tr>
-              </thead>
-              <tbody id="taskTableBody"></tbody>
-            </table>
-          </div>
-          <div class="my-tasks__foot">
-            <button type="button" class="my-tasks__page-btn" id="taskPrev" aria-label="Previous page">‹</button>
-            <span class="my-tasks__page-info" id="taskPageInfo">1 of 1</span>
-            <button type="button" class="my-tasks__page-btn" id="taskNext" aria-label="Next page">›</button>
-            <span id="taskCountInfo">0 / 0</span>
-          </div>
-        </section>
-
-        <section class="panel" id="modules">
-          <div class="panel__head">
-            <h2>All modules</h2>
-            <p>17 modules · open a card or use the sidebar.</p>
-          </div>
-          <div class="no-results" id="noResults">
-            <p><strong>No modules match your search.</strong></p>
-          </div>
-          <div class="module-grid" id="moduleGrid"></div>
-        </section>
-
-        <div class="split-row">
-          <section class="panel">
-            <div class="panel__head">
-              <h2>Recent activity</h2>
-              <p>Latest updates.</p>
-            </div>
-            <div id="activityList"></div>
-          </section>
-          <section class="panel">
-            <div class="panel__head">
-              <h2>Upcoming deadlines</h2>
-              <p>Stay ahead of due dates.</p>
-            </div>
-            <div id="deadlineList"></div>
-          </section>
-        </div>
-      </div>
+      <div class="home-view" id="homeView" aria-label="Dashboard"></div>
 
       <section class="module-view is-hidden" id="moduleView" aria-live="polite">
         <div class="module-view__head">
-          <h1 id="moduleViewTitle">Dashboard</h1>
+          <div class="module-view__intro">
+            <h1 id="moduleViewTitle">Dashboard</h1>
+            <p class="module-view__sub" id="moduleViewSub">See your business overview clearly with TimeERP insights.</p>
+          </div>
           <button type="button" class="module-view__back" id="backToHome">← Back to home</button>
         </div>
         <div class="task-grid" id="taskGrid"></div>
@@ -1387,13 +1681,12 @@
   <footer class="td-footer">
     <div class="td-footer__top">
       <a href="#top" class="td-footer__logo" aria-label="TimeERP home">
-        <img src="assets/image0-transparent.png" alt="TimeERP" width="168" height="40">
+        <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
       </a>
       <div class="td-footer__contact">
         <address class="td-footer__address">
-          Law Seva Management Private Limited<br>
-          BM-08, Ansal Sumedha Building, RDC,<br>
-          Ghaziabad, Delhi NCR, Uttar Pradesh – 201001, India
+          Law Seva Management Private Limited ·
+          <a class="td-footer__address-link" href="https://www.google.com/maps/search/?api=1&query=Ansal+Sumedha+Building+RDC+Ghaziabad+201002" target="_blank" rel="noopener noreferrer" aria-label="View office location on Google Maps">BM-08, Ansal Sumedha Building, RDC, Ghaziabad, Delhi NCR, UP – 201001</a>
         </address>
       </div>
       <div class="td-footer__social">
@@ -1406,7 +1699,12 @@
     <div class="td-footer__bar">
       <div class="td-footer__bar-inner">
         <p class="td-footer__rating"><strong>650+</strong> MSME · <strong>4.8/5</strong> customer rating · <strong>4+</strong> industries served</p>
-        <a href="#" class="td-footer__cookie">Cookie preferences</a>
+        <nav class="td-footer__legal" aria-label="Legal">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="security.html">Security</a>
+          <a href="contact_sales.html">Contact Us</a>
+        </nav>
         <p class="td-footer__copy">© 2026 TimeERP</p>
       </div>
     </div>
@@ -1430,31 +1728,206 @@
     </div>
   </div>
 
+  <script src="js/split-logo.js?v=2"></script>
+  <script src="js/notification-panel.js?v=1"></script>
+  <script src="js/running-task-panel.js?v=2"></script>
+  <script src="js/search-routes-panel.js?v=1"></script>
+  <script src="js/sidebar-collapse.js?v=5"></script>
+  <script src="js/create-menu.js?v=1"></script>
+  <script src="js/pm-dashboard-stats.js?v=3"></script>
+  <script src="js/home-dashboard.js?v=41"></script>
   <script>
   (function () {
     'use strict';
 
-    /* 17 modules — icons in assets/home-icons/ */
+    /* Modules — HR workforce tools live under HRMS (not separate sidebar items) */
     var ICON_BASE = 'assets/home-icons/';
-    var MODULES = [
-      { id: 'dashboard', title: 'Dashboard', desc: 'Business overview, KPIs, and analytics.', topics: ['Business Overview', 'Revenue Analytics', 'Employee Analytics', 'Task Analytics', 'Attendance Summary', 'Project Status', 'Recent Activities', 'Notifications', 'Quick Actions'] },
-      { id: 'hrms', title: 'HRMS', desc: 'Employees, recruitment, and profiles.', topics: ['View Employees', 'Recruitment', 'Onboarding', 'Employee Profile', 'Attendance', 'Leave Management', 'Exit Management', 'Assets Allocation', 'Policies', 'Documents'] },
-      { id: 'attendance', title: 'Attendance', desc: 'Shifts, biometric, and overtime.', topics: ['Daily Attendance', 'Shift Management', 'Biometric', 'Geo Attendance', 'Attendance Lock', 'Overtime', 'Late Entry', 'Reports'] },
-      { id: 'leave', title: 'Leave Management', desc: 'Leave types, requests, and balance.', topics: ['Leave Types', 'Leave Requests', 'Approval Workflow', 'Holiday Calendar', 'Leave Balance', 'Leave Reports'] },
-      { id: 'payroll', title: 'Payroll', desc: 'Salary, PF, ESI, TDS, payslips.', topics: ['Salary Structure', 'Payroll Processing', 'Payslips', 'PF', 'ESI', 'TDS', 'Bonus', 'Payroll Reports'] },
-      { id: 'timesheet', title: 'Timesheet', desc: 'Daily and weekly billable hours.', topics: ['Daily Timesheet', 'Weekly Timesheet', 'Approval', 'Billable Hours', 'Productivity', 'Reports'] },
-      { id: 'expense', title: 'Expense', desc: 'Claims, travel, reimbursement.', topics: ['Expense Claims', 'Travel', 'Reimbursement', 'Approval Workflow', 'Reports'] },
-      { id: 'crm', title: 'CRM', desc: 'Leads, pipeline, and follow-ups.', topics: ['Leads', 'Opportunities', 'Customers', 'Quotations', 'Follow-ups', 'Sales Pipeline', 'Activities', 'Reports'] },
-      { id: 'client-desk', title: 'Client Desk', desc: 'Portal, documents, and requests.', topics: ['Client Portal', 'Client Documents', 'Service Requests', 'Client Tasks', 'Client Messages', 'Agreements'] },
-      { id: 'communication', title: 'Communication Center', desc: 'SMS, email, WhatsApp, campaigns.', topics: ['Notifications', 'SMS', 'Email', 'WhatsApp', 'Broadcast', 'Templates', 'Campaigns', 'Logs'] },
-      { id: 'whatsapp-api', title: 'WhatsApp API', desc: 'Templates, webhooks, automation.', topics: ['Templates', 'Webhooks', 'Automation', 'Chat History', 'Broadcast', 'Delivery Reports', 'API Settings'] },
-      { id: 'document-vault', title: 'Document Vault', desc: 'Store, agreements, DSC, assets.', topics: ['Store Documents', 'Folder Management', 'OCR Search', 'Create Agreement', 'Inward Register', 'Outward Register', 'DSC Tracker', 'Fixed Asset Register', 'Version Control', 'Audit Logs'] },
-      { id: 'project-management', title: 'Project Management', desc: 'Plan, execute, monitor, and deliver projects from initiation to completion with centralized project planning, team collaboration, task execution, worklogs, billing, and profitability tracking.', topics: ['Multi Assign', 'Multi Customer', 'Multi Client', 'Create Task', 'Recurring Task', 'Task Service Master', 'Task in Mobile App', 'Share Task with Client', 'Bulk Action in Task', 'Task Reminder', 'Task Timesheet', 'Task Permission', 'Task Billing', 'Profit / Loss Report'] },
-      { id: 'task-management', title: 'Project Management', desc: 'Plan, execute, monitor, and deliver projects from initiation to completion with centralized project planning, team collaboration, task execution, worklogs, billing, and profitability tracking.', topics: ['Multi Assign', 'Multi Customer', 'Multi Client', 'Create Task', 'Recurring Task', 'Task Service Master', 'Task in Mobile App', 'Share Task with Client', 'Bulk Action in Task', 'Task Reminder', 'Task Timesheet', 'Task Permission', 'Task Billing', 'Profit / Loss Report'] },
-      { id: 'billing', title: 'Billing', desc: 'Invoice, receipt, ledger, GST.', topics: ['Billing Setup', 'Branch Setup', 'Invoice', 'Proforma Invoice', 'Receipt', 'Ledger', 'Adjustment', 'Credit Note', 'Debit Note', 'Reported Transactions', 'Payment Collection', 'GST Reports'] },
-      { id: 'website', title: 'Website', desc: 'Builder, pages, blog, SEO.', topics: ['Website Builder', 'Landing Pages', 'Blog', 'Forms', 'SEO', 'Media Library', 'Analytics'] },
-      { id: 'reports', title: 'Reports & Analytics', desc: 'HR, CRM, billing, custom reports.', topics: ['HR Reports', 'Payroll Reports', 'Attendance Reports', 'CRM Reports', 'Task Reports', 'Billing Reports', 'Project Reports', 'Financial Reports', 'Custom Reports'] }
+    /* Explicit allow-list for left panel (order = display order) */
+    var NAV_IDS = [
+      'dashboard',
+      'hrms',
+      'crm',
+      'marketing',
+      'document-vault',
+      'project-management',
+      'billing',
+      'reports'
     ];
+    var MODULES = [
+      { id: 'dashboard', title: 'Dashboard', lead: 'See your business overview clearly with TimeERP insights.', desc: 'Business overview and analytics.', topics: ['Business Overview', 'Revenue Analytics', 'Employee Analytics', 'Task Analytics', 'Attendance Summary', 'Project Status', 'Recent Activities', 'Notifications', 'Quick Actions'] },
+      { id: 'hrms', title: 'HRMS', lead: "Empower your workforce with TimeERP's intelligent HRMS tools.", desc: 'Attendance, leave, payroll, timesheet, expense, and HRMS admin under one HRMS suite.',
+        topics: ['View Employee', 'My Leave', 'My Attendance', 'My Expense', 'Timesheet', 'Raise Grievances', 'Day Book', 'My Appraisal', 'Reports', 'Salary Slips', 'Form 12B', 'Form 12BB', 'HRMS Setting', 'HRMS Leave', 'Set Designation', 'Grievance HR', 'HR Appraisal', 'Attendance Approval', 'Probation Approval', 'Expense', 'Employee Policy', 'Account Settings', 'Employee Declaration', 'Employee transactions'],
+        groups: [
+          {
+            title: '',
+            items: [
+              { label: 'View Employee', href: 'HRMS/viewemployee.html', icon: 'employee' },
+              { label: 'My Leave', href: 'HRMS/my_leave.html', icon: 'holiday' },
+              { label: 'My Attendance', href: 'HRMS/attendance.html', icon: 'calendar' },
+              { label: 'My Expense', href: 'HRMS/my_expense.html', icon: 'expense' },
+              { label: 'Timesheet', href: 'HRMS/my_timesheet.html', icon: 'clock' },
+              { label: 'Raise Grievances', href: 'HRMS/grievance.html', icon: 'policy' },
+              { label: 'Day Book', href: 'HRMS/day_book.html', icon: 'ledger' },
+              { label: 'My Appraisal', href: 'HRMS/my_appraisal.html', icon: 'approve' },
+              { label: 'Reports', href: 'hrms_report.html', icon: 'report' }
+            ]
+          },
+          {
+            title: 'Payroll',
+            items: [
+              { label: 'Salary Slips', href: 'HRMS/salary_slip.html', icon: 'payslip' },
+              { label: 'Form 12B', href: 'HRMS/form_12b.html', icon: 'tds' },
+              { label: 'Form 12BB', href: 'HRMS/form_12bb.html', icon: 'report' }
+            ]
+          },
+          {
+            title: 'HRMS Admin',
+            items: [
+              { label: 'HRMS Setting', href: 'HRMS/hrms_setting.html', icon: 'setup' },
+              { label: 'HRMS Leave', href: 'HRMS/hrms_leave.html', icon: 'holiday' },
+              { label: 'Set Designation', href: 'HRMS/set_designation.html', icon: 'role' },
+              { label: 'Grievance HR', href: 'HRMS/hr_grievance.html', icon: 'policy' },
+              { label: 'HR Appraisal', href: 'HRMS/hr_appraisal.html', icon: 'approve' },
+              { label: 'Attendance Approval', href: 'HRMS/attendance_approval.html', icon: 'approve' },
+              { label: 'Probation Approval', href: 'HRMS/probation_approval.html', icon: 'users' },
+              { label: 'Expense', href: 'HRMS/hr_expense.html', icon: 'expense' },
+              { label: 'Employee Policy', href: 'HRMS/employee_policy.html', icon: 'policy' }
+            ]
+          },
+          {
+            title: 'Payroll Admin',
+            items: [
+              { label: 'Account Settings', href: 'HRMS/account_settings.html', icon: 'setup' },
+              { label: 'Employee Declaration', href: 'HRMS/employee_declaration.html', icon: 'form' },
+              { label: 'Employee transactions', href: 'HRMS/employee_transactions.html', icon: 'transaction' }
+            ]
+          }
+        ]
+      },
+      /* CRM : Client Desk — only topics from CA Cloud Desk CRM Client Management guide
+         https://guide.caclouddesk.com/Module/CRM/crm-help.html */
+      { id: 'crm', title: 'CRM', lead: 'Manage clients, client groups, custom fields, and bulk operations with TimeERP CRM Client Desk.', desc: 'CRM Client Management: Client Desk, add/view clients, groups, custom fields, bulk DSC and passwords.',
+        topics: ['Client Desk', 'Add Clients', 'View Clients', 'Add Client Group', 'Custom Field in Client Form', 'Add Bulk DSC', 'Add Bulk Password'],
+        groups: [
+          {
+            title: 'Client management',
+            items: [
+              { label: 'Client Desk', href: '', icon: 'portal' },
+              { label: 'Add Clients', href: 'crm_add_client.html', icon: 'users' },
+              { label: 'View Clients', href: 'crm_view_clients.html', icon: 'employee' },
+              { label: 'Add Client Group', href: 'crm_client_group.html', icon: 'multi' },
+              { label: 'Custom Field in Client Form', href: 'crm_custom_fields.html', icon: 'form' },
+              { label: 'Add Bulk DSC', href: 'crm_dsc.html', icon: 'dsc' },
+              { label: 'Add Bulk Password', href: 'crm_passwords.html', icon: 'lock' }
+            ]
+          }
+        ]
+      },
+      /* Marketing Management — CA Cloud Desk Marketing guide (internal workspace, not marketing.html)
+         https://guide.caclouddesk.com/Module/Marketing/marketing-help.html
+         Communication Center / WhatsApp API / Website nest under Digital Marketing */
+      { id: 'marketing', title: 'Marketing', lead: 'Reach clients and teams with email, SMS, WhatsApp, notifications, chat, appointments, and more.', desc: 'Send E-mail, SMS/WhatsApp, bulk WhatsApp, notifications, chat, appointments, visitor, leads, community, infographics, and website.',
+        topics: ['Send E-mail', 'Send SMS/WhatsApp', 'Bulk WhatsApp', 'Send Notification', 'Chat', 'Appointments', 'Visitor', 'Lead Management', 'Community', 'Infographics', 'Website'],
+        groups: [
+          {
+            title: '',
+            items: [
+              { label: 'Send E-mail', href: 'marketing_send_email.html', icon: 'email' },
+              { label: 'Send SMS/WhatsApp', href: 'marketing_send_sms.html', icon: 'sms' },
+              { label: 'Bulk WhatsApp', href: 'marketing_bulk_whatsapp.html', icon: 'whatsapp' },
+              { label: 'Send Notification', href: 'marketing_send_notification.html', icon: 'bell' },
+              { label: 'Chat', href: 'marketing_chat.html', icon: 'chat' },
+              { label: 'Appointments', href: 'marketing_appointments.html', icon: 'calendar' },
+              { label: 'Visitor', href: 'marketing_visitor.html', icon: 'portal' },
+              { label: 'Lead Management', href: 'marketing_lead_management.html', icon: 'lead' },
+              { label: 'Community', href: 'marketing_community.html', icon: 'users' },
+              { label: 'Infographics', href: 'infographics.html', icon: 'media' },
+              { label: 'Website', href: 'marketing_website.html', icon: 'builder' }
+            ]
+          }
+        ]
+      },
+      { id: 'document-vault', title: 'Document Vault', lead: 'Client files, DSC, UDIN and statutory forms.', desc: 'Client docs, DSC, UDIN, forms.', topics: ['Client Document', 'Create Documents', 'Inward and Outward Documents', 'DSC Tracker', 'UDIN Repository', 'Peer Review', 'Fixed Asset Register', 'Form 145 Part A', 'Form 146'] },
+      { id: 'project-management', title: 'Project Management', lead: 'Plan and deliver work with TimeERP Project Management.', desc: 'Plan, execute, monitor, and deliver projects from initiation to completion with centralized project planning, team collaboration, task execution, worklogs, billing, and profitability tracking.', topics: ['Multi Assign', 'Multi Customer', 'Multi Client', 'Create Task', 'Recurring Task', 'Task Service Master', 'Task in Mobile App', 'Share Task with Client', 'Bulk Action in Task', 'Task Reminder', 'Task Timesheet', 'Task Permission', 'Task Billing', 'Profit / Loss Report'] },
+      { id: 'billing', title: 'Billing', lead: 'Create invoices and receipts with TimeERP Billing.', desc: 'Invoice, receipt, ledger, GST.', topics: ['Billing Setup', 'Branch Setup', 'Invoice', 'Proforma Invoice', 'Receipt', 'Ledger', 'Adjustment', 'Credit Note', 'Debit Note', 'Reported Transactions', 'Payment Collection', 'GST Reports'] },
+      { id: 'reports', title: 'Reports', lead: 'Pick a report section to analyze work, billing and team activity.', desc: 'Task, billing, employee, client, HRMS, lead, and document vault reports.',
+        topics: ['Task', 'Billing', 'Employee', 'Client', 'HRMS', 'Lead', 'Document Vault'],
+        reportItems: [
+          { label: 'Task', desc: 'Task status and performance.', href: 'task_report.html', icon: 'approve' },
+          { label: 'Billing', desc: 'Revenue, requests and tax.', href: 'billing_report.html', icon: 'invoice' },
+          { label: 'Employee', desc: 'Activity and productivity.', href: 'employee_report.html', icon: 'employee' },
+          { label: 'Client', desc: 'CRM and client reports.', href: 'customers_report.html', icon: 'users' },
+          { label: 'HRMS', desc: 'HR, timesheet and payroll.', href: 'hrms_report.html', icon: 'hr' },
+          { label: 'Lead', desc: 'Lead and marketing funnel.', href: 'lead_report.html', icon: 'lead' },
+          { label: 'Document Vault', desc: 'Vault usage reports.', href: 'document_vault_report.html', icon: 'folder' }
+        ]
+      }
+    ];
+
+    /* Nested module deep-links → open parent module */
+    var MODULE_ALIASES = {
+      attendance: 'hrms',
+      leave: 'hrms',
+      payroll: 'hrms',
+      timesheet: 'hrms',
+      expense: 'hrms',
+      'client-desk': 'crm',
+      clientdesk: 'crm',
+      communication: 'marketing',
+      'communication-center': 'marketing',
+      'whatsapp-api': 'marketing',
+      whatsapp: 'marketing',
+      website: 'marketing'
+    };
+
+    /* HRMS card destinations — app shells under HRMS/ or product landings at root */
+    var HRMS_TOPIC_LINKS = {
+      'View Employee': 'HRMS/viewemployee.html',
+      'View Employees': 'HRMS/viewemployee.html',
+      'My Leave': 'HRMS/my_leave.html',
+      'My Expense': 'HRMS/my_expense.html',
+      'Timesheet': 'HRMS/my_timesheet.html',
+      'My Attendance': 'HRMS/attendance.html',
+      'Attendance': 'HRMS/attendance.html',
+      'Attendance Summary': 'HRMS/attendance.html?summary=1',
+      'Raise Grievances': 'HRMS/grievance.html',
+      'Day Book': 'HRMS/day_book.html',
+      'My Appraisal': 'HRMS/my_appraisal.html',
+      'Reports': 'hrms_report.html',
+      'Salary Slips': 'HRMS/salary_slip.html',
+      'Form 12B': 'HRMS/form_12b.html',
+      'Form 12BB': 'HRMS/form_12bb.html',
+      'HRMS Setting': 'HRMS/hrms_setting.html',
+      'HRMS Leave': 'HRMS/hrms_leave.html',
+      'Set Designation': 'HRMS/set_designation.html',
+      'Grievance HR': 'HRMS/hr_grievance.html',
+      'HR Appraisal': 'HRMS/hr_appraisal.html',
+      'Attendance Approval': 'HRMS/attendance_approval.html',
+      'Probation Approval': 'HRMS/probation_approval.html',
+      'Expense': 'HRMS/hr_expense.html',
+      'Employee Policy': 'HRMS/employee_policy.html',
+      'Account Settings': 'HRMS/account_settings.html',
+      'Employee Declaration': 'HRMS/employee_declaration.html',
+      'Employee transactions': 'HRMS/employee_transactions.html'
+    };
+
+    /* Never list these as top-level sidebar items */
+    var SIDEBAR_HIDE_IDS = {
+      attendance: 1, leave: 1, payroll: 1, timesheet: 1, expense: 1, 'client-desk': 1,
+      communication: 1, 'whatsapp-api': 1, website: 1
+    };
+    var SIDEBAR_HIDE_TITLES = {
+      'attendance': 1,
+      'leave management': 1,
+      'payroll': 1,
+      'timesheet': 1,
+      'expense': 1,
+      'client desk': 1,
+      'communication center': 1,
+      'whatsapp api': 1,
+      'website': 1
+    };
+
 
     var TASK_ICON_MAP = {
       'Business Overview': 'overview', 'Revenue Analytics': 'analytics', 'Employee Analytics': 'users',
@@ -1462,7 +1935,14 @@
       'Notifications': 'bell', 'Quick Actions': 'bolt', 'Company Setup': 'building', 'Branch Management': 'branch',
       'Departments': 'dept', 'Designations': 'role', 'Cost Centers': 'cost', 'Financial Year': 'year', 'User Roles': 'role',
       'View Employees': 'employee', 'Recruitment': 'recruit', 'Onboarding': 'onboard', 'Employee Profile': 'users',
-      'Attendance': 'calendar', 'Leave Management': 'holiday',
+      'View Employee': 'employee', 'View Employees': 'employee', 'My Leave': 'holiday', 'My Attendance': 'calendar',
+      'My Expense': 'expense', 'Raise Grievances': 'policy', 'Day Book': 'ledger', 'My Appraisal': 'approve', 'Reports': 'report', 'Salary Slips': 'payslip',
+      'Form 12B': 'tds', 'Form 12BB': 'report',
+      'HRMS Setting': 'setup', 'HRMS Leave': 'holiday', 'Set Designation': 'role', 'Grievance HR': 'policy',
+      'HR Appraisal': 'approve', 'Attendance Approval': 'approve', 'Probation Approval': 'users',
+      'Employee Policy': 'policy', 'Account Settings': 'setup', 'Employee Declaration': 'form',
+      'Employee transactions': 'transaction',
+      'Attendance': 'calendar', 'Leave Management': 'holiday', 'Payroll': 'payslip', 'Timesheet': 'clock', 'Expense': 'expense',
       'Exit Management': 'exit', 'Assets Allocation': 'asset', 'Policies': 'policy', 'Documents': 'report',
       'Daily Attendance': 'calendar', 'Shift Management': 'clock', 'Biometric': 'fingerprint', 'Geo Attendance': 'pin',
       'Attendance Lock': 'lock', 'Overtime': 'overtime', 'Late Entry': 'warning', 'Reports': 'report',
@@ -1473,8 +1953,15 @@
       'Productivity': 'productivity', 'Expense Claims': 'expense', 'Travel': 'travel', 'Reimbursement': 'payment',
       'Leads': 'lead', 'Opportunities': 'bonus', 'Customers': 'users', 'Quotations': 'quote', 'Follow-ups': 'followup',
       'Sales Pipeline': 'pipeline', 'Activities': 'worklog', 'Client Portal': 'portal', 'Client Documents': 'folder',
+      'Client Desk': 'portal', 'Add Clients': 'users', 'View Clients': 'employee', 'Add Client Group': 'multi',
+      'Custom Field in Client Form': 'form', 'Add Bulk DSC': 'dsc', 'Add Bulk Password': 'lock',
       'Service Requests': 'service', 'Client Tasks': 'approve', 'Client Messages': 'message', 'Agreements': 'agreement',
       'SMS': 'sms', 'Email': 'email', 'WhatsApp': 'whatsapp', 'Broadcast': 'broadcast', 'Templates': 'template',
+      'WhatsApp API': 'whatsapp', 'Communication Center': 'message', 'Notification': 'bell',
+      'Lead Management': 'lead', 'Community': 'users', 'Infographic': 'media', 'Infographics': 'media',
+      'Send E-mail': 'email', 'Send SMS/WhatsApp': 'sms', 'Bulk WhatsApp': 'whatsapp',
+      'Send Notification': 'bell', 'Chat': 'chat', 'Appointments': 'calendar', 'Visitor': 'portal',
+      'Google Ads': 'campaign', 'Meta Ads': 'broadcast', 'Website': 'builder',
       'Campaigns': 'campaign', 'Logs': 'worklog', 'Webhooks': 'webhook', 'Automation': 'automation', 'Chat History': 'chat',
       'Delivery Reports': 'delivery', 'API Settings': 'api', 'Store Documents': 'folder', 'Folder Management': 'folder',
       'OCR Search': 'ocr', 'Create Agreement': 'agreement', 'Inward Register': 'inward', 'Outward Register': 'outward',
@@ -1492,14 +1979,16 @@
       'Website Builder': 'builder', 'Landing Pages': 'landing', 'Blog': 'blog', 'Forms': 'form', 'SEO': 'seo',
       'Media Library': 'media', 'Analytics': 'analytics', 'HR Reports': 'hr', 'Attendance Reports': 'clock',
       'CRM Reports': 'users', 'Task Reports': 'approve', 'Billing Reports': 'invoice', 'Project Reports': 'project',
-      'Financial Reports': 'financial', 'Custom Reports': 'custom'
+      'Financial Reports': 'financial', 'Custom Reports': 'custom',
+      'Task': 'approve', 'Billing': 'invoice', 'Employee': 'employee', 'Client': 'users',
+      'HRMS': 'hr', 'Lead': 'lead', 'Document Vault': 'folder'
     };
 
     var QUICK = [
-      { icon: 'task-create', label: 'Create task', module: 'task-management' },
+      { icon: 'task-create', label: 'Create task', module: 'project-management' },
       { icon: 'billing', label: 'New invoice', module: 'billing' },
       { icon: 'hrms', label: 'Add employee', module: 'hrms' },
-      { icon: 'attendance', label: 'Mark attendance', module: 'attendance' },
+      { icon: 'attendance', label: 'Mark attendance', module: 'hrms' },
       { icon: 'crm', label: 'Add lead', module: 'crm' },
       { icon: 'document-vault', label: 'Upload document', module: 'document-vault' }
     ];
@@ -1540,13 +2029,7 @@
       { id: 'T-1049', name: 'Final GSTR pack', reviewer: 'Admin', client: 'Sharma Traders', due: '15 Mar 2026', status: 'finalized' }
     ];
 
-    var NOTIFS = [
-      { id: 1, title: 'Invoice INV-1042 paid', detail: 'Client payment received', unread: true, module: 'billing' },
-      { id: 2, title: 'Leave approved', detail: 'A. Sharma · casual leave', unread: true, module: 'leave' },
-      { id: 3, title: 'New website lead', detail: 'Form submission logged in CRM', unread: true, module: 'crm' },
-      { id: 4, title: 'Task shared with client', detail: 'GST review package', unread: true, module: 'task-management' },
-      { id: 5, title: 'Attendance anomaly', detail: '3 late entries today', unread: true, module: 'attendance' }
-    ];
+    var NOTIFS = [];
 
     var sidebarList = document.getElementById('sidebarList');
     var moduleGrid = document.getElementById('moduleGrid');
@@ -1560,9 +2043,7 @@
     var globalSearch = document.getElementById('globalSearch');
     var recentStrip = document.getElementById('recentStrip');
     var notifDropdown = document.getElementById('notifDropdown');
-    var profileDropdown = document.getElementById('profileDropdown');
     var notifBtn = document.getElementById('notifBtn');
-    var profileBtn = document.getElementById('profileBtn');
     var taskModal = document.getElementById('taskModal');
     var toastStack = document.getElementById('toastStack');
     var contentScroller = document.querySelector('.main');
@@ -1596,10 +2077,26 @@
       return ICON_BASE + id + '.svg';
     }
 
+    function moduleTopics(m) {
+      if (!m) return [];
+      if (m.topics && m.topics.length) return m.topics;
+      if (!m.groups) return [];
+      var out = [];
+      m.groups.forEach(function (g) {
+        (g.items || []).forEach(function (it) { out.push(it.label); });
+      });
+      return out;
+    }
+
     function taskIcon(topic, moduleId) {
       var key = TASK_ICON_MAP[topic];
       if (key) return ICON_BASE + 'task-' + key + '.svg';
       return moduleIcon(moduleId);
+    }
+
+    function hrmsItemIcon(item) {
+      if (item && item.icon) return ICON_BASE + 'task-' + item.icon + '.svg';
+      return taskIcon(item.label, 'hrms');
     }
 
     function imgTag(src, alt) {
@@ -1623,11 +2120,9 @@
       try { localStorage.setItem('timeerp-recent-modules', JSON.stringify(recentModules.slice(0, 6))); } catch (e) {}
     }
 
-    function pushRecent(id) {
-      recentModules = [id].concat(recentModules.filter(function (x) { return x !== id; })).slice(0, 6);
-      saveRecent();
-      renderRecent();
-    }
+    function renderRecent() { /* removed — Quick Links replaces recent modules */ }
+
+    function pushRecent(id) { /* no-op */ }
 
     function setHash(path) {
       updatingHash = true;
@@ -1649,15 +2144,18 @@
 
     function closeDropdowns() {
       notifDropdown.classList.remove('is-open');
-      profileDropdown.classList.remove('is-open');
       notifBtn.setAttribute('aria-expanded', 'false');
-      profileBtn.setAttribute('aria-expanded', 'false');
+      var profileDropdown = document.getElementById('profileDropdown');
+      var profileBtn = document.getElementById('profileBtn');
+      if (profileDropdown) profileDropdown.classList.remove('is-open');
+      if (profileBtn) profileBtn.setAttribute('aria-expanded', 'false');
     }
 
     function closeTaskModal() {
       taskModal.classList.remove('is-open');
       taskModal.hidden = true;
       activeTask = null;
+      if (activeModule) renderTasks(globalSearch.value);
     }
 
     function openTaskModal(moduleId, topic) {
@@ -1667,60 +2165,54 @@
       document.getElementById('taskModalIcon').innerHTML = imgTag(taskIcon(topic, moduleId), topic);
       document.getElementById('taskModalTitle').textContent = topic;
       document.getElementById('taskModalDesc').textContent =
-        'Ready to open “' + topic + '” inside ' + m.title + '. This screen stays in-page — wire your ERP route when backend is connected.';
+        'Open "' + topic + '" from the ' + m.title + ' module in TIME ERP.';
       taskModal.hidden = false;
       taskModal.classList.add('is-open');
       document.getElementById('taskModalOpen').focus();
+      renderTasks(globalSearch.value);
     }
 
     function unreadCount() {
-      return NOTIFS.filter(function (n) { return n.unread; }).length;
+      return 0;
     }
 
-    function renderNotifs() {
-      var list = document.getElementById('notifList');
-      list.innerHTML = NOTIFS.map(function (n) {
-        return '<button type="button" class="dropdown__item" data-notif="' + n.id + '" data-open="' + n.module + '">' +
-          (n.unread ? '<span class="dropdown__dot"></span>' : '<span class="dropdown__dot" style="background:#d0d7dc"></span>') +
-          '<div><strong>' + n.title + '</strong><span>' + n.detail + '</span></div></button>';
-      }).join('');
-      var count = unreadCount();
-      var badge = document.getElementById('notifBadge');
-      badge.textContent = String(count);
-      badge.style.display = count ? '' : 'none';
+    function renderNotifs() {}
+
+    function isSidebarNavModule(m) {
+      if (!m || !m.id) return false;
+      if (SIDEBAR_HIDE_IDS[m.id]) return false;
+      if (SIDEBAR_HIDE_TITLES[String(m.title || '').toLowerCase()]) return false;
+      return NAV_IDS.indexOf(m.id) !== -1;
     }
 
-    function renderRecent() {
-      if (!recentModules.length) {
-        recentStrip.innerHTML = '<span class="task-empty" style="padding:14px;border:none;background:transparent">Open a module to see it here.</span>';
-        return;
-      }
-      recentStrip.innerHTML = recentModules.map(function (id) {
-        var m = getModule(id);
-        if (!m) return '';
-        return '<button type="button" class="recent-chip" data-open="' + m.id + '">' +
-          imgTag(moduleIcon(m.id), m.title) + '<span>' + m.title + '</span></button>';
-      }).join('');
+    function navModules() {
+      var byId = {};
+      MODULES.forEach(function (m) { byId[m.id] = m; });
+      return NAV_IDS.map(function (id) { return byId[id]; }).filter(function (m) {
+        return m && isSidebarNavModule(m);
+      });
     }
 
     function renderSidebar() {
-      sidebarList.innerHTML = MODULES.map(function (m) {
+      if (!sidebarList) return;
+      sidebarList.innerHTML = navModules().map(function (m) {
         return '<button type="button" class="sidebar__item' + (m.id === activeModule ? ' is-active' : '') + '" data-module="' + m.id + '">' +
           '<span class="sidebar__icon">' + imgTag(moduleIcon(m.id), m.title) + '</span><span>' + m.title + '</span></button>';
       }).join('');
     }
 
     function renderModules(filter) {
+      if (!moduleGrid || !noResults) return;
       var q = (filter || '').trim().toLowerCase();
       var html = '';
       var visible = 0;
-      MODULES.forEach(function (m) {
-        var hay = (m.title + ' ' + m.desc + ' ' + m.topics.join(' ')).toLowerCase();
+      navModules().forEach(function (m) {
+        var hay = (m.title + ' ' + (m.desc || '') + ' ' + moduleTopics(m).join(' ')).toLowerCase();
         if (q && hay.indexOf(q) === -1) return;
         visible++;
         html += '<button type="button" class="module-card" data-open="' + m.id + '">' +
           '<div class="module-card__icon">' + imgTag(moduleIcon(m.id), m.title) + '</div>' +
-          '<h3>' + m.title + '</h3><p>' + m.topics.length + ' features</p></button>';
+          '<h3>' + m.title + '</h3><p>' + moduleTopics(m).length + ' features</p></button>';
       });
       moduleGrid.innerHTML = html;
       noResults.classList.toggle('is-visible', visible === 0);
@@ -1730,7 +2222,76 @@
       var m = getModule(activeModule);
       if (!m) return;
       var q = (filter || '').trim().toLowerCase();
-      var topics = m.topics.filter(function (t) {
+
+      if (m.reportItems && m.reportItems.length) {
+        var reportItems = m.reportItems.filter(function (it) {
+          if (!q) return true;
+          var hay = ((it.label || '') + ' ' + (it.desc || '')).toLowerCase();
+          return hay.indexOf(q) !== -1;
+        });
+        taskGrid.className = 'task-grid';
+        taskGrid.innerHTML = reportItems.length
+          ? reportItems.map(function (it) {
+              var href = (it.href || '').replace(/"/g, '');
+              var labelAttr = String(it.label || '').replace(/"/g, '&quot;');
+              var iconSrc = ICON_BASE + 'task-' + (it.icon || 'report') + '.svg';
+              return '<a class="task-card" href="' + href + '" data-task="' + labelAttr + '">' +
+                '<span class="task-card__art" aria-hidden="true">' + imgTag(iconSrc, it.label) + '</span>' +
+                '<span class="task-card__label">' + it.label + '</span>' +
+              '</a>';
+            }).join('')
+          : '<div class="task-empty">No report sections match your search.</div>';
+        return;
+      }
+
+      if (m.groups && m.groups.length) {
+        var sections = [];
+        m.groups.forEach(function (g) {
+          var items = (g.items || []).filter(function (it) {
+            return !q || (it.label || '').toLowerCase().indexOf(q) !== -1;
+          });
+          if (!items.length) return;
+          var cards = items.map(function (it) {
+            var active = activeTask && activeTask.topic === it.label ? ' is-active' : '';
+            var href = it.static ? '' : resolveTopicHref(it.label, it);
+            var labelAttr = String(it.label || '').replace(/"/g, '&quot;');
+            var isRow = !!(it.desc || it.art || it.layout === 'row');
+            var artSrc = it.art
+              ? it.art
+              : hrmsItemIcon(it);
+            var inner = isRow
+              ? ('<span class="task-card__art" aria-hidden="true">' + imgTag(artSrc, it.label) + '</span>' +
+                 '<span class="task-card__body">' +
+                   '<span class="task-card__title">' + it.label + '</span>' +
+                   (it.desc ? '<span class="task-card__desc">' + it.desc + '</span>' : '') +
+                 '</span>')
+              : ('<span class="task-card__art" aria-hidden="true">' + imgTag(hrmsItemIcon(it), it.label) + '</span>' +
+                 '<span class="task-card__label">' + it.label + '</span>');
+            var cls = 'task-card' + (isRow ? ' task-card--row' : '') + active;
+            if (it.static) {
+              return '<div class="' + cls + ' task-card--static" aria-label="' + labelAttr + '">' + inner + '</div>';
+            }
+            if (href) {
+              return '<a class="' + cls + '" href="' + href.replace(/"/g, '') + '" data-task="' + labelAttr + '">' + inner + '</a>';
+            }
+            return '<button type="button" class="' + cls + '" data-task="' + labelAttr + '">' + inner + '</button>';
+          }).join('');
+          sections.push(
+            '<section class="mgmt-section">' +
+              (g.title ? '<h2 class="mgmt-section__title">' + g.title + '</h2>' : '') +
+              '<div class="task-grid">' + cards + '</div>' +
+            '</section>'
+          );
+        });
+        taskGrid.className = 'mgmt-areas';
+        taskGrid.innerHTML = sections.length
+          ? sections.join('')
+          : '<div class="task-empty">No features match your search in this module.</div>';
+        return;
+      }
+
+      taskGrid.className = 'task-grid';
+      var topics = moduleTopics(m).filter(function (t) {
         return !q || t.toLowerCase().indexOf(q) !== -1;
       });
       if (!topics.length) {
@@ -1739,13 +2300,20 @@
       }
       taskGrid.innerHTML = topics.map(function (t) {
         var active = activeTask && activeTask.topic === t ? ' is-active' : '';
-        return '<button type="button" class="task-card' + active + '" data-task="' + t.replace(/"/g, '&quot;') + '">' +
+        var href = resolveTopicHref(t);
+        var labelAttr = String(t).replace(/"/g, '&quot;');
+        var inner =
           '<span class="task-card__art" aria-hidden="true">' + imgTag(taskIcon(t, m.id), t) + '</span>' +
-          '<span class="task-card__label">' + t + '</span></button>';
+          '<span class="task-card__label">' + t + '</span>';
+        if (href) {
+          return '<a class="task-card' + active + '" href="' + href.replace(/"/g, '') + '" data-task="' + labelAttr + '">' + inner + '</a>';
+        }
+        return '<button type="button" class="task-card' + active + '" data-task="' + labelAttr + '">' + inner + '</button>';
       }).join('');
     }
 
     function renderQuick() {
+      if (!quickActions) return;
       quickActions.innerHTML = QUICK.map(function (q) {
         var src = q.icon.indexOf('task-') === 0 ? ICON_BASE + q.icon + '.svg' : moduleIcon(q.icon);
         return '<button type="button" class="quick-action" data-open="' + q.module + '">' +
@@ -1754,15 +2322,17 @@
     }
 
     function renderActivity() {
+      if (!activityList) return;
       activityList.innerHTML = ACTIVITY.map(function (a) {
         return '<div class="list-item"><span class="activity-dot"></span><div><strong>' + a.text + '</strong><span>' + a.time + '</span></div></div>';
       }).join('');
     }
 
     function renderDeadlines() {
+      if (!deadlineList) return;
       deadlineList.innerHTML = DEADLINES.map(function (d) {
         return '<button type="button" class="list-item" data-open="' + (
-          d.meta === 'Payroll' ? 'payroll' : d.meta === 'Billing' ? 'billing' : 'document-vault'
+          d.meta === 'Payroll' ? 'hrms' : d.meta === 'Billing' ? 'billing' : 'document-vault'
         ) + '" style="width:100%;cursor:pointer">' +
           '<div class="deadline-day"><strong>' + d.day + '</strong><span>' + d.mon + '</span></div>' +
           '<div><strong>' + d.title + '</strong><span>' + d.meta + '</span></div></button>';
@@ -1770,7 +2340,7 @@
     }
 
     function filteredMyTasks() {
-      var q = (taskSearch.value || '').trim().toLowerCase();
+      var q = ((taskSearch && taskSearch.value) || '').trim().toLowerCase();
       return MY_TASKS.filter(function (t) {
         if (t.status !== taskStatus) return false;
         if (!q) return true;
@@ -1780,6 +2350,7 @@
     }
 
     function renderMyTasks() {
+      if (!taskTabsEl || !taskTableBody) return;
       taskTabsEl.innerHTML = TASK_TABS.map(function (tab) {
         var count = MY_TASKS.filter(function (t) { return t.status === tab.id; }).length;
         return '<button type="button" class="my-tasks__tab' + (taskStatus === tab.id ? ' is-active' : '') +
@@ -1811,20 +2382,56 @@
 
       document.getElementById('taskPageInfo').textContent = taskPage + ' of ' + totalPages;
       document.getElementById('taskCountInfo').textContent = rows.length + ' / ' + MY_TASKS.length;
-      document.getElementById('taskPrev').disabled = taskPage <= 1;
-      document.getElementById('taskNext').disabled = taskPage >= totalPages;
+      var taskPrev = document.getElementById('taskPrev');
+      var taskNext = document.getElementById('taskNext');
+      if (taskPrev) taskPrev.disabled = taskPage <= 1;
+      if (taskNext) taskNext.disabled = taskPage >= totalPages;
     }
 
     function applySearch() {
       var q = globalSearch.value;
-      if (activeModule) {
+      if (activeModule && activeModule !== 'dashboard') {
         renderTasks(q);
-      } else {
-        renderModules(q);
       }
     }
 
+    function resolveModuleId(id) {
+      return (MODULE_ALIASES && MODULE_ALIASES[id]) || id;
+    }
+
+    function resolveTopicHref(topic, item) {
+      if (item && item.href) return item.href;
+      if (topic && HRMS_TOPIC_LINKS[topic]) return HRMS_TOPIC_LINKS[topic];
+      return '';
+    }
+
+    function openHrmsTopic(topic) {
+      var href = resolveTopicHref(topic);
+      if (href) {
+        window.location.assign(href);
+        return true;
+      }
+      return false;
+    }
+
     function openModule(id, opts) {
+      id = resolveModuleId(id);
+      if (id === 'dashboard') {
+        showHome(opts);
+        return;
+      }
+      if (id === 'document-vault') {
+        window.location.assign('document_vault.html');
+        return;
+      }
+      if (id === 'billing') {
+        window.location.assign('billing.html');
+        return;
+      }
+      if (id === 'project-management') {
+        window.location.assign('task_management.html');
+        return;
+      }
       var m = getModule(id);
       if (!m) return;
       opts = opts || {};
@@ -1837,6 +2444,7 @@
       homeView.classList.add('is-hidden');
       moduleView.classList.remove('is-hidden');
       document.getElementById('moduleViewTitle').textContent = m.title;
+      document.getElementById('moduleViewSub').textContent = m.lead || m.desc || '';
       globalSearch.placeholder = 'Search in ' + m.title + '…';
       if (!opts.keepSearch) globalSearch.value = '';
       renderTasks(globalSearch.value);
@@ -1847,19 +2455,17 @@
 
     function showHome(opts) {
       opts = opts || {};
-      activeModule = null;
+      activeModule = 'dashboard';
       activeTask = null;
       closeDropdowns();
       closeTaskModal();
       renderSidebar();
       moduleView.classList.add('is-hidden');
       homeView.classList.remove('is-hidden');
-      globalSearch.placeholder = 'Search modules…';
-      if (!opts.keepSearch) {
-        globalSearch.value = '';
-        renderModules('');
-      } else {
-        renderModules(globalSearch.value);
+      globalSearch.placeholder = 'Search...';
+      if (!opts.keepSearch) globalSearch.value = '';
+      if (window.HomeDashboard) {
+        HomeDashboard.init({ toast: toast });
       }
       if (!opts.fromHash) setHash('#home');
       if (!opts.silent) scrollContent(0);
@@ -1877,9 +2483,12 @@
     function routeFromHash() {
       if (updatingHash) return;
       var hash = (location.hash || '#home').replace(/^#/, '');
-      if (hash.indexOf('module/') === 0) {
-        var id = hash.slice(7).split('/')[0];
-        if (getModule(id)) openModule(id, { fromHash: true, silent: true, keepSearch: true });
+      if (hash === 'home' || hash === 'module/dashboard' || hash.indexOf('module/dashboard') === 0) {
+        showHome({ fromHash: true, silent: true, keepSearch: true });
+      } else if (hash.indexOf('module/') === 0) {
+        var id = resolveModuleId(hash.slice(7).split('/')[0]);
+        if (id === 'dashboard') showHome({ fromHash: true, silent: true, keepSearch: true });
+        else if (getModule(id)) openModule(id, { fromHash: true, silent: true, keepSearch: true });
         else showHome({ fromHash: true, silent: true });
       } else {
         showHome({ fromHash: true, silent: true, keepSearch: true });
@@ -1887,61 +2496,43 @@
     }
 
     renderSidebar();
-    renderModules('');
-    renderQuick();
-    renderActivity();
-    renderDeadlines();
-    renderMyTasks();
     renderNotifs();
-    renderRecent();
     routeFromHash();
+
+    var sidebarTrashBtn = document.getElementById('sidebarTrashBtn');
+    var sidebarLogoutBtn = document.getElementById('sidebarLogoutBtn');
+    if (sidebarTrashBtn) {
+      sidebarTrashBtn.addEventListener('click', function () { window.location.href = 'trash_bin.html'; });
+    }
+    var sidebarWhatsAppBtn = document.getElementById('sidebarWhatsAppBtn');
+    if (sidebarWhatsAppBtn) {
+      sidebarWhatsAppBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        window.location.href = 'whatsapp_chat.html';
+      });
+    }
+    if (sidebarLogoutBtn) {
+      sidebarLogoutBtn.addEventListener('click', function () {
+        toast('Logged out', 'You have been signed out.');
+        setTimeout(function () { window.location.href = 'index.html'; }, 600);
+      });
+    }
 
     sidebarList.addEventListener('click', function (e) {
       var btn = e.target.closest('[data-module]');
-      if (btn) openModule(btn.getAttribute('data-module'));
-    });
-
-    taskTabsEl.addEventListener('click', function (e) {
-      var tab = e.target.closest('[data-status]');
-      if (!tab) return;
-      taskStatus = tab.getAttribute('data-status');
-      taskPage = 1;
-      renderMyTasks();
-    });
-
-    taskSearch.addEventListener('input', function () {
-      taskPage = 1;
-      renderMyTasks();
-    });
-
-    document.getElementById('taskPrev').addEventListener('click', function () {
-      if (taskPage > 1) { taskPage--; renderMyTasks(); }
-    });
-    document.getElementById('taskNext').addEventListener('click', function () {
-      taskPage++;
-      renderMyTasks();
-    });
-
-    taskTableBody.addEventListener('click', function (e) {
-      var row = e.target.closest('[data-task-row]');
-      if (!row) return;
-      var id = row.getAttribute('data-task-row');
-      var task = null;
-      for (var i = 0; i < MY_TASKS.length; i++) if (MY_TASKS[i].id === id) task = MY_TASKS[i];
-      if (!task) return;
-      toast(task.id, task.name + ' · ' + task.client);
-      openModule('task-management');
+      if (!btn) return;
+      var mod = btn.getAttribute('data-module');
+      if (mod === 'dashboard') showHome();
+      else openModule(mod);
     });
 
     document.addEventListener('click', function (e) {
       var openBtn = e.target.closest('[data-open]');
       if (openBtn) {
+        if (openBtn.id === 'sidebarCreate') return;
         e.preventDefault();
         var notifId = openBtn.getAttribute('data-notif');
         if (notifId) {
-          NOTIFS.forEach(function (n) {
-            if (String(n.id) === notifId) n.unread = false;
-          });
           renderNotifs();
         }
         closeDropdowns();
@@ -1951,41 +2542,23 @@
 
       var taskBtn = e.target.closest('[data-task]');
       if (taskBtn && activeModule) {
+        /* Let native <a href> navigate; never open the popup for linked features */
+        if (taskBtn.tagName === 'A') {
+          var aHref = taskBtn.getAttribute('href');
+          if (aHref) {
+            e.preventDefault();
+            window.location.assign(aHref);
+            return;
+          }
+        }
         var topic = taskBtn.getAttribute('data-task');
-        if (activeModule === 'hrms' && topic === 'View Employees') {
-          window.location.href = 'HRMS/viewemployee.html';
+        var href = taskBtn.getAttribute('data-href') || resolveTopicHref(topic);
+        if (href) {
+          window.location.assign(href);
           return;
         }
-        if (activeModule === 'hrms' && topic === 'Recruitment') {
-          window.location.href = 'HRMS/recruitment.html';
-          return;
-        }
-        if (activeModule === 'hrms' && topic === 'Onboarding') {
-          window.location.href = 'HRMS/onboarding.html';
-          return;
-        }
-        if (activeModule === 'hrms' && topic === 'Employee Profile') {
-          window.location.href = 'HRMS/employee_profile.html';
-          return;
-        }
-        if (activeModule === 'hrms' && topic === 'Attendance') {
-          window.location.href = 'HRMS/attendance.html';
-          return;
-        }
-        if (activeModule === 'hrms' && topic === 'Leave Management') {
-          openModule('leave');
-          return;
-        }
-        if (activeModule === 'hrms' && topic === 'Exit Management') {
-          window.location.href = 'HRMS/exitmanagement.html';
-          return;
-        }
-        if (activeModule === 'hrms' && topic === 'Assets Allocation') {
-          window.location.href = 'HRMS/assets_allocation.html';
-          return;
-        }
+        if (activeModule === 'hrms' && openHrmsTopic(topic)) return;
         openTaskModal(activeModule, topic);
-        renderTasks(globalSearch.value);
         return;
       }
 
@@ -2011,90 +2584,49 @@
     });
 
     document.getElementById('backToHome').addEventListener('click', function () { showHome(); });
-    document.getElementById('logoHome').addEventListener('click', function (e) {
-      e.preventDefault();
-      showHome();
-    });
+    var logoWordmark = document.getElementById('logoHome');
+    if (logoWordmark) {
+      logoWordmark.addEventListener('click', function (e) {
+        e.preventDefault();
+        showHome();
+      });
+    }
 
     globalSearch.addEventListener('input', applySearch);
-
-    document.getElementById('sidebarSearchToggle').addEventListener('click', function () {
-      globalSearch.focus();
-      globalSearch.select();
-    });
 
     document.getElementById('sidebarToggle').addEventListener('click', openSidebar);
     document.getElementById('sidebarScrim').addEventListener('click', closeSidebar);
 
-    notifBtn.addEventListener('click', function (e) {
-      e.stopPropagation();
-      var open = !notifDropdown.classList.contains('is-open');
-      closeDropdowns();
-      if (open) {
-        notifDropdown.classList.add('is-open');
-        notifBtn.setAttribute('aria-expanded', 'true');
-      }
-    });
+    var profileBtn = document.getElementById('profileBtn');
+    /* Profile pill links to my_profile.html */
 
-    profileBtn.addEventListener('click', function (e) {
-      e.stopPropagation();
-      var open = !profileDropdown.classList.contains('is-open');
-      closeDropdowns();
-      if (open) {
-        profileDropdown.classList.add('is-open');
-        profileBtn.setAttribute('aria-expanded', 'true');
-      }
-    });
+    var homeClock = document.getElementById('homeTopClock');
+    function tickHomeClock() {
+      if (!homeClock) return;
+      var d = new Date(), h = d.getHours(), m = d.getMinutes();
+      homeClock.textContent = (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m;
+      homeClock.setAttribute('datetime', homeClock.textContent);
+    }
+    tickHomeClock();
+    setInterval(tickHomeClock, 1000);
 
-    document.getElementById('notifMarkRead').addEventListener('click', function (e) {
-      e.stopPropagation();
-      NOTIFS.forEach(function (n) { n.unread = false; });
-      renderNotifs();
-      toast('Notifications cleared', 'All items marked as read');
-    });
+    var homeCheckInBtn = document.getElementById('homeCheckInBtn');
+    if (homeCheckInBtn) {
+      homeCheckInBtn.addEventListener('click', function () {
+        var checkedIn = homeCheckInBtn.classList.toggle('is-checked-in');
+        homeCheckInBtn.textContent = checkedIn ? 'Check Out' : 'Check In';
+        toast(checkedIn ? 'Checked in' : 'Checked out', checkedIn ? 'Welcome back.' : 'Your day is paused.');
+      });
+    }
 
     document.getElementById('calBtn').addEventListener('click', function () {
-      closeDropdowns();
-      showHome();
-      setTimeout(function () { scrollElIntoView(deadlineList); }, 40);
-      toast('Upcoming deadlines', 'Jump to the deadlines panel');
+      window.location.href = 'my_profile.html#calendar';
     });
 
     document.getElementById('taskModalClose').addEventListener('click', closeTaskModal);
     document.getElementById('taskModalOpen').addEventListener('click', function () {
       if (!activeTask) return;
-      if (activeTask.moduleId === 'hrms' && activeTask.topic === 'View Employees') {
-        window.location.href = 'HRMS/viewemployee.html';
-        return;
-      }
-      if (activeTask.moduleId === 'hrms' && activeTask.topic === 'Recruitment') {
-        window.location.href = 'HRMS/recruitment.html';
-        return;
-      }
-      if (activeTask.moduleId === 'hrms' && activeTask.topic === 'Onboarding') {
-        window.location.href = 'HRMS/onboarding.html';
-        return;
-      }
-      if (activeTask.moduleId === 'hrms' && activeTask.topic === 'Employee Profile') {
-        window.location.href = 'HRMS/employee_profile.html';
-        return;
-      }
-      if (activeTask.moduleId === 'hrms' && activeTask.topic === 'Attendance') {
-        window.location.href = 'HRMS/attendance.html';
-        return;
-      }
-      if (activeTask.moduleId === 'hrms' && activeTask.topic === 'Leave Management') {
-        openModule('leave');
-        return;
-      }
-      if (activeTask.moduleId === 'hrms' && activeTask.topic === 'Exit Management') {
-        window.location.href = 'HRMS/exitmanagement.html';
-        return;
-      }
-      if (activeTask.moduleId === 'hrms' && activeTask.topic === 'Assets Allocation') {
-        window.location.href = 'HRMS/assets_allocation.html';
-        return;
-      }
+      if (activeTask.moduleId === 'hrms' && openHrmsTopic(activeTask.topic)) return;
       toast(activeTask.topic, 'Opened from ' + (getModule(activeTask.moduleId) || {}).title);
       closeTaskModal();
     });
@@ -2107,7 +2639,7 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
         if (taskModal.classList.contains('is-open')) { closeTaskModal(); return; }
-        if (notifDropdown.classList.contains('is-open') || profileDropdown.classList.contains('is-open')) {
+        if (notifDropdown.classList.contains('is-open')) {
           closeDropdowns();
           return;
         }
@@ -2125,5 +2657,17 @@
     });
   })();
   </script>
+  <script>
+  (function () {
+    var el = document.getElementById('wsLoader');
+    if (!el) return;
+    setTimeout(function () {
+      el.classList.add('is-done');
+      document.body.classList.remove('ws-loading');
+      setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 400);
+    }, 1000);
+  })();
+  </script>
+  <script src="js/site-footer.js?v=6"></script>
 </body>
 </html>

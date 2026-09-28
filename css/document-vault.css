@@ -1,0 +1,50 @@
+/* TIME ERP — Document Vault hub (document_vault.html) */
+a.sidebar__item { color: inherit; text-decoration: none; }
+
+.dv-top-checkout {
+  height: 32px; padding: 0 14px; border: none; border-radius: 4px;
+  background: #25b7a7; color: #fff; font-size: 13px; font-weight: 600; cursor: pointer;
+}
+.dv-top-clock {
+  font-size: 16px; font-weight: 600; color: #25B7A7;
+  font-variant-numeric: tabular-nums; min-width: 46px; text-align: center;
+}
+.dv-top-icon { color: #25B7A7 !important; }
+.dv-profile-caret { width: 14px; height: 14px; color: #94a3b8; flex-shrink: 0; }
+
+.dv-page {
+  min-height: 100%;
+  margin: -16px calc(var(--content-pad-x, 16px) * -1) -24px;
+  padding: 18px 22px 28px;
+  background: #f0f2f5;
+}
+.dv-page .module-view { gap: 18px; }
+.dv-page .module-view__head h1 {
+  font-size: 1.25rem; font-weight: 600; color: var(--heading); margin: 0 0 6px;
+}
+.dv-page .module-view__intro { flex: 1; min-width: min(100%, 280px); }
+.dv-page .module-view__sub {
+  margin: 0; max-width: 42rem; font-size: 14px; line-height: 1.55; color: var(--muted);
+}
+.dv-page .module-view__back { text-decoration: none; flex-shrink: 0; margin-top: 2px; }
+.dv-page .task-card { color: inherit; text-decoration: none; font: inherit; width: 100%; box-sizing: border-box; }
+.dv-page .task-grid { margin-bottom: 28px; }
+
+.dv-app-footer {
+  margin-top: 12px; padding: 8px 8px 4px; text-align: center;
+}
+.dv-app-footer__links {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+  gap: 8px 10px; margin-bottom: 8px; font-size: 13px;
+}
+.dv-app-footer__links a { color: #25b7a7; text-decoration: none; font-weight: 500; }
+.dv-app-footer__links a:hover { text-decoration: underline; }
+.dv-app-footer__links span { color: #bfbfbf; }
+.dv-app-footer__copy {
+  margin: 0; font-size: 12px; color: #8c8c8c; line-height: 1.5;
+}
+.dv-app-footer__copy span { color: #25b7a7; font-weight: 500; }
+
+@media (max-width: 640px) {
+  .dv-page { padding: 12px 12px 24px; }
+}

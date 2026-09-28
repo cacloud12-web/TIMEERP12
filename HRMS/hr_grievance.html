@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="../assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="../assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HR Grievance — TIME ERP HRMS</title>
+  <meta name="description" content="Review, approve, and reject employee grievances as HR in TIME ERP.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/hr-grievance.css?v=hg1">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="../home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="../assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="hg-top-checkin is-in" id="hgTopCheckInBtn">Check In</button>
+            <time class="hg-top-clock" id="hgTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn hg-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn hg-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">3</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">TE</span>
+                <span class="topbar__profile-meta"><strong>Admin</strong><span>TimeERP</span></span>
+                <svg class="hg-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="../home.html" class="dropdown__item"><strong>Go to home</strong><span>Module hub overview</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="hg-page" id="hgPage">
+          <header class="hg-header">
+            <a class="hg-back" href="../home.html#module/hrms" aria-label="Back to HRMS">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <h1 class="hg-title">HR Grievance</h1>
+          </header>
+
+          <nav class="hg-tabs" aria-label="HR Grievance sections">
+            <div class="hg-tabs__list" role="tablist">
+              <button type="button" class="hg-tab is-active" role="tab" aria-selected="true" data-tab="pending">Pending Grievance</button>
+              <button type="button" class="hg-tab" role="tab" aria-selected="false" data-tab="decided">Approve/Reject Grievance</button>
+            </div>
+          </nav>
+
+          <section class="hg-card" aria-label="HR Grievance list">
+            <div class="hg-toolbar">
+              <div class="hg-toolbar__left">
+                <label class="hg-sr-only" for="hgEmployeeFilter">Select Employee</label>
+                <select class="hg-select" id="hgEmployeeFilter" aria-label="Select Employee">
+                  <option value="">Select Employee</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="hg-table-wrap">
+              <table class="hg-table" id="hgTable">
+                <thead><tr id="hgTableHead"></tr></thead>
+                <tbody id="hgTableBody"></tbody>
+              </table>
+              <div class="hg-empty" id="hgEmpty" aria-live="polite">
+                <div class="hg-empty__icon" aria-hidden="true">
+                  <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75">
+                    <path d="M10 28l6-8h32l6 8"/>
+                    <path d="M10 28h44v22a4 4 0 01-4 4H14a4 4 0 01-4-4V28z"/>
+                    <path d="M10 28h14l4 6h12l4-6h14"/>
+                  </svg>
+                </div>
+                <p>No data</p>
+              </div>
+            </div>
+
+            <footer class="hg-pagination" aria-label="Table pagination">
+              <div class="hg-pagination__left">
+                <label class="hg-sr-only" for="hgPageSize">Rows per page</label>
+                <select id="hgPageSize" class="hg-page-size" aria-label="Rows per page">
+                  <option value="10" selected>10</option>
+                  <option value="20">20</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                </select>
+              </div>
+              <div class="hg-pagination__center">
+                <button type="button" class="hg-page-nav" id="hgPrev" aria-label="Previous page" disabled>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <input type="text" class="hg-page-input" id="hgPageInput" value="1" aria-label="Current page" readonly>
+                <span class="hg-page-of">of <span id="hgPageTotal">1</span></span>
+                <button type="button" class="hg-page-nav" id="hgNext" aria-label="Next page" disabled>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+              </div>
+              <div class="hg-pagination__right">
+                <span class="hg-count" id="hgCount">0/0</span>
+              </div>
+            </footer>
+          </section>
+
+          <footer class="hg-app-footer" aria-label="App footer"></footer>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/hr-grievance.js?v=hg1"></script>
+</body>
+</html>

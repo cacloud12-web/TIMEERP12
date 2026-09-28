@@ -1,829 +1,952 @@
 /**
- * TIME ERP — Attendance (attendance.html) — UI only
+ * TIME ERP — Detailed Attendance (My Attendance)
  */
 (function () {
   'use strict';
 
-  var EMPLOYEES = [
-    { id: 'EMP-001', name: 'Ananya Sharma', initials: 'AS', dept: 'Engineering', designation: 'Senior Developer', manager: 'Rahul Kapoor', shift: 'General', checkIn: '09:02', checkOut: '18:18', breakTime: '0:35', hours: '8:41', overtime: '0:41', status: 'present', location: 'Ghaziabad', device: 'Biometric', attendancePct: 96, leaveBalance: 8 },
-    { id: 'EMP-002', name: 'Rahul Kapoor', initials: 'RK', dept: 'Engineering', designation: 'Engineering Manager', manager: 'Admin', shift: 'General', checkIn: '08:55', checkOut: '18:40', breakTime: '0:40', hours: '9:05', overtime: '1:05', status: 'present', location: 'Remote', device: 'Web', attendancePct: 98, leaveBalance: 12 },
-    { id: 'EMP-003', name: 'Priya Mehta', initials: 'PM', dept: 'HR', designation: 'HR Manager', manager: 'Admin', shift: 'Morning', checkIn: '09:28', checkOut: '18:05', breakTime: '0:30', hours: '8:07', overtime: '0:00', status: 'late', location: 'Ghaziabad', device: 'Biometric', attendancePct: 92, leaveBalance: 6 },
-    { id: 'EMP-004', name: 'Vikram Singh', initials: 'VS', dept: 'Sales', designation: 'Sales Executive', manager: 'Meera Iyer', shift: 'General', checkIn: '—', checkOut: '—', breakTime: '—', hours: '—', overtime: '—', status: 'field', location: 'Delhi NCR', device: 'Mobile', attendancePct: 88, leaveBalance: 4 },
-    { id: 'EMP-005', name: 'Sneha Reddy', initials: 'SR', dept: 'Design', designation: 'UI Designer', manager: 'Rahul Kapoor', shift: 'General', checkIn: '—', checkOut: '—', breakTime: '—', hours: '—', overtime: '—', status: 'leave', location: 'Remote', device: '—', attendancePct: 94, leaveBalance: 2 },
-    { id: 'EMP-006', name: 'Amit Joshi', initials: 'AJ', dept: 'Engineering', designation: 'Backend Developer', manager: 'Rahul Kapoor', shift: 'Night', checkIn: '21:05', checkOut: '—', breakTime: '0:20', hours: '5:10', overtime: '0:00', status: 'present', location: 'Ghaziabad', device: 'Biometric', attendancePct: 91, leaveBalance: 9 },
-    { id: 'EMP-007', name: 'Kavita Nair', initials: 'KN', dept: 'Finance', designation: 'Accountant', manager: 'Admin', shift: 'Morning', checkIn: '—', checkOut: '—', breakTime: '—', hours: '—', overtime: '—', status: 'absent', location: 'Ghaziabad', device: '—', attendancePct: 85, leaveBalance: 5 },
-    { id: 'EMP-008', name: 'Rohan Das', initials: 'RD', dept: 'Engineering', designation: 'QA Engineer', manager: 'Rahul Kapoor', shift: 'General', checkIn: '09:00', checkOut: '13:00', breakTime: '0:15', hours: '3:45', overtime: '0:00', status: 'halfday', location: 'Ghaziabad', device: 'Biometric', attendancePct: 90, leaveBalance: 7 },
-    { id: 'EMP-009', name: 'Meera Iyer', initials: 'MI', dept: 'Marketing', designation: 'Marketing Lead', manager: 'Admin', shift: 'General', checkIn: '09:10', checkOut: '18:00', breakTime: '0:45', hours: '8:05', overtime: '0:05', status: 'remote', location: 'Remote', device: 'Web', attendancePct: 97, leaveBalance: 10 },
-    { id: 'EMP-010', name: 'Arjun Patel', initials: 'AP', dept: 'Sales', designation: 'Field Executive', manager: 'Meera Iyer', shift: 'Custom', checkIn: '10:15', checkOut: '—', breakTime: '—', hours: '6:20', overtime: '0:00', status: 'field', location: 'Noida', device: 'Mobile GPS', attendancePct: 86, leaveBalance: 3 },
-    { id: 'EMP-011', name: 'Divya Krishnan', initials: 'DK', dept: 'HR', designation: 'HR Executive', manager: 'Priya Mehta', shift: 'Morning', checkIn: '09:05', checkOut: '17:55', breakTime: '0:30', hours: '8:20', overtime: '0:00', status: 'present', location: 'Ghaziabad', device: 'Biometric', attendancePct: 95, leaveBalance: 11 },
-    { id: 'EMP-012', name: 'Karan Malhotra', initials: 'KM', dept: 'Engineering', designation: 'DevOps', manager: 'Rahul Kapoor', shift: 'General', checkIn: '09:42', checkOut: '18:30', breakTime: '0:25', hours: '8:23', overtime: '0:23', status: 'late', location: 'Remote', device: 'Web', attendancePct: 89, leaveBalance: 6 }
+  var COLUMNS = [
+    { id: 'date', label: 'Date', sortable: true },
+    { id: 'shift', label: 'Shift' },
+    { id: 'inTime', label: 'In Time' },
+    { id: 'outTime', label: 'Out Time' },
+    { id: 'checkIn', label: 'Check In' },
+    { id: 'checkOut', label: 'Check Out' },
+    { id: 'firstHalf', label: '1st Half' },
+    { id: 'secondHalf', label: '2nd Half' },
+    { id: 'lateIn', label: 'Late In' },
+    { id: 'earlyOut', label: 'Early Out' },
+    { id: 'workHours', label: 'Work Hours' },
+    { id: 'lessWork', label: 'Less Work' },
+    { id: 'extraWork', label: 'Extra Work' },
+    { id: 'compOffHour', label: 'Comp Off Hour' },
+    { id: 'compOff', label: 'Comp Off' },
+    { id: 'remark', label: 'Remark' },
+    { id: 'action', label: 'Action' }
   ];
 
-  var REQUESTS = [
-    { id: 'AR-101', type: 'Missed Punch', employee: 'Kavita Nair', reason: 'Biometric device offline at entry', date: '2026-07-09', status: 'pending' },
-    { id: 'AR-102', type: 'Attendance Regularization', employee: 'Priya Mehta', reason: 'Client meeting delayed check-in', date: '2026-07-08', status: 'pending' },
-    { id: 'AR-103', type: 'Late Arrival', employee: 'Karan Malhotra', reason: 'Traffic due to metro disruption', date: '2026-07-10', status: 'pending' },
-    { id: 'AR-104', type: 'Early Exit', employee: 'Rohan Das', reason: 'Medical appointment', date: '2026-07-07', status: 'approved' },
-    { id: 'AR-105', type: 'Forgot Check Out', employee: 'Amit Joshi', reason: 'System logout after night shift', date: '2026-07-06', status: 'pending' }
+  var SHIFT = 'Normal Routine-1';
+
+  /* Sample rows matching CA Cloud Desk screenshots (Aug 2026, DD/MM/YYYY) */
+  var ROWS = [
+    { date: '14/08/2026', sortKey: '2026-08-14', shift: SHIFT, inTime: '10:00', outTime: '18:30', checkIn: '--', checkOut: '--', firstHalf: 'A', secondHalf: 'A', lateIn: '--', earlyOut: '--', workHours: '--', lessWork: '--', extraWork: '--', compOffHour: '--', compOff: 'NO', remark: '--', grievance: true },
+    { date: '13/08/2026', sortKey: '2026-08-13', shift: SHIFT, inTime: '10:00', outTime: '18:30', checkIn: '09:59', checkOut: '18:32', firstHalf: 'P', secondHalf: 'P', lateIn: '--', earlyOut: '--', workHours: '08:33', lessWork: '--', extraWork: '00:03', compOffHour: '--', compOff: 'NO', remark: 'ok', grievance: false },
+    { date: '12/08/2026', sortKey: '2026-08-12', shift: SHIFT, inTime: '10:00', outTime: '18:30', checkIn: '09:55', checkOut: '18:28', firstHalf: 'P', secondHalf: 'P', lateIn: '--', earlyOut: '00:02', workHours: '08:33', lessWork: '--', extraWork: '00:03', compOffHour: '--', compOff: 'NO', remark: 'work from home', grievance: true },
+    { date: '11/08/2026', sortKey: '2026-08-11', shift: SHIFT, inTime: '10:00', outTime: '18:30', checkIn: '10:01', checkOut: '18:35', firstHalf: 'P', secondHalf: 'P', lateIn: '00:01', earlyOut: '--', workHours: '08:34', lessWork: '--', extraWork: '00:04', compOffHour: '--', compOff: 'NO', remark: '--', grievance: false },
+    { date: '10/08/2026', sortKey: '2026-08-10', shift: SHIFT, inTime: '10:00', outTime: '18:30', checkIn: '09:48', checkOut: '18:55', firstHalf: 'P', secondHalf: 'P', lateIn: '--', earlyOut: '--', workHours: '09:07', lessWork: '--', extraWork: '00:37', compOffHour: '--', compOff: 'NO', remark: 'ok', grievance: false },
+    { date: '09/08/2026', sortKey: '2026-08-09', shift: SHIFT, inTime: '10:00', outTime: '18:30', checkIn: '--', checkOut: '--', firstHalf: 'H', secondHalf: 'H', lateIn: '--', earlyOut: '--', workHours: '--', lessWork: '--', extraWork: '--', compOffHour: '--', compOff: 'NO', remark: 'SUNDAY', grievance: false },
+    { date: '08/08/2026', sortKey: '2026-08-08', shift: SHIFT, inTime: '10:00', outTime: '18:30', checkIn: '09:57', checkOut: '18:32', firstHalf: 'P', secondHalf: 'P', lateIn: '--', earlyOut: '--', workHours: '08:35', lessWork: '--', extraWork: '00:05', compOffHour: '--', compOff: 'NO', remark: '--', grievance: false },
+    { date: '07/08/2026', sortKey: '2026-08-07', shift: SHIFT, inTime: '10:00', outTime: '18:30', checkIn: '10:12', checkOut: '18:30', firstHalf: 'P', secondHalf: 'P', lateIn: '00:12', earlyOut: '--', workHours: '08:18', lessWork: '00:12', extraWork: '--', compOffHour: '--', compOff: 'NO', remark: '--', grievance: true },
+    { date: '06/08/2026', sortKey: '2026-08-06', shift: SHIFT, inTime: '10:00', outTime: '18:30', checkIn: '09:50', checkOut: '18:40', firstHalf: 'P', secondHalf: 'P', lateIn: '--', earlyOut: '--', workHours: '08:50', lessWork: '--', extraWork: '00:20', compOffHour: '--', compOff: 'NO', remark: 'ok', grievance: false },
+    { date: '05/08/2026', sortKey: '2026-08-05', shift: SHIFT, inTime: '10:00', outTime: '18:30', checkIn: '10:20', checkOut: '18:30', firstHalf: 'OD', secondHalf: 'OD', lateIn: '00:20', earlyOut: '--', workHours: '08:10', lessWork: '00:20', extraWork: '--', compOffHour: '--', compOff: 'NO', remark: 'client visit', grievance: true },
+    { date: '04/08/2026', sortKey: '2026-08-04', shift: SHIFT, inTime: '10:00', outTime: '18:30', checkIn: '--', checkOut: '--', firstHalf: 'CO', secondHalf: 'CO', lateIn: '--', earlyOut: '--', workHours: '--', lessWork: '--', extraWork: '--', compOffHour: '--', compOff: 'YES', remark: 'Comp Off', grievance: false },
+    { date: '03/08/2026', sortKey: '2026-08-03', shift: SHIFT, inTime: '10:00', outTime: '18:30', checkIn: '09:58', checkOut: '18:42', firstHalf: 'P', secondHalf: 'P', lateIn: '--', earlyOut: '--', workHours: '08:44', lessWork: '--', extraWork: '00:14', compOffHour: '--', compOff: 'NO', remark: 'ok', grievance: false },
+    { date: '02/08/2026', sortKey: '2026-08-02', shift: SHIFT, inTime: '10:00', outTime: '18:30', checkIn: '--', checkOut: '--', firstHalf: 'H', secondHalf: 'H', lateIn: '--', earlyOut: '--', workHours: '--', lessWork: '--', extraWork: '--', compOffHour: '--', compOff: 'NO', remark: 'SUNDAY', grievance: false },
+    { date: '01/08/2026', sortKey: '2026-08-01', shift: SHIFT, inTime: '10:00', outTime: '18:30', checkIn: '10:05', checkOut: '19:00', firstHalf: 'P', secondHalf: 'P', lateIn: '00:05', earlyOut: '--', workHours: '08:55', lessWork: '--', extraWork: '00:30', compOffHour: '--', compOff: 'NO', remark: '--', grievance: false }
   ];
 
-  var SHIFTS = [
-    { name: 'Morning Shift', timing: '07:00 – 15:30', hours: '8.0 hrs', assigned: 18, status: 'active' },
-    { name: 'General Shift', timing: '09:00 – 18:00', hours: '8.5 hrs', assigned: 64, status: 'active' },
-    { name: 'Night Shift', timing: '21:00 – 05:30', hours: '8.0 hrs', assigned: 12, status: 'active' },
-    { name: 'Custom Shift', timing: 'Flexible / Field', hours: 'Variable', assigned: 9, status: 'active' }
-  ];
-
-  var LIVE = [
-    { label: 'Currently Working', count: 48, desc: 'Checked in & active' },
-    { label: 'On Break', count: 6, desc: 'Break out in progress' },
-    { label: 'Checked Out', count: 22, desc: 'Completed for today' },
-    { label: 'Remote Employees', count: 14, desc: 'Working from home' },
-    { label: 'Field Employees', count: 8, desc: 'On site / client visit' },
-    { label: 'Idle Employees', count: 3, desc: 'No activity > 45 min' }
-  ];
-
-  var ACTIVITY = [
-    { text: 'Ananya Sharma checked in', time: 'Today · 09:02 AM' },
-    { text: 'Late arrival approved for Priya Mehta', time: 'Today · 10:15 AM' },
-    { text: 'Missed punch corrected — Kavita Nair', time: 'Today · 11:40 AM' },
-    { text: 'Night shift assigned to Amit Joshi', time: 'Yesterday · 06:20 PM' },
-    { text: 'Attendance report exported (Excel)', time: 'Yesterday · 05:05 PM' },
-    { text: 'Attendance approved — Early exit Rohan Das', time: 'Jul 7 · 04:30 PM' }
-  ];
-
-  var HOLIDAYS = [
-    { id: 'HOL-01', title: 'Independence Day', detail: 'Fri, Aug 15', type: 'holiday', days: 36, note: 'National holiday · Office closed' },
-    { id: 'HOL-02', title: 'Weekly Off', detail: 'Sat–Sun', type: 'weekend', days: 1, note: 'Recurring weekend off' },
-    { id: 'HOL-03', title: 'Ganesh Chaturthi', detail: 'Thu, Aug 27', type: 'festival', days: 48, note: 'Festival holiday · Optional WFH' },
-    { id: 'HOL-04', title: 'Company Foundation Day', detail: 'Mon, Sep 14', type: 'holiday', days: 66, note: 'Company holiday · Team event' }
-  ];
-
-  var TIMELINE_DEMO = [
-    { time: '09:02', text: 'Check In', detail: 'Biometric · Gate A' },
-    { time: '12:55', text: 'Break Out', detail: 'Cafeteria' },
-    { time: '13:30', text: 'Break In', detail: 'Biometric · Floor 2' },
-    { time: '18:18', text: 'Check Out', detail: 'Biometric · Gate A' }
+  var HISTORY_ROWS = [
+    { id: 'TR-1024', date: '14/08/2026', detail: 'Late check-in correction for 07/08/2026', status: 'Pending', statusKey: 'pending' },
+    { id: 'TR-1023', date: '12/08/2026', detail: 'Work from home request — client meeting', status: 'Approved', statusKey: 'approved' },
+    { id: 'TR-1022', date: '10/08/2026', detail: 'Early checkout approval (medical)', status: 'Rejected', statusKey: 'rejected' },
+    { id: 'TR-1021', date: '08/08/2026', detail: 'Comp off request for 09/08/2026', status: 'Approved', statusKey: 'approved' },
+    { id: 'TR-1020', date: '05/08/2026', detail: 'On-duty visit — CA Cloud Desk client site', status: 'In Review', statusKey: 'review' }
   ];
 
   var state = {
-    sortKey: 'name',
-    sortDir: 1,
-    filters: { q: '', dept: '', designation: '', manager: '', status: '', shift: '', location: '', date: '' },
-    role: 'admin',
-    calMonth: 6,
-    calYear: 2026,
-    selected: null,
-    bulk: false,
-    section: 'overview',
-    punch: { status: 'out', startedAt: null, breakStartedAt: null, workedMs: 0, lastIn: null }
+    visible: COLUMNS.map(function (c) { return c.id; }),
+    pageSize: 50,
+    page: 1,
+    sortDir: 'desc',
+    checkedOut: true,
+    filterStart: '',
+    filterEnd: '',
+    filterRangeStart: null,
+    filterRangeEnd: null,
+    filterCalCursor: new Date(2026, 7, 1),
+    filterPickingEnd: false,
+    dateRangeOpen: false
   };
 
-  var ROLE_ACTIONS = {
-    admin: ['Mark Attendance', 'Export Report', 'Attendance Settings', 'Bulk Approval'],
-    hr: ['Mark Attendance', 'Export Report', 'Attendance Settings'],
-    manager: ['Approve Requests', 'Export Report', 'Team Attendance'],
-    employee: ['Mark Attendance', 'My Requests', 'Regularize']
+  var histState = { page: 1, pageSize: 10 };
+
+  var els = {
+    head: document.getElementById('attTableHead'),
+    body: document.getElementById('attTableBody'),
+    pageSize: document.getElementById('attPageSize'),
+    pageInput: document.getElementById('attPageInput'),
+    pageTotal: document.getElementById('attPageTotal'),
+    count: document.getElementById('attCount'),
+    prev: document.getElementById('attPrev'),
+    next: document.getElementById('attNext'),
+    checkOutBtn: document.getElementById('attCheckOutBtn'),
+    topCheckOutBtn: document.getElementById('attTopCheckOutBtn'),
+    topClock: document.getElementById('attTopClock'),
+    summaryBtn: document.getElementById('attSummaryBtn'),
+    columnsBtn: document.getElementById('attColumnsBtn'),
+    filterBtn: document.getElementById('attFilterBtn'),
+    columnsPop: document.getElementById('attColumnsPop'),
+    columnsList: document.getElementById('attColumnsList'),
+    selectAll: document.getElementById('attSelectAllCols'),
+    filterPop: document.getElementById('attFilterPop'),
+    filterReset: document.getElementById('attFilterReset'),
+    dateToggle: document.getElementById('attDateRangeToggle'),
+    dateBody: document.getElementById('attDateRangeBody'),
+    filterRangeBtn: document.getElementById('attFilterRangeBtn'),
+    filterRangeLabel: document.getElementById('attFilterRangeLabel'),
+    filterCal: document.getElementById('attFilterCal'),
+    filterCalInner: document.getElementById('attFilterCalInner'),
+    historyBody: document.getElementById('attHistoryBody'),
+    historyEmpty: document.getElementById('attHistoryEmpty'),
+    histPageSize: document.getElementById('attHistPageSize'),
+    histPageInput: document.getElementById('attHistPageInput'),
+    histPageTotal: document.getElementById('attHistPageTotal'),
+    histCount: document.getElementById('attHistCount'),
+    histPrev: document.getElementById('attHistPrev'),
+    histNext: document.getElementById('attHistNext')
   };
 
-  function $(id) { return document.getElementById(id); }
-  function toast(title, detail) {
-    if (window.DashboardShell) DashboardShell.toast(title, detail || 'UI preview — connect backend when ready.');
+  function toast(title, msg) {
+    var stack = document.getElementById('toastStack');
+    if (!stack) return;
+    var el = document.createElement('div');
+    el.className = 'toast';
+    el.innerHTML = '<strong>' + title + '</strong><span>' + msg + '</span>';
+    stack.appendChild(el);
+    requestAnimationFrame(function () { el.classList.add('is-in'); });
+    setTimeout(function () {
+      el.classList.remove('is-in');
+      setTimeout(function () { el.remove(); }, 280);
+    }, 2800);
   }
 
-  function badge(status) {
-    var key = String(status || '').toLowerCase().replace(/\s+/g, '');
-    if (key === 'halfday') key = 'halfday';
-    return '<span class="att-badge att-badge--' + key + '">' + status + '</span>';
+  function statusBadge(code) {
+    var c = String(code || '').toUpperCase();
+    var cls = 'att-badge--p';
+    if (c === 'A') cls = 'att-badge--a';
+    else if (c === 'H') cls = 'att-badge--h';
+    else if (c === 'OD') cls = 'att-badge--od';
+    else if (c === 'CO') cls = 'att-badge--co';
+    return '<span class="att-badge ' + cls + '">' + c + '</span>';
   }
 
-  function animateCount(el, target, suffix) {
-    if (!el) return;
-    var num = Number(target) || 0, t0 = null, dur = 900;
-    function step(ts) {
-      if (!t0) t0 = ts;
-      var p = Math.min((ts - t0) / dur, 1);
-      var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.floor(num * eased) + (suffix || '');
-      if (p < 1) requestAnimationFrame(step);
-      else el.textContent = num + (suffix || '');
-    }
-    requestAnimationFrame(step);
-  }
+  function pad2(n) { return n < 10 ? '0' + n : String(n); }
 
-  function getFiltered() {
-    return EMPLOYEES.filter(function (e) {
-      var q = state.filters.q.toLowerCase();
-      if (q) {
-        var blob = [e.name, e.id, e.dept, e.designation, e.manager, e.location].join(' ').toLowerCase();
-        if (blob.indexOf(q) === -1) return false;
-      }
-      if (state.filters.dept && e.dept !== state.filters.dept) return false;
-      if (state.filters.designation && e.designation !== state.filters.designation) return false;
-      if (state.filters.manager && e.manager !== state.filters.manager) return false;
-      if (state.filters.status && e.status !== state.filters.status) return false;
-      if (state.filters.shift && e.shift !== state.filters.shift) return false;
-      if (state.filters.location && e.location !== state.filters.location) return false;
-      return true;
-    }).sort(function (a, b) {
-      var ka = String(a[state.sortKey] || '');
-      var kb = String(b[state.sortKey] || '');
-      if (ka < kb) return -1 * state.sortDir;
-      if (ka > kb) return 1 * state.sortDir;
-      return 0;
-    });
-  }
-
-  function renderKpi() {
-    var total = EMPLOYEES.length;
-    var present = EMPLOYEES.filter(function (e) { return e.status === 'present' || e.status === 'remote' || e.status === 'field'; }).length;
-    var absent = EMPLOYEES.filter(function (e) { return e.status === 'absent'; }).length;
-    var leave = EMPLOYEES.filter(function (e) { return e.status === 'leave'; }).length;
-    var late = EMPLOYEES.filter(function (e) { return e.status === 'late'; }).length;
-    var remote = EMPLOYEES.filter(function (e) { return e.status === 'remote'; }).length;
-    var field = EMPLOYEES.filter(function (e) { return e.status === 'field'; }).length;
-    var pending = REQUESTS.filter(function (r) { return r.status === 'pending'; }).length;
-    var pct = Math.round((present / total) * 100);
-    animateCount($('kpiTotal'), 128);
-    animateCount($('kpiPresent'), present + 42);
-    animateCount($('kpiAbsent'), absent + 3);
-    animateCount($('kpiLeave'), leave + 5);
-    animateCount($('kpiLate'), late + 4);
-    animateCount($('kpiRemote'), remote + 8);
-    animateCount($('kpiField'), field + 4);
-    animateCount($('kpiHours'), 8, '.4h');
-    animateCount($('kpiPending'), pending);
-    animateCount($('kpiPct'), pct, '%');
-  }
-
-  function renderTable() {
-    var list = getFiltered();
-    var body = $('attTableBody');
-    var empty = $('attTableEmpty');
-    var skel = $('attTableSkel');
-    if (!body) return;
-    if (skel) skel.classList.add('is-hidden');
-    if (!list.length) {
-      body.innerHTML = '';
-      if (empty) empty.classList.remove('is-hidden');
-      return;
-    }
-    if (empty) empty.classList.add('is-hidden');
-    body.innerHTML = list.map(function (e) {
-      return '<tr data-id="' + e.id + '">' +
-        '<td><label class="att-check"><input type="checkbox" data-bulk-id="' + e.id + '" aria-label="Select ' + e.name + '"></label></td>' +
-        '<td><div class="att-table__emp">' +
-        '<button type="button" class="att-avatar" data-preview="' + e.id + '" aria-label="Preview ' + e.name + '">' + e.initials + '</button>' +
-        '<div><strong>' + e.name + '</strong><div style="font-size:11px;color:var(--muted)">' + e.id + '</div></div></div></td>' +
-        '<td>' + e.id + '</td><td>' + e.dept + '</td><td>' + e.designation + '</td><td>' + e.manager + '</td>' +
-        '<td>' + e.shift + '</td><td>' + e.checkIn + '</td><td>' + e.checkOut + '</td><td>' + e.breakTime + '</td>' +
-        '<td>' + e.hours + '</td><td>' + e.overtime + '</td><td>' + badge(e.status) + '</td>' +
-        '<td>' + e.location + '</td><td>' + e.device + '</td>' +
-        '<td class="att-table__actions">' +
-        '<button type="button" class="att-btn att-btn--sm" data-action="timeline" data-id="' + e.id + '">Timeline</button>' +
-        '<button type="button" class="att-btn att-btn--sm" data-action="regularize" data-id="' + e.id + '">Regularize</button>' +
-        '</td></tr>';
-    }).join('');
-  }
-
-  function dayType(day) {
-    var d = new Date(state.calYear, state.calMonth, day);
-    var wd = d.getDay();
-    if (wd === 0 || wd === 6) return 'weekend';
-    if (day === 15) return 'holiday';
-    if (day % 11 === 0) return 'absent';
-    if (day % 7 === 0) return 'leave';
-    if (day % 5 === 0) return 'late';
-    return 'present';
-  }
-
-  function renderCalendar() {
-    var wrap = $('attCalendar');
-    var label = $('attCalLabel');
-    if (!wrap) return;
-    var monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-    if (label) label.textContent = monthNames[state.calMonth] + ' ' + state.calYear;
-    var first = new Date(state.calYear, state.calMonth, 1).getDay();
-    var days = new Date(state.calYear, state.calMonth + 1, 0).getDate();
-    var today = 10;
-    var html = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(function (d) {
-      return '<div class="att-calendar__dow">' + d + '</div>';
-    }).join('');
-    for (var i = 0; i < first; i++) html += '<div class="att-calendar__day is-muted" aria-hidden="true"></div>';
-    for (var day = 1; day <= days; day++) {
-      var type = dayType(day);
-      var isToday = day === today;
-      html += '<button type="button" class="att-calendar__day' + (isToday ? ' is-today' : '') + '" data-day="' + day + '" aria-label="' + day + ' ' + type + '">' +
-        '<div class="att-calendar__num">' + day + '</div>' +
-        '<div class="att-calendar__dots"><i class="att-calendar__dot att-calendar__dot--' + type + '"></i></div></button>';
-    }
-    wrap.innerHTML = html;
-  }
-
-  function renderRequests() {
-    var wrap = $('attRequests');
-    if (!wrap) return;
-    var list = REQUESTS;
-    if (!list.length) {
-      wrap.innerHTML = '<div class="att-empty"><strong>No Requests</strong><p>No pending attendance requests.</p></div>';
-      return;
-    }
-    wrap.innerHTML = list.map(function (r) {
-      return '<article class="att-req-card"><div class="att-req-card__head"><strong>' + r.type + '</strong>' + badge(r.status) + '</div>' +
-        '<div class="att-req-card__meta">' +
-        '<div><span>Employee</span><b>' + r.employee + '</b></div>' +
-        '<div><span>Submitted</span><b>' + r.date + '</b></div>' +
-        '<div><span>Reason</span><b>' + r.reason + '</b></div>' +
-        '<div><span>ID</span><b>' + r.id + '</b></div></div>' +
-        '<div class="att-req-card__actions">' +
-        (r.status === 'pending'
-          ? '<button type="button" class="att-btn att-btn--sm att-btn--success" data-ui="approve-req" data-id="' + r.id + '">Approve</button>' +
-            '<button type="button" class="att-btn att-btn--sm att-btn--danger" data-ui="reject-req" data-id="' + r.id + '">Reject</button>'
-          : '') +
-        '<button type="button" class="att-btn att-btn--sm" data-ui="view-req" data-id="' + r.id + '">View Details</button>' +
-        '</div></article>';
-    }).join('');
-  }
-
-  function renderShifts() {
-    var wrap = $('attShifts');
-    if (!wrap) return;
-    wrap.innerHTML = SHIFTS.map(function (s) {
-      return '<article class="att-shift-card"><div class="att-info-card__head"><h3>' + s.name + '</h3>' + badge(s.status) + '</div>' +
-        '<p><strong>' + s.timing + '</strong><br>Working hours: ' + s.hours + '<br>Employees assigned: ' + s.assigned + '</p></article>';
-    }).join('');
-  }
-
-  function renderLive() {
-    var wrap = $('attLive');
-    if (!wrap) return;
-    wrap.innerHTML = LIVE.map(function (l) {
-      return '<button type="button" class="att-live__card" data-section-jump="register">' +
-        '<strong>' + l.label + '</strong><div class="att-live__count" data-live-count="' + l.count + '">0</div><span>' + l.desc + '</span></button>';
-    }).join('');
-    wrap.querySelectorAll('[data-live-count]').forEach(function (el) {
-      animateCount(el, el.getAttribute('data-live-count'));
-    });
-    renderPresence();
-    renderActivity();
-  }
-
-  function renderPresence() {
-    var wrap = $('attPresence');
-    if (!wrap) return;
-    var active = EMPLOYEES.filter(function (e) {
-      return e.status === 'present' || e.status === 'remote' || e.status === 'field' || e.status === 'late' || e.status === 'halfday';
-    });
-    wrap.innerHTML = active.map(function (e) {
-      return '<button type="button" class="att-presence__row" data-action="timeline" data-id="' + e.id + '">' +
-        '<span class="att-avatar" aria-hidden="true">' + e.initials + '</span>' +
-        '<span class="att-presence__meta"><strong>' + e.name + '</strong><span>' + e.dept + ' · ' + e.status + '</span></span>' +
-        '<span class="att-presence__time">' + (e.checkIn !== '—' ? e.checkIn : '—') + '</span></button>';
-    }).join('');
-  }
-
-  function renderActivity() {
-    var wrap = $('attActivity');
-    if (!wrap) return;
-    wrap.innerHTML = ACTIVITY.slice(0, 6).map(function (a, i) {
-      return '<button type="button" class="att-timeline__item att-timeline__btn" data-ui="activity-item" data-idx="' + i + '">' +
-        '<strong>' + a.text + '</strong><span>' + a.time + '</span></button>';
-    }).join('');
-  }
-
-  function formatClock(d) {
-    var h = String(d.getHours()).padStart(2, '0');
-    var m = String(d.getMinutes()).padStart(2, '0');
-    var s = String(d.getSeconds()).padStart(2, '0');
-    return h + ':' + m + ':' + s;
-  }
-
-  function formatDuration(ms) {
-    var total = Math.max(0, Math.floor(ms / 1000));
-    var h = String(Math.floor(total / 3600)).padStart(2, '0');
-    var m = String(Math.floor((total % 3600) / 60)).padStart(2, '0');
-    var s = String(total % 60).padStart(2, '0');
-    return h + ':' + m + ':' + s;
-  }
-
-  function currentWorkedMs() {
-    var p = state.punch;
-    var base = p.workedMs || 0;
-    if (p.status === 'in' && p.startedAt) base += Date.now() - p.startedAt;
-    return base;
-  }
-
-  function renderPunch() {
-    var p = state.punch;
-    var statusEl = $('punchStatus');
-    var meta = $('punchMeta');
-    var elapsed = $('punchElapsed');
-    var btnIn = $('btnPunchIn');
-    var btnBreak = $('btnPunchBreak');
-    var btnOut = $('btnPunchOut');
-    var labels = { out: 'Checked out', in: 'Checked in', break: 'On break' };
-    if (statusEl) {
-      statusEl.textContent = labels[p.status] || 'Checked out';
-      statusEl.className = 'att-punch__status is-' + p.status;
-    }
-    if (meta) {
-      if (p.status === 'out' && !p.lastIn) meta.textContent = 'Not punched in yet · General shift';
-      else if (p.status === 'out') meta.textContent = 'Last punch out recorded · Ready for next day';
-      else if (p.status === 'break') meta.textContent = 'Break started · resume when ready';
-      else meta.textContent = 'Punched in at ' + (p.lastIn || '—') + ' · General shift';
-    }
-    if (elapsed) elapsed.textContent = formatDuration(currentWorkedMs());
-    if (btnIn) btnIn.disabled = p.status !== 'out';
-    if (btnBreak) btnBreak.disabled = p.status !== 'in' && p.status !== 'break';
-    if (btnOut) btnOut.disabled = p.status === 'out';
-    if (btnBreak) btnBreak.textContent = p.status === 'break' ? 'Resume' : 'Break';
-  }
-
-  function setPunch(action) {
-    var p = state.punch;
+  function tickClock() {
+    if (!els.topClock) return;
     var now = new Date();
-    var stamp = formatClock(now).slice(0, 5);
-    if (action === 'in') {
-      p.status = 'in';
-      p.startedAt = Date.now();
-      p.lastIn = stamp;
-      ACTIVITY.unshift({ text: 'You punched in', time: 'Today · ' + stamp });
-      toast('Punched in', 'Check-in recorded at ' + stamp);
-    } else if (action === 'break') {
-      if (p.status === 'in') {
-        p.workedMs = currentWorkedMs();
-        p.startedAt = null;
-        p.status = 'break';
-        p.breakStartedAt = Date.now();
-        ACTIVITY.unshift({ text: 'You started a break', time: 'Today · ' + stamp });
-        toast('Break started', 'Timer paused at ' + stamp);
-      } else if (p.status === 'break') {
-        p.status = 'in';
-        p.startedAt = Date.now();
-        p.breakStartedAt = null;
-        ACTIVITY.unshift({ text: 'You resumed from break', time: 'Today · ' + stamp });
-        toast('Back from break', 'Work timer resumed');
+    var t = pad2(now.getHours()) + ':' + pad2(now.getMinutes());
+    els.topClock.textContent = t;
+    els.topClock.setAttribute('datetime', now.toISOString());
+  }
+
+  function closePops() {
+    if (els.columnsPop) els.columnsPop.hidden = true;
+    if (els.filterPop) els.filterPop.hidden = true;
+    if (els.columnsBtn) els.columnsBtn.classList.remove('is-active');
+    if (els.filterBtn) els.filterBtn.classList.remove('is-active');
+    closeFilterCal();
+  }
+
+  function placePop(pop, btn) {
+    if (!pop || !btn) return;
+    pop.hidden = false;
+    var r = btn.getBoundingClientRect();
+    var w = pop.offsetWidth || 280;
+    var left = Math.min(window.innerWidth - w - 12, Math.max(12, r.right - w));
+    pop.style.left = left + 'px';
+    pop.style.top = (r.bottom + 10) + 'px';
+    var caret = pop.querySelector('.att-pop__caret');
+    if (caret) {
+      var caretLeft = r.left + r.width / 2 - left - 6;
+      caret.style.left = Math.max(14, Math.min(w - 20, caretLeft)) + 'px';
+      caret.style.right = 'auto';
+    }
+  }
+
+  function toSortKey(d) {
+    return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate());
+  }
+
+  function syncFilterRangeLabel() {
+    if (!els.filterRangeLabel) return;
+    if (state.filterRangeStart && state.filterRangeEnd) {
+      els.filterRangeLabel.className = 'att-filter-range__text has-value';
+      els.filterRangeLabel.innerHTML = '<em>' + fmtDMY(state.filterRangeStart) + '</em><span aria-hidden="true">→</span><em>' + fmtDMY(state.filterRangeEnd) + '</em>';
+    } else if (state.filterRangeStart) {
+      els.filterRangeLabel.className = 'att-filter-range__text has-value';
+      els.filterRangeLabel.innerHTML = '<em>' + fmtDMY(state.filterRangeStart) + '</em><span aria-hidden="true">→</span><em>End date</em>';
+    } else {
+      els.filterRangeLabel.className = 'att-filter-range__text';
+      els.filterRangeLabel.innerHTML = '<em>Start date</em><span aria-hidden="true">→</span><em>End date</em>';
+    }
+  }
+
+  function applyFilterRange() {
+    state.filterStart = state.filterRangeStart ? toSortKey(state.filterRangeStart) : '';
+    state.filterEnd = state.filterRangeEnd ? toSortKey(state.filterRangeEnd) : '';
+    state.page = 1;
+    render();
+  }
+
+  function closeFilterCal() {
+    if (els.filterCal) els.filterCal.hidden = true;
+    if (els.filterRangeBtn) {
+      els.filterRangeBtn.classList.remove('is-open');
+      els.filterRangeBtn.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+  function renderFilterMonth(year, month, showLeftNav, showRightNav) {
+    var first = new Date(year, month, 1);
+    var startDay = first.getDay();
+    var daysInMonth = new Date(year, month + 1, 0).getDate();
+    var prevDays = new Date(year, month, 0).getDate();
+    var label = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][month] + ' ' + year;
+    var html = '<div class="att-range-cal__month"><div class="att-range-cal__head">';
+    html += '<div class="att-range-cal__nav">';
+    if (showLeftNav) html += '<button type="button" data-fcal-nav="year-1" aria-label="Previous year">&lt;&lt;</button><button type="button" data-fcal-nav="month-1" aria-label="Previous month">&lt;</button>';
+    html += '</div><span>' + label + '</span><div class="att-range-cal__nav">';
+    if (showRightNav) html += '<button type="button" data-fcal-nav="month1" aria-label="Next month">&gt;</button><button type="button" data-fcal-nav="year1" aria-label="Next year">&gt;&gt;</button>';
+    html += '</div></div><div class="att-range-cal__grid">';
+    ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(function (d) {
+      html += '<div class="att-range-cal__dow">' + d + '</div>';
+    });
+    var cells = [];
+    for (var i = 0; i < startDay; i++) cells.push({ d: prevDays - startDay + i + 1, m: month - 1, y: year, out: true });
+    for (var day = 1; day <= daysInMonth; day++) cells.push({ d: day, m: month, y: year, out: false });
+    var fill = 0;
+    while (cells.length % 7 !== 0) { fill += 1; cells.push({ d: fill, m: month + 1, y: year, out: true }); }
+    cells.forEach(function (c) {
+      var y = c.y, m = c.m;
+      if (m < 0) { m = 11; y -= 1; }
+      if (m > 11) { m = 0; y += 1; }
+      var date = new Date(y, m, c.d);
+      var cls = 'att-range-cal__day';
+      if (c.out) cls += ' is-out';
+      var isStart = sameDay(date, state.filterRangeStart);
+      var isEnd = sameDay(date, state.filterRangeEnd);
+      if (isStart || isEnd) cls += ' is-edge' + (state.filterRangeStart && state.filterRangeEnd ? ' is-fill' : '');
+      else if (inRange(date, state.filterRangeStart, state.filterRangeEnd)) cls += ' is-in-range';
+      html += '<button type="button" class="' + cls + '" data-y="' + y + '" data-m="' + m + '" data-d="' + c.d + '">' + c.d + '</button>';
+    });
+    html += '</div></div>';
+    return html;
+  }
+
+  function renderFilterCal() {
+    if (!els.filterCalInner) return;
+    var y = state.filterCalCursor.getFullYear();
+    var m = state.filterCalCursor.getMonth();
+    var next = new Date(y, m + 1, 1);
+    els.filterCalInner.innerHTML = renderFilterMonth(y, m, true, false) + renderFilterMonth(next.getFullYear(), next.getMonth(), false, true);
+  }
+
+  function openFilterCal() {
+    if (!els.filterCal || !els.filterRangeBtn) return;
+    renderFilterCal();
+    els.filterCal.hidden = false;
+    els.filterRangeBtn.classList.add('is-open');
+    els.filterRangeBtn.setAttribute('aria-expanded', 'true');
+    var r = els.filterRangeBtn.getBoundingClientRect();
+    var w = els.filterCal.offsetWidth || 520;
+    var left = Math.min(window.innerWidth - w - 12, Math.max(12, r.left));
+    var top = r.bottom + 8;
+    if (top + 320 > window.innerHeight) top = Math.max(12, r.top - 320);
+    els.filterCal.style.left = left + 'px';
+    els.filterCal.style.top = top + 'px';
+  }
+
+  function filteredRows() {
+    var list = ROWS.slice();
+    if (state.filterStart) {
+      list = list.filter(function (r) { return r.sortKey >= state.filterStart; });
+    }
+    if (state.filterEnd) {
+      list = list.filter(function (r) { return r.sortKey <= state.filterEnd; });
+    }
+    list.sort(function (a, b) {
+      if (a.sortKey === b.sortKey) return 0;
+      if (state.sortDir === 'asc') return a.sortKey < b.sortKey ? -1 : 1;
+      return a.sortKey > b.sortKey ? -1 : 1;
+    });
+    return list;
+  }
+
+  function isVisible(id) {
+    return state.visible.indexOf(id) !== -1;
+  }
+
+  function renderHead() {
+    var sortClass = state.sortDir === 'asc' ? ' is-asc' : ' is-desc';
+    els.head.innerHTML = COLUMNS.map(function (col) {
+      var hidden = isVisible(col.id) ? '' : ' hidden';
+      if (col.sortable) {
+        return '<th scope="col" data-col="' + col.id + '"' + hidden + '>' +
+          '<button type="button" class="att-th-sort' + sortClass + '" id="attSortDate" aria-label="Sort by date">' +
+          col.label +
+          '<span class="att-th-sort__icons" aria-hidden="true">' +
+          '<svg viewBox="0 0 8 8"><path fill="currentColor" d="M4 1L7 5H1z"/></svg>' +
+          '<svg viewBox="0 0 8 8"><path fill="currentColor" d="M4 7L1 3h6z"/></svg>' +
+          '</span></button></th>';
       }
-    } else if (action === 'out') {
-      if (p.status === 'in') p.workedMs = currentWorkedMs();
-      p.status = 'out';
-      p.startedAt = null;
-      p.breakStartedAt = null;
-      ACTIVITY.unshift({ text: 'You punched out', time: 'Today · ' + stamp });
-      toast('Punched out', 'Total worked ' + formatDuration(p.workedMs));
-    }
-    renderPunch();
-    renderActivity();
-  }
+      return '<th scope="col" data-col="' + col.id + '"' + hidden + '>' + col.label + '</th>';
+    }).join('');
 
-  function tickClocks() {
-    if ($('punchElapsed') && state.punch.status === 'in') {
-      $('punchElapsed').textContent = formatDuration(currentWorkedMs());
-    }
-  }
-
-  function updateNavMeta() {
-    var pending = REQUESTS.filter(function (r) { return r.status === 'pending'; }).length;
-    var count = $('navReqCount');
-    if (count) {
-      count.textContent = pending ? String(pending) : '';
-      count.setAttribute('data-empty', pending ? '0' : '1');
-    }
-  }
-
-  function renderSnap() {
-    var present = EMPLOYEES.filter(function (e) { return e.status === 'present' || e.status === 'remote' || e.status === 'field' || e.status === 'late'; }).length;
-    var absent = EMPLOYEES.filter(function (e) { return e.status === 'absent'; }).length;
-    var pending = REQUESTS.filter(function (r) { return r.status === 'pending'; }).length;
-    var pct = Math.round((present / EMPLOYEES.length) * 100);
-    if ($('snapPresent')) $('snapPresent').textContent = String(present);
-    if ($('snapAbsent')) $('snapAbsent').textContent = String(absent);
-    if ($('snapPending')) $('snapPending').textContent = String(pending);
-    if ($('snapPct')) $('snapPct').textContent = pct + '%';
-    updateNavMeta();
-  }
-
-  function renderRoleBar() {
-    var mark = $('btnMark');
-    var settings = $('btnSettings');
-    if (mark) mark.style.display = state.role === 'manager' ? 'none' : '';
-    if (settings) settings.style.display = (state.role === 'admin' || state.role === 'hr') ? '' : 'none';
-  }
-
-  function fillFilters() {
-    function unique(key) {
-      var map = {};
-      EMPLOYEES.forEach(function (e) { if (e[key]) map[e[key]] = 1; });
-      return Object.keys(map).sort();
-    }
-    function fill(id, values) {
-      var el = $(id);
-      if (!el) return;
-      values.forEach(function (v) {
-        var opt = document.createElement('option');
-        opt.value = v; opt.textContent = v;
-        el.appendChild(opt);
+    var sortBtn = document.getElementById('attSortDate');
+    if (sortBtn) {
+      sortBtn.addEventListener('click', function () {
+        state.sortDir = state.sortDir === 'asc' ? 'desc' : 'asc';
+        render();
       });
     }
-    fill('filterDept', unique('dept'));
-    fill('filterDesignation', unique('designation'));
-    fill('filterManager', unique('manager'));
-    fill('filterStatus', ['present', 'absent', 'late', 'halfday', 'leave', 'remote', 'field']);
-    fill('filterShift', unique('shift'));
-    fill('filterLocation', unique('location'));
   }
 
-  function openTimeline(id) {
-    var e = EMPLOYEES.find(function (x) { return x.id === id; });
-    if (!e) return;
-    state.selected = e;
-    var body = $('attDrawerBody');
-    var title = $('attDrawerTitle');
-    if (title) title.textContent = e.name;
-    if (body) {
-      body.innerHTML =
-        '<section class="att-modal__section"><div style="display:flex;gap:12px;align-items:center;margin-bottom:12px">' +
-        '<div class="att-avatar" style="width:52px;height:52px;font-size:14px">' + e.initials + '</div>' +
-        '<div><strong style="font-size:15px;color:var(--heading)">' + e.name + '</strong><div style="font-size:12px;color:var(--muted)">' + e.dept + ' · ' + e.designation + '</div></div></div>' +
-        '<div class="att-modal__grid">' +
-        '<div><span>Manager</span><b>' + e.manager + '</b></div><div><span>Status</span><b>' + badge(e.status) + '</b></div>' +
-        '<div><span>Working Hours</span><b>' + e.hours + '</b></div><div><span>Overtime</span><b>' + e.overtime + '</b></div>' +
-        '<div><span>GPS Location</span><b>' + e.location + '</b></div><div><span>Device</span><b>' + e.device + '</b></div>' +
-        '<div><span>Remarks</span><b>On-time punch verified</b></div></div></section>' +
-        '<section class="att-modal__section"><h3>Timeline</h3><div class="att-timeline">' +
-        TIMELINE_DEMO.map(function (t) {
-          return '<div class="att-timeline__item"><strong>' + t.time + ' · ' + t.text + '</strong><span>' + t.detail + '</span></div>';
-        }).join('') + '</div></section>';
-    }
-    var modal = $('attDrawer');
-    if (modal) { modal.classList.add('is-open'); modal.setAttribute('aria-hidden', 'false'); }
-  }
-
-  function closeModal(id) {
-    var modal = $(id);
-    if (!modal) return;
-    modal.classList.remove('is-open');
-    modal.setAttribute('aria-hidden', 'true');
-  }
-
-  function openSettings() {
-    var modal = $('attSettings');
-    if (modal) { modal.classList.add('is-open'); modal.setAttribute('aria-hidden', 'false'); }
-  }
-
-  function openDayDetails(day) {
-    var type = dayType(day);
-    toast('Attendance · ' + day + ' Jul 2026', 'Status pattern: ' + type);
-  }
-
-  function showPreview(id, anchor) {
-    var e = EMPLOYEES.find(function (x) { return x.id === id; });
-    var tip = $('attPreview');
-    if (!e || !tip || !anchor) return;
-    tip.innerHTML = '<strong>' + e.name + '</strong>' +
-      '<div><span>Department</span><b>' + e.dept + '</b></div>' +
-      '<div><span>Designation</span><b>' + e.designation + '</b></div>' +
-      '<div><span>Manager</span><b>' + e.manager + '</b></div>' +
-      '<div><span>Attendance %</span><b>' + e.attendancePct + '%</b></div>' +
-      '<div><span>Today</span><b>' + e.status + '</b></div>' +
-      '<div><span>Leave Balance</span><b>' + e.leaveBalance + ' days</b></div>';
-    var rect = anchor.getBoundingClientRect();
-    tip.style.left = Math.min(rect.left, window.innerWidth - 260) + 'px';
-    tip.style.top = (rect.bottom + 8 + windowYOffset) + 'px';
-    tip.classList.add('is-open');
-  }
-
-  function hidePreview() {
-    var tip = $('attPreview');
-    if (tip) tip.classList.remove('is-open');
-  }
-
-  function ripple(e, el) {
-    var rect = el.getBoundingClientRect();
-    var span = document.createElement('span');
-    span.className = 'att-ripple';
-    var size = Math.max(rect.width, rect.height);
-    span.style.width = span.style.height = size + 'px';
-    span.style.left = (e.clientX - rect.left - size / 2) + 'px';
-    span.style.top = (e.clientY - rect.top - size / 2) + 'px';
-    el.appendChild(span);
-    setTimeout(function () { span.remove(); }, 500);
-  }
-
-  function syncFilters() {
-    state.filters.q = ($('filterQ') && $('filterQ').value) || '';
-    state.filters.dept = ($('filterDept') && $('filterDept').value) || '';
-    state.filters.designation = ($('filterDesignation') && $('filterDesignation').value) || '';
-    state.filters.manager = ($('filterManager') && $('filterManager').value) || '';
-    state.filters.status = ($('filterStatus') && $('filterStatus').value) || '';
-    state.filters.shift = ($('filterShift') && $('filterShift').value) || '';
-    state.filters.location = ($('filterLocation') && $('filterLocation').value) || '';
-    state.filters.date = ($('filterDate') && $('filterDate').value) || '';
-    renderTable();
-  }
-
-  function resolveRequest(id, nextStatus) {
-    var req = REQUESTS.find(function (r) { return r.id === id; });
-    if (!req || req.status !== 'pending') return;
-    req.status = nextStatus;
-    ACTIVITY.unshift({
-      text: (nextStatus === 'approved' ? 'Approved' : 'Rejected') + ' · ' + req.type + ' — ' + req.employee,
-      time: 'Today · just now'
-    });
-    renderRequests();
-    renderSnap();
-    renderActivity();
-    renderKpi();
-    toast(nextStatus === 'approved' ? 'Request approved' : 'Request rejected', req.employee + ' · ' + req.id);
-  }
-
-  function openSection(name, opts) {
-    if (!name) return;
-    opts = opts || {};
-    var valid = ['overview', 'live', 'register', 'requests', 'calendar', 'shifts', 'analytics'];
-    if (valid.indexOf(name) === -1) name = 'overview';
-    if (state.section === name && !opts.force) {
-      ensureActiveTabVisible();
-      return;
-    }
-    state.section = name;
-
-    document.querySelectorAll('.att-section').forEach(function (panel) {
-      var on = panel.getAttribute('data-panel') === name;
-      panel.classList.toggle('is-active', on);
-      if (on) {
-        panel.removeAttribute('hidden');
-        panel.setAttribute('aria-hidden', 'false');
-      } else {
-        panel.setAttribute('hidden', '');
-        panel.setAttribute('aria-hidden', 'true');
+  function cellHtml(col, row) {
+    if (col.id === 'firstHalf' || col.id === 'secondHalf') return statusBadge(row[col.id]);
+    if (col.id === 'action') {
+      if (row.grievance) {
+        return '<button type="button" class="att-action-link" data-grievance="' + row.date + '">Raise Grievance</button>';
       }
-    });
+      return '<button type="button" class="att-action-link is-disabled" disabled>Raise Grievance</button>';
+    }
+    var val = row[col.id];
+    if (val === '--' || val === '' || val == null) return '<span class="att-muted">--</span>';
+    return String(val);
+  }
 
-    document.querySelectorAll('#attSecTabs [data-section]').forEach(function (btn) {
-      var on = btn.getAttribute('data-section') === name;
-      btn.classList.toggle('is-active', on);
-      btn.setAttribute('aria-selected', on ? 'true' : 'false');
-      btn.tabIndex = on ? 0 : -1;
-    });
+  function renderBody(rows) {
+    var start = (state.page - 1) * state.pageSize;
+    var pageRows = rows.slice(start, start + state.pageSize);
+    els.body.innerHTML = pageRows.map(function (row) {
+      return '<tr>' + COLUMNS.map(function (col) {
+        var hidden = isVisible(col.id) ? '' : ' hidden';
+        return '<td data-col="' + col.id + '"' + hidden + '>' + cellHtml(col, row) + '</td>';
+      }).join('') + '</tr>';
+    }).join('');
 
-    if (name === 'live') renderLive();
-    else if (name === 'register') renderTable();
-    else if (name === 'requests') renderRequests();
-    else if (name === 'calendar') renderCalendar();
-    else if (name === 'shifts') renderShifts();
-
-    try {
-      if (history.replaceState) history.replaceState(null, '', '#' + name);
-    } catch (err) { /* ignore */ }
-
-    ensureActiveTabVisible();
-
-    if (opts.scroll === false) return;
-    requestAnimationFrame(function () {
-      var main = document.querySelector('.main');
-      var nav = $('attSecNav');
-      if (!main || !nav) return;
-      var mainTop = main.getBoundingClientRect().top;
-      var navTop = nav.getBoundingClientRect().top;
-      if (navTop < mainTop + 4) {
-        var next = main.scrollTop + (navTop - mainTop) - 4;
-        main.scrollTo({ top: Math.max(0, next), behavior: opts.instant ? 'auto' : 'smooth' });
-      }
+    els.body.querySelectorAll('[data-grievance]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        openGrievanceModal(btn.getAttribute('data-grievance'));
+      });
     });
   }
 
-  function ensureActiveTabVisible() {
-    var tabs = $('attSecTabs');
-    var active = tabs && tabs.querySelector('.att-secnav__btn.is-active');
-    if (!tabs || !active) return;
-    var left = active.offsetLeft - 12;
-    var right = active.offsetLeft + active.offsetWidth + 12;
-    if (left < tabs.scrollLeft) tabs.scrollTo({ left: left, behavior: 'smooth' });
-    else if (right > tabs.scrollLeft + tabs.clientWidth) {
-      tabs.scrollTo({ left: right - tabs.clientWidth, behavior: 'smooth' });
+  function openGrievanceModal(date) {
+    var modal = document.getElementById('attGrModal');
+    var form = document.getElementById('attGrForm');
+    var status = document.getElementById('attGrStatus');
+    var remarkType = document.getElementById('attGrRemarkType');
+    var remarkWrap = document.getElementById('attGrRemarkWrap');
+    var remark = document.getElementById('attGrRemark');
+    var dateInput = document.getElementById('attGrDate');
+    if (!modal || !form) return;
+    form.reset();
+    if (dateInput) dateInput.value = date || '';
+    if (status) {
+      status.value = '';
+      status.selectedIndex = 0;
+    }
+    if (remarkType) remarkType.value = 'Technical Glitch';
+    if (remark) remark.value = '';
+    if (remarkWrap) remarkWrap.hidden = true;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    if (status) setTimeout(function () { status.focus(); }, 0);
+  }
+
+  function closeGrievanceModal() {
+    var modal = document.getElementById('attGrModal');
+    if (modal) modal.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  function syncRemarkField() {
+    var remarkType = document.getElementById('attGrRemarkType');
+    var remarkWrap = document.getElementById('attGrRemarkWrap');
+    if (!remarkType || !remarkWrap) return;
+    remarkWrap.hidden = remarkType.value !== 'Other';
+  }
+
+  function bindGrievanceModal() {
+    var modal = document.getElementById('attGrModal');
+    var form = document.getElementById('attGrForm');
+    var remarkType = document.getElementById('attGrRemarkType');
+    if (!modal || !form) return;
+
+    modal.querySelectorAll('[data-att-gr-close]').forEach(function (el) {
+      el.addEventListener('click', closeGrievanceModal);
+    });
+    if (remarkType) remarkType.addEventListener('change', syncRemarkField);
+
+    form.addEventListener('submit', function () {
+      var status = document.getElementById('attGrStatus');
+      var type = document.getElementById('attGrRemarkType');
+      var remark = document.getElementById('attGrRemark');
+      var date = (document.getElementById('attGrDate') || {}).value || '';
+      if (!status || !status.value) {
+        toast('Required', 'Please select status.');
+        if (status) status.focus();
+        return;
+      }
+      if (type && type.value === 'Other' && remark && !remark.value.trim()) {
+        toast('Required', 'Please enter a remark.');
+        remark.focus();
+        return;
+      }
+      toast('Grievance submitted', (date ? date + ' · ' : '') + status.value + (type ? ' · ' + type.value : ''));
+      closeGrievanceModal();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal && !modal.hidden) closeGrievanceModal();
+    });
+  }
+
+  /* -------- Attendance Summary view -------- */
+  var sumState = {
+    open: false,
+    year: 2026,
+    month: 8,
+    rangeStart: new Date(2026, 7, 1),
+    rangeEnd: new Date(2026, 7, 17),
+    calCursor: new Date(2026, 7, 1),
+    pickingEnd: false
+  };
+
+  function pad2(n) { return String(n).padStart(2, '0'); }
+
+  function fmtDMY(d) {
+    return pad2(d.getDate()) + '/' + pad2(d.getMonth() + 1) + '/' + d.getFullYear();
+  }
+
+  function monthName(m) {
+    return ['January','February','March','April','May','June','July','August','September','October','November','December'][m - 1];
+  }
+
+  function syncSumLabels() {
+    var rangeLabel = document.getElementById('attSumRangeLabel');
+    if (rangeLabel && sumState.rangeStart && sumState.rangeEnd) {
+      rangeLabel.textContent = fmtDMY(sumState.rangeStart) + ' → ' + fmtDMY(sumState.rangeEnd);
+    }
+    var monthLabel = document.getElementById('attSumMonthLabel');
+    if (monthLabel) monthLabel.textContent = sumState.year + '-' + pad2(sumState.month);
+    var title = document.getElementById('attSumMonthTitle');
+    if (title) title.textContent = 'Summary for the month ' + monthName(sumState.month) + ' ' + sumState.year;
+    var yearLabel = document.getElementById('attSumYearLabel');
+    if (yearLabel) yearLabel.textContent = String(sumState.year);
+  }
+
+  function toggleSummaryView(force) {
+    var page = document.getElementById('attPage');
+    var detailed = document.getElementById('attDetailedView');
+    var summary = document.getElementById('attSummaryView');
+    if (!detailed || !summary) return;
+    sumState.open = force != null ? !!force : !sumState.open;
+    detailed.hidden = sumState.open;
+    summary.hidden = !sumState.open;
+    if (page) page.classList.toggle('is-summary', sumState.open);
+    if (els.summaryBtn) els.summaryBtn.textContent = sumState.open ? 'Detailed Attendance' : 'Attendance Summary';
+    if (sumState.open) {
+      syncSumLabels();
+      renderSumMonthGrid();
+      closePops();
+    } else {
+      closeSumPops();
     }
   }
 
-  function focusSectionTab(name) {
-    var btn = document.querySelector('#attSecTabs [data-section="' + name + '"]');
-    if (btn) btn.focus();
+  function closeSumPops() {
+    var rangePop = document.getElementById('attSumRangePop');
+    var monthPop = document.getElementById('attSumMonthPop');
+    var rangeBtn = document.getElementById('attSumRangeBtn');
+    var monthBtn = document.getElementById('attSumMonthBtn');
+    if (rangePop) rangePop.hidden = true;
+    if (monthPop) monthPop.hidden = true;
+    if (rangeBtn) { rangeBtn.classList.remove('is-open'); rangeBtn.setAttribute('aria-expanded', 'false'); }
+    if (monthBtn) { monthBtn.classList.remove('is-open'); monthBtn.setAttribute('aria-expanded', 'false'); }
+    document.querySelectorAll('[data-sum-menu-panel]').forEach(function (p) { p.hidden = true; });
   }
 
-  function moveSection(delta) {
-    var valid = ['overview', 'live', 'register', 'requests', 'calendar', 'shifts', 'analytics'];
-    var idx = valid.indexOf(state.section);
-    if (idx < 0) idx = 0;
-    var next = valid[(idx + delta + valid.length) % valid.length];
-    openSection(next, { scroll: false });
-    focusSectionTab(next);
+  function renderSumMonthGrid() {
+    var grid = document.getElementById('attSumMonthGrid');
+    if (!grid) return;
+    var names = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    grid.innerHTML = names.map(function (n, i) {
+      var m = i + 1;
+      return '<button type="button" data-sum-month="' + m + '" class="' + (m === sumState.month ? 'is-active' : '') + '">' + n + '</button>';
+    }).join('');
   }
+
+  function sameDay(a, b) {
+    return a && b && a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+  }
+
+  function inRange(d, start, end) {
+    if (!start || !end) return false;
+    var t = new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
+    var a = new Date(start.getFullYear(), start.getMonth(), start.getDate()).getTime();
+    var b = new Date(end.getFullYear(), end.getMonth(), end.getDate()).getTime();
+    return t >= Math.min(a, b) && t <= Math.max(a, b);
+  }
+
+  function renderSumCal(year, month) {
+    var first = new Date(year, month, 1);
+    var startDay = first.getDay();
+    var daysInMonth = new Date(year, month + 1, 0).getDate();
+    var prevDays = new Date(year, month, 0).getDate();
+    var html = '<div class="att-sum-cal"><div class="att-sum-cal__head"><div class="att-sum-cal__nav">';
+    if (month === sumState.calCursor.getMonth() && year === sumState.calCursor.getFullYear()) {
+      html += '<button type="button" data-sum-cal-nav="year-1">&lt;&lt;</button><button type="button" data-sum-cal-nav="month-1">&lt;</button>';
+    } else html += '<span></span><span></span>';
+    html += '</div><span>' + ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][month] + ' ' + year + '</span><div class="att-sum-cal__nav">';
+    if (month === (sumState.calCursor.getMonth() + 1) % 12 || (sumState.calCursor.getMonth() === 11 && month === 0 && year === sumState.calCursor.getFullYear() + 1)) {
+      html += '<button type="button" data-sum-cal-nav="month1">&gt;</button><button type="button" data-sum-cal-nav="year1">&gt;&gt;</button>';
+    } else html += '<span></span><span></span>';
+    html += '</div></div><div class="att-sum-cal__grid">';
+    ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(function (d) { html += '<div class="att-sum-cal__dow">' + d + '</div>'; });
+    var cells = [];
+    for (var i = 0; i < startDay; i++) {
+      var pd = prevDays - startDay + i + 1;
+      cells.push({ d: pd, m: month - 1, y: year, out: true });
+    }
+    for (var day = 1; day <= daysInMonth; day++) cells.push({ d: day, m: month, y: year, out: false });
+    while (cells.length % 7 !== 0) {
+      var nd = cells.length - (startDay + daysInMonth) + 1;
+      cells.push({ d: nd, m: month + 1, y: year, out: true });
+    }
+    cells.forEach(function (c) {
+      var y = c.y, m = c.m;
+      if (m < 0) { m = 11; y -= 1; }
+      if (m > 11) { m = 0; y += 1; }
+      var date = new Date(y, m, c.d);
+      var cls = 'att-sum-cal__day';
+      if (c.out) cls += ' is-out';
+      if (sameDay(date, sumState.rangeStart) || sameDay(date, sumState.rangeEnd)) cls += ' is-edge';
+      else if (inRange(date, sumState.rangeStart, sumState.rangeEnd)) cls += ' is-in-range';
+      html += '<button type="button" class="' + cls + '" data-y="' + y + '" data-m="' + m + '" data-d="' + c.d + '">' + c.d + '</button>';
+    });
+    html += '</div></div>';
+    return html;
+  }
+
+  function renderSumRangeCals() {
+    var wrap = document.getElementById('attSumRangeCals');
+    if (!wrap) return;
+    var y = sumState.calCursor.getFullYear();
+    var m = sumState.calCursor.getMonth();
+    var next = new Date(y, m + 1, 1);
+    wrap.innerHTML = renderSumCal(y, m) + renderSumCal(next.getFullYear(), next.getMonth());
+  }
+
+  function bindSummaryView() {
+    var rangeBtn = document.getElementById('attSumRangeBtn');
+    var rangePop = document.getElementById('attSumRangePop');
+    var monthBtn = document.getElementById('attSumMonthBtn');
+    var monthPop = document.getElementById('attSumMonthPop');
+
+    if (rangeBtn && rangePop) {
+      rangeBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var open = !rangePop.hidden;
+        closeSumPops();
+        if (open) return;
+        renderSumRangeCals();
+        rangePop.hidden = false;
+        rangeBtn.classList.add('is-open');
+        rangeBtn.setAttribute('aria-expanded', 'true');
+      });
+      rangePop.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var nav = e.target.closest('[data-sum-cal-nav]');
+        if (nav) {
+          var act = nav.getAttribute('data-sum-cal-nav');
+          if (act === 'month-1') sumState.calCursor = new Date(sumState.calCursor.getFullYear(), sumState.calCursor.getMonth() - 1, 1);
+          if (act === 'month1') sumState.calCursor = new Date(sumState.calCursor.getFullYear(), sumState.calCursor.getMonth() + 1, 1);
+          if (act === 'year-1') sumState.calCursor = new Date(sumState.calCursor.getFullYear() - 1, sumState.calCursor.getMonth(), 1);
+          if (act === 'year1') sumState.calCursor = new Date(sumState.calCursor.getFullYear() + 1, sumState.calCursor.getMonth(), 1);
+          renderSumRangeCals();
+          return;
+        }
+        var day = e.target.closest('.att-sum-cal__day');
+        if (!day) return;
+        var picked = new Date(+day.getAttribute('data-y'), +day.getAttribute('data-m'), +day.getAttribute('data-d'));
+        if (!sumState.rangeStart || (sumState.rangeStart && sumState.rangeEnd)) {
+          sumState.rangeStart = picked;
+          sumState.rangeEnd = null;
+          sumState.pickingEnd = true;
+        } else {
+          if (picked < sumState.rangeStart) {
+            sumState.rangeEnd = sumState.rangeStart;
+            sumState.rangeStart = picked;
+          } else sumState.rangeEnd = picked;
+          sumState.pickingEnd = false;
+        }
+        syncSumLabels();
+        renderSumRangeCals();
+        if (sumState.rangeStart && sumState.rangeEnd) {
+          setTimeout(function () { closeSumPops(); }, 160);
+        }
+      });
+    }
+
+    if (monthBtn && monthPop) {
+      monthBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var open = !monthPop.hidden;
+        closeSumPops();
+        if (open) return;
+        renderSumMonthGrid();
+        syncSumLabels();
+        monthPop.hidden = false;
+        monthBtn.classList.add('is-open');
+        monthBtn.setAttribute('aria-expanded', 'true');
+      });
+      monthPop.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var yBtn = e.target.closest('[data-sum-year]');
+        if (yBtn) {
+          sumState.year += Number(yBtn.getAttribute('data-sum-year'));
+          syncSumLabels();
+          renderSumMonthGrid();
+          return;
+        }
+        var mBtn = e.target.closest('[data-sum-month]');
+        if (mBtn) {
+          sumState.month = Number(mBtn.getAttribute('data-sum-month'));
+          syncSumLabels();
+          closeSumPops();
+        }
+      });
+    }
+
+    document.querySelectorAll('[data-sum-menu]').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var id = btn.getAttribute('data-sum-menu');
+        var panel = document.querySelector('[data-sum-menu-panel="' + id + '"]');
+        var wasOpen = panel && !panel.hidden;
+        document.querySelectorAll('[data-sum-menu-panel]').forEach(function (p) { p.hidden = true; });
+        if (panel && !wasOpen) panel.hidden = false;
+      });
+    });
+    document.querySelectorAll('[data-sum-dl]').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        toast('Download', btn.getAttribute('data-sum-dl').toUpperCase() + ' export started');
+        closeSumPops();
+      });
+    });
+
+    document.addEventListener('click', function () { closeSumPops(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeSumPops();
+    });
+  }
+
+  function historyStatusHtml(row) {
+    return '<span class="att-req-status att-req-status--' + row.statusKey + '">' + row.status + '</span>';
+  }
+
+  function renderHistory() {
+    if (!els.historyBody) return;
+    var total = HISTORY_ROWS.length;
+    var pages = Math.max(1, Math.ceil(total / histState.pageSize) || 1);
+    if (histState.page > pages) histState.page = pages;
+    var start = (histState.page - 1) * histState.pageSize;
+    var pageRows = HISTORY_ROWS.slice(start, start + histState.pageSize);
+    els.historyBody.innerHTML = pageRows.map(function (row) {
+      return '<tr>' +
+        '<td>' + row.id + '</td>' +
+        '<td>' + row.date + '</td>' +
+        '<td>' + row.detail + '</td>' +
+        '<td>' + historyStatusHtml(row) + '</td>' +
+        '<td><button type="button" class="att-action-link" data-hist-view="' + row.id + '">View</button></td>' +
+      '</tr>';
+    }).join('');
+    if (els.historyEmpty) els.historyEmpty.hidden = total > 0;
+    if (els.histPageInput) els.histPageInput.value = String(histState.page);
+    if (els.histPageTotal) els.histPageTotal.textContent = String(pages);
+    if (els.histCount) els.histCount.textContent = total + ' / ' + total;
+    if (els.histPrev) els.histPrev.disabled = histState.page <= 1;
+    if (els.histNext) els.histNext.disabled = histState.page >= pages;
+    els.historyBody.querySelectorAll('[data-hist-view]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        toast('Request', 'Opening ' + btn.getAttribute('data-hist-view') + ' details.');
+      });
+    });
+  }
+
+  function renderPagination(total) {
+    var pages = Math.max(1, Math.ceil(total / state.pageSize) || 1);
+    if (state.page > pages) state.page = pages;
+    var shown = Math.min(total, state.page * state.pageSize);
+    var endShown = total === 0 ? 0 : Math.min(total, shown);
+    if (els.pageInput) els.pageInput.value = String(state.page);
+    if (els.pageTotal) els.pageTotal.textContent = String(pages);
+    els.count.textContent = (total === 0 ? '0' : endShown) + ' / ' + total;
+    if (total > 0 && state.page === 1 && endShown === total) els.count.textContent = total + ' / ' + total;
+    els.prev.disabled = state.page <= 1;
+    els.next.disabled = state.page >= pages;
+  }
+
+  function renderColumnsPop() {
+    els.columnsList.innerHTML = COLUMNS.map(function (col) {
+      var checked = isVisible(col.id) ? ' checked' : '';
+      return '<li class="att-pop__item" data-col-id="' + col.id + '">' +
+        '<span class="att-pop__drag" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></span>' +
+        '<span class="att-pop__check">' +
+          '<input type="checkbox" id="att-col-' + col.id + '" data-col="' + col.id + '"' + checked + '>' +
+          '<span class="att-pop__check-ui" aria-hidden="true"></span>' +
+        '</span>' +
+        '<label for="att-col-' + col.id + '">' + col.label + '</label></li>';
+    }).join('');
+  }
+
+  function applyColumnVisibility() {
+    COLUMNS.forEach(function (col) {
+      var show = isVisible(col.id);
+      document.querySelectorAll('[data-col="' + col.id + '"]').forEach(function (el) {
+        if (el.tagName === 'INPUT') return;
+        if (show) el.removeAttribute('hidden');
+        else el.setAttribute('hidden', '');
+      });
+    });
+  }
+
+  function render() {
+    var rows = filteredRows();
+    renderHead();
+    renderBody(rows);
+    renderPagination(rows.length);
+  }
+
+  function updateCheckOutBtn() {
+    var label = state.checkedOut ? 'Check Out' : 'Check In';
+    var addIn = !state.checkedOut;
+    [els.checkOutBtn, els.topCheckOutBtn].forEach(function (btn) {
+      if (!btn) return;
+      btn.textContent = label;
+      btn.classList.toggle('is-in', addIn);
+    });
+  }
+
+  function toggleCheckOut() {
+        if (state.checkedOut) {
+          state.checkedOut = false;
+          toast('Checked out', 'You have checked out successfully.');
+        } else {
+          state.checkedOut = true;
+          toast('Checked in', 'You have checked in successfully.');
+        }
+        updateCheckOutBtn();
+    }
 
   function bind() {
-    document.querySelectorAll('.att-btn, .att-quick__card').forEach(function (btn) {
-      btn.addEventListener('click', function (e) { ripple(e, btn); });
-    });
+    if (els.checkOutBtn) els.checkOutBtn.addEventListener('click', toggleCheckOut);
+    if (els.topCheckOutBtn) els.topCheckOutBtn.addEventListener('click', toggleCheckOut);
 
-    ['filterQ','filterDept','filterDesignation','filterManager','filterStatus','filterShift','filterLocation','filterDate','filterDateTo'].forEach(function (id) {
-      var el = $(id);
-      if (!el) return;
-      el.addEventListener('input', syncFilters);
-      el.addEventListener('change', syncFilters);
-    });
-
-    $('btnResetFilters') && $('btnResetFilters').addEventListener('click', function () {
-      state.filters = { q: '', dept: '', designation: '', manager: '', status: '', shift: '', location: '', date: '' };
-      ['filterQ','filterDept','filterDesignation','filterManager','filterStatus','filterShift','filterLocation','filterDate','filterDateTo'].forEach(function (id) {
-        if ($(id)) $(id).value = '';
+    if (els.summaryBtn) {
+      els.summaryBtn.addEventListener('click', function () {
+        toggleSummaryView();
       });
-      renderTable();
-      toast('Filters reset');
-    });
+    }
 
-    document.querySelectorAll('.att-table th[data-sort]').forEach(function (th) {
-      th.addEventListener('click', function () {
-        var key = th.getAttribute('data-sort');
-        if (state.sortKey === key) state.sortDir *= -1;
-        else { state.sortKey = key; state.sortDir = 1; }
-        renderTable();
+    if (els.columnsBtn) {
+      els.columnsBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var open = !els.columnsPop.hidden && els.columnsBtn.classList.contains('is-active');
+        closePops();
+        if (open) return;
+        renderColumnsPop();
+        els.columnsBtn.classList.add('is-active');
+        placePop(els.columnsPop, els.columnsBtn);
       });
-    });
+    }
+
+    if (els.filterBtn) {
+      els.filterBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var open = !els.filterPop.hidden && els.filterBtn.classList.contains('is-active');
+        closePops();
+        if (open) return;
+        els.filterBtn.classList.add('is-active');
+        placePop(els.filterPop, els.filterBtn);
+      });
+    }
+
+    if (els.selectAll) {
+      els.selectAll.addEventListener('click', function () {
+        state.visible = COLUMNS.map(function (c) { return c.id; });
+        renderColumnsPop();
+        applyColumnVisibility();
+        render();
+      });
+    }
+
+    if (els.columnsList) {
+      els.columnsList.addEventListener('change', function (e) {
+        var input = e.target;
+        if (!input || !input.matches('input[data-col]')) return;
+        var id = input.getAttribute('data-col');
+        if (input.checked) {
+          if (state.visible.indexOf(id) === -1) state.visible.push(id);
+        } else {
+          state.visible = state.visible.filter(function (v) { return v !== id; });
+          if (!state.visible.length) {
+            state.visible = [id];
+            input.checked = true;
+            toast('Columns', 'At least one column must remain visible.');
+          }
+        }
+        applyColumnVisibility();
+      });
+    }
+
+    if (els.dateToggle) {
+      els.dateToggle.addEventListener('click', function () {
+        state.dateRangeOpen = !state.dateRangeOpen;
+        els.dateToggle.classList.toggle('is-open', state.dateRangeOpen);
+        els.dateToggle.setAttribute('aria-expanded', state.dateRangeOpen ? 'true' : 'false');
+        if (els.dateBody) els.dateBody.hidden = !state.dateRangeOpen;
+        if (!state.dateRangeOpen) closeFilterCal();
+      });
+    }
+
+    if (els.filterRangeBtn) {
+      els.filterRangeBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var open = els.filterCal && !els.filterCal.hidden;
+        if (open) closeFilterCal();
+        else openFilterCal();
+      });
+    }
+
+    if (els.filterCal) {
+      els.filterCal.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var nav = e.target.closest('[data-fcal-nav]');
+        if (nav) {
+          var act = nav.getAttribute('data-fcal-nav');
+          var c = state.filterCalCursor;
+          if (act === 'month-1') state.filterCalCursor = new Date(c.getFullYear(), c.getMonth() - 1, 1);
+          if (act === 'month1') state.filterCalCursor = new Date(c.getFullYear(), c.getMonth() + 1, 1);
+          if (act === 'year-1') state.filterCalCursor = new Date(c.getFullYear() - 1, c.getMonth(), 1);
+          if (act === 'year1') state.filterCalCursor = new Date(c.getFullYear() + 1, c.getMonth(), 1);
+          renderFilterCal();
+          return;
+        }
+        var day = e.target.closest('.att-range-cal__day');
+        if (!day) return;
+        var picked = new Date(+day.getAttribute('data-y'), +day.getAttribute('data-m'), +day.getAttribute('data-d'));
+        if (!state.filterRangeStart || (state.filterRangeStart && state.filterRangeEnd)) {
+          state.filterRangeStart = picked;
+          state.filterRangeEnd = null;
+          state.filterPickingEnd = true;
+        } else {
+          if (picked < state.filterRangeStart) {
+            state.filterRangeEnd = state.filterRangeStart;
+            state.filterRangeStart = picked;
+          } else state.filterRangeEnd = picked;
+          state.filterPickingEnd = false;
+        }
+        syncFilterRangeLabel();
+        renderFilterCal();
+        if (state.filterRangeStart && state.filterRangeEnd) {
+          applyFilterRange();
+          setTimeout(closeFilterCal, 140);
+        }
+      });
+    }
+
+    if (els.filterReset) {
+      els.filterReset.addEventListener('click', function () {
+        state.filterStart = '';
+        state.filterEnd = '';
+        state.filterRangeStart = null;
+        state.filterRangeEnd = null;
+        syncFilterRangeLabel();
+        closeFilterCal();
+        state.page = 1;
+        render();
+        toast('Filter reset', 'Date range cleared.');
+      });
+    }
+
+    if (els.pageSize) {
+      els.pageSize.addEventListener('change', function () {
+        state.pageSize = parseInt(els.pageSize.value, 10) || 50;
+        state.page = 1;
+        render();
+      });
+    }
+
+    if (els.prev) {
+      els.prev.addEventListener('click', function () {
+        if (state.page <= 1) return;
+        state.page -= 1;
+        render();
+      });
+    }
+    if (els.next) {
+      els.next.addEventListener('click', function () {
+        var total = filteredRows().length;
+        var pages = Math.max(1, Math.ceil(total / state.pageSize) || 1);
+        if (state.page >= pages) return;
+        state.page += 1;
+        render();
+      });
+    }
+
+    if (els.histPageSize) {
+      els.histPageSize.addEventListener('change', function () {
+        histState.pageSize = parseInt(els.histPageSize.value, 10) || 10;
+        histState.page = 1;
+        renderHistory();
+      });
+    }
+    if (els.histPrev) {
+      els.histPrev.addEventListener('click', function () {
+        if (histState.page <= 1) return;
+        histState.page -= 1;
+        renderHistory();
+      });
+    }
+    if (els.histNext) {
+      els.histNext.addEventListener('click', function () {
+        var pages = Math.max(1, Math.ceil(HISTORY_ROWS.length / histState.pageSize) || 1);
+        if (histState.page >= pages) return;
+        histState.page += 1;
+        renderHistory();
+      });
+    }
 
     document.addEventListener('click', function (e) {
-      var actionBtn = e.target.closest('[data-action]');
-      if (actionBtn) {
-        var id = actionBtn.getAttribute('data-id');
-        var action = actionBtn.getAttribute('data-action');
-        if (action === 'timeline') openTimeline(id);
-        else if (action === 'regularize') toast('Regularize', id);
-        return;
-      }
-      var dayBtn = e.target.closest('[data-day]');
-      if (dayBtn) { openDayDetails(Number(dayBtn.getAttribute('data-day'))); return; }
-      var uiBtn = e.target.closest('[data-ui]');
-      if (uiBtn) {
-        var ui = uiBtn.getAttribute('data-ui');
-        if (ui === 'approve-req') resolveRequest(uiBtn.getAttribute('data-id'), 'approved');
-        else if (ui === 'reject-req') resolveRequest(uiBtn.getAttribute('data-id'), 'rejected');
-        else if (ui === 'settings') openSettings();
-        else if (ui === 'mark') { setPunch(state.punch.status === 'out' ? 'in' : 'out'); }
-        else if (ui === 'punch-in') setPunch('in');
-        else if (ui === 'punch-break') setPunch('break');
-        else if (ui === 'punch-out') setPunch('out');
-        else if (ui === 'export-excel') toast('Export Excel');
-        else if (ui === 'export-csv') toast('Export CSV');
-        else if (ui === 'export-pdf') toast('Export PDF');
-        else if (ui === 'print') toast('Print');
-        else if (ui === 'retry') { renderAll(); toast('Retry', 'Attendance reloaded'); }
-        else if (ui === 'goto-requests') openSection('requests', { scroll: false });
-        else if (ui === 'goto-shifts') openSection('shifts', { scroll: false });
-        else if (ui === 'refresh-activity') {
-          renderActivity();
-          toast('Activity refreshed', 'Latest attendance events loaded');
-        }
-        else if (ui === 'activity-item') {
-          var idx = Number(uiBtn.getAttribute('data-idx'));
-          var act = ACTIVITY[idx];
-          if (act) toast(act.text, act.time);
-        }
-        else if (ui === 'view-req') toast('Request details', uiBtn.getAttribute('data-id'));
-        else toast(ui.replace(/-/g, ' '));
-        return;
-      }
-      var jump = e.target.closest('[data-section-jump]');
-      if (jump) {
-        var target = jump.getAttribute('data-section-jump');
-        var statusFilter = jump.getAttribute('data-filter-status');
-        openSection(target, { scroll: false });
-        if (statusFilter && target === 'register') {
-          state.filters.status = statusFilter;
-          var statusEl = $('filterStatus');
-          if (statusEl) statusEl.value = statusFilter;
-          renderTable();
-          toast('Filtered register', statusFilter);
-        }
-        return;
-      }
-      var secBtn = e.target.closest('#attSecTabs [data-section]');
-      if (secBtn) {
-        openSection(secBtn.getAttribute('data-section'), { scroll: false });
-        return;
-      }
+      if (!els.columnsPop || !els.filterPop) return;
+      var inCols = els.columnsPop.contains(e.target) || (els.columnsBtn && els.columnsBtn.contains(e.target));
+      var inFilter = els.filterPop.contains(e.target) || (els.filterBtn && els.filterBtn.contains(e.target));
+      var inCal = els.filterCal && els.filterCal.contains(e.target);
+      if (!inCols && !inFilter && !inCal) closePops();
     });
 
-    var tabs = $('attSecTabs');
-    if (tabs) {
-      tabs.addEventListener('keydown', function (e) {
-        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-          e.preventDefault();
-          moveSection(e.key === 'ArrowRight' ? 1 : -1);
-        } else if (e.key === 'Home') {
-          e.preventDefault();
-          openSection('overview', { scroll: false });
-          focusSectionTab('overview');
-        } else if (e.key === 'End') {
-          e.preventDefault();
-          openSection('analytics', { scroll: false });
-          focusSectionTab('analytics');
-        }
-      });
-    }
-
-    window.addEventListener('hashchange', function () {
-      var hash = (location.hash || '').replace('#', '');
-      if (hash) openSection(hash, { scroll: false, force: true });
-    });
-
-    document.addEventListener('mouseover', function (e) {
-      var av = e.target.closest('[data-preview]');
-      if (av) showPreview(av.getAttribute('data-preview'), av);
-    });
-    document.addEventListener('mouseout', function (e) {
-      if (e.target.closest('[data-preview]')) hidePreview();
-    });
-
-    $('btnMark') && $('btnMark').addEventListener('click', function () {
-      openSection('overview', { scroll: false });
-      setPunch(state.punch.status === 'out' ? 'in' : 'out');
-    });
-    $('btnExport') && $('btnExport').addEventListener('click', function () { toast('Export Report'); });
-    $('btnSettings') && $('btnSettings').addEventListener('click', openSettings);
-    $('btnCalPrev') && $('btnCalPrev').addEventListener('click', function () {
-      state.calMonth--; if (state.calMonth < 0) { state.calMonth = 11; state.calYear--; }
-      renderCalendar();
-    });
-    $('btnCalNext') && $('btnCalNext').addEventListener('click', function () {
-      state.calMonth++; if (state.calMonth > 11) { state.calMonth = 0; state.calYear++; }
-      renderCalendar();
-    });
-
-    $('attDrawerClose') && $('attDrawerClose').addEventListener('click', function () { closeModal('attDrawer'); });
-    $('attDrawerClose2') && $('attDrawerClose2').addEventListener('click', function () { closeModal('attDrawer'); });
-    $('attSettingsClose') && $('attSettingsClose').addEventListener('click', function () { closeModal('attSettings'); });
-    $('attSettingsCancel') && $('attSettingsCancel').addEventListener('click', function () { closeModal('attSettings'); });
-    $('attSettingsSave') && $('attSettingsSave').addEventListener('click', function () {
-      closeModal('attSettings');
-      toast('Settings saved', 'Attendance policies updated (UI only)');
-    });
-
-    ['attDrawer', 'attSettings'].forEach(function (id) {
-      var modal = $(id);
-      if (modal) modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(id); });
-    });
+    window.addEventListener('resize', closePops);
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') { closeModal('attDrawer'); closeModal('attSettings'); hidePreview(); }
+      if (e.key === 'Escape') closePops();
     });
 
-    $('btnBulkToggle') && $('btnBulkToggle').addEventListener('click', function () {
-      state.bulk = !state.bulk;
-      var bar = $('attBulkBar');
-      if (bar) bar.classList.toggle('is-hidden', !state.bulk);
-      toast(state.bulk ? 'Bulk mode on' : 'Bulk mode off');
-    });
-  }
-
-  function initReveal() {
-    if (!('IntersectionObserver' in window)) {
-      document.querySelectorAll('.att-reveal').forEach(function (el) { el.classList.add('is-visible'); });
-      return;
-    }
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-    document.querySelectorAll('.att-reveal').forEach(function (el) { obs.observe(el); });
-  }
-
-  function renderAll() {
-    renderKpi();
-    renderTable();
-    renderCalendar();
-    renderRequests();
-    renderShifts();
-    renderLive();
-    renderSnap();
-    renderPunch();
-    renderRoleBar();
-    tickClocks();
+    if (els.columnsPop) els.columnsPop.addEventListener('click', function (e) { e.stopPropagation(); });
+    if (els.filterPop) els.filterPop.addEventListener('click', function (e) { e.stopPropagation(); });
   }
 
   function init() {
-    var hash = (location.hash || '').replace('#', '');
-    if (hash) state.section = hash;
-    fillFilters();
-    var skel = $('attTableSkel');
-    if (skel) skel.classList.remove('is-hidden');
-    setTimeout(function () {
-      renderAll();
-      bind();
-      openSection(state.section, { scroll: false, force: true });
-      initReveal();
-      setInterval(tickClocks, 1000);
-    }, 350);
+    updateCheckOutBtn();
+    tickClock();
+    setInterval(tickClock, 1000);
+    bind();
+    bindGrievanceModal();
+    bindSummaryView();
+    render();
+    renderHistory();
+    if (/[?&]summary=1(?:&|$)/.test(location.search) || location.hash === '#summary') toggleSummaryView(true);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

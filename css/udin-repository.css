@@ -1,0 +1,171 @@
+/* TIME ERP — UDIN Repository */
+a.sidebar__item { color: inherit; text-decoration: none; }
+.udin-top-checkout { height: 32px; padding: 0 14px; border: none; border-radius: 4px; background: #25b7a7; color: #fff; font-size: 13px; font-weight: 600; cursor: pointer; }
+.udin-top-clock { font-size: 16px; font-weight: 600; color: #25B7A7; font-variant-numeric: tabular-nums; min-width: 46px; text-align: center; }
+.udin-top-icon { color: #25B7A7 !important; }
+.udin-profile-caret { width: 14px; height: 14px; color: #94a3b8; flex-shrink: 0; }
+.udin-page { min-height: 100%; margin: -16px calc(var(--content-pad-x,16px)*-1) -24px; padding: 0; background: #fff; }
+
+.udin-header { display: flex; align-items: center; gap: 10px; padding: 10px 16px; background: #f5f5f5; border-bottom: 1px solid #e8e8e8; }
+.udin-back { width: 28px; height: 28px; border-radius: 4px; background: #25B7A7; color: #fff; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; flex-shrink: 0; border: none; cursor: pointer; }
+.udin-back svg { width: 16px; height: 16px; stroke: #fff; }
+.udin-back:hover { background: #1fa396; }
+.udin-header__title { font-size: 14px; font-weight: 500; color: #374151; }
+
+.udin-title-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 14px 16px 10px; }
+.udin-title { font-size: 22px; font-weight: 700; color: #1e293b; margin: 0; }
+.udin-actions { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+
+/* Employee combo */
+.udin-emp-combo { position: relative; display: inline-flex; }
+.udin-emp-combo__input {
+  height: 34px; width: 180px; border: 1px solid #dde3ea; border-radius: 6px;
+  padding: 0 28px 0 10px; font-size: 12px; font-family: inherit; color: #111827; background: #fff;
+}
+.udin-emp-combo__input::placeholder { color: #bfbfbf; }
+.udin-emp-combo__input:focus { outline: none; border-color: #25b7a7; box-shadow: 0 0 0 2px rgba(37, 183, 167, .12); }
+.udin-emp-combo__chev {
+  position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+  width: 12px; height: 12px; color: #94a3b8; pointer-events: none;
+}
+.udin-emp-combo__menu { display: none; position: absolute; left: 0; right: 0; top: calc(100%+2px); min-width: 100%; background: #fff; border: 1px solid #dde3ea; border-radius: 6px; box-shadow: 0 8px 24px rgba(0,0,0,.12); z-index: 50; max-height: 240px; overflow-y: auto; }
+.udin-emp-combo.is-open .udin-emp-combo__menu { display: block; }
+.udin-emp-combo__item { padding: 7px 12px; font-size: 12px; color: #111827; cursor: pointer; }
+.udin-emp-combo__item:hover { background: #e0f7fa; }
+
+.udin-icon-btn {
+  width: 34px; height: 34px; border: 1px solid #dde3ea; border-radius: 6px;
+  background: #fff; color: #374151; cursor: pointer; padding: 0;
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.udin-icon-btn:hover { background: #f8fafc; border-color: #cbd5e1; }
+.udin-icon-btn--excel svg { width: 18px; height: 18px; display: block; }
+
+/* Columns dropdown */
+.udin-col-drop-wrap { position: relative; display: inline-flex; }
+.udin-col-btn {
+  height: 34px; min-width: 52px; padding: 0 8px; border: 1px solid #dde3ea; border-radius: 6px;
+  background: #fff; color: #374151; cursor: pointer; font-family: inherit;
+  display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+}
+.udin-col-btn__db { width: 16px; height: 16px; flex-shrink: 0; }
+.udin-col-btn__chev { width: 12px; height: 12px; color: #64748b; flex-shrink: 0; }
+.udin-col-btn:hover { background: #f8fafc; border-color: #cbd5e1; }
+.udin-col-drop-wrap.is-open .udin-col-btn { border-color: #cbd5e1; }
+.udin-col-drop { display: none; position: absolute; right: 0; top: calc(100%+4px); width: 210px; background: #fff; border: 1px solid #e8e8e8; border-radius: 6px; box-shadow: 0 8px 24px rgba(0,0,0,.12); z-index: 60; padding: 8px 0; }
+.udin-col-drop-wrap.is-open .udin-col-drop { display: block; }
+.udin-col-drop__head { display: flex; align-items: center; justify-content: space-between; padding: 4px 14px 8px; font-size: 13px; font-weight: 600; color: #374151; }
+.udin-col-drop__head a { color: #25B7A7; font-size: 12px; font-weight: 500; text-decoration: none; }
+.udin-col-drop label { display: flex; align-items: center; gap: 8px; padding: 5px 14px; font-size: 12px; color: #374151; cursor: pointer; }
+.udin-col-drop label:hover { background: #f9fafb; }
+
+/* Filter dropdown */
+.udin-filter-wrap { position: relative; display: inline-flex; }
+.udin-filter-btn {
+  width: 28px; height: 34px; border: none; background: transparent; color: #374151;
+  cursor: pointer; padding: 0; display: inline-flex; align-items: center; justify-content: center;
+}
+.udin-filter-btn svg { width: 16px; height: 16px; display: block; }
+.udin-filter-btn:hover { color: #111827; }
+.udin-filter-wrap.is-open .udin-filter-btn { color: #25b7a7; }
+.udin-filter-drop { display: none; position: absolute; right: 0; top: calc(100%+4px); width: 240px; background: #fff; border: 1px solid #e8e8e8; border-radius: 6px; box-shadow: 0 8px 24px rgba(0,0,0,.12); z-index: 60; padding: 0; }
+.udin-filter-wrap.is-open .udin-filter-drop { display: block; }
+.udin-filter-head { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid #f0f0f0; font-size: 13px; font-weight: 600; color: #374151; }
+.udin-filter-head a { color: #25B7A7; font-size: 12px; font-weight: 500; text-decoration: none; }
+.udin-filter-group { border-bottom: 1px solid #f0f0f0; }
+.udin-filter-group summary { padding: 10px 14px; font-size: 13px; color: #374151; cursor: pointer; list-style: none; }
+.udin-filter-group summary::before { content: '›  '; color: #9ca3af; }
+.udin-filter-group[open] summary::before { content: '⌄  '; }
+
+.udin-add-btn {
+  width: 38px; height: 34px; border: none; border-radius: 6px; background: #25b7a7; color: #fff;
+  cursor: pointer; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.udin-add-btn svg { width: 18px; height: 18px; stroke: #fff; display: block; }
+.udin-add-btn:hover { background: #2980b9; }
+
+/* Table */
+.udin-table-wrap { overflow-x: auto; margin: 0 16px 16px; border: 1px solid #e8e8e8; border-radius: 4px; }
+.udin-table { width: 100%; border-collapse: collapse; min-width: 1200px; font-size: 12px; }
+.udin-table thead th { text-align: left; padding: 8px 8px; font-weight: 500; color: #6b7280; background: #fafafa; border-bottom: 1px solid #e8e8e8; white-space: nowrap; }
+.udin-table thead th .udin-sort { cursor: pointer; font-size: 10px; color: #9ca3af; margin-left: 2px; }
+.udin-table tbody td { padding: 8px 8px; border-bottom: 1px solid #f3f4f6; color: #111827; vertical-align: top; }
+.udin-table tbody tr:hover td { background: #fafcff; }
+.udin-table th:last-child,
+.udin-table td.udin-td-actions { vertical-align: middle; white-space: nowrap; }
+.udin-row-actions { display: inline-flex; align-items: center; gap: 10px; }
+.udin-table .udin-link { color: #25B7A7; text-decoration: none; font-weight: 500; font-size: 12px; cursor: pointer; line-height: 1.2; }
+.udin-table .udin-link:hover { text-decoration: underline; }
+
+/* Delete confirmation popover */
+.udin-del-pop {
+  position: fixed; z-index: 520; width: 280px; background: #fff;
+  border: 1px solid #e8edf2; border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, .16); padding: 12px 14px 12px;
+}
+.udin-del-pop[hidden] { display: none !important; }
+.udin-del-pop::after {
+  content: ''; position: absolute; left: 50%; bottom: -6px; margin-left: -6px;
+  width: 12px; height: 12px; background: #fff; border-right: 1px solid #e8edf2;
+  border-bottom: 1px solid #e8edf2; transform: rotate(45deg);
+}
+.udin-del-pop__row { display: flex; align-items: flex-start; gap: 8px; }
+.udin-del-pop__warn {
+  width: 18px; height: 18px; border-radius: 50%; background: #f59e0b; color: #fff;
+  font-size: 12px; font-weight: 700; display: inline-flex; align-items: center;
+  justify-content: center; flex-shrink: 0; line-height: 1;
+}
+.udin-del-pop__text { font-size: 13px; color: #374151; line-height: 1.4; }
+.udin-del-pop__btns { display: flex; justify-content: flex-end; gap: 8px; margin-top: 10px; }
+.udin-del-pop__no {
+  height: 28px; padding: 0 14px; border: 1px solid #d1d5db; border-radius: 4px;
+  background: #fff; color: #374151; font-size: 13px; cursor: pointer; font-family: inherit;
+}
+.udin-del-pop__yes {
+  height: 28px; padding: 0 14px; border: none; border-radius: 4px;
+  background: #25b7a7; color: #fff; font-size: 13px; cursor: pointer; font-family: inherit;
+}
+
+/* Modal */
+.udin-modal-scrim { position: fixed; inset: 0; z-index: 500; background: rgba(0,0,0,.4); display: flex; align-items: flex-start; justify-content: center; padding: 24px 16px; overflow-y: auto; }
+.udin-modal-scrim[hidden] { display: none !important; }
+.udin-modal { width: min(760px, calc(100vw - 32px)); background: #fff; border-radius: 6px; box-shadow: 0 12px 40px rgba(0,0,0,.18); margin: auto 0; }
+.udin-modal__head { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid #e8e8e8; }
+.udin-modal__title { margin: 0; font-size: 16px; font-weight: 600; color: #111827; }
+.udin-modal__close { width: 28px; height: 28px; border: none; background: none; font-size: 22px; color: #6b7280; cursor: pointer; }
+.udin-modal__body { padding: 16px 20px; max-height: calc(100vh - 160px); overflow-y: auto; }
+.udin-modal__cols { display: flex; gap: 24px; }
+.udin-modal__col { flex: 1; min-width: 0; }
+
+.udin-mf { margin-bottom: 12px; }
+.udin-mf__label { display: block; font-size: 13px; font-weight: 500; color: #374151; margin-bottom: 4px; }
+.udin-req { color: #ef4444; }
+.udin-mf__input, .udin-mf__select { width: 100%; height: 36px; border: 1px solid #d1d5db; border-radius: 4px; padding: 0 10px; font-size: 13px; font-family: inherit; color: #111827; background: #fff; box-sizing: border-box; }
+.udin-mf__input:focus, .udin-mf__select:focus { outline: none; border-color: #25B7A7; box-shadow: 0 0 0 2px rgba(37,183,167,.15); }
+.udin-mf__select { appearance: none; padding-right: 28px; cursor: pointer; }
+.udin-mf__combo { position: relative; }
+.udin-mf__combo .udin-combo__icon { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; color: #9ca3af; pointer-events: none; }
+.udin-mf__combo .udin-combo__menu { display: none; position: absolute; left: 0; right: 0; top: calc(100%+2px); background: #fff; border: 1px solid #d1d5db; border-radius: 4px; box-shadow: 0 8px 24px rgba(0,0,0,.12); z-index: 50; max-height: 240px; overflow-y: auto; }
+.udin-mf__combo.is-open .udin-combo__menu { display: block; }
+.udin-combo__item { padding: 7px 12px; font-size: 12px; color: #111827; cursor: pointer; }
+.udin-combo__item:hover { background: #e0f7fa; }
+.udin-combo__item.is-selected { background: #25B7A7; color: #fff; }
+
+.udin-uploads { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 12px; }
+.udin-upload { flex: 1; min-width: 140px; }
+.udin-upload__label { display: block; font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 6px; }
+.udin-upload__btn { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 14px; border: 1px solid #d1d5db; border-radius: 4px; background: #fff; font-size: 12px; color: #374151; cursor: pointer; font-family: inherit; }
+.udin-upload__btn:hover { border-color: #25B7A7; color: #25B7A7; }
+
+.udin-modal__save { display: block; margin: 16px auto 0; height: 38px; padding: 0 32px; border: none; border-radius: 4px; background: #25B7A7; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; }
+.udin-modal__save:hover { background: #1fa396; }
+
+/* Footer */
+.udin-app-footer { padding: 12px 16px 8px; text-align: center; }
+.udin-app-footer__links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 10px; margin-bottom: 8px; font-size: 13px; }
+.udin-app-footer__links a { color: #25b7a7; text-decoration: none; font-weight: 500; }
+.udin-app-footer__links span { color: #bfbfbf; }
+.udin-app-footer__copy { margin: 0; font-size: 12px; color: #8c8c8c; }
+.udin-app-footer__copy span { color: #25b7a7; font-weight: 500; }
+
+@media (max-width: 640px) { .udin-modal__cols { flex-direction: column; gap: 0; } }

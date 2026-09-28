@@ -1,0 +1,114 @@
+/* TIME ERP — Company Details (marketing_website_company.html) */
+a.sidebar__item { color: inherit; text-decoration: none; }
+
+.mwc-top-checkout {
+  height: 32px; padding: 0 14px; border: none; border-radius: 4px;
+  background: #25b7a7; color: #fff; font-size: 13px; font-weight: 600; cursor: pointer;
+}
+.mwc-top-clock {
+  font-size: 16px; font-weight: 600; color: #25B7A7;
+  font-variant-numeric: tabular-nums; min-width: 46px; text-align: center;
+}
+.mwc-top-icon { color: #25B7A7 !important; }
+.mwc-profile-caret { width: 14px; height: 14px; color: #94a3b8; flex-shrink: 0; }
+
+.mwc-page {
+  min-height: 100%;
+  margin: -16px calc(var(--content-pad-x, 16px) * -1) -24px;
+  padding: 14px 18px 24px;
+  background: #f3f5f7;
+}
+
+.mwc-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.mwc-back {
+  width: 28px; height: 28px; border-radius: 4px; background: #25B7A7; color: #fff;
+  display: inline-flex; align-items: center; justify-content: center; text-decoration: none;
+}
+.mwc-back svg { width: 16px; height: 16px; stroke: #fff; }
+.mwc-back:hover { background: #1fa396; }
+.mwc-crumb { font-size: 14px; font-weight: 500; color: #374151; }
+
+.mwc-panel {
+  background: #fff; border: 1px solid #e8edf2; border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, .04); padding: 12px 20px 24px;
+}
+
+.mwc-title {
+  margin: 0 0 20px; padding-bottom: 8px;
+  font-size: 22px; font-weight: 600; color: #25B7A7;
+}
+
+.mwc-form { max-width: 720px; display: flex; flex-direction: column; gap: 14px; }
+
+.mwc-row {
+  display: grid; grid-template-columns: 160px 1fr; gap: 12px; align-items: center;
+}
+.mwc-row--top { align-items: start; }
+.mwc-row--top .mwc-label { padding-top: 8px; }
+
+.mwc-label {
+  text-align: right; font-size: 14px; font-weight: 500; color: rgba(0, 0, 0, .85);
+}
+.mwc-req { color: #ff4d4f; margin-left: 2px; }
+
+.mwc-input, .mwc-select, .mwc-textarea {
+  width: 100%; border: 1px solid #d9d9d9; border-radius: 4px;
+  font-size: 14px; font-family: inherit; color: #374151; background: #fff;
+}
+.mwc-input, .mwc-select { height: 32px; padding: 0 10px; }
+.mwc-select {
+  appearance: none; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 10px center; padding-right: 28px;
+}
+.mwc-textarea { padding: 8px 10px; resize: vertical; min-height: 80px; line-height: 1.5; }
+.mwc-input:focus, .mwc-select:focus, .mwc-textarea:focus {
+  outline: none; border-color: #25B7A7; box-shadow: 0 0 0 2px rgba(37,183,167,.12);
+}
+
+.mwc-field { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+
+.mwc-upload {
+  display: inline-flex; align-items: center; gap: 8px;
+  height: 32px; padding: 0 12px; border: 1px solid #d9d9d9; border-radius: 4px;
+  background: #fff; cursor: pointer; font-size: 13px; color: rgba(0, 0, 0, .65); font-family: inherit;
+}
+.mwc-upload svg { width: 14px; height: 14px; color: rgba(0, 0, 0, .45); }
+.mwc-upload:hover { border-color: #25B7A7; color: #25B7A7; }
+
+.mwc-upload-meta {
+  display: flex; align-items: center; gap: 8px;
+}
+.mwc-upload-meta.is-hidden { display: none; }
+
+.mwc-view-link {
+  border: none; background: none; padding: 0; font-size: 13px; color: #25b7a7;
+  cursor: pointer; font-family: inherit;
+}
+.mwc-view-link:hover { text-decoration: underline; }
+
+.mwc-delete {
+  width: 24px; height: 24px; border: none; background: none; padding: 0;
+  color: #ff4d4f; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+}
+.mwc-delete svg { width: 16px; height: 16px; }
+
+.mwc-textarea-wrap { position: relative; width: 100%; }
+.mwc-char-count {
+  position: absolute; right: 8px; bottom: 6px;
+  font-size: 12px; color: rgba(0, 0, 0, .45); pointer-events: none;
+}
+
+.mwc-actions { padding-top: 8px; }
+.mwc-save {
+  height: 32px; padding: 0 20px; border: none; border-radius: 4px;
+  background: #25B7A7; color: #fff; font-size: 14px; font-weight: 600;
+  cursor: pointer; font-family: inherit;
+}
+.mwc-save:hover { background: #1fa396; }
+
+@media (max-width: 640px) {
+  .mwc-page { padding: 12px 12px 24px; }
+  .mwc-row { grid-template-columns: 1fr; gap: 6px; }
+  .mwc-label { text-align: left; padding-top: 0 !important; }
+}

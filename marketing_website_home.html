@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page — TimeERP Website</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/marketing-website-home.css?v=1">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="mwh-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="mwh-top-clock" id="mwhTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn mwh-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn mwh-top-icon" id="notifBtn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="mwh-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="marketing_website.html" class="dropdown__item"><strong>Website</strong><span>Back to website hub</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="mwh-page">
+          <header class="mwh-header">
+            <a class="mwh-back" href="marketing_website.html" aria-label="Back to Website">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <span class="mwh-crumb">Dashboard</span>
+          </header>
+
+          <div class="mwh-panel">
+            <div class="mwh-tabs" role="tablist">
+              <button type="button" class="mwh-tab is-active" data-tab="dashboard" aria-selected="true">Dashboard</button>
+              <button type="button" class="mwh-tab" data-tab="client-logo" aria-selected="false">Client Logo</button>
+              <button type="button" class="mwh-tab" data-tab="portfolio" aria-selected="false">Portfolio</button>
+              <button type="button" class="mwh-tab" data-tab="carousel" aria-selected="false">Carousel Portfolio</button>
+              <button type="button" class="mwh-tab" data-tab="services-header" aria-selected="false">Services Header</button>
+              <button type="button" class="mwh-tab" data-tab="client-feedback" aria-selected="false">Client Feedback</button>
+            </div>
+
+            <!-- Dashboard tab -->
+            <div class="mwh-tab-panel is-active" id="mwhPanelDashboard" data-panel="dashboard">
+              <div class="mwh-split">
+                <form class="mwh-form" id="mwhDashForm">
+                  <div class="mwh-field"><label>Heading<span class="mwh-req">*</span></label><input type="text" id="mwhDashHeading" placeholder="Heading"></div>
+                  <div class="mwh-field"><label>Description<span class="mwh-req">*</span></label><input type="text" id="mwhDashDesc" placeholder="Description"></div>
+                  <div class="mwh-field"><label>Key Heading<span class="mwh-req">*</span></label><input type="text" id="mwhDashKey" placeholder="Key Heading"></div>
+                  <div class="mwh-field"><label>Image</label>
+                    <button type="button" class="mwh-upload" data-upload="dash"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 16V8"/><path d="M8 12l4-4 4 4"/><path d="M4 20h16"/></svg><span>Click to Upload</span></button>
+                    <input type="file" id="mwhDashImage" accept="image/*" hidden>
+                  </div>
+                  <button type="submit" class="mwh-save">Save</button>
+                </form>
+                <div class="mwh-preview mwh-preview--hero" id="mwhDashPreview">
+                  <div class="mwh-hero">
+                    <div class="mwh-hero__text">
+                      <h2>CA Services For Tax &amp; Compliance <em id="mwhPrevDashHeading">--Heading</em></h2>
+                      <p>We Simply Finance Ops For Your Business. <em id="mwhPrevDashDesc">--Description</em></p>
+                      <button type="button" class="mwh-hero__cta">Get Started &gt;</button>
+                      <div class="mwh-hero__key">EXPERTS in <em id="mwhPrevDashKey">--Key Heading</em></div>
+                      <div class="mwh-hero__tags"><span>GST</span><span>Income Tax</span><span>Accounting</span><span>Payroll</span></div>
+                    </div>
+                    <div class="mwh-hero__img"><img src="assets/phone-screens/hrms-dashboard.png" alt="Hero preview"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Client Logo tab -->
+            <div class="mwh-tab-panel" id="mwhPanelClientLogo" data-panel="client-logo" hidden>
+              <div class="mwh-section-head">
+                <h2 class="mwh-section-title">Clients</h2>
+                <button type="button" class="mwh-plus" id="mwhAddClientBtn" aria-label="Add client">+</button>
+              </div>
+              <div class="mwh-table-wrap">
+                <table class="mwh-table">
+                  <thead><tr><th>Client Name</th><th>Image</th><th>Actions</th></tr></thead>
+                  <tbody id="mwhClientBody"></tbody>
+                </table>
+                <div class="mwh-empty" id="mwhClientEmpty">
+                  <svg viewBox="0 0 64 41" aria-hidden="true"><g transform="translate(0 1)" fill="none"><ellipse fill="#f5f5f5" cx="32" cy="33" rx="32" ry="7"/><g stroke="#d9d9d9"><path d="M55 12.76L44.854 1.258C44.367.474 43.656 0 42.907 0H21.093c-.749 0-1.46.474-1.947 1.257L9 12.761V22h46v-9.24z"/><path d="M41.613 15.931c0-1.605.994-2.93 2.227-2.931H55v18.137C55 33.26 53.68 35 52.05 35h-40.1C10.32 35 9 33.259 9 31.137V13h11.16c1.233 0 2.227 1.323 2.227 2.928v.022c0 1.605 1.005 2.901 2.237 2.901h14.752c1.232 0 2.237-1.308 2.237-2.913v-.007z" fill="#fafafa"/></g></g></svg>
+                  <p>No data</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Portfolio tab -->
+            <div class="mwh-tab-panel" id="mwhPanelPortfolio" data-panel="portfolio" hidden>
+              <div class="mwh-split mwh-split--scroll">
+                <div class="mwh-form-stack" id="mwhPortfolioForms"></div>
+                <div class="mwh-preview mwh-preview--portfolio" id="mwhPortfolioPreview">
+                  <div class="mwh-port-prev">
+                    <h3>Accurate &amp; Hassle Free GST Services <em id="mwhPrevPortHeading">--Heading</em></h3>
+                    <p>End-to-end GST compliance for growing businesses. <em id="mwhPrevPortDesc">--Description</em></p>
+                    <ul>
+                      <li>Registration <em id="mwhPrevPortStep1">--Step 1</em></li>
+                      <li>End To End GST Compliance <em id="mwhPrevPortStep2">--Step 2</em></li>
+                      <li>Strategic GST Advisory <em id="mwhPrevPortStep3">--Step 3</em></li>
+                      <li>Dedicated Support <em id="mwhPrevPortStep4">--Step 4</em></li>
+                    </ul>
+                    <div class="mwh-port-prev__cta">
+                      <strong>Need GST Assistance? <em id="mwhPrevPortQuestion">--Question</em></strong>
+                      <p><em id="mwhPrevPortCta">--CTA</em></p>
+                    </div>
+                    <img src="assets/phone-screens/dashboard-demo.png" alt="Portfolio preview">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Carousel Portfolio tab -->
+            <div class="mwh-tab-panel" id="mwhPanelCarousel" data-panel="carousel" hidden>
+              <div class="mwh-split mwh-split--scroll">
+                <div class="mwh-form-stack" id="mwhCarouselForms"></div>
+                <div class="mwh-preview mwh-preview--carousel" id="mwhCarouselPreview">
+                  <div class="mwh-carousel-prev">
+                    <img src="assets/phone-screens/view-task.png" alt="" class="mwh-carousel-prev__img">
+                    <div class="mwh-carousel-prev__text">
+                      <h3>GST Litigation Support: Expert Guidance For Disputes &amp; Appeals <em id="mwhPrevCarHeading">--Heading</em></h3>
+                      <p>Resolve GST Notices, Audits, and Disputes With Professional Legal Assistance. <em id="mwhPrevCarDesc">--Description</em></p>
+                      <div class="mwh-carousel-prev__card">
+                        <span class="mwh-carousel-prev__check">✓</span>
+                        <div>
+                          <strong id="mwhPrevCarH1">--Carousel Heading1</strong>
+                          <p id="mwhPrevCarD1">--Carousel Description1</p>
+                        </div>
+                      </div>
+                      <div class="mwh-carousel-prev__dots"><span class="is-active"></span><span></span><span></span><span></span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Services Header tab -->
+            <div class="mwh-tab-panel" id="mwhPanelServices" data-panel="services-header" hidden>
+              <div class="mwh-split">
+                <form class="mwh-form" id="mwhServicesForm">
+                  <div class="mwh-field"><label>Heading<span class="mwh-req">*</span></label><input type="text" id="mwhSvcHeading" placeholder="Heading"></div>
+                  <div class="mwh-field"><label>Description<span class="mwh-req">*</span></label><input type="text" id="mwhSvcDesc" placeholder="Description"></div>
+                  <button type="submit" class="mwh-save">Save</button>
+                </form>
+                <div class="mwh-preview mwh-preview--services" id="mwhServicesPreview">
+                  <div class="mwh-svc-prev">
+                    <h3>Powerful Automation For High-Volume AP, AR &amp; GL Operations <em id="mwhPrevSvcHeading">--Heading</em></h3>
+                    <p>We Streamline AP, AR, And GL Management To Reduce Effort And Enhance Accuracy. <em id="mwhPrevSvcDesc">--Description</em></p>
+                    <div class="mwh-svc-prev__cards">
+                      <span>AP Management</span><span>AR Management</span><span>GL Management</span><span>MIS Reports</span><span>AI Driven Workflows</span>
+                    </div>
+                    <a href="#" class="mwh-svc-prev__more">See More &gt;</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Client Feedback tab -->
+            <div class="mwh-tab-panel" id="mwhPanelFeedback" data-panel="client-feedback" hidden>
+              <div class="mwh-section-head">
+                <h2 class="mwh-section-title">Feedback</h2>
+                <button type="button" class="mwh-plus" id="mwhAddFeedbackBtn" aria-label="Add feedback">+</button>
+              </div>
+              <div class="mwh-table-wrap">
+                <table class="mwh-table mwh-table--wide">
+                  <thead><tr><th>Client Name</th><th>Company Name</th><th>Feedback</th><th>Image</th><th>Actions</th></tr></thead>
+                  <tbody id="mwhFeedbackBody"></tbody>
+                </table>
+                <div class="mwh-empty" id="mwhFeedbackEmpty">
+                  <svg viewBox="0 0 64 41" aria-hidden="true"><g transform="translate(0 1)" fill="none"><ellipse fill="#f5f5f5" cx="32" cy="33" rx="32" ry="7"/><g stroke="#d9d9d9"><path d="M55 12.76L44.854 1.258C44.367.474 43.656 0 42.907 0H21.093c-.749 0-1.46.474-1.947 1.257L9 12.761V22h46v-9.24z"/><path d="M41.613 15.931c0-1.605.994-2.93 2.227-2.931H55v18.137C55 33.26 53.68 35 52.05 35h-40.1C10.32 35 9 33.259 9 31.137V13h11.16c1.233 0 2.227 1.323 2.227 2.928v.022c0 1.605 1.005 2.901 2.237 2.901h14.752c1.232 0 2.237-1.308 2.237-2.913v-.007z" fill="#fafafa"/></g></g></svg>
+                  <p>No data</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <footer class="mwh-app-footer" aria-label="App footer"></footer>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Add Client modal -->
+  <div class="mwh-modal-scrim" id="mwhClientModal" hidden>
+    <div class="mwh-modal" role="dialog" aria-labelledby="mwhClientModalTitle">
+      <div class="mwh-modal__head">
+        <h2 id="mwhClientModalTitle">Add Client</h2>
+        <button type="button" class="mwh-modal__close" data-close="client" aria-label="Close">&times;</button>
+      </div>
+      <form class="mwh-modal__body" id="mwhClientForm">
+        <div class="mwh-field"><label>Client Name<span class="mwh-req">*</span></label><input type="text" id="mwhClientName" placeholder="Key Name" required></div>
+        <div class="mwh-field"><label>Image</label>
+          <button type="button" class="mwh-upload" id="mwhClientUploadBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 16V8"/><path d="M8 12l4-4 4 4"/><path d="M4 20h16"/></svg><span>Click to Upload</span></button>
+          <input type="file" id="mwhClientImage" accept="image/*" hidden>
+        </div>
+        <button type="submit" class="mwh-save">Save</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add Feedback modal -->
+  <div class="mwh-modal-scrim" id="mwhFeedbackModal" hidden>
+    <div class="mwh-modal" role="dialog" aria-labelledby="mwhFeedbackModalTitle">
+      <div class="mwh-modal__head">
+        <h2 id="mwhFeedbackModalTitle">Add Feedback</h2>
+        <button type="button" class="mwh-modal__close" data-close="feedback" aria-label="Close">&times;</button>
+      </div>
+      <form class="mwh-modal__body" id="mwhFeedbackForm">
+        <div class="mwh-field"><label>Key Name<span class="mwh-req">*</span></label><input type="text" id="mwhFbName" placeholder="Name" required></div>
+        <div class="mwh-field"><label>Company Name<span class="mwh-req">*</span></label><input type="text" id="mwhFbCompany" placeholder="Company" required></div>
+        <div class="mwh-field"><label>Feedback<span class="mwh-req">*</span></label><textarea id="mwhFbText" placeholder="Feedback" rows="3" required></textarea></div>
+        <div class="mwh-field"><label>Image</label>
+          <button type="button" class="mwh-upload" id="mwhFbUploadBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 16V8"/><path d="M8 12l4-4 4 4"/><path d="M4 20h16"/></svg><span>Click to Upload</span></button>
+          <input type="file" id="mwhFbImage" accept="image/*" hidden>
+        </div>
+        <button type="submit" class="mwh-save">Save</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/marketing-website-home.js?v=1"></script>
+</body>
+</html>

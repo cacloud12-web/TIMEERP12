@@ -2,25 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="../assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="../assets/favicon-mark.png?v=13">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>View Employee — TIME ERP HRMS</title>
-  <meta name="description" content="View, manage, and organize all employees from one centralized TIME ERP workspace.">
-  <link rel="icon" href="../assets/image0.png" type="image/png">
+  <meta name="description" content="View, manage, and organize employees, freelancers, teams, and hierarchy in TIME ERP HRMS.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/dashboard-shell.css">
-  <link rel="stylesheet" href="css/viewemployee.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/viewemployee.css?v=dummy1">
 </head>
 <body>
-
   <div class="sidebar-scrim" id="sidebarScrim"></div>
-
   <div class="app-shell" id="top">
     <aside class="sidebar" id="sidebar" aria-label="Modules">
       <div class="sidebar__brand">
         <a href="../home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
-          <img src="../assets/image0.png" alt="TimeERP" width="168" height="40">
+          <img src="../assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
         </a>
       </div>
       <div class="sidebar__toolbar" role="group" aria-label="Search and create">
@@ -40,7 +42,7 @@
         <div class="topbar__inner">
           <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
           <div class="topbar__search" role="search">
-            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+            <input type="search" id="globalSearch" placeholder="Search in employees..." autocomplete="off" aria-label="Search">
           </div>
           <div class="topbar__actions">
             <div class="topbar__menu" style="position:relative">
@@ -71,287 +73,854 @@
       </header>
 
       <main class="main">
-        <div class="emp-page" id="empPage">
-
-          <header class="emp-page__header">
-            <div class="emp-page__header-text">
-              <h1>View Employee</h1>
+        <div class="ve-page" id="vePage">
+          <header class="ve-header">
+            <div class="ve-header__crumb">
+              <a class="ve-back" href="../home.html#module/hrms" aria-label="Back to HRMS">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+              </a>
+              <span class="ve-back-label">Hrms</span>
             </div>
-            <div class="emp-page__actions">
-              <button type="button" class="emp-btn" id="btnManageDesignations">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-                Designations
-              </button>
-              <button type="button" class="emp-btn emp-btn--primary" id="btnAddEmployee">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-                Add Employee
-              </button>
-              <button type="button" class="emp-btn" id="btnExport">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
-                Export
-              </button>
-              <button type="button" class="emp-btn" id="btnRefresh" aria-label="Refresh">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 4v6h6M20 20v-6h-6"/><path d="M5 19a9 9 0 0014-7M19 5a9 9 0 00-14 7"/></svg>
-                Refresh
-              </button>
-            </div>
+            <h1 class="ve-title">View Employee</h1>
           </header>
 
-          <section class="emp-kpi" aria-label="Employee statistics">
-            <article class="emp-kpi__card">
-              <div class="emp-kpi__top">
-                <div class="emp-kpi__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          <div class="ve-tabs-row">
+            <nav class="ve-tabs" aria-label="Employee sections">
+              <div class="ve-tabs__list" role="tablist">
+                <button type="button" class="ve-tab is-active" role="tab" aria-selected="true" data-tab="employee">Employee <span class="ve-tab__badge">4</span></button>
+                <button type="button" class="ve-tab" role="tab" aria-selected="false" data-tab="freelancers">Freelancers <span class="ve-tab__badge">3</span></button>
+                <button type="button" class="ve-tab" role="tab" aria-selected="false" data-tab="deleted">Deleted <span class="ve-tab__badge">2</span></button>
+                <button type="button" class="ve-tab" role="tab" aria-selected="false" data-tab="team">Team <span class="ve-tab__badge">0</span></button>
+                <button type="button" class="ve-tab" role="tab" aria-selected="false" data-tab="hierarchy">Hierarchy</button>
+              </div>
+            </nav>
+            <div class="ve-header__actions" id="veHeaderActions"></div>
+          </div>
+
+          <!-- ========== EMPLOYEE TAB ========== -->
+          <section class="ve-panel is-active" id="vePanelEmployee" data-panel="employee" role="tabpanel">
+            <div class="ve-stats">
+              <div class="ve-stat ve-stat--yellow"><strong>4</strong><span>EMPLOYEES</span></div>
+              <div class="ve-stat ve-stat--green"><strong>4</strong><span>ACTIVE</span></div>
+              <div class="ve-stat ve-stat--orange"><strong>0</strong><span>INACTIVE</span></div>
+              <div class="ve-stat ve-stat--blue"><strong>0</strong><span>TEAMS</span></div>
+              <div class="ve-stat ve-stat--pink"><strong>4</strong><span>NEW JOINERS</span></div>
+            </div>
+
+            <div class="ve-filters">
+              <div class="ve-search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></svg>
+                <input type="search" id="veEmpSearch" placeholder="Employee name / email" autocomplete="off" aria-label="Search employees">
+              </div>
+              <select id="veEmpDept" aria-label="Department"><option value="All" selected>All</option></select>
+              <select id="veEmpBranch" aria-label="Branch"><option value="All" selected>All</option></select>
+              <select id="veEmpDesig" aria-label="Designation"><option value="All" selected>All</option><option value="Manager">Manager</option></select>
+              <select id="veEmpStatus" aria-label="Status"><option value="All" selected>All</option><option value="Active">Active</option><option value="Inactive">Inactive</option></select>
+              <button type="button" class="ve-reset" id="veEmpReset">Reset Filter</button>
+            </div>
+
+            <div class="ve-widgets">
+              <article class="ve-widget ve-widget--blue">
+                <header class="ve-widget__head">
+                  <div class="ve-widget__title">
+                    <span class="ve-widget__icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+                    </span>
+                    <span>HR Policies</span>
+                  </div>
+                  <select class="ve-widget__select" aria-label="HR Policies filter"><option>All</option></select>
+                </header>
+                <div class="ve-widget__body ve-widget__body--list">
+                  <div class="ve-item-list">
+                    <div class="ve-item-row">
+                      <div class="ve-item-row__text">
+                        <strong>Leave Policy</strong>
+                        <span>Updated 12 Aug 2026</span>
+                      </div>
+                      <em class="ve-item-row__meta">Active</em>
+                    </div>
+                    <div class="ve-item-row">
+                      <div class="ve-item-row__text">
+                        <strong>Work From Home Policy</strong>
+                        <span>Updated 05 Aug 2026</span>
+                      </div>
+                      <em class="ve-item-row__meta">Active</em>
+                    </div>
+                    <div class="ve-item-row">
+                      <div class="ve-item-row__text">
+                        <strong>Code of Conduct</strong>
+                        <span>Updated 28 Jul 2026</span>
+                      </div>
+                      <em class="ve-item-row__meta">Active</em>
+                    </div>
+                    <div class="ve-item-row">
+                      <div class="ve-item-row__text">
+                        <strong>Attendance Policy</strong>
+                        <span>Updated 15 Jul 2026</span>
+                      </div>
+                      <em class="ve-item-row__meta">Draft</em>
+                    </div>
+                  </div>
+                </div>
+                <footer class="ve-widget__foot"><a href="#" class="ve-view-all" data-toast="HR Policies">View all →</a></footer>
+              </article>
+
+              <article class="ve-widget ve-widget--green">
+                <header class="ve-widget__head">
+                  <div class="ve-widget__title">
+                    <span class="ve-widget__icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                    </span>
+                    <span>Leave</span>
+                  </div>
+                  <select class="ve-widget__select" aria-label="Leave employee"><option>Saurabh Bhardwaj</option><option>Dev Aggarwal</option><option>Kamal Sharma</option><option>Ankur Gupta</option></select>
+                </header>
+                <div class="ve-widget__body ve-widget__body--list">
+                  <div class="ve-leave-list">
+                    <div class="ve-leave-row">
+                      <div class="ve-leave-row__text">
+                        <strong>Total Leave</strong>
+                        <span>Annual leave balance</span>
+                      </div>
+                      <em class="ve-leave-row__val">0.00</em>
+                    </div>
+                    <div class="ve-leave-row">
+                      <div class="ve-leave-row__text">
+                        <strong>Remaining Leave</strong>
+                        <span>Available balance</span>
+                      </div>
+                      <em class="ve-leave-row__val">0.00</em>
+                    </div>
+                    <div class="ve-leave-row">
+                      <div class="ve-leave-row__text">
+                        <strong>Used Leave</strong>
+                        <span>Leave taken this year</span>
+                      </div>
+                      <em class="ve-leave-row__val">0.00</em>
+                    </div>
+                  </div>
+                </div>
+                <footer class="ve-widget__foot"><a href="#" class="ve-view-all" data-toast="Leave">View all →</a></footer>
+              </article>
+
+              <article class="ve-widget ve-widget--orange">
+                <header class="ve-widget__head">
+                  <div class="ve-widget__title">
+                    <span class="ve-widget__icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 21h18"/><path d="M5 21V8l7-4 7 4v13"/><path d="M9 21v-6h6v6"/></svg>
+                    </span>
+                    <span>Branch Holiday</span>
+                  </div>
+                  <select class="ve-widget__select" aria-label="Select Branch"><option>Select Branch</option><option>TimeErp Demo</option></select>
+                </header>
+                <div class="ve-widget__body ve-widget__body--list">
+                  <div class="ve-item-list">
+                    <div class="ve-item-row">
+                      <div class="ve-item-row__text">
+                        <strong>Independence Day</strong>
+                        <span>TimeErp Demo · National holiday</span>
+                      </div>
+                      <em class="ve-item-row__meta">15 Aug</em>
+                    </div>
+                    <div class="ve-item-row">
+                      <div class="ve-item-row__text">
+                        <strong>Ganesh Chaturthi</strong>
+                        <span>TimeErp Demo · Optional</span>
+                      </div>
+                      <em class="ve-item-row__meta">27 Aug</em>
+                    </div>
+                    <div class="ve-item-row">
+                      <div class="ve-item-row__text">
+                        <strong>Gandhi Jayanti</strong>
+                        <span>TimeErp Demo · National holiday</span>
+                      </div>
+                      <em class="ve-item-row__meta">02 Oct</em>
+                    </div>
+                    <div class="ve-item-row">
+                      <div class="ve-item-row__text">
+                        <strong>Diwali</strong>
+                        <span>TimeErp Demo · Festival holiday</span>
+                      </div>
+                      <em class="ve-item-row__meta">20 Oct</em>
+                    </div>
+                  </div>
+                </div>
+                <footer class="ve-widget__foot"><a href="#" class="ve-view-all" data-toast="Branch Holiday">View all →</a></footer>
+              </article>
+
+              <article class="ve-widget ve-widget--purple ve-widget--wide">
+                <header class="ve-widget__head">
+                  <div class="ve-widget__title">
+                    <span class="ve-widget__icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15h6"/></svg>
+                    </span>
+                    <span>Employee Document</span>
+                  </div>
+                  <select class="ve-widget__select" aria-label="Document employee"><option>Saurabh Bhardwaj</option><option>Dev Aggarwal</option><option>Kamal Sharma</option><option>Ankur Gupta</option></select>
+                </header>
+                <div class="ve-widget__body ve-widget__body--list">
+                  <div class="ve-item-list">
+                    <div class="ve-item-row">
+                      <div class="ve-item-row__text">
+                        <strong>Offer_Letter.pdf</strong>
+                        <span>Uploaded 10 Mar 2025 · 245 KB</span>
+                      </div>
+                      <em class="ve-item-row__meta">PDF</em>
+                    </div>
+                    <div class="ve-item-row">
+                      <div class="ve-item-row__text">
+                        <strong>Aadhaar_Card.jpg</strong>
+                        <span>Uploaded 12 Mar 2025 · 1.2 MB</span>
+                      </div>
+                      <em class="ve-item-row__meta">IMG</em>
+                    </div>
+                    <div class="ve-item-row">
+                      <div class="ve-item-row__text">
+                        <strong>PAN_Card.pdf</strong>
+                        <span>Uploaded 12 Mar 2025 · 180 KB</span>
+                      </div>
+                      <em class="ve-item-row__meta">PDF</em>
+                    </div>
+                    <div class="ve-item-row">
+                      <div class="ve-item-row__text">
+                        <strong>Experience_Certificate.pdf</strong>
+                        <span>Uploaded 18 Mar 2025 · 320 KB</span>
+                      </div>
+                      <em class="ve-item-row__meta">PDF</em>
+                    </div>
+                  </div>
+                </div>
+                <footer class="ve-widget__foot"><a href="#" class="ve-view-all" data-toast="Employee Document">View all →</a></footer>
+              </article>
+            </div>
+
+            <div class="ve-card">
+              <header class="ve-card__head">
+                <div>
+                  <h2 class="ve-card__title">Employee Directory</h2>
+                  <p class="ve-card__sub" id="veEmpCountLabel">4 records</p>
+                </div>
+                <button type="button" class="ve-excel" id="veEmpExcel" aria-label="Export Excel" title="Export Excel">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 2.75h7.5L19.25 7.5V20.5a.75.75 0 01-.75.75H7a.75.75 0 01-.75-.75V3.5A.75.75 0 017 2.75z" stroke="#217346" stroke-width="1.5" stroke-linejoin="round"/><path d="M14.5 2.75V7.5h4.75" stroke="#217346" stroke-width="1.5" stroke-linejoin="round"/><path d="M9.2 10.2l5.6 7.6M14.8 10.2l-5.6 7.6" stroke="#217346" stroke-width="1.8" stroke-linecap="round"/></svg>
+                </button>
+              </header>
+              <div class="ve-table-wrap">
+                <table class="ve-table" id="veEmpTable">
+                  <thead>
+                    <tr>
+                      <th class="ve-th-check"><input type="checkbox" id="veEmpSelectAll" aria-label="Select all"></th>
+                      <th data-sort="name" class="is-sortable">EMPLOYEE NAME <span class="ve-sort"></span></th>
+                      <th data-sort="email" class="is-sortable">EMAIL <span class="ve-sort"></span></th>
+                      <th data-sort="mobile" class="is-sortable">MOBILE NO. <span class="ve-sort"></span></th>
+                      <th data-sort="department" class="is-sortable">DEPARTMENT <span class="ve-sort"></span></th>
+                      <th data-sort="joining" class="is-sortable">JOINING DATE <span class="ve-sort"></span></th>
+                      <th>DESIGNATION</th>
+                      <th data-sort="status" class="is-sortable">STATUS <span class="ve-sort"></span></th>
+                      <th>ALLOW EMAIL</th>
+                      <th>ALLOW SMS</th>
+                      <th>ALLOW NOTIFICATION</th>
+                      <th>PENDING NO DUES</th>
+                      <th>PORTAL ACCESS</th>
+                      <th>ACTION</th>
+                    </tr>
+                  </thead>
+                  <tbody id="veEmpBody"></tbody>
+                </table>
+                <div class="ve-empty" id="veEmpEmpty" hidden>
+                  <p>No data</p>
                 </div>
               </div>
-              <div class="emp-kpi__value" id="kpiTotal" data-count="0">0</div>
-              <div class="emp-kpi__label">Total Employees</div>
-            </article>
-            <article class="emp-kpi__card">
-              <div class="emp-kpi__top">
-                <div class="emp-kpi__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+              <footer class="ve-pagination" aria-label="Employee pagination">
+                <div class="ve-pagination__left">
+                  <select id="veEmpPageSize" class="ve-page-size" aria-label="Rows per page">
+                    <option value="10" selected>10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                  </select>
                 </div>
-                <span class="emp-kpi__badge emp-kpi__badge--green">Active</span>
-              </div>
-              <div class="emp-kpi__value" id="kpiActive">0</div>
-              <div class="emp-kpi__label">Active Employees</div>
-            </article>
-            <article class="emp-kpi__card">
-              <div class="emp-kpi__top">
-                <div class="emp-kpi__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                <div class="ve-pagination__center">
+                  <button type="button" class="ve-page-nav" id="veEmpPrev" disabled aria-label="Previous page">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                  </button>
+                  <input type="text" class="ve-page-input" id="veEmpPageInput" value="1" readonly aria-label="Current page">
+                  <span class="ve-page-of" id="veEmpPageOf">of 1</span>
+                  <button type="button" class="ve-page-nav" id="veEmpNext" disabled aria-label="Next page">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                  </button>
                 </div>
-                <span class="emp-kpi__badge emp-kpi__badge--orange">Leave</span>
-              </div>
-              <div class="emp-kpi__value" id="kpiLeave">0</div>
-              <div class="emp-kpi__label">On Leave</div>
-            </article>
-            <article class="emp-kpi__card">
-              <div class="emp-kpi__top">
-                <div class="emp-kpi__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
-                </div>
-                <span class="emp-kpi__badge emp-kpi__badge--blue">New</span>
-              </div>
-              <div class="emp-kpi__value" id="kpiNew">0</div>
-              <div class="emp-kpi__label">New Joiners</div>
-            </article>
-            <article class="emp-kpi__card">
-              <div class="emp-kpi__top">
-                <div class="emp-kpi__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/><path d="M9 9v.01M9 12v.01M9 15v.01M9 18v.01"/></svg>
-                </div>
-                <span class="emp-kpi__badge emp-kpi__badge--purple">Dept</span>
-              </div>
-              <div class="emp-kpi__value" id="kpiDept">0</div>
-              <div class="emp-kpi__label">Departments</div>
-            </article>
-            <article class="emp-kpi__card">
-              <div class="emp-kpi__top">
-                <div class="emp-kpi__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                </div>
-                <span class="emp-kpi__badge emp-kpi__badge--red">Pending</span>
-              </div>
-              <div class="emp-kpi__value" id="kpiPending">0</div>
-              <div class="emp-kpi__label">Pending Approvals</div>
-            </article>
+                <div class="ve-pagination__right"><span class="ve-count" id="veEmpPageCount">4 / 4</span></div>
+              </footer>
+            </div>
           </section>
 
-          <div class="emp-toolbar">
-            <div class="emp-search" role="search">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-              <input type="search" id="empSearch" placeholder="Search employee by name, employee ID, email, or phone…" autocomplete="off" aria-label="Search employees">
+          <!-- ========== FREELANCERS TAB ========== -->
+          <section class="ve-panel" id="vePanelFreelancers" data-panel="freelancers" role="tabpanel" hidden>
+            <div class="ve-stats ve-stats--3">
+              <div class="ve-stat ve-stat--blue"><strong>3</strong><span>FREELANCERS</span></div>
+              <div class="ve-stat ve-stat--green"><strong>2</strong><span>ACTIVE</span></div>
+              <div class="ve-stat ve-stat--red"><strong>1</strong><span>INACTIVE</span></div>
             </div>
-
-            <form class="emp-filters" id="empFilters" aria-label="Advanced filters">
-              <div><label for="filterDept">Department</label><select id="filterDept"></select></div>
-              <div><label for="filterDesignation">Designation</label><select id="filterDesignation"></select></div>
-              <div><label for="filterLocation">Location</label><select id="filterLocation"></select></div>
-              <div><label for="filterType">Employment Type</label><select id="filterType"></select></div>
-              <div><label for="filterStatus">Employee Status</label><select id="filterStatus"></select></div>
-              <div><label for="filterManager">Reporting Manager</label><select id="filterManager"></select></div>
-              <div><label for="filterJoined">Joining Date</label><input type="date" id="filterJoined"></div>
-              <button type="button" class="emp-btn" id="filterReset">Reset Filter</button>
-            </form>
-          </div>
-
-          <div class="emp-bar">
-            <div class="emp-view-toggle" role="tablist" aria-label="Employee view">
-              <button type="button" class="is-active" data-view="table" role="tab" aria-selected="true">Table View</button>
-              <button type="button" data-view="card" role="tab" aria-selected="false">Card View</button>
-              <button type="button" data-view="grid" role="tab" aria-selected="false">Grid View</button>
+            <div class="ve-filters">
+              <div class="ve-search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></svg>
+                <input type="search" id="veFlSearch" placeholder="Search Freelancer" autocomplete="off" aria-label="Search freelancers">
+              </div>
+              <select aria-label="Team"><option value="">Team</option><option>All</option></select>
+              <select aria-label="Designation"><option value="">Designation</option><option>All</option></select>
+              <select aria-label="Status"><option value="">Status</option><option>All</option></select>
+              <button type="button" class="ve-reset" id="veFlReset">Reset Filter</button>
             </div>
-            <div class="emp-bulk" id="empBulkBar" hidden>
-              <div class="emp-bulk__group" role="group" aria-label="Bulk employee actions">
-                <div class="emp-btn emp-btn--select" aria-live="polite" aria-atomic="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
-                    <path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/>
-                    <circle cx="9" cy="7" r="4"/>
-                    <path d="M22 21v-2a4 4 0 00-3-3.87"/>
-                    <path d="M16 3.13a4 4 0 010 7.75"/>
-                  </svg>
-                  <span><strong id="empBulkCount">0</strong> Selected</span>
+            <div class="ve-card">
+              <header class="ve-card__head">
+                <div>
+                  <h2 class="ve-card__title">Freelancer Directory</h2>
+                  <p class="ve-card__sub">3 records</p>
                 </div>
-                <span class="emp-bulk__sep" aria-hidden="true"></span>
-                <button type="button" class="emp-btn" data-action="export">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
-                  Export
-                </button>
-                <button type="button" class="emp-btn" data-bulk="assign-dept">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/></svg>
-                  Assign Department
-                </button>
-                <button type="button" class="emp-btn" data-bulk="assign-desig">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M20 7h-9M14 3v4M6 17h9M10 13v4"/></svg>
-                  Assign Designation
-                </button>
-                <button type="button" class="emp-btn" data-bulk="email">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-                  Send Email
-                </button>
-                <button type="button" class="emp-btn emp-btn--ghost" id="empBulkClear">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
-                  Clear
-                </button>
+              </header>
+              <div class="ve-table-wrap">
+                <table class="ve-table">
+                  <thead>
+                    <tr>
+                      <th class="ve-th-check"><input type="checkbox" aria-label="Select all freelancers"></th>
+                      <th>FREELANCER NAME</th>
+                      <th>EMAIL</th>
+                      <th>MOBILE NO.</th>
+                      <th>TEAM</th>
+                      <th>DESIGNATION</th>
+                      <th>STATUS</th>
+                      <th>ALLOW EMAIL</th>
+                      <th>ALLOW SMS</th>
+                      <th>ALLOW NOTIFICATION</th>
+                      <th>PORTAL ACCESS</th>
+                      <th>ACTION</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Riya Mehta"></td>
+                      <td><div class="ve-emp-cell"><span class="ve-avatar" aria-hidden="true">RM</span><div class="ve-emp-meta"><span class="ve-emp-code">FL01</span><span class="ve-emp-name">Riya Mehta</span></div></div></td>
+                      <td>riya.mehta@example.com</td>
+                      <td>9812345670</td>
+                      <td>Finance</td>
+                      <td>Consultant</td>
+                      <td><span class="ve-pill ve-pill--active">Active</span></td>
+                      <td class="ve-yn">Yes</td>
+                      <td class="ve-yn">Yes</td>
+                      <td class="ve-yn">Yes</td>
+                      <td><label class="ve-toggle"><input type="checkbox" checked><span></span></label></td>
+                      <td><div class="ve-actions"><button type="button" class="ve-act ve-act--edit" title="Edit" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15.2 5.3l3.5 3.5"/><path d="M4 20l4.1-.9L18.9 8.3a1.8 1.8 0 00-2.5-2.5L5.6 16.6 4 20z"/><path d="M13.5 20H20"/></svg></button></div></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Amit Verma"></td>
+                      <td><div class="ve-emp-cell"><span class="ve-avatar" aria-hidden="true">AV</span><div class="ve-emp-meta"><span class="ve-emp-code">FL02</span><span class="ve-emp-name">Amit Verma</span></div></div></td>
+                      <td>amit.verma@example.com</td>
+                      <td>9876501234</td>
+                      <td>Tax</td>
+                      <td>Associate</td>
+                      <td><span class="ve-pill ve-pill--active">Active</span></td>
+                      <td class="ve-yn">Yes</td>
+                      <td class="ve-yn">No</td>
+                      <td class="ve-yn">Yes</td>
+                      <td><label class="ve-toggle"><input type="checkbox" checked><span></span></label></td>
+                      <td><div class="ve-actions"><button type="button" class="ve-act ve-act--edit" title="Edit" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15.2 5.3l3.5 3.5"/><path d="M4 20l4.1-.9L18.9 8.3a1.8 1.8 0 00-2.5-2.5L5.6 16.6 4 20z"/><path d="M13.5 20H20"/></svg></button></div></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Neha Kapoor"></td>
+                      <td><div class="ve-emp-cell"><span class="ve-avatar" aria-hidden="true">NK</span><div class="ve-emp-meta"><span class="ve-emp-code">FL03</span><span class="ve-emp-name">Neha Kapoor</span></div></div></td>
+                      <td>neha.kapoor@example.com</td>
+                      <td>9765432109</td>
+                      <td>Audit</td>
+                      <td>Analyst</td>
+                      <td><span class="ve-pill ve-pill--inactive">Inactive</span></td>
+                      <td class="ve-yn">No</td>
+                      <td class="ve-yn">No</td>
+                      <td class="ve-yn">No</td>
+                      <td><label class="ve-toggle"><input type="checkbox"><span></span></label></td>
+                      <td><div class="ve-actions"><button type="button" class="ve-act ve-act--edit" title="Edit" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15.2 5.3l3.5 3.5"/><path d="M4 20l4.1-.9L18.9 8.3a1.8 1.8 0 00-2.5-2.5L5.6 16.6 4 20z"/><path d="M13.5 20H20"/></svg></button></div></td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
+              <footer class="ve-pagination">
+                <div class="ve-pagination__left">
+                  <select class="ve-page-size" aria-label="Rows per page"><option>10</option></select>
+                </div>
+                <div class="ve-pagination__center">
+                  <button type="button" class="ve-page-nav" disabled aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+                  <input type="text" class="ve-page-input" value="1" readonly>
+                  <span class="ve-page-of">of 1</span>
+                  <button type="button" class="ve-page-nav" disabled aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+                </div>
+                <div class="ve-pagination__right"><span class="ve-count">3 / 3</span></div>
+              </footer>
             </div>
-            <span id="empResultCount" style="font-size:13px;color:var(--muted);margin-left:auto"></span>
-          </div>
+          </section>
 
-          <div class="emp-empty" id="empEmpty" hidden>
-            <div class="emp-empty__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          <!-- ========== DELETED TAB ========== -->
+          <section class="ve-panel" id="vePanelDeleted" data-panel="deleted" role="tabpanel" hidden>
+            <div class="ve-stats ve-stats--2">
+              <div class="ve-stat ve-stat--red"><strong>2</strong><span>DELETED</span></div>
+              <div class="ve-stat ve-stat--yellow"><strong>1</strong><span>DELETED THIS MONTH</span></div>
             </div>
-            <h3>No Employees Found</h3>
-            <p>No employee records match your search.</p>
-            <div class="emp-empty__actions">
-              <button type="button" class="emp-btn" id="emptyReset">Reset Filter</button>
-              <button type="button" class="emp-btn emp-btn--primary" id="emptyAdd">Add Employee</button>
-            </div>
-          </div>
-
-          <section class="emp-panel" id="empContentPanel" aria-label="Employee list">
-            <div class="emp-table-wrap emp-view-panel is-active" id="empTableView" data-view-panel="table">
-              <table class="emp-table" aria-label="Employees table">
-                <thead>
-                  <tr>
-                    <th scope="col" class="emp-select-cell">
-                      <label class="emp-select-label">
-                        <input type="checkbox" class="emp-check" id="empSelectAll" aria-label="Select all employees on this page">
-                      </label>
-                    </th>
-                    <th scope="col" data-sort="name">Employee Name</th>
-                    <th scope="col" data-sort="id">Employee ID</th>
-                    <th scope="col" data-sort="dept">Department</th>
-                    <th scope="col" data-sort="designation">Designation</th>
-                    <th scope="col" data-sort="email">Email</th>
-                    <th scope="col" data-sort="phone">Phone</th>
-                    <th scope="col" data-sort="joined">Joining Date</th>
-                    <th scope="col" data-sort="type">Employment Type</th>
-                    <th scope="col" data-sort="status">Status</th>
-                    <th scope="col">Actions</th>
-                  </tr>
-                </thead>
-                <tbody id="empTableBody"></tbody>
-              </table>
-            </div>
-            <div class="emp-cards emp-view-panel" id="empCardView" data-view-panel="card" hidden></div>
-            <div class="emp-grid emp-view-panel" id="empGridView" data-view-panel="grid" hidden></div>
-            <div class="emp-pagination">
-              <div class="emp-pagination__left">
-                <label for="empPageSize">Rows</label>
-                <select id="empPageSize" aria-label="Rows per page">
-                  <option value="10">10</option>
-                  <option value="25">25</option>
-                  <option value="50">50</option>
-                  <option value="100">100</option>
-                </select>
+            <div class="ve-filters">
+              <div class="ve-search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></svg>
+                <input type="search" id="veDelSearch" placeholder="Search Deleted Employee" autocomplete="off" aria-label="Search deleted">
               </div>
-              <div class="emp-pagination__right">
-                <button type="button" class="emp-btn emp-btn--icon" id="empPrev" aria-label="Previous page" title="Previous">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-                </button>
-                <div class="emp-pagination__pages" id="empPages"></div>
-                <span id="empPageInfo">Page 1 of 1</span>
-                <button type="button" class="emp-btn emp-btn--icon" id="empNext" aria-label="Next page" title="Next">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
-                </button>
+              <select aria-label="Team"><option value="">Team</option><option>All</option></select>
+              <select aria-label="Designation"><option value="">Designation</option><option>All</option></select>
+              <select aria-label="Status"><option value="">Status</option><option>All</option></select>
+              <button type="button" class="ve-reset" id="veDelReset">Reset Filter</button>
+            </div>
+            <div class="ve-card">
+              <header class="ve-card__head">
+                <div>
+                  <h2 class="ve-card__title">Deleted Employees</h2>
+                  <p class="ve-card__sub">2 records</p>
+                </div>
+              </header>
+              <div class="ve-table-wrap">
+                <table class="ve-table">
+                  <thead>
+                    <tr>
+                      <th class="ve-th-check"><input type="checkbox" aria-label="Select all deleted"></th>
+                      <th>EMPLOYEE NAME</th>
+                      <th>TEAM</th>
+                      <th>DESIGNATION</th>
+                      <th>MOBILE</th>
+                      <th>EMAIL</th>
+                      <th>DELETED DATE</th>
+                      <th>PENDING NO DUES</th>
+                      <th>RETRIEVE</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Priya Singh"></td>
+                      <td><div class="ve-emp-cell"><span class="ve-avatar" aria-hidden="true">PS</span><div class="ve-emp-meta"><span class="ve-emp-code">ERP09</span><span class="ve-emp-name">Priya Singh</span></div></div></td>
+                      <td>Accounts</td>
+                      <td>Executive</td>
+                      <td>9898989898</td>
+                      <td>priya.singh@example.com</td>
+                      <td>18/08/2026</td>
+                      <td>Clear</td>
+                      <td><button type="button" class="ve-btn ve-btn--outline ve-retrieve-btn" data-toast="Retrieve Priya Singh">Retrieve</button></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Rohan Das"></td>
+                      <td><div class="ve-emp-cell"><span class="ve-avatar" aria-hidden="true">RD</span><div class="ve-emp-meta"><span class="ve-emp-code">ERP11</span><span class="ve-emp-name">Rohan Das</span></div></div></td>
+                      <td>Compliance</td>
+                      <td>Associate</td>
+                      <td>9123456789</td>
+                      <td>rohan.das@example.com</td>
+                      <td>03/07/2026</td>
+                      <td>Pending</td>
+                      <td><button type="button" class="ve-btn ve-btn--outline ve-retrieve-btn" data-toast="Retrieve Rohan Das">Retrieve</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <footer class="ve-pagination">
+                <div class="ve-pagination__left">
+                  <select class="ve-page-size" aria-label="Rows per page"><option>10</option></select>
+                </div>
+                <div class="ve-pagination__center">
+                  <button type="button" class="ve-page-nav" disabled aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+                  <input type="text" class="ve-page-input" value="1" readonly>
+                  <span class="ve-page-of">of 1</span>
+                  <button type="button" class="ve-page-nav" disabled aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+                </div>
+                <div class="ve-pagination__right"><span class="ve-count">2 / 2</span></div>
+              </footer>
+            </div>
+          </section>
+
+          <!-- ========== TEAM TAB ========== -->
+          <section class="ve-panel" id="vePanelTeam" data-panel="team" role="tabpanel" hidden>
+            <div class="ve-team-wrap">
+              <header class="ve-team-bar">
+                <h2 class="ve-team-bar__title">Teams</h2>
+                <div class="ve-team-bar__right">
+                  <input type="search" class="ve-team-search" id="veTeamSearch" placeholder="Search by team, name, email, ID, desi..." autocomplete="off" aria-label="Search teams">
+                  <button type="button" class="ve-team-expand" id="veTeamExpandAll">Expand All</button>
+                </div>
+              </header>
+
+              <div class="ve-team-tree" id="veOrgTree">
+                <div class="ve-team-node is-expanded" data-node="root">
+                  <div class="ve-team-org">
+                    <button type="button" class="ve-team-toggle" data-toggle="root" aria-label="Collapse">−</button>
+                    <div class="ve-team-org__body">
+                      <strong class="ve-team-org__name">TimeErp Demo</strong>
+                      <div class="ve-team-org__label">Organization</div>
+                      <div class="ve-team-org__count">1 team</div>
+                    </div>
+                  </div>
+
+                  <div class="ve-team-children">
+                    <div class="ve-team-node is-expanded" data-node="dummy">
+                      <article class="ve-team-box">
+                        <header class="ve-team-box__head">
+                          <button type="button" class="ve-team-toggle" data-toggle="dummy" aria-label="Collapse">−</button>
+                          <span class="ve-team-box__name">dummy</span>
+                          <div class="ve-team-menu-wrap">
+                            <button type="button" class="ve-team-menu" data-team-menu="dummy" aria-label="Team menu" aria-haspopup="true" aria-expanded="false" title="More">
+                              <span aria-hidden="true">⋮</span>
+                            </button>
+                            <div class="ve-team-dropdown" id="veTeamMenuDummy" hidden role="menu">
+                              <button type="button" class="ve-team-dropdown__item" data-team-act="edit" data-team="dummy" role="menuitem">Edit</button>
+                              <button type="button" class="ve-team-dropdown__item ve-team-dropdown__item--danger" data-team-act="delete" data-team="dummy" role="menuitem">Delete</button>
+                            </div>
+                          </div>
+                        </header>
+                        <div class="ve-team-box__body">
+                          <div class="ve-team-lead">
+                            <span class="ve-team-avatar ve-team-avatar--lg" aria-hidden="true">DA</span>
+                            <div class="ve-team-lead__meta">
+                              <strong>Dev Aggarwal</strong>
+                              <span>--</span>
+                            </div>
+                          </div>
+                          <div class="ve-team-emps">
+                            <div class="ve-team-emps__label">Employees</div>
+                            <div class="ve-team-emps__list">
+                              <span class="ve-team-avatar" title="Dev Aggarwal">DA</span>
+                            </div>
+                            <div class="ve-team-emps__count">1 employee</div>
+                          </div>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
 
+          <!-- ========== HIERARCHY TAB ========== -->
+          <section class="ve-panel" id="vePanelHierarchy" data-panel="hierarchy" role="tabpanel" hidden>
+            <div class="ve-hier-wrap">
+              <div class="ve-hier-bar">
+                <h2 class="ve-hier-bar__title">Employee Hierarchy</h2>
+                <button type="button" class="ve-hier-expand" id="veHierExpandAll">Expand All</button>
+              </div>
+              <div class="ve-hier" id="veHier">
+                <div class="ve-hier-node is-expanded" data-hier="root">
+                  <div class="ve-hier-card">
+                    <span class="ve-hier-avatar" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a4.2 4.2 0 100-8.4 4.2 4.2 0 000 8.4zm0 2.1c-4.2 0-7.6 2.1-7.6 4.7V21h15.2v-2.2c0-2.6-3.4-4.7-7.6-4.7z"/></svg>
+                    </span>
+                    <div class="ve-hier-info">
+                      <strong>TimeErp Demo</strong>
+                      <span>Designation: Manager</span>
+                      <span>Email: info@timeerp.in</span>
+                    </div>
+                    <button type="button" class="ve-hier-caret" data-hier-toggle="root" aria-label="Collapse" title="Collapse">
+                      <svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 6.5L6 1.5l5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                  </div>
+                  <div class="ve-hier-children">
+                    <div class="ve-hier-node is-expanded" data-hier="kamal">
+                      <div class="ve-hier-card">
+                        <span class="ve-hier-avatar" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a4.2 4.2 0 100-8.4 4.2 4.2 0 000 8.4zm0 2.1c-4.2 0-7.6 2.1-7.6 4.7V21h15.2v-2.2c0-2.6-3.4-4.7-7.6-4.7z"/></svg>
+                        </span>
+                        <div class="ve-hier-info">
+                          <strong>Kamal Sharma</strong>
+                          <span>Designation: Manager</span>
+                          <span>Email: cakamal9758@gmail.com</span>
+                        </div>
+                        <button type="button" class="ve-hier-caret" data-hier-toggle="kamal" aria-label="Collapse" title="Collapse">
+                          <svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 6.5L6 1.5l5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                      </div>
+                      <div class="ve-hier-children">
+                        <div class="ve-hier-node">
+                          <div class="ve-hier-card">
+                            <span class="ve-hier-avatar" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a4.2 4.2 0 100-8.4 4.2 4.2 0 000 8.4zm0 2.1c-4.2 0-7.6 2.1-7.6 4.7V21h15.2v-2.2c0-2.6-3.4-4.7-7.6-4.7z"/></svg>
+                            </span>
+                            <div class="ve-hier-info">
+                              <strong>Dev Aggarwal</strong>
+                              <span>Designation: Manager</span>
+                              <span>Email: 000aggarwal@gmail.com</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="ve-hier-node">
+                          <div class="ve-hier-card">
+                            <span class="ve-hier-avatar" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a4.2 4.2 0 100-8.4 4.2 4.2 0 000 8.4zm0 2.1c-4.2 0-7.6 2.1-7.6 4.7V21h15.2v-2.2c0-2.6-3.4-4.7-7.6-4.7z"/></svg>
+                            </span>
+                            <div class="ve-hier-info">
+                              <strong>Ankur Gupta</strong>
+                              <span>Designation: Manager</span>
+                              <span>Email: ankur@timeerp.com</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="ve-hier-node">
+                      <div class="ve-hier-card">
+                        <span class="ve-hier-avatar" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a4.2 4.2 0 100-8.4 4.2 4.2 0 000 8.4zm0 2.1c-4.2 0-7.6 2.1-7.6 4.7V21h15.2v-2.2c0-2.6-3.4-4.7-7.6-4.7z"/></svg>
+                        </span>
+                        <div class="ve-hier-info">
+                          <strong>Saurabh Bhardwaj</strong>
+                          <span>Designation: Manager</span>
+                          <span>Email: info@timeerp.in</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
-
       </main>
     </div>
   </div>
 
-  <button type="button" class="emp-mobile-fab" id="mobileFab" aria-label="Add employee">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-  </button>
+  <!-- Add Employee Modal -->
+  <div class="ve-modal-scrim" id="veAddEmpModal" hidden>
+    <div class="ve-modal ve-modal--lg" role="dialog" aria-modal="true" aria-labelledby="veAddEmpTitle">
+      <div class="ve-modal__head">
+        <h2 id="veAddEmpTitle">Add Employee</h2>
+        <div class="ve-modal__head-actions">
+          <button type="button" class="ve-btn ve-btn--ghost" id="veAddDesignation">+ Designation</button>
+          <button type="button" class="ve-modal__close" id="veAddEmpClose" aria-label="Close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="ve-stepper" id="veAddStepper" role="tablist" aria-label="Add employee steps">
+        <button type="button" class="ve-step is-active" data-step="0">Employee Details</button>
+        <button type="button" class="ve-step" data-step="1">Permissions</button>
+        <button type="button" class="ve-step" data-step="2">Additional Details</button>
+        <button type="button" class="ve-step" data-step="3">Bank Details</button>
+        <button type="button" class="ve-step" data-step="4">Emergency Contacts</button>
+        <button type="button" class="ve-step" data-step="5">Upload Documents</button>
+      </div>
+      <div class="ve-modal__body">
+        <div class="ve-add-step is-active" data-step-panel="0">
+          <div class="ve-profile-upload">
+            <div class="ve-profile-circle" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/></svg>
+            </div>
+            <button type="button" class="ve-link-btn" id="veUploadPhoto">Upload Profile Picture</button>
+          </div>
+          <form class="ve-form-grid" id="veAddEmpForm" onsubmit="return false;">
+            <div class="ve-form-col">
+              <div class="ve-field">
+                <label>Employment Type</label>
+                <div class="ve-radios">
+                  <label class="ve-radio"><input type="radio" name="empType" value="Employee" checked> Employee</label>
+                  <label class="ve-radio"><input type="radio" name="empType" value="Freelancers"> Freelancers</label>
+                </div>
+              </div>
+              <div class="ve-field"><label>Name <span class="req">*</span></label><input type="text" name="name" placeholder="Enter name"></div>
+              <div class="ve-field"><label>Mobile No 1 <span class="req">*</span></label><input type="tel" name="mobile1" placeholder="Mobile number"></div>
+              <div class="ve-field"><label>Mobile No 2</label><input type="tel" name="mobile2" placeholder="Alternate mobile"></div>
+              <div class="ve-field"><label>Department</label><select name="department"><option value="">Select</option><option>HR</option><option>Engineering</option><option>Sales</option></select></div>
+              <div class="ve-field ve-field--row"><label>Disability</label><label class="ve-switch"><input type="checkbox" name="disability"><span></span></label><span class="ve-switch-label">No</span></div>
+              <div class="ve-field"><label>DOB</label><input type="date" name="dob"></div>
+              <div class="ve-field"><label>Probation Period</label><input type="text" name="probation" placeholder="e.g. 3 months"></div>
+              <div class="ve-field"><label>Office</label><select name="office"><option value="">Select</option><option>TimeErp Demo</option></select></div>
+              <div class="ve-field"><label>Team</label><select name="team"><option value="">Select</option><option>dummy</option></select></div>
+              <div class="ve-field"><label>Current Address</label><textarea name="currentAddress" rows="2" placeholder="Current address"></textarea></div>
+              <div class="ve-field"><label>Notice Period</label><input type="text" name="notice" placeholder="e.g. 30 days"></div>
+              <div class="ve-field ve-field--row"><label>Allow Mobile Attendance</label><label class="ve-switch"><input type="checkbox" name="mobileAtt"><span></span></label></div>
+              <div class="ve-field ve-field--row"><label>Allow Outside Radius</label><label class="ve-switch"><input type="checkbox" name="outsideRadius"><span></span></label></div>
+            </div>
+            <div class="ve-form-col">
+              <div class="ve-field"><label>Organization</label><input type="text" name="org" value="TimeErp Demo" readonly></div>
+              <div class="ve-field"><label>Employee Code</label><input type="text" name="code" placeholder="Auto / enter code"></div>
+              <div class="ve-field"><label>Email Id <span class="req">*</span></label><input type="email" name="email" placeholder="email@example.com"></div>
+              <div class="ve-field"><label>Manager <span class="req">*</span></label><select name="manager"><option value="">Select Manager</option><option>Saurabh Bhardwaj</option><option>Kamal Sharma</option><option>Dev Aggarwal</option></select></div>
+              <div class="ve-field">
+                <label>Marital Status</label>
+                <div class="ve-radios">
+                  <label class="ve-radio"><input type="radio" name="marital" value="Single" checked> Single</label>
+                  <label class="ve-radio"><input type="radio" name="marital" value="Married"> Married</label>
+                </div>
+              </div>
+              <div class="ve-field"><label>Education Qualification</label><input type="text" name="education" placeholder="Qualification"></div>
+              <div class="ve-field"><label>Joining Date</label><input type="text" name="joining" value="30/07/2026"></div>
+              <div class="ve-field"><label>Branch</label><select name="branch"><option>TimeErp Demo</option></select></div>
+              <div class="ve-field"><label>Shift</label><select name="shift"><option>Normal Routine</option></select></div>
+              <div class="ve-field"><label>Gender</label><select name="gender"><option>Male</option><option>Female</option><option>Other</option></select></div>
+              <div class="ve-field"><label>Permanent Address</label><textarea name="permAddress" rows="2" placeholder="Permanent address"></textarea></div>
+              <div class="ve-field"><label>Status</label><select name="status"><option>Active</option><option>Inactive</option></select></div>
+              <div class="ve-field ve-field--row"><label>Allow Desktop Attendance</label><label class="ve-switch"><input type="checkbox" name="desktopAtt" checked><span></span></label></div>
+              <div class="ve-field ve-field--row"><label>Allow Face Recognition</label><label class="ve-switch"><input type="checkbox" name="faceRec"><span></span></label></div>
+            </div>
+          </form>
+        </div>
+        <div class="ve-add-step" data-step-panel="1" hidden>
+          <div class="ve-placeholder-panel"><h3>Permissions</h3><p>Configure module access and role permissions for this employee.</p></div>
+        </div>
+        <div class="ve-add-step" data-step-panel="2" hidden>
+          <div class="ve-placeholder-panel"><h3>Additional Details</h3><p>Extra personal and employment information.</p></div>
+        </div>
+        <div class="ve-add-step" data-step-panel="3" hidden>
+          <div class="ve-placeholder-panel"><h3>Bank Details</h3><p>Account number, IFSC, and payroll bank information.</p></div>
+        </div>
+        <div class="ve-add-step" data-step-panel="4" hidden>
+          <div class="ve-placeholder-panel"><h3>Emergency Contacts</h3><p>Add emergency contact name and phone numbers.</p></div>
+        </div>
+        <div class="ve-add-step" data-step-panel="5" hidden>
+          <div class="ve-placeholder-panel"><h3>Upload Documents</h3><p>Upload ID proof, certificates, and other documents.</p></div>
+        </div>
+      </div>
+      <div class="ve-modal__foot">
+        <button type="button" class="ve-btn ve-btn--primary" id="veAddEmpNext">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Team Modal (2-column layout) -->
+  <div class="ve-modal-scrim" id="veAddTeamModal" hidden>
+    <div class="ve-modal ve-modal--team" role="dialog" aria-modal="true" aria-labelledby="veAddTeamTitle">
+      <div class="ve-modal__head">
+        <h2 id="veAddTeamTitle">Add Team</h2>
+        <button type="button" class="ve-modal__close" id="veAddTeamClose" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <form class="ve-modal__body ve-team-form" id="veAddTeamForm" onsubmit="return false;">
+        <div class="ve-team-form__grid">
+          <div class="ve-field">
+            <label for="veTeamName">Team Name<span class="req">*</span></label>
+            <input type="text" id="veTeamName" placeholder="Team Name" required>
+          </div>
+          <div class="ve-field">
+            <label for="veTeamIncharge">Team Incharge<span class="req">*</span></label>
+            <select id="veTeamIncharge" required>
+              <option value="">Select Employee</option>
+              <option>Dev Aggarwal</option>
+              <option>Saurabh Bhardwaj</option>
+              <option>Kamal Sharma</option>
+              <option>Ankur Gupta</option>
+            </select>
+          </div>
+          <div class="ve-field">
+            <label for="veTeamMembers">Team Members<span class="req">*</span></label>
+            <select id="veTeamMembers" required>
+              <option value="">Select Members</option>
+              <option>Dev Aggarwal</option>
+              <option>Saurabh Bhardwaj</option>
+              <option>Kamal Sharma</option>
+              <option>Ankur Gupta</option>
+            </select>
+          </div>
+          <div class="ve-field">
+            <label for="veSubTeams">Sub Teams</label>
+            <select id="veSubTeams">
+              <option value="">Select Sub Teams</option>
+              <option>dummy</option>
+            </select>
+          </div>
+        </div>
+        <label class="ve-check ve-check--team">
+          <input type="checkbox" id="veTeamWhatsapp">
+          <span>Display on whatsapp</span>
+        </label>
+        <div class="ve-team-form__actions">
+          <button type="submit" class="ve-btn ve-btn--save" id="veTeamSave">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Delete Employee Modal (screenshot 1) -->
+  <div class="ve-modal-scrim" id="veDeleteModal" hidden>
+    <div class="ve-modal ve-modal--delete" role="dialog" aria-modal="true" aria-labelledby="veDeleteTitle">
+      <div class="ve-modal__head">
+        <h2 id="veDeleteTitle">Delete Employee</h2>
+        <button type="button" class="ve-modal__close" id="veDeleteClose" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div class="ve-modal__body ve-delete-form">
+        <div class="ve-field">
+          <label for="veDelReplace">Select Replacement</label>
+          <select id="veDelReplace"><option value="">Select Replacement</option></select>
+        </div>
+        <div class="ve-field">
+          <label for="veDelLastDate">Last Working Date</label>
+          <div class="ve-date-wrap">
+            <input type="text" id="veDelLastDate" placeholder="Select last working date" autocomplete="off">
+            <span class="ve-date-wrap__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </span>
+          </div>
+        </div>
+        <div class="ve-field">
+          <label for="veDelRemark">Deletion Remark</label>
+          <textarea id="veDelRemark" rows="4" placeholder="Enter reason for deletion"></textarea>
+        </div>
+      </div>
+      <div class="ve-modal__foot ve-delete-form__foot">
+        <button type="button" class="ve-btn ve-btn--save" id="veDeleteSubmit">Delete</button>
+        <button type="button" class="ve-btn ve-btn--cancel" id="veDeleteCancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reset Password Modal -->
+  <div class="ve-modal-scrim" id="vePasswordModal" hidden>
+    <div class="ve-modal ve-modal--sm" role="dialog" aria-modal="true" aria-labelledby="vePasswordTitle">
+      <div class="ve-modal__head">
+        <h2 id="vePasswordTitle">Reset Password</h2>
+        <button type="button" class="ve-modal__close" id="vePasswordClose" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div class="ve-modal__body">
+        <div class="ve-field">
+          <label for="veNewPass">Password <span class="req">*</span></label>
+          <div class="ve-pass-wrap">
+            <input type="password" id="veNewPass" placeholder="Password" autocomplete="new-password">
+            <button type="button" class="ve-pass-toggle" data-toggle-pass="veNewPass" aria-label="Show password">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="ve-field">
+          <label for="veConfirmPass">Confirm Password <span class="req">*</span></label>
+          <div class="ve-pass-wrap">
+            <input type="password" id="veConfirmPass" placeholder="Confirm Password" autocomplete="new-password">
+            <button type="button" class="ve-pass-toggle" data-toggle-pass="veConfirmPass" aria-label="Show password">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="ve-modal__foot ve-modal__foot--start">
+        <button type="button" class="ve-btn ve-btn--primary" id="vePasswordSubmit">Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm popover (Reset 2FA / Device / Exclude 2FA) -->
+  <div class="ve-confirm" id="veConfirmPop" hidden role="dialog" aria-modal="true">
+    <div class="ve-confirm__row">
+      <span class="ve-confirm__warn" aria-hidden="true">!</span>
+      <div class="ve-confirm__text">
+        <strong id="veConfirmTitle"></strong>
+        <p id="veConfirmMsg"></p>
+      </div>
+    </div>
+    <div class="ve-confirm__actions">
+      <button type="button" class="ve-confirm__no" id="veConfirmNo">No</button>
+      <button type="button" class="ve-confirm__yes" id="veConfirmYes">Yes</button>
+    </div>
+  </div>
 
   <div class="toast-stack" id="toastStack" aria-live="polite"></div>
-
-  <div class="emp-drawer-scrim" id="empDrawerScrim" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
-    <aside class="emp-drawer" role="document">
-      <div class="emp-drawer__head">
-        <div>
-          <h2 id="drawerTitle">Employee</h2>
-          <p id="drawerSubtitle" style="font-size:13px;color:var(--muted);margin:4px 0 0"></p>
-        </div>
-        <button type="button" class="emp-action-btn" id="empDrawerClose" aria-label="Close drawer">✕</button>
-      </div>
-      <div class="emp-drawer__tabs" id="drawerTabs" role="tablist"></div>
-      <div class="emp-drawer__body" id="drawerBody"></div>
-      <div class="emp-drawer__foot">
-        <button type="button" class="emp-btn emp-btn--primary" id="drawerEdit">Edit Employee</button>
-        <button type="button" class="emp-btn" id="empDrawerClose2">Close</button>
-      </div>
-    </aside>
-  </div>
-
-  <div class="emp-modal-scrim" id="desigModal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="desigModalTitle">
-    <div class="emp-modal">
-      <div class="emp-modal__head">
-        <h3 id="desigModalTitle">Designation Management</h3>
-        <button type="button" class="emp-action-btn" id="desigModalClose" aria-label="Close">✕</button>
-      </div>
-      <div class="emp-modal__body">
-        <form class="emp-desig-form" id="desigForm">
-          <input type="text" id="desigInput" placeholder="Enter designation title" aria-label="Designation title" required>
-          <input type="hidden" id="desigEditIndex" value="">
-          <button type="submit" class="emp-btn emp-btn--primary" id="desigSubmitBtn">Add Designation</button>
-        </form>
-        <ul class="emp-desig-list" id="desigList" aria-label="Designations"></ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="emp-modal-scrim" id="assignDesigModal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="assignDesigTitle">
-    <div class="emp-modal emp-modal--sm">
-      <div class="emp-modal__head">
-        <h3 id="assignDesigTitle">Assign Designation</h3>
-        <button type="button" class="emp-action-btn" id="assignDesigClose" aria-label="Close">✕</button>
-      </div>
-      <div class="emp-modal__body">
-        <p class="emp-modal__hint" id="assignDesigHint">Select a designation for selected employees.</p>
-        <select id="assignDesigSelect" aria-label="Designation to assign"></select>
-        <div class="emp-modal__foot">
-          <button type="button" class="emp-btn emp-btn--primary" id="assignDesigConfirm">Assign</button>
-          <button type="button" class="emp-btn" id="assignDesigCancel">Cancel</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="js/dashboard-shell.js"></script>
-  <script src="js/viewemployee.js"></script>
-  <script>
-    document.getElementById('empDrawerClose2') && document.getElementById('empDrawerClose2').addEventListener('click', function () {
-      document.getElementById('empDrawerClose').click();
-    });
-  </script>
+  <script src="js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/viewemployee.js?v=dummy1"></script>
 </body>
 </html>

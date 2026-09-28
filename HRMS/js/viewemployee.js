@@ -1,728 +1,667 @@
 /**
- * TIME ERP — Employee Management (viewemployee.html)
+ * TIME ERP — View Employee (tabs, directory, modals, hierarchy)
  */
 (function () {
   'use strict';
 
   var EMPLOYEES = [
-    { id: 'EMP-001', name: 'Ananya Sharma', email: 'ananya@timeerp.com', phone: '+91 98765 43210', dept: 'Engineering', designation: 'Senior Developer', location: 'Ghaziabad', type: 'Full-time', status: 'active', manager: 'Rahul Kapoor', joined: '2022-03-15', leaveBal: 12, salary: '₹14 LPA' },
-    { id: 'EMP-002', name: 'Rahul Kapoor', email: 'rahul@timeerp.com', phone: '+91 98765 43211', dept: 'Engineering', designation: 'Tech Lead', location: 'Remote', type: 'Full-time', status: 'active', manager: 'Priya Mehta', joined: '2021-06-01', leaveBal: 8, salary: '₹18 LPA' },
-    { id: 'EMP-003', name: 'Priya Mehta', email: 'priya@timeerp.com', phone: '+91 98765 43212', dept: 'HR', designation: 'HR Manager', location: 'Ghaziabad', type: 'Full-time', status: 'active', manager: 'Admin', joined: '2020-01-10', leaveBal: 10, salary: '₹12 LPA' },
-    { id: 'EMP-004', name: 'Vikram Singh', email: 'vikram@timeerp.com', phone: '+91 98765 43213', dept: 'Sales', designation: 'Sales Executive', location: 'Delhi NCR', type: 'Full-time', status: 'leave', manager: 'Priya Mehta', joined: '2023-08-20', leaveBal: 5, salary: '₹8 LPA' },
-    { id: 'EMP-005', name: 'Sneha Reddy', email: 'sneha@timeerp.com', phone: '+91 98765 43214', dept: 'Design', designation: 'UI/UX Designer', location: 'Remote', type: 'Full-time', status: 'active', manager: 'Rahul Kapoor', joined: '2023-02-14', leaveBal: 14, salary: '₹10 LPA' },
-    { id: 'EMP-006', name: 'Amit Joshi', email: 'amit@timeerp.com', phone: '+91 98765 43215', dept: 'Engineering', designation: 'QA Engineer', location: 'Ghaziabad', type: 'Full-time', status: 'probation', manager: 'Rahul Kapoor', joined: '2025-11-01', leaveBal: 0, salary: '₹7 LPA' },
-    { id: 'EMP-007', name: 'Kavita Nair', email: 'kavita@timeerp.com', phone: '+91 98765 43216', dept: 'Finance', designation: 'Accountant', location: 'Ghaziabad', type: 'Full-time', status: 'active', manager: 'Admin', joined: '2022-09-05', leaveBal: 11, salary: '₹9 LPA' },
-    { id: 'EMP-008', name: 'Rohan Das', email: 'rohan@timeerp.com', phone: '+91 98765 43217', dept: 'Customer Success', designation: 'CS Executive', location: 'Remote', type: 'Full-time', status: 'notice', manager: 'Priya Mehta', joined: '2021-11-20', leaveBal: 3, salary: '₹8 LPA' },
-    { id: 'EMP-009', name: 'Meera Iyer', email: 'meera@timeerp.com', phone: '+91 98765 43218', dept: 'Marketing', designation: 'Marketing Lead', location: 'Delhi NCR', type: 'Full-time', status: 'active', manager: 'Admin', joined: '2022-07-12', leaveBal: 9, salary: '₹11 LPA' },
-    { id: 'EMP-010', name: 'Arjun Patel', email: 'arjun@timeerp.com', phone: '+91 98765 43219', dept: 'Engineering', designation: 'Laravel Developer', location: 'Remote', type: 'Contract', status: 'active', manager: 'Rahul Kapoor', joined: '2024-04-01', leaveBal: 6, salary: '₹15 LPA' },
-    { id: 'EMP-011', name: 'Divya Krishnan', email: 'divya@timeerp.com', phone: '+91 98765 43220', dept: 'HR', designation: 'HR Executive', location: 'Ghaziabad', type: 'Full-time', status: 'inactive', manager: 'Priya Mehta', joined: '2019-05-18', leaveBal: 0, salary: '—' },
-    { id: 'EMP-012', name: 'Karan Malhotra', email: 'karan@timeerp.com', phone: '+91 98765 43221', dept: 'Sales', designation: 'Sales Manager', location: 'Delhi NCR', type: 'Full-time', status: 'active', manager: 'Admin', joined: '2020-10-30', leaveBal: 7, salary: '₹13 LPA' }
+    { id: 'ERP01', name: 'Dev Aggarwal', email: '000aggarwal@gmail.com', mobile: '8171082760', department: '--', joining: '06/01/2026', designation: 'Manager', status: 'Active', allowEmail: 'Yes', allowSms: 'Yes', allowNotif: 'Yes', pendingNoDues: '-', portal: true, avatar: 'icon' },
+    { id: 'SA2', name: 'Saurabh Bhardwaj', email: 'info@timeerp.in', mobile: '9876543210', department: '--', joining: '15/03/2025', designation: 'Manager', status: 'Active', allowEmail: 'Yes', allowSms: 'Yes', allowNotif: 'Yes', pendingNoDues: '-', portal: true, avatar: 'SB' },
+    { id: 'KA1', name: 'Kamal Sharma', email: 'cakamal9758@gmail.com', mobile: '9758123456', department: '--', joining: '01/06/2025', designation: 'Manager', status: 'Active', allowEmail: 'Yes', allowSms: 'Yes', allowNotif: 'Yes', pendingNoDues: '-', portal: false, avatar: 'KS' },
+    { id: 'ERP02', name: 'Ankur Gupta', email: 'ankur@timeerp.com', mobile: '9123456780', department: '--', joining: '30/07/2026', designation: 'Manager', status: 'Active', allowEmail: 'Yes', allowSms: 'Yes', allowNotif: 'Yes', pendingNoDues: '-', portal: true, avatar: 'AG' }
   ];
 
-  var DESIGNATIONS = ['Senior Developer', 'Tech Lead', 'HR Manager', 'Sales Executive', 'UI/UX Designer', 'QA Engineer', 'Accountant', 'CS Executive', 'Marketing Lead', 'Laravel Developer', 'HR Executive', 'Sales Manager'];
-  var PERMISSIONS = ['Dashboard', 'HRMS', 'Attendance', 'Payroll', 'CRM', 'Projects', 'Finance', 'Reports', 'Document Vault', 'Communication Center'];
-  var DOCUMENTS = ['Aadhaar', 'PAN', 'Resume', 'Offer Letter', 'Appointment Letter', 'Experience Letter', 'Certificates'];
+  var DESIG_OPTIONS = ['Manager', 'Executive', 'Associate', 'Intern'];
 
-  var state = {
-    view: localStorage.getItem('emp-view') || 'table',
-    search: '',
-    filters: { dept: '', designation: '', location: '', type: '', status: '', manager: '', joined: '' },
-    sort: { key: 'name', dir: 'asc' },
-    page: 1,
-    pageSize: parseInt(localStorage.getItem('emp-page-size') || '10', 10),
-    selected: {},
-    drawerEmployee: null,
-    drawerTab: 'overview'
+  var ICONS = {
+    trash: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2"/><path d="M6.5 7l.8 12.2A1.5 1.5 0 008.8 20.5h6.4a1.5 1.5 0 001.5-1.3L17.5 7"/><path d="M10 11v6M14 11v6"/></svg>',
+    check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.2l2.3 2.3 4.7-4.8"/></svg>',
+    edit: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15.2 5.3l3.5 3.5"/><path d="M4 20l4.1-.9L18.9 8.3a1.8 1.8 0 00-2.5-2.5L5.6 16.6 4 20z"/><path d="M13.5 20H20"/></svg>',
+    key: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11.5 12.5L20 4M17 4h3v3"/></svg>',
+    sync: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12a8.5 8.5 0 11-2.3-5.8"/><path d="M20.5 4.5v5h-5"/></svg>',
+    phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2.5" width="8" height="19" rx="2"/><path d="M11 18.5h2"/></svg>',
+    ban: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M7 7l10 10"/></svg>',
+    person: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/></svg>',
+    eyeOff: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 3l18 18M10.6 10.6a2 2 0 002.8 2.8M9.9 5.1A9.8 9.8 0 0112 5c5 0 9.3 3.1 11 7-.5 1.2-1.2 2.3-2.1 3.2M6.1 6.1C4.4 7.3 3.1 8.9 2.1 11c1.7 3.9 6 7 9.9 7 1.3 0 2.6-.3 3.8-.7"/></svg>',
+    eye: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>'
   };
 
-  var els = {};
+  var state = {
+    tab: 'employee',
+    page: 1,
+    pageSize: 10,
+    sortKey: null,
+    sortDir: 'asc',
+    addStep: 0,
+    rows: EMPLOYEES.map(function (e) { return Object.assign({}, e); })
+  };
 
   function $(id) { return document.getElementById(id); }
 
-  function initials(name) {
-    return name.split(' ').map(function (n) { return n[0]; }).join('').slice(0, 2).toUpperCase();
-  }
-
-  function statusBadge(status) {
-    var map = { active: 'active', probation: 'probation', notice: 'notice', leave: 'leave', inactive: 'inactive' };
-    var labels = { active: 'Active', probation: 'Probation', notice: 'Notice Period', leave: 'On Leave', inactive: 'Inactive' };
-    return '<span class="emp-badge emp-badge--' + (map[status] || 'inactive') + '">' + (labels[status] || status) + '</span>';
+  function closeTeamMenus() {
+    document.querySelectorAll('.ve-team-dropdown').forEach(function (d) { d.hidden = true; });
+    document.querySelectorAll('[data-team-menu]').forEach(function (b) { b.setAttribute('aria-expanded', 'false'); });
   }
 
   function toast(title, detail) {
-    if (window.DashboardShell) DashboardShell.toast(title, detail);
+    if (window.DashboardShell && window.DashboardShell.toast) {
+      window.DashboardShell.toast(title, detail || '');
+      return;
+    }
+    var stack = $('toastStack');
+    if (!stack) return;
+    var el = document.createElement('div');
+    el.className = 'toast';
+    el.innerHTML = '<strong>' + title + '</strong>' + (detail ? '<span>' + detail + '</span>' : '');
+    stack.appendChild(el);
+    setTimeout(function () { el.remove(); }, 2800);
+  }
+
+  function initials(name) {
+    return (name || '').split(/\s+/).map(function (p) { return p.charAt(0); }).join('').slice(0, 2).toUpperCase();
+  }
+
+  function parseJoining(d) {
+    var p = (d || '').split('/');
+    if (p.length !== 3) return 0;
+    return new Date(+p[2], +p[1] - 1, +p[0]).getTime();
   }
 
   function getFiltered() {
-    var q = state.search.toLowerCase();
-    return EMPLOYEES.filter(function (e) {
-      if (q && [e.name, e.id, e.email, e.phone].join(' ').toLowerCase().indexOf(q) === -1) return false;
-      if (state.filters.dept && e.dept !== state.filters.dept) return false;
-      if (state.filters.designation && e.designation !== state.filters.designation) return false;
-      if (state.filters.location && e.location !== state.filters.location) return false;
-      if (state.filters.type && e.type !== state.filters.type) return false;
-      if (state.filters.status && e.status !== state.filters.status) return false;
-      if (state.filters.manager && e.manager !== state.filters.manager) return false;
-      if (state.filters.joined && e.joined < state.filters.joined) return false;
+    var q = (($('veEmpSearch') && $('veEmpSearch').value) || '').trim().toLowerCase();
+    var dept = ($('veEmpDept') && $('veEmpDept').value) || '';
+    var branch = ($('veEmpBranch') && $('veEmpBranch').value) || '';
+    var desig = ($('veEmpDesig') && $('veEmpDesig').value) || '';
+    var status = ($('veEmpStatus') && $('veEmpStatus').value) || '';
+    var list = state.rows.filter(function (r) {
+      if (q && r.name.toLowerCase().indexOf(q) < 0 && r.email.toLowerCase().indexOf(q) < 0 && r.id.toLowerCase().indexOf(q) < 0) return false;
+      if (dept && dept !== 'All' && r.department !== dept && r.department !== '--') return false;
+      if (desig && desig !== 'All' && r.designation !== desig) return false;
+      if (status && status !== 'All' && r.status !== status) return false;
+      if (branch && branch !== 'All') return true;
       return true;
-    }).sort(function (a, b) {
-      var k = state.sort.key;
-      var av = (a[k] || '').toString().toLowerCase();
-      var bv = (b[k] || '').toString().toLowerCase();
-      if (av < bv) return state.sort.dir === 'asc' ? -1 : 1;
-      if (av > bv) return state.sort.dir === 'asc' ? 1 : -1;
-      return 0;
     });
-  }
-
-  function getPaged(list) {
-    var start = (state.page - 1) * state.pageSize;
-    return list.slice(start, start + state.pageSize);
-  }
-
-  function animateCount(el, target, suffix) {
-    if (!el) return;
-    var dur = 800;
-    var start = 0;
-    var isDec = target % 1 !== 0;
-    var t0 = null;
-    function step(ts) {
-      if (!t0) t0 = ts;
-      var p = Math.min((ts - t0) / dur, 1);
-      var val = isDec ? (start + (target - start) * p).toFixed(1) : Math.floor(start + (target - start) * p);
-      el.textContent = val + (suffix || '');
-      if (p < 1) requestAnimationFrame(step);
+    if (state.sortKey) {
+      var key = state.sortKey;
+      var dir = state.sortDir === 'asc' ? 1 : -1;
+      list = list.slice().sort(function (a, b) {
+        var av = a[key], bv = b[key];
+        if (key === 'joining') { av = parseJoining(a.joining); bv = parseJoining(b.joining); return (av - bv) * dir; }
+        av = (av == null ? '' : String(av)).toLowerCase();
+        bv = (bv == null ? '' : String(bv)).toLowerCase();
+        if (av < bv) return -1 * dir;
+        if (av > bv) return 1 * dir;
+        return 0;
+      });
     }
-    requestAnimationFrame(step);
+    return list;
   }
 
-  function renderKpi() {
-    var total = EMPLOYEES.length;
-    var active = EMPLOYEES.filter(function (e) { return e.status === 'active'; }).length;
-    var onLeave = EMPLOYEES.filter(function (e) { return e.status === 'leave'; }).length;
-    var newJoiners = EMPLOYEES.filter(function (e) { return e.joined >= '2025-01-01'; }).length;
-    var depts = {};
-    EMPLOYEES.forEach(function (e) { depts[e.dept] = 1; });
-    var pending = EMPLOYEES.filter(function (e) { return e.status === 'probation' || e.status === 'notice'; }).length;
-
-    animateCount($('kpiTotal'), total, '');
-    animateCount($('kpiActive'), active, '');
-    animateCount($('kpiLeave'), onLeave, '');
-    animateCount($('kpiNew'), newJoiners, '');
-    animateCount($('kpiDept'), Object.keys(depts).length, '');
-    animateCount($('kpiPending'), pending, '');
-  }
-
-  function populateFilters() {
-    var uniq = function (key) {
-      var s = {};
-      EMPLOYEES.forEach(function (e) { s[e[key]] = 1; });
-      return Object.keys(s).sort();
-    };
-    fillSelect('filterDept', uniq('dept'), 'All departments');
-    fillSelect('filterDesignation', DESIGNATIONS, 'All designations');
-    fillSelect('filterLocation', uniq('location'), 'All locations');
-    fillSelect('filterType', uniq('type'), 'All types');
-    fillSelect('filterStatus', ['active', 'probation', 'notice', 'leave', 'inactive'], 'All statuses');
-    fillSelect('filterManager', uniq('manager'), 'All managers');
-  }
-
-  function fillSelect(id, options, placeholder) {
-    var el = $(id);
-    if (!el) return;
-    el.innerHTML = '<option value="">' + placeholder + '</option>' +
-      options.map(function (o) {
-        var label = o.charAt(0).toUpperCase() + o.slice(1).replace(/-/g, ' ');
-        if (['active', 'probation', 'notice', 'leave', 'inactive'].indexOf(o) !== -1) {
-          label = { active: 'Active', probation: 'Probation', notice: 'Notice Period', leave: 'On Leave', inactive: 'Inactive' }[o];
-        }
-        return '<option value="' + o + '">' + label + '</option>';
-      }).join('');
-  }
-
-  function refreshDesignationFilters() {
-    fillSelect('filterDesignation', DESIGNATIONS, 'All designations');
-    var assignSel = $('assignDesigSelect');
-    if (assignSel) {
-      assignSel.innerHTML = DESIGNATIONS.map(function (d) {
-        return '<option value="' + d + '">' + d + '</option>';
-      }).join('');
+  function avatarHtml(row) {
+    if (row.avatar === 'icon') {
+      return '<span class="ve-avatar ve-avatar--green" aria-hidden="true">' + ICONS.person + '</span>';
     }
+    return '<span class="ve-avatar" aria-hidden="true">' + (row.avatar || initials(row.name)) + '</span>';
   }
 
-  function openDesigModal() {
-    var modal = $('desigModal');
-    if (!modal) return;
-    modal.hidden = false;
-    modal.classList.add('is-open');
-    modal.setAttribute('aria-hidden', 'false');
-    renderDesigList();
-    $('desigInput') && $('desigInput').focus();
-  }
-
-  function closeDesigModal() {
-    var modal = $('desigModal');
-    if (!modal) return;
-    modal.classList.remove('is-open');
-    modal.setAttribute('aria-hidden', 'true');
-    modal.hidden = true;
-    if ($('desigInput')) $('desigInput').value = '';
-    if ($('desigEditIndex')) $('desigEditIndex').value = '';
-    if ($('desigSubmitBtn')) $('desigSubmitBtn').textContent = 'Add Designation';
-  }
-
-  function renderDesigList() {
-    var list = $('desigList');
-    if (!list) return;
-    list.innerHTML = DESIGNATIONS.map(function (d, i) {
-      var count = EMPLOYEES.filter(function (e) { return e.designation === d; }).length;
-      return '<li><span>' + d + ' <small style="color:var(--muted);font-weight:500">(' + count + ')</small></span>' +
-        '<div class="emp-desig-list__actions">' +
-        '<button type="button" data-desig-edit="' + i + '">Edit</button>' +
-        '<button type="button" class="is-danger" data-desig-delete="' + i + '">Delete</button></div></li>';
+  function desigSelect(row) {
+    var opts = DESIG_OPTIONS.map(function (d) {
+      return '<option value="' + d + '"' + (d === row.designation ? ' selected' : '') + '>' + d + '</option>';
     }).join('');
+    return '<select class="ve-desig-select" data-id="' + row.id + '" aria-label="Designation">' + opts + '</select>';
   }
 
-  function openAssignDesigModal() {
-    var ids = Object.keys(state.selected);
-    if (!ids.length) { toast('Assign designation', 'Select at least one employee.'); return; }
-    var modal = $('assignDesigModal');
-    if (!modal) return;
-    $('assignDesigHint').textContent = 'Assign a designation to ' + ids.length + ' selected employee' + (ids.length === 1 ? '' : 's') + '.';
-    refreshDesignationFilters();
-    modal.hidden = false;
-    modal.classList.add('is-open');
-    modal.setAttribute('aria-hidden', 'false');
+  function actionBtns(row) {
+    return '<div class="ve-actions">' +
+      '<button type="button" class="ve-act ve-act--trash" data-act="delete" data-id="' + row.id + '" title="Delete" aria-label="Delete">' + ICONS.trash + '</button>' +
+      '<button type="button" class="ve-act ve-act--check" data-act="verify" data-id="' + row.id + '" title="Verify" aria-label="Verify">' + ICONS.check + '</button>' +
+      '<button type="button" class="ve-act ve-act--edit" data-act="edit" data-id="' + row.id + '" title="Edit" aria-label="Edit">' + ICONS.edit + '</button>' +
+      '<button type="button" class="ve-act ve-act--key" data-act="password" data-id="' + row.id + '" title="Reset Password" aria-label="Reset Password">' + ICONS.key + '</button>' +
+      '<button type="button" class="ve-act ve-act--sync" data-act="reset2fa" data-id="' + row.id + '" title="Reset 2FA" aria-label="Reset 2FA">' + ICONS.sync + '</button>' +
+      '<button type="button" class="ve-act ve-act--phone" data-act="device" data-id="' + row.id + '" title="Reset Device" aria-label="Reset Device">' + ICONS.phone + '</button>' +
+      '<button type="button" class="ve-act ve-act--ban" data-act="exclude2fa" data-id="' + row.id + '" title="Exclude from 2FA" aria-label="Exclude from 2FA">' + ICONS.ban + '</button>' +
+      '</div>';
   }
 
-  function closeAssignDesigModal() {
-    var modal = $('assignDesigModal');
-    if (!modal) return;
-    modal.classList.remove('is-open');
-    modal.setAttribute('aria-hidden', 'true');
-    modal.hidden = true;
-  }
-
-  function assignDesignationToSelected(desig) {
-    Object.keys(state.selected).forEach(function (id) {
-      var emp = getEmployee(id);
-      if (emp) emp.designation = desig;
-    });
-    toast('Designation assigned', desig + ' applied to ' + Object.keys(state.selected).length + ' employee(s).');
-    state.selected = {};
-    closeAssignDesigModal();
-    render();
-    renderKpi();
-  }
-
-  function actionMenu(empId) {
-    return '<div class="emp-dropdown" data-menu="' + empId + '">' +
-      '<button type="button" data-action="view" data-id="' + empId + '">View Profile</button>' +
-      '<button type="button" data-action="edit" data-id="' + empId + '">Edit Employee</button>' +
-      '<button type="button" data-action="attendance" data-id="' + empId + '">Attendance</button>' +
-      '<button type="button" data-action="leave" data-id="' + empId + '">Leave</button>' +
-      '<button type="button" data-action="payroll" data-id="' + empId + '">Payroll</button>' +
-      '<button type="button" data-action="documents" data-id="' + empId + '">Documents</button>' +
-      '<button type="button" data-action="permissions" data-id="' + empId + '">Permissions</button>' +
-      '<button type="button" data-action="reset" data-id="' + empId + '">Reset Password</button>' +
-      '<button type="button" data-action="deactivate" data-id="' + empId + '">Deactivate</button>' +
-      '<button type="button" class="is-danger" data-action="delete" data-id="' + empId + '">Delete</button></div>';
-  }
-
-  function renderTable(list) {
-    var tbody = $('empTableBody');
-    if (!tbody) return;
-    tbody.innerHTML = list.map(function (e) {
-      var checked = state.selected[e.id] ? ' checked' : '';
-      var rowClass = state.selected[e.id] ? ' class="is-selected"' : '';
-      return '<tr data-id="' + e.id + '"' + rowClass + '>' +
-        '<td class="emp-select-cell"><label class="emp-select-label"><input type="checkbox" class="emp-check" aria-label="Select ' + e.name + '" data-select="' + e.id + '"' + checked + '></label></td>' +
-        '<td><div class="emp-name-cell"><div class="emp-avatar-wrap"><div class="emp-avatar" title="' + e.name + '">' + initials(e.name) + '</div><span class="emp-status-dot" style="background:' + (e.status === 'active' ? '#22c55e' : '#94a3b8') + '"></span></div>' +
-        '<div><strong>' + e.name + '</strong><span>' + e.designation + '</span></div></div></td>' +
-        '<td>' + e.id + '</td><td>' + e.dept + '</td><td>' + e.designation + '</td>' +
-        '<td>' + e.email + '</td><td>' + e.phone + '</td><td>' + e.joined + '</td>' +
-        '<td>' + e.type + '</td><td>' + statusBadge(e.status) + '</td>' +
-        '<td style="position:relative"><button type="button" class="emp-action-btn" data-menu-toggle="' + e.id + '" aria-label="Actions for ' + e.name + '">⋯</button>' + actionMenu(e.id) + '</td></tr>';
-    }).join('');
-  }
-
-  function renderCards(list) {
-    var wrap = $('empCardView');
-    if (!wrap) return;
-    wrap.innerHTML = list.map(function (e) {
-      return '<article class="emp-card" data-id="' + e.id + '">' +
-        '<div class="emp-card__head"><div class="emp-avatar-wrap"><div class="emp-avatar emp-avatar--lg">' + initials(e.name) + '</div></div>' +
-        '<div class="emp-card__meta"><h3>' + e.name + '</h3><p>' + e.id + ' · ' + statusBadge(e.status) + '</p></div></div>' +
-        '<div class="emp-card__rows">' +
-        '<div class="emp-card__row"><span>Department</span><span>' + e.dept + '</span></div>' +
-        '<div class="emp-card__row"><span>Designation</span><span>' + e.designation + '</span></div>' +
-        '<div class="emp-card__row"><span>Email</span><span>' + e.email + '</span></div>' +
-        '<div class="emp-card__row"><span>Phone</span><span>' + e.phone + '</span></div>' +
-        '<div class="emp-card__row"><span>Joined</span><span>' + e.joined + '</span></div>' +
-        '<div class="emp-card__row"><span>Location</span><span>' + e.location + '</span></div>' +
-        '<div class="emp-card__row"><span>Manager</span><span>' + e.manager + '</span></div></div>' +
-        '<div class="emp-card__actions">' +
-        '<button type="button" data-action="view" data-id="' + e.id + '">View</button>' +
-        '<button type="button" data-action="edit" data-id="' + e.id + '">Edit</button>' +
-        '<button type="button" data-action="attendance" data-id="' + e.id + '">Attendance</button>' +
-        '<button type="button" data-action="documents" data-id="' + e.id + '">Documents</button>' +
-        '<button type="button" data-action="permissions" data-id="' + e.id + '">Permissions</button>' +
-        '<button type="button" data-action="payroll" data-id="' + e.id + '">Payroll</button>' +
-        '<button type="button" class="emp-card__actions--danger" data-action="delete" data-id="' + e.id + '">Delete</button></div></article>';
-    }).join('');
-  }
-
-  function renderGrid(list) {
-    var wrap = $('empGridView');
-    if (!wrap) return;
-    wrap.innerHTML = list.map(function (e) {
-      return '<button type="button" class="emp-grid__item" data-action="view" data-id="' + e.id + '">' +
-        '<div class="emp-avatar">' + initials(e.name) + '</div>' +
-        '<strong>' + e.name.split(' ')[0] + '</strong><span>' + e.dept + '</span></button>';
-    }).join('');
-  }
-
-  function renderPagination(total) {
-    var pages = Math.max(1, Math.ceil(total / state.pageSize));
-    if (state.page > pages) state.page = pages;
-    var info = $('empPageInfo');
-    if (info) info.textContent = 'Page ' + state.page + ' of ' + pages;
-    var count = $('empResultCount');
-    if (count) count.textContent = total + ' employee' + (total === 1 ? '' : 's');
-    var pagesEl = $('empPages');
-    if (!pagesEl) return;
-    var html = '';
-    for (var i = 1; i <= pages && i <= 7; i++) {
-      html += '<button type="button" class="' + (i === state.page ? 'is-active' : '') + '" data-page="' + i + '">' + i + '</button>';
+  function findEmployee(id) {
+    for (var i = 0; i < state.rows.length; i++) {
+      if (state.rows[i].id === id) return state.rows[i];
     }
-    pagesEl.innerHTML = html;
-    $('empPrev').disabled = state.page <= 1;
-    $('empNext').disabled = state.page >= pages;
-  }
-
-  function updateViewPanels() {
-    var panels = {
-      table: $('empTableView'),
-      card: $('empCardView'),
-      grid: $('empGridView')
-    };
-    Object.keys(panels).forEach(function (key) {
-      var el = panels[key];
-      if (!el) return;
-      var active = state.view === key;
-      el.hidden = !active;
-      el.classList.toggle('is-active', active);
-      el.setAttribute('aria-hidden', active ? 'false' : 'true');
-    });
-  }
-
-  function render() {
-    var filtered = getFiltered();
-    var paged = getPaged(filtered);
-    var empty = $('empEmpty');
-    var panel = $('empContentPanel');
-
-    if (filtered.length === 0) {
-      if (empty) empty.hidden = false;
-      if (panel) panel.hidden = true;
-    } else {
-      if (empty) empty.hidden = true;
-      if (panel) panel.hidden = false;
-      if (state.view === 'table') renderTable(paged);
-      else if (state.view === 'card') renderCards(paged);
-      else renderGrid(paged);
-    }
-
-    renderPagination(filtered.length);
-    updateBulkBar();
-    document.querySelectorAll('.emp-view-toggle button').forEach(function (b) {
-      b.classList.toggle('is-active', b.dataset.view === state.view);
-      b.setAttribute('aria-selected', b.dataset.view === state.view ? 'true' : 'false');
-    });
-    updateViewPanels();
-  }
-
-  function syncSelectAllState() {
-    var selectAll = $('empSelectAll');
-    if (!selectAll) return;
-    var paged = getPaged(getFiltered());
-    var selectedOnPage = paged.filter(function (e) { return state.selected[e.id]; }).length;
-    selectAll.checked = paged.length > 0 && selectedOnPage === paged.length;
-    selectAll.indeterminate = selectedOnPage > 0 && selectedOnPage < paged.length;
-  }
-
-  var bulkCountPrev = 0;
-
-  function updateBulkBar() {
-    var n = Object.keys(state.selected).length;
-    var bar = $('empBulkBar');
-    if (bar) {
-      bar.hidden = n === 0;
-      bar.classList.toggle('is-active', n > 0);
-    }
-    var cnt = $('empBulkCount');
-    if (cnt) {
-      cnt.textContent = String(n);
-      if (n !== bulkCountPrev && n > 0) {
-        cnt.classList.remove('is-bump');
-        void cnt.offsetWidth;
-        cnt.classList.add('is-bump');
-      }
-      bulkCountPrev = n;
-    }
-    bar && bar.querySelectorAll('.emp-btn:not(.emp-btn--select):not(.emp-btn--ghost)').forEach(function (btn) {
-      btn.disabled = n === 0;
-    });
-    syncSelectAllState();
-  }
-
-  function clearSelection() {
-    state.selected = {};
-    updateBulkBar();
-    render();
-  }
-
-  function getEmployee(id) {
-    for (var i = 0; i < EMPLOYEES.length; i++) if (EMPLOYEES[i].id === id) return EMPLOYEES[i];
     return null;
   }
 
-  function openDrawer(emp, tab) {
-    state.drawerEmployee = emp;
-    state.drawerTab = tab || 'overview';
-    var scrim = $('empDrawerScrim');
-    if (scrim) {
-      scrim.classList.add('is-open');
-      scrim.setAttribute('aria-hidden', 'false');
+  function closeConfirm() {
+    var pop = $('veConfirmPop');
+    if (pop) {
+      pop.hidden = true;
+      pop.removeAttribute('data-confirm-act');
+      pop.removeAttribute('data-confirm-id');
     }
-    renderDrawer();
   }
 
-  function closeDrawer() {
-    var scrim = $('empDrawerScrim');
-    if (scrim) {
-      scrim.classList.remove('is-open');
-      scrim.setAttribute('aria-hidden', 'true');
+  function openConfirm(btn, title, message) {
+    var pop = $('veConfirmPop');
+    if (!pop || !btn) return;
+    var msg = $('veConfirmMsg');
+    var ttl = $('veConfirmTitle');
+    if (ttl) {
+      ttl.textContent = title || '';
+      ttl.hidden = !title || title === message;
     }
-    state.drawerEmployee = null;
+    if (msg) msg.textContent = message || '';
+    pop.setAttribute('data-confirm-act', btn.getAttribute('data-act') || '');
+    pop.setAttribute('data-confirm-id', btn.getAttribute('data-id') || '');
+    pop.hidden = false;
+
+    var rect = btn.getBoundingClientRect();
+    var popW = 280;
+    var left = Math.min(window.innerWidth - popW - 12, Math.max(12, rect.left - 200));
+    var top = Math.max(12, rect.top - 10);
+    if (top + 140 > window.innerHeight) top = Math.max(12, rect.bottom - 140);
+    pop.style.left = left + 'px';
+    pop.style.top = top + 'px';
   }
 
-  function renderDrawer() {
-    var emp = state.drawerEmployee;
-    if (!emp) return;
-    $('drawerTitle').textContent = emp.name;
-    $('drawerSubtitle').textContent = emp.id + ' · ' + emp.designation;
+  function fillDeleteReplacement(excludeId) {
+    var sel = $('veDelReplace');
+    if (!sel) return;
+    var opts = '<option value="">Select Replacement</option>';
+    state.rows.forEach(function (r) {
+      if (r.id === excludeId) return;
+      opts += '<option value="' + r.id + '">' + r.name + '</option>';
+    });
+    sel.innerHTML = opts;
+  }
 
-    var tabs = ['overview', 'personal', 'official', 'attendance', 'leave', 'payroll', 'assets', 'documents', 'activity'];
-    var tabLabels = { overview: 'Overview', personal: 'Personal', official: 'Official', attendance: 'Attendance', leave: 'Leave', payroll: 'Payroll', assets: 'Assets', documents: 'Documents', activity: 'Activity' };
-    $('drawerTabs').innerHTML = tabs.map(function (t) {
-      return '<button type="button" class="' + (state.drawerTab === t ? 'is-active' : '') + '" data-tab="' + t + '">' + tabLabels[t] + '</button>';
-    }).join('');
+  function openDeleteModal(id) {
+    fillDeleteReplacement(id);
+    var modal = $('veDeleteModal');
+    if (modal) modal.setAttribute('data-emp-id', id || '');
+    var date = $('veDelLastDate');
+    var remark = $('veDelRemark');
+    if (date) date.value = '';
+    if (remark) remark.value = '';
+    openModal(modal);
+  }
 
-    var body = '';
-    if (state.drawerTab === 'overview' || state.drawerTab === 'personal') {
-      body = '<div class="emp-detail-grid">' +
-        detailRow('Full Name', emp.name) + detailRow('Email', emp.email) + detailRow('Phone', emp.phone) +
-        detailRow('Emergency', '+91 90000 12345') + detailRow('Address', 'Ghaziabad, UP 201002') + '</div>';
-    } else if (state.drawerTab === 'official') {
-      body = '<div class="emp-detail-grid">' +
-        detailRow('Employee ID', emp.id) + detailRow('Department', emp.dept) + detailRow('Designation', emp.designation) +
-        detailRow('Manager', emp.manager) + detailRow('Joined', emp.joined) + detailRow('Type', emp.type) + '</div>';
-    } else if (state.drawerTab === 'attendance') {
-      body = '<div class="emp-drawer__section"><h4>Monthly Summary</h4><div class="emp-detail-grid">' +
-        detailRow('Present', '18 days') + detailRow('Absent', '1 day') + detailRow('Leave', '2 days') +
-        detailRow('Late', '3 days') + detailRow('Work Hours', '152 hrs') + '</div></div>';
-    } else if (state.drawerTab === 'leave') {
-      body = '<div class="emp-detail-grid">' +
-        detailRow('Available', emp.leaveBal + ' days') + detailRow('Used', '4 days') + detailRow('Pending', '1 request') + '</div>';
-    } else if (state.drawerTab === 'payroll') {
-      body = '<div class="emp-detail-grid">' +
-        detailRow('Current Salary', emp.salary) + detailRow('Last Payslip', 'Feb 2026') + detailRow('PF', '₹1,800') +
-        detailRow('ESI', '₹375') + detailRow('Prof. Tax', '₹200') + '</div>';
-    } else if (state.drawerTab === 'documents') {
-      body = '<div class="emp-doc-list">' + DOCUMENTS.map(function (d) {
-        return '<div class="emp-doc-item"><span>' + d + '</span><div class="emp-doc-item__actions">' +
-          '<button type="button">View</button><button type="button">Download</button><button type="button">Upload</button></div></div>';
-      }).join('') + '</div>';
-    } else if (state.drawerTab === 'activity') {
-      body = '<div class="emp-detail-grid">' +
-        detailRow('Profile updated', '2 days ago') + detailRow('Leave approved', '1 week ago') + detailRow('Joined', emp.joined) + '</div>';
+  function openPasswordModal(id) {
+    var modal = $('vePasswordModal');
+    if (modal) modal.setAttribute('data-emp-id', id || '');
+    var p1 = $('veNewPass');
+    var p2 = $('veConfirmPass');
+    if (p1) { p1.value = ''; p1.type = 'password'; }
+    if (p2) { p2.value = ''; p2.type = 'password'; }
+    openModal(modal);
+  }
+
+  function handleAction(act, id, btn) {
+    if (act === 'edit') {
+      window.location.href = 'employee_profile.html?id=' + encodeURIComponent(id || '');
+      return;
+    }
+    if (act === 'delete') { openDeleteModal(id); return; }
+    if (act === 'password') { openPasswordModal(id); return; }
+    if (act === 'reset2fa') {
+      openConfirm(btn, '', 'Are you sure you want to reset 2FA for this employee?');
+      return;
+    }
+    if (act === 'device') {
+      openConfirm(btn, '', 'Reset Device');
+      return;
+    }
+    if (act === 'exclude2fa') {
+      openConfirm(btn, '', 'Are you sure you want to exclude this user from 2FA?');
+      return;
+    }
+    if (act === 'verify') {
+      var emp = findEmployee(id);
+      toast('Verified', emp ? emp.name : id);
+    }
+  }
+
+  function renderEmployeeTable() {
+    var list = getFiltered();
+    var total = list.length;
+    var pages = Math.max(1, Math.ceil(total / state.pageSize) || 1);
+    if (state.page > pages) state.page = pages;
+    var start = (state.page - 1) * state.pageSize;
+    var slice = list.slice(start, start + state.pageSize);
+    var body = $('veEmpBody');
+    var empty = $('veEmpEmpty');
+    if (!body) return;
+
+    if (!slice.length) {
+      body.innerHTML = '';
+      if (empty) empty.hidden = false;
     } else {
-      body = '<p style="color:var(--muted);font-size:14px;">No assets assigned yet.</p>';
+      if (empty) empty.hidden = true;
+      body.innerHTML = slice.map(function (r) {
+        return '<tr data-id="' + r.id + '">' +
+          '<td><input type="checkbox" class="ve-row-check" aria-label="Select ' + r.name + '"></td>' +
+          '<td><div class="ve-emp-cell">' + avatarHtml(r) +
+            '<div class="ve-emp-meta"><span class="ve-emp-code">' + r.id + '</span><span class="ve-emp-name">' + r.name + '</span></div></div></td>' +
+          '<td>' + r.email + '</td>' +
+          '<td>' + r.mobile + '</td>' +
+          '<td>' + r.department + '</td>' +
+          '<td>' + r.joining + '</td>' +
+          '<td>' + desigSelect(r) + '</td>' +
+          '<td><span class="ve-pill ve-pill--' + (r.status === 'Active' ? 'active' : 'inactive') + '">' + r.status + '</span></td>' +
+          '<td class="ve-yn">' + r.allowEmail + '</td>' +
+          '<td class="ve-yn">' + r.allowSms + '</td>' +
+          '<td class="ve-yn">' + r.allowNotif + '</td>' +
+          '<td>' + r.pendingNoDues + '</td>' +
+          '<td><label class="ve-toggle"><input type="checkbox" class="ve-portal" data-id="' + r.id + '"' + (r.portal ? ' checked' : '') + '><span></span></label></td>' +
+          '<td>' + actionBtns(r) + '</td>' +
+          '</tr>';
+      }).join('');
     }
 
-    if (state.drawerTab === 'overview') {
-      body += '<div class="emp-drawer__section" style="margin-top:20px"><h4>Module Permissions</h4><div class="emp-perm-chips" id="drawerPerms"></div></div>';
-    }
+    var countLabel = $('veEmpCountLabel');
+    if (countLabel) countLabel.textContent = total + ' record' + (total === 1 ? '' : 's');
+    var pageInput = $('veEmpPageInput');
+    var pageOf = $('veEmpPageOf');
+    var pageCount = $('veEmpPageCount');
+    var prev = $('veEmpPrev');
+    var next = $('veEmpNext');
+    if (pageInput) pageInput.value = String(state.page);
+    if (pageOf) pageOf.textContent = 'of ' + pages;
+    if (pageCount) pageCount.textContent = total + ' / ' + total;
+    if (prev) prev.disabled = state.page <= 1;
+    if (next) next.disabled = state.page >= pages;
 
-    $('drawerBody').innerHTML = body;
+    document.querySelectorAll('#veEmpTable th.is-sortable').forEach(function (th) {
+      th.classList.remove('sort-asc', 'sort-desc');
+      if (th.getAttribute('data-sort') === state.sortKey) th.classList.add(state.sortDir === 'asc' ? 'sort-asc' : 'sort-desc');
+    });
 
-    if (state.drawerTab === 'overview') {
-      var permEl = $('drawerPerms');
-      if (permEl) {
-        permEl.innerHTML = PERMISSIONS.map(function (p, i) {
-          return '<button type="button" class="emp-perm-chip' + (i < 6 ? ' is-on' : '') + '" data-perm="' + p + '">' + p + '</button>';
-        }).join('');
-      }
-    }
+    var selectAll = $('veEmpSelectAll');
+    if (selectAll) selectAll.checked = false;
   }
 
-  function detailRow(label, value) {
-    return '<div class="emp-detail-row"><dt>' + label + '</dt><dd>' + value + '</dd></div>';
-  }
-
-  function handleAction(action, id) {
-    var emp = getEmployee(id);
-    if (!emp && action !== 'add') return;
-    switch (action) {
-      case 'view':
-        try { sessionStorage.setItem('eprEmployeeId', emp.id); } catch (err) { /* ignore */ }
-        window.location.href = 'employee_profile.html?id=' + encodeURIComponent(emp.id);
-        break;
-      case 'edit': toast('Edit employee', emp.name + ' — wire ERP route when backend is connected.'); break;
-      case 'attendance': openDrawer(emp, 'attendance'); break;
-      case 'leave': openDrawer(emp, 'leave'); break;
-      case 'payroll': openDrawer(emp, 'payroll'); break;
-      case 'documents': openDrawer(emp, 'documents'); break;
-      case 'permissions': openDrawer(emp, 'overview'); break;
-      case 'reset': toast('Password reset', 'Reset link sent to ' + emp.email); break;
-      case 'deactivate': emp.status = 'inactive'; toast('Deactivated', emp.name); render(); renderKpi(); break;
-      case 'delete':
-        if (confirm('Delete ' + emp.name + '?')) {
-          var idx = EMPLOYEES.findIndex(function (e) { return e.id === id; });
-          if (idx > -1) EMPLOYEES.splice(idx, 1);
-          toast('Deleted', emp.name + ' removed');
-          render(); renderKpi();
-        }
-        break;
-      case 'add': toast('Add employee', 'Open employee creation form when backend is connected.'); break;
-      case 'export': toast('Export', 'Exporting ' + getFiltered().length + ' employee records…'); break;
-      case 'refresh': render(); renderKpi(); toast('Refreshed', 'Employee data updated'); break;
-      default: break;
+  function renderHeaderActions() {
+    var wrap = $('veHeaderActions');
+    if (!wrap) return;
+    var tab = state.tab;
+    var html = '';
+    if (tab === 'employee') {
+      html = '<button type="button" class="ve-btn ve-btn--outline" id="veApplyChanges">Apply Changes</button>' +
+        '<button type="button" class="ve-plus-btn" id="veAddEmpBtn" aria-label="Add Employee">+</button>';
+    } else if (tab === 'freelancers') {
+      html = '<button type="button" class="ve-btn ve-btn--outline" id="veAllowNotif">Allow Notification</button>' +
+        '<button type="button" class="ve-plus-btn" id="veAddFlBtn" aria-label="Add Freelancer">+</button>';
+    } else if (tab === 'deleted') {
+      html = '<button type="button" class="ve-btn ve-btn--outline" id="veAllowNotif">Allow Notification</button>';
+    } else if (tab === 'team') {
+      html = '<button type="button" class="ve-plus-btn" id="veAddTeamBtn" aria-label="Add Team">+</button>';
     }
-    document.querySelectorAll('.emp-dropdown.is-open').forEach(function (d) { d.classList.remove('is-open'); });
+    wrap.innerHTML = html;
   }
 
-  function bindEvents() {
-    $('empSearch') && $('empSearch').addEventListener('input', function (e) {
-      state.search = e.target.value.trim();
-      state.page = 1;
-      render();
+  function switchTab(tab) {
+    state.tab = tab;
+    document.querySelectorAll('.ve-tab').forEach(function (btn) {
+      var on = btn.getAttribute('data-tab') === tab;
+      btn.classList.toggle('is-active', on);
+      btn.setAttribute('aria-selected', on ? 'true' : 'false');
     });
+    document.querySelectorAll('.ve-panel').forEach(function (panel) {
+      var on = panel.getAttribute('data-panel') === tab;
+      panel.classList.toggle('is-active', on);
+      panel.hidden = !on;
+    });
+    renderHeaderActions();
+  }
 
-    var filterMap = {
-      filterDept: 'dept', filterDesignation: 'designation', filterLocation: 'location',
-      filterType: 'type', filterStatus: 'status', filterManager: 'manager', filterJoined: 'joined'
-    };
-    Object.keys(filterMap).forEach(function (id) {
-      var el = $(id);
-      if (!el) return;
-      el.addEventListener('change', function (e) {
-        state.filters[filterMap[id]] = e.target.value;
-        state.page = 1;
-        render();
+  function openModal(el) {
+    if (!el) return;
+    el.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(el) {
+    if (!el) return;
+    el.hidden = true;
+    if (!document.querySelector('.ve-modal-scrim:not([hidden])')) document.body.style.overflow = '';
+  }
+
+  function closeAllModals() {
+    closeModal($('veAddEmpModal'));
+    closeModal($('veAddTeamModal'));
+    closeModal($('veDeleteModal'));
+    closeModal($('vePasswordModal'));
+    closeConfirm();
+    document.body.style.overflow = '';
+  }
+
+  function setAddStep(step) {
+    state.addStep = step;
+    document.querySelectorAll('.ve-step').forEach(function (s) {
+      var n = +s.getAttribute('data-step');
+      s.classList.toggle('is-active', n === step);
+      s.classList.toggle('is-done', n < step);
+    });
+    document.querySelectorAll('.ve-add-step').forEach(function (p) {
+      var n = +p.getAttribute('data-step-panel');
+      var on = n === step;
+      p.classList.toggle('is-active', on);
+      p.hidden = !on;
+    });
+    var nextBtn = $('veAddEmpNext');
+    if (nextBtn) nextBtn.textContent = step >= 5 ? 'Save' : 'Next';
+  }
+
+  function openAddEmployee() {
+    window.location.href = 'add_employee.html';
+  }
+
+  function openAddTeam() {
+    var form = $('veAddTeamForm');
+    if (form) form.reset();
+    openModal($('veAddTeamModal'));
+  }
+
+  function bindDisabilityLabel() {
+    var form = $('veAddEmpForm');
+    if (!form) return;
+    var cb = form.querySelector('[name="disability"]');
+    var label = form.querySelector('.ve-switch-label');
+    if (!cb || !label) return;
+    function sync() { label.textContent = cb.checked ? 'Yes' : 'No'; }
+    cb.addEventListener('change', sync);
+    sync();
+  }
+
+  function onPageClick(e) {
+    var t = e.target.closest('[data-tab]');
+    if (t && t.classList.contains('ve-tab')) {
+      switchTab(t.getAttribute('data-tab'));
+      return;
+    }
+
+    if (e.target.closest('#veApplyChanges')) { toast('Apply Changes', 'Changes queued (UI preview).'); return; }
+    if (e.target.closest('#veAllowNotif')) { toast('Allow Notification', 'Notification preference updated.'); return; }
+    if (e.target.closest('#veAddEmpBtn') || e.target.closest('#veAddFlBtn')) { openAddEmployee(); return; }
+    if (e.target.closest('#veAddTeamBtn')) { openAddTeam(); return; }
+    if (e.target.closest('#veEmpExcel')) { toast('Export Excel', 'Employee directory export started.'); return; }
+    if (e.target.closest('#veEmpReset')) {
+      if ($('veEmpSearch')) $('veEmpSearch').value = '';
+      ['veEmpDept', 'veEmpBranch', 'veEmpDesig', 'veEmpStatus'].forEach(function (id) {
+        var el = $(id); if (el) el.selectedIndex = 0;
       });
-    });
-
-    $('filterReset') && $('filterReset').addEventListener('click', function () {
-      state.filters = { dept: '', designation: '', location: '', type: '', status: '', manager: '', joined: '' };
-      state.search = '';
-      if ($('empSearch')) $('empSearch').value = '';
-      document.querySelectorAll('.emp-filters select, .emp-filters input').forEach(function (el) { el.value = ''; });
       state.page = 1;
-      render();
-    });
-
-    document.querySelectorAll('.emp-view-toggle button').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var nextView = btn.dataset.view;
-        if (!nextView || state.view === nextView) return;
-        state.view = nextView;
-        localStorage.setItem('emp-view', state.view);
-        state.page = 1;
-        render();
-      });
-    });
-
-    $('empPageSize') && $('empPageSize').addEventListener('change', function (e) {
-      state.pageSize = parseInt(e.target.value, 10);
-      localStorage.setItem('emp-page-size', state.pageSize);
-      state.page = 1;
-      render();
-    });
-
-    $('empPrev') && $('empPrev').addEventListener('click', function () { if (state.page > 1) { state.page--; render(); } });
-    $('empNext') && $('empNext').addEventListener('click', function () { state.page++; render(); });
-
-    document.addEventListener('click', function (e) {
-      var t = e.target.closest('[data-action]');
-      if (t) { e.preventDefault(); handleAction(t.dataset.action, t.dataset.id); return; }
-
-      var menuBtn = e.target.closest('[data-menu-toggle]');
-      if (menuBtn) {
-        e.stopPropagation();
-        var id = menuBtn.dataset.menuToggle;
-        document.querySelectorAll('.emp-dropdown.is-open').forEach(function (d) { d.classList.remove('is-open'); });
-        var menu = document.querySelector('[data-menu="' + id + '"]');
-        if (menu) menu.classList.add('is-open');
-        return;
+      renderEmployeeTable();
+      toast('Filters reset');
+      return;
+    }
+    if (e.target.closest('#veFlReset') || e.target.closest('#veDelReset')) {
+      var panel = e.target.closest('.ve-panel');
+      if (panel) {
+        panel.querySelectorAll('input[type="search"]').forEach(function (i) { i.value = ''; });
+        panel.querySelectorAll('select').forEach(function (s) { if (!s.classList.contains('ve-page-size')) s.selectedIndex = 0; });
       }
+      toast('Filters reset');
+      return;
+    }
 
-      if (!e.target.closest('.emp-dropdown')) {
-        document.querySelectorAll('.emp-dropdown.is-open').forEach(function (d) { d.classList.remove('is-open'); });
-      }
-
-      var pageBtn = e.target.closest('[data-page]');
-      if (pageBtn) { state.page = parseInt(pageBtn.dataset.page, 10); render(); }
-
-      var tabBtn = e.target.closest('[data-tab]');
-      if (tabBtn) { state.drawerTab = tabBtn.dataset.tab; renderDrawer(); }
-
-      var permChip = e.target.closest('.emp-perm-chip');
-      if (permChip) permChip.classList.toggle('is-on');
-
-      var desigEdit = e.target.closest('[data-desig-edit]');
-      if (desigEdit) {
-        var idx = parseInt(desigEdit.dataset.desigEdit, 10);
-        if ($('desigInput')) $('desigInput').value = DESIGNATIONS[idx];
-        if ($('desigEditIndex')) $('desigEditIndex').value = String(idx);
-        if ($('desigSubmitBtn')) $('desigSubmitBtn').textContent = 'Save Designation';
-        $('desigInput') && $('desigInput').focus();
-        return;
-      }
-
-      var desigDel = e.target.closest('[data-desig-delete]');
-      if (desigDel) {
-        var di = parseInt(desigDel.dataset.desigDelete, 10);
-        var name = DESIGNATIONS[di];
-        if (confirm('Delete designation "' + name + '"?')) {
-          DESIGNATIONS.splice(di, 1);
-          refreshDesignationFilters();
-          renderDesigList();
-          toast('Designation deleted', name);
-        }
-        return;
-      }
-
-      var bulkBtn = e.target.closest('[data-bulk]');
-      if (bulkBtn) {
-        var bulk = bulkBtn.dataset.bulk;
-        if (bulk === 'assign-desig') openAssignDesigModal();
-        else if (bulk === 'export') handleAction('export');
-        else if (bulk === 'email') toast('Send email', 'Email composer opens when backend is connected.');
-        else if (bulk === 'assign-dept') toast('Assign department', 'Select department when backend is connected.');
-        return;
-      }
-    });
-
-    document.addEventListener('change', function (e) {
-      if (e.target.matches('[data-select]')) {
-        var id = e.target.dataset.select;
-        if (e.target.checked) state.selected[id] = true;
-        else delete state.selected[id];
-        var row = e.target.closest('tr');
-        if (row) row.classList.toggle('is-selected', e.target.checked);
-        updateBulkBar();
-        return;
-      }
-      if (e.target.id === 'empSelectAll') {
-        getPaged(getFiltered()).forEach(function (emp) {
-          if (e.target.checked) state.selected[emp.id] = true;
-          else delete state.selected[emp.id];
-        });
-        render();
-      }
-    });
-
-    document.querySelectorAll('.emp-table th[data-sort]').forEach(function (th) {
-      th.addEventListener('click', function () {
-        var key = th.dataset.sort;
-        if (state.sort.key === key) state.sort.dir = state.sort.dir === 'asc' ? 'desc' : 'asc';
-        else { state.sort.key = key; state.sort.dir = 'asc'; }
-        document.querySelectorAll('.emp-table th').forEach(function (h) { h.classList.toggle('is-sorted', h === th); });
-        render();
-      });
-    });
-
-    $('empDrawerClose') && $('empDrawerClose').addEventListener('click', closeDrawer);
-    $('empDrawerScrim') && $('empDrawerScrim').addEventListener('click', function (e) {
-      if (e.target === $('empDrawerScrim')) closeDrawer();
-    });
-    var drawer = document.querySelector('.emp-drawer');
-    if (drawer) drawer.addEventListener('click', function (e) { e.stopPropagation(); });
-    $('drawerEdit') && $('drawerEdit').addEventListener('click', function () {
-      if (state.drawerEmployee) handleAction('edit', state.drawerEmployee.id);
-    });
-
-    $('btnAddEmployee') && $('btnAddEmployee').addEventListener('click', function () { handleAction('add'); });
-    $('btnManageDesignations') && $('btnManageDesignations').addEventListener('click', openDesigModal);
-    $('btnExport') && $('btnExport').addEventListener('click', function () { handleAction('export'); });
-    $('btnRefresh') && $('btnRefresh').addEventListener('click', function () { handleAction('refresh'); });
-    $('empBulkClear') && $('empBulkClear').addEventListener('click', clearSelection);
-    $('emptyReset') && $('emptyReset').addEventListener('click', function () { $('filterReset').click(); });
-    $('emptyAdd') && $('emptyAdd').addEventListener('click', function () { handleAction('add'); });
-    $('mobileFab') && $('mobileFab').addEventListener('click', function () { handleAction('add'); });
-
-    $('desigModalClose') && $('desigModalClose').addEventListener('click', closeDesigModal);
-    $('desigModal') && $('desigModal').addEventListener('click', function (e) {
-      if (e.target === $('desigModal')) closeDesigModal();
-    });
-    $('desigForm') && $('desigForm').addEventListener('submit', function (e) {
+    var viewAll = e.target.closest('.ve-view-all');
+    if (viewAll) {
       e.preventDefault();
-      var title = ($('desigInput') && $('desigInput').value.trim()) || '';
-      if (!title) return;
-      var editIdx = $('desigEditIndex') && $('desigEditIndex').value;
-      if (editIdx !== '' && editIdx !== null) {
-        var oldName = DESIGNATIONS[parseInt(editIdx, 10)];
-        DESIGNATIONS[parseInt(editIdx, 10)] = title;
-        EMPLOYEES.forEach(function (emp) { if (emp.designation === oldName) emp.designation = title; });
-        toast('Designation updated', title);
-      } else if (DESIGNATIONS.indexOf(title) === -1) {
-        DESIGNATIONS.push(title);
-        toast('Designation added', title);
+      toast(viewAll.getAttribute('data-toast') || 'View all');
+      return;
+    }
+
+    var retrieveBtn = e.target.closest('.ve-retrieve-btn');
+    if (retrieveBtn) {
+      toast('Retrieve', retrieveBtn.getAttribute('data-toast') || 'Employee restored (preview).');
+      return;
+    }
+
+    var sortTh = e.target.closest('th.is-sortable');
+    if (sortTh && sortTh.closest('#veEmpTable')) {
+      var key = sortTh.getAttribute('data-sort');
+      if (state.sortKey === key) state.sortDir = state.sortDir === 'asc' ? 'desc' : 'asc';
+      else { state.sortKey = key; state.sortDir = 'asc'; }
+      renderEmployeeTable();
+      return;
+    }
+
+    if (e.target.closest('#veEmpPrev')) {
+      if (state.page > 1) { state.page--; renderEmployeeTable(); }
+      return;
+    }
+    if (e.target.closest('#veEmpNext')) {
+      var pages = Math.max(1, Math.ceil(getFiltered().length / state.pageSize));
+      if (state.page < pages) { state.page++; renderEmployeeTable(); }
+      return;
+    }
+
+    var act = e.target.closest('.ve-act');
+    if (act) {
+      handleAction(act.getAttribute('data-act'), act.getAttribute('data-id'), act);
+      return;
+    }
+
+    if (e.target.closest('#veDeleteClose') || e.target === $('veDeleteModal')) { closeModal($('veDeleteModal')); return; }
+    if (e.target.closest('#veDeleteCancel')) { closeModal($('veDeleteModal')); return; }
+    if (e.target.closest('#veDeleteSubmit')) {
+      var delId = ($('veDeleteModal') && $('veDeleteModal').getAttribute('data-emp-id')) || '';
+      state.rows = state.rows.filter(function (r) { return r.id !== delId; });
+      closeModal($('veDeleteModal'));
+      renderEmployeeTable();
+      toast('Employee deleted', delId);
+      return;
+    }
+
+    if (e.target.closest('#vePasswordClose') || e.target === $('vePasswordModal')) { closeModal($('vePasswordModal')); return; }
+    if (e.target.closest('#vePasswordSubmit')) {
+      var p1 = $('veNewPass');
+      var p2 = $('veConfirmPass');
+      var v1 = (p1 && p1.value) || '';
+      var v2 = (p2 && p2.value) || '';
+      if (!v1 || !v2) { toast('Required', 'Enter password and confirm password.'); return; }
+      if (v1 !== v2) { toast('Mismatch', 'Passwords do not match.'); return; }
+      closeModal($('vePasswordModal'));
+      toast('Password reset', 'Password updated successfully.');
+      return;
+    }
+
+    var eyeBtn = e.target.closest('[data-toggle-pass]');
+    if (eyeBtn) {
+      var input = $(eyeBtn.getAttribute('data-toggle-pass'));
+      if (input) input.type = input.type === 'password' ? 'text' : 'password';
+      return;
+    }
+
+    if (e.target.closest('#veConfirmNo')) { closeConfirm(); return; }
+    if (e.target.closest('#veConfirmYes')) {
+      var pop = $('veConfirmPop');
+      var cAct = pop && pop.getAttribute('data-confirm-act');
+      var cId = pop && pop.getAttribute('data-confirm-id');
+      closeConfirm();
+      if (cAct === 'reset2fa') toast('2FA reset', cId);
+      else if (cAct === 'device') toast('Device reset', cId);
+      else if (cAct === 'exclude2fa') toast('Excluded from 2FA', cId);
+      return;
+    }
+
+    if (!e.target.closest('#veConfirmPop') && !e.target.closest('.ve-act')) closeConfirm();
+
+    var toggle = e.target.closest('[data-toggle]');
+    if (toggle) {
+      var node = document.querySelector('.ve-team-node[data-node="' + toggle.getAttribute('data-toggle') + '"]') ||
+        document.querySelector('.ve-org-node[data-node="' + toggle.getAttribute('data-toggle') + '"]');
+      if (node) {
+        var collapsed = node.classList.contains('is-collapsed');
+        if (collapsed) {
+          node.classList.remove('is-collapsed');
+          node.classList.add('is-expanded');
+          toggle.textContent = '−';
+          toggle.setAttribute('aria-label', 'Collapse');
+        } else {
+          node.classList.add('is-collapsed');
+          node.classList.remove('is-expanded');
+          toggle.textContent = '+';
+          toggle.setAttribute('aria-label', 'Expand');
+        }
+      }
+      return;
+    }
+
+    if (e.target.closest('#veTeamExpandAll')) {
+      document.querySelectorAll('#veOrgTree .ve-team-node').forEach(function (n) {
+        n.classList.remove('is-collapsed');
+        n.classList.add('is-expanded');
+        var btn = n.querySelector(':scope > .ve-team-org > .ve-team-toggle, :scope > .ve-team-box > .ve-team-box__head > .ve-team-toggle');
+        if (btn) { btn.textContent = '−'; btn.setAttribute('aria-label', 'Collapse'); }
+      });
+      toast('Expand All', 'All teams expanded.');
+      return;
+    }
+
+    var teamAct = e.target.closest('[data-team-act]');
+    if (teamAct) {
+      var tAct = teamAct.getAttribute('data-team-act');
+      var tName = teamAct.getAttribute('data-team') || 'team';
+      closeTeamMenus();
+      if (tAct === 'edit') {
+        openAddTeam();
+        var nameInput = $('veTeamName');
+        if (nameInput) nameInput.value = tName;
+        toast('Edit team', tName);
+      } else if (tAct === 'delete') {
+        toast('Team deleted', tName);
+        var node = document.querySelector('.ve-team-node[data-node="' + tName + '"]');
+        if (node) node.remove();
+      }
+      return;
+    }
+
+    var teamMenuBtn = e.target.closest('[data-team-menu]');
+    if (teamMenuBtn) {
+      var drop = teamMenuBtn.parentElement && teamMenuBtn.parentElement.querySelector('.ve-team-dropdown');
+      var open = drop && !drop.hidden;
+      closeTeamMenus();
+      if (drop && !open) {
+        drop.hidden = false;
+        teamMenuBtn.setAttribute('aria-expanded', 'true');
+      }
+      return;
+    }
+
+    if (!e.target.closest('.ve-team-menu-wrap')) closeTeamMenus();
+
+    var hierToggle = e.target.closest('[data-hier-toggle]');
+    if (hierToggle) {
+      var hNode = document.querySelector('.ve-hier-node[data-hier="' + hierToggle.getAttribute('data-hier-toggle') + '"]');
+      if (hNode) {
+        var open = hNode.classList.toggle('is-expanded');
+        hierToggle.setAttribute('aria-label', open ? 'Collapse' : 'Expand');
+        hierToggle.setAttribute('title', open ? 'Collapse' : 'Expand');
+      }
+      return;
+    }
+
+    if (e.target.closest('#veHierExpandAll')) {
+      document.querySelectorAll('#veHier .ve-hier-node').forEach(function (n) {
+        n.classList.add('is-expanded');
+        var caret = n.querySelector(':scope > .ve-hier-card > .ve-hier-caret');
+        if (caret) {
+          caret.setAttribute('aria-label', 'Collapse');
+          caret.setAttribute('title', 'Collapse');
+        }
+      });
+      toast('Expand All', 'Hierarchy expanded.');
+      return;
+    }
+
+    if (e.target.closest('#veAddEmpClose') || (e.target === $('veAddEmpModal'))) { closeModal($('veAddEmpModal')); return; }
+    if (e.target.closest('#veAddTeamClose') || (e.target === $('veAddTeamModal'))) { closeModal($('veAddTeamModal')); return; }
+    if (e.target.closest('#veAddDesignation')) { toast('+ Designation', 'Open designation manager.'); return; }
+    if (e.target.closest('#veUploadPhoto')) { toast('Upload Profile Picture'); return; }
+
+    if (e.target.closest('#veAddEmpNext')) {
+      if (state.addStep >= 5) {
+        toast('Employee saved', 'UI preview — connect backend when ready.');
+        closeModal($('veAddEmpModal'));
       } else {
-        toast('Already exists', title + ' is already in the list.');
-        return;
+        toast('Step ' + (state.addStep + 1) + ' saved');
+        setAddStep(state.addStep + 1);
       }
-      refreshDesignationFilters();
-      renderDesigList();
-      if ($('desigInput')) $('desigInput').value = '';
-      if ($('desigEditIndex')) $('desigEditIndex').value = '';
-      if ($('desigSubmitBtn')) $('desigSubmitBtn').textContent = 'Add Designation';
-      render();
-    });
+      return;
+    }
 
-    $('assignDesigClose') && $('assignDesigClose').addEventListener('click', closeAssignDesigModal);
-    $('assignDesigCancel') && $('assignDesigCancel').addEventListener('click', closeAssignDesigModal);
-    $('assignDesigModal') && $('assignDesigModal').addEventListener('click', function (e) {
-      if (e.target === $('assignDesigModal')) closeAssignDesigModal();
-    });
-    $('assignDesigConfirm') && $('assignDesigConfirm').addEventListener('click', function () {
-      var sel = $('assignDesigSelect');
-      if (sel && sel.value) assignDesignationToSelected(sel.value);
-    });
+    var stepBtn = e.target.closest('.ve-step');
+    if (stepBtn && stepBtn.closest('#veAddStepper')) {
+      setAddStep(+stepBtn.getAttribute('data-step'));
+      return;
+    }
 
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') {
-        closeDrawer();
-        closeDesigModal();
-        closeAssignDesigModal();
-      }
-    });
+    if (e.target.closest('.ve-kebab')) { toast('Team menu'); return; }
+  }
+
+  function onChange(e) {
+    var t = e.target;
+    if (t.id === 'veEmpSearch' || t.id === 'veEmpDept' || t.id === 'veEmpBranch' || t.id === 'veEmpDesig' || t.id === 'veEmpStatus') {
+      state.page = 1;
+      renderEmployeeTable();
+      return;
+    }
+    if (t.id === 'veEmpPageSize') {
+      state.pageSize = parseInt(t.value, 10) || 10;
+      state.page = 1;
+      renderEmployeeTable();
+      return;
+    }
+    if (t.id === 'veEmpSelectAll') {
+      document.querySelectorAll('#veEmpBody .ve-row-check').forEach(function (c) { c.checked = t.checked; });
+      return;
+    }
+    if (t.classList.contains('ve-portal')) {
+      var id = t.getAttribute('data-id');
+      state.rows.forEach(function (r) { if (r.id === id) r.portal = t.checked; });
+      toast('Portal Access', (t.checked ? 'Enabled' : 'Disabled') + ' for ' + id);
+      return;
+    }
+    if (t.classList.contains('ve-desig-select')) {
+      var did = t.getAttribute('data-id');
+      state.rows.forEach(function (r) { if (r.id === did) r.designation = t.value; });
+      return;
+    }
+  }
+
+  function onTeamSave(e) {
+    e.preventDefault();
+    var name = ($('veTeamName') && $('veTeamName').value || '').trim();
+    var incharge = ($('veTeamIncharge') && $('veTeamIncharge').value) || '';
+    var members = ($('veTeamMembers') && $('veTeamMembers').value) || '';
+    if (!name || !incharge || !members) {
+      toast('Validation', 'Team Name, Incharge, and Members are required.');
+      return;
+    }
+    toast('Team saved', name);
+    closeModal($('veAddTeamModal'));
   }
 
   function init() {
-    populateFilters();
-    refreshDesignationFilters();
-    renderKpi();
-    if ($('empPageSize')) $('empPageSize').value = state.pageSize;
-    document.querySelectorAll('.emp-view-toggle button').forEach(function (b) {
-      b.classList.toggle('is-active', b.dataset.view === state.view);
-      b.setAttribute('aria-selected', b.dataset.view === state.view ? 'true' : 'false');
+    renderHeaderActions();
+    renderEmployeeTable();
+    bindDisabilityLabel();
+
+    document.addEventListener('click', onPageClick);
+    document.addEventListener('change', onChange);
+    document.addEventListener('input', function (e) {
+      if (e.target && e.target.id === 'veEmpSearch') {
+        state.page = 1;
+        renderEmployeeTable();
+      }
     });
-    updateViewPanels();
-    bindEvents();
-    render();
+
+    var teamForm = $('veAddTeamForm');
+    if (teamForm) teamForm.addEventListener('submit', onTeamSave);
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeAllModals();
+    });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

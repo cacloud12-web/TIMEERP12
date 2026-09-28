@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Document — TimeERP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/client-document.css?v=10">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="cd-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="cd-top-clock" id="cdTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn cd-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn cd-top-icon" id="notifBtn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="cd-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="home.html" class="dropdown__item"><strong>Dashboard</strong><span>Back to home</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="cd-page">
+
+          <!-- Header bar with back + title -->
+          <div class="cd-header">
+            <a class="cd-back" href="document_vault.html" aria-label="Back to Document Vault">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <span class="cd-header__title">Client Document</span>
+          </div>
+
+          <!-- Customer + Search -->
+          <div class="cd-controls">
+            <div class="cd-field">
+              <span class="cd-field__label">Customer :</span>
+              <div class="cd-combo" id="cdCombo">
+                <input type="text" class="cd-combo__input" id="cdComboInput" value="(21) Internal" autocomplete="off" aria-label="Select customer">
+                <svg class="cd-combo__search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.2 4.2"/></svg>
+                <div class="cd-combo__menu" id="cdComboMenu" role="listbox"></div>
+              </div>
+            </div>
+            <div class="cd-field" style="margin-left:auto">
+              <span class="cd-field__label">Search Document :</span>
+              <div class="cd-search">
+                <input type="text" id="cdSearchInput" placeholder="search" aria-label="Search documents">
+              </div>
+            </div>
+          </div>
+
+          <!-- Documents section -->
+          <div class="cd-section">
+            <div class="cd-section__head">
+              <h2 class="cd-section__title">Documents</h2>
+              <div class="cd-toolbar">
+                <button class="cd-tool-btn" title="Upload"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 16V5M7 9l5-5 5 5"/><path d="M4 19h16"/></svg></button>
+                <button type="button" class="cd-tool-btn cd-tool-btn--add" title="Add Folder" id="cdAddFolderBtn" aria-label="Create a new folder">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg>
+                </button>
+                <button class="cd-tool-btn" title="Download All"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 4v11M7 11l5 5 5-5"/><path d="M4 20h16"/></svg></button>
+                <button class="cd-tool-btn" title="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2A8.8 8.8 0 0 0 4.6 16.6L3 21l4.5-1.5A8.8 8.8 0 1 0 12 3.2z"/><path d="M8.6 9.3c.2-.9.6-1.2 1.3-1.2h.2l.7 2.4-.6.5c.6 1.3 1.6 2.3 2.9 2.9l.5-.6 2.4.7v.2c0 .7-.3 1.1-1.2 1.3-2.6.5-5.9-1.9-6.2-6.2z"/></svg></button>
+                <button class="cd-tool-btn" title="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 7 9-7"/></svg></button>
+                <button type="button" class="cd-view-toggle is-table" id="cdViewToggle" aria-pressed="true">
+                  <span class="cd-view-toggle__knob"></span>
+                  <span class="cd-view-toggle__label">Table</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Breadcrumb -->
+            <div class="cd-breadcrumb">Location : / <a href="#">Internal</a></div>
+
+            <!-- Table -->
+            <div class="cd-table-wrap" id="cdTableWrap">
+              <table class="cd-table" id="cdTable">
+                <thead>
+                  <tr>
+                    <th style="width:30%">File Name</th>
+                    <th>Expiry</th>
+                    <th>Tags</th>
+                    <th>Actions</th>
+                    <th class="cd-no-access">Client Access
+                      <label class="cd-no-access-all"><input type="checkbox" id="cdAccessAll"><span class="cd-access-toggle__track"><span class="cd-access-toggle__thumb"></span></span><span class="cd-access-toggle__label">No</span></label>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id="cdTableBody"></tbody>
+              </table>
+            </div>
+            <div class="cd-grid" id="cdGrid" hidden></div>
+          </div>
+
+          <!-- Footer -->
+          <footer class="cd-app-footer">
+            <div class="cd-app-footer__links">
+              <a href="help_centre.html">Help Centre</a><span>|</span>
+              <a href="Academy.html">Academy</a><span>|</span>
+              <a href="community.html">Community</a><span>|</span>
+              <a href="about.html">About</a>
+            </div>
+            <p class="cd-app-footer__copy">© 2025 <span>TimeERP</span>. All rights reserved.</p>
+          </footer>
+
+        </div><!-- /.cd-page -->
+
+        <!-- Move to Folder Modal -->
+        <div class="cd-modal-scrim" id="cdMoveModal" hidden>
+          <div class="cd-modal" style="width:min(360px,calc(100vw - 48px))">
+            <div class="cd-modal__head">
+              <div class="cd-breadcrumb" style="border:none;background:none;padding:0;border-radius:0;font-size:13px">Location : / <a href="#">Internal</a></div>
+              <button class="cd-modal__close" id="cdMoveClose" aria-label="Close">&times;</button>
+            </div>
+            <div class="cd-move-list" id="cdMoveList">
+              <div class="cd-move-item">CREATED</div>
+              <div class="cd-move-item">CREATED</div>
+              <div class="cd-move-item">CREATED</div>
+              <div class="cd-move-item">CREATED</div>
+              <div class="cd-move-item">demo</div>
+              <div class="cd-move-item">GST</div>
+              <div class="cd-move-item">gst file</div>
+              <div class="cd-move-item">Latest Upd...</div>
+              <div class="cd-move-item">WHATSAPP</div>
+              <div class="cd-move-item">ZZz</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add Tags Modal -->
+        <div class="cd-modal-scrim" id="cdTagModal" hidden>
+          <div class="cd-modal">
+            <div class="cd-modal__head">
+              <h3 class="cd-modal__title">Add Tags</h3>
+              <button class="cd-modal__close" id="cdTagClose" aria-label="Close">&times;</button>
+            </div>
+            <div class="cd-modal__body">
+              <div class="cd-modal__field" style="flex-direction:column;align-items:stretch;gap:6px">
+                <input type="text" class="cd-modal__input" id="cdTagInput" placeholder="Tags">
+              </div>
+              <button class="cd-modal__create" id="cdTagSave" style="margin-top:14px">Save</button>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Create Folder Modal -->
+  <div class="cd-modal-scrim" id="cdFolderModal" hidden>
+    <div class="cd-modal" role="dialog" aria-labelledby="cdFolderTitle">
+      <div class="cd-modal__head">
+        <h3 class="cd-modal__title" id="cdFolderTitle">Create A new Folder</h3>
+        <button type="button" class="cd-modal__close" id="cdFolderClose" aria-label="Close">&times;</button>
+      </div>
+      <div class="cd-modal__body">
+        <div class="cd-modal__field">
+          <label class="cd-modal__label" for="cdFolderName">Folder Name :</label>
+          <input type="text" class="cd-modal__input" id="cdFolderName" placeholder="Folder Name">
+        </div>
+        <button type="button" class="cd-modal__create" id="cdFolderCreate">Create</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="cd-del-pop" id="cdDelPop" hidden>
+    <div class="cd-del-pop__row">
+      <span class="cd-del-pop__warn">!</span>
+      <span class="cd-del-pop__text">Are you sure to delete this?</span>
+    </div>
+    <div class="cd-del-pop__btns">
+      <button type="button" class="cd-del-pop__no" id="cdDelNo">No</button>
+      <button type="button" class="cd-del-pop__yes" id="cdDelYes">Yes</button>
+    </div>
+  </div>
+
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/client-document.js?v=7"></script>
+</body>
+</html>

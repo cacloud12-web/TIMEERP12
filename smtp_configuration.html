@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMTP Configuration — TimeERP</title>
+  <meta name="description" content="Configure outbound SMTP email delivery for the organization.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/my-profile.css?v=46">
+  <link rel="stylesheet" href="css/module-hub.css?v=3">
+  <link rel="stylesheet" href="css/smtp-configuration.css?v=1">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="shell-top-checkin is-checked-in is-orange" id="shellTopCheckInBtn">Check Out</button>
+            <time class="shell-top-clock" id="shellTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn shell-top-icon" id="shellCalBtn" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn shell-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <a class="shell-account" id="profileBtn" href="my_profile.html" aria-label="Open profile">
+              <span class="shell-account__org" aria-hidden="true"><img src="assets/favicon-mark.png" alt="" width="28" height="28"></span>
+              <span class="shell-account__name">CA Cloud..</span>
+              <span class="shell-account__user" aria-hidden="true"><img src="assets/favicon-mark.png" alt="" width="28" height="28"></span>
+            </a>
+          </div>
+        </div>
+      </header>
+      <main class="main">
+        <div class="mp-page mh-page smtp-page">
+          <nav class="mp-mod-nav" aria-label="Profile modules">
+            <div class="mp-mod-nav__pills">
+              <a href="my_profile.html" class="mp-mod-pill">Profile</a><a href="organization.html" class="mp-mod-pill">Organization</a><a href="hrms.html" class="mp-mod-pill">HRMS</a><a href="payroll.html" class="mp-mod-pill">Payroll</a><a href="import_utility.html" class="mp-mod-pill">Import Utility</a><a href="notification.html" class="mp-mod-pill">Notification</a><a href="settings.html" class="mp-mod-pill is-active" aria-current="page">Settings</a><a href="app_setup.html" class="mp-mod-pill">Setup</a>
+            </div>
+            <div class="mp-mod-nav__actions">
+              <button type="button" class="mp-mod-icon-btn" aria-label="Trash" title="Trash">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 5h6"/><path d="M10 5V4h4v1"/><path d="M4.5 7.5h15"/><path d="M7 7.5l.9 12.2a1 1 0 0 0 1 .9h6.2a1 1 0 0 0 1-.9L17 7.5"/></svg>
+              </button>
+              <button type="button" class="mp-mod-icon-btn" aria-label="Unlock" title="Unlock">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><circle cx="12" cy="16" r="1" fill="currentColor" stroke="none"/><path d="M16 11V7.5a4 4 0 0 0-7.6-1.7"/></svg>
+              </button>
+              <button type="button" class="mp-mod-icon-btn" aria-label="Logout" title="Logout">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 4a8 8 0 1 0 0 16"/><path d="M12 12h8"/><path d="M17.5 9l3 3-3 3"/></svg>
+              </button>
+            </div>
+          </nav>
+
+          <div class="smtp-body">
+            <div class="smtp-title-row">
+              <a class="smtp-back" href="settings.html" aria-label="Back to Settings">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+              </a>
+              <h1 class="smtp-title">SMTP Configuration</h1>
+            </div>
+
+            <div class="smtp-card">
+              <div class="smtp-tabs" role="tablist" aria-label="SMTP sections">
+                <button type="button" class="smtp-tab is-active" data-smtp-tab="config" role="tab" aria-selected="true">SMTP Configuration</button>
+                <button type="button" class="smtp-tab" data-smtp-tab="view" role="tab" aria-selected="false">View SMTP</button>
+              </div>
+
+              <section class="smtp-pane is-active" data-smtp-pane="config">
+                <form class="smtp-form" id="smtpForm" novalidate>
+                  <div class="smtp-field">
+                    <label for="smtpEmail">Email <span class="smtp-req">*</span></label>
+                    <input type="email" id="smtpEmail" value="sales.cacloud@gmail.com" required>
+                  </div>
+                  <div class="smtp-field">
+                    <label for="smtpPassword">Password <span class="smtp-req">*</span></label>
+                    <div class="smtp-pass">
+                      <input type="password" id="smtpPassword" value="••••••••••••" required>
+                      <button type="button" class="smtp-pass__toggle" id="smtpPassToggle" aria-label="Show password">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M3 3l18 18"/><path d="M10.6 10.6A2 2 0 0012 14a2 2 0 001.4-.6"/><path d="M9.9 5.1A10.5 10.5 0 0121 12c-1.2 2.2-2.8 3.9-4.6 5.1"/><path d="M6.1 6.1C4.7 7.2 3.5 8.6 2.5 10.2A11 11 0 008.2 17"/></svg>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="smtp-field">
+                    <label for="smtpHost">Host <span class="smtp-req">*</span></label>
+                    <input type="text" id="smtpHost" placeholder="Host" required>
+                  </div>
+                  <div class="smtp-field">
+                    <label for="smtpPort">Port <span class="smtp-req">*</span></label>
+                    <input type="text" id="smtpPort" placeholder="Port" inputmode="numeric" required>
+                  </div>
+                  <div class="smtp-checks">
+                    <label class="smtp-check"><input type="checkbox" id="smtpDefault"> Default</label>
+                    <label class="smtp-check"><input type="checkbox" id="smtpImap"> IMAP Enabled</label>
+                  </div>
+                  <div class="smtp-imap" id="smtpImapFields" hidden>
+                    <div class="smtp-field">
+                      <label for="smtpImapHost">IMAP Host</label>
+                      <input type="text" id="smtpImapHost" placeholder="e.g. imap.gmail.com">
+                    </div>
+                    <div class="smtp-field">
+                      <label for="smtpImapPort">IMAP Port</label>
+                      <input type="text" id="smtpImapPort" placeholder="e.g. 993" inputmode="numeric">
+                    </div>
+                  </div>
+                  <div class="smtp-actions">
+                    <button type="submit" class="smtp-save">Save</button>
+                  </div>
+                </form>
+
+                <aside class="smtp-guide" aria-label="SMTP Configuration Guide">
+                  <h2>SMTP Configuration Guide</h2>
+                  <p class="smtp-guide__lead">All fields marked as required must be filled before saving. If a required field is left empty, you will see a validation message such as 'Email' is required!</p>
+                  <div class="smtp-guide__item">
+                    <strong>Email <span class="smtp-req">*</span></strong>
+                    <p>Enter the email address that will be used to send emails from the application. <span>e.g. yourname@company.com</span></p>
+                  </div>
+                  <div class="smtp-guide__item">
+                    <strong>Password <span class="smtp-req">*</span></strong>
+                    <p>Enter the password for the email account above. For Gmail or similar providers, use an app-specific password if 2FA is enabled. <span>e.g. your email account password or app password</span></p>
+                  </div>
+                  <div class="smtp-guide__item">
+                    <strong>Host <span class="smtp-req">*</span></strong>
+                    <p>Enter the SMTP server address provided by your email provider. <span>e.g. smtp.gmail.com, smtp.office365.com</span></p>
+                  </div>
+                  <div class="smtp-guide__item">
+                    <strong>Port <span class="smtp-req">*</span></strong>
+                    <p>Enter the SMTP port number. Use 587 for TLS or 465 for SSL, as recommended by your provider. <span>e.g. 587</span></p>
+                  </div>
+                  <div class="smtp-guide__item">
+                    <strong>Default</strong>
+                    <p>Optional. Check this to use this configuration as the default for sending emails.</p>
+                  </div>
+                  <div class="smtp-guide__item">
+                    <strong>IMAP Enabled</strong>
+                    <p>Optional. Enable this if IMAP should be used for mailbox sync.</p>
+                  </div>
+                  <div class="smtp-guide__item">
+                    <strong>IMAP Host</strong>
+                    <p>Optional. IMAP server host, required only when IMAP is enabled. <span>e.g. imap.gmail.com</span></p>
+                  </div>
+                  <div class="smtp-guide__item">
+                    <strong>IMAP Port</strong>
+                    <p>Optional. IMAP server port, required only when IMAP is enabled. <span>e.g. 993</span></p>
+                  </div>
+                </aside>
+              </section>
+
+              <section class="smtp-pane" data-smtp-pane="view" hidden>
+                <div class="smtp-table-wrap">
+                  <table class="smtp-table">
+                    <thead>
+                      <tr>
+                        <th>Partner</th>
+                        <th>Email</th>
+                        <th>Host</th>
+                        <th>Port</th>
+                        <th>Default</th>
+                        <th>Expired</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="smtpViewBody">
+                      <tr>
+                        <td>Kamal Kant Sharma (KA001)</td>
+                        <td>sales.cacloud@gmail.com</td>
+                        <td>smtp.gmail.com</td>
+                        <td>587</td>
+                        <td><span class="smtp-badge smtp-badge--yes">Yes</span></td>
+                        <td><span class="smtp-badge smtp-badge--warn">Yes</span></td>
+                        <td class="smtp-row-actions">
+                          <button type="button" class="smtp-icon-btn smtp-icon-btn--edit" data-smtp-edit aria-label="Edit">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                          </button>
+                          <button type="button" class="smtp-icon-btn smtp-icon-btn--del" data-smtp-del aria-label="Delete">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 7h16"/><path d="M10 7V5a1 1 0 011-1h2a1 1 0 011 1v2"/><path d="M6 7l1 13a2 2 0 002 2h6a2 2 0 002-2l1-13"/><path d="M10 11v7M14 11v7"/></svg>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/smtp-configuration.js?v=1"></script>
+</body>
+</html>

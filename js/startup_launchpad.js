@@ -61,6 +61,31 @@
     });
   }
 
+  /* Final CTA — parallax layers */
+  var cta = document.getElementById('slpCta');
+  if (cta && window.matchMedia('(pointer:fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var layers = cta.querySelectorAll('[data-parallax-cta]');
+    cta.addEventListener('mousemove', function (e) {
+      var rect = cta.getBoundingClientRect();
+      var x = (e.clientX - rect.left) / rect.width - 0.5;
+      var y = (e.clientY - rect.top) / rect.height - 0.5;
+      layers.forEach(function (el) {
+        var strength = parseFloat(el.getAttribute('data-parallax-cta') || '12');
+        var isDeco = el.classList.contains('slp-cta__deco');
+        var tx = x * strength;
+        var ty = y * (strength * 0.6);
+        el.style.transform = isDeco
+          ? 'translate(' + tx + 'px, calc(-50% + ' + ty + 'px))'
+          : 'translate(' + tx + 'px, ' + ty + 'px)';
+      });
+    });
+    cta.addEventListener('mouseleave', function () {
+      layers.forEach(function (el) {
+        el.style.transform = el.classList.contains('slp-cta__deco') ? 'translateY(-50%)' : '';
+      });
+    });
+  }
+
   /* FAQ accordion */
   document.querySelectorAll('.slp-faq__item').forEach(function (item) {
     var btn = item.querySelector('.slp-faq__trigger');

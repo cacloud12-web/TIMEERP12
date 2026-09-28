@@ -2,15 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="../assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="../assets/favicon-mark.png?v=13">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Attendance — TIME ERP HRMS</title>
-  <meta name="description" content="Monitor workforce attendance, working hours, shifts, and daily employee activity from one centralized TIME ERP dashboard.">
-  <link rel="icon" href="../assets/image0.png" type="image/png">
+  <title>Detailed Attendance — TIME ERP HRMS</title>
+  <meta name="description" content="View detailed attendance, check in/out, work hours, and team request history in TIME ERP.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/dashboard-shell.css">
-  <link rel="stylesheet" href="css/attendance.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/attendance.css?v=att10">
 </head>
 <body>
   <div class="sidebar-scrim" id="sidebarScrim"></div>
@@ -18,7 +22,7 @@
     <aside class="sidebar" id="sidebar" aria-label="Modules">
       <div class="sidebar__brand">
         <a href="../home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
-          <img src="../assets/image0.png" alt="TimeERP" width="168" height="40">
+          <img src="../assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
         </a>
       </div>
       <div class="sidebar__toolbar" role="group" aria-label="Search and create">
@@ -38,26 +42,29 @@
         <div class="topbar__inner">
           <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
           <div class="topbar__search" role="search">
-            <input type="search" id="globalSearch" placeholder="Search modules..." autocomplete="off" aria-label="Search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
           </div>
           <div class="topbar__actions">
+            <button type="button" class="att-top-checkout" id="attTopCheckOutBtn">Check Out</button>
+            <time class="att-top-clock" id="attTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn att-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
             <div class="topbar__menu" style="position:relative">
-              <button type="button" class="topbar__icon-btn" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+              <button type="button" class="topbar__icon-btn att-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
-                <span class="topbar__badge">4</span>
+                <span class="topbar__badge">3</span>
               </button>
               <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
                 <div class="dropdown__title">Notifications</div>
                 <div id="notifList"></div>
               </div>
             </div>
-            <button type="button" class="topbar__icon-btn" aria-label="Calendar">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
-            </button>
             <div class="topbar__menu" style="position:relative">
               <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
                 <span class="topbar__avatar">TE</span>
                 <span class="topbar__profile-meta"><strong>Admin</strong><span>TimeERP</span></span>
+                <svg class="att-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
               </button>
               <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
                 <div class="dropdown__title">Account</div>
@@ -70,286 +77,347 @@
 
       <main class="main">
         <div class="att-page" id="attPage">
-          <nav class="att-breadcrumb" aria-label="Breadcrumb">
-            <a href="../home.html#hrms">HRMS</a>
-            <span aria-hidden="true">›</span>
-            <span aria-current="page">Attendance</span>
-          </nav>
-
-          <header class="att-page__header">
-            <div class="att-page__header-text">
-              <h1>Attendance</h1>
+          <header class="att-header">
+            <div class="att-header__left">
+              <a class="att-back" href="../home.html#module/hrms" aria-label="Back to HRMS">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+              </a>
+              <a class="att-crumb" href="../home.html#module/hrms">My Attendance</a>
             </div>
-            <div class="att-page__actions" role="group" aria-label="Page actions">
-              <button type="button" class="att-btn att-btn--primary" id="btnMark" title="Mark Attendance">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-                Mark Attendance
-              </button>
-              <button type="button" class="att-btn att-btn--icon" id="btnExport" aria-label="Export Report" title="Export Report">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
-              </button>
-              <button type="button" class="att-btn att-btn--icon" id="btnSettings" aria-label="Attendance Settings" title="Attendance Settings">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
-              </button>
+            <div class="att-header__right">
+              <div class="att-header__actions">
+                <button type="button" class="att-checkout" id="attCheckOutBtn">Check Out</button>
+                <button type="button" class="att-link-btn" id="attSummaryBtn">Attendance Summary</button>
+              </div>
+              <div class="att-header__tools" id="attHeaderTools">
+                <button type="button" class="att-icon-btn" id="attColumnsBtn" aria-label="Columns" title="Columns">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="1.5"/><path d="M5 9.33h14M5 14.67h14"/><path d="M8 6.85h5M8 12h5M8 17.15h5"/></svg>
+                  <svg class="att-icon-btn__caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+                <button type="button" class="att-icon-btn att-icon-btn--bare" id="attFilterBtn" aria-label="Filter" title="Filter">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M4 5h16l-6 7v5l-4 2v-7L4 5z"/></svg>
+                </button>
+              </div>
             </div>
           </header>
 
-          <nav class="att-secnav" id="attSecNav" aria-label="Attendance sections">
-            <div class="att-secnav__tabs" role="tablist" aria-orientation="horizontal" id="attSecTabs">
-              <button type="button" class="att-secnav__btn is-active" role="tab" id="tab-overview" aria-selected="true" aria-controls="sectionOverview" tabindex="0" data-section="overview">Overview</button>
-              <button type="button" class="att-secnav__btn" role="tab" id="tab-live" aria-selected="false" aria-controls="sectionLive" tabindex="-1" data-section="live">Live</button>
-              <button type="button" class="att-secnav__btn" role="tab" id="tab-register" aria-selected="false" aria-controls="sectionTable" tabindex="-1" data-section="register">Register</button>
-              <button type="button" class="att-secnav__btn" role="tab" id="tab-requests" aria-selected="false" aria-controls="sectionRequests" tabindex="-1" data-section="requests">Requests<span class="att-secnav__count" id="navReqCount" aria-hidden="true">0</span></button>
-              <button type="button" class="att-secnav__btn" role="tab" id="tab-calendar" aria-selected="false" aria-controls="sectionCalendar" tabindex="-1" data-section="calendar">Calendar</button>
-              <button type="button" class="att-secnav__btn" role="tab" id="tab-shifts" aria-selected="false" aria-controls="sectionShifts" tabindex="-1" data-section="shifts">Shifts</button>
-              <button type="button" class="att-secnav__btn" role="tab" id="tab-analytics" aria-selected="false" aria-controls="sectionAnalytics" tabindex="-1" data-section="analytics">Analytics</button>
-            </div>
-          </nav>
+          <h1 class="att-title" id="attPageTitle">Detailed Attendance</h1>
 
-          <div class="att-layout">
-            <div class="att-main">
-
-              <div class="att-section is-active" data-panel="overview" id="sectionOverview" role="tabpanel" aria-labelledby="tab-overview">
-                <section class="att-punch-bar" id="attPunchCard" aria-label="My punch">
-                  <div class="att-punch-bar__info">
-                    <div class="att-punch-bar__title">
-                      <h2>My Punch</h2>
-                      <span class="att-punch__status is-out" id="punchStatus">Checked out</span>
-                    </div>
-                    <p class="att-punch__meta" id="punchMeta">Not punched in yet · General shift</p>
-                    <div class="att-punch-bar__stats">
-                      <div><span>Worked today</span><strong id="punchElapsed">00:00:00</strong></div>
-                      <div><span>Present</span><strong id="snapPresent">0</strong></div>
-                      <div><span>Absent</span><strong id="snapAbsent">0</strong></div>
-                      <div><span>Pending</span><strong id="snapPending">0</strong></div>
-                      <div><span>Rate</span><strong id="snapPct">0%</strong></div>
-                    </div>
-                  </div>
-                  <div class="att-punch-bar__actions" role="group" aria-label="Punch actions">
-                    <button type="button" class="att-btn att-btn--primary" id="btnPunchIn" data-ui="punch-in">Punch In</button>
-                    <button type="button" class="att-btn" id="btnPunchBreak" data-ui="punch-break" disabled>Break</button>
-                    <button type="button" class="att-btn att-btn--danger" id="btnPunchOut" data-ui="punch-out" disabled>Punch Out</button>
-                    <button type="button" class="att-btn" data-section-jump="requests">Review Requests</button>
-                  </div>
-                </section>
-
-                <section class="att-kpi" aria-label="Workforce overview">
-                  <button type="button" class="att-kpi__card" data-section-jump="register"><div class="att-kpi__top"><div class="att-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><span class="att-kpi__trend att-kpi__trend--flat">Org</span></div><div class="att-kpi__value" id="kpiTotal">0</div><div class="att-kpi__label">Total Employees</div><div class="att-kpi__desc">Open register</div></button>
-                  <button type="button" class="att-kpi__card" data-section-jump="register"><div class="att-kpi__top"><div class="att-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div><span class="att-kpi__trend att-kpi__trend--up">Today</span></div><div class="att-kpi__value" id="kpiPresent">0</div><div class="att-kpi__label">Present Today</div><div class="att-kpi__desc">Checked in</div></button>
-                  <button type="button" class="att-kpi__card" data-section-jump="register" data-filter-status="absent"><div class="att-kpi__top"><div class="att-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg></div><span class="att-kpi__trend att-kpi__trend--down">Alert</span></div><div class="att-kpi__value" id="kpiAbsent">0</div><div class="att-kpi__label">Absent</div><div class="att-kpi__desc">View absences</div></button>
-                  <button type="button" class="att-kpi__card" data-section-jump="register" data-filter-status="leave"><div class="att-kpi__top"><div class="att-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div><span class="att-kpi__trend att-kpi__trend--flat">Leave</span></div><div class="att-kpi__value" id="kpiLeave">0</div><div class="att-kpi__label">On Leave</div><div class="att-kpi__desc">Approved leave</div></button>
-                  <button type="button" class="att-kpi__card" data-section-jump="register" data-filter-status="late"><div class="att-kpi__top"><div class="att-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><span class="att-kpi__trend att-kpi__trend--warn">Watch</span></div><div class="att-kpi__value" id="kpiLate">0</div><div class="att-kpi__label">Late Arrivals</div><div class="att-kpi__desc">Past grace time</div></button>
-                  <button type="button" class="att-kpi__card" data-section-jump="live"><div class="att-kpi__top"><div class="att-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div><span class="att-kpi__trend att-kpi__trend--up">WFH</span></div><div class="att-kpi__value" id="kpiRemote">0</div><div class="att-kpi__label">Remote</div><div class="att-kpi__desc">Live workforce</div></button>
-                  <button type="button" class="att-kpi__card" data-section-jump="requests"><div class="att-kpi__top"><div class="att-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><span class="att-kpi__trend att-kpi__trend--warn">Action</span></div><div class="att-kpi__value" id="kpiPending">0</div><div class="att-kpi__label">Pending Requests</div><div class="att-kpi__desc">Awaiting approval</div></button>
-                  <button type="button" class="att-kpi__card" data-section-jump="analytics"><div class="att-kpi__top"><div class="att-kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div><span class="att-kpi__trend att-kpi__trend--up">Rate</span></div><div class="att-kpi__value" id="kpiPct">0</div><div class="att-kpi__label">Attendance %</div><div class="att-kpi__desc">Open analytics</div></button>
-                  <span class="is-hidden" id="kpiField" aria-hidden="true">0</span>
-                  <span class="is-hidden" id="kpiHours" aria-hidden="true">0</span>
-                </section>
-              </div>
-
-              <div class="att-section" data-panel="live" id="sectionLive" role="tabpanel" aria-labelledby="tab-live" hidden>
-                <section class="att-panel" aria-label="Live workforce">
-                  <div class="att-panel__head">
-                    <h2>Live Workforce</h2>
-                    <span class="att-live-tag"><span class="att-secnav__pulse" aria-hidden="true"></span> Updating</span>
-                  </div>
-                  <div class="att-panel__body">
-                    <div class="att-live" id="attLive"></div>
-                    <div class="att-live-grid">
-                      <div class="att-live-panel">
-                        <div class="att-live-panel__head"><h3>Active Now</h3></div>
-                        <div class="att-presence" id="attPresence"></div>
-                      </div>
-                      <div class="att-live-panel">
-                        <div class="att-live-panel__head">
-                          <h3>Recent Activity</h3>
-                          <button type="button" class="att-btn att-btn--sm" data-ui="refresh-activity" id="btnRefreshActivity">Refresh</button>
-                        </div>
-                        <div class="att-timeline" id="attActivity"></div>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-              </div>
-
-              <div class="att-section" data-panel="register" id="sectionTable" role="tabpanel" aria-labelledby="tab-register" hidden>
-                <section class="att-panel" aria-label="Attendance register">
-                  <div class="att-panel__head">
-                    <h2>Attendance Register</h2>
-                    <div class="att-export" role="group" aria-label="Register actions">
-                      <button type="button" class="att-btn att-btn--icon att-btn--sm" id="btnBulkToggle" aria-label="Bulk select" title="Bulk select"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></button>
-                      <button type="button" class="att-btn att-btn--icon att-btn--sm" data-ui="export-excel" aria-label="Export Excel" title="Excel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M8 13h2M8 17h8M14 13h2"/></svg></button>
-                      <button type="button" class="att-btn att-btn--icon att-btn--sm" data-ui="export-csv" aria-label="Export CSV" title="CSV"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></button>
-                      <button type="button" class="att-btn att-btn--icon att-btn--sm" data-ui="export-pdf" aria-label="Export PDF" title="PDF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M10 13h4M10 17h4"/></svg></button>
-                      <button type="button" class="att-btn att-btn--icon att-btn--sm" data-ui="print" aria-label="Print" title="Print"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><path d="M6 14h12v8H6z"/></svg></button>
-                    </div>
-                  </div>
-                  <div class="att-panel__body">
-                    <div class="att-filters" id="sectionFilters">
-                      <input type="search" id="filterQ" placeholder="Search employee, ID, department…" aria-label="Search employee">
-                      <select id="filterDept" aria-label="Department"><option value="">Department</option></select>
-                      <select id="filterDesignation" aria-label="Designation"><option value="">Designation</option></select>
-                      <select id="filterManager" aria-label="Manager"><option value="">Manager</option></select>
-                      <select id="filterStatus" aria-label="Attendance status"><option value="">Status</option></select>
-                      <select id="filterShift" aria-label="Shift"><option value="">Shift</option></select>
-                      <select id="filterLocation" aria-label="Location"><option value="">Location</option></select>
-                      <input type="date" id="filterDate" aria-label="Date" value="2026-07-10">
-                      <input type="date" id="filterDateTo" aria-label="Date range end">
-                      <button type="button" class="att-btn att-btn--icon att-btn--sm" id="btnResetFilters" aria-label="Reset filters" title="Reset filters"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M4 4v6h6M20 20v-6h-6"/><path d="M5 19a9 9 0 0014-7M19 5a9 9 0 00-14 7"/></svg></button>
-                    </div>
-                    <div class="att-bulk is-hidden" id="attBulkBar" role="group" aria-label="Bulk actions">
-                      <button type="button" class="att-btn att-btn--sm" data-ui="bulk-attendance">Bulk Attendance</button>
-                      <button type="button" class="att-btn att-btn--sm" data-ui="bulk-approval">Bulk Approval</button>
-                      <button type="button" class="att-btn att-btn--sm" data-ui="bulk-export">Bulk Export</button>
-                      <button type="button" class="att-btn att-btn--sm" data-ui="bulk-regularization">Bulk Regularization</button>
-                    </div>
-                    <div class="att-skel-wrap" id="attTableSkel" aria-hidden="true">
-                      <div class="att-skel" style="height:40px"></div>
-                      <div class="att-skel" style="height:40px"></div>
-                      <div class="att-skel" style="height:40px"></div>
-                    </div>
-                    <div class="att-table-wrap">
-                      <table class="att-table">
-                        <thead>
-                          <tr>
-                            <th scope="col" aria-label="Select"></th>
-                            <th data-sort="name">Employee</th>
-                            <th data-sort="id">Employee ID</th>
-                            <th data-sort="dept">Department</th>
-                            <th data-sort="designation">Designation</th>
-                            <th data-sort="manager">Manager</th>
-                            <th data-sort="shift">Shift</th>
-                            <th data-sort="checkIn">Check In</th>
-                            <th data-sort="checkOut">Check Out</th>
-                            <th data-sort="breakTime">Break</th>
-                            <th data-sort="hours">Working Hours</th>
-                            <th data-sort="overtime">Overtime</th>
-                            <th data-sort="status">Status</th>
-                            <th data-sort="location">Location</th>
-                            <th data-sort="device">Device</th>
-                            <th>Actions</th>
-                          </tr>
-                        </thead>
-                        <tbody id="attTableBody"></tbody>
-                      </table>
-                    </div>
-                    <div class="att-empty is-hidden" id="attTableEmpty">
-                      <strong>No Search Results</strong>
-                      <p>Try adjusting filters or clear search to view attendance.</p>
-                    </div>
-                  </div>
-                </section>
-              </div>
-
-              <div class="att-section" data-panel="requests" id="sectionRequests" role="tabpanel" aria-labelledby="tab-requests" hidden>
-                <section class="att-panel" aria-label="Attendance requests">
-                  <div class="att-panel__head"><h2>Attendance Requests</h2></div>
-                  <div class="att-panel__body"><div class="att-req-list" id="attRequests"></div></div>
-                </section>
-              </div>
-
-              <div class="att-section" data-panel="calendar" id="sectionCalendar" role="tabpanel" aria-labelledby="tab-calendar" hidden>
-                <section class="att-panel" aria-label="Attendance calendar">
-                  <div class="att-panel__head">
-                    <h2>Attendance Calendar</h2>
-                    <div class="att-cal-nav">
-                      <button type="button" class="att-btn att-btn--icon att-btn--sm" id="btnCalPrev" aria-label="Previous month" title="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
-                      <strong id="attCalLabel" style="min-width:120px;text-align:center;font-size:13px;color:var(--heading)">July 2026</strong>
-                      <button type="button" class="att-btn att-btn--icon att-btn--sm" id="btnCalNext" aria-label="Next month" title="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
-                    </div>
-                  </div>
-                  <div class="att-panel__body">
-                    <div class="att-calendar" id="attCalendar"></div>
-                    <div class="att-cal-legend">
-                      <span><i class="att-calendar__dot att-calendar__dot--present"></i>Present</span>
-                      <span><i class="att-calendar__dot att-calendar__dot--absent"></i>Absent</span>
-                      <span><i class="att-calendar__dot att-calendar__dot--leave"></i>Leave</span>
-                      <span><i class="att-calendar__dot att-calendar__dot--holiday"></i>Holiday</span>
-                      <span><i class="att-calendar__dot att-calendar__dot--late"></i>Late</span>
-                      <span><i class="att-calendar__dot att-calendar__dot--weekend"></i>Weekend</span>
-                    </div>
-                  </div>
-                </section>
-              </div>
-
-              <div class="att-section" data-panel="shifts" id="sectionShifts" role="tabpanel" aria-labelledby="tab-shifts" hidden>
-                <section class="att-panel" aria-label="Shift management">
-                  <div class="att-panel__head"><h2>Shift Management</h2></div>
-                  <div class="att-panel__body"><div class="att-shift-grid att-shift-grid--2" id="attShifts"></div></div>
-                </section>
-              </div>
-
-              <div class="att-section" data-panel="analytics" id="sectionAnalytics" role="tabpanel" aria-labelledby="tab-analytics" hidden>
-                <section class="att-panel" aria-label="Attendance analytics">
-                  <div class="att-panel__head"><h2>Analytics</h2></div>
-                  <div class="att-panel__body">
-                    <div class="att-analytics">
-                      <div class="att-chart"><h3>Daily Trend</h3><div class="att-chart__bars" aria-hidden="true"><i class="att-chart__bar" style="height:70%"></i><i class="att-chart__bar" style="height:82%"></i><i class="att-chart__bar" style="height:65%"></i><i class="att-chart__bar" style="height:90%"></i><i class="att-chart__bar" style="height:78%"></i></div><div class="att-chart__legend">Mon–Fri</div></div>
-                      <div class="att-chart"><h3>By Department</h3><div class="att-chart__bars" aria-hidden="true"><i class="att-chart__bar" style="height:92%"></i><i class="att-chart__bar" style="height:85%"></i><i class="att-chart__bar" style="height:78%"></i><i class="att-chart__bar" style="height:88%"></i></div><div class="att-chart__legend">Eng · HR · Sales · Design</div></div>
-                      <div class="att-chart"><h3>Late Arrivals</h3><div class="att-chart__bars" aria-hidden="true"><i class="att-chart__bar" style="height:40%"></i><i class="att-chart__bar" style="height:55%"></i><i class="att-chart__bar" style="height:35%"></i><i class="att-chart__bar" style="height:60%"></i></div><div class="att-chart__legend">This week</div></div>
-                      <div class="att-chart"><h3>Leave vs Present</h3><div class="att-chart__bars" aria-hidden="true"><i class="att-chart__bar" style="height:85%"></i><i class="att-chart__bar" style="height:25%"></i><i class="att-chart__bar" style="height:15%"></i></div><div class="att-chart__legend">Present · Leave · Absent</div></div>
-                    </div>
-                  </div>
-                </section>
-              </div>
-
-            </div>
+          <div id="attDetailedView">
+          <div class="att-legend" aria-label="Attendance status legend">
+            <span class="att-legend__item"><span class="att-badge att-badge--p" aria-hidden="true">P</span> Present</span>
+            <span class="att-legend__item"><span class="att-badge att-badge--a" aria-hidden="true">A</span> Absent</span>
+            <span class="att-legend__item"><span class="att-badge att-badge--h" aria-hidden="true">H</span> Holiday</span>
+            <span class="att-legend__item"><span class="att-badge att-badge--od" aria-hidden="true">OD</span> On Duty</span>
+            <span class="att-legend__item"><span class="att-badge att-badge--co" aria-hidden="true">CO</span> Comp Off</span>
           </div>
 
-          <div class="att-mobile-actions">
-            <button type="button" class="att-btn att-btn--icon att-btn--primary" data-ui="mark" aria-label="Mark Attendance" title="Mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
-            <button type="button" class="att-btn att-btn--icon" data-ui="settings" aria-label="Settings" title="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="12" r="3"/></svg></button>
+          <section class="att-card" aria-label="Detailed Attendance">
+            <div class="att-table-wrap">
+              <table class="att-table" id="attTable">
+                <thead>
+                  <tr id="attTableHead"></tr>
+                </thead>
+                <tbody id="attTableBody"></tbody>
+              </table>
+            </div>
+            <footer class="att-pagination" aria-label="Attendance pagination">
+              <div class="att-pagination__left">
+                <label class="att-sr-only" for="attPageSize">Rows per page</label>
+                <select id="attPageSize" class="att-page-size" aria-label="Rows per page">
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="50" selected>50</option>
+                  <option value="100">100</option>
+                  <option value="200">200</option>
+                  <option value="500">500</option>
+                  <option value="1000">1000</option>
+                </select>
+              </div>
+              <div class="att-pagination__center">
+                <button type="button" class="att-page-nav" id="attPrev" aria-label="Previous page" disabled>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <span class="att-page-label" id="attPageLabel">
+                  <input type="text" class="att-page-input" id="attPageInput" value="1" inputmode="numeric" aria-label="Current page" readonly>
+                  <span class="att-page-of">of <span id="attPageTotal">1</span></span>
+                </span>
+                <button type="button" class="att-page-nav" id="attNext" aria-label="Next page" disabled>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+              </div>
+              <div class="att-pagination__right">
+                <span class="att-count" id="attCount">14 / 14</span>
+              </div>
+            </footer>
+          </section>
+
+          <section class="att-card att-card--history" aria-label="Team Request History">
+            <div class="att-card__bar">Team Request History</div>
+            <div class="att-table-wrap att-table-wrap--history">
+              <table class="att-table att-table--history" id="attHistoryTable">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Detail</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="attHistoryBody"></tbody>
+              </table>
+              <div class="att-empty" id="attHistoryEmpty" aria-live="polite">
+                <div class="att-empty__icon" aria-hidden="true">
+                  <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75">
+                    <path d="M10 28l6-8h32l6 8"/>
+                    <path d="M10 28h44v22a4 4 0 01-4 4H14a4 4 0 01-4-4V28z"/>
+                    <path d="M10 28h14l4 6h12l4-6h14"/>
+                  </svg>
+                </div>
+                <p>No data</p>
+              </div>
+            </div>
+            <footer class="att-pagination" aria-label="Team request pagination">
+              <div class="att-pagination__left">
+                <select id="attHistPageSize" class="att-page-size" aria-label="Rows per page">
+                  <option value="10" selected>10</option>
+                  <option value="20">20</option>
+                  <option value="50">50</option>
+                </select>
+              </div>
+              <div class="att-pagination__center">
+                <button type="button" class="att-page-nav" id="attHistPrev" disabled aria-label="Previous page">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <span class="att-page-label">
+                  <input type="text" class="att-page-input" id="attHistPageInput" value="1" inputmode="numeric" aria-label="Current page" readonly>
+                  <span class="att-page-of">of <span id="attHistPageTotal">1</span></span>
+                </span>
+                <button type="button" class="att-page-nav" id="attHistNext" disabled aria-label="Next page">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+              </div>
+              <div class="att-pagination__right">
+                <span class="att-count" id="attHistCount">0 / 0</span>
+              </div>
+            </footer>
+          </section>
+          </div><!-- /attDetailedView -->
+
+          <div id="attSummaryView" class="att-summary" hidden>
+            <div class="att-summary__range-wrap">
+              <button type="button" class="att-summary__range" id="attSumRangeBtn" aria-expanded="false">
+                <span id="attSumRangeLabel">01/08/2026 → 17/08/2026</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+              </button>
+              <div class="att-sum-range-pop" id="attSumRangePop" hidden>
+                <div class="att-sum-range-pop__cals" id="attSumRangeCals"></div>
+              </div>
+            </div>
+
+            <div class="att-summary__charts">
+              <section class="att-sum-card" aria-label="Attendance">
+                <div class="att-sum-card__head">
+                  <h2 class="att-sum-card__title">Attendance</h2>
+                  <div class="att-sum-card__tools">
+                    <strong class="att-sum-total" id="attSumTotal">0</strong>
+                    <button type="button" class="att-sum-menu-btn" data-sum-menu="donut" aria-label="Chart menu">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+                    </button>
+                    <div class="att-sum-menu" data-sum-menu-panel="donut" hidden>
+                      <button type="button" data-sum-dl="svg">Download SVG</button>
+                      <button type="button" data-sum-dl="png">Download PNG</button>
+                      <button type="button" data-sum-dl="csv">Download CSV</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="att-sum-donut">
+                  <svg class="att-sum-donut__svg" viewBox="0 0 120 120" aria-hidden="true">
+                    <circle cx="60" cy="60" r="42" fill="none" stroke="#f0f0f0" stroke-width="16"/>
+                    <circle cx="60" cy="60" r="42" fill="none" stroke="#f5222d" stroke-width="16"
+                      stroke-dasharray="264" stroke-dashoffset="0" stroke-linecap="butt"
+                      transform="rotate(-90 60 60)"/>
+                  </svg>
+                  <ul class="att-sum-donut__legend">
+                    <li>Absent</li>
+                    <li>Holiday</li>
+                    <li>Present</li>
+                    <li>On Duty</li>
+                    <li>Comp Off</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section class="att-sum-card" aria-label="Attendance Report">
+                <div class="att-sum-card__head">
+                  <h2 class="att-sum-card__title">Attendance Report</h2>
+                  <div class="att-sum-card__tools">
+                    <button type="button" class="att-sum-menu-btn" data-sum-menu="bar" aria-label="Chart menu">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+                    </button>
+                    <div class="att-sum-menu" data-sum-menu-panel="bar" hidden>
+                      <button type="button" data-sum-dl="svg">Download SVG</button>
+                      <button type="button" data-sum-dl="png">Download PNG</button>
+                      <button type="button" data-sum-dl="csv">Download CSV</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="att-sum-bars" id="attSumBars">
+                  <div class="att-sum-bars__y"><span>1.0</span><span>0.8</span><span>0.5</span><span>0.3</span><span>0.0</span></div>
+                  <div class="att-sum-bars__plot">
+                    <div class="att-sum-bar" style="height:100%"><span>Aug 17</span></div>
+                    <div class="att-sum-bar" style="height:100%"><span>Aug 17</span></div>
+                  </div>
+                </div>
+                <div class="att-sum-bar-legend">
+                  <span class="att-sum-half-labels"><em>First Half</em><em>Second Half</em></span>
+                  <div class="att-sum-bar-legend__items">
+                    <span><i class="att-badge att-badge--p">P</i> Present</span>
+                    <span><i class="att-badge att-badge--a">A</i> Absent</span>
+                    <span><i class="att-badge att-badge--h">H</i> Holiday</span>
+                    <span><i class="att-badge att-badge--od">OD</i> On Duty</span>
+                    <span><i class="att-badge att-badge--co">CO</i> Comp Off</span>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <section class="att-sum-card att-sum-card--month" aria-label="Monthly summary">
+              <div class="att-sum-month-head">
+                <div class="att-sum-month-picker">
+                  <button type="button" class="att-sum-month-btn" id="attSumMonthBtn" aria-expanded="false">
+                    <span id="attSumMonthLabel">2026-08</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                  </button>
+                  <div class="att-sum-month-pop" id="attSumMonthPop" hidden>
+                    <div class="att-sum-month-pop__head">
+                      <button type="button" data-sum-year="-1" aria-label="Previous year">&lt;&lt;</button>
+                      <strong id="attSumYearLabel">2026</strong>
+                      <button type="button" data-sum-year="1" aria-label="Next year">&gt;&gt;</button>
+                    </div>
+                    <div class="att-sum-month-pop__grid" id="attSumMonthGrid"></div>
+                  </div>
+                </div>
+                <h2 class="att-sum-month-title" id="attSumMonthTitle">Summary for the month August 2026</h2>
+              </div>
+              <div class="att-sum-grid" id="attSumGrid">
+                <div class="att-sum-col">
+                  <div class="att-sum-row"><span class="att-sum-row__label">Employee :</span><span class="att-sum-row__value">Saurabh Bhardwaj</span></div>
+                  <div class="att-sum-row"><span class="att-sum-row__label">Total Day :</span><span class="att-sum-row__value">31</span></div>
+                  <div class="att-sum-row"><span class="att-sum-row__label">Holidays/ Weekly Offs :</span><span class="att-sum-row__value">0</span></div>
+                  <div class="att-sum-row"><span class="att-sum-row__label">Total Working Days :</span><span class="att-sum-row__value">31</span></div>
+                  <div class="att-sum-row"><span class="att-sum-row__label">Leave Count :</span><span class="att-sum-row__value">0</span></div>
+                  <div class="att-sum-row"><span class="att-sum-row__label">Hourly Leaves :</span><span class="att-sum-row__value">0</span></div>
+                  <div class="att-sum-row"><span class="att-sum-row__label">Out Duty :</span><span class="att-sum-row__value">0</span></div>
+                  <div class="att-sum-row"><span class="att-sum-row__label">Total Absent :</span><span class="att-sum-row__value">17</span></div>
+                  <div class="att-sum-row"><span class="att-sum-row__label">Total Payable Days :</span><span class="att-sum-row__value">0</span></div>
+                </div>
+                <div class="att-sum-col">
+                  <div class="att-sum-row"><span class="att-sum-row__label">Full Day Count :</span><span class="att-sum-row__value">0</span></div>
+                  <div class="att-sum-row"><span class="att-sum-row__label">Half Day Count :</span><span class="att-sum-row__value">0</span></div>
+                  <div class="att-sum-row"><span class="att-sum-row__label">Total Work Hours :</span><span class="att-sum-row__value">0:00</span></div>
+                  <div class="att-sum-row"><span class="att-sum-row__label">Actual Work Hours :</span><span class="att-sum-row__value">0:00</span></div>
+                  <div class="att-sum-row"><span class="att-sum-row__label">Extra / Loss :</span><span class="att-sum-row__value">0</span></div>
+                  <div class="att-sum-row"><span class="att-sum-row__label">Incomplete Work Hour (Days) :</span><span class="att-sum-row__value">0</span></div>
+                  <div class="att-sum-row"><span class="att-sum-row__label">No of Late Coming :</span><span class="att-sum-row__value">0</span></div>
+                </div>
+              </div>
+            </section>
           </div>
+
+          <footer class="att-app-footer" aria-label="App footer"></footer>
         </div>
       </main>
     </div>
   </div>
 
-  <div class="att-preview" id="attPreview" role="tooltip" aria-hidden="true"></div>
+  <!-- Columns popover -->
+  <div class="att-pop att-pop--columns" id="attColumnsPop" hidden>
+    <div class="att-pop__caret" aria-hidden="true"></div>
+    <div class="att-pop__head">
+      <span class="att-pop__title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="1.5"/><path d="M5 9.33h14M5 14.67h14"/><path d="M8 6.85h5M8 12h5M8 17.15h5"/></svg>
+        Columns
+      </span>
+      <button type="button" class="att-pop__link" id="attSelectAllCols">Select All</button>
+    </div>
+    <ul class="att-pop__list" id="attColumnsList"></ul>
+  </div>
+
+  <!-- Filter popover -->
+  <div class="att-pop att-pop--filter" id="attFilterPop" hidden>
+    <div class="att-pop__caret" id="attFilterCaret" aria-hidden="true"></div>
+    <div class="att-pop__head">
+      <span class="att-pop__title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M4 5h16l-6 7v5l-4 2v-7L4 5z"/></svg>
+        Filter
+      </span>
+      <button type="button" class="att-pop__link" id="attFilterReset">Reset</button>
+    </div>
+    <div class="att-filter-box">
+      <div class="att-filter-section" id="attDateRangeSection">
+        <button type="button" class="att-filter-toggle" id="attDateRangeToggle" aria-expanded="false">
+          <svg class="att-filter-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+          Date Range
+        </button>
+        <div class="att-filter-body" id="attDateRangeBody" hidden>
+          <button type="button" class="att-filter-range" id="attFilterRangeBtn" aria-expanded="false">
+            <span class="att-filter-range__text" id="attFilterRangeLabel"><em>Start date</em><span aria-hidden="true">→</span><em>End date</em></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter date-range calendar -->
+  <div class="att-range-cal" id="attFilterCal" hidden>
+    <div class="att-range-cal__inner" id="attFilterCalInner"></div>
+  </div>
+
   <div class="toast-stack" id="toastStack" aria-live="polite"></div>
 
-  <div class="att-modal-backdrop" id="attDrawer" role="dialog" aria-modal="true" aria-labelledby="attDrawerTitle" aria-hidden="true">
-    <div class="att-modal">
-      <div class="att-modal__head">
-        <h2 id="attDrawerTitle">Employee Timeline</h2>
-        <button type="button" class="att-btn att-btn--sm" id="attDrawerClose" aria-label="Close">✕</button>
+  <!-- Raise Grievance modal -->
+  <div class="att-gr-modal" id="attGrModal" hidden>
+    <div class="att-gr-modal__backdrop" data-att-gr-close></div>
+    <div class="att-gr-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="attGrTitle">
+      <div class="att-gr-modal__head">
+        <h2 class="att-gr-modal__title" id="attGrTitle">Raise Grievance</h2>
+        <button type="button" class="att-gr-modal__close" data-att-gr-close aria-label="Close">&times;</button>
       </div>
-      <div class="att-modal__body" id="attDrawerBody"></div>
-      <div class="att-modal__foot">
-        <button type="button" class="att-btn" data-ui="regularize-from-drawer">Regularize</button>
-        <button type="button" class="att-btn att-btn--primary" id="attDrawerClose2">Close</button>
-      </div>
+      <form class="att-gr-modal__body" id="attGrForm" onsubmit="return false;">
+        <input type="hidden" id="attGrDate" value="">
+        <div class="att-gr-field">
+          <label for="attGrStatus">Select Status <span class="att-gr-req">*</span></label>
+          <select id="attGrStatus" required>
+            <option value="" disabled selected hidden>Select status</option>
+            <option value="First Half">First Half</option>
+            <option value="Second Half">Second Half</option>
+            <option value="Full Day">Full Day</option>
+          </select>
+        </div>
+        <div class="att-gr-field">
+          <label for="attGrRemarkType">Remark Type</label>
+          <select id="attGrRemarkType">
+            <option value="Technical Glitch">Technical Glitch</option>
+            <option value="Forgot to Punch">Forgot to Punch</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="att-gr-field" id="attGrRemarkWrap" hidden>
+          <label for="attGrRemark">Remark</label>
+          <textarea id="attGrRemark" rows="4" placeholder="Enter remark"></textarea>
+        </div>
+        <div class="att-gr-modal__foot">
+          <button type="button" class="att-gr-btn att-gr-btn--ghost" data-att-gr-close>Cancel</button>
+          <button type="submit" class="att-gr-btn att-gr-btn--primary">Submit</button>
+        </div>
+      </form>
     </div>
   </div>
 
-  <div class="att-modal-backdrop" id="attSettings" role="dialog" aria-modal="true" aria-labelledby="attSettingsTitle" aria-hidden="true">
-    <div class="att-modal att-modal--sm">
-      <div class="att-modal__head">
-        <h2 id="attSettingsTitle">Attendance Settings</h2>
-        <button type="button" class="att-btn att-btn--sm" id="attSettingsClose" aria-label="Close">✕</button>
-      </div>
-      <div class="att-modal__body">
-        <form class="att-form" id="attSettingsForm" onsubmit="return false;">
-          <label>Office Timing<input type="text" value="09:00 – 18:00" aria-label="Office timing"></label>
-          <label>Shift Timing<input type="text" value="General / Morning / Night" aria-label="Shift timing"></label>
-          <label>Grace Time (minutes)<input type="number" value="15" aria-label="Grace time"></label>
-          <label>Late Policy<select aria-label="Late policy"><option>Mark Late after grace</option><option>Half day after 2 hrs</option></select></label>
-          <label>Half Day Rules<select aria-label="Half day rules"><option>&lt; 4 working hours</option><option>&lt; 50% of shift</option></select></label>
-          <label>Weekend Configuration<select aria-label="Weekend"><option>Sat–Sun Off</option><option>Sunday Off</option><option>Custom</option></select></label>
-          <label>Holiday Calendar<select aria-label="Holiday calendar"><option>India 2026</option><option>Custom calendar</option></select></label>
-          <label>Overtime Rules<select aria-label="Overtime"><option>After 8.5 hrs</option><option>After shift end</option></select></label>
-          <label>Attendance Lock<select aria-label="Attendance lock"><option>Lock after 48 hrs</option><option>Lock end of month</option></select></label>
-          <label>Auto Check Out<select aria-label="Auto check out"><option>Enabled at 23:59</option><option>Disabled</option></select></label>
-        </form>
-      </div>
-      <div class="att-modal__foot">
-        <button type="button" class="att-btn" id="attSettingsCancel">Cancel</button>
-        <button type="button" class="att-btn att-btn--primary" id="attSettingsSave">Save</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="js/dashboard-shell.js"></script>
-  <script src="js/attendance.js"></script>
+  <script src="js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/attendance.js?v=att9"></script>
 </body>
 </html>

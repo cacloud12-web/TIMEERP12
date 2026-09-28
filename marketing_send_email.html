@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E Mail — TimeERP Marketing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/marketing-send-email.css?v=3">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="crm-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="crm-top-clock" id="crmTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn crm-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn crm-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">3</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="crm-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="home.html#module/marketing" class="dropdown__item"><strong>Marketing</strong><span>Back to module hub</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="se-page">
+          <header class="se-header">
+            <a class="se-back" href="home.html#module/marketing" aria-label="Back to Marketing">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <h1 class="se-title">E Mail</h1>
+          </header>
+
+          <div class="se-panel">
+            <div class="se-panel__top">
+              <div class="se-panel__actions">
+                <a class="se-btn se-btn--add" href="marketing_compose_email.html" title="Compose" aria-label="Compose email">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                </a>
+                <span class="se-icon-wrap">
+                  <button class="se-btn se-btn--gear" type="button" id="seSettings" title="Settings" aria-label="Settings" aria-haspopup="true" aria-expanded="false">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06a1.65 1.65 0 00-.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9c.26.604.852.997 1.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+                  </button>
+                  <div class="se-pop se-pop--settings" id="seSettingsPop" hidden>
+                    <div class="se-pop__caret" aria-hidden="true"></div>
+                    <button type="button" class="se-pop__item" data-se-action="template">Add Email Template</button>
+                    <button type="button" class="se-pop__item" data-se-action="footer">Add Footer</button>
+                    <button type="button" class="se-pop__item" data-se-action="smtp">SMTP &amp; IMAP</button>
+                    <button type="button" class="se-pop__item" data-se-action="sent">Sent Emails</button>
+                  </div>
+                </span>
+              </div>
+            </div>
+
+            <div class="se-toolbar">
+              <span class="se-icon-wrap se-icon-wrap--account">
+                <button class="se-account" type="button" id="seAccountBtn" aria-haspopup="listbox" aria-expanded="false">
+                  <span id="seAccountLabel">sales.cacloud@gmail.com</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+                <div class="se-pop se-pop--account" id="seAccountPop" role="listbox" hidden>
+                  <button type="button" class="se-pop__item is-active" data-email="sales.cacloud@gmail.com">sales.cacloud@gmail.com</button>
+                  <button type="button" class="se-pop__item" data-email="cakamal9758@gmail.com">cakamal9758@gmail.com</button>
+                </div>
+              </span>
+              <div class="se-toolbar__sync">
+                <button class="se-sync-btn" type="button" id="seSync" title="Sync" aria-label="Sync inbox">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12a8 8 0 0113.66-5.66"/><path d="M20 12a8 8 0 01-13.66 5.66"/><path d="M16 4v4h-4M8 20v-4h4"/></svg>
+                </button>
+                <button class="se-sync-btn" type="button" id="seRefresh" title="Refresh" aria-label="Refresh inbox">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12a8 8 0 0113.66-5.66"/><path d="M20 12a8 8 0 01-13.66 5.66"/><path d="M16 4v4h-4M8 20v-4h4"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="se-list" id="seList" aria-label="Inbox"></div>
+
+            <footer class="se-pagination" aria-label="Inbox pagination">
+              <div class="se-pagination__left"></div>
+              <div class="se-pagination__center">
+                <button type="button" class="se-page-nav" id="sePrev" aria-label="Previous page" disabled>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <input type="text" class="se-page-input" id="sePageInput" value="1" inputmode="numeric" aria-label="Current page">
+                <span class="se-page-of">of <span id="sePageTotal">12</span></span>
+                <button type="button" class="se-page-nav" id="seNext" aria-label="Next page">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+              </div>
+              <div class="se-pagination__right">
+                <span class="se-count" id="seCount">20 / 221</span>
+              </div>
+            </footer>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/marketing-send-email.js?v=9"></script>
+</body>
+</html>

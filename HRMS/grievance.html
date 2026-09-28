@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="../assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="../assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grievance — TIME ERP HRMS</title>
+  <meta name="description" content="Raise and track employee grievances by status in TIME ERP.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/grievance.css?v=gr2">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="../home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="../assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="gr-top-checkin is-in" id="grTopCheckInBtn">Check In</button>
+            <time class="gr-top-clock" id="grTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn gr-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn gr-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">3</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">TE</span>
+                <span class="topbar__profile-meta"><strong>Admin</strong><span>TimeERP</span></span>
+                <svg class="gr-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="../home.html" class="dropdown__item"><strong>Go to home</strong><span>Module hub overview</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="gr-page" id="grPage">
+          <header class="gr-header">
+            <a class="gr-back" href="../home.html#module/hrms" aria-label="Back to HRMS">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <h1 class="gr-title">Grievance</h1>
+          </header>
+
+          <nav class="gr-tabs" aria-label="Grievance sections">
+            <div class="gr-tabs__list" role="tablist">
+              <button type="button" class="gr-tab is-active" role="tab" aria-selected="true" data-tab="pending">Pending Grievance</button>
+              <button type="button" class="gr-tab" role="tab" aria-selected="false" data-tab="canceled">Canceled Grievance</button>
+              <button type="button" class="gr-tab" role="tab" aria-selected="false" data-tab="approved">Approved/Rejected Grievance</button>
+            </div>
+          </nav>
+
+          <section class="gr-card" aria-label="Grievance list">
+            <div class="gr-toolbar">
+              <div class="gr-toolbar__left" id="grToolbarLeft"></div>
+              <div class="gr-toolbar__actions" id="grToolbarActions"></div>
+            </div>
+
+            <div class="gr-table-wrap">
+              <table class="gr-table" id="grTable">
+                <thead><tr id="grTableHead"></tr></thead>
+                <tbody id="grTableBody"></tbody>
+              </table>
+              <div class="gr-empty" id="grEmpty" aria-live="polite">
+                <div class="gr-empty__icon" aria-hidden="true">
+                  <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75">
+                    <path d="M10 28l6-8h32l6 8"/>
+                    <path d="M10 28h44v22a4 4 0 01-4 4H14a4 4 0 01-4-4V28z"/>
+                    <path d="M10 28h14l4 6h12l4-6h14"/>
+                  </svg>
+                </div>
+                <p>No data</p>
+              </div>
+            </div>
+
+            <footer class="gr-pagination" aria-label="Table pagination">
+              <div class="gr-pagination__left"></div>
+              <div class="gr-pagination__center">
+                <button type="button" class="gr-page-nav" id="grPrev" aria-label="Previous page" disabled>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <input type="text" class="gr-page-input" id="grPageInput" value="1" aria-label="Current page" readonly>
+                <span class="gr-page-of">of <span id="grPageTotal">1</span></span>
+                <button type="button" class="gr-page-nav" id="grNext" aria-label="Next page" disabled>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+              </div>
+              <div class="gr-pagination__right">
+                <span class="gr-count" id="grCount">0/0</span>
+              </div>
+            </footer>
+          </section>
+
+          <footer class="gr-app-footer" aria-label="App footer"></footer>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="gr-pop gr-pop--columns" id="grColumnsPop" hidden>
+    <div class="gr-pop__caret" aria-hidden="true"></div>
+    <div class="gr-pop__head">
+      <span class="gr-pop__title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="1.5"/><path d="M5 9.33h14M5 14.67h14"/><path d="M8 6.85h5M8 12h5M8 17.15h5"/></svg>
+        Columns
+      </span>
+      <button type="button" class="gr-pop__link" id="grSelectAllCols">Select All</button>
+    </div>
+    <ul class="gr-pop__list" id="grColumnsList"></ul>
+  </div>
+
+  <div class="gr-modal-scrim" id="grAddModal" hidden>
+    <div class="gr-add-modal" role="dialog" aria-modal="true" aria-labelledby="grAddTitle">
+      <div class="gr-add-modal__head">
+        <h2 id="grAddTitle">Add Grievance</h2>
+        <button type="button" class="gr-modal__close" id="grAddClose" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <form class="gr-add-modal__body" id="grAddForm" onsubmit="return false;">
+        <div class="gr-field">
+          <span class="gr-label">Grievance Type<em>*</em></span>
+          <div class="gr-search-select" id="grTypeSelect">
+            <input type="text" id="grTypeInput" placeholder="Select Grievance Type" autocomplete="off" aria-autocomplete="list" aria-expanded="false" aria-controls="grTypeOptions">
+            <svg class="gr-search-select__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></svg>
+            <div class="gr-search-select__menu" id="grTypeOptions" hidden role="listbox"></div>
+          </div>
+        </div>
+
+        <div class="gr-field">
+          <span class="gr-label">Grievance Details<em>*</em></span>
+          <textarea id="grDetails" rows="4" placeholder="Detail" required></textarea>
+        </div>
+
+        <div class="gr-field">
+          <span class="gr-label">Date<em>*</em></span>
+          <button type="button" class="gr-date-btn" id="grDateBtn" aria-haspopup="dialog" aria-expanded="false">
+            <span class="gr-date-btn__text is-placeholder" id="grDateText">Date</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+          </button>
+        </div>
+
+        <div class="gr-field">
+          <span class="gr-label">Document</span>
+          <label class="gr-upload">
+            <input type="file" id="grDocument" accept="image/*,.pdf,.doc,.docx" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M12 16V7"/><path d="M8 11l4-4 4 4"/><path d="M5 19h14"/></svg>
+            <span id="grUploadLabel">Click to Upload</span>
+          </label>
+        </div>
+
+        <div class="gr-field">
+          <span class="gr-label">Send Directly to HR</span>
+          <label class="gr-check-row">
+            <input type="checkbox" id="grSendToHr">
+            <span>Yes, send directly to HR</span>
+          </label>
+        </div>
+
+        <div class="gr-add-submit-wrap">
+          <button type="submit" class="gr-save" id="grSaveBtn">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="gr-single-cal" id="grSingleCal" hidden>
+    <div class="gr-single-cal__head">
+      <div class="gr-single-cal__nav">
+        <button type="button" data-nav="prev-year" aria-label="Previous year">&lt;&lt;</button>
+        <button type="button" data-nav="prev-month" aria-label="Previous month">&lt;</button>
+      </div>
+      <span id="grSingleCalTitle">Aug 2026</span>
+      <div class="gr-single-cal__nav">
+        <button type="button" data-nav="next-month" aria-label="Next month">&gt;</button>
+        <button type="button" data-nav="next-year" aria-label="Next year">&gt;&gt;</button>
+      </div>
+    </div>
+    <div class="gr-single-cal__grid" id="grSingleCalGrid"></div>
+    <button type="button" class="gr-single-cal__today" id="grSingleCalToday">Today</button>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/grievance.js?v=gr2"></script>
+</body>
+</html>

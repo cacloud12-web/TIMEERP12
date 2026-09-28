@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Inward/Outward Docs — TimeERP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/add-inward-outward.css?v=1">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="aio-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="aio-top-clock" id="aioTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn aio-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn aio-top-icon" id="notifBtn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="aio-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="home.html" class="dropdown__item"><strong>Dashboard</strong><span>Back to home</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="aio-page">
+
+          <!-- Header -->
+          <div class="aio-header">
+            <a class="aio-back" href="inward_outward.html" aria-label="Back">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <span class="aio-header__title">Inward/Outward Docs</span>
+          </div>
+
+          <h1 class="aio-page-title">Add Inward/Outward Docs</h1>
+
+          <!-- Form -->
+          <div class="aio-form" id="aioForm">
+            <div class="aio-row">
+              <span class="aio-row__label">Type :</span>
+              <div class="aio-row__field aio-radios">
+                <label><input type="radio" name="aioType" value="Inward" checked> Inward</label>
+                <label><input type="radio" name="aioType" value="Outward"> Outward</label>
+              </div>
+            </div>
+
+            <div class="aio-row">
+              <span class="aio-row__label">Client<span class="aio-req">*</span> :</span>
+              <div class="aio-row__field aio-combo" id="aioClientCombo">
+                <input type="text" class="aio-combo__input" id="aioClientInput" placeholder="Search and select client" autocomplete="off">
+                <svg class="aio-combo__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                <div class="aio-combo__menu" id="aioClientMenu" role="listbox"></div>
+              </div>
+            </div>
+
+            <div class="aio-row" id="aioInwardDocRow" style="display:none">
+              <span class="aio-row__label">Inward document :</span>
+              <div class="aio-row__field" style="padding-top:8px">
+                <label><input type="checkbox" id="aioInwardDoc"> </label>
+              </div>
+            </div>
+
+            <div class="aio-row">
+              <span class="aio-row__label">Client File Name<span class="aio-req" id="aioFileReq">*</span> :</span>
+              <div class="aio-row__field">
+                <input type="text" class="aio-input" id="aioFileName" placeholder="Client File">
+              </div>
+            </div>
+
+            <div class="aio-row">
+              <span class="aio-row__label">Mode :</span>
+              <div class="aio-row__field aio-radios">
+                <label><input type="radio" name="aioMode" value="Hardcopy"> Hardcopy</label>
+                <label><input type="radio" name="aioMode" value="Softcopy"> Softcopy</label>
+                <label><input type="radio" name="aioMode" value="N/A" checked> N/A</label>
+              </div>
+            </div>
+
+            <div class="aio-row">
+              <span class="aio-row__label">Type of Document :</span>
+              <div class="aio-row__field">
+                <input type="text" class="aio-input" id="aioDocType" placeholder="Type of Document">
+              </div>
+            </div>
+
+            <div class="aio-row">
+              <span class="aio-row__label">Location :</span>
+              <div class="aio-row__field">
+                <input type="text" class="aio-input" id="aioLocation" placeholder="location">
+              </div>
+            </div>
+
+            <!-- Inward: Hand Over To (select) + Hand Over By Name (text) -->
+            <div class="aio-row" id="aioHandOverToRow">
+              <span class="aio-row__label" id="aioHandOverToLabel">Hand Over To :</span>
+              <div class="aio-row__field aio-combo" id="aioHandOverCombo">
+                <input type="text" class="aio-combo__input" id="aioHandOverInput" value="Kamal Kant Sharma" autocomplete="off">
+                <svg class="aio-combo__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                <div class="aio-combo__menu" id="aioHandOverMenu" role="listbox"></div>
+              </div>
+            </div>
+
+            <div class="aio-row" id="aioHandOverByRow">
+              <span class="aio-row__label" id="aioHandOverByLabel">Hand Over By Name :</span>
+              <div class="aio-row__field">
+                <input type="text" class="aio-input" id="aioHandOverByName" placeholder="Hand Over By Name">
+              </div>
+            </div>
+
+            <div class="aio-row">
+              <span class="aio-row__label">Entry Date<span class="aio-req">*</span> :</span>
+              <div class="aio-row__field aio-date">
+                <input type="datetime-local" class="aio-input" id="aioEntryDate">
+                <svg class="aio-date__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+              </div>
+            </div>
+
+            <div class="aio-row">
+              <span class="aio-row__label">Notes :</span>
+              <div class="aio-row__field">
+                <textarea class="aio-textarea" id="aioNotes" placeholder="Notes"></textarea>
+              </div>
+            </div>
+
+            <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-top:10px">
+              <button class="aio-save" id="aioSave" style="margin:0">Save</button>
+              <button class="aio-cancel" id="aioCancel">Cancel</button>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <footer class="aio-app-footer"></footer>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/add-inward-outward.js?v=1"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+/* TIME ERP — Depreciation */
+a.sidebar__item{color:inherit;text-decoration:none}
+.dp-top-checkout{height:32px;padding:0 14px;border:none;border-radius:4px;background:#25b7a7;color:#fff;font-size:13px;font-weight:600;cursor:pointer}
+.dp-top-clock{font-size:16px;font-weight:600;color:#25B7A7;font-variant-numeric:tabular-nums;min-width:46px;text-align:center}
+.dp-top-icon{color:#25B7A7!important}
+.dp-profile-caret{width:14px;height:14px;color:#94a3b8;flex-shrink:0}
+.dp-page{min-height:100%;margin:-16px calc(var(--content-pad-x,16px)*-1) -24px;padding:0;background:#fff}
+
+.dp-header{display:flex;align-items:center;gap:10px;padding:10px 16px;background:#f5f5f5;border-bottom:1px solid #e8e8e8}
+.dp-back{width:28px;height:28px;border-radius:4px;background:#25B7A7;color:#fff;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;flex-shrink:0;border:none;cursor:pointer}
+.dp-back svg{width:16px;height:16px;stroke:#fff}
+
+.dp-title-row{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:8px;padding:14px 16px 10px}
+.dp-actions{display:flex;align-items:center;gap:8px}
+.dp-filter-wrap{position:relative;display:inline-flex;z-index:40}
+.dp-icon-btn{
+  width:32px;height:32px;border:1px solid #d1d5db;border-radius:4px;background:#fff;color:#6b7280;
+  cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:0;padding:0
+}
+.dp-icon-btn svg{width:15px;height:15px;display:block}
+.dp-icon-btn:hover{border-color:#5ba3e0;color:#5ba3e0}
+.dp-icon-btn--filter[aria-expanded="true"]{border-color:#5ba3e0;color:#5ba3e0}
+.dp-add-btn{width:32px;height:32px;border:none;border-radius:4px;background:#25B7A7;color:#fff;font-size:0;font-weight:300;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+.dp-add-btn:hover{background:#1fa396}
+.dp-add-btn svg{width:16px;height:16px;display:block;stroke:currentColor}
+
+/* Filter popover */
+.dp-filter-drop{
+  position:absolute;top:calc(100% + 10px);right:0;width:260px;background:#fff;
+  border:1px solid #e5e7eb;border-radius:6px;box-shadow:0 8px 24px rgba(0,0,0,.12);z-index:50;padding:12px 14px
+}
+.dp-filter-drop[hidden]{display:none!important}
+.dp-filter-drop__caret{
+  position:absolute;top:-7px;right:10px;width:12px;height:12px;background:#fff;
+  border-left:1px solid #e5e7eb;border-top:1px solid #e5e7eb;transform:rotate(45deg)
+}
+.dp-filter-drop__title{
+  font-size:13px;font-weight:600;color:#1e293b;margin-bottom:10px;
+  display:flex;align-items:center;gap:6px
+}
+.dp-filter-drop__title svg{width:13px;height:13px;display:block;color:#111827}
+.dp-filter-list{border:1px solid #e5e7eb;border-radius:4px;overflow:hidden;background:#fff}
+.dp-filter-section + .dp-filter-section{border-top:1px solid #e5e7eb}
+.dp-filter-section__head{
+  width:100%;display:flex;align-items:center;gap:8px;cursor:pointer;
+  font-size:13px;font-weight:500;color:#374151;padding:10px 12px;
+  border:none;background:#fff;font-family:inherit;text-align:left
+}
+.dp-filter-section__head:hover{background:#fafafa}
+.dp-filter-section__chev{width:12px;height:12px;flex-shrink:0;color:#6b7280;transition:transform .15s}
+.dp-filter-section.is-open .dp-filter-section__chev{transform:rotate(90deg)}
+.dp-filter-section__body{padding:0 12px 10px}
+.dp-filter-section__body[hidden]{display:none!important}
+.dp-filter-section__body select{
+  width:100%;height:34px;border:1px solid #d1d5db;border-radius:4px;padding:0 10px;
+  font-size:12px;color:#374151;background:#fff;font-family:inherit;box-sizing:border-box
+}
+
+/* Table */
+.dp-table-wrap{overflow-x:auto;margin:0 16px 8px;border:1px solid #e8e8e8;border-radius:4px}
+.dp-table{width:100%;border-collapse:collapse;min-width:800px;font-size:12px}
+.dp-table thead th{text-align:left;padding:8px;font-weight:500;color:#6b7280;background:#fafafa;border-bottom:1px solid #e8e8e8;white-space:nowrap}
+.dp-table tbody td{padding:8px;border-bottom:1px solid #f3f4f6;color:#111827}
+.dp-table tbody tr:hover td{background:#fafcff}
+.dp-del-btn{border:none;background:none;color:#ef4444;cursor:pointer;padding:0;width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center}
+.dp-del-btn svg{width:14px;height:14px;display:block}
+.dp-del-btn:hover{color:#dc2626}
+
+/* Pager */
+.dp-pager{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;flex-wrap:wrap;gap:8px;position:relative;z-index:5}
+.dp-page-size{position:relative;display:inline-block}
+.dp-page-size__btn{
+  min-width:62px;height:28px;padding:0 26px 0 10px;border:1px solid #e5e7eb;border-radius:4px;
+  background:#fff;color:#9ca3af;font-size:13px;font-family:inherit;cursor:pointer;
+  display:inline-flex;align-items:center;position:relative
+}
+.dp-page-size__btn svg{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:10px;height:7px;color:#9ca3af}
+.dp-page-size__btn[aria-expanded="true"],.dp-page-size__btn:focus{
+  outline:none;border-color:#5ba3e0;color:#9ca3af;box-shadow:0 0 0 1px rgba(91,163,224,.25)
+}
+.dp-page-size__list{
+  position:absolute;left:0;top:calc(100% + 4px);min-width:72px;background:#fff;
+  border:1px solid #e5e7eb;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,.12);
+  padding:6px;z-index:60
+}
+.dp-page-size__list[hidden]{display:none!important}
+.dp-page-size__opt{
+  display:block;width:100%;border:none;background:transparent;text-align:left;
+  padding:7px 10px;border-radius:4px;font-size:13px;color:#374151;cursor:pointer;font-family:inherit
+}
+.dp-page-size__opt:hover{background:#f3f4f6}
+.dp-page-size__opt.is-active{background:#e8f3fb;color:#111827;font-weight:600}
+.dp-pager__nav{display:flex;align-items:center;gap:4px}
+.dp-pager__btn{width:28px;height:28px;border:1px solid #d1d5db;border-radius:4px;background:#fff;color:#374151;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:12px}
+.dp-pager__btn:disabled{opacity:.55;cursor:not-allowed}
+.dp-pager__btn--active{background:#25B7A7;color:#fff;border-color:#25B7A7}
+.dp-pager__of{font-size:12px;color:#6b7280}
+.dp-pager__info{font-size:12px;color:#6b7280}

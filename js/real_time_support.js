@@ -153,6 +153,12 @@
     if (avgEl) avgEl.textContent = avg + '%';
     if (opEl) opEl.textContent = operational + '/30';
     if (incEl) incEl.textContent = String(incidents);
+    var incLabel = document.getElementById('rtsUptimeIncidentsLabel');
+    if (incLabel) {
+      incLabel.textContent = incidents === 1
+        ? 'Day with degraded performance'
+        : 'Days with degraded performance';
+    }
     if (startLabel) startLabel.textContent = formatDate(data[0].date);
 
     data.forEach(function (day, idx) {
@@ -197,14 +203,18 @@
 
     function positionTooltip(bar) {
       if (!tooltip || !bar) return;
-      var wrap = bar.parentElement.parentElement;
+      var wrap = tooltip.parentElement;
+      if (!wrap) return;
       var wrapRect = wrap.getBoundingClientRect();
       var barRect = bar.getBoundingClientRect();
+      var tipW = tooltip.offsetWidth || 140;
       var x = barRect.left + barRect.width / 2 - wrapRect.left;
-      var maxX = wrapRect.width - 80;
-      x = Math.max(80, Math.min(maxX, x));
+      var minX = tipW / 2 + 10;
+      var maxX = wrapRect.width - tipW / 2 - 10;
+      x = Math.max(minX, Math.min(maxX, x));
       tooltip.style.left = x + 'px';
-      tooltip.style.bottom = (wrapRect.height - (barRect.top - wrapRect.top) + 12) + 'px';
+      tooltip.style.top = '12px';
+      tooltip.style.bottom = 'auto';
     }
 
     function hideTooltip() {

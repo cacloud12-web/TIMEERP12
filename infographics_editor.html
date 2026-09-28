@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infographic Editor — TimeERP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/infographics-editor.css?v=6">
+</head>
+<body>
+  <header class="ige-header">
+    <div class="ige-header__inner">
+      <a class="ige-logo" href="home.html">
+        <img src="assets/logo-nav.svg" alt="TimeERP" width="140" height="36">
+      </a>
+      <a class="ige-back" href="infographics.html#igGallery">← Back to Templates</a>
+    </div>
+  </header>
+
+  <div class="ige-page">
+    <div class="ige-card">
+      <div class="ige-layout">
+        <div class="ige-preview-wrap">
+          <div class="ige-canvas" id="igeCanvas">
+            <div class="ige-canvas__body" id="igeCanvasBody">
+              <span class="ige-canvas__emoji" id="igeCanvasEmoji">🕉️</span>
+              <h2 class="ige-canvas__title" id="igeCanvasTitle">MAHA SHIVARATRI</h2>
+              <p class="ige-canvas__sub" id="igeCanvasSub">Om Namah Shivaya</p>
+            </div>
+            <div class="ige-canvas__footer" id="igeCanvasFooter">
+              <div class="ige-drag-item" data-drag="logo" id="igeDragLogo" title="Drag logo">
+                <span class="ige-canvas__logo">YOUR LOGO HERE</span>
+              </div>
+              <div class="ige-drag-item" data-drag="phone" id="igeDragPhone" title="Drag phone">
+                <span class="ige-drag-phone" id="igeCanvasPhone">Your Phone</span>
+              </div>
+              <div class="ige-drag-item ige-drag-item--pill" data-drag="name" id="igeDragName" title="Drag firm name">
+                <strong class="ige-drag-name" id="igeCanvasName">Your Name</strong>
+                <span class="ige-drag-edit" aria-hidden="true">✏️</span>
+              </div>
+            </div>
+          </div>
+          <div class="ige-drop" id="igeDropZone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg>
+            <p>Drag here to delete</p>
+          </div>
+        </div>
+
+        <form class="ige-form" id="igeForm" onsubmit="return false">
+          <div class="ige-form-head">
+            <h1 class="ige-form-title" id="igeFormTitle">Maha Shivaratri</h1>
+            <div class="ige-form-tools">
+              <div class="ige-filter-wrap">
+                <button type="button" class="ige-icon-btn ige-icon-btn--filter" id="igeFilterBtn" aria-label="Filters" aria-expanded="false" aria-controls="igeFilterPop">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16l-6 8v6l-4 2v-8L4 4z"/></svg>
+                </button>
+                <div class="ige-filter-pop" id="igeFilterPop" hidden role="dialog" aria-labelledby="igeFilterTitle">
+                  <div class="ige-filter-pop__head">
+                    <h2 id="igeFilterTitle">Filters</h2>
+                    <button type="button" class="ige-filter-pop__close" id="igeFilterClose" aria-label="Close">&times;</button>
+                  </div>
+                  <div class="ige-filter-grid" id="igeFilterGrid"></div>
+                </div>
+              </div>
+              <button type="button" class="ige-icon-btn ige-icon-btn--add" id="igeAddBtn" aria-label="Add elements" aria-expanded="false" aria-controls="igeElementsModal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="ige-field">
+            <label for="igeFirm">Firm Name<span class="ige-req">*</span></label>
+            <input type="text" id="igeFirm" placeholder="Firm Name">
+          </div>
+          <div class="ige-field">
+            <label for="igePhone">Phone<span class="ige-req">*</span></label>
+            <input type="text" id="igePhone" placeholder="Phone">
+          </div>
+          <div class="ige-field">
+            <label for="igeOther">Other</label>
+            <input type="text" id="igeOther" placeholder="Other">
+          </div>
+
+          <div class="ige-section">
+            <h3>Design</h3>
+            <p class="ige-sub-label">Background</p>
+            <div class="ige-seg" id="igeBgSeg">
+              <button type="button" class="is-active" data-value="solid">Solid</button>
+              <button type="button" data-value="gradient">Gradient</button>
+            </div>
+
+            <div class="ige-grad-panel" id="igeGradientPanel" hidden>
+              <div class="ige-grad-colors">
+                <label class="ige-color-field">
+                  <span>Color 1</span>
+                  <input type="color" id="igeGradC1" value="#9fe0d7">
+                </label>
+                <label class="ige-color-field">
+                  <span>Color 2</span>
+                  <input type="color" id="igeGradC2" value="#1e3a5f">
+                </label>
+              </div>
+
+              <fieldset class="ige-direction" id="igeDirection">
+                <legend class="ige-sr-only">Gradient direction</legend>
+                <label class="ige-direction__opt"><input type="radio" name="igeDir" value="lr" checked> Left → Right</label>
+                <label class="ige-direction__opt"><input type="radio" name="igeDir" value="tb"> Top → Bottom</label>
+                <label class="ige-direction__opt"><input type="radio" name="igeDir" value="diag"> Diagonal</label>
+                <label class="ige-direction__opt"><input type="radio" name="igeDir" value="radial"> Radial</label>
+              </fieldset>
+
+              <div class="ige-slider-row ige-slider-row--opacity">
+                <label for="igeGradOpacity">Opacity</label>
+                <input type="range" class="ige-slider" id="igeGradOpacity" min="10" max="100" value="70">
+                <span class="ige-slider-val" id="igeGradOpacityVal">70%</span>
+              </div>
+
+              <div class="ige-presets" id="igePresets"></div>
+            </div>
+
+            <p class="ige-sub-label">Footer</p>
+            <div class="ige-slider-row">
+              <button type="button" class="ige-auto-btn" id="igeFooterAuto">Auto</button>
+              <label for="igeFooterHeight">Footer Height</label>
+              <input type="range" class="ige-slider" id="igeFooterHeight" min="30" max="80" value="50">
+              <span class="ige-slider-val" id="igeFooterHeightVal">50</span>
+            </div>
+
+            <div class="ige-seg ige-seg--full" id="igeFooterColorSeg">
+              <button type="button" class="is-active" data-value="solid">Solid Color</button>
+              <button type="button" data-value="gradient">Gradient</button>
+            </div>
+
+            <div class="ige-swatches" id="igeSwatches"></div>
+
+            <div class="ige-grad-panel" id="igeFooterGradPanel" hidden>
+              <div class="ige-grad-colors">
+                <label class="ige-color-field">
+                  <span>Primary</span>
+                  <input type="color" id="igeFooterC1" value="#e85d4c">
+                </label>
+                <label class="ige-color-field">
+                  <span>Secondary</span>
+                  <input type="color" id="igeFooterC2" value="#1e3a5f">
+                </label>
+              </div>
+              <label class="ige-select-field">
+                <span>Direction</span>
+                <select id="igeFooterDir">
+                  <option value="lr" selected>Left → Right</option>
+                  <option value="tb">Top → Bottom</option>
+                  <option value="diag">Diagonal</option>
+                  <option value="radial">Radial</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="ige-actions">
+            <button type="button" class="ige-download" id="igeDownload">Download</button>
+            <button type="button" class="ige-share" id="igeShare">Share</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <nav class="ige-nav" aria-label="Template navigation">
+      <button type="button" class="ige-nav-btn" id="igePrev">← Previous Template</button>
+      <button type="button" class="ige-nav-btn" id="igeNext">Next Template →</button>
+    </nav>
+  </div>
+
+  <div class="ige-elements-scrim" id="igeElementsModal" hidden>
+    <div class="ige-elements-modal" role="dialog" aria-labelledby="igeElementsTitle">
+      <div class="ige-elements-modal__head">
+        <h2 id="igeElementsTitle">Add Elements</h2>
+        <button type="button" class="ige-elements-modal__close" id="igeElementsClose" aria-label="Close">&times;</button>
+      </div>
+      <input type="search" class="ige-elements-search" id="igeElementSearch" placeholder="Search elements..." autocomplete="off">
+      <div class="ige-elements-tags" id="igeElementTags"></div>
+      <div class="ige-elements-grid" id="igeElementGrid"></div>
+    </div>
+  </div>
+
+  <script src="js/infographics-data.js?v=1"></script>
+  <script src="js/infographics-editor.js?v=6"></script>
+  <script src="js/site-footer.js?v=6"></script>
+</body>
+</html>

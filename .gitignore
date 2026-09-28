@@ -4,7 +4,13 @@
 *.log
 .env
 .env.*
+!.env.deploy.example
+.env.deploy
+api/mail-config.php
 node_modules/
+.venv-qr/
+profile-qrcodes/
+profile-qrcodes.zip
 .idea/
 *.swp
 .Thumbs.db

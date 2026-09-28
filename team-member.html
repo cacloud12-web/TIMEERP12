@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team Member — TimeERP</title>
+  <meta name="description" content="Meet a member of the TimeERP team.">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #25b7a7;
+      --primary-dark: #1a9e8f;
+      --primary-soft: #e8f8f6;
+      --heading: #0b2422;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e5ecea;
+      --bg: #f3f7f6;
+      --white: #ffffff;
+      --shadow: 0 10px 28px rgba(11, 36, 34, 0.06);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color: var(--text);
+      line-height: 1.55;
+      background:
+        radial-gradient(1000px 380px at 0% -5%, rgba(37, 183, 167, 0.15), transparent 55%),
+        radial-gradient(800px 320px at 100% 0%, rgba(26, 158, 143, 0.08), transparent 50%),
+        var(--bg);
+    }
+
+    a { color: var(--primary-dark); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 3px;
+    }
+
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 24px 16px 64px;
+    }
+
+    .crumb {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .crumb span[aria-hidden] { opacity: 0.4; }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 16px;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(11, 36, 34, 0.04);
+    }
+
+    .back:hover {
+      border-color: var(--primary);
+      color: var(--primary-dark);
+    }
+
+    .profile-shell {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-band {
+      height: 100px;
+      background:
+        linear-gradient(115deg, #168f82 0%, #25b7a7 48%, #6fd4c8 100%);
+      position: relative;
+    }
+
+    .hero-band::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 88% 18%, rgba(255, 255, 255, 0.3), transparent 40%),
+        linear-gradient(180deg, transparent 55%, rgba(11, 36, 34, 0.06));
+    }
+
+    .hero {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      padding: 0 22px 8px;
+      margin-top: -48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .photo {
+      flex: 0 0 auto;
+      width: 92px;
+      height: 122px;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      background: #eef6f5;
+      border: 3px solid #fff;
+      box-shadow: 0 10px 24px rgba(11, 36, 34, 0.16);
+      margin: 0;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+      display: block;
+    }
+
+    .photo-fallback {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      color: var(--primary-dark);
+      background: linear-gradient(180deg, #f4fbfa, #e7f2f0);
+    }
+
+    .photo-fallback span {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(37, 183, 167, 0.22);
+    }
+
+    .photo-fallback small {
+      font-size: 9px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #5f7a76;
+    }
+
+    /* Name/role stay fully on white — never over the teal band */
+    .identity {
+      flex: 1;
+      min-width: 0;
+      padding-top: 56px;
+      padding-bottom: 4px;
+    }
+
+    .identity h1 {
+      margin: 0 0 6px;
+      font-size: clamp(1.4rem, 2.8vw, 1.8rem);
+      letter-spacing: -0.025em;
+      color: #0b2422;
+      line-height: 1.2;
+      font-weight: 700;
+      -webkit-text-fill-color: #0b2422;
+      background: none;
+    }
+
+    .role {
+      margin: 0 0 10px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+
+    .group-tag {
+      display: inline-flex;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      border: 1px solid #cfe8e3;
+      color: #0f524b;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .social-links {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin: 0;
+    }
+
+    .social-links a {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-dark);
+      background: var(--primary-soft);
+      border: 1px solid #cfe8e3;
+      text-decoration: none;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .social-links a:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .social-links svg {
+      width: 16px;
+      height: 16px;
+      display: block;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      padding: 8px 22px 20px;
+    }
+
+    .summary-item {
+      background: #f7fbfa;
+      border: 1px solid #e2efec;
+      border-radius: 12px;
+      padding: 12px 14px;
+      border-left: 3px solid var(--primary);
+    }
+
+    .summary-item span {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .summary-item strong {
+      font-size: 13px;
+      color: var(--heading);
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    .section {
+      padding: 20px 22px 22px;
+      border-top: 1px solid #eef2f1;
+    }
+
+    .section h2 {
+      margin: 0 0 12px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--primary-dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section h2::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    .bio p {
+      margin: 0 0 10px;
+      max-width: 68ch;
+      font-size: 14px;
+      color: #334155;
+      line-height: 1.7;
+    }
+
+    .bio p:last-child { margin-bottom: 0; }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill {
+      display: inline-flex;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid #cfe8e3;
+      background: var(--primary-soft);
+      color: #0f524b;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .foot {
+      margin-top: 14px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .foot strong { color: var(--primary-dark); }
+
+    .missing {
+      padding: 48px 20px;
+      text-align: center;
+      color: var(--muted);
+      background: var(--white);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+
+    @media (max-width: 700px) {
+      .summary { grid-template-columns: 1fr; }
+      .hero {
+        flex-direction: column;
+        margin-top: -40px;
+      }
+      .identity { padding-top: 12px; }
+      .photo { width: 84px; height: 112px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span aria-hidden="true">›</span>
+      <span>Company</span>
+      <span aria-hidden="true">›</span>
+      <a href="team.html">Team</a>
+      <span aria-hidden="true">›</span>
+      <span aria-current="page" id="crumbName">Profile</span>
+    </nav>
+
+    <button type="button" class="back" id="backBtn">← Back to Team</button>
+
+    <article id="root" aria-live="polite"></article>
+  </main>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var GROUP_LABELS = {
+        leadership: 'Leadership Team',
+        growth: 'Customer Relationship & Growth',
+        technology: 'Technology Team',
+        advisors: 'Our Advisors'
+      };
+
+      var PEOPLE = {
+        'janki-sharma': {
+          name: 'Janki Sharma',
+          role: 'Founder & CEO',
+          group: 'leadership',
+          image: 'assets/team/janki-sharma.jpg?v=1',
+          focus: 'center 18%',
+          highlight: '9+ years in audit, accounts & finance',
+          bio: [
+            'Janki Sharma is the Founder & CEO of TimeERP, bringing over 9 years of experience in audit, accounts and finance. A B.Com graduate, she combines strong financial understanding with a practical approach to business operations and customer requirements.',
+            'As a founder, she plays a key role in shaping the company\'s vision, strengthening business processes and ensuring that TimeERP continues to deliver meaningful value to professionals and businesses.'
+          ],
+          expertise: ['Audit', 'Accounting', 'Finance', 'Business Strategy']
+        },
+        'shivam-chaurasia': {
+          name: 'Shivam Chaurasia',
+          role: 'Chief Technical Officer',
+          group: 'leadership',
+          image: 'assets/team/shivam-chaurasia.jpg?v=1',
+          focus: 'center 18%',
+          highlight: 'B.Tech (KIET) · M.Tech (BITS) · 7+ years in IT',
+          bio: [
+            'Shivam Chaurasia leads the technology vision and development at TimeERP. He holds a B.Tech from KIET and an M.Tech from BITS, with over 7 years of experience in the IT industry.',
+            'As CTO, he is responsible for the technical architecture, product development and continuous evolution of the platform. His focus is on building secure, scalable and efficient technology that can support the changing needs of modern businesses.'
+          ],
+          expertise: ['Software Development', 'Technology Architecture', 'Product Engineering', 'IT Innovation']
+        },
+        'saurabh-bhardwaj': {
+          name: 'Saurabh Bhardwaj',
+          role: 'Branch Manager | Ghaziabad',
+          group: 'leadership',
+          image: 'assets/team/saurabh-bhardwaj.jpg?v=1',
+          focus: 'center 18%',
+          highlight: '13+ years across banking and IT',
+          bio: [
+            'Saurabh Bhardwaj brings over 13 years of experience across banking and IT. His academic background includes B.Tech, PGDBRM, JAIIB, LLB and LLM, providing him with a strong multidisciplinary understanding of technology, financial services, business and legal processes.',
+            'As Branch Manager, he contributes to business operations, product strategy and market development, with a focus on connecting technology with real-world business requirements.'
+          ],
+          expertise: ['Banking', 'IT', 'Business Operations', 'Product Strategy', 'Financial & Legal Processes']
+        },
+        'kamal-kant-sharma': {
+          name: 'Kamal Kant Sharma',
+          role: 'Sales Manager',
+          group: 'leadership',
+          image: 'assets/team/kamal-kant-sharma.jpg?v=1',
+          focus: 'center 18%',
+          highlight: 'B.Tech · MBA · 11+ years industry experience',
+          bio: [
+            'Kamal Kant Sharma is an experienced sales and marketing professional with over 11 years of industry experience. He holds a B.Tech and MBA, combining technical understanding with strong business and market knowledge.',
+            'At TimeERP, he leads sales initiatives and works closely with prospective customers to understand their requirements and help them identify the right technology solutions.'
+          ],
+          expertise: ['Sales Strategy', 'Marketing', 'Business Development', 'Customer Acquisition'],
+          socials: {
+            facebook: 'https://www.facebook.com/share/1E6RkLKk7n/',
+            instagram: 'https://www.instagram.com/kamalsharma2856/',
+            linkedin: 'https://www.linkedin.com/in/kamalkant-sharma-a47416102',
+            twitter: 'https://x.com/kamalsharma2856'
+          }
+        },
+        'tarun-gaur': {
+          name: 'Tarun Gaur',
+          role: 'Finance Head',
+          group: 'leadership',
+          image: 'assets/team/tarun-gaur.jpg?v=1',
+          focus: 'center 18%',
+          highlight: 'B.Com · M.Com · pursuing LLB · 5+ years',
+          bio: [
+            'Tarun Gaur manages the finance function with over 5 years of experience in finance and accounting. He holds B.Com and M.Com qualifications and is also pursuing LLB.',
+            'His role focuses on maintaining financial discipline, supporting business planning and ensuring efficient management of the company\'s financial processes.'
+          ],
+          expertise: ['Finance', 'Accounting', 'Financial Management', 'Business Planning']
+        },
+        'dev-aggarwal': {
+          name: 'Dev Aggarwal',
+          role: 'Relationship Manager',
+          group: 'growth',
+          image: 'assets/team/dev-aggarwal.jpg?v=1',
+          focus: 'center 18%',
+          highlight: 'MBA · 3+ years in marketing and sales',
+          bio: [
+            'Dev Aggarwal is an MBA-qualified professional with over 3 years of experience in marketing and sales. He works closely with customers to understand their requirements and support them throughout their engagement with TimeERP.',
+            'His focus is on building long-term relationships and ensuring a smooth experience from initial discussion to ongoing coordination.'
+          ],
+          expertise: ['Customer Relationship Management', 'Marketing', 'Sales', 'Business Development'],
+          socials: {
+            linkedin: 'https://www.linkedin.com/in/dev-aggarwal-6604a9206'
+          }
+        },
+        'monu-kumar': {
+          name: 'Monu Kumar',
+          role: 'Relationship Officer',
+          group: 'growth',
+          image: 'assets/team/monu-kumar.jpg?v=1',
+          focus: 'center 18%',
+          highlight: 'BA · 5+ years in accounts and marketing',
+          bio: [
+            'Monu Kumar brings over 5 years of experience in accounts and marketing and holds a BA qualification. His experience across customer-facing and business functions enables him to support clients with a practical understanding of their requirements.',
+            'At TimeERP, he contributes to relationship management, customer coordination and business growth initiatives.'
+          ],
+          expertise: ['Customer Coordination', 'Accounts', 'Marketing', 'Relationship Management'],
+          socials: {
+            instagram: 'https://www.instagram.com/monu.gill__0000/',
+            linkedin: 'https://www.linkedin.com/in/monu-kumar-0b2395431/'
+          }
+        },
+        'simran-kashyap': {
+          name: 'Simran Kashyap',
+          role: 'Relationship Officer',
+          group: 'growth',
+          image: 'assets/team/simran-kashyap.jpg?v=5',
+          focus: 'center 18%',
+          highlight: 'BCA graduate · Customer relationship team',
+          bio: [
+            'Simran Kashyap is a BCA graduate and part of the TimeERP customer relationship team. She supports customers through effective communication, coordination and timely assistance.',
+            'With a technology background and customer-focused approach, she helps bridge the gap between user requirements and the right internal support.'
+          ],
+          expertise: ['Customer Relationship Management', 'Client Coordination', 'Technology Support'],
+          socials: {
+            facebook: '',
+            instagram: 'https://www.instagram.com/simran_kshyp15_/',
+            linkedin: 'https://www.linkedin.com/in/simran-kashyap-9870602b4'
+          }
+        },
+        'soniya-kashyap': {
+          name: 'Soniya Kashyap',
+          role: 'Relationship Officer',
+          group: 'growth',
+          image: 'assets/team/soniya-kashyap.jpg?v=2',
+          focus: 'center 18%',
+          highlight: 'BCA graduate · Relationship Officer',
+          bio: [
+            'Soniya Kashyap is a BCA graduate who works as a Relationship Officer at TimeERP. She is focused on building positive customer interactions and ensuring effective coordination throughout the customer journey.',
+            'Her technology background helps her understand digital workflows while providing responsive relationship support to clients.'
+          ],
+          expertise: ['Client Relationship', 'Customer Support', 'Coordination', 'Digital Workflows'],
+          socials: {
+            instagram: 'https://www.instagram.com/__soniya_kashyap__/',
+            linkedin: 'https://www.linkedin.com/in/soniya-kashyap-6119b236b'
+          }
+        },
+        'aastha-tyagi': {
+          name: 'Aastha Tyagi',
+          role: 'Junior Developer',
+          group: 'technology',
+          image: 'assets/team/aastha-tyagi.jpg?v=2',
+          focus: 'center 18%',
+          highlight: 'B.Tech graduate · Technology team',
+          bio: [
+            'Aastha Tyagi is a B.Tech graduate and a member of the TimeERP technology team. She contributes to the development and continuous improvement of the platform while building expertise in modern software development practices.',
+            'Her role supports the company\'s commitment to creating reliable, user-friendly and future-ready technology solutions.'
+          ],
+          expertise: ['Software Development', 'Technology', 'Application Support'],
+          socials: {
+            instagram: 'https://www.instagram.com/___aastha16__/',
+            linkedin: 'https://www.linkedin.com/in/engineer-aastha'
+          }
+        },
+        'suhanshi-rawat': {
+          name: 'Suhanshi Rawat',
+          role: 'Junior Developer',
+          group: 'technology',
+          image: 'assets/team/suhanshi-rawat.jpg?v=1',
+          focus: 'center 18%',
+          highlight: 'BCA graduate · Development team',
+          bio: [
+            'Suhanshi Rawat is a BCA graduate and part of the TimeERP development team. She contributes to the ongoing development, enhancement and improvement of the company\'s technology platform.',
+            'With a strong foundation in computer applications, she supports the team in building efficient digital solutions designed around practical business requirements.'
+          ],
+          expertise: ['Software Development', 'Computer Applications', 'Product Enhancement'],
+          socials: {
+            instagram: 'https://www.instagram.com/suhanshi_rwt30/',
+            linkedin: 'https://www.linkedin.com/in/suhanshi-rawat-046016349'
+          }
+        },
+        'kaushal-kishore': {
+          name: 'Kaushal Kishore',
+          role: 'Advisor | Banking & Financial Services',
+          group: 'advisors',
+          image: 'assets/team/kaushal-kishore.jpg?v=1',
+          focus: 'center 18%',
+          highlight: 'B.Sc · M.Sc · B.Ed · 46+ years in banking',
+          bio: [
+            'Kaushal Kishore brings an exceptional 46+ years of experience in banking. With qualifications including B.Sc, M.Sc and B.Ed, his extensive professional journey provides valuable insight into banking operations, financial systems and organizational management.',
+            'His guidance adds deep industry experience and perspective to the strategic development of the organization.'
+          ],
+          expertise: ['Banking', 'Financial Services', 'Operations', 'Strategic Guidance']
+        },
+        'ankur-bhardwaj': {
+          name: 'Ankur Bhardwaj',
+          role: 'Advisor | Business & Management',
+          group: 'advisors',
+          image: 'assets/team/ankur-bhardwaj.jpg?v=1',
+          focus: 'center 18%',
+          highlight: 'B.Sc · MBA · 16+ years professional experience',
+          bio: [
+            'Ankur Bhardwaj holds a B.Sc and MBA and brings over 16 years of professional experience. His experience provides valuable perspective on business strategy, management and organizational growth.',
+            'As an advisor, he supports the company with practical guidance and strategic thinking as TimeERP continues to expand its capabilities and market presence.'
+          ],
+          expertise: ['Business Strategy', 'Management', 'Growth', 'Strategic Advisory']
+        },
+        'khushi-chaudhary': {
+          name: 'Khushi Chaudhary',
+          role: 'Advisor | Legal & Business Advisory',
+          group: 'advisors',
+          image: 'assets/team/khushi-chaudhary.jpg?v=4',
+          focus: 'center 18%',
+          highlight: 'LLB · 7+ years professional experience',
+          bio: [
+            'Khushi Chaudhary holds an LLB and brings over 7 years of professional experience. Her legal background contributes valuable perspective to business processes, governance and organizational decision-making.',
+            'As an advisor, she supports the company with insights that help strengthen its business and strategic foundation.'
+          ],
+          expertise: ['Legal Advisory', 'Business Processes', 'Governance', 'Strategic Support']
+        }
+      };
+
+      function esc(value) {
+        return String(value == null ? '' : value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function initials(name) {
+        return String(name || '').split(/\s+/).filter(Boolean).slice(0, 2)
+          .map(function (p) { return p.charAt(0).toUpperCase(); }).join('') || '?';
+      }
+
+      function photoHtml(person) {
+        if (person.image) {
+          var focus = person.focus || 'center 18%';
+          return '<div class="photo"><img src="' + esc(person.image) + '" alt="Portrait of ' + esc(person.name) + '" style="object-position:' + esc(focus) + '" onerror="this.style.display=\'none\';this.parentNode.insertAdjacentHTML(\'beforeend\',\'<div class=photo-fallback><span>' + esc(initials(person.name)) + '</span><small>Photo soon</small></div>\');"></div>';
+        }
+        return '<div class="photo" aria-hidden="true">' +
+          '<div class="photo-fallback">' +
+            '<span>' + esc(initials(person.name)) + '</span>' +
+            '<small>Photo soon</small>' +
+          '</div>' +
+        '</div>';
+      }
+
+      function socialHtml(person) {
+        var socials = person.socials || {};
+        var icons = {
+          facebook: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H9v3h2v7h3v-7h2.6l.4-3H14V9z"/></svg>',
+          instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg>',
+          linkedin: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 9h3v10H6V9zm1.5-5A1.75 1.75 0 118 7.5 1.75 1.75 0 017.5 4zM10 9h3v1.4h.05c.45-.85 1.55-1.75 3.2-1.75 3.4 0 4 2.1 4 4.85V19h-3v-5.6c0-1.35-.02-3.1-1.9-3.1-1.9 0-2.2 1.45-2.2 3v5.7H10V9z"/></svg>',
+          twitter: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke-linecap="round"/></svg>'
+        };
+        var labels = { facebook: 'Facebook', instagram: 'Instagram', linkedin: 'LinkedIn', twitter: 'X (Twitter)' };
+        var order = ['facebook', 'instagram', 'linkedin', 'twitter'];
+        var links = order.filter(function (key) {
+          return socials[key];
+        }).map(function (key) {
+          return '<a href="' + esc(socials[key]) + '" target="_blank" rel="noopener noreferrer" aria-label="' + labels[key] + '">' + icons[key] + '</a>';
+        });
+        if (!links.length) return '';
+        return '<div class="social-links" aria-label="Social profiles">' + links.join('') + '</div>';
+      }
+
+      function render(person) {
+        var root = document.getElementById('root');
+        if (!person) {
+          root.innerHTML = '<div class="missing">Team member not found. <a href="team.html">Back to Team</a></div>';
+          return;
+        }
+
+        document.title = person.name + ' — TimeERP Team';
+        document.getElementById('crumbName').textContent = person.name;
+
+        root.innerHTML =
+          '<div class="profile-shell">' +
+            '<div class="hero-band" aria-hidden="true"></div>' +
+            '<section class="hero">' +
+              photoHtml(person) +
+              '<div class="identity">' +
+                '<h1>' + esc(person.name) + '</h1>' +
+                '<p class="role">' + esc(person.role) + '</p>' +
+                '<div class="meta-row">' +
+                  socialHtml(person) +
+                  '<span class="group-tag">' + esc(GROUP_LABELS[person.group] || person.group) + '</span>' +
+                '</div>' +
+              '</div>' +
+            '</section>' +
+            '<div class="summary" aria-label="Profile highlights">' +
+              '<div class="summary-item"><span>Role</span><strong>' + esc(person.role) + '</strong></div>' +
+              '<div class="summary-item"><span>Team</span><strong>' + esc(GROUP_LABELS[person.group] || '') + '</strong></div>' +
+              '<div class="summary-item"><span>Focus</span><strong>' + esc(person.highlight) + '</strong></div>' +
+            '</div>' +
+            '<div class="section bio">' +
+              '<h2>About</h2>' +
+              person.bio.map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('') +
+            '</div>' +
+            '<div class="section">' +
+              '<h2>Expertise</h2>' +
+              '<div class="pills">' + person.expertise.map(function (item) {
+                return '<span class="pill">' + esc(item) + '</span>';
+              }).join('') + '</div>' +
+            '</div>' +
+          '</div>' +
+          '<p class="foot"><strong>TimeERP</strong> · A product of Law Seva Management Pvt. Ltd.</p>';
+      }
+
+      document.getElementById('backBtn').addEventListener('click', function () {
+        window.location.href = 'team.html';
+      });
+
+      var id = new URLSearchParams(window.location.search || '').get('id') || 'janki-sharma';
+      if (id === 'aasta-tyagi') id = 'aastha-tyagi';
+      if (id === 'manish-kumar') id = 'khushi-chaudhary';
+      render(PEOPLE[id] || null);
+    })();
+  </script>
+</body>
+</html>

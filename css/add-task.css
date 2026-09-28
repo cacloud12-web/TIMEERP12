@@ -1,0 +1,184 @@
+/* Add Task page */
+.at-page { padding: 16px 20px 40px; max-width: 1100px; }
+
+.at-back-row { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+.at-back-btn {
+  width: 28px; height: 28px; border-radius: 4px; background: #25b7a7; color: #fff;
+  display: inline-flex; align-items: center; justify-content: center; text-decoration: none;
+}
+.at-back-btn svg { width: 16px; height: 16px; }
+.at-back-label { font-size: 13px; color: #374151; text-decoration: none; font-weight: 500; }
+.at-back-label:hover { color: #25b7a7; }
+
+.at-card {
+  background: #fff; border: 1px solid #e8e8e8; border-radius: 8px;
+  padding: 20px 24px 28px; box-shadow: 0 1px 4px rgba(0,0,0,.04);
+}
+.at-card-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 20px; gap: 12px;
+}
+.at-card-title-wrap { display: flex; align-items: center; gap: 8px; }
+.at-title { margin: 0; font-size: 22px; font-weight: 700; color: #1e293b; }
+.at-icon-ghost {
+  width: 22px; height: 22px; border: none; background: none; color: #94a3b8;
+  cursor: pointer; padding: 0; display: inline-flex; align-items: center; justify-content: center;
+}
+.at-icon-ghost svg { width: 16px; height: 16px; }
+.at-play-btn {
+  width: 22px; height: 22px; border: none; border-radius: 50%; background: #ef4444;
+  color: #fff; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; padding: 0;
+}
+.at-play-btn svg { width: 10px; height: 10px; margin-left: 1px; }
+.at-card-actions { display: flex; gap: 8px; }
+.at-icon-btn {
+  width: 32px; height: 32px; border: 1px solid #e5e7eb; border-radius: 6px; background: #fff;
+  color: #64748b; display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer; text-decoration: none;
+}
+.at-icon-btn svg { width: 16px; height: 16px; }
+.at-icon-btn:hover { border-color: #9fe0d7; color: #25b7a7; }
+
+.at-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 24px; margin-bottom: 16px; }
+.at-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 40px; margin-bottom: 20px; }
+.at-col { display: flex; flex-direction: column; gap: 14px; }
+
+.at-field { display: flex; flex-direction: column; gap: 6px; }
+.at-field--full { margin-bottom: 16px; }
+.at-field label { font-size: 13px; font-weight: 500; color: #374151; }
+.at-field .req { color: #ef4444; }
+.at-field select,
+.at-field input[type="text"],
+.at-field textarea {
+  width: 100%; padding: 9px 12px; border: 1px solid #d1d5db; border-radius: 6px;
+  font-size: 13px; font-family: inherit; background: #fff; color: #1e293b; box-sizing: border-box;
+}
+.at-field select:focus,
+.at-field input:focus,
+.at-field textarea:focus { outline: none; border-color: #9fe0d7; box-shadow: 0 0 0 2px rgba(147,197,253,.35); }
+
+.at-title-input-wrap { position: relative; }
+.at-title-input-wrap input { padding-right: 72px; }
+.at-char-count {
+  position: absolute; right: 10px; bottom: 8px; font-size: 11px; color: #9ca3af; pointer-events: none;
+}
+
+.at-date { position: relative; }
+.at-date input { padding-right: 36px; cursor: pointer; }
+.at-date svg {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  width: 16px; height: 16px; color: #9ca3af; pointer-events: none;
+}
+
+.at-reviewer-chip { margin-top: 6px; }
+.at-avatar {
+  width: 28px; height: 28px; border-radius: 50%; background: #9fe0d7; color: #fff;
+  display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700;
+}
+
+.at-label-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;
+}
+.at-estimate { font-size: 12px; color: #6b7280; display: inline-flex; align-items: center; gap: 4px; }
+.at-edit-est {
+  border: none; background: none; color: #25b7a7; cursor: pointer; padding: 0;
+  display: inline-flex; align-items: center;
+}
+.at-edit-est svg { width: 12px; height: 12px; }
+.at-link { color: #25b7a7; text-decoration: none; font-weight: 500; margin-left: 8px; font-size: 12px; }
+.at-link:hover { text-decoration: underline; }
+
+.at-check {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  font-size: 13px; color: #374151; cursor: pointer;
+}
+.at-check--start { justify-content: flex-start; }
+.at-check--inline { margin: 0; font-size: 12px; color: #6b7280; gap: 6px; }
+.at-check input { width: 15px; height: 15px; accent-color: #25b7a7; }
+
+.at-clients-row { display: flex; gap: 8px; align-items: center; }
+.at-clients-row select { flex: 1; }
+.at-client-add {
+  width: 36px; height: 36px; border: none; border-radius: 6px; background: #25b7a7; color: #fff;
+  font-size: 20px; font-weight: 600; cursor: pointer; flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.at-client-add:hover { background: #25b7a7; }
+
+.at-section { margin-top: 8px; margin-bottom: 24px; }
+.at-section-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px;
+}
+.at-section-head h2, .at-section-title {
+  margin: 0 0 12px; font-size: 16px; font-weight: 600; color: #1e293b;
+  display: flex; align-items: center; gap: 6px;
+}
+.at-section-head--stages h2 { margin-bottom: 0; }
+.at-custom-fields {
+  display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px;
+  border: 1px solid #d1d5db; border-radius: 6px; background: #fff; color: #374151;
+  font-size: 12px; font-family: inherit; cursor: pointer;
+}
+.at-custom-fields svg { width: 14px; height: 14px; }
+.at-custom-fields:hover { border-color: #9fe0d7; color: #25b7a7; }
+.at-hint { margin: 8px 0 14px; font-size: 12px; color: #9ca3af; }
+
+.at-stages { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+.at-stage-row {
+  display: grid; grid-template-columns: 1fr 1fr 1fr 36px; gap: 10px; align-items: center;
+}
+.at-stage-row select, .at-stage-row input {
+  width: 100%; padding: 9px 12px; border: 1px solid #d1d5db; border-radius: 6px;
+  font-size: 13px; font-family: inherit; background: #fff; box-sizing: border-box;
+}
+.at-stage-del {
+  width: 28px; height: 28px; border: none; border-radius: 50%; background: #fee2e2;
+  color: #ef4444; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; padding: 0;
+}
+.at-stage-del svg { width: 16px; height: 16px; }
+.at-stage-del:hover { background: #fecaca; }
+.at-add-stage {
+  width: 100%; padding: 12px; border: 1px dashed #d1d5db; border-radius: 6px;
+  background: #fff; color: #6b7280; font-size: 13px; font-family: inherit; cursor: pointer;
+}
+.at-add-stage:hover { border-color: #9fe0d7; color: #25b7a7; }
+
+.at-status-label { display: block; font-size: 13px; font-weight: 500; color: #374151; margin-bottom: 8px; }
+.at-status-pills {
+  display: flex; flex-wrap: wrap; gap: 8px; padding: 10px 12px; border: 1px solid #e5e7eb;
+  border-radius: 6px; margin-bottom: 16px;
+}
+.at-status-pill {
+  padding: 6px 12px; border: 1px solid #9fe0d7; border-radius: 4px; background: #fff;
+  color: #25b7a7; font-size: 12px; font-weight: 500; font-family: inherit; cursor: pointer;
+}
+.at-status-pill.is-active { background: #e8f8f6; border-color: #25b7a7; color: #25b7a7; }
+.at-status-pill:hover { background: #e8f8f6; }
+.at-reasons { margin-bottom: 8px; }
+
+.at-accordion {
+  background: #fff; border: 1px solid #e8e8e8; border-radius: 8px;
+  margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,.04); overflow: hidden;
+}
+.at-acc-btn {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px; border: none; background: #fff; font-size: 14px; font-weight: 500;
+  color: #1e293b; font-family: inherit; cursor: pointer; text-align: left;
+}
+.at-acc-btn svg { width: 16px; height: 16px; color: #9ca3af; transition: transform .15s; }
+.at-accordion.is-open .at-acc-btn svg { transform: rotate(90deg); }
+.at-acc-body { display: none; padding: 0 16px 16px; }
+.at-accordion.is-open .at-acc-body { display: block; }
+
+.at-footer { margin-top: 20px; }
+.at-submit {
+  padding: 10px 22px; border: none; border-radius: 6px; background: #25b7a7; color: #fff;
+  font-size: 14px; font-weight: 600; font-family: inherit; cursor: pointer;
+}
+.at-submit:hover { background: #25b7a7; }
+
+@media (max-width: 900px) {
+  .at-grid-2, .at-cols { grid-template-columns: 1fr; }
+  .at-stage-row { grid-template-columns: 1fr; }
+  .at-stage-del { justify-self: start; }
+}

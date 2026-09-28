@@ -158,7 +158,7 @@ a.sidebar__item { color: inherit; text-decoration: none; }
   font-size: 10px; font-weight: 700; text-transform: capitalize; white-space: nowrap;
 }
 .rec-badge--active { background: #dcfce7; color: #166534; }
-.rec-badge--open { background: #dbeafe; color: #1d4ed8; }
+.rec-badge--open { background: #e8f8f6; color: #1a9e8f; }
 .rec-badge--closed { background: #f1f5f9; color: #64748b; }
 .rec-badge--urgent { background: #ffedd5; color: #c2410c; }
 .rec-badge--scheduled { background: #ede9fe; color: #6d28d9; }

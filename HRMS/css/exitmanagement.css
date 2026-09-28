@@ -127,7 +127,7 @@ a.sidebar__item { color: inherit; text-decoration: none; }
   letter-spacing: 0.02em;
 }
 
-.exm-badge--active { background: #dbeafe; color: #1d4ed8; }
+.exm-badge--active { background: #e8f8f6; color: #1a9e8f; }
 .exm-badge--pending { background: #ffedd5; color: #c2410c; }
 .exm-badge--approved { background: #dcfce7; color: #166534; }
 .exm-badge--completed { background: #dcfce7; color: #166534; }

@@ -1,0 +1,65 @@
+/* TIME ERP — Add Peer Review */
+a.sidebar__item{color:inherit;text-decoration:none}
+.apr-top-checkout{height:32px;padding:0 14px;border:none;border-radius:4px;background:#25b7a7;color:#fff;font-size:13px;font-weight:600;cursor:pointer}
+.apr-top-clock{font-size:16px;font-weight:600;color:#25B7A7;font-variant-numeric:tabular-nums;min-width:46px;text-align:center}
+.apr-top-icon{color:#25B7A7!important}
+.apr-profile-caret{width:14px;height:14px;color:#94a3b8;flex-shrink:0}
+.apr-page{min-height:100%;margin:-16px calc(var(--content-pad-x,16px)*-1) -24px;padding:0;background:#fff}
+
+.apr-header{display:flex;align-items:center;gap:10px;padding:10px 16px;background:#f5f5f5;border-bottom:1px solid #e8e8e8}
+.apr-back{width:28px;height:28px;border-radius:4px;background:#25B7A7;color:#fff;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;flex-shrink:0;border:none;cursor:pointer}
+.apr-back svg{width:16px;height:16px;stroke:#fff}
+.apr-back:hover{background:#1fa396}
+.apr-header__title{font-size:14px;font-weight:500;color:#374151}
+
+/* Top buttons */
+.apr-top-btns{display:flex;justify-content:flex-end;gap:8px;padding:12px 16px 0}
+.apr-top-btn{height:34px;padding:0 16px;border:none;border-radius:4px;color:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;line-height:1}
+.apr-top-btn--teal{background:#25B7A7}
+.apr-top-btn--teal:hover{background:#1fa396}
+.apr-top-btn--blue{background:#25B7A7}
+.apr-top-btn--blue:hover{background:#1fa396}
+
+/* Stepper */
+.apr-stepper{display:flex;align-items:center;gap:12px;padding:16px 16px 8px}
+.apr-step{display:flex;align-items:center;gap:6px;font-size:13px;color:#9ca3af}
+.apr-step__dot{width:10px;height:10px;border-radius:50%;background:#d1d5db}
+.apr-step.is-active .apr-step__dot{background:#25B7A7}
+.apr-step.is-active{color:#25B7A7;font-weight:600}
+.apr-step__line{width:40px;height:1px;background:#d1d5db}
+
+/* Form */
+.apr-form{max-width:900px;padding:10px 16px 24px}
+.apr-cols{display:flex;gap:24px}
+.apr-col{flex:1;min-width:0}
+.apr-mf{margin-bottom:14px}
+.apr-mf__label{display:block;font-size:13px;font-weight:600;color:#1e293b;margin-bottom:4px}
+.apr-req{color:#ef4444}
+.apr-mf__input,.apr-mf__select{width:100%;height:36px;border:1px solid #d1d5db;border-radius:4px;padding:0 10px;font-size:13px;font-family:inherit;color:#111827;background:#fff;box-sizing:border-box}
+.apr-mf__input:focus,.apr-mf__select:focus{outline:none;border-color:#25B7A7;box-shadow:0 0 0 2px rgba(37,183,167,.15)}
+.apr-mf__select{appearance:none;padding-right:28px;cursor:pointer}
+.apr-mf__combo{position:relative}
+.apr-mf__combo .apr-combo__icon{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:14px;height:14px;color:#9ca3af;pointer-events:none}
+.apr-mf__combo .apr-combo__menu{display:none;position:absolute;left:0;right:0;top:calc(100% + 2px);background:#fff;border:1px solid #d1d5db;border-radius:4px;box-shadow:0 8px 24px rgba(0,0,0,.12);z-index:50;max-height:240px;overflow-y:auto}
+.apr-mf__combo.is-open .apr-combo__menu{display:block}
+.apr-combo__item{padding:7px 12px;font-size:12px;color:#111827;cursor:pointer}
+.apr-combo__item:hover{background:#e0f7fa}
+.apr-combo__item.is-selected{background:#25B7A7;color:#fff}
+
+/* Radio row */
+.apr-radios{display:flex;align-items:center;gap:16px;padding-top:4px}
+.apr-radios label{display:flex;align-items:center;gap:4px;font-size:13px;color:#374151;cursor:pointer}
+
+/* Next / Save */
+.apr-next{display:block;margin:12px auto 0;height:38px;padding:0 32px;border:none;border-radius:4px;background:#25B7A7;color:#fff;font-size:14px;font-weight:600;cursor:pointer}
+.apr-next:hover{background:#1fa396}
+
+/* Footer */
+.apr-app-footer{padding:12px 16px 8px;text-align:center}
+.apr-app-footer__links{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 10px;margin-bottom:8px;font-size:13px}
+.apr-app-footer__links a{color:#25b7a7;text-decoration:none;font-weight:500}
+.apr-app-footer__links span{color:#bfbfbf}
+.apr-app-footer__copy{margin:0;font-size:12px;color:#8c8c8c}
+.apr-app-footer__copy span{color:#25b7a7;font-weight:500}
+
+@media(max-width:640px){.apr-cols{flex-direction:column;gap:0}}

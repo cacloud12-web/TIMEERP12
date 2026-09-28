@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Company Details — TimeERP Website</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/marketing-website-company.css?v=1">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="mwc-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="mwc-top-clock" id="mwcTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn mwc-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn mwc-top-icon" id="notifBtn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="mwc-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="marketing_website.html" class="dropdown__item"><strong>Website</strong><span>Back to website hub</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="mwc-page">
+          <header class="mwc-header">
+            <a class="mwc-back" href="marketing_website.html" aria-label="Back to Website">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <span class="mwc-crumb">Company Details</span>
+          </header>
+
+          <div class="mwc-panel">
+            <h1 class="mwc-title">Company Details</h1>
+
+            <form class="mwc-form" id="mwcForm" novalidate>
+              <div class="mwc-row">
+                <label class="mwc-label" for="mwcWebsiteName">Website Name<span class="mwc-req">*</span></label>
+                <input class="mwc-input" type="text" id="mwcWebsiteName" value="sreshta global">
+              </div>
+              <div class="mwc-row">
+                <label class="mwc-label" for="mwcDomainName">Domain Name<span class="mwc-req">*</span></label>
+                <input class="mwc-input" type="text" id="mwcDomainName" value="tax">
+              </div>
+              <div class="mwc-row">
+                <label class="mwc-label" for="mwcMobile">Mobile Number</label>
+                <input class="mwc-input" type="text" id="mwcMobile" value="9540175500">
+              </div>
+              <div class="mwc-row">
+                <label class="mwc-label" for="mwcWhatsapp">Whatsapp Number</label>
+                <input class="mwc-input" type="text" id="mwcWhatsapp" value="656575675675">
+              </div>
+              <div class="mwc-row">
+                <label class="mwc-label" for="mwcEmail">Email</label>
+                <input class="mwc-input" type="email" id="mwcEmail" value="saurabh.ddps@gmail.com">
+              </div>
+              <div class="mwc-row">
+                <label class="mwc-label" for="mwcTemplate">Template Type<span class="mwc-req">*</span></label>
+                <select class="mwc-select" id="mwcTemplate">
+                  <option>Template 1</option>
+                  <option selected>Template 2</option>
+                </select>
+              </div>
+              <div class="mwc-row">
+                <label class="mwc-label" for="mwcMapUrl">Google Map URL</label>
+                <input class="mwc-input" type="url" id="mwcMapUrl" value="https://sreshtaglobal.com/">
+              </div>
+              <div class="mwc-row">
+                <span class="mwc-label">Favicon</span>
+                <div class="mwc-field">
+                  <button type="button" class="mwc-upload" data-upload="favicon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 16V8"/><path d="M8 12l4-4 4 4"/><path d="M4 20h16"/></svg>
+                    <span class="mwc-upload__label">Click to Upload</span>
+                  </button>
+                  <input type="file" id="mwcFaviconInput" accept="image/*" hidden>
+                </div>
+              </div>
+              <div class="mwc-row">
+                <span class="mwc-label">Logo</span>
+                <div class="mwc-field">
+                  <button type="button" class="mwc-upload" data-upload="logo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 16V8"/><path d="M8 12l4-4 4 4"/><path d="M4 20h16"/></svg>
+                    <span class="mwc-upload__label">Click to Upload</span>
+                  </button>
+                  <input type="file" id="mwcLogoInput" accept="image/*" hidden>
+                  <div class="mwc-upload-meta" id="mwcLogoMeta">
+                    <button type="button" class="mwc-view-link" id="mwcViewLogo">View Uploaded</button>
+                    <button type="button" class="mwc-delete" id="mwcDeleteLogo" aria-label="Delete logo">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="mwc-row">
+                <span class="mwc-label">Footer Logo</span>
+                <div class="mwc-field">
+                  <button type="button" class="mwc-upload" data-upload="footer">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 16V8"/><path d="M8 12l4-4 4 4"/><path d="M4 20h16"/></svg>
+                    <span class="mwc-upload__label">Click to Upload</span>
+                  </button>
+                  <input type="file" id="mwcFooterInput" accept="image/*" hidden>
+                </div>
+              </div>
+              <div class="mwc-row mwc-row--top">
+                <label class="mwc-label" for="mwcDescription">Company Description</label>
+                <div class="mwc-textarea-wrap">
+                  <textarea class="mwc-textarea" id="mwcDescription" maxlength="140" rows="4"></textarea>
+                  <span class="mwc-char-count"><span id="mwcDescCount">0</span> / 140</span>
+                </div>
+              </div>
+              <div class="mwc-row mwc-row--top">
+                <label class="mwc-label" for="mwcAddress">Address</label>
+                <textarea class="mwc-textarea" id="mwcAddress" rows="3">159 &amp; 160 Balaji Enclave Govindpuram Ghaziabad UP-201013</textarea>
+              </div>
+              <div class="mwc-actions">
+                <button type="submit" class="mwc-save">Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/marketing-website-company.js?v=1"></script>
+</body>
+</html>

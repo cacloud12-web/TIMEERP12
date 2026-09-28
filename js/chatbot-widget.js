@@ -328,7 +328,13 @@
 
       var siteModal = document.getElementById('bookDemoModal');
       if (!siteModal) {
-        window.location.href = 'contact_sales.html';
+        window.location.href = (function () {
+          var path = (window.location.pathname || '').replace(/\\/g, '/');
+          var segs = path.split('/').filter(Boolean);
+          if (segs.length && /\.[a-z0-9]+$/i.test(segs[segs.length - 1])) segs.pop();
+          var prefix = segs.length ? segs.map(function () { return '..'; }).join('/') + '/' : '';
+          return prefix + 'contact_sales.html';
+        })();
         return;
       }
       if (window.BookDemoModal && typeof window.BookDemoModal.open === 'function') {

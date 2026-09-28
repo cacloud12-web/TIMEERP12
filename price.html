@@ -2,7 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TimeERP Pricing</title>
   <meta name="description" content="TimeERP pricing plans for Essentials, Pro, and Business. Flexible one-year and three-year commitments for CA firms, construction, real estate, and MSMEs.">
   <meta name="theme-color" content="#25B7A7">
@@ -82,7 +87,7 @@
     .pricing-page__lead{font-size:16px;color:var(--text-muted);line-height:1.7;margin:0}
 
     .pricing-term-row{
-      display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px;margin-bottom:40px;
+      display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px 24px;margin-bottom:40px;
     }
     .pricing-term{
       display:flex;gap:0;background:#eef3f2;border-radius:10px;padding:4px;width:fit-content;
@@ -98,17 +103,24 @@
       background:#25b7a7;color:#fff;box-shadow:0 6px 16px rgba(37,183,167,.35);
     }
     .pricing-term__btn:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
-    .pricing-save{
-      display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;
-      color:var(--primary-dark);background:var(--primary-light);border:1px solid rgba(37,183,167,.35);
-      padding:8px 14px;border-radius:999px;opacity:0;transform:translateY(6px);
-      transition:opacity .25s ease,transform .25s ease;pointer-events:none;
+    .pricing-currency{
+      display:flex;gap:0;background:#eef3f2;border-radius:10px;padding:4px;width:fit-content;
+      box-shadow:inset 0 1px 2px rgba(8,53,48,.04);
     }
-    .pricing-save.is-visible{opacity:1;transform:none;pointer-events:auto}
+    .pricing-currency__btn{
+      border:none;background:transparent;font-family:inherit;font-size:14px;font-weight:600;
+      color:#3d5250;padding:10px 18px;cursor:pointer;border-radius:6px;
+      transition:background .2s ease,color .2s ease,box-shadow .2s ease;
+    }
+    .pricing-currency__btn:hover:not(.is-active){color:var(--heading-dark)}
+    .pricing-currency__btn.is-active{
+      background:#25b7a7;color:#fff;box-shadow:0 6px 16px rgba(37,183,167,.35);
+    }
+    .pricing-currency__btn:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
 
     .pricing-grid{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch;
-      padding:12px 4px 20px;
+      display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:stretch;
+      max-width:960px;padding:12px 4px 20px;margin:0 auto;
     }
     .pricing-card{
       display:flex;flex-direction:column;background:#fff;
@@ -166,7 +178,7 @@
     }
     .pricing-card__badge svg{width:12px;height:12px;fill:currentColor}
     .pricing-card__desc{
-      font-size:14px;line-height:1.55;color:#616365;margin:0 0 22px;min-height:66px;
+      font-size:14px;line-height:1.55;color:#616365;margin:0 0 22px;min-height:48px;
     }
     .pricing-card__price-wrap{
       display:flex;
@@ -231,6 +243,98 @@
       display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;
       color:#0d7a6e;background:#d4f0ec;padding:2px 6px;border-radius:4px;margin-left:6px;vertical-align:middle;
     }
+    /* Popular card glow + ribbon */
+    .pricing-card--popular{
+      border-color:rgba(37,183,167,.5);
+      box-shadow:0 8px 32px rgba(37,183,167,.12);
+      position:relative;
+    }
+    .pricing-card--popular::before{
+      content:'';position:absolute;inset:-1px;border-radius:21px;
+      background:#fff;
+      z-index:-1;pointer-events:none;
+    }
+    .pricing-card--popular .pricing-card__cta{
+      background:linear-gradient(135deg,#25b7a7,#17c3b2);
+      box-shadow:0 8px 24px rgba(37,183,167,.35);
+    }
+    .pricing-card__ribbon{
+      position:absolute;top:14px;right:-8px;
+      background:linear-gradient(135deg,#25b7a7,#17c3b2);color:#fff;
+      font-size:11px;font-weight:700;letter-spacing:.03em;
+      padding:5px 18px 5px 14px;border-radius:6px 0 0 6px;
+      box-shadow:0 4px 12px rgba(37,183,167,.35);
+    }
+    .pricing-card__ribbon::after{
+      content:'';position:absolute;right:0;bottom:-6px;
+      border:3px solid transparent;border-top-color:#1a9e8f;border-left-color:#1a9e8f;
+    }
+    .pricing-card__original-price{
+      font-size:15px;color:#b0b8b7;text-decoration:line-through;font-weight:500;
+      margin-right:2px;
+    }
+    .pricing-card__highlight{
+      display:flex;align-items:center;gap:6px;margin-top:6px;
+      font-size:12px;font-weight:600;color:#0d7a6e;
+    }
+    .pricing-card__highlight svg{width:14px;height:14px;flex-shrink:0}
+
+    /* Feature category headers */
+    .pricing-card__feat-category{
+      font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+      color:var(--primary-dark);margin:18px 0 6px;padding-bottom:4px;
+      border-bottom:1px solid rgba(37,183,167,.15);
+    }
+    .pricing-card__feat-category:first-child{margin-top:0}
+
+    /* Active card selection state */
+    .pricing-card.is-selected{
+      border-color:rgba(37,183,167,.6);
+      box-shadow:0 12px 36px rgba(37,183,167,.18);
+      transform:translateY(-4px);
+    }
+    .pricing-card__select-hint{
+      display:block;text-align:center;font-size:12px;font-weight:600;
+      color:var(--primary-dark);margin-top:14px;opacity:.7;
+      transition:opacity .2s;
+    }
+    .pricing-card.is-selected .pricing-card__select-hint{opacity:0}
+
+    /* Shared feature detail board */
+    .pricing-detail-board{
+      max-width:960px;margin:32px auto 0;padding:28px 28px 24px;
+      background:#fff;border:1px solid #e8f2f1;border-radius:20px;
+      box-shadow:0 4px 18px rgba(8,53,48,.04);
+      transition:border-color .3s,box-shadow .3s;
+    }
+    .pricing-detail-board.is-active{
+      border-color:rgba(37,183,167,.4);
+      box-shadow:0 12px 36px rgba(37,183,167,.1);
+    }
+    .pricing-detail-board__header{margin-bottom:20px}
+    .pricing-detail-board__title{
+      font-size:20px;font-weight:700;color:var(--heading-dark);margin:0 0 4px;
+      transition:color .2s;
+    }
+    .pricing-detail-board__sub{font-size:13px;color:var(--text-muted);margin:0}
+    .pricing-detail-board__body{
+      display:flex;gap:32px;flex-wrap:wrap;
+    }
+    .pricing-detail-board__col{
+      flex:1;min-width:240px;
+      padding:18px 20px;border-radius:14px;
+      background:var(--primary-light);border:1px solid rgba(37,183,167,.15);
+      transition:opacity .3s,transform .3s;
+    }
+    .pricing-detail-board__col--plus{
+      background:#fff;border:1px solid rgba(37,183,167,.35);
+    }
+    .pricing-detail-board__col-title{
+      font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+      color:var(--primary-dark);margin:0 0 12px;
+    }
+    .pricing-detail-board__col .pricing-card__features{gap:10px}
+    .pricing-detail-board__col .pricing-card__features li{font-size:13px}
 
     .pricing-note{
       margin-top:28px;font-size:13px;color:var(--text-muted);text-align:center;
@@ -322,6 +426,30 @@
       color:var(--accent);margin-bottom:12px;
     }
     .footer__address{font-style:normal;font-size:14px;line-height:1.7;color:rgba(255,255,255,.72);margin-bottom:16px}
+    .footer__address-link{
+      display:block;
+      color:inherit;
+      text-decoration:none;
+      border-radius:8px;
+      background-image:linear-gradient(currentColor, currentColor);
+      background-position:0 100%;
+      background-repeat:no-repeat;
+      background-size:0 1px;
+      transition:color .2s ease, background-size .25s ease;
+      width:fit-content;
+      max-width:100%;
+      cursor:pointer;
+    }
+    .footer__address-link:hover,
+    .footer__address-link:focus-visible{
+      color:#fff;
+      background-size:100% 1px;
+    }
+    .footer__address-link:focus-visible{
+      outline:2px solid var(--accent, #25b7a7);
+      outline-offset:4px;
+    }
+
     .footer__quick{display:flex;flex-wrap:wrap;gap:10px}
     .footer__quick-btn{
       display:inline-flex;align-items:center;padding:10px 16px;border-radius:999px;font-size:13px;font-weight:600;
@@ -351,7 +479,7 @@
     .reveal.is-visible{opacity:1;transform:none}
 
     @media(max-width:1024px){
-      .pricing-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto}
+      .pricing-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto;gap:20px}
       .pricing-card__desc{min-height:0}
       .footer__main{grid-template-columns:1fr}
       .footer__cols{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -385,9 +513,11 @@
       .pricing-card__price{font-size:2rem}
       .pricing-card__price-wrap{gap:10px}
       .pricing-card__price-note{font-size:12px}
+      .pricing-detail-board{padding:20px 16px}
+      .pricing-detail-board__body{flex-direction:column;gap:16px}
     }
   </style>
-  <link rel="stylesheet" href="css/site-nav.css">
+  <link rel="stylesheet" href="css/site-nav.css?v=13">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
 </head>
 <body>
@@ -403,106 +533,112 @@
         </header>
 
         <div class="pricing-term-row reveal">
-          <div class="pricing-term" role="tablist" aria-label="Billing commitment">
-            <button type="button" class="pricing-term__btn is-active" role="tab" aria-selected="true" data-term="1">One-year</button>
-            <button type="button" class="pricing-term__btn" role="tab" aria-selected="false" data-term="3">Three-year</button>
+          <div class="pricing-term" role="tablist" aria-label="Billing duration">
+            <button type="button" class="pricing-term__btn is-active" role="tab" aria-selected="true" data-term="1">1 Year</button>
+            <button type="button" class="pricing-term__btn" role="tab" aria-selected="false" data-term="3">3 Year</button>
           </div>
-          <span class="pricing-save" id="pricingSave" aria-live="polite">Save up to 15% with a 3-year plan</span>
+          <div class="pricing-currency" role="group" aria-label="Currency">
+            <button type="button" class="pricing-currency__btn is-active" data-currency="INR" aria-pressed="true">₹ INR</button>
+            <button type="button" class="pricing-currency__btn" data-currency="USD" aria-pressed="false">$ USD</button>
+          </div>
         </div>
 
         <div class="pricing-grid">
-          <!-- Essentials -->
-          <article class="pricing-card reveal">
+          <!-- Gold -->
+          <article class="pricing-card reveal" data-plan="gold">
             <div class="pricing-card__title-row">
-              <h2 class="pricing-card__name">Essentials</h2>
+              <h2 class="pricing-card__name">Gold</h2>
             </div>
-            <p class="pricing-card__desc">Start strong with core tools to manage HR, CRM, attendance, and daily operations  ideal for growing single team businesses.</p>
+            <p class="pricing-card__desc">Everything you need to run HR, CRM, attendance, and daily operations, ideal for growing teams.</p>
             <div class="pricing-card__price-wrap">
-              <div class="pricing-card__price" data-prices='{"1":80000,"3":68000}'>₹80,000</div>
+              <div class="pricing-card__price" data-price-1="2999" data-price-3="5998">₹2,999</div>
               <div class="pricing-card__price-note">
-                <span class="pricing-card__price-period">/year, per seat</span>
-                <span class="pricing-card__term-label">(with a 1-year commitment)</span>
+                <span class="pricing-card__price-period">/year, per employee</span>
+                <span class="pricing-card__term-label">(1 Year plan)</span>
               </div>
             </div>
-            <a class="pricing-card__cta" href="contact_sales.html">Request demo</a>
+            <a class="pricing-card__cta" href="contact_sales.html">Get Started</a>
             <div class="pricing-card__features-block">
               <p class="pricing-card__features-label">What's included:</p>
               <ul class="pricing-card__features">
                 <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited employee records &amp; CRM</li>
                 <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Attendance, leave &amp; basic payroll</li>
                 <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Web portal and mobile app</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Task management essentials</li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Project management</li>
                 <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Document storage &amp; sharing</li>
                 <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Secure team chat</li>
                 <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Basic billing &amp; invoices</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>15 GB storage per seat</li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>500 GB storage per seat</li>
                 <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>In-app announcements</li>
               </ul>
             </div>
           </article>
 
-          <!-- Pro -->
-          <article class="pricing-card reveal">
+          <!-- Gold Plus -->
+          <article class="pricing-card pricing-card--popular reveal" data-plan="gold-plus">
+            <span class="pricing-card__ribbon">MOST POPULAR</span>
             <div class="pricing-card__title-row">
-              <h2 class="pricing-card__name">Pro</h2>
+              <h2 class="pricing-card__name">Gold Plus</h2>
+              <span class="pricing-card__badge"><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84L18 6.8l-4 3.9.94 5.5L10 13.4l-4.94 2.8.94-5.5-4-3.9 5.61-.96z"/></svg> Recommended</span>
             </div>
-            <p class="pricing-card__desc">Built for better visibility, seamless collaboration across teams, and faster results across projects and clients.</p>
+            <p class="pricing-card__desc">All Gold features plus advanced tools for scaling businesses, billing, automation, WhatsApp &amp; more.</p>
             <div class="pricing-card__price-wrap">
-              <div class="pricing-card__price" data-prices='{"1":100000,"3":85000}'>₹1,00,000</div>
+              <div class="pricing-card__price" data-price-1="3499" data-price-3="6998">₹3,499</div>
               <div class="pricing-card__price-note">
-                <span class="pricing-card__price-period">/year, per seat</span>
-                <span class="pricing-card__term-label">(with a 1-year commitment)</span>
+                <span class="pricing-card__price-period">/year, per employee</span>
+                <span class="pricing-card__term-label">(1 Year plan)</span>
               </div>
             </div>
-            <a class="pricing-card__cta" href="contact_sales.html">Request demo</a>
+            <a class="pricing-card__cta" href="contact_sales.html">Get Started</a>
             <div class="pricing-card__features-block">
-              <p class="pricing-card__features-label">All Essentials features, plus:</p>
+              <p class="pricing-card__features-label">Gold Plus exclusive:</p>
               <ul class="pricing-card__features">
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Advanced billing &amp; GST reports</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Project &amp; task analytics</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Power BI / Excel export</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Custom roles &amp; permissions</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Email / SMS / WhatsApp alerts</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Custom task &amp; workflow templates</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>PDF annotation in Document Vault</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Multi-client &amp; multi-project pipelines</li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Advanced billing &amp; invoices <span class="pricing-card__tag">Pro</span></li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>1,000 GB storage per seat <span class="pricing-card__tag">Pro</span></li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>GST notice auto-fetch <span class="pricing-card__tag">New</span></li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>WhatsApp integration <span class="pricing-card__tag">New</span></li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited no of companies</li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>API integration</li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Free website</li>
               </ul>
             </div>
           </article>
+        </div>
 
-          <!-- Business -->
-          <article class="pricing-card pricing-card--popular reveal">
-            <div class="pricing-card__title-row">
-              <h2 class="pricing-card__name">Business</h2>
-              <span class="pricing-card__badge">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7L12 16.8 5.7 20.6 8 13.6 2 9.2h7.6L12 2z"/></svg>
-                Most popular
-              </span>
-            </div>
-            <p class="pricing-card__desc">For teams scaling across sites and high volume, with advanced automation, oversight, and premium support for CA, construction, and MSME leaders.</p>
-            <div class="pricing-card__price-wrap">
-              <div class="pricing-card__price" data-prices='{"1":120000,"3":102000}'>₹1,20,000</div>
-              <div class="pricing-card__price-note">
-                <span class="pricing-card__price-period">/year, per seat</span>
-                <span class="pricing-card__term-label">(with a 1-year commitment)</span>
-              </div>
-            </div>
-            <a class="pricing-card__cta" href="contact_sales.html">Request demo</a>
-            <div class="pricing-card__features-block">
-              <p class="pricing-card__features-label">All Pro features, plus:</p>
+        <!-- Shared feature detail board -->
+        <div class="pricing-detail-board reveal" id="pricingBoard">
+          <div class="pricing-detail-board__header">
+            <h3 class="pricing-detail-board__title" id="boardTitle">Gold Plan Features</h3>
+            <p class="pricing-detail-board__sub" id="boardSub">Click a card above to compare features</p>
+          </div>
+          <div class="pricing-detail-board__body" id="boardBody">
+            <div class="pricing-detail-board__col" id="boardGold">
+              <p class="pricing-detail-board__col-title">Gold</p>
               <ul class="pricing-card__features">
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Dedicated success manager</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Custom branded client portal</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Workflow automation <span class="pricing-card__tag">NEW</span></li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Priority chat support</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Service health status <span class="pricing-card__tag">NEW</span></li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Tech alerts &amp; SLA monitoring</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Weekly maintenance notifications</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Morning ops briefings</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Custom onboarding &amp; thank-you flows</li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited employee records &amp; CRM</li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Attendance, leave &amp; basic payroll</li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Web portal and mobile app</li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Project management</li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Document storage &amp; sharing</li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Secure team chat</li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Basic billing &amp; invoices</li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>500 GB storage per seat</li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>In-app announcements</li>
               </ul>
             </div>
-          </article>
+            <div class="pricing-detail-board__col pricing-detail-board__col--plus" id="boardGoldPlus" style="display:none">
+              <p class="pricing-detail-board__col-title">Gold Plus Extras</p>
+              <ul class="pricing-card__features">
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Advanced billing &amp; invoices <span class="pricing-card__tag">Pro</span></li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>1,000 GB storage per seat <span class="pricing-card__tag">Pro</span></li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>GST notice auto-fetch <span class="pricing-card__tag">New</span></li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>WhatsApp integration <span class="pricing-card__tag">New</span></li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited no of companies</li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>API integration</li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Free website</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         <p class="pricing-note reveal">Need a custom package for multi-branch or enterprise rollout? <a href="custom_quote.html">Get a custom quote</a> or <a href="contact_sales.html">talk to sales</a>.</p>
@@ -515,11 +651,11 @@
         <div class="faq" id="faq">
           <div class="faq__item is-open">
             <button type="button" class="faq__q" aria-expanded="true">What does “per seat” mean?<span aria-hidden="true">+</span></button>
-            <div class="faq__a"><p>A seat is one named user who can log in to TimeERP. Pricing is billed yearly per active seat based on your selected commitment.</p></div>
+            <div class="faq__a"><p>A seat is one named user who can log in to TimeERP. Pricing is billed per active seat for your selected commitment (1 year or 3 year prepaid).</p></div>
           </div>
           <div class="faq__item">
             <button type="button" class="faq__q" aria-expanded="false">Can I switch plans later?<span aria-hidden="true">+</span></button>
-            <div class="faq__a"><p>Yes. You can upgrade from Essentials to Pro or Business anytime. Our team will prorate the difference for your remaining term.</p></div>
+            <div class="faq__a"><p>Yes. You can upgrade from Gold to Gold Plus anytime. Our team will help prorate the difference for your remaining term.</p></div>
           </div>
           <div class="faq__item">
             <button type="button" class="faq__q" aria-expanded="false">Is there a free trial?<span aria-hidden="true">+</span></button>
@@ -527,7 +663,11 @@
           </div>
           <div class="faq__item">
             <button type="button" class="faq__q" aria-expanded="false">What’s included in onboarding?<span aria-hidden="true">+</span></button>
-            <div class="faq__a"><p>All plans include setup guidance. Business adds a dedicated success manager, priority support, and custom onboarding workflows.</p></div>
+            <div class="faq__a"><p>All plans include setup guidance. Talk to sales for dedicated onboarding, training, and rollout support for larger teams.</p></div>
+          </div>
+          <div class="faq__item">
+            <button type="button" class="faq__q" aria-expanded="false">How does USD pricing work?<span aria-hidden="true">+</span></button>
+            <div class="faq__a"><p>USD amounts are converted from INR using a fixed display rate for website clarity (₹3,000 ≈ $31.27). Final invoicing currency and rate are confirmed by sales at checkout.</p></div>
           </div>
         </div>
       </div>
@@ -546,7 +686,7 @@
     <div class="container">
       <div class="footer__main">
         <div class="footer__brand">
-          <a href="home1.html" class="footer__logo" aria-label="TimeERP home">
+          <a href="index.html" class="footer__logo" aria-label="TimeERP home">
             <img src="assets/image01-footer.svg" alt="TimeERP" width="196" height="48" loading="lazy">
           </a>
           <p class="footer__desc">One Platform. Complete Business Management. Enterprise ERP for modern businesses.</p>
@@ -563,10 +703,10 @@
             <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Products</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
             <h4 class="footer__col-title">Products</h4>
             <ul class="footer__links">
-              <li><a href="home1.html#products">Modules</a></li>
-              <li><a href="home1.html#benefits">Benefits</a></li>
-              <li><a href="home1.html#task-management">Project Management</a></li>
-              <li><a href="home1.html#solutions">Platform</a></li>
+              <li><a href="index.html#products">Modules</a></li>
+              <li><a href="index.html#benefits">Benefits</a></li>
+              <li><a href="index.html#task-management">Project Management</a></li>
+              <li><a href="index.html#solutions">Platform</a></li>
               <li><a href="price.html">Pricing</a></li>
             </ul>
           </div>
@@ -574,10 +714,10 @@
             <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Industries</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
             <h4 class="footer__col-title">Industries</h4>
             <ul class="footer__links">
-              <li><a href="home1.html#industries">Construction</a></li>
-              <li><a href="home1.html#industries">Real Estate</a></li>
-              <li><a href="home1.html#industries">MSME</a></li>
-              <li><a href="home1.html#industries">CA Firms</a></li>
+              <li><a href="index.html#industries">Construction</a></li>
+              <li><a href="index.html#industries">Real Estate</a></li>
+              <li><a href="index.html#industries">MSME</a></li>
+              <li><a href="index.html#industries">CA Firms</a></li>
             </ul>
           </div>
           <div class="footer__col">
@@ -587,6 +727,7 @@
               <li><a href="about.html">About Us</a></li>
               <li><a href="Our_Presence.html">Our Presence</a></li>
               <li><a href="careers.html">Careers</a></li>
+              <li><a href="blog.html">Blog</a></li>
               <li><a href="contact_sales.html">Contact</a></li>
             </ul>
           </div>
@@ -594,7 +735,7 @@
             <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Support</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
             <h4 class="footer__col-title">Support</h4>
             <ul class="footer__links">
-              <li><a href="real_time_support.html">Help Center</a></li>
+              <li><a href="help_centre.html">Help Center</a></li>
               <li><a href="contact_sales.html">Sales</a></li>
               <li><a href="custom_quote.html">Get a Quote</a></li>
             </ul>
@@ -606,8 +747,10 @@
         <div class="footer__connect-item">
           <span class="footer__connect-label">Visit us</span>
           <address class="footer__address">
-            BM-08, Ansal Sumedha Building, RDC,<br>
-            Ghaziabad, Delhi NCR, UP 201002
+            <a class="footer__address-link" href="https://www.google.com/maps/search/?api=1&query=Ansal+Sumedha+Building+RDC+Ghaziabad+201002" target="_blank" rel="noopener noreferrer" aria-label="View office location on Google Maps">
+              BM-08, Ansal Sumedha Building, RDC,<br>
+              Ghaziabad, Delhi NCR, UP 201002
+            </a>
           </address>
           <div class="footer__quick">
             <a class="footer__quick-btn" href="#" data-book-demo>Book Demo</a>
@@ -638,22 +781,129 @@
         <nav class="footer__legal" aria-label="Legal">
           <a href="privacy.html">Privacy</a>
           <a href="terms.html">Terms</a>
+          <a href="security.html">Security</a>
           <a href="contact_sales.html">Contact Us</a>
         </nav>
       </div>
     </div>
   </footer>
 
-  <script src="js/pricing-toggle.js"></script>
   <script>
     (function () {
-      var save = document.getElementById('pricingSave');
-      document.querySelectorAll('.pricing-term__btn').forEach(function (btn) {
+      var termBtns = document.querySelectorAll('.pricing-term__btn');
+      var currencyBtns = document.querySelectorAll('.pricing-currency__btn');
+      var priceEls = document.querySelectorAll('.pricing-card__price');
+      var termLabels = document.querySelectorAll('.pricing-card__term-label');
+      var periodEls = document.querySelectorAll('.pricing-card__price-period');
+      if (!termBtns.length || !priceEls.length) return;
+
+      /* Fixed display rate: ₹3,000 ≈ $31.27 (illustrative packaging rate, not live FX) */
+      var INR_PER_USD = 3000 / 31.27;
+      var currentTerm = '1';
+      var currentCurrency = 'INR';
+      var termText = { '1': '1 Year plan', '3': '3 Year plan' };
+      var periodText = {
+        '1': '/year, per employee',
+        '3': 'prepaid for 3 years, per employee'
+      };
+
+      function formatInr(n) {
+        try { return '₹' + Number(n).toLocaleString('en-IN'); }
+        catch (e) { return '₹' + Number(n).toLocaleString(); }
+      }
+
+      function formatUsd(amountInr) {
+        var usd = Number(amountInr) / INR_PER_USD;
+        try { return '$' + usd.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+        catch (e) { return '$' + usd.toFixed(2); }
+      }
+
+      function fmt(n) {
+        return currentCurrency === 'USD' ? formatUsd(n) : formatInr(n);
+      }
+
+      function renderPrices() {
+        priceEls.forEach(function (el) {
+          var price = Number(el.getAttribute('data-price-' + currentTerm)) || 0;
+          el.classList.add('is-updating');
+          setTimeout(function () {
+            el.textContent = fmt(price);
+            el.classList.remove('is-updating');
+          }, 150);
+        });
+        termLabels.forEach(function (l) { l.textContent = '(' + termText[currentTerm] + ')'; });
+        periodEls.forEach(function (p) { p.textContent = periodText[currentTerm]; });
+      }
+
+      termBtns.forEach(function (btn) {
         btn.addEventListener('click', function () {
-          if (save) save.classList.toggle('is-visible', btn.getAttribute('data-term') === '3');
+          currentTerm = btn.getAttribute('data-term');
+          termBtns.forEach(function (b) {
+            var on = b.getAttribute('data-term') === currentTerm;
+            b.classList.toggle('is-active', on);
+            b.setAttribute('aria-selected', on ? 'true' : 'false');
+          });
+          renderPrices();
         });
       });
 
+      currencyBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          currentCurrency = btn.getAttribute('data-currency') || 'INR';
+          currencyBtns.forEach(function (b) {
+            var on = b.getAttribute('data-currency') === currentCurrency;
+            b.classList.toggle('is-active', on);
+            b.setAttribute('aria-pressed', on ? 'true' : 'false');
+          });
+          renderPrices();
+        });
+      });
+
+      renderPrices();
+    })();
+  </script>
+  <script>
+    (function () {
+      var cards = document.querySelectorAll('.pricing-card');
+      var board = document.getElementById('pricingBoard');
+      var boardTitle = document.getElementById('boardTitle');
+      var boardSub = document.getElementById('boardSub');
+      var boardGold = document.getElementById('boardGold');
+      var boardGoldPlus = document.getElementById('boardGoldPlus');
+      if (!cards.length || !board) return;
+
+      function selectCard(plan) {
+        cards.forEach(function (c) {
+          c.classList.toggle('is-selected', c.getAttribute('data-plan') === plan);
+        });
+        board.classList.add('is-active');
+        if (plan === 'gold') {
+          boardTitle.textContent = 'Gold Plan Features';
+          boardSub.textContent = '9 core features included';
+          boardGold.style.display = '';
+          boardGoldPlus.style.display = 'none';
+        } else {
+          boardTitle.textContent = 'Gold Plus Plan Features';
+          boardSub.textContent = 'All 9 Gold features + 7 exclusive extras';
+          boardGold.style.display = '';
+          boardGoldPlus.style.display = '';
+        }
+        board.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      cards.forEach(function (card) {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', function (e) {
+          if (e.target.closest('.pricing-card__cta')) return;
+          selectCard(card.getAttribute('data-plan'));
+        });
+      });
+
+      selectCard('gold');
+    })();
+  </script>
+  <script>
+    (function () {
       document.querySelectorAll('.faq__q').forEach(function (btn) {
         btn.addEventListener('click', function () {
           var item = btn.closest('.faq__item');
@@ -685,6 +935,7 @@
     })();
   </script>
   <script src="js/footer-accordion.js" defer></script>
-  <script src="js/site-nav.js" defer></script>
+  <script src="js/site-nav.js?v=13" defer></script>
+  <script src="js/site-footer.js?v=6"></script>
 </body>
 </html>

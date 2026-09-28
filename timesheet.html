@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timesheet | Billable Hours, Approvals &amp; Productivity | TimeERP</title>
+  <meta name="description" content="TimeERP Timesheet: daily and weekly time entry, billable and non-billable hours, project and task logging, multi-level approvals, utilisation reports, leave context, and Excel/PDF export for professional services.">
+  <meta name="keywords" content="timesheet software, billable hours, weekly timesheet approval, project timesheet, TimeERP timesheet, employee time tracking ERP, utilization report">
+  <link rel="canonical" href="https://timeerp.com/timesheet.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Timesheet | TimeERP">
+  <meta property="og:description" content="Track working hours, billable effort, project time, and approval workflows in TimeERP.">
+  <meta property="og:url" content="https://timeerp.com/timesheet.html">
+  <meta property="og:image" content="https://timeerp.com/assets/image0-transparent.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Timesheet | TimeERP">
+  <meta name="twitter:description" content="Daily and weekly timesheets with billable hours, approvals, and productivity reports.">
+  <meta name="twitter:image" content="https://timeerp.com/assets/image0-transparent.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "TimeERP Timesheet",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "url": "https://timeerp.com/timesheet.html",
+        "description": "Enterprise timesheet for billable hours, project effort, multi-level approvals, utilisation, and productivity reports inside TimeERP.",
+        "provider": { "@type": "Organization", "name": "TimeERP", "url": "https://timeerp.com/" }
+      },
+      {
+        "@type": "Product",
+        "name": "TimeERP Timesheet",
+        "description": "Track employee working hours, billable effort, and timesheet approvals with project and task context.",
+        "brand": { "@type": "Brand", "name": "TimeERP" },
+        "url": "https://timeerp.com/timesheet.html"
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site-nav.css?v=13">
+  <link rel="stylesheet" href="css/site-footer.css">
+  <link rel="stylesheet" href="css/timesheet.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="ts-page" id="timesheet" aria-labelledby="ts-title">
+    <!-- Hero -->
+    <section class="ts-hero" aria-label="Timesheet product hero">
+      <div class="ts-hero__bg" aria-hidden="true">
+        <div class="ts-hero__grid-pattern"></div>
+        <span class="ts-hero__orb ts-hero__orb--1"></span>
+        <span class="ts-hero__orb ts-hero__orb--2"></span>
+        <span class="ts-hero__dot ts-hero__dot--1"></span>
+        <span class="ts-hero__dot ts-hero__dot--2"></span>
+        <span class="ts-hero__dot ts-hero__dot--3"></span>
+      </div>
+
+      <div class="container ts-hero__layout">
+        <div class="ts-reveal ts-reveal--left">
+          <h1 id="ts-title">Timesheet</h1>
+          <p class="ts-hero__lead">Track employee working hours, billable hours, project effort, attendance integration, and approval workflow from one centralized dashboard.</p>
+
+          <ul class="ts-feat-grid" aria-label="Timesheet capabilities">
+            <li><i data-lucide="check-circle-2" aria-hidden="true"></i> Daily Timesheet</li>
+            <li><i data-lucide="check-circle-2" aria-hidden="true"></i> Weekly Timesheet</li>
+            <li><i data-lucide="check-circle-2" aria-hidden="true"></i> Monthly View</li>
+            <li><i data-lucide="check-circle-2" aria-hidden="true"></i> Billable Hours</li>
+            <li><i data-lucide="check-circle-2" aria-hidden="true"></i> Non-Billable Hours</li>
+            <li><i data-lucide="check-circle-2" aria-hidden="true"></i> Project Wise Entry</li>
+            <li><i data-lucide="check-circle-2" aria-hidden="true"></i> Task Wise Entry</li>
+            <li><i data-lucide="check-circle-2" aria-hidden="true"></i> Employee Self Entry</li>
+            <li><i data-lucide="check-circle-2" aria-hidden="true"></i> Timesheet Approval</li>
+            <li><i data-lucide="check-circle-2" aria-hidden="true"></i> Multi-Level Approval</li>
+            <li><i data-lucide="check-circle-2" aria-hidden="true"></i> Manager Dashboard</li>
+            <li><i data-lucide="check-circle-2" aria-hidden="true"></i> Productivity Reports</li>
+            <li><i data-lucide="check-circle-2" aria-hidden="true"></i> Utilization Report</li>
+            <li><i data-lucide="check-circle-2" aria-hidden="true"></i> Overtime Tracking</li>
+            <li><i data-lucide="check-circle-2" aria-hidden="true"></i> Leave Integration</li>
+            <li><i data-lucide="check-circle-2" aria-hidden="true"></i> Export Excel/PDF</li>
+          </ul>
+
+          <div class="ts-hero__actions">
+            <a class="btn btn--primary" href="home.html#module/timesheet">
+              Explore Timesheet
+              <i data-lucide="arrow-right" aria-hidden="true"></i>
+            </a>
+            <a class="btn btn--ghost" href="#" data-book-demo>Book Demo</a>
+            <a class="btn btn--ghost" href="contact_sales.html">Contact Sales</a>
+          </div>
+        </div>
+
+        <div class="ts-visual ts-reveal ts-reveal--right" aria-hidden="true">
+          <div class="ts-float ts-float--1"><i data-lucide="clock-3"></i> 8h 15m today</div>
+          <div class="ts-float ts-float--2"><i data-lucide="calendar-days"></i> Week view</div>
+          <div class="ts-float ts-float--3"><i data-lucide="clipboard-check"></i> Pending approval</div>
+          <div class="ts-float ts-float--4"><i data-lucide="check-circle-2"></i> 5 active projects</div>
+          <div class="ts-float ts-float--5"><i data-lucide="bar-chart-3"></i> 83% util</div>
+
+          <div class="ts-visual__scene">
+            <div class="ts-card">
+              <div class="ts-card__top">
+                <div class="ts-card__user">
+                  <div class="ts-card__avatar" aria-hidden="true">RK</div>
+                  <div>
+                    <strong>Riya Kapoor</strong>
+                    <span>Consultant · Delhi NCR</span>
+                  </div>
+                </div>
+                <span class="ts-card__status">
+                  <i data-lucide="clock-3"></i>
+                  Pending Manager Approval
+                </span>
+              </div>
+
+              <div class="ts-card__metrics">
+                <div class="ts-card__metric">
+                  <em>Today's Hours</em>
+                  <strong>8h 15m</strong>
+                </div>
+                <div class="ts-card__metric">
+                  <em>Weekly Hours</em>
+                  <strong>41h</strong>
+                </div>
+                <div class="ts-card__metric">
+                  <em>Billable</em>
+                  <strong>34h</strong>
+                </div>
+              </div>
+
+              <div class="ts-card__progress">
+                <div class="ts-card__progress-label">
+                  <span>Utilization</span>
+                  <strong>83%</strong>
+                </div>
+                <div class="ts-card__bar"><span></span></div>
+              </div>
+
+              <div class="ts-card__bottom">
+                <div>
+                  <div class="ts-card__progress-label" style="margin-bottom:8px">
+                    <span>Week productivity</span>
+                    <strong>Non-billable 7h</strong>
+                  </div>
+                  <div class="ts-card__chart" aria-hidden="true">
+                    <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                  </div>
+                </div>
+                <div class="ts-ring" aria-label="Project progress 83 percent">
+                  <svg viewBox="0 0 88 88" aria-hidden="true">
+                    <circle class="ts-ring__bg" cx="44" cy="44" r="36"></circle>
+                    <circle class="ts-ring__fg" cx="44" cy="44" r="36"></circle>
+                  </svg>
+                  <div class="ts-ring__label">
+                    <strong>83%</strong>
+                    <span>Projects</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ts-trust" aria-label="Who uses TimeERP timesheets">
+      <div class="container ts-trust__inner">
+        <p>Built for delivery teams</p>
+        <div class="ts-trust__stats">
+          <span class="ts-trust__chip">CA and consulting firms</span>
+          <span class="ts-trust__chip">Project delivery teams</span>
+          <span class="ts-trust__chip">Multi-client billable work</span>
+          <span class="ts-trust__chip">Weekly approval discipline</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why -->
+    <section class="ts-section ts-section--soft" aria-labelledby="ts-why-title">
+      <div class="container">
+        <div class="ts-section__head ts-reveal">
+          <p class="eyebrow">Why TimeERP Timesheet</p>
+          <h2 class="section-title" id="ts-why-title">Hours that connect people, projects, and billing</h2>
+          <p class="section-lead">Home Timesheet covers daily sheets, billable hours, approvals, productivity, and reports. Task Timesheet in Project Management posts the same effort against client work.</p>
+        </div>
+        <div class="ts-why ts-reveal">
+          <article class="ts-why__card">
+            <div class="ts-why__icon" aria-hidden="true"><i data-lucide="file-clock"></i></div>
+            <h3>One capture path</h3>
+            <p>Self-service daily and weekly entry replaces chat notes and personal spreadsheets for effort tracking.</p>
+          </article>
+          <article class="ts-why__card">
+            <div class="ts-why__icon" aria-hidden="true"><i data-lucide="briefcase-business"></i></div>
+            <h3>Billable clarity</h3>
+            <p>Separate billable and non-billable time so utilisation and client invoices rest on reviewed data.</p>
+          </article>
+          <article class="ts-why__card">
+            <div class="ts-why__icon" aria-hidden="true"><i data-lucide="clipboard-check"></i></div>
+            <h3>Governed approvals</h3>
+            <p>Manager and multi-level checks keep only validated weeks available for delivery and finance use.</p>
+          </article>
+          <article class="ts-why__card">
+            <div class="ts-why__icon" aria-hidden="true"><i data-lucide="bar-chart-3"></i></div>
+            <h3>Productivity signals</h3>
+            <p>Utilisation and productivity views help leads act before capacity breaks mid-season.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature explorer -->
+    <section class="ts-section" id="features" aria-labelledby="ts-feat-title">
+      <div class="container">
+        <div class="ts-section__head ts-reveal">
+          <p class="eyebrow">Core capabilities</p>
+          <h2 class="section-title" id="ts-feat-title">Everything TimeERP Timesheet is built to do</h2>
+          <p class="section-lead">Explore entry, billing signals, control, and insight capabilities aligned with the Timesheet and Project modules employees already use.</p>
+        </div>
+        <div class="ts-filters ts-reveal" role="tablist" aria-label="Filter timesheet features">
+          <button type="button" class="ts-filter is-active" data-filter="all" aria-selected="true">All</button>
+          <button type="button" class="ts-filter" data-filter="entry" aria-selected="false">Time entry</button>
+          <button type="button" class="ts-filter" data-filter="billing" aria-selected="false">Billable mix</button>
+          <button type="button" class="ts-filter" data-filter="control" aria-selected="false">Control</button>
+          <button type="button" class="ts-filter" data-filter="insight" aria-selected="false">Insight</button>
+        </div>
+        <div class="ts-feat-layout ts-reveal">
+          <div class="ts-feat-list" id="tsFeatList" role="tablist" aria-label="Timesheet features"></div>
+          <aside class="ts-panel" role="tabpanel" aria-live="polite">
+            <div class="ts-panel__inner">
+              <span class="ts-panel__badge"><span id="tsPanelIcon"><i data-lucide="file-clock" aria-hidden="true"></i></span> TIME ERP</span>
+              <h3 id="tsPanelName">Daily Timesheet</h3>
+              <p class="ts-panel__desc" id="tsPanelDesc"></p>
+              <span class="ts-panel__label">Key capabilities</span>
+              <ul class="ts-caps" id="tsPanelCaps"></ul>
+              <span class="ts-panel__label">Business value</span>
+              <p class="ts-benefits-box" id="tsPanelBenefits"></p>
+              <div class="ts-panel__actions">
+                <a class="btn btn--primary" href="#" data-book-demo>Book Demo</a>
+                <a class="btn btn--ghost" href="contact_sales.html">Contact Sales</a>
+                <a class="btn btn--ghost" href="home.html#module/timesheet">Open Timesheet</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Workflow -->
+    <section class="ts-section ts-section--soft" aria-labelledby="ts-flow-title">
+      <div class="container">
+        <div class="ts-section__head ts-reveal">
+          <p class="eyebrow">Workflow</p>
+          <h2 class="section-title" id="ts-flow-title">From hours logged to approved effort</h2>
+          <p class="section-lead">A simple path that professional firms can run every week without Excel rebuilds.</p>
+        </div>
+        <div class="ts-flow ts-reveal" aria-label="Timesheet approval workflow">
+          <div class="ts-flow__step is-on">
+            <span class="ts-flow__num">1</span>
+            <strong>Hours captured</strong>
+            <span>Daily or weekly self-entry</span>
+          </div>
+          <span class="ts-flow__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+          <div class="ts-flow__step">
+            <span class="ts-flow__num">2</span>
+            <strong>Project tagged</strong>
+            <span>Project and task context</span>
+          </div>
+          <span class="ts-flow__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+          <div class="ts-flow__step">
+            <span class="ts-flow__num">3</span>
+            <strong>Billable marked</strong>
+            <span>Billable vs non-billable</span>
+          </div>
+          <span class="ts-flow__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+          <div class="ts-flow__step">
+            <span class="ts-flow__num">4</span>
+            <strong>Sheet submitted</strong>
+            <span>Week ready for review</span>
+          </div>
+          <span class="ts-flow__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+          <div class="ts-flow__step">
+            <span class="ts-flow__num">5</span>
+            <strong>Manager approves</strong>
+            <span>Multi-level when required</span>
+          </div>
+          <span class="ts-flow__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+          <div class="ts-flow__step">
+            <span class="ts-flow__num">6</span>
+            <strong>Reports export</strong>
+            <span>Utilisation and packs</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Industries -->
+    <section class="ts-section" aria-labelledby="ts-cases-title">
+      <div class="container">
+        <div class="ts-section__head ts-reveal">
+          <p class="eyebrow">Industries</p>
+          <h2 class="section-title" id="ts-cases-title">Where timesheets protect margin</h2>
+        </div>
+        <div class="ts-cases ts-reveal">
+          <article class="ts-case">
+            <i data-lucide="briefcase-business" aria-hidden="true"></i>
+            <h3>CA and professional firms</h3>
+            <p>Chargeable staff hours stay tied to clients and tasks for accurate billing and utilisation.</p>
+          </article>
+          <article class="ts-case">
+            <i data-lucide="users" aria-hidden="true"></i>
+            <h3>Consulting and services</h3>
+            <p>Weekly approvals protect quality before partner sign-off and client invoices.</p>
+          </article>
+          <article class="ts-case">
+            <i data-lucide="clipboard-check" aria-hidden="true"></i>
+            <h3>Project delivery</h3>
+            <p>Task timesheets show real effort beside status so schedule slips show early.</p>
+          </article>
+          <article class="ts-case">
+            <i data-lucide="bar-chart-3" aria-hidden="true"></i>
+            <h3>MSME multi-site</h3>
+            <p>Managers see who logged time, who is late to submit, and where OT is rising.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard metrics -->
+    <section class="ts-section ts-section--panel" id="tsDash" aria-labelledby="ts-dash-title">
+      <div class="container">
+        <div class="ts-section__head ts-reveal">
+          <p class="eyebrow">Snapshot</p>
+          <h2 class="section-title" id="ts-dash-title">Example week at a glance</h2>
+          <p class="section-lead">Illustrative metrics for a single consultant week. Live figures depend on your team size and policy set-up.</p>
+        </div>
+        <div class="ts-dash ts-reveal">
+          <div class="ts-dash__main">
+            <h3>Timesheet health</h3>
+            <p>Sample week: logged hours, billable mix, and approval queue.</p>
+            <div class="ts-dash__metrics">
+              <div class="ts-metric"><strong data-count="41" data-suffix="h">0h</strong><span>Weekly hours</span></div>
+              <div class="ts-metric"><strong data-count="34" data-suffix="h">0h</strong><span>Billable</span></div>
+              <div class="ts-metric"><strong data-count="7" data-suffix="h">0h</strong><span>Non-billable</span></div>
+              <div class="ts-metric"><strong data-count="83" data-suffix="%">0%</strong><span>Utilization</span></div>
+              <div class="ts-metric"><strong data-count="5">0</strong><span>Active projects</span></div>
+              <div class="ts-metric"><strong data-count="12">0</strong><span>Sheets pending</span></div>
+            </div>
+          </div>
+          <div class="ts-dash__side">
+            <div class="ts-dash__card">
+              <h4>Billable share</h4>
+              <div class="ts-bar" data-width="83"><span></span></div>
+              <p>34 billable of 41 hours logged this week (83% utilisation style share).</p>
+            </div>
+            <div class="ts-dash__card">
+              <h4>Submission coverage</h4>
+              <div class="ts-bar" data-width="76"><span></span></div>
+              <p>Most of the team has submitted; managers clear the rest in the approval queue.</p>
+            </div>
+            <div class="ts-dash__card">
+              <h4>Today focus</h4>
+              <div class="ts-bar" data-width="92"><span></span></div>
+              <p>Today's Hours 8h 15m on project work with sheet status Pending Manager Approval.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="ts-section ts-section--soft" aria-labelledby="ts-ben-title">
+      <div class="container">
+        <div class="ts-section__head ts-reveal">
+          <p class="eyebrow">Outcomes</p>
+          <h2 class="section-title" id="ts-ben-title">Benefits by audience</h2>
+        </div>
+        <div class="ts-ben ts-reveal">
+          <article class="ts-ben__card">
+            <h3><i data-lucide="users" aria-hidden="true"></i> Employees</h3>
+            <ul>
+              <li>Fast daily and weekly self-entry</li>
+              <li>Clear status from draft to approved</li>
+              <li>Project and task context in one form</li>
+            </ul>
+          </article>
+          <article class="ts-ben__card">
+            <h3><i data-lucide="clipboard-check" aria-hidden="true"></i> Managers</h3>
+            <ul>
+              <li>Approval queues instead of inbox hunts</li>
+              <li>OT and gap signals without chase culture</li>
+              <li>Team productivity in one scan</li>
+            </ul>
+          </article>
+          <article class="ts-ben__card">
+            <h3><i data-lucide="briefcase-business" aria-hidden="true"></i> Delivery / finance</h3>
+            <ul>
+              <li>Billable hours ready for job costing</li>
+              <li>Exports for client and audit packs</li>
+              <li>Less rework when reconciling efforts</li>
+            </ul>
+          </article>
+          <article class="ts-ben__card">
+            <h3><i data-lucide="bar-chart-3" aria-hidden="true"></i> Leadership</h3>
+            <ul>
+              <li>Utilisation truth for capacity talks</li>
+              <li>Protected margins with governed effort</li>
+              <li>Same ERP as HR, projects, and billing</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Integrations -->
+    <section class="ts-section" aria-labelledby="ts-int-title">
+      <div class="container">
+        <div class="ts-section__head ts-reveal">
+          <p class="eyebrow">Integrations</p>
+          <h2 class="section-title" id="ts-int-title">Works with the rest of TimeERP</h2>
+          <p class="section-lead">Integrate timesheets with HR, projects, payroll, billing, and reporting for a unified workforce management experience.</p>
+        </div>
+        <div class="ts-int ts-reveal">
+          <a class="ts-int__card" href="hrms.html">
+            <span class="ts-int__icon" aria-hidden="true"><i data-lucide="users"></i></span>
+            <span><h3>HRMS</h3><p>Sync employee profiles, departments, managers, and reporting hierarchy for accurate timesheet ownership.</p></span>
+          </a>
+          <a class="ts-int__card" href="project_management.html">
+            <span class="ts-int__icon" aria-hidden="true"><i data-lucide="clipboard-check"></i></span>
+            <span><h3>Project Management</h3><p>Log project and task hours to track effort, progress, and billing visibility.</p></span>
+          </a>
+          <a class="ts-int__card" href="payroll.html">
+            <span class="ts-int__icon" aria-hidden="true"><i data-lucide="briefcase-business"></i></span>
+            <span><h3>Payroll</h3><p>Approved timesheets support payroll processing, overtime calculation, and employee compensation.</p></span>
+          </a>
+          <a class="ts-int__card" href="billing.html">
+            <span class="ts-int__icon" aria-hidden="true"><i data-lucide="file-clock"></i></span>
+            <span><h3>Billing</h3><p>Convert approved billable hours into client billing and project cost tracking.</p></span>
+          </a>
+          <a class="ts-int__card" href="hrms.html">
+            <span class="ts-int__icon" aria-hidden="true"><i data-lucide="calendar-days"></i></span>
+            <span><h3>Attendance &amp; Leave</h3><p>Compare attendance and leave records with logged work hours for complete workforce visibility.</p></span>
+          </a>
+          <a class="ts-int__card" href="expense.html">
+            <span class="ts-int__icon" aria-hidden="true"><i data-lucide="clock-3"></i></span>
+            <span><h3>Expense</h3><p>Link timesheets with travel and expense claims for accurate project costing.</p></span>
+          </a>
+          <a class="ts-int__card" href="dashboard.html">
+            <span class="ts-int__icon" aria-hidden="true"><i data-lucide="bar-chart-3"></i></span>
+            <span><h3>Dashboard</h3><p>Visualize utilization, billable hours, productivity, approvals, and team performance in real time.</p></span>
+          </a>
+          <a class="ts-int__card" href="crm.html">
+            <span class="ts-int__icon" aria-hidden="true"><i data-lucide="users"></i></span>
+            <span><h3>CRM</h3><p>Associate timesheets with customers, projects, and service engagements for complete client visibility.</p></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="ts-section ts-section--soft" aria-labelledby="ts-faq-title">
+      <div class="container">
+        <div class="ts-section__head ts-reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2 class="section-title" id="ts-faq-title">Questions teams ask about Timesheet</h2>
+        </div>
+        <div class="ts-faq ts-reveal">
+          <div class="ts-faq__item">
+            <button type="button" class="ts-faq__q" aria-expanded="false">What is included in TimeERP Timesheet?<i data-lucide="chevron-down" aria-hidden="true"></i></button>
+            <div class="ts-faq__a">Daily and weekly timesheets, billable hours, approval workflow, productivity views, and reports. Project Management also provides Task Timesheet for effort against tasks.</div>
+          </div>
+          <div class="ts-faq__item">
+            <button type="button" class="ts-faq__q" aria-expanded="false">How do billable and non-billable hours work?<i data-lucide="chevron-down" aria-hidden="true"></i></button>
+            <div class="ts-faq__a">Employees mark lines as billable or non-billable so utilisation and client-facing effort stay visible for managers and finance reviews.</div>
+          </div>
+          <div class="ts-faq__item">
+            <button type="button" class="ts-faq__q" aria-expanded="false">Can managers approve weekly sheets?<i data-lucide="chevron-down" aria-hidden="true"></i></button>
+            <div class="ts-faq__a">Yes. Weekly approvals are a core pattern. Multi-level paths may be used when your organisation needs more than one gate.</div>
+          </div>
+          <div class="ts-faq__item">
+            <button type="button" class="ts-faq__q" aria-expanded="false">Does timesheet link to projects and tasks?<i data-lucide="chevron-down" aria-hidden="true"></i></button>
+            <div class="ts-faq__a">Hours can be posted project-wise and task-wise so delivery cost and client work packs reflect real effort.</div>
+          </div>
+          <div class="ts-faq__item">
+            <button type="button" class="ts-faq__q" aria-expanded="false">How does leave connect to timesheets?<i data-lucide="chevron-down" aria-hidden="true"></i></button>
+            <div class="ts-faq__a">Leave context from TimeERP Leave management helps explain week gaps and reduces false escalations when staff are approved off.</div>
+          </div>
+          <div class="ts-faq__item">
+            <button type="button" class="ts-faq__q" aria-expanded="false">What reports are available?<i data-lucide="chevron-down" aria-hidden="true"></i></button>
+            <div class="ts-faq__a">Productivity and utilisation style views, plus timesheet reporting used with HRMS and project reporting bundles. Export Excel/PDF supports review packs.</div>
+          </div>
+          <div class="ts-faq__item">
+            <button type="button" class="ts-faq__q" aria-expanded="false">Is this the same as attendance clock-in?<i data-lucide="chevron-down" aria-hidden="true"></i></button>
+            <div class="ts-faq__a">No. Attendance records presence. Timesheet records what work was done, for whom, and whether it is billable. Both sit under the broader people stack in TimeERP.</div>
+          </div>
+          <div class="ts-faq__item">
+            <button type="button" class="ts-faq__q" aria-expanded="false">Can staff enter their own hours?<i data-lucide="chevron-down" aria-hidden="true"></i></button>
+            <div class="ts-faq__a">Yes. Employee self-entry is the default path. Managers still approve before hours are treated as validated for the wider process.</div>
+          </div>
+          <div class="ts-faq__item">
+            <button type="button" class="ts-faq__q" aria-expanded="false">How do we get started?<i data-lucide="chevron-down" aria-hidden="true"></i></button>
+            <div class="ts-faq__a">Open the Timesheet module from TimeERP home, configure approvers for a pilot team, and book a demo for multi-client billable set-ups.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="ts-section" aria-labelledby="ts-cta-title">
+      <div class="container">
+        <div class="ts-cta ts-reveal">
+          <h2 id="ts-cta-title">Make every hour countable, approvable, and billable-ready</h2>
+          <p>See daily and weekly timesheets, approval queues, and utilisation views in a live TimeERP walkthrough for your delivery model.</p>
+          <div class="ts-cta__actions">
+            <a class="btn btn--primary" href="#" data-book-demo>Book Demo</a>
+            <a class="btn btn--ghost-dark" href="contact_sales.html">Contact Sales</a>
+            <a class="btn btn--ghost-dark" href="home.html#module/timesheet">Open Timesheet</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__main">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo" aria-label="TimeERP home">
+            <img src="assets/image01-footer.svg" alt="TimeERP" width="196" height="48" loading="lazy">
+          </a>
+          <p class="footer__desc">One Platform. Complete Business Management. Enterprise ERP for modern businesses.</p>
+          <div class="footer__stats">
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">◆</span><span>650+ Businesses</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">◎</span><span>99.8% Uptime</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">☁</span><span>Cloud ERP</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">⛨</span><span>Secure</span></div>
+          </div>
+        </div>
+        <div class="footer__cols">
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Products</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Products</h3>
+            <ul class="footer__links">
+              <li><a href="index.html#products">Modules</a></li>
+              <li><a href="index.html#benefits">Benefits</a></li>
+              <li><a href="index.html#task-management">Project Management</a></li>
+              <li><a href="index.html#solutions">Platform</a></li>
+              <li><a href="price.html">Pricing</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Industries</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Industries</h3>
+            <ul class="footer__links">
+              <li><a href="construction.html">Construction</a></li>
+              <li><a href="real_Estate.html">Real Estate</a></li>
+              <li><a href="msme.html">MSME</a></li>
+              <li><a href="CA.html">CA Firms</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Company</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Company</h3>
+            <ul class="footer__links">
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="Our_Presence.html">Our Presence</a></li>
+              <li><a href="careers.html">Careers</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="contact_sales.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Support</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Support</h3>
+            <ul class="footer__links">
+              <li><a href="help_centre.html">Help Center</a></li>
+              <li><a href="contact_sales.html">Sales</a></li>
+              <li><a href="custom_quote.html">Get a Quote</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer__connect">
+        <div class="footer__connect-item">
+          <span class="footer__connect-label">Visit us</span>
+          <address class="footer__address">
+            <a class="footer__address-link" href="https://www.google.com/maps/search/?api=1&query=Ansal+Sumedha+Building+RDC+Ghaziabad+201002" target="_blank" rel="noopener noreferrer" aria-label="View office location on Google Maps">
+              BM-08, Ansal Sumedha Building, RDC,<br>
+              Ghaziabad, Delhi NCR, UP 201002
+            </a>
+          </address>
+          <div class="footer__quick">
+            <a class="footer__quick-btn" href="#" data-book-demo>Book Demo</a>
+            <a class="footer__quick-btn" href="real_time_support.html">Get Support</a>
+          </div>
+        </div>
+        <div class="footer__connect-item">
+          <span class="footer__connect-label">Follow us</span>
+          <div class="footer__social">
+            <a href="https://www.linkedin.com/in/ca-clouddesk-381510388" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23.5h-4V8.5zM8.5 8.5h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1v8.9h-4v-7.88c0-1.88-.03-4.3-2.62-4.3-2.62 0-3.02 2.05-3.02 4.17v7.01h-4V8.5z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/erptime/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@ERPTime" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.5v-7l6 3.5-6 3.5z"/></svg>
+            </a>
+            <a href="https://x.com/erptime" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke-linecap="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bar">
+        <p class="footer__copy">© 2026 TimeERP <a href="https://lawseva.com/" target="_blank" rel="noopener noreferrer">Law Seva Management Private Limited</a></p>
+        <nav class="footer__legal" aria-label="Legal">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="security.html">Security</a>
+          <a href="contact_sales.html">Contact Us</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@0.468.0" defer></script>
+  <script src="js/timesheet.js" defer></script>
+  <script src="js/footer-accordion.js" defer></script>
+  <script src="js/site-nav.js?v=13" defer></script>
+  <script src="js/site-footer.js?v=6"></script>
+</body>
+</html>

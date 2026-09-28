@@ -1,0 +1,2803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Monitoring: Attendance, Tasks &amp; Workforce Visibility | TimeERP</title>
+  <meta name="description" content="TimeERP Employee Monitoring connects My Attendance, Day Book, Timesheets, Task Management and Reports so managers see who is present and what work is moving.">
+  <meta name="theme-color" content="#25B7A7">
+  <link rel="icon" href="favicon.ico?v=16" sizes="any">
+  <link rel="icon" href="assets/favicon-mark.png?v=16" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --primary: #25b7a7;
+  --primary-dark: #1a9e8f;
+  --primary-light: #e8f8f6;
+  --primary-deeper: #0d7a6e;
+  --heading: #083530;
+  --text: #3d5250;
+  --muted: #7a9593;
+  --bg: #f0f7f6;
+  --bg-light: #f4fafa;
+  --white: #fff;
+  --border: #d0eeec;
+  --border-soft: #e5efee;
+  --navy: #243F64;
+  --dark: #07171F;
+  --orange: #fa8c16;
+  --red: #e11d48;
+  --blue: #3b82f6;
+  --radius: 12px;
+  --radius-lg: 18px;
+  --shadow: 0 8px 28px rgba(8,53,48,.08);
+  --shadow-lg: 0 20px 56px rgba(8,53,48,.12);
+  --max: 1180px;
+  --pad: clamp(18px, 4vw, 40px);
+  --section: clamp(56px, 7vw, 88px);
+  --nav-h: 64px;
+  --ease: cubic-bezier(.22,1,.36,1);
+  --font: Inter, system-ui, -apple-system, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal, .reveal-child { opacity: 1 !important; transform: none !important; }
+  .bars i { transform: scaleY(1) !important; }
+  .flow__step { opacity: 1 !important; transform: none !important; }
+  .flow__step::before { transform: none !important; }
+  .reel__progress > i { animation: none !important; width: 100% !important; }
+  .weekbars__bar { transform: scaleY(1) !important; }
+}
+body {
+  font-family: var(--font); font-size: 15px; line-height: 1.6;
+  color: var(--text); background: var(--bg-light); -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+ul { list-style: none; }
+strong { font-weight: 600; color: var(--heading); }
+
+.container { width: min(var(--max), 100% - var(--pad) * 2); margin-inline: auto; }
+.section { padding: var(--section) 0; }
+.section--white { background: var(--white); }
+.section--alt { background: var(--bg); }
+.section--dark { background: var(--dark); color: rgba(255,255,255,.75); }
+
+.eyebrow {
+  display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--primary-deeper); margin-bottom: 10px;
+}
+.section--dark .eyebrow { color: var(--primary); }
+.section-title {
+  font-size: clamp(1.45rem, 2.5vw, 2.1rem); font-weight: 750; letter-spacing: -.025em;
+  line-height: 1.2; color: var(--heading); margin-bottom: 10px;
+}
+.section--dark .section-title { color: #fff; }
+.section-lead {
+  font-size: .95rem; color: var(--text); max-width: 520px; line-height: 1.65;
+}
+.section--dark .section-lead { color: rgba(255,255,255,.68); }
+.section-head { max-width: 600px; margin-bottom: 32px; }
+.section-head--wide { max-width: none; }
+.section-head--center { text-align: center; margin-inline: auto; }
+.section-head--center .section-lead { margin-inline: auto; }
+.section-title--single {
+  white-space: nowrap;
+  font-size: clamp(1.35rem, 2.2vw, 1.95rem);
+}
+@media (max-width: 720px) {
+  .section-title--single { white-space: normal; }
+}
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: 42px; padding: 0 18px; border-radius: 8px; font-size: 13.5px; font-weight: 600;
+  transition: background .25s var(--ease), color .25s, border-color .25s, box-shadow .25s, transform .25s var(--ease);
+  position: relative; overflow: hidden;
+}
+.btn--primary {
+  background: var(--primary); color: #fff; box-shadow: 0 6px 18px rgba(37,183,167,.28);
+}
+.btn--primary::after {
+  content: ""; position: absolute; inset: 0; left: -120%;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,.28) 50%, transparent 60%);
+  animation: btnShine 4.5s ease-in-out infinite;
+}
+@keyframes btnShine {
+  0%, 60% { left: -120%; }
+  80%, 100% { left: 120%; }
+}
+.btn--primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 10px 26px rgba(37,183,167,.36); }
+.btn--ghost { background: #fff; color: var(--heading); border: 1px solid var(--border); }
+.btn--ghost:hover { border-color: var(--primary); color: var(--primary-deeper); transform: translateY(-1px); box-shadow: var(--shadow); }
+.btn--ghost-dark { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.28); }
+.btn--ghost-dark:hover { background: rgba(255,255,255,.08); border-color: #fff; }
+.btn--sm { height: 36px; padding: 0 14px; font-size: 12.5px; }
+.btn-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .75s var(--ease), transform .75s var(--ease); }
+.reveal.is-in { opacity: 1; transform: none; }
+.reveal-child { opacity: 0; transform: translateY(14px); transition: opacity .55s var(--ease), transform .55s var(--ease); }
+.is-in .reveal-child { opacity: 1; transform: none; }
+.is-in .reveal-child:nth-child(2) { transition-delay: .07s; }
+.is-in .reveal-child:nth-child(3) { transition-delay: .12s; }
+.is-in .reveal-child:nth-child(4) { transition-delay: .17s; }
+.is-in .reveal-child:nth-child(5) { transition-delay: .22s; }
+.is-in .reveal-child:nth-child(6) { transition-delay: .27s; }
+.is-in .reveal-child:nth-child(7) { transition-delay: .32s; }
+.is-in .reveal-child:nth-child(8) { transition-delay: .37s; }
+
+/* Shared polish */
+.card, .app, .cc, .explorer, .e360, .compare, .brief, .eco, .tfeat, .bento__card, .signal, .outcome, .trust-card {
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s;
+}
+.card:hover, .bento__card:hover, .outcome:hover, .trust-card:hover {
+  transform: translateY(-3px); box-shadow: var(--shadow);
+}
+
+/* Nav */
+.nav {
+  position: fixed; inset: 0 0 auto; z-index: 1000; height: var(--nav-h);
+  display: flex; align-items: center; background: rgba(255,255,255,.88);
+  backdrop-filter: blur(14px) saturate(1.2); border-bottom: 1px solid transparent;
+  transition: height .3s var(--ease), border-color .25s, box-shadow .25s, background .25s;
+}
+.nav.is-scrolled {
+  height: 56px; border-bottom-color: var(--border);
+  background: rgba(255,255,255,.96); box-shadow: 0 6px 24px rgba(8,53,48,.07);
+}
+.nav__links a {
+  padding: 7px 10px; font-size: 13px; font-weight: 500; color: var(--text); border-radius: 6px;
+  transition: color .2s, background .2s;
+}
+.nav__links a:hover, .nav__links a.is-active {
+  color: var(--primary-deeper); background: var(--primary-light);
+}
+.nav__inner {
+  width: min(var(--max), 100% - var(--pad) * 2); margin-inline: auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+}
+.nav__brand { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: var(--heading); font-size: 15px; }
+.nav__brand span { color: var(--primary); }
+.nav__brand img { width: 28px; height: 28px; }
+.nav__links { display: flex; gap: 2px; }
+.nav__cta { display: flex; align-items: center; gap: 8px; }
+.nav__toggle {
+  display: none; width: 38px; height: 38px; border-radius: 8px; border: 1px solid var(--border);
+  background: #fff; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+}
+.nav__toggle span { width: 16px; height: 2px; background: var(--heading); border-radius: 2px; display: block; }
+
+/* Hero */
+.hero {
+  padding: calc(var(--nav-h) + 36px) 0 48px;
+  background:
+    radial-gradient(700px 320px at 90% 0%, rgba(37,183,167,.12), transparent 60%),
+    linear-gradient(180deg, #fff 0%, var(--bg-light) 100%);
+}
+.hero__grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 40px; align-items: center; }
+.hero__badge {
+  display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px; border-radius: 999px;
+  background: var(--primary-light); border: 1px solid rgba(37,183,167,.25);
+  font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--primary-deeper); margin-bottom: 14px;
+}
+.hero__title {
+  font-size: clamp(1.75rem, 3.6vw, 2.55rem); font-weight: 800; letter-spacing: -.03em;
+  line-height: 1.12; color: var(--heading); margin-bottom: 14px;
+}
+.hero__title em { font-style: normal; color: var(--primary-deeper); }
+.hero__sub { font-size: .95rem; max-width: 460px; margin-bottom: 22px; color: var(--text); }
+.hero__modules {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px;
+}
+.hero__modules span {
+  font-size: 11px; font-weight: 600; padding: 5px 10px; border-radius: 6px;
+  background: #fff; border: 1px solid var(--border); color: var(--heading);
+}
+
+/* App shell mock */
+.app {
+  background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg); overflow: hidden; position: relative;
+  animation: appFloat 7s ease-in-out infinite;
+}
+@keyframes appFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.app:hover { animation-play-state: paused; }
+.app__chrome {
+  display: flex; align-items: center; gap: 8px; padding: 10px 14px;
+  background: #fafcfc; border-bottom: 1px solid var(--border-soft);
+}
+.app__dot { width: 7px; height: 7px; border-radius: 50%; background: #d1d5db; }
+.app__dot:nth-child(1) { background: #f87171; }
+.app__dot:nth-child(2) { background: #fbbf24; }
+.app__dot:nth-child(3) { background: #34d399; }
+.app__chrome-title { margin-left: 6px; font-size: 11px; font-weight: 600; color: var(--muted); }
+.app__demo {
+  position: absolute; top: 10px; right: 12px; z-index: 2;
+  font-size: 9px; font-weight: 700; letter-spacing: .06em; color: var(--muted);
+  background: var(--bg); padding: 2px 7px; border-radius: 999px; border: 1px solid var(--border);
+}
+.app__body { display: grid; grid-template-columns: 148px 1fr; min-height: 340px; }
+.app__side {
+  background: #fff; border-right: 1px solid var(--border-soft); padding: 12px 8px;
+}
+.app__side .logo {
+  display: flex; align-items: center; gap: 6px; padding: 4px 8px 12px;
+  font-size: 12px; font-weight: 700; color: var(--heading);
+}
+.app__side .logo span { color: var(--primary); }
+.app__side a, .app__side button {
+  display: block; width: 100%; text-align: left; padding: 7px 10px; border-radius: 6px;
+  font-size: 11px; font-weight: 500; color: #44515a; margin-bottom: 2px;
+}
+.app__side .is-on { background: var(--primary-light); color: var(--primary-deeper); font-weight: 600; }
+.app__main { background: var(--bg); padding: 12px; }
+.app__topbar {
+  display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  margin-bottom: 10px; flex-wrap: wrap;
+}
+.app__topbar h3 { font-size: 13px; color: var(--heading); font-weight: 700; }
+.app__checkin {
+  height: 28px; padding: 0 12px; border-radius: 6px; background: var(--primary);
+  color: #fff; font-size: 11px; font-weight: 600;
+}
+.kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 10px; }
+.kpi {
+  background: #fff; border: 1px solid var(--border-soft); border-radius: 10px; padding: 10px;
+  transition: transform .25s var(--ease), border-color .25s, box-shadow .25s;
+}
+.kpi:hover {
+  transform: translateY(-2px); border-color: rgba(37,183,167,.35);
+  box-shadow: 0 6px 16px rgba(37,183,167,.1);
+}
+.kpi strong { display: block; font-size: 16px; font-weight: 800; color: var(--heading); letter-spacing: -.02em; transition: opacity .2s, transform .2s; }
+.kpi span { font-size: 10px; color: var(--muted); font-weight: 500; }
+.kpi--accent { border-color: rgba(37,183,167,.35); background: linear-gradient(160deg, #eefaf8, #fff); }
+.kpi--accent strong { color: var(--primary-deeper); }
+
+.panel {
+  background: #fff; border: 1px solid var(--border-soft); border-radius: 10px; padding: 12px;
+}
+.panel h4 {
+  font-size: 11px; font-weight: 700; color: var(--heading); margin-bottom: 10px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.panel-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 8px; }
+
+.bars { display: flex; align-items: flex-end; gap: 4px; height: 72px; }
+.bars i {
+  flex: 1; border-radius: 3px 3px 0 0; background: linear-gradient(180deg, var(--primary), #7ad9ce);
+  font-style: normal; min-height: 6px; transform-origin: bottom;
+  transform: scaleY(0); transition: transform .8s var(--ease);
+}
+.is-in .bars i, .bars.is-animated i { transform: scaleY(1); }
+.bars i:nth-child(1) { transition-delay: .05s; }
+.bars i:nth-child(2) { transition-delay: .1s; }
+.bars i:nth-child(3) { transition-delay: .15s; }
+.bars i:nth-child(4) { transition-delay: .2s; }
+.bars i:nth-child(5) { transition-delay: .25s; }
+.bars i:nth-child(6) { transition-delay: .3s; }
+.bars i:nth-child(7) { transition-delay: .35s; }
+
+.tbl { width: 100%; border-collapse: collapse; font-size: 11px; }
+.tbl th {
+  text-align: left; padding: 7px 6px; font-size: 9px; font-weight: 700; letter-spacing: .04em;
+  text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border);
+}
+.tbl td { padding: 8px 6px; border-bottom: 1px solid var(--border-soft); color: var(--heading); vertical-align: middle; }
+.tbl tr { transition: background .15s; }
+.tbl tr:hover { background: var(--primary-light); }
+
+.badge {
+  display: inline-flex; padding: 2px 7px; border-radius: 999px; font-size: 10px; font-weight: 700;
+}
+.badge--p { background: #d1fae5; color: #047857; }
+.badge--a { background: #fee2e2; color: #b91c1c; }
+.badge--late { background: #fef3c7; color: #b45309; }
+.badge--od { background: #dbeafe; color: #1d4ed8; }
+.badge--open { background: #e8f8f6; color: var(--primary-deeper); }
+.badge--proc { background: #dbeafe; color: #1d4ed8; }
+.badge--rev { background: #fef3c7; color: #b45309; }
+.badge--done { background: #d1fae5; color: #047857; }
+.badge--stuck { background: #fee2e2; color: #b91c1c; }
+.badge--high { background: #fee2e2; color: #b91c1c; }
+.badge--med { background: #fef3c7; color: #b45309; }
+.badge--info { background: #e8f8f6; color: var(--primary-deeper); }
+
+.float-card {
+  position: absolute; z-index: 4; background: #fff; border: 1px solid var(--border);
+  border-radius: 12px; padding: 10px 14px; box-shadow: var(--shadow);
+  white-space: nowrap; pointer-events: none;
+}
+.float-card strong {
+  display: block; font-size: 12.5px; font-weight: 800; color: var(--heading);
+  letter-spacing: -.01em; white-space: nowrap;
+}
+.float-card span { font-size: 10px; color: var(--muted); white-space: nowrap; }
+.float-card--a { top: -14px; right: -10px; }
+.float-card--b { bottom: -14px; left: -10px; }
+.hero__stage {
+  position: relative;
+  padding: 22px 18px;
+  overflow: visible;
+}
+
+.note { font-size: 10px; color: var(--muted); margin-top: 8px; }
+
+/* Marquee */
+.marquee { padding: 14px 0; background: var(--heading); overflow: hidden; }
+.marquee:hover .marquee__track { animation-play-state: paused; }
+.marquee__track { display: flex; width: max-content; animation: marquee 42s linear infinite; }
+.marquee__track span {
+  display: inline-flex; align-items: center; gap: 24px; padding: 0 24px;
+  font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(255,255,255,.55); white-space: nowrap;
+}
+.marquee__track span::after {
+  content: ""; width: 4px; height: 4px; border-radius: 50%; background: var(--primary);
+}
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* Split cards */
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.card {
+  background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px;
+}
+.card h3 { font-size: 1rem; color: var(--heading); margin-bottom: 12px; font-weight: 700; }
+.card li {
+  display: flex; gap: 8px; align-items: flex-start; font-size: 13px; padding: 8px 0;
+  border-bottom: 1px solid var(--border-soft); color: var(--text);
+}
+.card li:last-child { border-bottom: none; }
+.card--bad li::before { content: "×"; color: #e11d48; font-weight: 800; }
+.card--good { border-color: rgba(37,183,167,.35); background: linear-gradient(165deg, #f3fbfa, #fff); }
+.card--good li::before { content: "✓"; color: var(--primary); font-weight: 800; }
+
+/* Command */
+.cc { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); }
+.cc .app__body { min-height: 420px; }
+.cc__filters { display: flex; gap: 4px; }
+.cc__filters button {
+  padding: 5px 10px; border-radius: 6px; font-size: 11px; font-weight: 600;
+  color: var(--text); border: 1px solid var(--border); background: #fff;
+  transition: background .2s, color .2s, border-color .2s, transform .2s;
+}
+.cc__filters button:hover { border-color: var(--primary); color: var(--primary-deeper); }
+.cc__filters button.is-on { background: var(--heading); color: #fff; border-color: var(--heading); }
+
+/* Flow */
+.flow {
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px;
+  position: relative;
+}
+.flow__step {
+  position: relative; z-index: 1;
+  background: linear-gradient(180deg, #f7fcfb 0%, #fff 42%);
+  border: 1px solid rgba(37,183,167,.4);
+  border-radius: 16px;
+  padding: 18px 14px 16px; text-align: left;
+  opacity: 1; transform: none;
+  box-shadow: 0 16px 36px rgba(8,53,48,.09);
+  transition:
+    border-color .35s,
+    transform .45s var(--ease),
+    box-shadow .45s var(--ease),
+    background .35s;
+  overflow: hidden;
+}
+.flow__step::before {
+  content: ""; position: absolute; inset: 0 0 auto; height: 3px;
+  background: linear-gradient(90deg, var(--primary), #7ad9ce);
+  transform: scaleX(1); transform-origin: left;
+}
+.flow__step:hover {
+  transform: translateY(-4px);
+  border-color: rgba(37,183,167,.55);
+  box-shadow: 0 18px 40px rgba(8,53,48,.12);
+}
+.flow__head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 8px; margin-bottom: 14px;
+}
+.flow__num {
+  width: 28px; height: 28px; border-radius: 9px;
+  background: var(--primary); color: #fff;
+  display: grid; place-items: center; font-size: 11px; font-weight: 800;
+  box-shadow: 0 6px 14px rgba(37,183,167,.35);
+  transition: transform .35s var(--ease), box-shadow .3s;
+}
+.flow__step:hover .flow__num { transform: scale(1.05); }
+.flow__icon {
+  width: 40px; height: 40px; border-radius: 12px;
+  background: rgba(37,183,167,.12); border: 1px solid rgba(37,183,167,.35);
+  display: grid; place-items: center; color: var(--primary);
+  transition: transform .35s var(--ease);
+}
+.flow__icon svg { width: 18px; height: 18px; display: block; }
+.flow__step:hover .flow__icon { transform: translateY(-1px); }
+.flow__step h3 {
+  font-size: 13.5px; font-weight: 750; color: var(--heading);
+  margin-bottom: 6px; letter-spacing: -.01em;
+}
+.flow__step p {
+  font-size: 11.5px; color: var(--muted); line-height: 1.45; margin-bottom: 12px; min-height: 2.9em;
+}
+.flow__tag {
+  display: inline-flex; align-items: center;
+  padding: 4px 8px; border-radius: 999px; font-size: 10px; font-weight: 700;
+  letter-spacing: .04em; text-transform: uppercase;
+  background: var(--primary-light); color: var(--primary-deeper);
+  border: 1px solid rgba(37,183,167,.2);
+}
+.flow__connector {
+  display: none;
+}
+@media (min-width: 1025px) {
+  .flow { gap: 0; }
+  .flow__step {
+    margin-right: 18px;
+  }
+  .flow__step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 32px;
+    right: -14px;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid var(--primary);
+    border-top: 2px solid var(--primary);
+    transform: rotate(45deg);
+    z-index: 2;
+    opacity: 1;
+  }
+  .flow__step:last-child { margin-right: 0; }
+}
+
+/* Explorer */
+.explorer {
+  display: grid; grid-template-columns: 220px 1fr; background: #fff;
+  border: 1px solid var(--border); border-radius: 20px; overflow: hidden; min-height: 460px;
+  box-shadow: 0 18px 48px rgba(8,53,48,.1);
+  position: relative;
+}
+.explorer__tabs {
+  background:
+    radial-gradient(280px 180px at 0% 0%, rgba(37,183,167,.22), transparent 55%),
+    linear-gradient(180deg, #0a2f2b 0%, var(--heading) 100%);
+  padding: 16px 10px; display: flex; flex-direction: column; gap: 4px;
+  position: relative;
+}
+.explorer__brand {
+  display: flex; align-items: center; gap: 8px;
+  padding: 4px 8px 14px; margin-bottom: 4px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  color: #fff; font-size: 12.5px; font-weight: 700;
+}
+.explorer__brand span { color: var(--primary); }
+.explorer__brand small {
+  display: block; font-size: 9.5px; font-weight: 600; letter-spacing: .06em;
+  text-transform: uppercase; color: rgba(255,255,255,.45); margin-top: 2px;
+}
+.explorer__tabs button {
+  text-align: left; padding: 11px 12px; border-radius: 10px; font-size: 12px; font-weight: 600;
+  color: rgba(255,255,255,.55); position: relative;
+  transition: background .25s, color .25s, transform .25s var(--ease), box-shadow .25s;
+}
+.explorer__tabs button::before {
+  content: ""; position: absolute; left: 0; top: 50%; width: 3px; height: 0;
+  border-radius: 0 3px 3px 0; background: var(--primary);
+  transform: translateY(-50%); transition: height .25s var(--ease);
+}
+.explorer__tabs button:hover {
+  color: #fff; background: rgba(255,255,255,.07); transform: translateX(3px);
+}
+.explorer__tabs button.is-on {
+  background: rgba(37,183,167,.28); color: #fff;
+  box-shadow: inset 0 0 0 1px rgba(37,183,167,.25);
+}
+.explorer__tabs button.is-on::before { height: 60%; }
+.explorer__pane {
+  display: none; padding: 26px; grid-template-columns: .9fr 1.1fr; gap: 24px;
+  background:
+    radial-gradient(420px 220px at 100% 0%, rgba(37,183,167,.08), transparent 55%),
+    #fff;
+}
+.explorer__pane.is-on {
+  display: grid;
+  animation: paneIn .4s var(--ease);
+}
+@keyframes paneIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+.explorer__copy h3 {
+  font-size: 1.2rem; color: var(--heading); font-weight: 750; margin-bottom: 8px;
+  letter-spacing: -.02em;
+}
+.explorer__copy p { font-size: 13.5px; margin-bottom: 14px; color: var(--text); line-height: 1.65; }
+.explorer__copy ul { display: grid; gap: 2px; }
+.explorer__copy li {
+  font-size: 13px; padding: 8px 10px 8px 28px; position: relative; color: var(--text);
+  border-radius: 8px; transition: background .2s, transform .2s;
+}
+.explorer__copy li:hover {
+  background: var(--primary-light); transform: translateX(2px);
+}
+.explorer__copy li::before {
+  content: ""; position: absolute; left: 10px; top: 50%; width: 7px; height: 7px;
+  margin-top: -3.5px; border-radius: 50%; background: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37,183,167,.15);
+}
+.explorer__ui {
+  background: linear-gradient(180deg, #f4fafa, #eef7f6);
+  border: 1px solid var(--border);
+  border-radius: 14px; padding: 14px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.8), 0 10px 28px rgba(8,53,48,.05);
+  transition: transform .3s var(--ease), box-shadow .3s;
+}
+.explorer__pane.is-on .explorer__ui {
+  animation: uiRise .45s var(--ease) .05s both;
+}
+@keyframes uiRise {
+  from { opacity: 0; transform: translateY(12px) scale(.985); }
+  to { opacity: 1; transform: none; }
+}
+.explorer__ui:hover {
+  transform: translateY(-2px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.8), 0 16px 34px rgba(8,53,48,.08);
+}
+.explorer__ui-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border-soft);
+}
+.explorer__ui-bar strong {
+  font-size: 11px; font-weight: 700; color: var(--heading); letter-spacing: .02em;
+}
+.explorer__ui-bar span {
+  font-size: 10px; font-weight: 600; color: var(--primary-deeper);
+  background: rgba(37,183,167,.12); border: 1px solid rgba(37,183,167,.22);
+  padding: 3px 8px; border-radius: 999px;
+}
+.explorer__badges {
+  display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px;
+}
+.explorer__badges .badge {
+  transition: transform .25s var(--ease), box-shadow .25s;
+}
+.explorer__badges .badge:hover {
+  transform: translateY(-2px); box-shadow: 0 6px 14px rgba(8,53,48,.08);
+}
+.explorer .tbl tbody tr {
+  transition: background .2s, transform .2s;
+}
+.explorer .tbl tbody tr:hover {
+  background: rgba(37,183,167,.08);
+  transform: scale(1.005);
+}
+
+.kanban { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.kanban__col {
+  background: #fff; border: 1px solid var(--border-soft); border-radius: 8px; padding: 8px; min-height: 110px;
+  transition: border-color .2s, box-shadow .2s, transform .2s;
+}
+.kanban__col:hover {
+  border-color: rgba(37,183,167,.35); box-shadow: 0 8px 18px rgba(8,53,48,.06); transform: translateY(-2px);
+}
+.kanban__col h5 {
+  font-size: 9px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 6px;
+}
+.kanban__card {
+  background: var(--bg-light); border: 1px solid var(--border-soft); border-radius: 6px;
+  padding: 7px; font-size: 10.5px; font-weight: 600; color: var(--heading); margin-bottom: 5px;
+  transition: transform .2s, border-color .2s, background .2s;
+}
+.kanban__card:hover {
+  transform: translateX(2px); border-color: rgba(37,183,167,.35); background: #fff;
+}
+.kanban__card span { display: block; font-size: 9.5px; color: var(--muted); font-weight: 500; margin-top: 3px; }
+
+/* Bento */
+.bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; }
+.bento__card {
+  background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 16px;
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.bento__card:hover { transform: translateY(-2px); box-shadow: var(--shadow); border-color: rgba(37,183,167,.35); }
+.bento__card h3 { font-size: 13px; font-weight: 700; color: var(--heading); margin-bottom: 10px; }
+.bento--lg { grid-column: span 7; grid-row: span 2; }
+.bento--md { grid-column: span 5; }
+.bento--tall { grid-column: span 4; grid-row: span 2; }
+.bento--wide { grid-column: span 8; }
+.bento--sm { grid-column: span 4; }
+.bento--dark {
+  background: linear-gradient(145deg, var(--heading), #0d524c); border-color: transparent; color: rgba(255,255,255,.7);
+}
+.bento--dark h3 { color: #fff; }
+
+/* Signals */
+.signals { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.signal {
+  display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center;
+  background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 14px 14px 16px;
+  cursor: default; position: relative; overflow: hidden;
+  transition:
+    transform .35s var(--ease),
+    box-shadow .35s var(--ease),
+    border-color .3s,
+    background .3s;
+}
+.signal::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--primary); transform: scaleY(0); transform-origin: center;
+  transition: transform .35s var(--ease);
+}
+.signal:hover {
+  transform: translateY(-4px);
+  border-color: rgba(37,183,167,.45);
+  box-shadow: 0 14px 32px rgba(8,53,48,.1);
+  background: linear-gradient(120deg, #f7fcfb 0%, #fff 45%);
+}
+.signal:hover::before { transform: scaleY(1); }
+.signal:hover .signal__ico {
+  background: var(--primary); color: #fff;
+  transform: scale(1.06);
+  box-shadow: 0 6px 16px rgba(37,183,167,.35);
+}
+.signal:hover .badge { transform: scale(1.04); }
+.signal__ico {
+  width: 34px; height: 34px; border-radius: 8px; background: var(--primary-light);
+  display: grid; place-items: center; font-size: 12px; font-weight: 800; color: var(--primary-deeper);
+  transition: background .3s, color .3s, transform .35s var(--ease), box-shadow .3s;
+}
+.signal strong {
+  display: block; font-size: 13px; color: var(--heading); margin-bottom: 2px;
+  transition: color .25s;
+}
+.signal:hover strong { color: var(--primary-deeper); }
+.signal p { font-size: 11px; color: var(--muted); }
+.signal .badge { transition: transform .3s var(--ease), box-shadow .3s; }
+.signal:has(.badge--high)::before { background: #e11d48; }
+.signal:has(.badge--high):hover {
+  border-color: rgba(225,29,72,.28);
+  background: linear-gradient(120deg, #fff7f8 0%, #fff 50%);
+  box-shadow: 0 14px 32px rgba(225,29,72,.08);
+}
+.signal:has(.badge--high):hover .signal__ico {
+  background: #e11d48; box-shadow: 0 6px 16px rgba(225,29,72,.28);
+}
+.signal:has(.badge--med)::before { background: #fa8c16; }
+.signal:has(.badge--med):hover {
+  border-color: rgba(250,140,22,.3);
+  background: linear-gradient(120deg, #fffaf3 0%, #fff 50%);
+}
+.signal:has(.badge--med):hover .signal__ico {
+  background: #fa8c16; box-shadow: 0 6px 16px rgba(250,140,22,.28);
+}
+.signal:has(.badge--info)::before { background: var(--primary); }
+
+/* E360 */
+.e360 {
+  display: grid; grid-template-columns: 240px 1fr; background: #fff;
+  border: 1px solid var(--border); border-radius: 20px; overflow: hidden;
+  box-shadow: 0 18px 48px rgba(8,53,48,.1);
+}
+.e360__profile {
+  padding: 22px 16px;
+  background:
+    radial-gradient(220px 160px at 50% 0%, rgba(37,183,167,.28), transparent 60%),
+    linear-gradient(180deg, #0a2f2b, var(--heading));
+  color: #fff; text-align: center;
+}
+.e360__av {
+  width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 12px;
+  background: var(--primary); display: grid; place-items: center; font-size: 22px; font-weight: 800;
+  border: 2px solid rgba(255,255,255,.25); box-shadow: 0 10px 24px rgba(0,0,0,.2);
+}
+.e360__profile h3 { font-size: 1.05rem; margin-bottom: 2px; }
+.e360__profile p { font-size: 12px; color: rgba(255,255,255,.6); margin-bottom: 14px; }
+.e360__meta div {
+  text-align: left; padding: 8px 10px; border-radius: 8px; background: rgba(255,255,255,.06);
+  font-size: 11px; color: rgba(255,255,255,.65); margin-bottom: 6px;
+  transition: background .2s;
+}
+.e360__meta div:hover { background: rgba(255,255,255,.1); }
+.e360__meta strong { display: block; color: #fff; font-size: 10px; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 2px; }
+.e360__body {
+  padding: 18px;
+  background: radial-gradient(420px 200px at 100% 0%, rgba(37,183,167,.07), transparent 55%), #fff;
+}
+.e360__tabs { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 16px; }
+.e360__tabs button {
+  padding: 7px 12px; border-radius: 999px; font-size: 11px; font-weight: 600;
+  border: 1px solid var(--border); color: var(--text); background: #fff;
+  transition: background .2s, color .2s, border-color .2s, transform .2s, box-shadow .2s;
+}
+.e360__tabs button:hover { border-color: var(--primary); color: var(--primary-deeper); transform: translateY(-1px); }
+.e360__tabs button.is-on {
+  background: var(--heading); color: #fff; border-color: var(--heading);
+  box-shadow: 0 6px 16px rgba(8,53,48,.16);
+}
+.e360__view { animation: paneIn .3s var(--ease); }
+.e360__metrics { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 14px; }
+.e360__metric {
+  background: var(--bg); border: 1px solid var(--border-soft); border-radius: 10px; padding: 10px; text-align: center;
+  transition: transform .25s var(--ease), border-color .25s, box-shadow .25s;
+}
+.e360__metric:hover {
+  transform: translateY(-2px); border-color: rgba(37,183,167,.35);
+  box-shadow: 0 8px 18px rgba(8,53,48,.06);
+}
+.e360__metric strong { display: block; font-size: 16px; color: var(--heading); font-weight: 800; }
+.e360__metric span { font-size: 9.5px; color: var(--muted); }
+.e360__panel {
+  background: linear-gradient(180deg, #f7fcfb, #fff);
+  border: 1px solid var(--border); border-radius: 14px; padding: 14px;
+  box-shadow: 0 8px 22px rgba(8,53,48,.04);
+}
+.e360__panel-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  margin-bottom: 12px; flex-wrap: wrap;
+}
+.e360__panel-head h4 {
+  font-size: 13px; font-weight: 750; color: var(--heading); margin: 0;
+}
+.e360__panel-head p {
+  font-size: 11.5px; color: var(--muted); margin: 2px 0 0;
+}
+.e360__statrow {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 14px;
+}
+.e360__stat {
+  background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 10px;
+  transition: transform .25s var(--ease), border-color .25s, box-shadow .25s;
+}
+.e360__stat:hover {
+  transform: translateY(-2px); border-color: rgba(37,183,167,.35);
+  box-shadow: 0 8px 18px rgba(8,53,48,.06);
+}
+.e360__stat strong {
+  display: block; font-size: 18px; font-weight: 800; color: var(--heading);
+  letter-spacing: -.02em; line-height: 1.1; margin-bottom: 3px;
+}
+.e360__stat span { font-size: 10px; color: var(--muted); font-weight: 600; }
+.e360__stat--ok strong { color: var(--primary-deeper); }
+.e360__stat--warn strong { color: #c26a0a; }
+.e360__stat--alert strong { color: #be123c; }
+.weekbars {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; align-items: end;
+  min-height: 120px; padding: 8px 4px 0;
+}
+.weekbars__col {
+  display: flex; flex-direction: column; align-items: center; gap: 8px; height: 100%;
+}
+.weekbars__track {
+  width: 100%; flex: 1; min-height: 88px; display: flex; align-items: flex-end;
+  background: var(--bg); border: 1px solid var(--border-soft); border-radius: 10px 10px 6px 6px;
+  padding: 6px 8px 0; overflow: hidden;
+}
+.weekbars__bar {
+  width: 100%; border-radius: 6px 6px 0 0;
+  background: linear-gradient(180deg, var(--primary), #7ad9ce);
+  transform-origin: bottom; transform: scaleY(0);
+  transition: transform .7s var(--ease), filter .25s;
+  min-height: 8px;
+}
+.weekbars.is-animated .weekbars__bar { transform: scaleY(1); }
+.weekbars__col:hover .weekbars__bar { filter: brightness(1.05); }
+.weekbars__col:nth-child(1) .weekbars__bar { transition-delay: .05s; }
+.weekbars__col:nth-child(2) .weekbars__bar { transition-delay: .1s; }
+.weekbars__col:nth-child(3) .weekbars__bar { transition-delay: .15s; }
+.weekbars__col:nth-child(4) .weekbars__bar { transition-delay: .2s; }
+.weekbars__col:nth-child(5) .weekbars__bar { transition-delay: .25s; }
+.weekbars__bar--muted { background: linear-gradient(180deg, #94a3b8, #cbd5e1); opacity: .85; }
+.weekbars__bar--warn { background: linear-gradient(180deg, #fa8c16, #ffd19a); }
+.weekbars__day { font-size: 10px; font-weight: 700; color: var(--muted); }
+.weekbars__val { font-size: 10px; font-weight: 700; color: var(--heading); }
+.e360__legend {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;
+}
+.e360__legend span {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10.5px; color: var(--muted); font-weight: 600;
+}
+.e360__legend i {
+  width: 8px; height: 8px; border-radius: 2px; background: var(--primary);
+  font-style: normal;
+}
+.e360__legend i.warn { background: #fa8c16; }
+.e360__legend i.mute { background: #94a3b8; }
+.e360__tasklist { display: grid; gap: 8px; }
+.e360__task {
+  display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center;
+  background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 11px 12px;
+  transition: transform .25s var(--ease), border-color .25s, box-shadow .25s;
+}
+.e360__task:hover {
+  transform: translateY(-2px); border-color: rgba(37,183,167,.4);
+  box-shadow: 0 8px 18px rgba(8,53,48,.06);
+}
+.e360__task strong { display: block; font-size: 12.5px; color: var(--heading); margin-bottom: 2px; }
+.e360__task small { font-size: 11px; color: var(--muted); }
+.timeline { padding-left: 14px; position: relative; }
+.timeline::before {
+  content: ""; position: absolute; left: 3px; top: 4px; bottom: 4px; width: 2px; background: var(--border);
+}
+.timeline__item { position: relative; padding: 7px 0 7px 14px; font-size: 12px; color: var(--text); }
+.timeline__item::before {
+  content: ""; position: absolute; left: -14px; top: 12px; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--primary); border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(37,183,167,.35);
+}
+.timeline__item time { font-size: 10px; font-weight: 700; color: var(--muted); margin-right: 6px; }
+@media (max-width: 720px) {
+  .e360__statrow { grid-template-columns: 1fr 1fr; }
+}
+
+/* Persona */
+.persona-switch { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 28px; }
+.persona-switch button {
+  padding: 9px 16px; border-radius: 999px; font-size: 12.5px; font-weight: 600;
+  border: 1px solid var(--border); background: #fff; color: var(--text);
+  transition: background .2s, color .2s, border-color .2s, transform .2s, box-shadow .2s;
+}
+.persona-switch button:hover { border-color: var(--primary); color: var(--primary-deeper); }
+.persona-switch button.is-on { background: var(--heading); color: #fff; border-color: var(--heading); box-shadow: 0 6px 16px rgba(8,53,48,.18); }
+.persona-panel { display: none; }
+.persona-panel.is-on {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center;
+  animation: paneIn .35s var(--ease);
+}
+.persona-panel h3 { font-size: 1.2rem; color: var(--heading); font-weight: 750; margin-bottom: 8px; }
+.persona-panel p { font-size: 13.5px; margin-bottom: 12px; }
+.persona-panel li { font-size: 13px; padding: 4px 0 4px 14px; position: relative; }
+.persona-panel li::before {
+  content: ""; position: absolute; left: 0; top: 10px; width: 5px; height: 5px; border-radius: 50%; background: var(--primary);
+}
+
+/* Principles */
+.principles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.principle {
+  padding: 18px; border-radius: 12px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+  transition: background .25s, border-color .25s, transform .25s var(--ease);
+}
+.principle:hover {
+  background: rgba(37,183,167,.1); border-color: rgba(37,183,167,.35); transform: translateY(-3px);
+}
+.principle__n { font-size: 10px; font-weight: 800; letter-spacing: .08em; color: var(--primary); margin-bottom: 8px; }
+.principle h3 { font-size: .95rem; color: #fff; margin-bottom: 6px; }
+.principle p { font-size: 12px; color: rgba(255,255,255,.62); }
+
+/* Day book tabs mock */
+.db-tabs { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px; }
+.db-tabs span {
+  padding: 5px 9px; border-radius: 6px; font-size: 10px; font-weight: 600;
+  background: #fff; border: 1px solid var(--border); color: var(--muted);
+}
+.db-tabs span.is-on { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+/* Industry */
+.story { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
+.story--flip { direction: rtl; }
+.story--flip > * { direction: ltr; }
+.pipeline { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 14px; }
+.pipeline span {
+  padding: 6px 10px; border-radius: 999px; background: var(--primary-light);
+  border: 1px solid rgba(37,183,167,.22); font-size: 11px; font-weight: 600; color: var(--primary-deeper);
+}
+.pipeline em { font-style: normal; color: var(--primary); font-weight: 800; }
+/* Compare */
+.compare { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.compare__toggle { display: flex; justify-content: center; gap: 6px; padding: 14px; border-bottom: 1px solid var(--border); }
+.compare__toggle button {
+  padding: 8px 14px; border-radius: 999px; font-size: 12px; font-weight: 600;
+  border: 1px solid var(--border); color: var(--text); background: #fff;
+  transition: background .2s, color .2s, border-color .2s, box-shadow .2s;
+}
+.compare__toggle button.is-on { background: var(--heading); color: #fff; border-color: var(--heading); box-shadow: 0 6px 16px rgba(8,53,48,.16); }
+.compare__panels { display: grid; grid-template-columns: 1fr 1fr; }
+.compare__panel { padding: 22px; transition: opacity .35s var(--ease), filter .35s; }
+.compare__panel--before { background: #faf8f6; border-right: 1px solid var(--border); }
+.compare__panel--after { background: #f3fbfa; }
+.compare__panel h3 { font-size: .95rem; color: var(--heading); margin-bottom: 10px; }
+.compare__panel li { font-size: 13px; padding: 8px 0; border-bottom: 1px solid var(--border-soft); }
+.compare.is-after .compare__panel--before { opacity: .4; filter: grayscale(.35); }
+.compare.is-before .compare__panel--after { opacity: .4; filter: grayscale(.2); }
+.compare.is-after .compare__panel--after,
+.compare.is-before .compare__panel--before { opacity: 1; filter: none; }
+
+/* Brief */
+.brief {
+  background:
+    radial-gradient(520px 220px at 100% 0%, rgba(37,183,167,.1), transparent 55%),
+    #fff;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: clamp(22px, 3vw, 34px);
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+.brief__top {
+  display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between;
+  gap: 12px; margin-bottom: 20px;
+}
+.brief__hi {
+  font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--primary-deeper); margin-bottom: 6px;
+}
+.brief h3 {
+  font-size: clamp(1.15rem, 1.9vw, 1.4rem); font-weight: 750; margin: 0;
+  color: var(--heading); letter-spacing: -.02em;
+}
+.brief__chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 11px; border-radius: 999px; font-size: 11px; font-weight: 600;
+  background: var(--primary-light); border: 1px solid rgba(37,183,167,.28);
+  color: var(--primary-deeper); white-space: nowrap;
+}
+.brief__chip::before {
+  content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37,183,167,.2); animation: briefPulse 2.2s ease-in-out infinite;
+}
+@keyframes briefPulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(37,183,167,.18); }
+  50% { box-shadow: 0 0 0 5px rgba(37,183,167,.08); }
+}
+.brief__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 22px; }
+.brief__card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 14px 14px;
+  position: relative;
+  overflow: hidden;
+  transition: transform .3s var(--ease), border-color .25s, box-shadow .3s var(--ease), background .25s;
+}
+.brief__card::before {
+  content: ""; position: absolute; left: 0; top: 0; right: 0; height: 3px;
+  background: var(--primary); transform: scaleX(0); transform-origin: left;
+  transition: transform .35s var(--ease);
+}
+.brief__card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(37,183,167,.4);
+  box-shadow: 0 12px 28px rgba(8,53,48,.08);
+  background: linear-gradient(180deg, #f7fcfb, #fff);
+}
+.brief__card:hover::before { transform: scaleX(1); }
+.brief__card--ok::before { background: var(--primary); }
+.brief__card--warn::before { background: #fa8c16; }
+.brief__card--alert::before { background: #e11d48; }
+.brief__card--warn:hover {
+  border-color: rgba(250,140,22,.35);
+  background: linear-gradient(180deg, #fffaf3, #fff);
+}
+.brief__card--alert:hover {
+  border-color: rgba(225,29,72,.28);
+  background: linear-gradient(180deg, #fff7f8, #fff);
+}
+.brief__label {
+  display: block; font-size: 10px; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 8px;
+}
+.brief__card strong {
+  display: block; font-size: clamp(1.45rem, 2.4vw, 1.75rem); font-weight: 800;
+  margin-bottom: 4px; color: var(--heading); letter-spacing: -.03em; line-height: 1;
+}
+.brief__card--ok strong { color: var(--primary-deeper); }
+.brief__card--warn strong { color: #c26a0a; }
+.brief__card--alert strong { color: #be123c; }
+.brief__card span { font-size: 12px; color: var(--text); font-weight: 500; }
+.brief__foot {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 14px; padding-top: 4px;
+}
+.brief__note {
+  font-size: 12.5px; color: var(--muted); max-width: 420px; line-height: 1.5;
+}
+.brief__note strong { color: var(--heading); font-weight: 600; }
+
+/* Trust / outcomes / eco */
+.trust-grid, .outcomes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.trust-card, .outcome {
+  background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 16px;
+  transition: transform .2s, border-color .2s;
+}
+.trust-card:hover, .outcome:hover { transform: translateY(-2px); border-color: rgba(37,183,167,.35); }
+.trust-card h3, .outcome h3 { font-size: 13px; color: var(--heading); margin-bottom: 4px; }
+.trust-card p, .outcome p { font-size: 12.5px; }
+.outcome__ico {
+  width: 32px; height: 32px; border-radius: 8px; background: var(--primary-light);
+  display: grid; place-items: center; font-size: 11px; font-weight: 800; color: var(--primary-deeper); margin-bottom: 10px;
+}
+
+/* Ecosystem */
+.eco {
+  max-width: 880px; margin: 0 auto;
+  background: #fff; border: 1px solid var(--border); border-radius: 16px;
+  box-shadow: var(--shadow); overflow: hidden;
+}
+.eco__core {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  padding: 20px 24px; background: var(--heading); color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.eco__core-brand {
+  display: flex; align-items: center; gap: 12px;
+}
+.eco__core-mark {
+  width: 40px; height: 40px; border-radius: 10px; background: var(--primary);
+  display: grid; place-items: center; font-size: 11px; font-weight: 800; color: #fff; flex-shrink: 0;
+}
+.eco__core h3 { font-size: 15px; font-weight: 700; margin: 0 0 2px; color: #fff; }
+.eco__core p { font-size: 12px; color: rgba(255,255,255,.62); margin: 0; }
+.eco__core-tag {
+  font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  padding: 6px 10px; border-radius: 6px; background: rgba(37,183,167,.2); color: #9ee8e2;
+}
+.eco__body { padding: 20px 24px 24px; }
+.eco__label {
+  font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 12px;
+}
+.eco__grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+}
+.eco__node {
+  background: var(--bg-light); border: 1px solid var(--border); border-radius: 10px;
+  padding: 14px 12px; text-align: center; font-size: 12.5px; font-weight: 650; color: var(--heading);
+  transition: border-color .2s, background .2s, transform .2s;
+}
+.eco__node:hover {
+  border-color: rgba(37,183,167,.4); background: var(--primary-light); transform: translateY(-1px);
+}
+.eco__node small {
+  display: block; font-size: 10px; font-weight: 500; color: var(--muted); margin-top: 3px;
+}
+.eco__foot {
+  margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border-soft);
+  font-size: 12.5px; color: var(--text); text-align: center;
+}
+
+/* Tour */
+.tour-step { display: grid; grid-template-columns: 1fr 1.1fr; gap: 36px; align-items: center; margin-bottom: 56px; }
+.tour-step:nth-child(even) { direction: rtl; }
+.tour-step:nth-child(even) > * { direction: ltr; }
+.tour-step:last-child { margin-bottom: 0; }
+.tour-n { font-size: 11px; font-weight: 800; letter-spacing: .08em; color: var(--primary-deeper); margin-bottom: 8px; }
+
+/* Testimonial */
+.tfeat {
+  background: #fff; border: 1px solid var(--border); border-radius: 18px;
+  padding: clamp(24px, 4vw, 40px); max-width: 760px; margin-inline: auto; text-align: center; box-shadow: var(--shadow);
+}
+.tfeat blockquote {
+  font-size: clamp(1rem, 1.6vw, 1.2rem); font-weight: 600; color: var(--heading);
+  line-height: 1.45; margin-bottom: 14px; min-height: 4.2em;
+  transition: opacity .25s ease, transform .25s var(--ease);
+}
+.tfeat cite {
+  font-style: normal; font-size: 13px; color: var(--muted); font-weight: 600;
+  transition: opacity .25s ease;
+}
+.tfeat.is-swap blockquote,
+.tfeat.is-swap cite { opacity: 0; transform: translateY(6px); }
+.tfeat__dots { display: flex; justify-content: center; gap: 6px; margin-top: 20px; }
+.tfeat__dots button {
+  width: 7px; height: 7px; border-radius: 50%; background: #d1d5db;
+  transition: width .25s var(--ease), background .2s, border-radius .2s;
+}
+.tfeat__dots button.is-on { background: var(--primary); width: 20px; border-radius: 999px; }
+
+/* FAQ */
+.faq { max-width: 700px; margin-inline: auto; }
+.faq__item { border-bottom: 1px solid var(--border); }
+.faq__q {
+  width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  padding: 14px 0; text-align: left; font-size: 13.5px; font-weight: 600; color: var(--heading);
+  transition: color .2s;
+}
+.faq__q:hover { color: var(--primary-deeper); }
+.faq__q span {
+  width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--border);
+  display: grid; place-items: center; font-size: 16px; color: var(--muted); flex-shrink: 0;
+  transition: background .25s, color .25s, border-color .25s, transform .25s var(--ease);
+}
+.faq__item.is-open .faq__q span { background: var(--primary); color: #fff; border-color: var(--primary); transform: rotate(45deg); }
+.faq__a {
+  display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s var(--ease);
+}
+.faq__a > div { overflow: hidden; font-size: 13.5px; color: var(--text); }
+.faq__item.is-open .faq__a { grid-template-rows: 1fr; }
+.faq__item.is-open .faq__a > div { padding-bottom: 14px; }
+
+/* Final */
+.final {
+  background:
+    radial-gradient(700px 320px at 50% -10%, rgba(37,183,167,.22), transparent 55%),
+    radial-gradient(500px 240px at 80% 100%, rgba(36,63,100,.35), transparent 50%),
+    var(--dark);
+  padding: var(--section) 0; text-align: center; position: relative; overflow: hidden;
+}
+.final::before {
+  content: ""; position: absolute; inset: auto 0 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(37,183,167,.45), transparent);
+}
+.final .section-title { color: #fff; max-width: 640px; margin-inline: auto; }
+.final .section-lead { margin-inline: auto; margin-bottom: 22px; }
+.final .btn-row { justify-content: center; }
+.final .eyebrow { color: var(--primary); }
+.final .btn--primary { box-shadow: 0 10px 32px rgba(37,183,167,.4); }
+
+/* 10s explainer reel */
+.reel {
+  max-width: 680px; margin: 0 auto;
+  background: #fff; border: 1px solid var(--border); border-radius: 14px;
+  box-shadow: var(--shadow); overflow: hidden;
+}
+.reel__chrome {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 8px 12px; background: #fafcfc; border-bottom: 1px solid var(--border-soft);
+}
+.reel__chrome-left { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.reel__dot { width: 7px; height: 7px; border-radius: 50%; background: #d1d5db; flex-shrink: 0; }
+.reel__dot:nth-child(1) { background: #f87171; }
+.reel__dot:nth-child(2) { background: #fbbf24; }
+.reel__dot:nth-child(3) { background: #34d399; }
+.reel__chrome-title {
+  font-size: 11px; font-weight: 650; color: var(--heading);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.reel__badge {
+  font-size: 9px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--primary-deeper); background: var(--primary-light);
+  border: 1px solid rgba(37,183,167,.25); padding: 3px 7px; border-radius: 999px; flex-shrink: 0;
+}
+.reel__body {
+  display: grid; grid-template-columns: 148px 1fr; gap: 0; min-height: 0;
+}
+.reel__media {
+  position: relative; background: linear-gradient(180deg, #e8f4f3, #f4fafa);
+  padding: 12px 10px; display: grid; place-items: center;
+  border-right: 1px solid var(--border-soft);
+}
+.reel__phone {
+  width: 112px; border-radius: 14px; overflow: hidden;
+  border: 1px solid rgba(8,53,48,.12); background: #fff;
+  box-shadow: 0 10px 24px rgba(8,53,48,.12);
+}
+.reel__phone img {
+  width: 100%; height: 196px; object-fit: cover; object-position: top center;
+  display: block; transition: opacity .28s ease;
+}
+.reel__phone img.is-swap { opacity: 0; }
+.reel__copy {
+  padding: 14px 14px 12px; display: flex; flex-direction: column; justify-content: center;
+}
+.reel__copy .eyebrow { margin-bottom: 4px; }
+.reel__copy strong {
+  display: block; font-size: 15px; font-weight: 750; color: var(--heading);
+  letter-spacing: -.015em; margin-bottom: 4px;
+}
+.reel__copy p { font-size: 12px; color: var(--text); line-height: 1.45; margin-bottom: 10px; }
+.reel__benefit {
+  display: inline-flex; align-items: center;
+  font-size: 11px; font-weight: 650; color: var(--primary-deeper);
+  background: var(--primary-light); border: 1px solid rgba(37,183,167,.25);
+  padding: 5px 9px; border-radius: 8px; margin-bottom: 12px; width: fit-content;
+}
+.reel__progress {
+  height: 3px; background: var(--border-soft); border-radius: 99px; overflow: hidden; margin-bottom: 10px;
+}
+.reel__progress > i {
+  display: block; height: 100%; width: 0%; background: var(--primary);
+  border-radius: inherit;
+  animation: reelProgress 10s linear infinite;
+}
+@keyframes reelProgress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+.reel__foot {
+  display: flex; flex-wrap: wrap; gap: 5px;
+}
+.reel__step {
+  text-align: left; padding: 5px 8px; border-radius: 999px;
+  border: 1px solid var(--border); background: #fff;
+  font-size: 10.5px; font-weight: 600; color: var(--muted);
+  transition: border-color .2s, background .2s, color .2s, transform .2s;
+}
+.reel__step b { display: none; }
+.reel__step.is-on {
+  border-color: rgba(37,183,167,.45); background: var(--primary-light);
+  color: var(--primary-deeper);
+}
+.reel__step:hover { color: var(--primary-deeper); border-color: rgba(37,183,167,.35); }
+@media (max-width: 620px) {
+  .reel__body { grid-template-columns: 1fr; }
+  .reel__media { border-right: none; border-bottom: 1px solid var(--border-soft); padding: 14px; }
+  .reel__phone { width: 132px; }
+  .reel__phone img { height: 220px; }
+}
+
+/* Footer */
+.footer { background: #06141c; color: rgba(255,255,255,.62); padding: 40px 0 24px; }
+.footer__grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 28px; margin-bottom: 28px; }
+.footer__brand { display: flex; align-items: center; gap: 8px; color: #fff; font-weight: 700; margin-bottom: 10px; }
+.footer__brand img { width: 24px; height: 24px; }
+.footer__brand span { color: var(--primary); }
+.footer p { font-size: 12.5px; line-height: 1.65; max-width: 260px; }
+.footer h4 { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: 10px; }
+.footer a { display: block; font-size: 12.5px; padding: 3px 0; }
+.footer a:hover { color: var(--primary); }
+.footer__bottom {
+  border-top: 1px solid rgba(255,255,255,.08); padding-top: 16px;
+  display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-size: 11px; color: rgba(255,255,255,.35);
+}
+
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+@media (max-width: 1024px) {
+  .hero__grid, .split, .explorer__pane.is-on, .persona-panel.is-on, .story, .story--flip,
+  .tour-step, .tour-step:nth-child(even), .compare__panels, .e360, .explorer {
+    grid-template-columns: 1fr; direction: ltr;
+  }
+  .story--flip, .tour-step:nth-child(even) { direction: ltr; }
+  .explorer__tabs { flex-direction: row; overflow-x: auto; align-items: stretch; }
+  .explorer__tabs button { white-space: nowrap; }
+  .explorer__brand { display: none; }
+  .flow { grid-template-columns: repeat(3, 1fr); }
+  .bento--lg, .bento--md, .bento--tall, .bento--wide, .bento--sm { grid-column: span 12; }
+  .principles, .brief__grid, .trust-grid, .outcomes { grid-template-columns: 1fr 1fr; }
+  .eco__grid { grid-template-columns: repeat(3, 1fr); }
+  .footer__grid { grid-template-columns: 1fr 1fr; }
+  .float-card { display: none; }
+  .app__body { grid-template-columns: 1fr; }
+  .app__side { display: none; }
+  .e360__metrics { grid-template-columns: repeat(3, 1fr); }
+  .panel-grid, .kanban { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 720px) {
+  .nav__links { display: none; }
+  .nav__toggle { display: inline-flex; }
+  .nav.is-open .nav__links {
+    display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0;
+    background: #fff; padding: 12px; border-bottom: 1px solid var(--border); box-shadow: var(--shadow);
+  }
+  .kpis, .principles, .brief__grid, .signals, .trust-grid, .outcomes, .footer__grid, .flow {
+    grid-template-columns: 1fr;
+  }
+  .eco__grid { grid-template-columns: 1fr 1fr; }
+  .e360__metrics, .kanban { grid-template-columns: 1fr 1fr; }
+  .hero__title { font-size: clamp(1.5rem, 6.5vw, 1.9rem); }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="index.html"><img src="assets/favicon-mark.png" alt="" width="28" height="28">Time<span>ERP</span></a>
+    <nav class="nav__links" id="navLinks">
+      <a href="#modules">Modules</a>
+      <a href="#command">Dashboard</a>
+      <a href="#explorer">Product</a>
+      <a href="#industries">Industries</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav__cta">
+      <a class="btn btn--ghost btn--sm" href="contact_sales.html">Contact Sales</a>
+      <a class="btn btn--primary btn--sm" href="watch_demo.html">Book a Demo</a>
+      <button type="button" class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="container hero__grid">
+    <div class="reveal">
+      <div class="hero__badge">Employee Monitoring · TimeERP HRMS</div>
+      <h1 class="hero__title">See who’s present.<br><em>See what work moved.</em></h1>
+      <p class="hero__sub">TimeERP Employee Monitoring connects <strong>My Attendance</strong>, <strong>Day Book</strong>, <strong>Timesheets</strong> and <strong>Task Management</strong> so managers track people and progress in the same workspace they already use.</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="watch_demo.html">Book a Demo</a>
+        <a class="btn btn--ghost" href="#command">View Workforce Dashboard</a>
+      </div>
+      <div class="hero__modules" id="modules">
+        <span>My Attendance</span><span>Day Book</span><span>Timesheet</span><span>Task Management</span><span>Attendance Approval</span><span>Reports</span>
+      </div>
+    </div>
+
+    <div class="hero__stage reveal" style="transition-delay:.1s">
+      <div class="app" aria-label="TimeERP HRMS workforce preview">
+        <span class="app__demo">DEMO</span>
+        <div class="app__chrome"><span class="app__dot"></span><span class="app__dot"></span><span class="app__dot"></span><span class="app__chrome-title">TimeERP · HRMS</span></div>
+        <div class="app__body">
+          <aside class="app__side">
+            <div class="logo">Time<span>ERP</span></div>
+            <button type="button" class="is-on">Dashboard</button>
+            <button type="button">HRMS</button>
+            <button type="button">CRM</button>
+            <button type="button">Project Management</button>
+            <button type="button">Reports</button>
+            <button type="button">Billing</button>
+          </aside>
+          <div class="app__main">
+            <div class="app__topbar">
+              <h3>Workforce overview</h3>
+              <button type="button" class="app__checkin">Check In</button>
+            </div>
+            <div class="kpis">
+              <div class="kpi kpi--accent"><strong class="stat-count" data-count="142">0</strong><span>Present (P)</span></div>
+              <div class="kpi"><strong class="stat-count" data-count="8">0</strong><span>Late In</span></div>
+              <div class="kpi"><strong class="stat-count" data-count="47">0</strong><span>Pending tasks</span></div>
+              <div class="kpi"><strong class="stat-count" data-count="18">0</strong><span>Due today</span></div>
+            </div>
+            <div class="panel-grid">
+              <div class="panel">
+                <h4>Detailed Attendance <span style="font-weight:500;color:var(--muted)">Today</span></h4>
+                <table class="tbl">
+                  <thead><tr><th>Employee</th><th>In Time</th><th>Out Time</th><th>Status</th></tr></thead>
+                  <tbody>
+                    <tr><td>Tarun Gaur</td><td>09:12</td><td>18:05</td><td><span class="badge badge--p">P</span></td></tr>
+                    <tr><td>Riya Sharma</td><td>09:48</td><td>18:10</td><td><span class="badge badge--late">Late In</span></td></tr>
+                    <tr><td>Saurabh B.</td><td>09:02</td><td>17:55</td><td><span class="badge badge--p">P</span></td></tr>
+                    <tr><td>Dev Aggarwal</td><td></td><td></td><td><span class="badge badge--a">A</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="panel">
+                <h4>Day Book · Today Task</h4>
+                <div class="kpis" style="grid-template-columns:1fr 1fr">
+                  <div class="kpi"><strong>24</strong><span>Total</span></div>
+                  <div class="kpi"><strong>6</strong><span>Overdue</span></div>
+                </div>
+                <div class="bars" aria-hidden="true" style="height:56px;margin-top:8px">
+                  <i style="height:55%"></i><i style="height:70%"></i><i style="height:45%"></i><i style="height:85%"></i><i style="height:65%"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="float-card float-card--a"><strong>Attendance Approval</strong><span>3 Pending CheckIn</span></div>
+      <div class="float-card float-card--b"><strong>Task board</strong><span>Open → Processing → Review</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>My Attendance</span><span>Day Book</span><span>Timesheet</span><span>Task Management</span>
+    <span>Attendance Approval</span><span>View Employee</span><span>HRMS Reports</span><span>Check In / Check Out</span>
+    <span>My Attendance</span><span>Day Book</span><span>Timesheet</span><span>Task Management</span>
+    <span>Attendance Approval</span><span>View Employee</span><span>HRMS Reports</span><span>Check In / Check Out</span>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="section section--white" id="problem">
+  <div class="container">
+    <div class="section-head section-head--wide reveal">
+      <p class="eyebrow">Why teams need this</p>
+      <h2 class="section-title section-title--single">Attendance alone isn’t monitoring. Context is.</h2>
+      <p class="section-lead">If presence lives in one sheet and tasks live in another, managers keep chasing updates. TimeERP keeps both in HRMS.</p>
+    </div>
+    <div class="split reveal">
+      <div class="card card--bad reveal-child">
+        <h3>Without connected monitoring</h3>
+        <ul>
+          <li>Attendance chased on WhatsApp</li>
+          <li>Tasks tracked in separate lists</li>
+          <li>Late In / Absent unclear until month-end</li>
+          <li>No single Day Book for the day</li>
+          <li>Reports rebuilt in spreadsheets</li>
+        </ul>
+      </div>
+      <div class="card card--good reveal-child">
+        <h3>With TimeERP Employee Monitoring</h3>
+        <ul>
+          <li>My Attendance with P / A / Late In / OD</li>
+          <li>Day Book: Today Task, Notes, Attendance</li>
+          <li>Task Management: Open → Completed</li>
+          <li>Check In / Check Out from the top bar</li>
+          <li>HRMS &amp; Task reports in one product</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10s EXPLAINER -->
+<section class="section section--white" id="explainer" style="padding-top:clamp(40px,5vw,56px);padding-bottom:clamp(40px,5vw,56px)">
+  <div class="container">
+    <div class="section-head section-head--center reveal" style="margin-bottom:20px">
+      <p class="eyebrow">10-second explainer</p>
+      <h2 class="section-title" style="font-size:clamp(1.25rem,2vw,1.6rem)">How TimeERP helps you handle employees</h2>
+      <p class="section-lead">Real TimeERP screens, looping in 10 seconds: presence, attendance, tasks and approvals.</p>
+    </div>
+    <div class="reel reveal" id="explainerReel" aria-label="Employee monitoring benefit explainer">
+      <div class="reel__chrome">
+        <div class="reel__chrome-left">
+          <span class="reel__dot"></span><span class="reel__dot"></span><span class="reel__dot"></span>
+          <span class="reel__chrome-title">From the TimeERP app</span>
+        </div>
+        <span class="reel__badge">Auto · 10s</span>
+      </div>
+      <div class="reel__body">
+        <div class="reel__media">
+          <div class="reel__phone">
+            <img
+              id="reelImg"
+              src="assets/phone-screens/attendance-preview.png"
+              alt="TimeERP Attendance Preview"
+              width="224"
+              height="392"
+              loading="lazy"
+            >
+          </div>
+        </div>
+        <div class="reel__copy">
+          <p class="eyebrow" id="reelKicker">01  Presence</p>
+          <strong id="reelTitle">Know who’s present today</strong>
+          <p id="reelText">Check In / Check Out and attendance from the same TimeERP mobile workflows your team already uses.</p>
+          <div class="reel__benefit" id="reelBenefit">Benefit: no more chasing “who came in?” on chat.</div>
+          <div class="reel__progress" aria-hidden="true"><i></i></div>
+          <div class="reel__foot" id="reelSteps">
+            <button type="button" class="reel__step is-on" data-reel="0"><span>Presence</span></button>
+            <button type="button" class="reel__step" data-reel="1"><span>Attendance</span></button>
+            <button type="button" class="reel__step" data-reel="2"><span>Tasks</span></button>
+            <button type="button" class="reel__step" data-reel="3"><span>Alerts</span></button>
+            <button type="button" class="reel__step" data-reel="4"><span>Dashboard</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMAND -->
+<section class="section section--alt" id="command">
+  <div class="container">
+    <div class="section-head section-head--center section-head--wide reveal">
+      <p class="eyebrow">TimeERP command view</p>
+      <h2 class="section-title section-title--single">Your workforce inside the TimeERP app</h2>
+      <p class="section-lead">A product-style preview using the same module language managers already see in HRMS, Tasks and Reports.</p>
+    </div>
+    <div class="cc reveal">
+      <div class="app__chrome">
+        <span class="app__dot"></span><span class="app__dot"></span><span class="app__dot"></span>
+        <span class="app__chrome-title">TimeERP · Dashboard / HRMS</span>
+        <div class="cc__filters" style="margin-left:auto" role="group" aria-label="Range">
+          <button type="button" class="is-on" data-range="today">Today</button>
+          <button type="button" data-range="week">Week</button>
+          <button type="button" data-range="month">Month</button>
+        </div>
+      </div>
+      <div class="app__body">
+        <aside class="app__side">
+          <div class="logo">Time<span>ERP</span></div>
+          <button type="button" class="is-on">Dashboard</button>
+          <button type="button">HRMS</button>
+          <button type="button">Project Management</button>
+          <button type="button">Reports</button>
+          <button type="button">Document Vault</button>
+          <button type="button">Billing</button>
+        </aside>
+        <div class="app__main">
+          <div class="app__topbar">
+            <h3>Workforce monitoring</h3>
+            <div class="btn-row">
+              <button type="button" class="app__checkin">Check In</button>
+              <button type="button" class="btn btn--ghost btn--sm" style="height:28px;font-size:11px">Create task</button>
+            </div>
+          </div>
+          <div class="kpis" style="grid-template-columns:repeat(6,1fr)">
+            <div class="kpi"><strong data-kpi="emp">156</strong><span>Employees</span></div>
+            <div class="kpi kpi--accent"><strong data-kpi="present">142</strong><span>Present (P)</span></div>
+            <div class="kpi"><strong data-kpi="late">8</strong><span>Late In</span></div>
+            <div class="kpi"><strong data-kpi="absent">6</strong><span>Absent (A)</span></div>
+            <div class="kpi"><strong data-kpi="pending">47</strong><span>Pending tasks</span></div>
+            <div class="kpi"><strong data-kpi="overdue">6</strong><span>Overdue</span></div>
+          </div>
+          <div class="panel-grid">
+            <div class="panel">
+              <h4>Attendance Summary</h4>
+              <div class="bars" aria-hidden="true"><i style="height:78%"></i><i style="height:88%"></i><i style="height:72%"></i><i style="height:90%"></i><i style="height:84%"></i><i style="height:70%"></i><i style="height:86%"></i></div>
+              <p class="note">Full Day / Half Day / Leave Count style summary (demo chart).</p>
+            </div>
+            <div class="panel">
+              <h4>Team status</h4>
+              <table class="tbl">
+                <thead><tr><th>Name</th><th>Dept</th><th>Work Hours</th><th>Tasks</th></tr></thead>
+                <tbody>
+                  <tr><td>Tarun Gaur</td><td>Sales</td><td>8.8h</td><td><span class="badge badge--proc">Processing</span></td></tr>
+                  <tr><td>Riya Sharma</td><td>Ops</td><td>8.3h</td><td><span class="badge badge--open">Open</span></td></tr>
+                  <tr><td>Saurabh B.</td><td>Projects</td><td>7.9h</td><td><span class="badge badge--rev">Under Review</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section class="section section--white" id="flow">
+  <div class="container">
+    <div class="section-head section-head--center reveal">
+      <p class="eyebrow">How monitoring works in TimeERP</p>
+      <h2 class="section-title">From Check In to Completed</h2>
+      <p class="section-lead">The same path your team already follows inside the product, made visible for managers.</p>
+    </div>
+    <div class="flow reveal" id="flowStory">
+      <article class="flow__step">
+        <div class="flow__head">
+          <div class="flow__num">01</div>
+          <div class="flow__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+        </div>
+        <h3>Check In</h3>
+        <p>Top-bar Check In / Check Out marks presence for the day.</p>
+        <span class="flow__tag">Presence</span>
+      </article>
+      <article class="flow__step">
+        <div class="flow__head">
+          <div class="flow__num">02</div>
+          <div class="flow__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>
+          </div>
+        </div>
+        <h3>My Attendance</h3>
+        <p>P, A, Late In and Work Hours in one attendance view.</p>
+        <span class="flow__tag">HRMS</span>
+      </article>
+      <article class="flow__step">
+        <div class="flow__head">
+          <div class="flow__num">03</div>
+          <div class="flow__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M8 7h8M8 11h6"/></svg>
+          </div>
+        </div>
+        <h3>Day Book</h3>
+        <p>Today Task, notes and daily context beside attendance.</p>
+        <span class="flow__tag">Day Book</span>
+      </article>
+      <article class="flow__step">
+        <div class="flow__head">
+          <div class="flow__num">04</div>
+          <div class="flow__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </div>
+        </div>
+        <h3>Timesheet</h3>
+        <p>Hours logged against real work, not idle scores.</p>
+        <span class="flow__tag">Hours</span>
+      </article>
+      <article class="flow__step">
+        <div class="flow__head">
+          <div class="flow__num">05</div>
+          <div class="flow__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="5" height="16" rx="1"/><rect x="10" y="8" width="5" height="12" rx="1"/><rect x="17" y="6" width="5" height="14" rx="1"/></svg>
+          </div>
+        </div>
+        <h3>Tasks</h3>
+        <p>Open → Processing → Under Review → Completed.</p>
+        <span class="flow__tag">Board</span>
+      </article>
+      <article class="flow__step">
+        <div class="flow__head">
+          <div class="flow__num">06</div>
+          <div class="flow__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5M4 19h16"/><path d="M8 15v-4M12 15V8M16 15v-7"/></svg>
+          </div>
+        </div>
+        <h3>Reports</h3>
+        <p>HRMS, Employee and Task reports for weekly review.</p>
+        <span class="flow__tag">Reports</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- EXPLORER -->
+<section class="section section--alt" id="explorer">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Inside the TimeERP product</p>
+      <h2 class="section-title">Explore real monitoring modules</h2>
+      <p class="section-lead">Each tab reflects screens and labels that exist in TimeERP, not generic spyware features.</p>
+    </div>
+    <div class="explorer reveal" id="explorerApp">
+      <div class="explorer__tabs" role="tablist" aria-label="Monitoring modules">
+        <div class="explorer__brand">
+          <div>
+            Time<span>ERP</span>
+            <small>HRMS modules</small>
+          </div>
+        </div>
+        <button type="button" class="is-on" data-tab="attendance" role="tab" aria-selected="true">My Attendance</button>
+        <button type="button" data-tab="daybook" role="tab" aria-selected="false">Day Book</button>
+        <button type="button" data-tab="timesheet" role="tab" aria-selected="false">Timesheet</button>
+        <button type="button" data-tab="tasks" role="tab" aria-selected="false">Task Management</button>
+        <button type="button" data-tab="approval" role="tab" aria-selected="false">Attendance Approval</button>
+        <button type="button" data-tab="reports" role="tab" aria-selected="false">Reports</button>
+      </div>
+
+      <div class="explorer__pane is-on" data-pane="attendance" role="tabpanel">
+        <div class="explorer__copy">
+          <h3>Detailed Attendance &amp; Summary</h3>
+          <p>Managers and employees use the same attendance language: Present, Absent, Holiday, On Duty, Comp Off, plus Late In and Work Hours.</p>
+          <ul>
+            <li>In Time / Out Time / Work Hours</li>
+            <li>Late In &amp; Early Out visibility</li>
+            <li>Date Range filters</li>
+            <li>Attendance Summary counts</li>
+          </ul>
+        </div>
+        <div class="explorer__ui">
+          <div class="explorer__ui-bar">
+            <strong>My Attendance</strong>
+            <span>Live preview</span>
+          </div>
+          <div class="explorer__badges">
+            <span class="badge badge--p">P Present</span>
+            <span class="badge badge--a">A Absent</span>
+            <span class="badge badge--late">Late In</span>
+            <span class="badge badge--od">OD On Duty</span>
+          </div>
+          <table class="tbl">
+            <thead><tr><th>Date</th><th>In Time</th><th>Out Time</th><th>Late In</th><th>Work Hours</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>07 Sep</td><td>09:12</td><td>18:05</td><td>0</td><td>8.8</td><td><span class="badge badge--p">P</span></td></tr>
+              <tr><td>06 Sep</td><td>09:48</td><td>18:10</td><td>18m</td><td>8.3</td><td><span class="badge badge--late">Late In</span></td></tr>
+              <tr><td>05 Sep</td><td></td><td></td><td></td><td></td><td><span class="badge badge--a">A</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="explorer__pane" data-pane="daybook" role="tabpanel" hidden>
+        <div class="explorer__copy">
+          <h3>Day Book Dashboard</h3>
+          <p>One place for the working day: tasks, notes, attendance and operational reminders.</p>
+          <ul>
+            <li>Today Task · My Notes · Attendance</li>
+            <li>Birthday &amp; Anniversary</li>
+            <li>Hearing / Compliance · Appointment</li>
+            <li>TOTAL / PENDING / COMPLETED / OVERDUE</li>
+          </ul>
+        </div>
+        <div class="explorer__ui">
+          <div class="explorer__ui-bar">
+            <strong>Day Book</strong>
+            <span>Today</span>
+          </div>
+          <div class="db-tabs">
+            <span class="is-on">Today Task</span><span>My Notes</span><span>Attendance</span><span>Appointment</span>
+          </div>
+          <div class="kpis">
+            <div class="kpi"><strong>24</strong><span>Total tasks</span></div>
+            <div class="kpi"><strong>11</strong><span>Pending</span></div>
+            <div class="kpi"><strong>7</strong><span>Completed</span></div>
+            <div class="kpi"><strong>6</strong><span>Overdue</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="explorer__pane" data-pane="timesheet" role="tabpanel" hidden>
+        <div class="explorer__copy">
+          <h3>Timesheet hours with work context</h3>
+          <p>Logged hours sit beside attendance and tasks so monitoring means utilization, not screenshots.</p>
+          <ul>
+            <li>Daily / weekly hours</li>
+            <li>Project and task linkage where used</li>
+            <li>Approval-ready timesheet views</li>
+          </ul>
+        </div>
+        <div class="explorer__ui">
+          <div class="explorer__ui-bar">
+            <strong>Timesheet</strong>
+            <span>This week</span>
+          </div>
+          <div class="bars" style="height:90px"><i style="height:70%"></i><i style="height:82%"></i><i style="height:65%"></i><i style="height:90%"></i><i style="height:78%"></i><i style="height:40%"></i><i style="height:15%"></i></div>
+        </div>
+      </div>
+
+      <div class="explorer__pane" data-pane="tasks" role="tabpanel" hidden>
+        <div class="explorer__copy">
+          <h3>Task Management board</h3>
+          <p>Know what’s moving with TimeERP’s real board statuses, not invented activity scores.</p>
+          <ul>
+            <li>Open · Processing · Under Review</li>
+            <li>Stuck · Completed · Finalised for Submission</li>
+            <li>Owner, due date, priority</li>
+          </ul>
+        </div>
+        <div class="explorer__ui">
+          <div class="explorer__ui-bar">
+            <strong>Task Management</strong>
+            <span>Board</span>
+          </div>
+          <div class="kanban">
+            <div class="kanban__col"><h5>Open</h5><div class="kanban__card">Site visit: Plot 12<span>Due Fri · High</span></div></div>
+            <div class="kanban__col"><h5>Processing</h5><div class="kanban__card">Invoice follow-up<span>Riya · Due Mon</span></div></div>
+            <div class="kanban__col"><h5>Under Review</h5><div class="kanban__card">Agreement draft<span>Legal</span></div></div>
+            <div class="kanban__col"><h5>Completed</h5><div class="kanban__card">Client onboarding<span>Done</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="explorer__pane" data-pane="approval" role="tabpanel" hidden>
+        <div class="explorer__copy">
+          <h3>Attendance Approval</h3>
+          <p>Review check-in exceptions before they become month-end surprises.</p>
+          <ul>
+            <li>Pending CheckIn</li>
+            <li>Approved / Rejected CheckIn</li>
+            <li>Team request history: Pending · Approved · Rejected</li>
+          </ul>
+        </div>
+        <div class="explorer__ui">
+          <div class="explorer__ui-bar">
+            <strong>Attendance Approval</strong>
+            <span>3 pending</span>
+          </div>
+          <table class="tbl">
+            <thead><tr><th>Employee</th><th>Request</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Aastha Tyagi</td><td>Pending CheckIn</td><td><span class="badge badge--rev">Pending</span></td></tr>
+              <tr><td>Monu Kumar</td><td>Late In correction</td><td><span class="badge badge--rev">Pending</span></td></tr>
+              <tr><td>Khushi C.</td><td>CheckIn update</td><td><span class="badge badge--done">Approved</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="explorer__pane" data-pane="reports" role="tabpanel" hidden>
+        <div class="explorer__copy">
+          <h3>Reports managers already open</h3>
+          <p>Use TimeERP Reports for Employee, HRMS and Task views. The monitoring trail ends in decisions.</p>
+          <ul>
+            <li>Employee report</li>
+            <li>HRMS report</li>
+            <li>Task report</li>
+            <li>Date filters for review cycles</li>
+          </ul>
+        </div>
+        <div class="explorer__ui">
+          <div class="explorer__ui-bar">
+            <strong>Reports</strong>
+            <span>HRMS · Task</span>
+          </div>
+          <div class="panel-grid">
+            <div class="panel"><h4>HRMS report</h4><div class="bars" style="height:64px"><i style="height:70%"></i><i style="height:85%"></i><i style="height:60%"></i><i style="height:90%"></i><i style="height:75%"></i></div><p class="note">Attendance · Leave · Work hours</p></div>
+            <div class="panel"><h4>Task report</h4><div class="kpis" style="grid-template-columns:1fr 1fr"><div class="kpi"><strong>318</strong><span>Completed</span></div><div class="kpi"><strong>47</strong><span>Pending</span></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENTO -->
+<section class="section section--white" id="bento">
+  <div class="container">
+    <div class="section-head section-head--wide reveal">
+      <p class="eyebrow">Product surface</p>
+      <h2 class="section-title section-title--single">Everything monitoring needs, already in TimeERP</h2>
+    </div>
+    <div class="bento reveal">
+      <article class="bento__card bento--lg bento--dark reveal-child">
+        <h3>HRMS workforce snapshot</h3>
+        <div class="kpis">
+          <div class="kpi" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)"><strong style="color:#fff">142</strong><span style="color:rgba(255,255,255,.55)">Present</span></div>
+          <div class="kpi" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)"><strong style="color:#fff">8</strong><span style="color:rgba(255,255,255,.55)">Late In</span></div>
+          <div class="kpi" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)"><strong style="color:#fff">47</strong><span style="color:rgba(255,255,255,.55)">Pending</span></div>
+          <div class="kpi" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)"><strong style="color:#fff">6</strong><span style="color:rgba(255,255,255,.55)">Overdue</span></div>
+        </div>
+        <div class="bars" style="height:80px;margin-top:14px"><i style="height:50%"></i><i style="height:65%"></i><i style="height:58%"></i><i style="height:80%"></i><i style="height:72%"></i><i style="height:88%"></i></div>
+      </article>
+      <article class="bento__card bento--md reveal-child">
+        <h3>My Attendance</h3>
+        <div style="display:flex;gap:6px;flex-wrap:wrap"><span class="badge badge--p">P</span><span class="badge badge--a">A</span><span class="badge badge--late">Late In</span><span class="badge badge--od">OD</span></div>
+        <p class="note" style="margin-top:12px">Detailed Attendance + Attendance Summary</p>
+      </article>
+      <article class="bento__card bento--md reveal-child">
+        <h3>Task Management</h3>
+        <div class="kanban__card">Follow-up: Sector 9<span>Processing</span></div>
+        <div class="kanban__card">Docs pack<span>Under Review</span></div>
+      </article>
+      <article class="bento__card bento--tall reveal-child">
+        <h3>Day Book</h3>
+        <div class="db-tabs"><span class="is-on">Today Task</span><span>Attendance</span></div>
+        <div class="timeline" style="margin-top:8px">
+          <div class="timeline__item"><time>09:00</time>Check In</div>
+          <div class="timeline__item"><time>09:20</time>Task · Processing</div>
+          <div class="timeline__item"><time>13:00</time>Break / notes</div>
+          <div class="timeline__item"><time>17:50</time>Check Out</div>
+        </div>
+      </article>
+      <article class="bento__card bento--wide reveal-child">
+        <h3>View Employee · directory</h3>
+        <table class="tbl">
+          <thead><tr><th>Employee</th><th>Department</th><th>Designation</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Riya Sharma</td><td>Operations</td><td>Ops Lead</td><td><span class="badge badge--p">Active</span></td></tr>
+            <tr><td>Tarun Gaur</td><td>Sales</td><td>Executive</td><td><span class="badge badge--p">Active</span></td></tr>
+          </tbody>
+        </table>
+      </article>
+      <article class="bento__card bento--sm reveal-child"><h3>Attendance Approval</h3><p style="font-size:12.5px">Pending CheckIn queue</p></article>
+      <article class="bento__card bento--sm reveal-child"><h3>Set Designation</h3><p style="font-size:12.5px">Role-based access to workforce data</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNALS -->
+<section class="section section--alt" id="signals">
+  <div class="container">
+    <div class="section-head section-head--wide reveal">
+      <p class="eyebrow">Management signals</p>
+      <h2 class="section-title section-title--single">What needs attention in TimeERP today</h2>
+      <p class="section-lead">Signals grounded in attendance approvals, Day Book overdue tasks and review queues.</p>
+    </div>
+    <div class="signals reveal">
+      <article class="signal reveal-child"><div class="signal__ico">1</div><div><strong>3 Pending CheckIn requests</strong><p>Attendance Approval</p></div><span class="badge badge--high">High</span></article>
+      <article class="signal reveal-child"><div class="signal__ico">2</div><div><strong>6 overdue tasks in Day Book</strong><p>Today Task · Overdue</p></div><span class="badge badge--high">High</span></article>
+      <article class="signal reveal-child"><div class="signal__ico">3</div><div><strong>8 Late In entries this week</strong><p>Attendance Summary</p></div><span class="badge badge--med">Medium</span></article>
+      <article class="signal reveal-child"><div class="signal__ico">4</div><div><strong>4 tasks Under Review</strong><p>Task Management board</p></div><span class="badge badge--med">Medium</span></article>
+      <article class="signal reveal-child"><div class="signal__ico">5</div><div><strong>2 Stuck tasks need unblock</strong><p>Kanban · Stuck</p></div><span class="badge badge--info">Info</span></article>
+      <article class="signal reveal-child"><div class="signal__ico">6</div><div><strong>18 tasks due today</strong><p>Day Book dashboard</p></div><span class="badge badge--info">Info</span></article>
+    </div>
+  </div>
+</section>
+
+<!-- EMPLOYEE 360 -->
+<section class="section section--white" id="profile">
+  <div class="container">
+    <div class="section-head section-head--wide reveal">
+      <p class="eyebrow">View Employee</p>
+      <h2 class="section-title">Open any person. See attendance, hours and tasks together.</h2>
+      <p class="section-lead">HRMS View Employee brings department, designation, present days, leave balance and pending work into one profile managers already use.</p>
+      <div class="hero__modules" style="margin-top:14px">
+        <span>Attendance</span>
+        <span>Timesheet</span>
+        <span>Tasks</span>
+        <span>Leave balance</span>
+        <span>Designation</span>
+      </div>
+    </div>
+    <div class="e360 reveal" id="e360">
+      <aside class="e360__profile">
+        <div class="e360__av">RS</div>
+        <h3>Riya Sharma</h3>
+        <p>Operations Lead</p>
+        <div class="e360__meta">
+          <div><strong>Department</strong>Operations</div>
+          <div><strong>Designation</strong>Ops Lead</div>
+          <div><strong>Status</strong>Active</div>
+        </div>
+      </aside>
+      <div class="e360__body">
+        <div class="e360__tabs">
+          <button type="button" class="is-on" data-e360="overview">Overview</button>
+          <button type="button" data-e360="attendance">Attendance</button>
+          <button type="button" data-e360="tasks">Tasks</button>
+          <button type="button" data-e360="hours">Timesheet</button>
+        </div>
+        <div class="e360__view" data-e360-view="overview">
+          <div class="e360__metrics">
+            <div class="e360__metric"><strong>19</strong><span>Present days</span></div>
+            <div class="e360__metric"><strong>2</strong><span>Leave balance</span></div>
+            <div class="e360__metric"><strong>148h</strong><span>Hours logged</span></div>
+            <div class="e360__metric"><strong>6</strong><span>Pending tasks</span></div>
+            <div class="e360__metric"><strong>18</strong><span>Completed</span></div>
+          </div>
+          <div class="timeline">
+            <div class="timeline__item"><time>09:00</time><strong>Check In</strong></div>
+            <div class="timeline__item"><time>09:20</time>Task moved to Processing</div>
+            <div class="timeline__item"><time>14:10</time>Task Under Review</div>
+            <div class="timeline__item"><time>17:50</time><strong>Check Out</strong></div>
+          </div>
+        </div>
+        <div class="e360__view" data-e360-view="attendance" hidden>
+          <div class="e360__panel">
+            <div class="e360__panel-head">
+              <div>
+                <h4>Attendance this month</h4>
+                <p>My Attendance · Present / Late In / Absent</p>
+              </div>
+              <span class="badge badge--p">Sep 2026</span>
+            </div>
+            <div class="e360__statrow">
+              <div class="e360__stat e360__stat--ok"><strong>19</strong><span>Present (P)</span></div>
+              <div class="e360__stat e360__stat--warn"><strong>1</strong><span>Late In</span></div>
+              <div class="e360__stat e360__stat--alert"><strong>1</strong><span>Absent (A)</span></div>
+              <div class="e360__stat"><strong>8.4h</strong><span>Avg work hours</span></div>
+            </div>
+            <div class="weekbars" aria-label="Recent attendance pattern">
+              <div class="weekbars__col">
+                <span class="weekbars__val">P</span>
+                <div class="weekbars__track"><div class="weekbars__bar" style="height:100%"></div></div>
+                <span class="weekbars__day">Mon</span>
+              </div>
+              <div class="weekbars__col">
+                <span class="weekbars__val">P</span>
+                <div class="weekbars__track"><div class="weekbars__bar" style="height:100%"></div></div>
+                <span class="weekbars__day">Tue</span>
+              </div>
+              <div class="weekbars__col">
+                <span class="weekbars__val">A</span>
+                <div class="weekbars__track"><div class="weekbars__bar weekbars__bar--muted" style="height:28%"></div></div>
+                <span class="weekbars__day">Wed</span>
+              </div>
+              <div class="weekbars__col">
+                <span class="weekbars__val">Late</span>
+                <div class="weekbars__track"><div class="weekbars__bar weekbars__bar--warn" style="height:78%"></div></div>
+                <span class="weekbars__day">Thu</span>
+              </div>
+              <div class="weekbars__col">
+                <span class="weekbars__val">P</span>
+                <div class="weekbars__track"><div class="weekbars__bar" style="height:100%"></div></div>
+                <span class="weekbars__day">Fri</span>
+              </div>
+            </div>
+            <div class="e360__legend">
+              <span><i></i>Present</span>
+              <span><i class="warn"></i>Late In</span>
+              <span><i class="mute"></i>Absent</span>
+            </div>
+          </div>
+        </div>
+        <div class="e360__view" data-e360-view="tasks" hidden>
+          <div class="e360__panel">
+            <div class="e360__panel-head">
+              <div>
+                <h4>Assigned tasks</h4>
+                <p>Task Management board statuses</p>
+              </div>
+              <span class="badge badge--open">6 pending</span>
+            </div>
+            <div class="e360__tasklist">
+              <div class="e360__task">
+                <div><strong>Invoice follow-up</strong><small>Due Mon · High</small></div>
+                <span class="badge badge--proc">Processing</span>
+              </div>
+              <div class="e360__task">
+                <div><strong>Vendor checklist</strong><small>No due date</small></div>
+                <span class="badge badge--open">Open</span>
+              </div>
+              <div class="e360__task">
+                <div><strong>Weekly ops summary</strong><small>Completed today</small></div>
+                <span class="badge badge--done">Completed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="e360__view" data-e360-view="hours" hidden>
+          <div class="e360__panel">
+            <div class="e360__panel-head">
+              <div>
+                <h4>Timesheet this week</h4>
+                <p>Hours logged against work in TimeERP</p>
+              </div>
+              <span class="badge badge--od">38h total</span>
+            </div>
+            <div class="e360__statrow">
+              <div class="e360__stat e360__stat--ok"><strong>38h</strong><span>Logged</span></div>
+              <div class="e360__stat"><strong>7.6h</strong><span>Avg / day</span></div>
+              <div class="e360__stat e360__stat--warn"><strong>1</strong><span>Short day</span></div>
+              <div class="e360__stat"><strong>5</strong><span>Working days</span></div>
+            </div>
+            <div class="weekbars" aria-label="Weekly hours">
+              <div class="weekbars__col">
+                <span class="weekbars__val">7.5h</span>
+                <div class="weekbars__track"><div class="weekbars__bar" style="height:75%"></div></div>
+                <span class="weekbars__day">Mon</span>
+              </div>
+              <div class="weekbars__col">
+                <span class="weekbars__val">8.2h</span>
+                <div class="weekbars__track"><div class="weekbars__bar" style="height:82%"></div></div>
+                <span class="weekbars__day">Tue</span>
+              </div>
+              <div class="weekbars__col">
+                <span class="weekbars__val">7.0h</span>
+                <div class="weekbars__track"><div class="weekbars__bar" style="height:70%"></div></div>
+                <span class="weekbars__day">Wed</span>
+              </div>
+              <div class="weekbars__col">
+                <span class="weekbars__val">8.8h</span>
+                <div class="weekbars__track"><div class="weekbars__bar" style="height:88%"></div></div>
+                <span class="weekbars__day">Thu</span>
+              </div>
+              <div class="weekbars__col">
+                <span class="weekbars__val">6.5h</span>
+                <div class="weekbars__track"><div class="weekbars__bar weekbars__bar--warn" style="height:60%"></div></div>
+                <span class="weekbars__day">Fri</span>
+              </div>
+            </div>
+            <div class="e360__legend">
+              <span><i></i>On track</span>
+              <span><i class="warn"></i>Below average</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONAS -->
+<section class="section section--alt" id="personas">
+  <div class="container">
+    <div class="section-head section-head--center reveal">
+      <p class="eyebrow">Who uses it</p>
+      <h2 class="section-title">Same TimeERP · different jobs</h2>
+    </div>
+    <div class="persona-switch reveal">
+      <button type="button" class="is-on" data-persona="owner">Business Owner</button>
+      <button type="button" data-persona="manager">Manager</button>
+      <button type="button" data-persona="hr">HR</button>
+      <button type="button" data-persona="employee">Employee</button>
+    </div>
+    <div class="persona-panel is-on reveal" data-persona-panel="owner">
+      <div>
+        <h3>See attendance health and delivery together</h3>
+        <p>Owners open Dashboard, HRMS and Reports (not five chat threads) to understand presence and progress.</p>
+        <ul>
+          <li>Present / Late In / Absent trends</li>
+          <li>Pending and overdue task load</li>
+          <li>HRMS &amp; Task reports</li>
+        </ul>
+      </div>
+      <div class="app" style="box-shadow:var(--shadow)"><div class="app__main" style="min-height:auto"><div class="kpis"><div class="kpi kpi--accent"><strong>91%</strong><span>Present rate</span></div><div class="kpi"><strong>47</strong><span>Pending tasks</span></div><div class="kpi"><strong>6</strong><span>Overdue</span></div><div class="kpi"><strong>3</strong><span>Pending CheckIn</span></div></div></div></div>
+    </div>
+    <div class="persona-panel" data-persona-panel="manager">
+      <div>
+        <h3>Run the team from Day Book + Tasks</h3>
+        <p>Managers use Day Book overdue counts and Task Management statuses to unblock work early.</p>
+        <ul>
+          <li>Today Task stats</li>
+          <li>Open / Processing / Stuck</li>
+          <li>Create task · Mark attendance</li>
+        </ul>
+      </div>
+      <div class="app" style="box-shadow:var(--shadow)"><div class="app__main"><div class="kanban"><div class="kanban__col"><h5>Stuck</h5><div class="kanban__card">Vendor docs<span>Needs unblock</span></div></div><div class="kanban__col"><h5>Processing</h5><div class="kanban__card">Site pack<span>On track</span></div></div></div></div></div>
+    </div>
+    <div class="persona-panel" data-persona-panel="hr">
+      <div>
+        <h3>Attendance Approval &amp; workforce records</h3>
+        <p>HR works Pending CheckIn queues, leave and View Employee without rebuilding Excel.</p>
+        <ul>
+          <li>Attendance Approval tabs</li>
+          <li>Leave Count · Late Coming</li>
+          <li>Set Designation permissions</li>
+        </ul>
+      </div>
+      <div class="app" style="box-shadow:var(--shadow)"><div class="app__main"><table class="tbl"><thead><tr><th>Queue</th><th>Count</th></tr></thead><tbody><tr><td>Pending CheckIn</td><td>3</td></tr><tr><td>Late In (week)</td><td>8</td></tr><tr><td>Leave Count</td><td>11</td></tr></tbody></table></div></div>
+    </div>
+    <div class="persona-panel" data-persona-panel="employee">
+      <div>
+        <h3>Transparent self-view</h3>
+        <p>Employees see My Attendance, Timesheet, My Leave and assigned tasks, with monitoring without a black box.</p>
+        <ul>
+          <li>My Attendance history</li>
+          <li>My Leave · Timesheet</li>
+          <li>Assigned tasks on the board</li>
+        </ul>
+      </div>
+      <div class="app" style="box-shadow:var(--shadow)"><div class="app__main"><div class="e360__metrics" style="grid-template-columns:repeat(3,1fr)"><div class="e360__metric"><strong>19</strong><span>Present</span></div><div class="e360__metric"><strong>6</strong><span>Open tasks</span></div><div class="e360__metric"><strong>38h</strong><span>Week hours</span></div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="section section--dark" id="trust">
+  <div class="container">
+    <div class="section-head section-head--center reveal">
+      <p class="eyebrow">Responsible monitoring</p>
+      <h2 class="section-title">Visibility from your operations system, not spyware</h2>
+      <p class="section-lead">TimeERP does not position employee monitoring as screenshots, keylogging or URL spying. It connects attendance and work already captured in HRMS.</p>
+    </div>
+    <div class="principles reveal">
+      <article class="principle reveal-child"><div class="principle__n">01</div><h3>Transparent</h3><p>Employees use My Attendance, Timesheet and tasks, the same system managers review.</p></article>
+      <article class="principle reveal-child"><div class="principle__n">02</div><h3>Contextual</h3><p>Presence is read with Day Book tasks and board status, not idle scores.</p></article>
+      <article class="principle reveal-child"><div class="principle__n">03</div><h3>Permissioned</h3><p>Set Designation controls who can access workforce modules.</p></article>
+      <article class="principle reveal-child"><div class="principle__n">04</div><h3>Outcome-led</h3><p>Managers act on Pending CheckIn, overdue tasks and Under Review queues.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="section section--white" id="industries">
+  <div class="container">
+    <div class="story reveal">
+      <div>
+        <p class="eyebrow">Real Estate</p>
+        <h2 class="section-title">Sales follow-ups tied to attendance &amp; tasks</h2>
+        <p class="section-lead">Site visits and lead follow-ups live on the Task Management board while My Attendance shows who is available to move deals.</p>
+        <div class="pipeline"><span>Lead</span><em>→</em><span>Follow-up task</span><em>→</em><span>Site visit</span><em>→</em><span>Under Review</span><em>→</em><span>Completed</span></div>
+      </div>
+      <div class="app" style="box-shadow:var(--shadow)">
+        <div class="app__main">
+          <div class="kanban">
+            <div class="kanban__col"><h5>Open</h5><div class="kanban__card">Site visit: Plot 12<span>Due Fri · High</span></div></div>
+            <div class="kanban__col"><h5>Processing</h5><div class="kanban__card">Lead follow-up<span>Tarun · Sales</span></div></div>
+            <div class="kanban__col"><h5>Under Review</h5><div class="kanban__card">Buyer docs<span>Legal</span></div></div>
+            <div class="kanban__col"><h5>Completed</h5><div class="kanban__card">Closure pack<span>Done</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section section--alt">
+  <div class="container">
+    <div class="story story--flip reveal">
+      <div>
+        <p class="eyebrow">Construction</p>
+        <h2 class="section-title">Project teams, attendance and task progress</h2>
+        <p class="section-lead">Coordinate office and project staff with Check In, Attendance Summary and Project Management tasks, without claiming GPS tracking.</p>
+        <div class="pipeline"><span>Team assigned</span><em>→</em><span>Attendance</span><em>→</em><span>Tasks</span><em>→</em><span>Manager review</span></div>
+      </div>
+      <div class="app" style="box-shadow:var(--shadow)">
+        <div class="app__main">
+          <div class="kpis">
+            <div class="kpi kpi--accent"><strong>48</strong><span>Present (P)</span></div>
+            <div class="kpi"><strong>12</strong><span>Open tasks</span></div>
+            <div class="kpi"><strong>3</strong><span>Under Review</span></div>
+            <div class="kpi"><strong>2</strong><span>Projects</span></div>
+          </div>
+          <table class="tbl">
+            <thead><tr><th>Employee</th><th>In Time</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Site team A</td><td>08:55</td><td><span class="badge badge--p">P</span></td></tr>
+              <tr><td>Site team B</td><td>09:20</td><td><span class="badge badge--late">Late In</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section section--white">
+  <div class="container">
+    <div class="story reveal">
+      <div>
+        <p class="eyebrow">MSME</p>
+        <h2 class="section-title">Enterprise clarity without spreadsheet chaos</h2>
+        <p class="section-lead">Smaller teams get My Attendance, Day Book and Tasks in one TimeERP login: the monitoring stack they can actually run daily.</p>
+      </div>
+      <div class="app" style="box-shadow:var(--shadow)">
+        <div class="app__main">
+          <div class="db-tabs"><span class="is-on">Today Task</span><span>Attendance</span><span>My Notes</span></div>
+          <div class="kpis">
+            <div class="kpi"><strong>24</strong><span>Employees present</span></div>
+            <div class="kpi"><strong>9</strong><span>Tasks due</span></div>
+            <div class="kpi"><strong>2</strong><span>Pending CheckIn</span></div>
+            <div class="kpi"><strong>1</strong><span>Overdue</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section class="section section--alt" id="compare">
+  <div class="container">
+    <div class="section-head section-head--center reveal">
+      <p class="eyebrow">Before &amp; after</p>
+      <h2 class="section-title">Replace chase-work with TimeERP</h2>
+    </div>
+    <div class="compare reveal is-before" id="compareBox">
+      <div class="compare__toggle">
+        <button type="button" class="is-on" data-cmp="before">Before</button>
+        <button type="button" data-cmp="after">With TimeERP</button>
+      </div>
+      <div class="compare__panels">
+        <div class="compare__panel compare__panel--before">
+          <h3>Before</h3>
+          <ul>
+            <li>× Attendance on WhatsApp</li>
+            <li>× Tasks in personal lists</li>
+            <li>× Late In discovered late</li>
+            <li>× No Day Book for the day</li>
+            <li>× Spreadsheet month-end</li>
+          </ul>
+        </div>
+        <div class="compare__panel compare__panel--after">
+          <h3>With TimeERP</h3>
+          <ul>
+            <li>✓ My Attendance + Check In</li>
+            <li>✓ Task Management board</li>
+            <li>✓ Attendance Approval queue</li>
+            <li>✓ Day Book Today Task</li>
+            <li>✓ HRMS / Task reports</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRIEF -->
+<section class="section section--white" id="brief">
+  <div class="container">
+    <div class="section-head section-head--center reveal">
+      <p class="eyebrow">Daily brief</p>
+      <h2 class="section-title">Start the day inside TimeERP</h2>
+      <p class="section-lead">One morning view of presence, pending approvals and task pressure, before the inbox takes over.</p>
+    </div>
+    <div class="brief reveal">
+      <div class="brief__top">
+        <div>
+          <div class="brief__hi">Good morning · Operations</div>
+          <h3>Today’s monitoring picture</h3>
+        </div>
+        <span class="brief__chip">Live from HRMS + Day Book</span>
+      </div>
+      <div class="brief__grid">
+        <div class="brief__card brief__card--ok reveal-child">
+          <span class="brief__label">Attendance</span>
+          <strong class="stat-count" data-count="142">0</strong>
+          <span>Present (P)</span>
+        </div>
+        <div class="brief__card brief__card--warn reveal-child">
+          <span class="brief__label">Attendance</span>
+          <strong class="stat-count" data-count="8">0</strong>
+          <span>Late In</span>
+        </div>
+        <div class="brief__card brief__card--ok reveal-child">
+          <span class="brief__label">Day Book</span>
+          <strong class="stat-count" data-count="18">0</strong>
+          <span>Tasks due today</span>
+        </div>
+        <div class="brief__card brief__card--alert reveal-child">
+          <span class="brief__label">Day Book</span>
+          <strong class="stat-count" data-count="6">0</strong>
+          <span>Overdue</span>
+        </div>
+        <div class="brief__card brief__card--alert reveal-child">
+          <span class="brief__label">Approvals</span>
+          <strong class="stat-count" data-count="3">0</strong>
+          <span>Pending CheckIn</span>
+        </div>
+        <div class="brief__card brief__card--warn reveal-child">
+          <span class="brief__label">Tasks</span>
+          <strong class="stat-count" data-count="4">0</strong>
+          <span>Under Review</span>
+        </div>
+      </div>
+      <div class="brief__foot">
+        <p class="brief__note">Managers open this picture first: <strong>who’s present</strong>, what’s overdue, and which CheckIn requests need action.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="watch_demo.html">Book a Demo</a>
+          <a class="btn btn--ghost" href="#command">View Dashboard</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ECOSYSTEM -->
+<section class="section section--alt" id="ecosystem">
+  <div class="container">
+    <div class="section-head section-head--center reveal">
+      <p class="eyebrow">Connected platform</p>
+      <h2 class="section-title">Monitoring that sits inside your ERP</h2>
+      <p class="section-lead">Attendance and tasks are more useful when they connect to the same TimeERP modules your team already runs.</p>
+    </div>
+    <div class="eco reveal">
+      <div class="eco__core">
+        <div class="eco__core-brand">
+          <div class="eco__core-mark">TE</div>
+          <div>
+            <h3>TimeERP Employee Monitoring</h3>
+            <p>My Attendance · Day Book · Timesheet · Task Management</p>
+          </div>
+        </div>
+        <span class="eco__core-tag">Core</span>
+      </div>
+      <div class="eco__body">
+        <div class="eco__label">Connected TimeERP modules</div>
+        <div class="eco__grid">
+          <div class="eco__node">HRMS<small>Employees &amp; leave</small></div>
+          <div class="eco__node">Attendance<small>P / A / Late In</small></div>
+          <div class="eco__node">Task Management<small>Board &amp; owners</small></div>
+          <div class="eco__node">Project Management<small>Delivery context</small></div>
+          <div class="eco__node">CRM<small>Client follow-ups</small></div>
+          <div class="eco__node">Document Vault<small>Files &amp; records</small></div>
+          <div class="eco__node">Reports<small>HRMS · Task · Employee</small></div>
+          <div class="eco__node">Payroll &amp; Billing<small>Ops continuity</small></div>
+        </div>
+        <p class="eco__foot">One login. One workforce picture. No separate monitoring tool to maintain.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOUR -->
+<section class="section section--white" id="tour">
+  <div class="container">
+    <div class="section-head section-head--center reveal">
+      <p class="eyebrow">Product tour</p>
+      <h2 class="section-title">Four moments in the TimeERP app</h2>
+    </div>
+    <div class="tour-step reveal">
+      <div><div class="tour-n">01 · Start</div><h3 class="section-title">Check In, then open Day Book</h3><p class="section-lead">Mark presence and see TOTAL / PENDING / OVERDUE tasks for today.</p></div>
+      <div class="app" style="box-shadow:var(--shadow)"><div class="app__main"><div class="app__topbar"><h3>Day Book Dashboard</h3><button type="button" class="app__checkin">Check In</button></div><div class="kpis"><div class="kpi"><strong>24</strong><span>Total</span></div><div class="kpi"><strong>11</strong><span>Pending</span></div><div class="kpi"><strong>7</strong><span>Completed</span></div><div class="kpi"><strong>6</strong><span>Overdue</span></div></div></div></div>
+    </div>
+    <div class="tour-step reveal">
+      <div><div class="tour-n">02 · Attendance</div><h3 class="section-title">Review Detailed Attendance</h3><p class="section-lead">In Time, Out Time, Late In and Work Hours, with Attendance Approval when needed.</p></div>
+      <div class="app" style="box-shadow:var(--shadow)"><div class="app__main"><table class="tbl"><thead><tr><th>Date</th><th>In Time</th><th>Out Time</th><th>Late In</th><th>Status</th></tr></thead><tbody><tr><td>07 Sep</td><td>09:12</td><td>18:05</td><td>0</td><td><span class="badge badge--p">P</span></td></tr><tr><td>06 Sep</td><td>09:48</td><td>18:10</td><td>18m</td><td><span class="badge badge--late">Late In</span></td></tr></tbody></table></div></div>
+    </div>
+    <div class="tour-step reveal">
+      <div><div class="tour-n">03 · Work</div><h3 class="section-title">Move tasks across the board</h3><p class="section-lead">Open → Processing → Under Review → Completed, with owners and due dates visible.</p></div>
+      <div class="app" style="box-shadow:var(--shadow)"><div class="app__main"><div class="kanban"><div class="kanban__col"><h5>Open</h5><div class="kanban__card">Lead follow-up<span>High</span></div></div><div class="kanban__col"><h5>Processing</h5><div class="kanban__card">Site pack<span>Today</span></div></div><div class="kanban__col"><h5>Under Review</h5><div class="kanban__card">Docs<span>Legal</span></div></div><div class="kanban__col"><h5>Completed</h5><div class="kanban__card">Onboarding<span>Done</span></div></div></div></div></div>
+    </div>
+    <div class="tour-step reveal">
+      <div><div class="tour-n">04 · Review</div><h3 class="section-title">Close the loop in Reports</h3><p class="section-lead">Employee, HRMS and Task reports for weekly management reviews.</p></div>
+      <div class="app" style="box-shadow:var(--shadow)"><div class="app__main"><div class="panel"><h4>Weekly overview</h4><div class="bars" style="height:72px"><i style="height:60%"></i><i style="height:75%"></i><i style="height:70%"></i><i style="height:85%"></i><i style="height:80%"></i><i style="height:90%"></i><i style="height:78%"></i></div><p class="note">Employee · HRMS · Task reports</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section class="section section--alt" id="outcomes">
+  <div class="container">
+    <div class="section-head section-head--center reveal">
+      <p class="eyebrow">Outcomes</p>
+      <h2 class="section-title">Less chasing. More TimeERP clarity.</h2>
+    </div>
+    <div class="outcomes reveal">
+      <article class="outcome reveal-child"><div class="outcome__ico">01</div><h3>Clearer accountability</h3><p>Task owners and attendance statuses in one login.</p></article>
+      <article class="outcome reveal-child"><div class="outcome__ico">02</div><h3>Faster approvals</h3><p>Pending CheckIn handled before payroll week.</p></article>
+      <article class="outcome reveal-child"><div class="outcome__ico">03</div><h3>Better task visibility</h3><p>Stuck and Under Review surfaces early.</p></article>
+      <article class="outcome reveal-child"><div class="outcome__ico">04</div><h3>Cleaner attendance review</h3><p>P / A / Late In without spreadsheet rebuilds.</p></article>
+      <article class="outcome reveal-child"><div class="outcome__ico">05</div><h3>Connected operations</h3><p>HRMS linked to Projects, CRM and Documents.</p></article>
+      <article class="outcome reveal-child"><div class="outcome__ico">06</div><h3>Transparent employees</h3><p>My Attendance and tasks visible to the individual.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section section--white" id="testimonials">
+  <div class="container">
+    <div class="section-head section-head--center reveal">
+      <p class="eyebrow">From the TimeERP homepage</p>
+      <h2 class="section-title">Trusted by teams running real operations</h2>
+    </div>
+    <div class="tfeat reveal">
+      <blockquote id="tfeatQuote">“From attendance to payroll to project tracking, everything in one place. Best decision for our construction company.”</blockquote>
+      <cite id="tfeatCite">Construction Co., Ghaziabad</cite>
+      <div class="tfeat__dots">
+        <button type="button" class="is-on" data-t="0" aria-label="1"></button>
+        <button type="button" data-t="1" aria-label="2"></button>
+        <button type="button" data-t="2" aria-label="3"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section--alt" id="faq">
+  <div class="container">
+    <div class="section-head section-head--center reveal">
+      <p class="eyebrow">FAQ</p>
+      <h2 class="section-title">Employee monitoring in TimeERP</h2>
+    </div>
+    <div class="faq reveal">
+      <div class="faq__item is-open">
+        <button type="button" class="faq__q" aria-expanded="true">What is TimeERP Employee Monitoring? <span>+</span></button>
+        <div class="faq__a"><div>It means workforce visibility through My Attendance, Day Book, Timesheets, Task Management and Reports inside TimeERP HRMS. Not desktop spyware.</div></div>
+      </div>
+      <div class="faq__item">
+        <button type="button" class="faq__q">Does TimeERP take screenshots or track keystrokes? <span>+</span></button>
+        <div class="faq__a"><div>No. TimeERP monitoring is built on attendance, hours and tasks already in the product, not screenshots, keylogging or URL tracking.</div></div>
+      </div>
+      <div class="faq__item">
+        <button type="button" class="faq__q">Which modules do managers use day to day? <span>+</span></button>
+        <div class="faq__a"><div>Typically Check In / Check Out, My Attendance, Day Book, Task Management, Attendance Approval and Reports (Employee / HRMS / Task).</div></div>
+      </div>
+      <div class="faq__item">
+        <button type="button" class="faq__q">Can employees see their own attendance? <span>+</span></button>
+        <div class="faq__a"><div>Yes. Employees use My Attendance, Timesheet and My Leave, supporting transparent self-visibility.</div></div>
+      </div>
+      <div class="faq__item">
+        <button type="button" class="faq__q">How do attendance and tasks connect? <span>+</span></button>
+        <div class="faq__a"><div>Presence from attendance sits alongside Day Book Today Task stats and Task Management board statuses, so managers see who is available and what is moving.</div></div>
+      </div>
+      <div class="faq__item">
+        <button type="button" class="faq__q">How does Set Designation help? <span>+</span></button>
+        <div class="faq__a"><div>Designation permissions help control which roles can access workforce and HRMS modules.</div></div>
+      </div>
+      <div class="faq__item">
+        <button type="button" class="faq__q">Is this for Real Estate, Construction and MSMEs? <span>+</span></button>
+        <div class="faq__a"><div>Yes. TimeERP is positioned for those industries, with attendance and task workflows that match field-adjacent and office teams.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="final" id="cta">
+  <div class="container reveal">
+    <p class="eyebrow">Ready for a clearer workday</p>
+    <h2 class="section-title">Put Employee Monitoring inside the TimeERP you already run</h2>
+    <p class="section-lead">See My Attendance, Day Book, Tasks and Reports working together. Book a walkthrough with our team.</p>
+    <div class="btn-row">
+      <a class="btn btn--primary" href="watch_demo.html">Book Your Demo</a>
+      <a class="btn btn--ghost-dark" href="contact_sales.html">Talk to Sales</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand"><img src="assets/favicon-mark.png" alt="" width="24" height="24">Time<span>ERP</span></div>
+        <p>Cloud ERP for HRMS, attendance, tasks, CRM, payroll and operations, built for Real Estate, Construction, MSME and professional services.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <a href="hrms.html">HRMS</a>
+        <a href="attendance.html">Attendance</a>
+        <a href="task_management.html">Task Management</a>
+        <a href="project_management.html">Project Management</a>
+      </div>
+      <div>
+        <h4>Industries</h4>
+        <a href="real_Estate.html">Real Estate</a>
+        <a href="construction.html">Construction</a>
+        <a href="msme.html">MSME</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="contact_sales.html">Contact Sales</a>
+        <a href="watch_demo.html">Book a Demo</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="security.html">Security</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© TimeERP · Law Seva Management Pvt. Ltd.</span>
+      <span>Prototype; not yet linked in live navigation.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var nav = document.getElementById('nav');
+  var navToggle = document.getElementById('navToggle');
+  var navLinks = document.getElementById('navLinks');
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('is-scrolled', window.scrollY > 12);
+  }, { passive: true });
+  if (navToggle) {
+    navToggle.addEventListener('click', function () {
+      var open = nav.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    navLinks.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { nav.classList.remove('is-open'); });
+    });
+  }
+
+  /* Active section nav */
+  var sectionIds = ['modules', 'command', 'explorer', 'industries', 'faq'];
+  var navAnchors = Array.prototype.slice.call(navLinks.querySelectorAll('a[href^="#"]'));
+  function setActiveNav() {
+    var y = window.scrollY + 100;
+    var current = '';
+    sectionIds.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el && el.offsetTop <= y) current = id;
+    });
+    navAnchors.forEach(function (a) {
+      var href = a.getAttribute('href').slice(1);
+      a.classList.toggle('is-active', href === current);
+    });
+  }
+  window.addEventListener('scroll', setActiveNav, { passive: true });
+  setActiveNav();
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-in');
+        e.target.querySelectorAll('.bars').forEach(function (b) { b.classList.add('is-animated'); });
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+  function animateCount(el) {
+    var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+    var t0 = null;
+    function frame(ts) {
+      if (!t0) t0 = ts;
+      var p = Math.min(1, (ts - t0) / 1000);
+      el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+  var countIo = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.stat-count').forEach(animateCount);
+        countIo.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.25 });
+  document.querySelectorAll('.hero, .brief').forEach(function (el) { countIo.observe(el); });
+
+  var kpiSets = {
+    today: { emp: '156', present: '142', late: '8', absent: '6', pending: '47', overdue: '6' },
+    week: { emp: '156', present: '148', late: '22', absent: '14', pending: '96', overdue: '11' },
+    month: { emp: '156', present: '151', late: '41', absent: '28', pending: '140', overdue: '19' }
+  };
+  document.querySelectorAll('[data-range]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      btn.parentElement.querySelectorAll('button').forEach(function (b) { b.classList.remove('is-on'); });
+      btn.classList.add('is-on');
+      var set = kpiSets[btn.getAttribute('data-range')];
+      if (!set) return;
+      Object.keys(set).forEach(function (k) {
+        var el = document.querySelector('[data-kpi="' + k + '"]');
+        if (!el) return;
+        el.style.opacity = '0.35';
+        el.style.transform = 'translateY(4px)';
+        el.style.transition = 'opacity .2s, transform .2s';
+        setTimeout(function () {
+          el.textContent = set[k];
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        }, 120);
+      });
+      var bars = document.querySelector('.cc .bars');
+      if (bars) {
+        bars.classList.remove('is-animated');
+        void bars.offsetWidth;
+        bars.classList.add('is-animated');
+      }
+    });
+  });
+
+  var flow = document.getElementById('flowStory');
+  if (flow) {
+    var steps = flow.querySelectorAll('.flow__step');
+    var flowIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        steps.forEach(function (s, i) { setTimeout(function () { s.classList.add('is-on'); }, i * 140); });
+        flowIo.disconnect();
+      });
+    }, { threshold: 0.25 });
+    flowIo.observe(flow);
+  }
+
+  var explorer = document.getElementById('explorerApp');
+  if (explorer) {
+    var tabs = explorer.querySelectorAll('[data-tab]');
+    var panes = explorer.querySelectorAll('[data-pane]');
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var id = tab.getAttribute('data-tab');
+        tabs.forEach(function (t) { t.classList.remove('is-on'); t.setAttribute('aria-selected', 'false'); });
+        tab.classList.add('is-on'); tab.setAttribute('aria-selected', 'true');
+        panes.forEach(function (p) {
+          var on = p.getAttribute('data-pane') === id;
+          p.classList.toggle('is-on', on);
+          p.hidden = !on;
+          if (on) {
+            p.querySelectorAll('.bars').forEach(function (b) {
+              b.classList.remove('is-animated');
+              void b.offsetWidth;
+              b.classList.add('is-animated');
+            });
+          }
+        });
+      });
+    });
+  }
+
+  var e360 = document.getElementById('e360');
+  if (e360) {
+    e360.querySelectorAll('[data-e360]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        e360.querySelectorAll('[data-e360]').forEach(function (b) { b.classList.remove('is-on'); });
+        btn.classList.add('is-on');
+        var id = btn.getAttribute('data-e360');
+        e360.querySelectorAll('[data-e360-view]').forEach(function (v) {
+          var on = v.getAttribute('data-e360-view') === id;
+          v.hidden = !on;
+          if (on) {
+            v.classList.remove('e360__view');
+            void v.offsetWidth;
+            v.classList.add('e360__view');
+            v.querySelectorAll('.bars, .weekbars').forEach(function (b) {
+              b.classList.remove('is-animated');
+              void b.offsetWidth;
+              b.classList.add('is-animated');
+            });
+          }
+        });
+      });
+    });
+  }
+
+  document.querySelectorAll('[data-persona]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var id = btn.getAttribute('data-persona');
+      document.querySelectorAll('[data-persona]').forEach(function (b) { b.classList.remove('is-on'); });
+      btn.classList.add('is-on');
+      document.querySelectorAll('[data-persona-panel]').forEach(function (p) {
+        p.classList.toggle('is-on', p.getAttribute('data-persona-panel') === id);
+      });
+    });
+  });
+
+  var compareBox = document.getElementById('compareBox');
+  if (compareBox) {
+    compareBox.querySelectorAll('[data-cmp]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        compareBox.querySelectorAll('[data-cmp]').forEach(function (b) { b.classList.remove('is-on'); });
+        btn.classList.add('is-on');
+        compareBox.classList.toggle('is-before', btn.getAttribute('data-cmp') === 'before');
+        compareBox.classList.toggle('is-after', btn.getAttribute('data-cmp') === 'after');
+      });
+    });
+  }
+
+  var quotes = [
+    { q: '“From attendance to payroll to project tracking, everything in one place. Best decision for our construction company.”', c: 'Construction Co., Ghaziabad' },
+    { q: '“TimeERP transformed how we manage client tasks and billing. Our team saves 15+ hours every week.”', c: 'CA Firm, Delhi NCR' },
+    { q: '“The document vault and task management alone are worth it. Our clients love the portal access.”', c: 'Professional Services, Noida' }
+  ];
+  var tfeat = document.querySelector('.tfeat');
+  var tIndex = 0;
+  function showQuote(i) {
+    tIndex = i;
+    document.querySelectorAll('[data-t]').forEach(function (b) { b.classList.toggle('is-on', parseInt(b.getAttribute('data-t'), 10) === i); });
+    if (!tfeat) {
+      document.getElementById('tfeatQuote').textContent = quotes[i].q;
+      document.getElementById('tfeatCite').textContent = quotes[i].c;
+      return;
+    }
+    tfeat.classList.add('is-swap');
+    setTimeout(function () {
+      document.getElementById('tfeatQuote').textContent = quotes[i].q;
+      document.getElementById('tfeatCite').textContent = quotes[i].c;
+      tfeat.classList.remove('is-swap');
+    }, 220);
+  }
+  document.querySelectorAll('[data-t]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      showQuote(parseInt(btn.getAttribute('data-t'), 10) || 0);
+    });
+  });
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    setInterval(function () {
+      if (!tfeat || document.hidden) return;
+      showQuote((tIndex + 1) % quotes.length);
+    }, 6500);
+  }
+
+  document.querySelectorAll('.faq__q').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var item = btn.closest('.faq__item');
+      var open = item.classList.contains('is-open');
+      document.querySelectorAll('.faq__item').forEach(function (i) {
+        i.classList.remove('is-open');
+        i.querySelector('.faq__q').setAttribute('aria-expanded', 'false');
+      });
+      if (!open) { item.classList.add('is-open'); btn.setAttribute('aria-expanded', 'true'); }
+    });
+  });
+
+  /* Compact 10s explainer using real TimeERP screenshots */
+  var reelScenes = [
+    {
+      kicker: '01  Presence',
+      title: 'Know who’s present today',
+      text: 'Attendance Preview from the TimeERP app: Check In / Check Out without chasing messages.',
+      benefit: 'Benefit: clear presence at the start of the day.',
+      img: 'assets/phone-screens/attendance-preview.png',
+      alt: 'TimeERP Attendance Preview'
+    },
+    {
+      kicker: '02  Attendance',
+      title: 'Attendance with HRMS context',
+      text: 'HRMS dashboard screens your managers already open for workforce visibility.',
+      benefit: 'Benefit: cleaner attendance reviews before payroll.',
+      img: 'assets/phone-screens/hrms-dashboard.png',
+      alt: 'TimeERP HRMS dashboard'
+    },
+    {
+      kicker: '03  Tasks',
+      title: 'See what work moved',
+      text: 'Task views from TimeERP show ownership and progress beside presence.',
+      benefit: 'Benefit: unblock Stuck work early.',
+      img: 'assets/phone-screens/view-task.png',
+      alt: 'TimeERP task view'
+    },
+    {
+      kicker: '04  Alerts',
+      title: 'Handle exceptions fast',
+      text: 'Notifications keep Pending CheckIn and team updates in one place.',
+      benefit: 'Benefit: fewer month-end surprises.',
+      img: 'assets/phone-screens/notifications.png',
+      alt: 'TimeERP notifications'
+    },
+    {
+      kicker: '05  Dashboard',
+      title: 'One place to manage people',
+      text: 'Dashboard overview ties attendance, tasks and operations into one TimeERP login.',
+      benefit: 'Benefit: handle employees with clarity, not spyware.',
+      img: 'assets/phone-screens/dashboard-demo.png',
+      alt: 'TimeERP Dashboard'
+    }
+  ];
+  var reel = document.getElementById('explainerReel');
+  if (reel) {
+    var kicker = document.getElementById('reelKicker');
+    var title = document.getElementById('reelTitle');
+    var text = document.getElementById('reelText');
+    var benefit = document.getElementById('reelBenefit');
+    var img = document.getElementById('reelImg');
+    var steps = reel.querySelectorAll('[data-reel]');
+    var idx = 0;
+    function showReel(i) {
+      idx = ((i % reelScenes.length) + reelScenes.length) % reelScenes.length;
+      var s = reelScenes[idx];
+      kicker.textContent = s.kicker;
+      title.textContent = s.title;
+      text.textContent = s.text;
+      benefit.textContent = s.benefit;
+      steps.forEach(function (b) {
+        b.classList.toggle('is-on', parseInt(b.getAttribute('data-reel'), 10) === idx);
+      });
+      if (!img) return;
+      img.classList.add('is-swap');
+      setTimeout(function () {
+        img.src = s.img;
+        img.alt = s.alt;
+        img.classList.remove('is-swap');
+      }, 160);
+    }
+    steps.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        showReel(parseInt(btn.getAttribute('data-reel'), 10) || 0);
+      });
+    });
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setInterval(function () { showReel(idx + 1); }, 2000);
+    }
+  }
+})();
+</script>
+</body>
+</html>

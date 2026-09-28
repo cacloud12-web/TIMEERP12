@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Community — TimeERP Marketing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/marketing-community-dashboard.css?v=1">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="mcd-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="mcd-top-clock" id="mcdTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn mcd-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn mcd-top-icon" id="notifBtn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">1</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="mcd-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="marketing_community.html" class="dropdown__item"><strong>Community</strong><span>Back to community hub</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="mcd-page">
+          <header class="mcd-header">
+            <a class="mcd-back" href="marketing_community.html" aria-label="Back to Community">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <span class="mcd-crumb">Community Dashboard</span>
+          </header>
+
+          <h1 class="mcd-title">Dashboard Community</h1>
+
+          <div class="mcd-layout">
+            <section class="mcd-main">
+              <div class="mcd-search-row">
+                <label class="mcd-search">
+                  <input type="search" id="mcdSearchInput" placeholder="Search Community">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                </label>
+                <button type="button" class="mcd-search-btn" id="mcdSearchBtn">Search</button>
+              </div>
+
+              <div class="mcd-filters">
+                <button type="button" class="mcd-filter-icon" aria-label="Filter">⛃</button>
+                <div class="mcd-date-range" id="mcdDateRange">
+                  <button type="button" class="mcd-date-range__btn" id="mcdDateBtn">
+                    <span id="mcdDateStart">Start date</span>
+                    <span class="mcd-date-range__arrow">→</span>
+                    <span id="mcdDateEnd">End date</span>
+                    <svg class="mcd-date-range__cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                  </button>
+                  <div class="mcd-date-pop" id="mcdDatePop" hidden>
+                    <div class="mcd-cal" id="mcdCal"></div>
+                    <button type="button" class="mcd-date-today" id="mcdDateToday">Today</button>
+                  </div>
+                </div>
+                <span class="mcd-combo" data-list="service">
+                  <input type="text" id="mcdFilterService" placeholder="Filter Service" readonly>
+                  <svg class="mcd-combo__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                  <div class="mcd-combo__menu"></div>
+                </span>
+                <input type="text" class="mcd-price" id="mcdMinPrice" placeholder="Min Price">
+                <input type="text" class="mcd-price" id="mcdMaxPrice" placeholder="Max Price">
+              </div>
+
+              <div class="mcd-feed" id="mcdFeed"></div>
+
+              <footer class="mcd-pagination">
+                <div></div>
+                <div class="mcd-pagination__center">
+                  <button type="button" class="mcd-page-nav" disabled>‹</button>
+                  <input type="text" class="mcd-page-input" value="1" readonly>
+                  <span>of 1</span>
+                  <button type="button" class="mcd-page-nav" disabled>›</button>
+                </div>
+                <div class="mcd-pagination__right"><span id="mcdFeedCount">0 / 0</span></div>
+              </footer>
+            </section>
+
+            <aside class="mcd-side">
+              <div class="mcd-panel">
+                <h2 class="mcd-panel__title">Add Post</h2>
+                <form class="mcd-form" id="mcdForm" novalidate>
+                  <label>Task Name <span class="mcd-req">*</span>
+                    <input type="text" id="mcdTaskName" placeholder="Task Name" required>
+                  </label>
+                  <label>Service Name
+                    <span class="mcd-combo mcd-combo--form" data-list="formService">
+                      <input type="text" id="mcdServiceName" placeholder="Service Name" autocomplete="off">
+                      <svg class="mcd-combo__search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                      <div class="mcd-combo__menu"></div>
+                    </span>
+                  </label>
+                  <label>Description
+                    <textarea id="mcdDescription" placeholder="Description" rows="3"></textarea>
+                  </label>
+                  <label>Price <span class="mcd-req">*</span>
+                    <input type="text" id="mcdPrice" placeholder="Price" required>
+                  </label>
+                  <label>Expected Time(in days)
+                    <input type="text" id="mcdExpectedTime" placeholder="Expected Time(in days)">
+                  </label>
+                  <label>This Post is Valid Till <span class="mcd-req">*</span>
+                    <div class="mcd-valid-field" id="mcdValidField">
+                      <input type="text" id="mcdValidTill" placeholder="DD/MM/YYYY" readonly required>
+                      <svg class="mcd-valid-field__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                      <div class="mcd-date-pop mcd-date-pop--valid" id="mcdValidPop" hidden>
+                        <div class="mcd-cal" id="mcdValidCal"></div>
+                        <button type="button" class="mcd-date-today" id="mcdValidToday">Today</button>
+                      </div>
+                    </div>
+                  </label>
+                  <button type="submit" class="mcd-submit">Create a post</button>
+                </form>
+              </div>
+
+              <div class="mcd-panel mcd-panel--posts">
+                <div class="mcd-panel__head">
+                  <h2 class="mcd-panel__title">My Post</h2>
+                  <div class="mcd-panel__nav">
+                    <button type="button" class="mcd-mini-nav" id="mcdPostPrev" aria-label="Previous post">‹</button>
+                    <button type="button" class="mcd-mini-nav" id="mcdPostNext" aria-label="Next post">›</button>
+                    <a href="#" class="mcd-view-all">View all</a>
+                  </div>
+                </div>
+                <div class="mcd-my-posts" id="mcdMyPosts"></div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/marketing-community-dashboard.js?v=1"></script>
+</body>
+</html>

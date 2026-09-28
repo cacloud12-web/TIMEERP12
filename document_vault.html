@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Vault — TimeERP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/document-vault.css?v=3">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="dv-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="dv-top-clock" id="dvTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn dv-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn dv-top-icon" id="notifBtn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="dv-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="home.html" class="dropdown__item"><strong>Dashboard</strong><span>Back to home</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="dv-page">
+          <section class="module-view" aria-labelledby="dvTitle">
+            <div class="module-view__head">
+              <div class="module-view__intro">
+                <h1 id="dvTitle">Document Vault</h1>
+                <p class="module-view__sub">Client files, DSC, UDIN and statutory forms.</p>
+              </div>
+              <a href="home.html" class="module-view__back">← Back to home</a>
+            </div>
+
+            <div class="task-grid">
+              <a class="task-card" href="client_document.html" data-card="client-document">
+                <span class="task-card__art"><img src="assets/home-icons/client-desk.svg" alt="" width="56" height="56"></span>
+                <span class="task-card__label">Client Document</span>
+              </a>
+              <a class="task-card" href="self_create_document.html" data-card="create-documents">
+                <span class="task-card__art"><img src="assets/home-icons/task-create.svg" alt="" width="56" height="56"></span>
+                <span class="task-card__label">Create Documents</span>
+              </a>
+              <a class="task-card" href="inward_outward.html" data-card="inward-outward">
+                <span class="task-card__art"><img src="assets/home-icons/task-inward.svg" alt="" width="56" height="56"></span>
+                <span class="task-card__label">Inward and Outward Documents</span>
+              </a>
+              <a class="task-card" href="dsc_tracker.html" data-card="dsc">
+                <span class="task-card__art"><img src="assets/home-icons/task-dsc.svg" alt="" width="56" height="56"></span>
+                <span class="task-card__label">DSC Tracker</span>
+              </a>
+              <a class="task-card" href="udin_repository.html" data-card="udin">
+                <span class="task-card__art"><img src="assets/home-icons/task-form.svg" alt="" width="56" height="56"></span>
+                <span class="task-card__label">UDIN Repository</span>
+              </a>
+              <a class="task-card" href="peer_review.html" data-card="peer-review">
+                <span class="task-card__art"><img src="assets/home-icons/task-approve.svg" alt="" width="56" height="56"></span>
+                <span class="task-card__label">Peer Review</span>
+              </a>
+              <a class="task-card" href="asset_register.html" data-card="fixed-asset">
+                <span class="task-card__art"><img src="assets/home-icons/task-lock.svg" alt="" width="56" height="56"></span>
+                <span class="task-card__label">Fixed asset register</span>
+              </a>
+              <a class="task-card" href="form145.html" data-card="form-145">
+                <span class="task-card__art"><img src="assets/home-icons/task-form.svg" alt="" width="56" height="56"></span>
+                <span class="task-card__label">View FORM 145 PARTA</span>
+              </a>
+              <a class="task-card" href="form146.html" data-card="form-146">
+                <span class="task-card__art"><img src="assets/home-icons/task-outward.svg" alt="" width="56" height="56"></span>
+                <span class="task-card__label">View FORM 146</span>
+              </a>
+            </div>
+          </section>
+
+          <footer class="dv-app-footer" aria-label="App footer"></footer>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/document-vault.js?v=1"></script>
+</body>
+</html>

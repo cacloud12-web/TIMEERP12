@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lead Management — TimeERP Marketing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/marketing-lead-management.css?v=5">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="lm-top-checkout">Check Out</button>
+            <time class="lm-top-clock" id="lmTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn lm-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <button type="button" class="topbar__icon-btn lm-top-icon" aria-label="Notifications">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+            </button>
+            <button type="button" class="topbar__profile" aria-label="Profile">
+              <span class="topbar__avatar">CA</span>
+              <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="lm-page">
+          <h1 class="lm-title">Lead Management</h1>
+
+          <div class="lm-panel">
+            <div class="lm-toolbar">
+              <div class="lm-toolbar__left">
+                <label class="lm-search">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                  <input type="search" id="lmSearch" placeholder="Email Id / Mobile / Created By / District / Tag">
+                </label>
+              </div>
+              <div class="lm-toolbar__right">
+                <button type="button" class="lm-icon-btn" title="Tasks">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="16" height="16"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v3h6V3M8 11l2 2 4-4M8 17h8"/></svg>
+                </button>
+                <button type="button" class="lm-icon-btn" title="Collapse">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M15 4h5v5M9 4H4v5M9 20H4v-5M20 15v5h-5M21 3l-7 7M3 3l7 7M3 21l7-7M21 21l-7-7"/></svg>
+                </button>
+                <div class="lm-col-wrap">
+                  <button type="button" class="lm-icon-btn lm-icon-btn--dd" id="lmColBtn" title="Columns">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" width="16" height="16" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="1.5"/><path d="M5 9.33h14M5 14.67h14"/><path d="M8 6.85h5M8 12h5M8 17.15h5"/></svg>
+                    <svg class="lm-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="10" height="10"><path d="M6 9l6 6 6-6"/></svg>
+                  </button>
+                  <div class="lm-col-menu" id="lmColMenu" hidden>
+                    <div class="lm-col-menu__head">
+                      <span class="lm-col-menu__title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" width="15" height="15" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="1.5"/><path d="M5 9.33h14M5 14.67h14"/><path d="M8 6.85h5M8 12h5M8 17.15h5"/></svg>
+                        Columns
+                      </span>
+                      <button type="button" class="lm-col-selall" id="lmColSelAll">Select All</button>
+                    </div>
+                    <div class="lm-col-menu__list" id="lmColList"></div>
+                  </div>
+                </div>
+                <div class="lm-col-wrap">
+                  <button type="button" class="lm-icon-btn" id="lmFilterBtn" title="Filters">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="16" height="16"><path d="M4 5h16l-6.2 7.4V19l-3.6 2v-8.6L4 5z"/></svg>
+                  </button>
+                  <div class="lm-col-menu lm-filter-menu" id="lmFilterMenu" hidden>
+                    <div class="lm-col-menu__head">
+                      <span class="lm-col-menu__title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#25B7A7" stroke-width="1.7" width="15" height="15"><path d="M4 5h16l-6.2 7.4V19l-3.6 2v-8.6L4 5z"/></svg>
+                        Filter
+                      </span>
+                      <button type="button" class="lm-col-selall" id="lmFilterReset">Reset</button>
+                    </div>
+                    <div class="lm-filter-box">
+                      <button type="button" class="lm-filter-row" data-filter-acc="date">
+                        Date Range
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M9 6l6 6-6 6"/></svg>
+                      </button>
+                      <div class="lm-filter-panel" id="lmFilterDate" hidden>
+                        <input type="date" id="lmFilterFrom">
+                        <span>to</span>
+                        <input type="date" id="lmFilterTo">
+                      </div>
+                      <button type="button" class="lm-filter-row" data-filter-acc="assign">
+                        Assign To
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M9 6l6 6-6 6"/></svg>
+                      </button>
+                      <div class="lm-filter-panel" id="lmFilterAssign" hidden>
+                        <input type="text" id="lmFilterAssignInput" placeholder="Search assignee">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="lm-col-wrap">
+                  <button type="button" class="lm-icon-btn" id="lmSettingsBtn" title="Settings">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="16" height="16"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+                  </button>
+                  <div class="lm-col-menu lm-settings-menu" id="lmSettingsMenu" hidden>
+                    <button type="button" class="lm-set-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" width="15" height="15"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+                      Lead Status
+                    </button>
+                    <button type="button" class="lm-set-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M12 5v14M5 12h14"/></svg>
+                      Custom Fields
+                    </button>
+                  </div>
+                </div>
+                <button type="button" class="lm-pill-btn">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="15" height="15"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  Contact Scheduler
+                </button>
+                <button type="button" class="lm-icon-btn lm-icon-btn--xls" title="Export">
+                  <svg viewBox="0 0 24 24" width="16" height="16"><rect x="5" y="3" width="14" height="18" rx="2" fill="#21a366"/><path d="M9.2 8.2h2.1l1.7 3.4 1.7-3.4h2.1l-2.8 5.2 2.9 5.4h-2.2l-1.7-3.5-1.7 3.5H9.1l2.9-5.4z" fill="#fff"/></svg>
+                </button>
+                <button type="button" class="lm-plus-btn" id="lmAddBtn">+</button>
+              </div>
+            </div>
+
+            <div class="lm-tabs" role="tablist">
+              <button type="button" class="lm-tab is-active" data-tab="active">Active Leads</button>
+              <button type="button" class="lm-tab" data-tab="cancelled">Cancelled</button>
+              <button type="button" class="lm-tab" data-tab="deleted">Deleted</button>
+            </div>
+
+            <div class="lm-table-wrap">
+              <table class="lm-table">
+                <thead>
+                  <tr>
+                    <th data-col="sno">S. No.</th>
+                    <th data-col="createdAt">Created At</th>
+                    <th data-col="name">Name</th>
+                    <th data-col="company">Company Name</th>
+                    <th data-col="createdBy">Created By</th>
+                    <th data-col="leadInfo">Lead Info</th>
+                    <th data-col="docs">Documents</th>
+                    <th data-col="email">Email Id</th>
+                    <th data-col="mobile">Mobile No</th>
+                    <th data-col="assignTo">Assign To</th>
+                    <th data-col="source">Lead Source</th>
+                    <th data-col="status">Lead Status</th>
+                    <th data-col="rating">Rating</th>
+                    <th data-col="branch">Branch</th>
+                    <th data-col="revenue">Annual Revenue</th>
+                    <th data-col="service">Service</th>
+                    <th data-col="website">Website</th>
+                    <th data-col="address">Address</th>
+                    <th data-col="country">Country</th>
+                    <th data-col="state">State</th>
+                    <th data-col="district">District</th>
+                    <th data-col="pincode">Pincode</th>
+                    <th data-col="description">Description</th>
+                    <th data-col="tags">Tags</th>
+                    <th data-col="notes">Notes</th>
+                    <th data-col="actions">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="lmTableBody"></tbody>
+              </table>
+            </div>
+
+            <footer class="lm-pagination">
+              <div></div>
+              <div class="lm-pagination__center">
+                <button type="button" class="lm-page-nav" disabled>‹</button>
+                <input type="text" class="lm-page-input" value="1" readonly>
+                <span>of 1</span>
+                <button type="button" class="lm-page-nav" disabled>›</button>
+              </div>
+              <div class="lm-pagination__right"><span id="lmCount">1 / 1</span></div>
+            </footer>
+          </div>
+
+          <footer class="lm-footer"></footer>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="lm-modal-scrim" id="lmModal" hidden>
+    <div class="lm-modal">
+      <div class="lm-modal__head">
+        <div class="lm-modal__head-main">
+          <h2>Lead</h2>
+          <p id="lmModalSubtitle">Add Lead</p>
+        </div>
+        <div class="lm-modal__head-actions">
+          <a href="#" class="lm-view-link">View Lead</a>
+          <button type="button" class="lm-back-btn" aria-label="Close">‹</button>
+        </div>
+      </div>
+      <form class="lm-form" id="lmForm">
+        <div class="lm-row">
+          <label>Lead Information</label>
+          <textarea id="lmLeadInfo" placeholder="Lead information"></textarea>
+        </div>
+        <div class="lm-row"><label>Name <span>*</span></label><input id="lmName" placeholder="Name"></div>
+        <div class="lm-row"><label>Company Name</label><input id="lmCompany" placeholder="Company Name"></div>
+        <div class="lm-row"><label>Mobile No <span>*</span></label><input id="lmMobile" placeholder="Mobile No"></div>
+        <div class="lm-row"><label>Email ID</label><input id="lmEmail" placeholder="Email ID"></div>
+        <div class="lm-row">
+          <label>Lead Status</label>
+          <select id="lmStatus">
+            <option>Processing</option>
+            <option>Payment WIP</option>
+            <option>Payment received</option>
+            <option>Closed & Converted as customer</option>
+            <option>Open 2</option>
+            <option>Open 3</option>
+            <option>Employee no 1</option>
+          </select>
+        </div>
+        <div class="lm-row"><label>Rating</label><div class="lm-stars">☆ ☆ ☆ ☆ ☆</div></div>
+        <div class="lm-form-actions">
+          <button type="button" class="lm-btn">More Info</button>
+          <button type="submit" class="lm-btn lm-btn--primary">Submit</button>
+          <button type="button" class="lm-btn" id="lmCancelBtn">cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/marketing-lead-management.js?v=5"></script>
+</body>
+</html>

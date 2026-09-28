@@ -1,0 +1,89 @@
+/* TIME ERP — My Offers (marketing_community_offers.html) */
+a.sidebar__item { color: inherit; text-decoration: none; }
+
+.mco-top-checkout {
+  height: 32px; padding: 0 14px; border: none; border-radius: 4px;
+  background: #25b7a7; color: #fff; font-size: 13px; font-weight: 600; cursor: pointer;
+}
+.mco-top-clock {
+  font-size: 16px; font-weight: 600; color: #25B7A7;
+  font-variant-numeric: tabular-nums; min-width: 46px; text-align: center;
+}
+.mco-top-icon { color: #25B7A7 !important; }
+.mco-profile-caret { width: 14px; height: 14px; color: #94a3b8; flex-shrink: 0; }
+
+.mco-page {
+  min-height: 100%;
+  margin: -16px calc(var(--content-pad-x, 16px) * -1) -24px;
+  padding: 14px 18px 24px;
+  background: #f3f5f7;
+}
+
+.mco-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.mco-back {
+  width: 28px; height: 28px; border-radius: 4px; background: #25B7A7; color: #fff;
+  display: inline-flex; align-items: center; justify-content: center; text-decoration: none;
+}
+.mco-back svg { width: 16px; height: 16px; stroke: #fff; }
+.mco-back:hover { background: #1fa396; }
+.mco-crumb { font-size: 14px; font-weight: 500; color: #374151; }
+
+.mco-panel {
+  background: #fff; border: 1px solid #e8edf2; border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, .04); overflow: hidden;
+}
+
+.mco-title {
+  margin: 0; padding: 12px 16px 10px;
+  font-size: 22px; font-weight: 600; color: #25B7A7;
+  border-bottom: 1px solid #eef2f6;
+}
+
+.mco-table-wrap { overflow-x: auto; }
+.mco-table {
+  width: 100%; border-collapse: collapse; font-size: 13px; min-width: 920px;
+}
+.mco-table th {
+  text-align: left; padding: 10px 14px; font-weight: 600; color: rgba(0, 0, 0, .65);
+  background: #fafafa; border-bottom: 1px solid #eef2f6; white-space: nowrap;
+}
+.mco-table td {
+  padding: 12px 14px; color: rgba(0, 0, 0, .85);
+  border-bottom: 1px solid #f0f0f0; vertical-align: middle;
+}
+.mco-table tbody tr:hover td { background: #fafafa; }
+
+.mco-status {
+  display: inline-block; padding: 2px 10px; border-radius: 4px;
+  font-size: 12px; font-weight: 500; border: 1px solid #ffe58f;
+  background: #fffbe6; color: #d48806;
+}
+.mco-status--approved { border-color: #b7eb8f; background: #f6ffed; color: #52c41a; }
+.mco-status--rejected { border-color: #ffa39e; background: #fff1f0; color: #ff4d4f; }
+
+.mco-pagination {
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+  padding: 12px 16px; border-top: 1px solid #eef2f6; gap: 12px;
+}
+.mco-pagination__center { display: flex; align-items: center; gap: 8px; justify-content: center; }
+.mco-pagination__right { display: flex; justify-content: flex-end; }
+.mco-page-nav {
+  width: 28px; height: 28px; border: 1px solid #d9d9d9; border-radius: 4px;
+  background: #fff; color: rgba(0, 0, 0, .45); cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; padding: 0;
+}
+.mco-page-nav:disabled { opacity: .45; cursor: not-allowed; }
+.mco-page-nav svg { width: 14px; height: 14px; }
+.mco-page-input {
+  width: 40px; height: 28px; border: 1px solid #d9d9d9; border-radius: 4px;
+  text-align: center; font-size: 14px; font-family: inherit;
+}
+.mco-page-of { font-size: 14px; color: rgba(0, 0, 0, .65); }
+.mco-count {
+  display: inline-block; padding: 4px 10px; border: 1px solid #d9d9d9;
+  border-radius: 4px; font-size: 13px; color: rgba(0, 0, 0, .65);
+}
+
+@media (max-width: 768px) {
+  .mco-page { padding: 12px 12px 24px; }
+}

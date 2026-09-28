@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Branch — TimeERP</title>
+  <meta name="description" content="Add a new organization branch with billing, payment, social, and support details.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/my-profile.css?v=46">
+  <link rel="stylesheet" href="css/add-branch.css?v=4">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="shell-top-checkin is-checked-in is-orange" id="shellTopCheckInBtn">Check Out</button>
+            <time class="shell-top-clock" id="shellTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn shell-top-icon" id="shellCalBtn" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn shell-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <a class="shell-account" id="profileBtn" href="my_profile.html" aria-label="Open profile">
+              <span class="shell-account__org" aria-hidden="true"><img src="assets/favicon-mark.png" alt="" width="28" height="28"></span>
+              <span class="shell-account__name">CA Cloud..</span>
+              <span class="shell-account__user" aria-hidden="true"><img src="assets/favicon-mark.png" alt="" width="28" height="28"></span>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="mp-page ab-page">
+          <div class="ab-top">
+            <div class="ab-top__left">
+              <a class="ab-back" href="organization.html#branch" aria-label="Back to organization">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+              </a>
+              <span class="ab-crumb">HRMS Setting</span>
+            </div>
+            <a class="ab-view-btn" href="organization.html#branch">View Branch</a>
+          </div>
+
+          <h1 class="ab-title">Add Branch</h1>
+
+          <nav class="ab-steps" aria-label="Branch setup steps">
+            <button type="button" class="ab-step is-active is-done" data-ab-step="0"><span class="ab-step__dot" aria-hidden="true"></span><span class="ab-step__label">Basic Details</span></button>
+            <button type="button" class="ab-step" data-ab-step="1"><span class="ab-step__dot" aria-hidden="true"></span><span class="ab-step__label">Billing</span></button>
+            <button type="button" class="ab-step" data-ab-step="2"><span class="ab-step__dot" aria-hidden="true"></span><span class="ab-step__label">Payment</span></button>
+            <button type="button" class="ab-step" data-ab-step="3"><span class="ab-step__dot" aria-hidden="true"></span><span class="ab-step__label">Social Media</span></button>
+            <button type="button" class="ab-step" data-ab-step="4"><span class="ab-step__dot" aria-hidden="true"></span><span class="ab-step__label">Support</span></button>
+          </nav>
+
+          <div class="ab-layout">
+            <div class="ab-form-col">
+
+              <!-- STEP 0 Basic -->
+              <section class="ab-pane is-active" data-ab-pane="0">
+                <div class="ab-field-row">
+                  <span class="ab-label ab-label--inline">Have GST NO.</span>
+                  <div class="ab-radios">
+                    <label><input type="radio" name="haveGst" value="yes" checked> Yes</label>
+                    <label><input type="radio" name="haveGst" value="no"> No</label>
+                  </div>
+                </div>
+
+                <div class="ab-grid-2">
+                  <label class="ab-field">GST No.<em>*</em>
+                    <input type="text" placeholder="GST No." id="abGst">
+                    <button type="button" class="ab-link" id="abGetGst">Get details</button>
+                  </label>
+                  <label class="ab-field">Branch/Firm Name
+                    <input type="text" placeholder="Branch/Firm Name" id="abName">
+                  </label>
+                </div>
+
+                <div class="ab-grid-2">
+                  <label class="ab-field">Legal Business Name
+                    <input type="text" placeholder="Legal Business Name">
+                  </label>
+                  <label class="ab-field">Branch Password <i class="ab-info" title="Used for branch login">i</i>
+                    <input type="password" placeholder="Enter Branch Password">
+                  </label>
+                </div>
+
+                <div class="ab-grid-2">
+                  <label class="ab-field">PAN No
+                    <input type="text" placeholder="PAN No.">
+                  </label>
+                  <label class="ab-field">Udyam Reg No
+                    <input type="text" placeholder="Udyam Reg No">
+                  </label>
+                </div>
+
+                <label class="ab-field">Tag Line
+                  <input type="text" placeholder="Tag Line">
+                </label>
+
+                <div class="ab-field">
+                  <span class="ab-label">Other Text</span>
+                  <div class="ab-rte">
+                    <div class="ab-rte__bar">
+                      <button type="button" aria-label="Undo" title="Undo">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9 14l-4-4 4-4"/><path d="M5 10h8a5 5 0 010 10h-3"/></svg>
+                      </button>
+                      <button type="button" aria-label="Redo" title="Redo">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M15 14l4-4-4-4"/><path d="M19 10h-8a5 5 0 000 10h3"/></svg>
+                      </button>
+                      <select aria-label="Format"><option>Paragraph</option><option>Heading 1</option><option>Heading 2</option></select>
+                      <button type="button" aria-label="Bold"><b>B</b></button>
+                      <button type="button" aria-label="Italic"><i>I</i></button>
+                      <button type="button" aria-label="Align left" title="Align left">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 6h16M4 12h10M4 18h14"/></svg>
+                      </button>
+                      <button type="button" aria-label="Align center" title="Align center">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 6h16M7 12h10M5 18h14"/></svg>
+                      </button>
+                      <button type="button" aria-label="Align right" title="Align right">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 6h16M10 12h10M6 18h14"/></svg>
+                      </button>
+                      <button type="button" aria-label="Justify" title="Justify">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+                      </button>
+                      <button type="button" class="ab-rte__more" aria-label="More">⋯</button>
+                    </div>
+                    <div class="ab-rte__body" contenteditable="true" data-ab-rte></div>
+                    <div class="ab-rte__foot"><span>p</span><span data-ab-words>0 words</span></div>
+                  </div>
+                </div>
+
+                <div class="ab-grid-2">
+                  <label class="ab-field">Mobile No
+                    <input type="text" placeholder="Mobile No.">
+                  </label>
+                  <label class="ab-field">Email<em>*</em>
+                    <input type="email" placeholder="Email">
+                  </label>
+                </div>
+
+                <label class="ab-field">Permanent Address<em>*</em>
+                  <textarea rows="3" placeholder="Permanent Address"></textarea>
+                </label>
+
+                <div class="ab-grid-3">
+                  <label class="ab-field">State<em>*</em>
+                    <select><option value="">State</option><option>UTTAR PRADESH</option><option>DELHI</option><option>MAHARASHTRA</option><option>KARNATAKA</option><option>GUJARAT</option></select>
+                  </label>
+                  <label class="ab-field">City<em>*</em>
+                    <select><option value="">City</option><option>GHAZIABAD</option><option>NEW DELHI</option><option>PUNE</option><option>MUMBAI</option><option>BENGALURU</option></select>
+                  </label>
+                  <label class="ab-field">PIN NO.<em>*</em>
+                    <input type="text" placeholder="PIN NO.">
+                  </label>
+                </div>
+
+                <div class="ab-grid-2">
+                  <div class="ab-field">
+                    <span class="ab-label">Signature</span>
+                    <label class="ab-upload">
+                      <input type="file" hidden accept="image/*">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M12 16V6"/><path d="M8 9l4-4 4 4"/><path d="M5 18h14"/></svg>
+                      <span>Click to Upload</span>
+                    </label>
+                  </div>
+                  <div class="ab-field">
+                    <span class="ab-label">Logo</span>
+                    <label class="ab-upload">
+                      <input type="file" hidden accept="image/*">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M12 16V6"/><path d="M8 9l4-4 4 4"/><path d="M5 18h14"/></svg>
+                      <span>Click to Upload</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="ab-field">
+                  <span class="ab-label">Default Invoice<em>*</em></span>
+                  <div class="ab-radios ab-radios--wrap">
+                    <label><input type="radio" name="defInv" value="1"> INVOICE 1</label>
+                    <label><input type="radio" name="defInv" value="2" checked> INVOICE 2</label>
+                    <label><input type="radio" name="defInv" value="3"> INVOICE 3</label>
+                    <label><input type="radio" name="defInv" value="4"> INVOICE 4</label>
+                  </div>
+                </div>
+
+                <div class="ab-field">
+                  <span class="ab-label">Ledger Format<em>*</em></span>
+                  <div class="ab-radios">
+                    <label><input type="radio" name="ledger" value="1" checked> LEDGER 1</label>
+                    <label><input type="radio" name="ledger" value="2"> LEDGER 2</label>
+                  </div>
+                </div>
+
+                <div class="ab-payslip-row">
+                  <div class="ab-field ab-field--grow">
+                    <span class="ab-label">Default Payslip<em>*</em></span>
+                    <div class="ab-radios">
+                      <label><input type="radio" name="payslip" value="1"> Payslip 1</label>
+                      <label><input type="radio" name="payslip" value="2" checked> Payslip 2</label>
+                    </div>
+                  </div>
+                  <label class="ab-check ab-check--solo"><input type="checkbox"> Invoice Raised By</label>
+                </div>
+
+                <label class="ab-field">Auto Timesheet Stop Time (Hours)
+                  <input type="number" placeholder="Number of hours" min="0">
+                </label>
+
+                <div class="ab-field">
+                  <span class="ab-label">Invoice Settings</span>
+                  <button type="button" class="ab-add-field">+ Add field</button>
+                </div>
+
+                <div class="ab-field">
+                  <span class="ab-label">Proforma Invoice Settings</span>
+                  <button type="button" class="ab-add-field">+ Add field</button>
+                </div>
+
+                <div class="ab-grid-2 ab-allow-grid">
+                  <div class="ab-field">
+                    <span class="ab-label">Allow Outside Radius :</span>
+                    <label class="ab-check"><input type="checkbox" checked> Allow Outside Radius</label>
+                  </div>
+                  <div class="ab-field">
+                    <span class="ab-label">Allow Face Recognition :</span>
+                    <label class="ab-check"><input type="checkbox" checked> Allow Face Recognition</label>
+                  </div>
+                </div>
+
+                <div class="ab-field ab-locations">
+                  <span class="ab-label">Locations :</span>
+                  <div class="ab-loc-head">
+                    <span>Office Name <em>*</em></span>
+                    <span>Latitude <em>*</em></span>
+                    <span>Longitude <em>*</em></span>
+                    <span>Radius <em>*</em></span>
+                    <span></span>
+                  </div>
+                  <div class="ab-loc-list" id="abLocList">
+                    <div class="ab-loc-row">
+                      <input type="text" placeholder="Enter Office Name">
+                      <input type="number" value="0">
+                      <input type="number" value="0">
+                      <input type="number" value="0">
+                      <button type="button" class="ab-loc-del" aria-label="Remove">−</button>
+                    </div>
+                  </div>
+                  <button type="button" class="ab-add-field" id="abAddLoc">+ Add field</button>
+                </div>
+
+                <div class="ab-grid-2">
+                  <label class="ab-field">Employee Expectation :
+                    <input type="text" placeholder="">
+                  </label>
+                  <label class="ab-field">Timesheet Lock Period :
+                    <input type="text" placeholder="In Days">
+                  </label>
+                </div>
+
+                <div class="ab-grid-2">
+                  <div class="ab-field">
+                    <span class="ab-label">Auto Timesheet Approval</span>
+                    <div class="ab-radios">
+                      <label><input type="radio" name="autoTs" value="yes"> Yes</label>
+                      <label><input type="radio" name="autoTs" value="no"> No</label>
+                    </div>
+                  </div>
+                  <div class="ab-field">
+                    <span class="ab-label">Enable Two Factor Authentication</span>
+                    <div class="ab-radios">
+                      <label><input type="radio" name="tfa" value="yes"> Yes</label>
+                      <label><input type="radio" name="tfa" value="no"> No</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="ab-grid-2">
+                  <label class="ab-field">PDF Password <i class="ab-info" title="Password for PDF documents">i</i>
+                    <input type="password" placeholder="Enter PDF Password">
+                  </label>
+                  <div></div>
+                </div>
+
+                <div class="ab-grid-2">
+                  <label class="ab-field">Access Start <i class="ab-info" title="Partner portal access start time (IST)">i</i>
+                    <span class="ab-time-wrap">
+                      <input type="text" placeholder="Select time" inputmode="numeric" autocomplete="off">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
+                    </span>
+                  </label>
+                  <label class="ab-field">Access End <i class="ab-info" title="Partner portal access end time (IST)">i</i>
+                    <span class="ab-time-wrap">
+                      <input type="text" placeholder="Select time" inputmode="numeric" autocomplete="off">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
+                    </span>
+                  </label>
+                </div>
+
+                <label class="ab-field">Access Not Allowed Days <i class="ab-info" title="Weekdays when portal access is blocked">i</i>
+                  <select aria-label="Access Not Allowed Days">
+                    <option value="">Select days</option>
+                    <option>Sunday</option>
+                    <option>Monday</option>
+                    <option>Tuesday</option>
+                    <option>Wednesday</option>
+                    <option>Thursday</option>
+                    <option>Friday</option>
+                    <option>Saturday</option>
+                    <option>Saturday &amp; Sunday</option>
+                  </select>
+                </label>
+
+                <label class="ab-check ab-check--block"><input type="checkbox"> Make this branch as default branch</label>
+
+                <button type="button" class="ab-save" data-ab-next>Save &amp; Next</button>
+
+                <div class="ab-help">
+                  <div class="ab-alert ab-alert--info">
+                    <div class="ab-alert__icon" aria-hidden="true">i</div>
+                    <div>
+                      <h3 class="ab-alert__title">Partner Portal Access Hours</h3>
+                      <p class="ab-alert__text">Restrict a partner’s portal access to a <strong>branch time window</strong> and <strong>blocked weekdays</strong>. Hours and days are stored on this branch. The employee only has an on/off flag (<strong>Restrict Portal Access</strong>).</p>
+                    </div>
+                  </div>
+
+                  <table class="ab-def-table">
+                    <tbody>
+                      <tr><th>What it is</th><td>A branch-level office-hours rule for the partner portal, using Asia/Kolkata (IST).</td></tr>
+                      <tr><th>What it does</th><td>When Restrict Portal Access is on for an employee linked to this branch, they can use the portal only between Access Start and Access End, and not on Access Not Allowed Days.</td></tr>
+                      <tr><th>How it works</th><td>Empty start and end skips the hour check (blocked days still apply). Only start set denies access before that time. Only end set denies access after that time. Both set is a same-day window — Access Start must be before Access End.</td></tr>
+                      <tr><th>Best For</th><td>Limiting staff portal use to working hours and excluding weekly offs or weekends.</td></tr>
+                    </tbody>
+                  </table>
+
+                  <button type="button" class="ab-how-link" id="abHowItWorks" aria-expanded="false">
+                    <span class="ab-how-link__caret" aria-hidden="true">&gt;</span> View how it works
+                  </button>
+
+                  <div class="ab-how-panel" id="abHowPanel" hidden>
+                    <ol class="ab-how-list">
+                      <li>Set Access Start and Access End for the allowed daily window (IST).</li>
+                      <li>Pick Access Not Allowed Days for weekly offs or weekends.</li>
+                      <li>On each employee, turn on <strong>Restrict Portal Access</strong> to enforce this branch rule.</li>
+                    </ol>
+                  </div>
+
+                  <div class="ab-alert ab-alert--warn">
+                    <div class="ab-alert__icon" aria-hidden="true">!</div>
+                    <div>
+                      <h3 class="ab-alert__title">Important Note</h3>
+                      <p class="ab-alert__text">Access Start must be before Access End (same-day window, no overnight). Time is checked in IST (Asia/Kolkata). The client portal is not affected.</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- STEP 1 Billing -->
+              <section class="ab-pane" data-ab-pane="1" hidden>
+                <button type="button" class="ab-more">⚙ More Settings</button>
+                <div class="ab-yn" data-yn>
+                  <span>Show Ledger balance in Receipt</span>
+                  <div class="ab-radios"><label><input type="radio" name="slb" value="yes"> Yes</label><label><input type="radio" name="slb" value="no" checked> No</label></div>
+                </div>
+                <div class="ab-yn"><span>Show SAC code</span><div class="ab-radios"><label><input type="radio" name="sac" value="yes" checked> Yes</label><label><input type="radio" name="sac" value="no"> No</label></div></div>
+                <div class="ab-yn"><span>Add Expenses in invoice</span><div class="ab-radios"><label><input type="radio" name="aex" value="yes" checked> Yes</label><label><input type="radio" name="aex" value="no"> No</label></div></div>
+                <div class="ab-yn"><span>Allow Editing of send invoice</span><div class="ab-radios"><label><input type="radio" name="aes" value="yes"> Yes</label><label><input type="radio" name="aes" value="no" checked> No</label></div></div>
+                <div class="ab-yn"><span>Allow Editing of CN/DN/Reciept</span><div class="ab-radios"><label><input type="radio" name="aec" value="yes"> Yes</label><label><input type="radio" name="aec" value="no" checked> No</label></div></div>
+                <div class="ab-yn"><span>Allow auto Invoice</span><div class="ab-radios"><label><input type="radio" name="aai" value="yes"> Yes</label><label><input type="radio" name="aai" value="no" checked> No</label></div></div>
+                <label class="ab-field">Payment Term<input type="text" value="15"></label>
+                <div class="ab-yn"><span>Add Efforts in invoice</span><div class="ab-radios"><label><input type="radio" name="aef" value="yes" checked> Yes</label><label><input type="radio" name="aef" value="no"> No</label></div></div>
+                <label class="ab-field">Editing of Invoice is not possible (in days)<input type="text" value="15"></label>
+                <label class="ab-field">Editing of CN/DN/Reciept is not possible (in days)<input type="text" value="15"></label>
+                <label class="ab-field">Notice Period<input type="text" placeholder="Example: 15days"></label>
+                <div class="ab-field"><span class="ab-label">Proforma Invoice Heading</span>
+                  <div class="ab-radios ab-radios--col">
+                    <label><input type="radio" name="pih" checked> Proforma Invoice</label>
+                    <label><input type="radio" name="pih"> Estimate</label>
+                    <label><input type="radio" name="pih"> Quotation</label>
+                    <label><input type="radio" name="pih"> Draft Invoice</label>
+                    <label><input type="radio" name="pih"> Other</label>
+                  </div>
+                </div>
+                <div class="ab-field"><span class="ab-label">Invoice Heading</span>
+                  <div class="ab-radios ab-radios--col">
+                    <label><input type="radio" name="ih" checked> Tax Invoice</label>
+                    <label><input type="radio" name="ih"> Invoice</label>
+                    <label><input type="radio" name="ih"> Bill</label>
+                    <label><input type="radio" name="ih"> Bill of supply</label>
+                    <label><input type="radio" name="ih"> Other</label>
+                  </div>
+                </div>
+                <div class="ab-field"><span class="ab-label">Payment Receipt Heading</span>
+                  <div class="ab-radios ab-radios--col">
+                    <label><input type="radio" name="prh" checked> Receipt</label>
+                    <label><input type="radio" name="prh"> Payment</label>
+                    <label><input type="radio" name="prh"> Payment Received</label>
+                    <label><input type="radio" name="prh"> Received of Payment</label>
+                    <label><input type="radio" name="prh"> Other</label>
+                  </div>
+                </div>
+                <div class="ab-field"><span class="ab-label">Details of Payment in Invoice</span>
+                  <div class="ab-checks">
+                    <label class="ab-check"><input type="checkbox"> Show Received Amount</label>
+                    <label class="ab-check"><input type="checkbox"> Show Previous Balance</label>
+                    <label class="ab-check"><input type="checkbox"> Show Current Balance</label>
+                  </div>
+                </div>
+                <div class="ab-field"><span class="ab-label">Public Remarks in Footer: Invoice</span>
+                  <div class="ab-rte"><div class="ab-rte__bar"><button type="button">↶</button><button type="button">↷</button><select><option>Paragraph</option></select><button type="button"><b>B</b></button><button type="button"><i>I</i></button></div><div class="ab-rte__body" contenteditable="true">Thanks for Business</div><div class="ab-rte__foot"><span>3 words</span></div></div>
+                </div>
+                <div class="ab-field"><span class="ab-label">Public Remarks in Footer: Receipt</span>
+                  <div class="ab-rte"><div class="ab-rte__bar"><button type="button">↶</button><button type="button">↷</button><select><option>Paragraph</option></select><button type="button"><b>B</b></button><button type="button"><i>I</i></button></div><div class="ab-rte__body" contenteditable="true"></div><div class="ab-rte__foot"><span>0 words</span></div></div>
+                </div>
+                <div class="ab-yn"><span>Generate QR code of a invoice(as per invoice standard)</span><div class="ab-radios"><label><input type="radio" name="qr" value="yes"> Yes</label><label><input type="radio" name="qr" value="no" checked> No</label></div></div>
+                <div class="ab-field"><span class="ab-label">Term And Conditions</span>
+                  <div class="ab-rte"><div class="ab-rte__bar"><button type="button">↶</button><button type="button">↷</button><select><option>Paragraph</option></select><button type="button"><b>B</b></button><button type="button"><i>I</i></button></div><div class="ab-rte__body" contenteditable="true"></div><div class="ab-rte__foot"><span>p · 0 words</span></div></div>
+                </div>
+                <button type="button" class="ab-save" data-ab-next>Save &amp; Next</button>
+              </section>
+
+              <!-- STEP 2 Payment -->
+              <section class="ab-pane" data-ab-pane="2" hidden>
+                <h3 class="ab-sec">Online Cashfree Payment</h3>
+                <label class="ab-field">Cashfree Key<input type="text" value="sales.cacloud@gmail.com"></label>
+                <label class="ab-field">Cashfree Secret<input type="password" value="********" class="ab-secret"><button type="button" class="ab-eye" data-toggle-secret>👁</button></label>
+                <h3 class="ab-sec">Online Razorpay Payment</h3>
+                <label class="ab-field">Razorpay Key<input type="text" placeholder="Razorpay Key"></label>
+                <label class="ab-field">Razorpay Secret<input type="password" placeholder="Razorpay Secret"></label>
+                <h3 class="ab-sec">Offline Payment</h3>
+                <label class="ab-field">Bank Name<input type="text" placeholder="Bank Name"></label>
+                <label class="ab-field">Bank Branch Name<input type="text" placeholder="Bank Branch Name"></label>
+                <label class="ab-field">Account Holder Name<input type="text" placeholder="Account Holder Name"></label>
+                <label class="ab-field">Bank A/C No<input type="text" placeholder="Bank A/C No"></label>
+                <label class="ab-field">Bank IFSC<input type="text" placeholder="Bank IFSC"></label>
+                <label class="ab-field">IBAN NO<input type="text" placeholder="IBAN NO"></label>
+                <label class="ab-field">MICR CODE<input type="text" placeholder="MICR CODE"></label>
+                <label class="ab-field">Swift CODE<input type="text" placeholder="Swift CODE"></label>
+                <label class="ab-field">Pin No<input type="text" value="201014"></label>
+                <h3 class="ab-sec">UPI</h3>
+                <label class="ab-field">UPI<input type="text" placeholder="UPI"></label>
+                <div class="ab-field"><span class="ab-label">QR Code</span>
+                  <button type="button" class="ab-add-field">+ Add More QR</button>
+                </div>
+                <button type="button" class="ab-save" data-ab-next>Save &amp; Next</button>
+              </section>
+
+              <!-- STEP 3 Social -->
+              <section class="ab-pane" data-ab-pane="3" hidden>
+                <h3 class="ab-sec ab-sec--edit">Social Media <button type="button" class="ab-edit-ico" aria-label="Edit">✎</button></h3>
+                <div class="ab-kv" id="abSocial">
+                  <div><span>Web Address</span><strong>--</strong></div>
+                  <div><span>Twitter</span><strong>--</strong></div>
+                  <div><span>Google Feedback</span><strong>--</strong></div>
+                  <div><span>Instagram</span><strong>--</strong></div>
+                  <div><span>Whatsapp</span><strong>--</strong></div>
+                  <div><span>Facebook</span><strong>--</strong></div>
+                  <div><span>Google</span><strong>--</strong></div>
+                  <div><span>Linkedin</span><strong>--</strong></div>
+                  <div><span>Youtube</span><strong>--</strong></div>
+                  <div><span>Any other URL</span><strong>--</strong></div>
+                </div>
+                <button type="button" class="ab-save" data-ab-next>Save &amp; Next</button>
+              </section>
+
+              <!-- STEP 4 Support -->
+              <section class="ab-pane" data-ab-pane="4" hidden>
+                <h3 class="ab-sec ab-sec--edit">Support <button type="button" class="ab-edit-ico" aria-label="Edit">✎</button></h3>
+                <div class="ab-kv">
+                  <div><span>Email 1</span><strong>--</strong></div>
+                  <div><span>Email 2</span><strong>--</strong></div>
+                  <div><span>Mobile no 1</span><strong>--</strong></div>
+                  <div><span>Mobile no 2</span><strong>--</strong></div>
+                  <div><span>Landline no</span><strong>--</strong></div>
+                  <div><span>Whatsapp no</span><strong>--</strong></div>
+                  <div><span>Address</span><strong>--</strong></div>
+                  <div><span>WhatsApp Link</span><strong>--</strong></div>
+                </div>
+                <button type="button" class="ab-save" id="abSaveFinal">Save</button>
+              </section>
+            </div>
+
+            <aside class="ab-preview" aria-label="Invoice preview">
+              <div class="ab-preview__tabs">
+                <button type="button" class="ab-ptab">INVOICE 1</button>
+                <button type="button" class="ab-ptab is-active">INVOICE 2</button>
+                <button type="button" class="ab-ptab">INVOICE 3</button>
+                <button type="button" class="ab-ptab">INVOICE 4</button>
+                <button type="button" class="ab-ptab ab-ptab--icon" aria-label="Payment">P</button>
+                <button type="button" class="ab-prefresh" aria-label="More options">⋯</button>
+                <button type="button" class="ab-prefresh" aria-label="Refresh">↻</button>
+              </div>
+              <div class="ab-preview__frame">
+                <button type="button" class="ab-preview__badge" id="abPreviewBtn">PREVIEW</button>
+                <article class="ab-invoice" aria-label="Tax Invoice sample">
+                  <header class="ab-invoice__top">
+                    <div class="ab-invoice__brand">
+                      <strong>Delhi Branch</strong>
+                      <span>Firm</span>
+                      <span>Address:</span>
+                    </div>
+                    <div class="ab-invoice__meta-col">
+                      <img class="ab-invoice__logo" src="assets/favicon-mark.png" alt="" width="48" height="48">
+                      <h3 class="ab-invoice__title">Tax Invoice</h3>
+                      <div class="ab-invoice__meta">
+                        <div><span>Invoice No.:</span> <strong>53</strong></div>
+                        <div><span>Invoice Date:</span> <strong>11/12/2023</strong></div>
+                        <div><span>Place of Supply:</span> <strong>Pune</strong></div>
+                      </div>
+                    </div>
+                  </header>
+
+                  <div class="ab-invoice__billto">
+                    <h4>BILL TO</h4>
+                    <p><strong>ABC Customer</strong></p>
+                    <p>123, ABC Street, XYZ Area</p>
+                    <p>Maharashtra, Pune, India, 111045</p>
+                    <p>Mobile: --</p>
+                    <p>GSTIN: ABCD20001000898990</p>
+                    <p>State: Pune</p>
+                  </div>
+
+                  <table class="ab-invoice__table">
+                    <thead>
+                      <tr>
+                        <th class="ab-invoice__col-svc">SERVICES</th>
+                        <th class="ab-invoice__col-qty">Qty.</th>
+                        <th class="ab-invoice__col-rate">RATE</th>
+                        <th class="ab-invoice__col-amt">AMOUNT</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Audit</td>
+                        <td>1</td>
+                        <td>₹1,000</td>
+                        <td>₹1,000</td>
+                      </tr>
+                      <tr>
+                        <td>Govt. Fess</td>
+                        <td>1</td>
+                        <td>₹1,000</td>
+                        <td>₹1,000</td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <td colspan="3">TOTAL</td>
+                        <td>₹2,000</td>
+                      </tr>
+                    </tfoot>
+                  </table>
+
+                  <div class="ab-invoice__summary">
+                    <p class="ab-invoice__reverse">Amount of Tax Subject to Reverse Charges: <strong>No</strong></p>
+                    <div class="ab-invoice__totals">
+                      <div><span>TAXABLE AMOUNT</span><strong>₹ 1,800</strong></div>
+                      <div class="ab-invoice__grand"><span>TOTAL AMOUNT</span><strong>₹2,000</strong></div>
+                      <p class="ab-invoice__words"><span>Total Amount (in words)</span> <strong>Two Thousand Rupees only</strong></p>
+                    </div>
+                  </div>
+
+                  <footer class="ab-invoice__foot">
+                    <div class="ab-invoice__bank">
+                      <h4>BANK DETAILS</h4>
+                    </div>
+                    <div class="ab-invoice__sign">
+                      <img src="assets/favicon-mark.png" alt="" width="36" height="36">
+                      <span>Authorised Signatory for Delhi Branch</span>
+                    </div>
+                  </footer>
+                </article>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/add-branch.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMTP Configuration — TimeERP Marketing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/marketing-compose-email.css?v=1">
+  <link rel="stylesheet" href="css/marketing-email-template.css?v=1">
+  <link rel="stylesheet" href="css/marketing-smtp.css?v=1">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="crm-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="crm-top-clock" id="crmTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn crm-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn crm-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">3</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="crm-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="home.html#module/marketing" class="dropdown__item"><strong>Marketing</strong><span>Back to module hub</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="mce-page msmtp-page">
+          <header class="mce-header">
+            <a class="mce-back" href="marketing_send_email.html" aria-label="Back to inbox">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <h1 class="mce-title">SMTP Configuration</h1>
+          </header>
+
+          <div class="mce-panel">
+            <div class="mce-panel__head">
+              <div class="mce-tabs" role="tablist" aria-label="SMTP sections">
+                <button type="button" class="mce-tab is-active" role="tab" aria-selected="true" data-msmtp-tab="config">SMTP Configuration</button>
+                <button type="button" class="mce-tab" role="tab" aria-selected="false" data-msmtp-tab="view">View SMTP</button>
+              </div>
+            </div>
+
+            <div class="mce-body" data-msmtp-panel="config">
+              <form class="msmtp-form" id="msmtpForm" novalidate>
+                <div class="mce-row">
+                  <label class="mce-label" for="msmtpEmail">Email<span class="mce-req">*</span></label>
+                  <input class="mce-input" type="email" id="msmtpEmail" value="rawatsuhanshi1@gmail.com" placeholder="e.g. yourname@company.com" required autocomplete="off">
+                </div>
+                <div class="mce-row">
+                  <label class="mce-label" for="msmtpPassword">Password<span class="mce-req">*</span></label>
+                  <div class="msmtp-pass">
+                    <input class="mce-input" type="password" id="msmtpPassword" value="••••••••••••" placeholder="e.g. your email account password or app password" required autocomplete="off">
+                    <button type="button" class="msmtp-pass__toggle" id="msmtpPassToggle" aria-label="Show password" title="Show password">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="mce-row">
+                  <label class="mce-label" for="msmtpHost">Host<span class="mce-req">*</span></label>
+                  <input class="mce-input" type="text" id="msmtpHost" placeholder="Host" required autocomplete="off">
+                </div>
+                <div class="mce-row">
+                  <label class="mce-label" for="msmtpPort">Port<span class="mce-req">*</span></label>
+                  <input class="mce-input" type="text" id="msmtpPort" placeholder="Port" required autocomplete="off">
+                </div>
+                <div class="mce-row">
+                  <span class="mce-label"></span>
+                  <div class="msmtp-checks">
+                    <label class="msmtp-check"><input type="checkbox" id="msmtpDefault"> Default</label>
+                    <label class="msmtp-check"><input type="checkbox" id="msmtpImap"> IMAP Enabled</label>
+                  </div>
+                </div>
+                <div class="mce-row msmtp-imap-fields" id="msmtpImapFields" hidden>
+                  <label class="mce-label" for="msmtpImapHost">IMAP Host</label>
+                  <input class="mce-input" type="text" id="msmtpImapHost" placeholder="e.g. imap.gmail.com" autocomplete="off">
+                </div>
+                <div class="mce-row msmtp-imap-fields" id="msmtpImapPortRow" hidden>
+                  <label class="mce-label" for="msmtpImapPort">IMAP Port</label>
+                  <input class="mce-input" type="text" id="msmtpImapPort" placeholder="e.g. 993" autocomplete="off">
+                </div>
+                <div class="msmtp-actions">
+                  <button type="submit" class="mce-action mce-action--primary" id="msmtpSave">Save</button>
+                </div>
+              </form>
+
+              <section class="msmtp-guide" aria-labelledby="msmtpGuideTitle">
+                <h2 class="msmtp-guide__title" id="msmtpGuideTitle">SMTP Configuration Guide</h2>
+                <p class="msmtp-guide__intro">All fields marked as required must be filled before saving. If a required field is left empty, you will see a validation message such as &lsquo;Email&rsquo; is required!</p>
+                <div class="msmtp-guide__item">
+                  <h3>Email <span class="mce-req">*</span></h3>
+                  <p>Enter the email address that will be used to send emails from the application.</p>
+                  <p class="msmtp-guide__ex">e.g. yourname@company.com</p>
+                </div>
+                <div class="msmtp-guide__item">
+                  <h3>Password <span class="mce-req">*</span></h3>
+                  <p>Enter the password for the email account above. For Gmail or similar providers, use an app-specific password if 2FA is enabled.</p>
+                  <p class="msmtp-guide__ex">e.g. your email account password or app password</p>
+                </div>
+                <div class="msmtp-guide__item">
+                  <h3>Host <span class="mce-req">*</span></h3>
+                  <p>Enter the SMTP server address provided by your email provider.</p>
+                  <p class="msmtp-guide__ex">e.g. smtp.gmail.com, smtp.office365.com</p>
+                </div>
+                <div class="msmtp-guide__item">
+                  <h3>Port <span class="mce-req">*</span></h3>
+                  <p>Enter the SMTP port number. Use 587 for TLS or 465 for SSL, as recommended by your provider.</p>
+                  <p class="msmtp-guide__ex">e.g. 587</p>
+                </div>
+                <div class="msmtp-guide__item">
+                  <h3>Default</h3>
+                  <p>Optional. Check this to use this configuration as the default for sending emails.</p>
+                </div>
+                <div class="msmtp-guide__item">
+                  <h3>IMAP Enabled</h3>
+                  <p>Optional. Enable this if IMAP should be used for mailbox sync.</p>
+                </div>
+                <div class="msmtp-guide__item">
+                  <h3>IMAP Host</h3>
+                  <p>Optional. IMAP server host, required only when IMAP is enabled.</p>
+                  <p class="msmtp-guide__ex">e.g. imap.gmail.com</p>
+                </div>
+                <div class="msmtp-guide__item">
+                  <h3>IMAP Port</h3>
+                  <p>Optional. IMAP server port, required only when IMAP is enabled.</p>
+                  <p class="msmtp-guide__ex">e.g. 993</p>
+                </div>
+              </section>
+            </div>
+
+            <div class="mce-body met-panel" data-msmtp-panel="view" hidden>
+              <div class="met-empty" id="msmtpViewEmpty">No SMTP configurations saved yet.</div>
+              <div class="met-table-wrap" id="msmtpViewTable" hidden>
+                <table class="met-table">
+                  <thead>
+                    <tr><th>Email</th><th>Host</th><th>Port</th><th>Default</th><th>IMAP</th><th>Actions</th></tr>
+                  </thead>
+                  <tbody id="msmtpViewBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock2"></script>
+  <script src="js/marketing-smtp.js?v=1"></script>
+</body>
+</html>

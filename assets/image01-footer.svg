@@ -3,8 +3,8 @@
     <circle cx="22" cy="22" r="20" fill="#25b7a7"/>
     <path d="M22 2a20 20 0 0 0-14.14 5.86A20 20 0 0 0 2 22h6a16 16 0 0 1 14-14V2z" fill="#1a3354"/>
     <circle cx="22" cy="22" r="13.5" fill="#fff"/>
-    <line x1="22" y1="22" x2="22" y2="13.5" stroke="#25b7a7" stroke-width="2.4" stroke-linecap="round"/>
-    <line x1="22" y1="22" x2="30.5" y2="22" stroke="#1a3354" stroke-width="2.4" stroke-linecap="round"/>
+    <line x1="22" y1="22" x2="16.37" y2="18.75" stroke="#25b7a7" stroke-width="2.4" stroke-linecap="round"/>
+    <line x1="22" y1="22" x2="29.36" y2="17.75" stroke="#1a3354" stroke-width="2.4" stroke-linecap="round"/>
     <circle cx="22" cy="22" r="2.2" fill="#25b7a7"/>
   </g>
   <text x="54" y="33" font-family="Inter,Segoe UI,Helvetica,Arial,sans-serif" font-size="27" font-weight="700" letter-spacing="-0.6">

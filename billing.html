@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Billing — TimeERP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/billing.css?v=10">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="dv-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="dv-top-clock" id="dvTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn dv-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn dv-top-icon" id="notifBtn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="dv-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="home.html" class="dropdown__item"><strong>Dashboard</strong><span>Back to home</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="bl-page">
+          <!-- Tab Navigation -->
+          <nav class="bl-tabs" aria-label="Billing tabs">
+            <button class="bl-tab is-active" data-tab="dashboard">Dashboard</button>
+            <button class="bl-tab" data-tab="invoice">Invoice</button>
+            <button class="bl-tab" data-tab="proforma">Proforma</button>
+            <button class="bl-tab" data-tab="challan">Challan</button>
+            <button class="bl-tab" data-tab="receipt">Receipt</button>
+            <button class="bl-tab" data-tab="ledger">Ledger</button>
+            <button class="bl-tab" data-tab="cndn">CN/DN</button>
+            <button class="bl-tab" data-tab="opening-balance">Opening Balance</button>
+            <button class="bl-tab" data-tab="adjustment">Adjustment</button>
+            <button class="bl-tab" data-tab="reported-transactions">Reported Transactions</button>
+          </nav>
+
+          <!-- Dashboard Tab -->
+          <section class="bl-panel is-active" id="panel-dashboard">
+            <div class="bl-header-row">
+              <h2 class="bl-title">Estimated Earnings</h2>
+              <div class="bl-header-controls">
+                <select class="bl-select" id="fySelect">
+                  <option value="26-27" selected>FY 26-27</option>
+                  <option value="25-26">FY 25-26</option>
+                  <option value="24-25">FY 24-25</option>
+                </select>
+                <span class="bl-date-range">
+                  <input type="text" class="bl-date-input" value="01/04/2026" readonly>
+                  <span class="bl-date-arrow">→</span>
+                  <input type="text" class="bl-date-input" value="31/03/2027" readonly>
+                </span>
+              </div>
+            </div>
+
+            <!-- Summary Cards -->
+            <div class="bl-cards">
+              <div class="bl-card">
+                <span class="bl-card__icon bl-card__icon--blue">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+                </span>
+                <div class="bl-card__body">
+                  <span class="bl-card__amount">₹12,82,680 <small>Dr</small></span>
+                  <span class="bl-card__label">Opening Balance</span>
+                </div>
+              </div>
+              <span class="bl-card-op">+</span>
+              <div class="bl-card">
+                <span class="bl-card__icon bl-card__icon--teal">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                </span>
+                <div class="bl-card__body">
+                  <span class="bl-card__amount">₹17,08,876 <small>Dr</small></span>
+                  <span class="bl-card__label">Total Billing</span>
+                </div>
+              </div>
+              <span class="bl-card-op">−</span>
+              <div class="bl-card">
+                <span class="bl-card__icon bl-card__icon--teal">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                </span>
+                <div class="bl-card__body">
+                  <span class="bl-card__amount">₹10,81,886 <small>Cr</small></span>
+                  <span class="bl-card__label">Total Collection</span>
+                </div>
+              </div>
+              <span class="bl-card-op">−</span>
+              <div class="bl-card">
+                <span class="bl-card__icon bl-card__icon--split">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </span>
+                <div class="bl-card__body">
+                  <span class="bl-card__amount"><span class="text-red">₹20,000 Dr</span> / <span class="text-green">₹10,000 Cr</span></span>
+                  <span class="bl-card__label">Debit &amp; Credit Note</span>
+                </div>
+              </div>
+              <span class="bl-card-op">=</span>
+              <div class="bl-card">
+                <span class="bl-card__icon bl-card__icon--teal">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                </span>
+                <div class="bl-card__body">
+                  <span class="bl-card__amount">₹19,19,670 <small>Dr</small></span>
+                  <span class="bl-card__label">Outstanding (Before Advance Receipts)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Two Column Layout -->
+            <div class="bl-columns">
+              <!-- Left Column -->
+              <div class="bl-col-left">
+                <div class="bl-chart-card">
+                  <div class="bl-chart-head">
+                    <h3>Billing Summary</h3>
+                    <div class="bl-chart-legend">
+                      <span class="bl-legend"><span class="bl-legend__dot bl-legend__dot--teal"></span> Invoice</span>
+                      <span class="bl-legend"><span class="bl-legend__dot bl-legend__dot--orange"></span> Payment</span>
+                    </div>
+                  </div>
+                  <div class="bl-chart-body" id="billingSummaryChart">
+                    <canvas id="billingSummaryCanvas" width="760" height="320" aria-label="Billing summary chart"></canvas>
+                  </div>
+                </div>
+
+                <!-- Summary of Income Table -->
+                <div class="bl-income-table">
+                  <h3>Summary of Income <small>(In Inr)</small></h3>
+                  <table class="bl-table">
+                    <tbody>
+                      <tr class="bl-table__group bl-table__group--blue">
+                        <td colspan="2"><strong>Opening Balance</strong></td>
+                        <td class="text-right"><strong>₹12,82,680 Dr</strong></td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td>Opening Fees of Bills in Existence</td>
+                        <td class="text-right">₹12,82,680 Dr</td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td>Opening Fees of Bills not in Existence</td>
+                        <td class="text-right">₹0</td>
+                      </tr>
+                      <tr class="bl-table__group bl-table__group--blue">
+                        <td colspan="2"><strong>Add: Billing / Debit note</strong></td>
+                        <td class="text-right"><strong>₹17,28,876 Dr</strong></td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td>Invoice / Debit note</td>
+                        <td class="text-right">₹17,28,876 Dr</td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td>Invoice</td>
+                        <td class="text-right">₹17,08,876 Dr</td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td>Debit note</td>
+                        <td class="text-right">₹20,000 Dr</td>
+                      </tr>
+                      <tr class="bl-table__group bl-table__group--pink">
+                        <td colspan="2"><strong>Less: Collection during the period</strong></td>
+                        <td class="text-right"><strong>₹10,91,886 Cr</strong></td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td>Payment / Credit note</td>
+                        <td class="text-right">₹10,91,886 Cr</td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td>Payment</td>
+                        <td class="text-right">₹10,81,886 Cr</td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td>Credit note</td>
+                        <td class="text-right">₹10,000 Cr</td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td>Discounts</td>
+                        <td class="text-right">₹2,882 Cr</td>
+                      </tr>
+                      <tr class="bl-table__group bl-table__group--teal">
+                        <td colspan="2"><strong>Net Outstanding</strong></td>
+                        <td class="text-right"><strong>₹19,19,670 Dr</strong></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- Service wise revenue -->
+                <div class="bl-branch-card">
+                  <h3>Service wise revenue</h3>
+                  <table class="bl-table bl-table--compact">
+                    <thead>
+                      <tr><th>Group of Narrations</th><th>Bill amount without Tax</th><th>Tax</th><th>Discount</th><th>Invoice Amount</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>--</td><td>1,08,115.00</td><td>360.00</td><td>--</td><td>1,08,475.00</td></tr>
+                      <tr><td>--</td><td>8,000.00</td><td>--</td><td>--</td><td>8,000.00</td></tr>
+                      <tr><td>--</td><td>2,88,777.00</td><td>41,668.20</td><td>510.00</td><td>3,29,935.20</td></tr>
+                      <tr><td>--</td><td>1,68,200.00</td><td>1,800.00</td><td>--</td><td>1,70,000.00</td></tr>
+                      <tr><td>--</td><td>4,500.00</td><td>--</td><td>--</td><td>4,500.00</td></tr>
+                      <tr><td>--</td><td>1,000.00</td><td>180.00</td><td>--</td><td>1,180.00</td></tr>
+                      <tr><td>--</td><td>15,000.00</td><td>--</td><td>--</td><td>15,000.00</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Right Column -->
+              <div class="bl-col-right">
+                <!-- Billing card list -->
+                <div class="bl-branch-card">
+                  <h3>Billing</h3>
+                  <ul class="bl-branch-list" id="billingBranchList">
+                    <li class="bl-branch-item">
+                      <span class="bl-branch-icon" aria-hidden="true"><img src="assets/billing/bluemon.svg?v=2" alt=""></span>
+                      <div class="bl-branch-body">
+                        <span class="bl-branch-name" title="Bluemon Wealth Management">Bluemon Wealth M...</span>
+                        <span class="bl-branch-meta">
+                          <span class="bl-branch-amt">17,48,...</span>
+                          <span class="bl-branch-sub">(Amt + Dr note - CR note)</span>
+                        </span>
+                      </div>
+                    </li>
+                    <li class="bl-branch-item">
+                      <span class="bl-branch-icon" aria-hidden="true"><img src="assets/billing/ca-clouddesk.svg?v=2" alt=""></span>
+                      <div class="bl-branch-body">
+                        <span class="bl-branch-name" title="CA CloudDesk">CA CloudDesk</span>
+                        <span class="bl-branch-meta">
+                          <span class="bl-branch-amt">88,398...</span>
+                          <span class="bl-branch-sub">(Amt + Dr note - CR note)</span>
+                        </span>
+                      </div>
+                    </li>
+                    <li class="bl-branch-item">
+                      <span class="bl-branch-icon" aria-hidden="true"><img src="assets/billing/law-seva.svg?v=2" alt=""></span>
+                      <div class="bl-branch-body">
+                        <span class="bl-branch-name" title="Law Seva Management Private Limited">Law Seva Manage...</span>
+                        <span class="bl-branch-meta">
+                          <span class="bl-branch-amt">5,000....</span>
+                          <span class="bl-branch-sub">(Amt + Dr note - CR note)</span>
+                        </span>
+                      </div>
+                    </li>
+                    <li class="bl-branch-item">
+                      <span class="bl-branch-icon" aria-hidden="true"><img src="assets/billing/user.svg" alt=""></span>
+                      <div class="bl-branch-body">
+                        <span class="bl-branch-name" title="saurabh bharadwaj">saurabh bharadwaj</span>
+                        <span class="bl-branch-meta">
+                          <span class="bl-branch-amt">2.00 Dr</span>
+                          <span class="bl-branch-sub">(Amt + Dr note - CR note)</span>
+                        </span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Receiving card list -->
+                <div class="bl-branch-card">
+                  <h3>Receiving</h3>
+                  <ul class="bl-branch-list" id="receivingBranchList">
+                    <li class="bl-branch-item">
+                      <span class="bl-branch-icon" aria-hidden="true"><img src="assets/billing/bluemon.svg?v=2" alt=""></span>
+                      <div class="bl-branch-body">
+                        <span class="bl-branch-name" title="Bluemon Wealth Management">Bluemon Wealth M...</span>
+                        <span class="bl-branch-meta">
+                          <span class="bl-branch-amt">8,50,...</span>
+                          <span class="bl-branch-sub">(Amt + Dr note - CR note)</span>
+                        </span>
+                      </div>
+                    </li>
+                    <li class="bl-branch-item">
+                      <span class="bl-branch-icon" aria-hidden="true"><img src="assets/billing/ca-clouddesk.svg?v=2" alt=""></span>
+                      <div class="bl-branch-body">
+                        <span class="bl-branch-name" title="CA CloudDesk">CA CloudDesk</span>
+                        <span class="bl-branch-meta">
+                          <span class="bl-branch-amt">1,81,...</span>
+                          <span class="bl-branch-sub">(Amt + Dr note - CR note)</span>
+                        </span>
+                      </div>
+                    </li>
+                    <li class="bl-branch-item">
+                      <span class="bl-branch-icon" aria-hidden="true"><img src="assets/billing/law-seva.svg?v=2" alt=""></span>
+                      <div class="bl-branch-body">
+                        <span class="bl-branch-name" title="Law Seva Management Private Limited">Law Seva Manage...</span>
+                        <span class="bl-branch-meta">
+                          <span class="bl-branch-amt">50,000...</span>
+                          <span class="bl-branch-sub">(Amt + Dr note - CR note)</span>
+                        </span>
+                      </div>
+                    </li>
+                    <li class="bl-branch-item">
+                      <span class="bl-branch-icon" aria-hidden="true"><img src="assets/billing/user.svg" alt=""></span>
+                      <div class="bl-branch-body">
+                        <span class="bl-branch-name" title="saurabh bharadwaj">saurabh bharadwaj</span>
+                        <span class="bl-branch-meta">
+                          <span class="bl-branch-amt">0.00 Cr</span>
+                          <span class="bl-branch-sub">(Amt + Dr note - CR note)</span>
+                        </span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Top 10 outstanding clients -->
+                <div class="bl-branch-card">
+                  <h3>Top 10 outstanding clients <small style="float:right;font-weight:500;color:#6b7280">View All</small></h3>
+                  <table class="bl-table bl-table--compact">
+                    <thead>
+                      <tr><th>Client Name</th><th class="text-right">Outstanding Amount</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td><a href="#">SAURABH BHARDWAJ</a></td><td class="text-right">₹ 12,53,898.00 Dr</td></tr>
+                      <tr><td><a href="#">law seva management private limited</a></td><td class="text-right">₹ 4,53,584.00 Dr</td></tr>
+                      <tr><td><a href="#">SAURABH BHARDWAJ HUF</a></td><td class="text-right">₹ 1,91,356.00 Dr</td></tr>
+                      <tr><td><a href="#">Saksham</a></td><td class="text-right">₹ 73,860.00 Dr</td></tr>
+                      <tr><td><a href="#">Manish bhardwaj</a></td><td class="text-right">₹ 52,000.00 Dr</td></tr>
+                      <tr><td><a href="#">Suhanshi Rawat</a></td><td class="text-right">₹ 18,298.00 Dr</td></tr>
+                      <tr><td><a href="#">Kanith</a></td><td class="text-right">₹ 2,360.00 Dr</td></tr>
+                      <tr><td><a href="#">THE GOLD REALTY</a></td><td class="text-right">₹ 2,200.00 Dr</td></tr>
+                      <tr><td><a href="#">Internal</a></td><td class="text-right">₹ 2,180.00 Dr</td></tr>
+                      <tr><td><a href="#">HARDIK RAWAT</a></td><td class="text-right">₹ 800.00 Dr</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- INVOICE -->
+          <section class="bl-panel" id="panel-invoice">
+            <nav class="bl-sub-tabs">
+              <button class="bl-sub-tab is-active" data-sub="inv-all">All Invoice</button>
+              <button class="bl-sub-tab" data-sub="inv-paid">Paid Invoice</button>
+              <button class="bl-sub-tab" data-sub="inv-pending">Pending Invoice</button>
+              <button class="bl-sub-tab" data-sub="inv-cancelled">Cancelled Invoice</button>
+            </nav>
+            <div class="bl-filter-row">
+              <div class="bl-filter-left">
+                <label>Filters:</label>
+                <div class="bl-combo" data-id="invService" data-type="service"><input type="text" placeholder="Service" class="bl-combo__input"><ul class="bl-combo__list"></ul></div>
+                <div class="bl-combo" data-id="invClient"><input type="text" placeholder="Client" class="bl-combo__input"><ul class="bl-combo__list"></ul></div>
+              </div>
+              <div class="bl-filter-right">
+                <a class="bl-icon-btn bl-icon-btn--bharat" href="time%20erp/billing-payment-automation.html" title="Bharat Connect For Business" aria-label="Open Bharat Connect billing page">
+                  <img src="assets/bharat-connect-for-business.png" alt="Bharat Connect For Business" width="88" height="28" decoding="async">
+                </a>
+                <button class="bl-icon-btn bl-icon-btn--pdf" type="button" title="PDF" aria-label="Export PDF"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M14 2v6h6" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M9 17.5L12 11h.15L15.2 17.5h-1.25l-.55-1.25h-2.55l-.55 1.25H9zm2.05-2.35h1.9L12.05 12.7l-.95 2.45z" fill="currentColor" stroke="none"/></svg></button>
+                <button class="bl-icon-btn bl-icon-btn--excel" type="button" title="Excel" aria-label="Export Excel"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M14 2v6h6" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M9.2 12.2l5.6 5.6M14.8 12.2l-5.6 5.6" stroke="currentColor" stroke-width="1.85" stroke-linecap="round"/></svg></button>
+                <button class="bl-add-btn" title="Add">+</button>
+              </div>
+            </div>
+            <div class="bl-filter-row2">
+              <div class="bl-fy-combo" id="invFYCombo">
+                <input type="text" class="bl-fy-combo__input" id="invFYInput" value="FY 26-27" placeholder="Select FY" readonly>
+                <button type="button" class="bl-fy-combo__clear" id="invFYClear">&times;</button>
+                <ul class="bl-fy-combo__list" id="invFYList">
+                  <li>FY 27-28</li><li class="is-active">FY 26-27</li><li>FY 25-26</li><li>FY 24-25</li><li>FY 23-24</li><li>FY 22-23</li><li>FY 21-22</li><li>FY 20-21</li>
+                </ul>
+              </div>
+              <span class="bl-date-range"><input type="text" class="bl-date-input" value="01/04/2026" readonly><span class="bl-date-arrow">→</span><input type="text" class="bl-date-input" value="31/03/2027" readonly><span class="bl-cal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;vertical-align:middle"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span></span>
+              <div class="bl-combo" data-id="invBranch"><input type="text" placeholder="Branch" class="bl-combo__input"><ul class="bl-combo__list"></ul></div>
+              <div class="bl-col-dd" id="invColDD">
+                <button class="bl-icon-btn" title="Columns" id="invColBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><rect x="5" y="4" width="14" height="16" rx="1.5"/><path d="M5 9.33h14M5 14.67h14"/><path d="M8 6.85h5M8 12h5M8 17.15h5"/></svg> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:10px;height:10px"><path d="M6 9l6 6 6-6"/></svg></button>
+                <div class="bl-col-dd__menu" id="invColMenu">
+                  <div class="bl-col-dd__head"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;vertical-align:middle"><rect x="5" y="4" width="14" height="16" rx="1.5"/><path d="M5 9.33h14M5 14.67h14"/><path d="M8 6.85h5M8 12h5M8 17.15h5"/></svg> Columns</span><a href="#" class="bl-col-dd__selall" id="invColSelAll">Select All</a></div>
+                  <ul class="bl-col-dd__list" id="invColList"></ul>
+                </div>
+              </div>
+              <div class="bl-pop-filter-wrap" id="invFilterWrap">
+                <button type="button" class="bl-icon-btn bl-icon-btn--filter" id="invFilterBtn" title="Filter" aria-label="Filter" aria-expanded="false" aria-haspopup="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
+                </button>
+                <div class="bl-pop-filter" id="invFilterPop" hidden role="dialog" aria-label="Filter">
+                  <span class="bl-pop-filter__caret" aria-hidden="true"></span>
+                  <div class="bl-pop-filter__head">
+                    <span class="bl-pop-filter__title">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
+                      Filter
+                    </span>
+                    <button type="button" class="bl-pop-filter__reset" id="invFilterReset">Reset</button>
+                  </div>
+                  <div class="bl-pop-filter__body">
+                    <div class="bl-pop-filter__acc" data-acc="status">
+                      <button type="button" class="bl-pop-filter__acc-btn" aria-expanded="false">
+                        <span class="bl-pop-filter__chev" aria-hidden="true">›</span>
+                        Status
+                      </button>
+                      <div class="bl-pop-filter__acc-panel" hidden>
+                        <div class="bl-pop-filter__select-wrap">
+                          <select class="bl-pop-filter__select" id="invFilterStatus" aria-label="Status">
+                            <option value="">Select status</option>
+                            <option value="Pending">PENDING</option>
+                            <option value="Paid">PAID</option>
+                            <option value="Partially Paid">PARTIALLY PAID</option>
+                            <option value="Cancelled">CANCELLED</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="bl-pop-filter__acc" data-acc="invoice">
+                      <button type="button" class="bl-pop-filter__acc-btn" aria-expanded="false">
+                        <span class="bl-pop-filter__chev" aria-hidden="true">›</span>
+                        Invoice Number
+                      </button>
+                      <div class="bl-pop-filter__acc-panel" hidden>
+                        <input type="text" class="bl-pop-filter__input" id="invFilterInvNo" placeholder="Search Invoice Number" aria-label="Search Invoice Number">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bl-table-wrap">
+              <table class="bl-data-table" id="tblInvoice">
+                <thead><tr><th><input type="checkbox"></th><th>S. No.</th><th>Invoice Number</th><th>Proforma Number</th><th>Date &#8693;</th><th>Raised By</th><th>Service Name</th><th>Sub Service Name</th><th>Branch</th><th>Task Number</th><th>Private Remark</th><th>Client &#8693;</th><th>Amount &#8693;</th><th>Due Amount</th><th>Status</th><th>Tags</th><th>Actions</th></tr></thead>
+                <tbody id="tbodyInvoice"></tbody>
+              </table>
+            </div>
+            <div class="bl-pager"><select class="bl-select"><option>10</option><option>25</option><option>50</option></select><span class="bl-pager-nav">&lt; <input type="text" value="1" class="bl-page-input"> of 1 &gt;</span><span class="bl-pager-count"></span></div>
+          </section>
+
+          <!-- PROFORMA -->
+          <section class="bl-panel" id="panel-proforma">
+            <nav class="bl-sub-tabs">
+              <button class="bl-sub-tab is-active" data-sub="pro-view">View Proforma Invoice</button>
+              <button class="bl-sub-tab" data-sub="pro-created">Invoice Created from Proforma Invoice</button>
+              <button class="bl-sub-tab" data-sub="pro-cancelled">Cancelled Proforma Invoice</button>
+            </nav>
+            <div class="bl-filter-row">
+              <div class="bl-filter-left">
+                <label>Filters:</label>
+                <div class="bl-combo" data-id="proService" data-type="service"><input type="text" placeholder="Service" class="bl-combo__input"><ul class="bl-combo__list"></ul></div>
+                <div class="bl-combo" data-id="proClient"><input type="text" placeholder="Client" class="bl-combo__input"><ul class="bl-combo__list"></ul></div>
+                <span class="bl-date-range bl-date-inline bl-date-picker-wrap">
+                  <input type="text" class="bl-date-input" placeholder="Start date" readonly>
+                  <span class="bl-date-arrow">→</span>
+                  <input type="text" class="bl-date-input" placeholder="End date" readonly>
+                  <span class="bl-cal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;vertical-align:middle"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span>
+                  <div class="bl-dual-cal" id="proCalendar"></div>
+                </span>
+              </div>
+              <div class="bl-filter-right">
+                <button class="bl-icon-btn bl-icon-btn--pdf" type="button" title="PDF" aria-label="Export PDF"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M14 2v6h6" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M9 17.5L12 11h.15L15.2 17.5h-1.25l-.55-1.25h-2.55l-.55 1.25H9zm2.05-2.35h1.9L12.05 12.7l-.95 2.45z" fill="currentColor" stroke="none"/></svg></button>
+                <button class="bl-icon-btn bl-icon-btn--excel" type="button" title="Excel" aria-label="Export Excel"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M14 2v6h6" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M9.2 12.2l5.6 5.6M14.8 12.2l-5.6 5.6" stroke="currentColor" stroke-width="1.85" stroke-linecap="round"/></svg></button>
+                <button class="bl-add-btn" title="Add">+</button>
+              </div>
+            </div>
+            <div class="bl-table-wrap">
+              <table class="bl-data-table" id="tblProforma">
+                <thead id="theadProforma"><tr><th>S. No.</th><th>Proforma Invoice Number &#8693;</th><th>Date &#8693;</th><th>Raised By</th><th>Exp. Pay Date &#8693;</th><th>Service Name</th><th>Sub Service Name</th><th>Type</th><th>Client &#8693;</th><th>Amount &#8693;</th><th>Discount Amount</th><th>Status</th><th>Remarks</th><th>Tags</th><th>Actions</th></tr></thead>
+                <tbody id="tbodyProforma"></tbody>
+              </table>
+            </div>
+            <div class="bl-no-data" id="proNoData" style="display:none"><div class="bl-no-data__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#d1d5db" stroke-width="1.5" style="width:40px;height:40px"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 8h8M8 12h5"/></svg></div>No data</div>
+            <div class="bl-pager"><select class="bl-select"><option>10</option><option>25</option></select><span class="bl-pager-nav">&lt; <input type="text" value="1" class="bl-page-input"> of 1 &gt;</span><span class="bl-pager-count" id="proCount"></span></div>
+          </section>
+
+          <!-- CHALLAN -->
+          <section class="bl-panel" id="panel-challan">
+            <nav class="bl-sub-tabs">
+              <button class="bl-sub-tab is-active" data-sub="ch-all">All Challan</button>
+              <button class="bl-sub-tab" data-sub="ch-cancelled">Cancelled Challan</button>
+            </nav>
+            <div class="bl-filter-row">
+              <div class="bl-filter-left">
+                <label>Filters:</label>
+                <div class="bl-combo" data-id="chClient"><input type="text" placeholder="Client" class="bl-combo__input"><ul class="bl-combo__list"></ul></div>
+                <div class="bl-combo" data-id="chBranch"><input type="text" placeholder="Branch" class="bl-combo__input"><ul class="bl-combo__list"></ul></div>
+              </div>
+              <div class="bl-filter-right">
+                <button class="bl-icon-btn" title="Columns"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><rect x="5" y="4" width="14" height="16" rx="1.5"/><path d="M5 9.33h14M5 14.67h14"/><path d="M8 6.85h5M8 12h5M8 17.15h5"/></svg> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:10px;height:10px"><path d="M6 9l6 6 6-6"/></svg></button>
+                <button class="bl-icon-btn" title="Filter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg></button>
+                <button class="bl-icon-btn bl-icon-btn--pdf" type="button" title="PDF" aria-label="Export PDF"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M14 2v6h6" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M9 17.5L12 11h.15L15.2 17.5h-1.25l-.55-1.25h-2.55l-.55 1.25H9zm2.05-2.35h1.9L12.05 12.7l-.95 2.45z" fill="currentColor" stroke="none"/></svg></button>
+                <button class="bl-icon-btn bl-icon-btn--excel" type="button" title="Excel" aria-label="Export Excel"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M14 2v6h6" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M9.2 12.2l5.6 5.6M14.8 12.2l-5.6 5.6" stroke="currentColor" stroke-width="1.85" stroke-linecap="round"/></svg></button>
+                <button class="bl-add-btn" title="Add">+</button>
+              </div>
+            </div>
+            <div class="bl-filter-row2">
+              <select class="bl-select bl-fy-select"><option>FY 26-27</option><option>FY 25-26</option></select>
+              <span class="bl-date-range"><input type="text" class="bl-date-input" value="01/04/2026" readonly><span class="bl-date-arrow">→</span><input type="text" class="bl-date-input" value="31/03/2027" readonly><span class="bl-cal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;vertical-align:middle"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span></span>
+            </div>
+            <div class="bl-table-wrap">
+              <table class="bl-data-table" id="tblChallan">
+                <thead><tr><th><input type="checkbox"></th><th>S. No.</th><th>Challan Number &#8693;</th><th>Date &#8693;</th><th>Raised By</th><th>Service Name</th><th>Branch</th><th>Task Number</th><th>Private Remark</th><th>Client &#8693;</th><th>Amount &#8693;</th><th>Tags</th><th>Actions</th></tr></thead>
+                <tbody id="tbodyChallan"></tbody>
+              </table>
+            </div>
+            <div class="bl-no-data" id="chNoData" style="display:none"><div class="bl-no-data__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#d1d5db" stroke-width="1.5" style="width:40px;height:40px"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 8h8M8 12h5"/></svg></div>No data</div>
+            <div class="bl-pager"><select class="bl-select"><option>10</option><option>25</option></select><span class="bl-pager-nav">&lt; <input type="text" value="1" class="bl-page-input"> of 1 &gt;</span><span class="bl-pager-count" id="chCount"></span></div>
+          </section>
+
+          <!-- RECEIPT -->
+          <section class="bl-panel" id="panel-receipt">
+            <nav class="bl-sub-tabs">
+              <button class="bl-sub-tab is-active" data-sub="rc-view">View Receipt</button>
+              <button class="bl-sub-tab" data-sub="rc-cancelled">Cancelled Receipt</button>
+              <button class="bl-sub-tab" data-sub="rc-pending">Pending Approval</button>
+              <button class="bl-sub-tab" data-sub="rc-approved">Approved Approval</button>
+            </nav>
+            <div class="bl-filter-row">
+              <div class="bl-filter-left">
+                <label>Filters:</label>
+                <div class="bl-combo" data-id="rcClient"><input type="text" placeholder="Client" class="bl-combo__input"><ul class="bl-combo__list"></ul></div>
+                <div class="bl-combo" data-id="rcBranch"><input type="text" placeholder="Branch" class="bl-combo__input"><ul class="bl-combo__list"></ul></div>
+                <select class="bl-select bl-fy-select"><option>FY 26-27</option><option>FY 25-26</option></select>
+                <span class="bl-date-range"><input type="text" class="bl-date-input" value="01/04/2026" readonly><span class="bl-date-arrow">→</span><input type="text" class="bl-date-input" value="31/03/2027" readonly><span class="bl-cal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;vertical-align:middle"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span></span>
+              </div>
+              <div class="bl-filter-right">
+                <button class="bl-icon-btn bl-icon-btn--pdf" type="button" title="PDF" aria-label="Export PDF"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M14 2v6h6" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M9 17.5L12 11h.15L15.2 17.5h-1.25l-.55-1.25h-2.55l-.55 1.25H9zm2.05-2.35h1.9L12.05 12.7l-.95 2.45z" fill="currentColor" stroke="none"/></svg></button>
+                <button class="bl-icon-btn bl-icon-btn--excel" type="button" title="Excel" aria-label="Export Excel"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M14 2v6h6" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M9.2 12.2l5.6 5.6M14.8 12.2l-5.6 5.6" stroke="currentColor" stroke-width="1.85" stroke-linecap="round"/></svg></button>
+                <button class="bl-add-btn" title="Add">+</button>
+              </div>
+            </div>
+            <div class="bl-table-wrap">
+              <table class="bl-data-table" id="tblReceipt">
+                <thead><tr><th>S. No.</th><th>Payment Date</th><th>Receipt No.</th><th>Branch</th><th>Client</th><th>Remarks</th><th>Payment Mode</th><th>Transaction Amount</th><th>Invoices</th><th>Tags</th><th>Actions</th></tr></thead>
+                <tbody id="tbodyReceipt"></tbody>
+              </table>
+            </div>
+            <div class="bl-total-row"><span class="text-red">Total Amount</span><span class="bl-total-val"></span></div>
+            <div class="bl-pager"><select class="bl-select"><option>10</option></select><span class="bl-pager-nav">&lt; <input type="text" value="1" class="bl-page-input"> of 1 &gt;</span><span class="bl-pager-count"></span></div>
+          </section>
+
+          <!-- LEDGER -->
+          <section class="bl-panel" id="panel-ledger">
+            <h2 class="bl-title" style="color:#25B7A7;margin-bottom:14px">Payment Ledger</h2>
+            <div class="bl-filter-row">
+              <div class="bl-filter-left">
+                <label>Filter:</label>
+                <div class="bl-combo" data-id="ledClient"><input type="text" placeholder="Client" class="bl-combo__input"><ul class="bl-combo__list"></ul></div>
+                <select class="bl-select"><option>Client Group</option></select>
+                <div class="bl-combo" data-id="ledBranch"><input type="text" placeholder="Branch" class="bl-combo__input"><ul class="bl-combo__list"></ul></div>
+                <input type="text" class="bl-date-input" placeholder="Minim..." style="width:70px">
+                <input type="text" class="bl-date-input" placeholder="Maxim..." style="width:70px">
+              </div>
+              <div class="bl-filter-right">
+                <button class="bl-icon-btn" title="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4l-10 8L2 4"/></svg></button>
+                <button class="bl-icon-btn" style="color:#25d366" title="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></button>
+                <button class="bl-icon-btn bl-icon-btn--pdf" type="button" title="PDF" aria-label="Export PDF"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M14 2v6h6" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M9 17.5L12 11h.15L15.2 17.5h-1.25l-.55-1.25h-2.55l-.55 1.25H9zm2.05-2.35h1.9L12.05 12.7l-.95 2.45z" fill="currentColor" stroke="none"/></svg></button>
+                <button class="bl-icon-btn bl-icon-btn--excel" type="button" title="Excel" aria-label="Export Excel"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M14 2v6h6" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M9.2 12.2l5.6 5.6M14.8 12.2l-5.6 5.6" stroke="currentColor" stroke-width="1.85" stroke-linecap="round"/></svg></button>
+                <button class="bl-add-btn" title="Add">+</button>
+              </div>
+            </div>
+            <div class="bl-filter-row2">
+              <select class="bl-select bl-fy-select"><option>FY 26-27</option><option>FY 25-26</option></select>
+              <span class="bl-date-range"><input type="text" class="bl-date-input" value="01/04/2026" readonly><span class="bl-date-arrow">→</span><input type="text" class="bl-date-input" value="31/03/2027" readonly><span class="bl-cal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;vertical-align:middle"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span></span>
+            </div>
+            <div class="bl-table-wrap">
+              <table class="bl-data-table" id="tblLedger">
+                <thead><tr><th>S. No.</th><th>Date &#8693;</th><th>Receipt / Invoice No.</th><th>Branch</th><th>Particular</th><th>Client &#8693;</th><th>Status</th><th>Transaction Type</th><th>Type</th><th>Module</th><th>Nature</th><th>Created By</th><th>Credit</th><th>Debit</th><th>Balance &#8693;</th><th>Remarks</th></tr></thead>
+                <tbody id="tbodyLedger"></tbody>
+              </table>
+            </div>
+            <div class="bl-pager"><select class="bl-select"><option>10</option></select><span class="bl-pager-nav">&lt; <input type="text" value="1" class="bl-page-input"> of 1 &gt;</span><span class="bl-pager-count"></span></div>
+          </section>
+
+          <!-- CN/DN -->
+          <section class="bl-panel" id="panel-cndn">
+            <nav class="bl-sub-tabs">
+              <button class="bl-sub-tab is-active" data-sub="cn-view">View Credit</button>
+              <button class="bl-sub-tab" data-sub="cn-cancelled">Cancelled Credit</button>
+              <button class="bl-sub-tab" data-sub="dn-view">View Debit</button>
+              <button class="bl-sub-tab" data-sub="dn-cancelled">Cancelled Debit</button>
+            </nav>
+            <div class="bl-filter-row">
+              <div class="bl-filter-left">
+                <label>Filter:</label>
+                <div class="bl-combo" data-id="cnClient"><input type="text" placeholder="Client" class="bl-combo__input"><ul class="bl-combo__list"></ul></div>
+                <div class="bl-combo" data-id="cnBranch"><input type="text" placeholder="Branch" class="bl-combo__input"><ul class="bl-combo__list"></ul></div>
+              </div>
+              <div class="bl-filter-right">
+                <button class="bl-icon-btn bl-icon-btn--pdf" type="button" title="PDF" aria-label="Export PDF"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M14 2v6h6" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M9 17.5L12 11h.15L15.2 17.5h-1.25l-.55-1.25h-2.55l-.55 1.25H9zm2.05-2.35h1.9L12.05 12.7l-.95 2.45z" fill="currentColor" stroke="none"/></svg></button>
+                <button class="bl-icon-btn bl-icon-btn--excel" type="button" title="Excel" aria-label="Export Excel"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M14 2v6h6" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M9.2 12.2l5.6 5.6M14.8 12.2l-5.6 5.6" stroke="currentColor" stroke-width="1.85" stroke-linecap="round"/></svg></button>
+                <button class="bl-add-btn" title="Add">+</button>
+              </div>
+            </div>
+            <div class="bl-table-wrap">
+              <table class="bl-data-table" id="tblCndn">
+                <thead id="theadCndn"><tr><th>S. No.</th><th>Payment Date</th><th>Branch</th><th>Client</th><th>Credit No.</th><th>Remarks</th><th>Transaction Amount</th><th>Tags</th><th>Actions</th></tr></thead>
+                <tbody id="tbodyCndn"></tbody>
+              </table>
+            </div>
+            <div class="bl-total-row"><span class="text-red">Total Amount</span><span class="bl-total-val"></span></div>
+            <div class="bl-pager"><select class="bl-select"><option>10</option></select><span class="bl-pager-nav">&lt; <input type="text" value="1" class="bl-page-input"> of 1 &gt;</span><span class="bl-pager-count"></span></div>
+          </section>
+
+          <!-- OPENING BALANCE -->
+          <section class="bl-panel" id="panel-opening-balance">
+            <nav class="bl-sub-tabs">
+              <button class="bl-sub-tab is-active" data-sub="ob-view">View Opening Balance</button>
+              <button class="bl-sub-tab" data-sub="ob-cancelled">Cancelled Opening Balance</button>
+            </nav>
+            <div class="bl-filter-row">
+              <div class="bl-filter-left">
+                <label>Filter:</label>
+                <div class="bl-combo" data-id="obClient"><input type="text" placeholder="Client" class="bl-combo__input"><ul class="bl-combo__list"></ul></div>
+                <div class="bl-combo" data-id="obBranch"><input type="text" placeholder="Branch" class="bl-combo__input"><ul class="bl-combo__list"></ul></div>
+              </div>
+              <div class="bl-filter-right">
+                <button class="bl-icon-btn bl-icon-btn--excel" type="button" title="Excel" aria-label="Export Excel"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M14 2v6h6" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M9.2 12.2l5.6 5.6M14.8 12.2l-5.6 5.6" stroke="currentColor" stroke-width="1.85" stroke-linecap="round"/></svg></button>
+                <button class="bl-add-btn" title="Add">+</button>
+              </div>
+            </div>
+            <div class="bl-table-wrap">
+              <table class="bl-data-table" id="tblOB">
+                <thead><tr><th>S. No.</th><th>Payment Date</th><th>Branch</th><th>Client Name</th><th>Opening No.</th><th>Remarks</th><th>Transaction Amount</th><th>Tags</th><th>Action</th></tr></thead>
+                <tbody id="tbodyOB"></tbody>
+              </table>
+            </div>
+            <div class="bl-total-row"><span class="text-red">Total Opening Balance</span><span class="bl-total-val"></span></div>
+            <div class="bl-pager"><select class="bl-select"><option>10</option></select><span class="bl-pager-nav">&lt; <input type="text" value="1" class="bl-page-input"> of 1 &gt;</span><span class="bl-pager-count"></span></div>
+          </section>
+
+          <!-- ADJUSTMENT -->
+          <section class="bl-panel" id="panel-adjustment">
+            <nav class="bl-sub-tabs">
+              <button class="bl-sub-tab is-active" data-sub="adj-view">View Ledger Adjustment</button>
+              <button class="bl-sub-tab" data-sub="adj-cancelled">Cancelled Ledger Adjustment</button>
+            </nav>
+            <div class="bl-filter-row">
+              <div class="bl-filter-left">
+                <label>Filter:</label>
+                <div class="bl-combo" data-id="adjClient"><input type="text" placeholder="Client" class="bl-combo__input"><ul class="bl-combo__list"></ul></div>
+                <div class="bl-combo" data-id="adjBranch"><input type="text" placeholder="Branch" class="bl-combo__input"><ul class="bl-combo__list"></ul></div>
+              </div>
+              <div class="bl-filter-right">
+                <button class="bl-icon-btn bl-icon-btn--excel" type="button" title="Excel" aria-label="Export Excel"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M14 2v6h6" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M9.2 12.2l5.6 5.6M14.8 12.2l-5.6 5.6" stroke="currentColor" stroke-width="1.85" stroke-linecap="round"/></svg></button>
+                <button class="bl-add-btn" title="Add">+</button>
+              </div>
+            </div>
+            <div class="bl-table-wrap">
+              <table class="bl-data-table" id="tblAdj">
+                <thead><tr><th>S. No.</th><th>Payment Date</th><th>Branch</th><th>Client Name</th><th>Remarks</th><th>Transaction Amount</th><th>Tags</th><th>Action</th></tr></thead>
+                <tbody id="tbodyAdj"></tbody>
+              </table>
+            </div>
+            <div class="bl-total-row"><span class="text-red">Total Adjustment</span><span class="bl-total-val"></span></div>
+            <div class="bl-pager"><select class="bl-select"><option>10</option></select><span class="bl-pager-nav">&lt; <input type="text" value="1" class="bl-page-input"> of 1 &gt;</span><span class="bl-pager-count"></span></div>
+          </section>
+
+          <!-- REPORTED TRANSACTIONS -->
+          <section class="bl-panel" id="panel-reported-transactions">
+            <h2 class="bl-title" style="color:#25B7A7;margin-bottom:14px">Pending Reports</h2>
+            <div class="bl-filter-row">
+              <div class="bl-filter-left">
+                <label>Filters:</label>
+                <span class="bl-date-range"><input type="text" class="bl-date-input" placeholder="Start date" readonly><span class="bl-date-arrow">→</span><input type="text" class="bl-date-input" placeholder="End date" readonly><span class="bl-cal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;vertical-align:middle"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span></span>
+              </div>
+              <div class="bl-filter-right">
+                <button class="bl-btn-outline">Resolved and Rejected Reports</button>
+                <button class="bl-add-btn bl-add-dd" title="Add">+
+                  <ul class="bl-add-dd__menu"><li>Credit Notes</li><li>Debit Notes</li></ul>
+                </button>
+              </div>
+            </div>
+            <div class="bl-table-wrap">
+              <table class="bl-data-table" id="tblReported">
+                <thead><tr><th>S. No.</th><th>Report Date</th><th>Client</th><th>Transaction Type</th><th>Transaction Amount</th><th>Transaction Status</th><th>Summary</th><th>Description</th><th>Take Actions</th></tr></thead>
+                <tbody id="tbodyReported"></tbody>
+              </table>
+            </div>
+            <div class="bl-pager"><select class="bl-select"><option>10</option></select><span class="bl-pager-nav">&lt; <input type="text" value="1" class="bl-page-input"> of 1 &gt;</span><span class="bl-pager-count"></span></div>
+          </section>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/billing.js?v=6"></script>
+</body>
+</html>

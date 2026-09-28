@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Task — TimeERP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/add-task.css?v=1">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="dv-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="dv-top-clock" id="dvTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn dv-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn dv-top-icon" id="notifBtn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="dv-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="home.html" class="dropdown__item"><strong>Dashboard</strong><span>Back to home</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="at-page">
+          <div class="at-back-row">
+            <a href="task_management.html" class="at-back-btn" aria-label="Back to Tasks">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <a href="task_management.html" class="at-back-label">Tasks</a>
+          </div>
+
+          <form class="at-card" id="addTaskForm" autocomplete="off">
+            <div class="at-card-head">
+              <div class="at-card-title-wrap">
+                <h1 class="at-title">Add Task</h1>
+                <button type="button" class="at-icon-ghost" title="Info" aria-label="Info">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+                </button>
+                <button type="button" class="at-play-btn" title="Watch demo" aria-label="Watch demo">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 6v12l10-6z"/></svg>
+                </button>
+              </div>
+              <div class="at-card-actions">
+                <button type="button" class="at-icon-btn" title="Settings" aria-label="Settings">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 00-2 2v.18a2 2 0 01-1 1.73l-.43.25a2 2 0 01-2 0l-.15-.08a2 2 0 00-2.73.73l-.22.38a2 2 0 00.73 2.73l.15.1a2 2 0 011 1.72v.51a2 2 0 01-1 1.74l-.15.09a2 2 0 00-.73 2.73l.22.38a2 2 0 002.73.73l.15-.08a2 2 0 012 0l.43.25a2 2 0 011 1.73V20a2 2 0 002 2h.44a2 2 0 002-2v-.18a2 2 0 011-1.73l.43-.25a2 2 0 012 0l.15.08a2 2 0 002.73-.73l.22-.39a2 2 0 00-.73-2.73l-.15-.08a2 2 0 01-1-1.74v-.5a2 2 0 011-1.74l.15-.09a2 2 0 00.73-2.73l-.22-.38a2 2 0 00-2.73-.73l-.15.08a2 2 0 01-2 0l-.43-.25a2 2 0 01-1-1.73V4a2 2 0 00-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+                <a href="task_management.html" class="at-icon-btn" title="Home" aria-label="Home">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <div class="at-grid-2">
+              <div class="at-field">
+                <label>Service <span class="req">*</span></label>
+                <select required>
+                  <option value="">-- Select service --</option>
+                  <option>GST Filing</option>
+                  <option>ITR</option>
+                  <option>Audit</option>
+                  <option>Book Keeping</option>
+                  <option>TDS FILLING</option>
+                </select>
+              </div>
+              <div class="at-field">
+                <label>Subservice <span class="req">*</span></label>
+                <select required>
+                  <option value="">-- Select subservice --</option>
+                  <option>GSTR-1</option>
+                  <option>GSTR-3B</option>
+                  <option>GSTR-9</option>
+                  <option>ITR Filing</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="at-field at-field--full">
+              <label>Task title <span class="req">*</span></label>
+              <div class="at-title-input-wrap">
+                <input type="text" id="taskTitle" maxlength="200" placeholder="e.g. File GSTR-1 for Jan 2025" required>
+                <span class="at-char-count" id="titleCount">0 / 200</span>
+              </div>
+            </div>
+
+            <div class="at-cols">
+              <div class="at-col">
+                <div class="at-field">
+                  <label>Target date</label>
+                  <div class="at-date">
+                    <input type="text" placeholder="Effective date" readonly>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                  </div>
+                </div>
+                <div class="at-field">
+                  <label>Due date</label>
+                  <div class="at-date">
+                    <input type="text" placeholder="Due Date" readonly>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                  </div>
+                </div>
+                <div class="at-field">
+                  <label>Period from</label>
+                  <div class="at-date">
+                    <input type="text" placeholder="Period from" readonly>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                  </div>
+                </div>
+                <div class="at-field">
+                  <label>Period to</label>
+                  <div class="at-date">
+                    <input type="text" placeholder="Period to" readonly>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                  </div>
+                </div>
+                <div class="at-field">
+                  <label>Reviewer</label>
+                  <select>
+                    <option selected>Ca Ram Kumar (KA001)</option>
+                    <option>Deepak Agarwal (DA)</option>
+                    <option>Admin User (AU)</option>
+                  </select>
+                  <div class="at-reviewer-chip"><span class="at-avatar">KK</span></div>
+                </div>
+                <label class="at-check">
+                  <span>Approval required from reviewer</span>
+                  <input type="checkbox">
+                </label>
+              </div>
+
+              <div class="at-col">
+                <div class="at-field">
+                  <div class="at-label-row">
+                    <label>Assignee</label>
+                    <span class="at-estimate">Total estimation: 0:00 <button type="button" class="at-edit-est" title="Edit estimation" aria-label="Edit estimation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.83 2.83 0 114 4L7.5 20.5 2 22l1.5-5.5z"/></svg></button></span>
+                  </div>
+                  <select>
+                    <option value="">-- Select --</option>
+                    <option>Ankit Sharma</option>
+                    <option>Deepak Agarwal</option>
+                    <option>Saksham</option>
+                  </select>
+                </div>
+                <div class="at-field">
+                  <label>Consultant</label>
+                  <select>
+                    <option value="">-- Select --</option>
+                    <option>Consultant A</option>
+                    <option>Consultant B</option>
+                  </select>
+                </div>
+                <label class="at-check at-check--start">
+                  <input type="checkbox">
+                  <span>Auto assign RM</span>
+                </label>
+                <div class="at-field">
+                  <div class="at-label-row">
+                    <label>Clients <a href="#" class="at-link">Select from group</a></label>
+                    <label class="at-check at-check--inline">
+                      <span>Share / Update with Client</span>
+                      <input type="checkbox">
+                    </label>
+                  </div>
+                  <div class="at-clients-row">
+                    <select>
+                      <option value="">Select client(s)</option>
+                      <option>Saksham</option>
+                      <option>law seva management private limited</option>
+                    </select>
+                    <button type="button" class="at-client-add" title="Add client" aria-label="Add client">+</button>
+                  </div>
+                </div>
+                <div class="at-field">
+                  <label>Followers</label>
+                  <select>
+                    <option value="">Select followers</option>
+                    <option>Ca Ram Kumar</option>
+                    <option>Deepak Agarwal</option>
+                  </select>
+                </div>
+                <div class="at-field">
+                  <label>Priority</label>
+                  <select>
+                    <option value="">Select Team</option>
+                    <option>High</option>
+                    <option>Medium</option>
+                    <option>Priority</option>
+                    <option>Low</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <section class="at-section">
+              <div class="at-section-head">
+                <h2>Branch, when this task occurs &amp; workflow</h2>
+                <button type="button" class="at-custom-fields">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                  Custom fields
+                </button>
+              </div>
+              <div class="at-grid-2">
+                <div class="at-field">
+                  <label>Branch <span class="req">*</span></label>
+                  <select required>
+                    <option selected>Bluemon Wealth Management</option>
+                    <option>Head Office</option>
+                    <option>Delhi Branch</option>
+                  </select>
+                </div>
+                <div class="at-field">
+                  <label>When this Task occurs</label>
+                  <select>
+                    <option selected>Onetime</option>
+                    <option>Recurring</option>
+                    <option>Monthly</option>
+                    <option>Quarterly</option>
+                  </select>
+                </div>
+              </div>
+              <p class="at-hint">Pick a workflow stage and current status.</p>
+            </section>
+
+            <section class="at-section">
+              <div class="at-section-head at-section-head--stages">
+                <h2>Stages <button type="button" class="at-icon-ghost" title="Info" aria-label="Info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></button></h2>
+              </div>
+              <label class="at-check at-check--start">
+                <input type="checkbox" id="followSeq">
+                <span>Follow Sequentially</span>
+              </label>
+              <p class="at-hint">Set weightage on all stages (total 100%) or leave all empty for equal split.</p>
+              <div class="at-stages" id="stagesList">
+                <div class="at-stage-row">
+                  <select><option value="">Select Stage</option><option>A</option><option>B</option><option>C</option><option>Preparation</option><option>Review</option></select>
+                  <select><option value="">Select Assignee</option><option>Ankit Sharma</option><option>Deepak Agarwal</option><option>Saksham</option></select>
+                  <input type="text" placeholder="Enter Weightage">
+                  <button type="button" class="at-stage-del" title="Remove stage" aria-label="Remove stage"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg></button>
+                </div>
+                <div class="at-stage-row">
+                  <select><option value="">Select Stage</option><option>A</option><option>B</option><option>C</option><option>Preparation</option><option>Review</option></select>
+                  <select><option value="">Select Assignee</option><option>Ankit Sharma</option><option>Deepak Agarwal</option><option>Saksham</option></select>
+                  <input type="text" placeholder="Enter Weightage">
+                  <button type="button" class="at-stage-del" title="Remove stage" aria-label="Remove stage"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg></button>
+                </div>
+                <div class="at-stage-row">
+                  <select><option value="">Select Stage</option><option>A</option><option>B</option><option>C</option><option>Preparation</option><option>Review</option></select>
+                  <select><option value="">Select Assignee</option><option>Ankit Sharma</option><option>Deepak Agarwal</option><option>Saksham</option></select>
+                  <input type="text" placeholder="Enter Weightage">
+                  <button type="button" class="at-stage-del" title="Remove stage" aria-label="Remove stage"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg></button>
+                </div>
+                <div class="at-stage-row">
+                  <select><option value="">Select Stage</option><option>A</option><option>B</option><option>C</option><option>Preparation</option><option>Review</option></select>
+                  <select><option value="">Select Assignee</option><option>Ankit Sharma</option><option>Deepak Agarwal</option><option>Saksham</option></select>
+                  <input type="text" placeholder="Enter Weightage">
+                  <button type="button" class="at-stage-del" title="Remove stage" aria-label="Remove stage"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg></button>
+                </div>
+              </div>
+              <button type="button" class="at-add-stage" id="addStageBtn">+ Add stage</button>
+            </section>
+
+            <section class="at-section">
+              <h2 class="at-section-title">Status</h2>
+              <label class="at-status-label">Status <span class="req">*</span></label>
+              <div class="at-status-pills" id="statusPills" role="radiogroup" aria-label="Status">
+                <button type="button" class="at-status-pill is-active" data-status="Open">Open</button>
+                <button type="button" class="at-status-pill" data-status="Processing">Processing</button>
+                <button type="button" class="at-status-pill" data-status="Completed">Completed</button>
+                <button type="button" class="at-status-pill" data-status="Finalised For Submission">Finalised For Submission</button>
+                <button type="button" class="at-status-pill" data-status="Stuck">Stuck</button>
+                <button type="button" class="at-status-pill" data-status="Under Review">Under Review</button>
+                <button type="button" class="at-status-pill" data-status="Over Due">Over Due</button>
+              </div>
+              <div class="at-grid-2 at-reasons">
+                <div class="at-field">
+                  <label>Pending – reasons</label>
+                  <select>
+                    <option value="">Select reasons for Pending status</option>
+                    <option>Awaiting documents</option>
+                    <option>Client confirmation</option>
+                    <option>Internal review</option>
+                  </select>
+                </div>
+                <div class="at-field">
+                  <label>Stuck – reasons</label>
+                  <select>
+                    <option value="">Select reasons for Stuck status</option>
+                    <option>Missing info</option>
+                    <option>Portal issue</option>
+                    <option>Dependency</option>
+                  </select>
+                </div>
+              </div>
+            </section>
+
+            <div class="at-accordion" id="accDetails">
+              <button type="button" class="at-acc-btn">Details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+              <div class="at-acc-body">
+                <div class="at-field">
+                  <label>Description</label>
+                  <textarea rows="4" placeholder="Add task details..."></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="at-accordion" id="accSubtasks">
+              <button type="button" class="at-acc-btn">Subtasks <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+              <div class="at-acc-body">
+                <p class="at-hint">No subtasks added yet.</p>
+              </div>
+            </div>
+            <div class="at-accordion" id="accAttachments">
+              <button type="button" class="at-acc-btn">Attachments <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+              <div class="at-acc-body">
+                <input type="file" multiple>
+              </div>
+            </div>
+
+            <div class="at-footer">
+              <button type="submit" class="at-submit">Create task</button>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/add-task.js?v=1"></script>
+</body>
+</html>

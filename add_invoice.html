@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Custom Invoice — TimeERP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/add-invoice.css?v=1">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="dv-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="dv-top-clock" id="dvTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn dv-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn dv-top-icon" id="notifBtn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="dv-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="home.html" class="dropdown__item"><strong>Dashboard</strong><span>Back to home</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="ainv-page">
+          <!-- Header -->
+          <div class="ainv-header">
+            <h2>Add Custom Invoice</h2>
+            <a href="billing.html" id="viewInvoiceLink">View Invoice</a>
+          </div>
+
+          <!-- Form Card -->
+          <div class="ainv-form-card">
+            <div class="ainv-row">
+              <div class="ainv-field">
+                <label>Branch<span class="req">*</span></label>
+                <select id="ainvBranch">
+                  <option value="bluemon" selected>Bluemon Wealth Management</option>
+                  <option value="cacloud">CA CloudDesk</option>
+                  <option value="lawseva">Law Seva Management Pvt Ltd</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="ainv-row">
+              <div class="ainv-field">
+                <label>Client <span class="ainv-info-icon" title="Select the client for this invoice">ⓘ</span></label>
+                <div class="ainv-client-row">
+                  <select id="ainvClient">
+                    <option value="">Select Client</option>
+                    <option>SAURABH BHARDWAJ</option>
+                    <option>SAURABH BHARDWAJ HUF</option>
+                    <option>law seva management private limited</option>
+                    <option>Saksham</option>
+                    <option>Manish bhardwaj</option>
+                    <option>PERFECT PAIR</option>
+                    <option>THE GOLD REALTY</option>
+                    <option>Internal</option>
+                  </select>
+                  <button type="button" class="ainv-client-add" title="Add Client">+</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="ainv-row">
+              <div class="ainv-field">
+                <label>Invoice Date<span class="req">*</span></label>
+                <input type="date" id="ainvDate">
+              </div>
+              <div class="ainv-field">
+                <label>Team</label>
+                <select id="ainvTeam">
+                  <option value="">Select Team</option>
+                  <option>Team A</option>
+                  <option>Team B</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="ainv-row">
+              <div class="ainv-field">
+                <label>Invoice Initial<span class="req">*</span></label>
+                <select id="ainvInitial">
+                  <option value="2026" selected>2026</option>
+                  <option value="2025">2025</option>
+                </select>
+              </div>
+              <div class="ainv-field" style="justify-content:flex-end">
+                <label class="ainv-check"><input type="checkbox" id="ainvReverse"> Amount Reverse Charges</label>
+                <label class="ainv-check"><input type="checkbox" id="ainvAudit"> Audit</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Items Section -->
+          <div class="ainv-form-card ainv-items">
+            <div class="ainv-items-head">Items</div>
+            <div class="ainv-items-empty">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              <p>Please select Client first</p>
+            </div>
+          </div>
+
+          <!-- Term And Conditions -->
+          <div class="ainv-section">
+            <div class="ainv-section-title">Term And Conditions</div>
+            <div class="ainv-editor-toolbar">
+              <button title="Undo">↩</button>
+              <button title="Redo">↪</button>
+              <select><option>Paragraph</option><option>Heading 1</option><option>Heading 2</option></select>
+              <div class="ainv-editor-sep"></div>
+              <button title="Bold"><strong>B</strong></button>
+              <button title="Italic"><em>I</em></button>
+              <button title="Underline" style="text-decoration:underline">U</button>
+              <button title="Font Color">A▾</button>
+              <div class="ainv-editor-sep"></div>
+              <button title="Link">☺</button>
+              <button title="Source">&lt;/&gt;</button>
+              <div class="ainv-editor-sep"></div>
+              <button title="Align Left">≡</button>
+              <button title="Align Center">≡</button>
+              <button title="Align Right">≡</button>
+              <button title="Justify">≡</button>
+              <div class="ainv-editor-sep"></div>
+              <button title="Unordered List">☰▾</button>
+              <button title="Ordered List">☰▾</button>
+              <div class="ainv-editor-sep"></div>
+              <button title="Table">⊞▾</button>
+            </div>
+            <div class="ainv-editor-area" contenteditable="true" id="ainvTerms">
+              <p><strong>Payment Deadline:</strong> 30 days from invoice.</p>
+              <p><strong>Late Fee:</strong> 1.5% monthly on balance.</p>
+              <p><strong>No Refunds:</strong> After service commencement.</p>
+            </div>
+            <div class="ainv-word-count"><span id="termsWords">0</span> words ↗</div>
+          </div>
+
+          <!-- Public Remarks -->
+          <div class="ainv-section">
+            <div class="ainv-section-title">Public Remarks</div>
+            <div class="ainv-editor-toolbar">
+              <button title="Undo">↩</button>
+              <button title="Redo">↪</button>
+              <select><option>Paragraph</option><option>Heading 1</option><option>Heading 2</option></select>
+              <div class="ainv-editor-sep"></div>
+              <button title="Bold"><strong>B</strong></button>
+              <button title="Italic"><em>I</em></button>
+              <button title="Underline" style="text-decoration:underline">U</button>
+              <button title="Font Color">A▾</button>
+              <div class="ainv-editor-sep"></div>
+              <button title="Link">☺</button>
+              <button title="Source">&lt;/&gt;</button>
+              <div class="ainv-editor-sep"></div>
+              <button title="Align Left">≡</button>
+              <button title="Align Center">≡</button>
+              <button title="Align Right">≡</button>
+              <button title="Justify">≡</button>
+              <div class="ainv-editor-sep"></div>
+              <button title="Unordered List">☰▾</button>
+              <button title="Ordered List">☰▾</button>
+              <div class="ainv-editor-sep"></div>
+              <button title="Table">⊞▾</button>
+            </div>
+            <div class="ainv-editor-area" contenteditable="true" id="ainvPublicRemarks">Thanks for the Business.</div>
+            <div class="ainv-word-count"><span id="publicWords">0</span> words ↗</div>
+          </div>
+
+          <!-- Show remarks checkbox -->
+          <label class="ainv-show-remark">
+            <input type="checkbox" checked> Show remarks in Invoice
+          </label>
+
+          <!-- Private Remarks -->
+          <div class="ainv-section">
+            <div class="ainv-section-title">Private Remarks</div>
+            <div class="ainv-editor-toolbar">
+              <button title="Undo">↩</button>
+              <button title="Redo">↪</button>
+              <select><option>Paragraph</option><option>Heading 1</option><option>Heading 2</option></select>
+              <div class="ainv-editor-sep"></div>
+              <button title="Bold"><strong>B</strong></button>
+              <button title="Italic"><em>I</em></button>
+              <button title="Underline" style="text-decoration:underline">U</button>
+              <button title="Font Color">A▾</button>
+              <div class="ainv-editor-sep"></div>
+              <button title="Link">☺</button>
+              <button title="Source">&lt;/&gt;</button>
+              <div class="ainv-editor-sep"></div>
+              <button title="Align Left">≡</button>
+              <button title="Align Center">≡</button>
+              <button title="Align Right">≡</button>
+              <button title="Justify">≡</button>
+              <div class="ainv-editor-sep"></div>
+              <button title="Unordered List">☰▾</button>
+              <button title="Ordered List">☰▾</button>
+              <div class="ainv-editor-sep"></div>
+              <button title="Table">⊞▾</button>
+            </div>
+            <div class="ainv-editor-area" contenteditable="true" id="ainvPrivateRemarks"></div>
+            <div class="ainv-word-count"><span id="privateWords">0</span> words ↗</div>
+          </div>
+
+          <!-- TDS -->
+          <div class="ainv-tds">
+            <label>TDS</label>
+            <select id="ainvTds">
+              <option value="">Select TDS</option>
+              <option>TDS 194C - 1%</option>
+              <option>TDS 194C - 2%</option>
+              <option>TDS 194J - 10%</option>
+              <option>TDS 194H - 5%</option>
+            </select>
+          </div>
+
+          <!-- Footer Buttons -->
+          <div class="ainv-footer">
+            <button type="button" class="ainv-btn ainv-btn--save">Save</button>
+            <button type="button" class="ainv-btn ainv-btn--save-add">Save &amp; Add Another</button>
+            <button type="button" class="ainv-btn ainv-btn--share">Save &amp; Share Via Email</button>
+            <button type="button" class="ainv-btn ainv-btn--view" onclick="location.href='billing.html'">View Invoice</button>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Quick Client Add Modal -->
+  <div class="ainv-modal-scrim" id="quickClientScrim">
+    <div class="ainv-modal">
+      <div class="ainv-modal__head">
+        <h3>Quick Client Add</h3>
+        <button type="button" class="ainv-modal__close" id="quickClientClose">&times;</button>
+      </div>
+      <div class="ainv-modal__body">
+        <div class="ainv-modal__field">
+          <label>GSTIN</label>
+          <div style="display:flex;gap:6px"><input type="text" placeholder="Enter GSTIN" style="flex:1"><button type="button" style="width:32px;height:32px;border:none;border-radius:50%;background:#25B7A7;color:#fff;font-size:16px;cursor:pointer">⟳</button></div>
+        </div>
+        <div class="ainv-modal__field">
+          <label>Name<span class="req">*</span></label>
+          <input type="text" placeholder="Enter your name">
+        </div>
+        <div class="ainv-modal__field">
+          <label>Legal Name</label>
+          <input type="text" placeholder="Enter Legal Name">
+        </div>
+        <div class="ainv-modal__field">
+          <label>Email</label>
+          <input type="text" placeholder="Enter your email">
+        </div>
+        <div class="ainv-modal__field">
+          <label>Mobile No.</label>
+          <input type="text" placeholder="Enter your phone number">
+        </div>
+        <div class="ainv-modal__actions">
+          <button type="button" class="ainv-btn ainv-btn--save">Submit</button>
+          <button type="button" class="ainv-btn ainv-btn--share" style="border-color:#f97316;color:#fff;background:#f97316">Other Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script>
+    (function(){
+      var clock = document.getElementById('dvTopClock');
+      function tick(){
+        if(!clock) return;
+        var d=new Date(),h=d.getHours(),m=d.getMinutes(),s=d.getSeconds();
+        var ap=h>=12?'PM':'AM'; h=h%12||12;
+        clock.textContent=h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s+' '+ap;
+      }
+      tick(); setInterval(tick,1000);
+
+      var addBtn = document.querySelector('.ainv-client-add');
+      var scrim = document.getElementById('quickClientScrim');
+      var closeBtn = document.getElementById('quickClientClose');
+      if (addBtn && scrim) {
+        addBtn.addEventListener('click', function() { scrim.classList.add('is-open'); });
+        closeBtn.addEventListener('click', function() { scrim.classList.remove('is-open'); });
+        scrim.addEventListener('click', function(e) { if (e.target === scrim) scrim.classList.remove('is-open'); });
+      }
+    })();
+  </script>
+</body>
+</html>

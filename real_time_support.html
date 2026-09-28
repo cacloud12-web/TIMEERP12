@@ -2,8 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" href="assets/image0.png" type="image/png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Real-time Support Status — TimeERP</title>
   <meta name="description" content="TimeERP real-time support status — live support performance data for response times, queue health, and channel availability.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1570,83 +1574,117 @@
 
     .rts-uptime-section{padding-bottom:var(--section-pad);}
     .rts-uptime{
-      padding:28px 32px;border:1px solid var(--border);border-radius:var(--radius-card);
-      background:var(--white);box-shadow:0 4px 20px rgba(8,53,48,.04);
+      padding: clamp(22px, 3vw, 32px);
+      border: 1px solid rgba(37,183,167,.16);
+      border-radius: 22px;
+      background: linear-gradient(180deg, #fff 0%, #f7fcfb 100%);
+      box-shadow: 0 18px 48px rgba(8,53,48,.06);
+      overflow: hidden;
     }
     .rts-uptime__summary{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;
+      display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px;
     }
     .rts-uptime__stat{
-      padding:14px 16px;border:1px solid var(--border);border-radius:10px;background:var(--bg-light);
-      transition:border-color .2s,background .2s;
+      padding:16px 18px;border:1px solid var(--border);border-radius:14px;
+      background:#fff;box-shadow:0 6px 18px rgba(36,63,100,.04);
+      transition:border-color .2s,background .2s,transform .2s,box-shadow .2s;
     }
-    .rts-uptime__stat.is-highlight{border-color:rgba(37,183,167,.35);background:#eefaf8;}
-    .rts-uptime__stat-value{font-size:22px;font-weight:700;color:var(--primary);line-height:1.2;font-variant-numeric:tabular-nums;}
-    .rts-uptime__stat-label{font-size:12px;color:var(--text-muted);margin-top:4px;line-height:1.4;}
-    .rts-uptime__chart-wrap{position:relative;margin-top:4px;}
+    .rts-uptime__stat:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(37,183,167,.1);}
+    .rts-uptime__stat.is-highlight{
+      border-color:rgba(245,158,11,.4);background:#fffbeb;
+      box-shadow:0 10px 24px rgba(245,158,11,.12);
+    }
+    .rts-uptime__stat-value{
+      font-size:clamp(1.25rem,2vw,1.5rem);font-weight:700;color:var(--primary);
+      line-height:1.2;font-variant-numeric:tabular-nums;letter-spacing:-.02em;
+    }
+    .rts-uptime__stat.is-highlight .rts-uptime__stat-value{color:#b45309;}
+    .rts-uptime__stat-label{font-size:12px;color:var(--text-muted);margin-top:6px;line-height:1.4;}
+    .rts-uptime__legend{
+      display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:0 0 14px;
+      font-size:12px;font-weight:600;color:var(--text-muted);
+    }
+    .rts-uptime__legend-item{display:inline-flex;align-items:center;gap:7px;}
+    .rts-uptime__swatch{
+      width:10px;height:10px;border-radius:3px;display:inline-block;
+    }
+    .rts-uptime__swatch--ok{background:#25b7a7;}
+    .rts-uptime__swatch--warn{background:#f59e0b;}
+    .rts-uptime__chart-wrap{
+      position:relative;margin-top:4px;padding:76px 8px 8px;
+      border-radius:16px;background:#fff;border:1px solid rgba(37,183,167,.12);
+      overflow:hidden;
+    }
     .rts-uptime__bars{
-      display:flex;align-items:flex-end;gap:4px;height:100px;margin-top:8px;
-      position:relative;
+      display:flex;align-items:flex-end;gap:4px;height:110px;
+      position:relative;padding:0 2px;
+      background:linear-gradient(180deg, transparent 0%, rgba(37,183,167,.04) 100%);
+      border-radius:10px;
     }
-    .rts-uptime__bars.is-dimmed .rts-uptime__bar:not(.is-hovered):not(.is-selected){opacity:.35;}
+    .rts-uptime__bars.is-dimmed .rts-uptime__bar:not(.is-hovered):not(.is-selected){opacity:.32;}
     .rts-uptime__bar{
-      flex:1;border-radius:4px 4px 0 0;background:#25b7a7;min-height:6px;
-      height:0;cursor:pointer;opacity:.9;border:2px solid transparent;
+      flex:1;border-radius:5px 5px 2px 2px;background:linear-gradient(180deg,#3dd5c5,#25b7a7);
+      min-height:6px;height:0;cursor:pointer;opacity:.92;border:2px solid transparent;
       padding:0;font:inherit;color:inherit;appearance:none;-webkit-appearance:none;
       transition:opacity .2s,transform .2s,border-color .2s,box-shadow .2s,height .6s cubic-bezier(.22,1,.36,1);
       transform-origin:bottom;
     }
     .rts-uptime__bar.is-animated{height:var(--bar-height);}
     .rts-uptime__bar:hover,.rts-uptime__bar.is-hovered{
-      opacity:1;transform:scaleY(1.06);transform-origin:bottom;
-      box-shadow:0 -4px 16px rgba(37,183,167,.35);z-index:2;
+      opacity:1;transform:scaleY(1.08);transform-origin:bottom;
+      box-shadow:0 -6px 18px rgba(37,183,167,.35);z-index:2;
     }
     .rts-uptime__bar.is-selected{
-      border-color:rgba(37,183,167,.6);opacity:1;
-      box-shadow:0 -4px 20px rgba(37,183,167,.4);
+      border-color:rgba(8,53,48,.25);opacity:1;
+      box-shadow:0 -6px 22px rgba(37,183,167,.42);
     }
-    .rts-uptime__bar.is-degraded{background:#f59e0b;}
+    .rts-uptime__bar.is-degraded{background:linear-gradient(180deg,#fbbf24,#f59e0b);}
     .rts-uptime__bar.is-degraded:hover,.rts-uptime__bar.is-degraded.is-hovered,
-    .rts-uptime__bar.is-degraded.is-selected{box-shadow:0 -4px 16px rgba(245,158,11,.4);}
+    .rts-uptime__bar.is-degraded.is-selected{box-shadow:0 -6px 18px rgba(245,158,11,.42);}
     .rts-uptime__tooltip{
-      position:absolute;pointer-events:none;z-index:10;
-      padding:10px 14px;border-radius:10px;background:#083530;color:#fff;
-      font-size:12px;line-height:1.45;white-space:nowrap;
-      opacity:0;transform:translate(-50%,-8px);transition:opacity .15s,transform .15s;
-      box-shadow:0 8px 24px rgba(8,53,48,.25);
+      position:absolute;pointer-events:none;z-index:20;left:50%;top:12px;
+      padding:12px 14px;border-radius:12px;background:#083530;color:#fff;
+      font-size:12px;line-height:1.45;white-space:nowrap;min-width:132px;
+      opacity:0;transform:translate(-50%,6px);transition:opacity .18s,transform .18s,left .12s;
+      box-shadow:0 12px 32px rgba(8,53,48,.28);
     }
-    .rts-uptime__tooltip.is-visible{opacity:1;transform:translate(-50%,-12px);}
-    .rts-uptime__tooltip-date{font-weight:600;margin-bottom:2px;}
-    .rts-uptime__tooltip-uptime{font-size:18px;font-weight:700;color:#3dd5c5;margin:4px 0;}
+    .rts-uptime__tooltip.is-visible{opacity:1;transform:translate(-50%,0);}
+    .rts-uptime__tooltip-date{font-weight:600;margin-bottom:2px;opacity:.92;}
+    .rts-uptime__tooltip-uptime{font-size:20px;font-weight:700;color:#3dd5c5;margin:4px 0;font-variant-numeric:tabular-nums;}
     .rts-uptime__tooltip-status{
-      display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;margin-top:4px;
+      display:inline-block;font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;margin-top:4px;
     }
     .rts-uptime__tooltip-status--ok{background:rgba(34,197,94,.2);color:#86efac;}
     .rts-uptime__tooltip-status--warn{background:rgba(245,158,11,.25);color:#fcd34d;}
     .rts-uptime__day-detail{
-      margin-top:20px;padding:16px 20px;border:1px solid var(--border);border-radius:10px;
-      background:var(--bg-light);display:flex;align-items:center;justify-content:space-between;
-      gap:16px;flex-wrap:wrap;min-height:56px;
-      opacity:0;transform:translateY(6px);transition:opacity .25s,transform .25s,border-color .25s;
+      margin-top:16px;padding:16px 18px;border:1px solid var(--border);border-radius:14px;
+      background:#fff;display:flex;align-items:center;justify-content:space-between;
+      gap:16px;flex-wrap:wrap;min-height:64px;
+      box-shadow:0 6px 18px rgba(36,63,100,.04);
+      opacity:0;transform:translateY(6px);transition:opacity .25s,transform .25s,border-color .25s,background .25s;
     }
     .rts-uptime__day-detail.is-visible{opacity:1;transform:translateY(0);}
     .rts-uptime__day-detail.is-degraded{border-color:rgba(245,158,11,.35);background:#fffbeb;}
-    .rts-uptime__day-detail-date{font-size:14px;font-weight:600;color:var(--heading-dark);}
-    .rts-uptime__day-detail-note{font-size:13px;color:var(--text-muted);margin-top:2px;}
+    .rts-uptime__day-detail-date{font-size:14px;font-weight:700;color:var(--heading-dark);}
+    .rts-uptime__day-detail-note{font-size:13px;color:var(--text-muted);margin-top:3px;}
     .rts-uptime__day-detail-badge{
-      font-size:12px;font-weight:600;padding:5px 12px;border-radius:999px;flex-shrink:0;
+      font-size:12px;font-weight:700;padding:6px 12px;border-radius:999px;flex-shrink:0;
     }
     .rts-uptime__day-detail-badge--ok{background:rgba(34,197,94,.12);color:#15803d;}
     .rts-uptime__day-detail-badge--warn{background:rgba(245,158,11,.15);color:#b45309;}
     .rts-uptime__labels{
       display:flex;justify-content:space-between;margin-top:12px;
-      font-size:11px;color:var(--text-muted);
+      font-size:12px;font-weight:600;color:var(--text-muted);
     }
     @media (max-width:768px){
-      .rts-uptime{padding:20px 16px;}
+      .rts-uptime{padding:18px 14px;}
       .rts-uptime__summary{grid-template-columns:1fr;}
-      .rts-uptime__bars{height:72px;gap:3px;}
-      .rts-uptime__tooltip{font-size:11px;padding:8px 12px;}
+      .rts-uptime__bars{height:80px;gap:3px;}
+      .rts-uptime__chart-wrap{padding-top:70px;}
+      .rts-uptime__tooltip{font-size:11px;padding:10px 12px;min-width:0;}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .rts-uptime__bar,.rts-uptime__tooltip,.rts-uptime__day-detail,.rts-uptime__stat{transition:none;}
     }
 
     .rts-events{background:var(--bg-light);}
@@ -1685,8 +1723,8 @@
     .btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 24px;border-radius:var(--radius-btn);font-size:15px;font-weight:600;transition:background .15s,transform .15s,opacity .15s;}
 
   </style>
-  <link rel="stylesheet" href="css/site-nav.css">
-  <link rel="stylesheet" href="css/site-footer.css">
+  <link rel="stylesheet" href="css/site-nav.css?v=13">
+  <link rel="stylesheet" href="css/site-footer.css?v=6">
 </head>
 <body class="real-time-support-page">
 
@@ -1863,8 +1901,12 @@
             </div>
             <div class="rts-uptime__stat" id="rtsUptimeIncidents">
               <div class="rts-uptime__stat-value">—</div>
-              <div class="rts-uptime__stat-label">Days with degraded performance</div>
+              <div class="rts-uptime__stat-label" id="rtsUptimeIncidentsLabel">Days with degraded performance</div>
             </div>
+          </div>
+          <div class="rts-uptime__legend" aria-hidden="true">
+            <span class="rts-uptime__legend-item"><span class="rts-uptime__swatch rts-uptime__swatch--ok"></span>Operational</span>
+            <span class="rts-uptime__legend-item"><span class="rts-uptime__swatch rts-uptime__swatch--warn"></span>Degraded</span>
           </div>
           <div class="rts-uptime__chart-wrap">
             <div class="rts-uptime__bars" id="rtsUptimeBars" role="list" aria-label="30-day uptime chart"></div>
@@ -1944,7 +1986,7 @@
     <div class="container">
       <div class="footer__main">
         <div class="footer__brand">
-          <a href="home1.html" class="footer__logo" aria-label="TimeERP home">
+          <a href="index.html" class="footer__logo" aria-label="TimeERP home">
             <img src="assets/image01-footer.svg" alt="TimeERP" width="196" height="48" loading="lazy">
           </a>
           <p class="footer__desc">One Platform. Complete Business Management. Enterprise ERP for modern businesses.</p>
@@ -1961,10 +2003,10 @@
             <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Products</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
             <h4 class="footer__col-title">Products</h4>
             <ul class="footer__links">
-              <li><a href="home1.html#products">Modules</a></li>
-              <li><a href="home1.html#benefits">Benefits</a></li>
-              <li><a href="home1.html#task-management">Project Management</a></li>
-              <li><a href="home1.html#solutions">Platform</a></li>
+              <li><a href="index.html#products">Modules</a></li>
+              <li><a href="index.html#benefits">Benefits</a></li>
+              <li><a href="index.html#task-management">Project Management</a></li>
+              <li><a href="index.html#solutions">Platform</a></li>
               <li><a href="price.html">Pricing</a></li>
             </ul>
           </div>
@@ -1986,6 +2028,7 @@
               <li><a href="about.html">About Us</a></li>
               <li><a href="Our_Presence.html">Our Presence</a></li>
               <li><a href="careers.html">Careers</a></li>
+              <li><a href="blog.html">Blog</a></li>
               <li><a href="contact_sales.html">Contact</a></li>
             </ul>
           </div>
@@ -1993,7 +2036,7 @@
             <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Support</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
             <h4 class="footer__col-title">Support</h4>
             <ul class="footer__links">
-              <li><a href="real_time_support.html">Help Center</a></li>
+              <li><a href="help_centre.html">Help Center</a></li>
               <li><a href="contact_sales.html">Sales</a></li>
               <li><a href="custom_quote.html">Get a Quote</a></li>
             </ul>
@@ -2005,8 +2048,10 @@
         <div class="footer__connect-item">
           <span class="footer__connect-label">Visit us</span>
           <address class="footer__address">
-            BM-08, Ansal Sumedha Building, RDC,<br>
-            Ghaziabad, Delhi NCR, UP 201002
+            <a class="footer__address-link" href="https://www.google.com/maps/search/?api=1&query=Ansal+Sumedha+Building+RDC+Ghaziabad+201002" target="_blank" rel="noopener noreferrer" aria-label="View office location on Google Maps">
+              BM-08, Ansal Sumedha Building, RDC,<br>
+              Ghaziabad, Delhi NCR, UP 201002
+            </a>
           </address>
           <div class="footer__quick">
             <a class="footer__quick-btn" href="#" data-book-demo>Book Demo</a>
@@ -2037,6 +2082,7 @@
         <nav class="footer__legal" aria-label="Legal">
           <a href="privacy.html">Privacy</a>
           <a href="terms.html">Terms</a>
+          <a href="security.html">Security</a>
           <a href="contact_sales.html">Contact Us</a>
         </nav>
       </div>
@@ -2044,10 +2090,10 @@
   </footer>
 
   
-  <script src="js/site-chrome.js" defer></script>
   <script src="js/scroll-animations.js" defer></script>
-<script src="js/footer-accordion.js" defer></script>
+  <script src="js/footer-accordion.js" defer></script>
   <script src="js/real_time_support.js" defer></script>
-  <script src="js/site-nav.js" defer></script>
+  <script src="js/site-nav.js?v=13" defer></script>
+  <script src="js/site-footer.js?v=6"></script>
 </body>
 </html>

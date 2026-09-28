@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inward/Outward Document — TimeERP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/inward-outward.css?v=5">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="iod-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="iod-top-clock" id="iodTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn iod-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn iod-top-icon" id="notifBtn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="iod-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="home.html" class="dropdown__item"><strong>Dashboard</strong><span>Back to home</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="iod-page">
+
+          <!-- Header -->
+          <div class="iod-header">
+            <a class="iod-back" href="document_vault.html" aria-label="Back to Document Vault">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <span class="iod-header__title">Inward/Outward Document</span>
+          </div>
+
+          <!-- Title + actions -->
+          <div class="iod-title-row">
+            <h1 class="iod-title">Inward/Outward Docs</h1>
+            <div class="iod-title-actions">
+              <input type="text" class="iod-search" id="iodSearch" placeholder="Search Client/File Name">
+              <button type="button" class="iod-icon-btn iod-icon-btn--excel" title="Export Excel" aria-label="Export Excel">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 2.75h7.5L19.25 7.5V20.5a.75.75 0 01-.75.75H7a.75.75 0 01-.75-.75V3.5A.75.75 0 017 2.75z" stroke="#217346" stroke-width="1.5" stroke-linejoin="round"/><path d="M14.5 2.75V7.5h4.75" stroke="#217346" stroke-width="1.5" stroke-linejoin="round"/><path d="M9.2 10.2l5.6 7.6M14.8 10.2l-5.6 7.6" stroke="#217346" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </button>
+              <div class="iod-filter-wrap" id="iodFilterWrap">
+                <button type="button" class="iod-icon-btn iod-icon-btn--filter" title="Filter" id="iodFilterBtn" aria-label="Filter" aria-expanded="false" aria-controls="iodFilterDrop">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 5h16l-6.2 7.4V19l-3.6 2v-8.6L4 5z"/></svg>
+                </button>
+                <div class="iod-filter-pop" id="iodFilterDrop" hidden role="dialog" aria-label="Filter">
+                  <div class="iod-filter-pop__head">
+                    <span class="iod-filter-pop__title">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5h16l-6.2 7.4V19l-3.6 2v-8.6L4 5z"/></svg>
+                      Filter
+                    </span>
+                    <button type="button" class="iod-filter-pop__reset" id="iodFilterReset">Reset</button>
+                  </div>
+                  <div class="iod-filter-box">
+                    <div class="iod-filter-acc" data-filter-acc="dir">
+                      <button type="button" class="iod-filter-acc__btn">
+                        <span class="iod-filter-acc__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+                        Inward/Outward
+                      </button>
+                      <div class="iod-filter-acc__body" hidden>
+                        <div class="iod-filter-select">
+                          <select id="iodFilterDir" aria-label="Inward/Outward">
+                            <option value="">Inward/Outward</option>
+                            <option value="Inward">Inward</option>
+                            <option value="Outward">Outward</option>
+                          </select>
+                          <span class="iod-filter-select__caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="iod-filter-acc" data-filter-acc="mode">
+                      <button type="button" class="iod-filter-acc__btn">
+                        <span class="iod-filter-acc__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+                        Mode
+                      </button>
+                      <div class="iod-filter-acc__body" hidden>
+                        <div class="iod-filter-select">
+                          <select id="iodFilterMode" aria-label="Mode">
+                            <option value="">Mode</option>
+                            <option value="hardcopy">hardcopy</option>
+                            <option value="none">none</option>
+                          </select>
+                          <span class="iod-filter-select__caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="iod-filter-acc" data-filter-acc="client">
+                      <button type="button" class="iod-filter-acc__btn">
+                        <span class="iod-filter-acc__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+                        Client
+                      </button>
+                      <div class="iod-filter-acc__body" hidden>
+                        <div class="iod-filter-select">
+                          <select id="iodFilterClient" aria-label="Client">
+                            <option value="">Client</option>
+                            <option value="SAURABH BHARDWAJ">SAURABH BHARDWAJ</option>
+                          </select>
+                          <span class="iod-filter-select__caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a class="iod-add-btn" href="add_inward_outward.html" title="Add New" aria-label="Add New">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Table -->
+          <div class="iod-table-wrap">
+            <table class="iod-table" id="iodTable">
+              <thead>
+                <tr>
+                  <th>S. No.</th>
+                  <th>Client</th>
+                  <th>Mobile No.</th>
+                  <th>Client File Name</th>
+                  <th>Mode</th>
+                  <th>Document Type</th>
+                  <th>Location</th>
+                  <th>Entry Date</th>
+                  <th>Inward/Outward</th>
+                  <th>Created By</th>
+                  <th>Hand Over To</th>
+                  <th>Hand Over By</th>
+                  <th>Notes</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="iodBody"></tbody>
+            </table>
+          </div>
+
+          <!-- Footer -->
+          <footer class="iod-app-footer">
+            <div class="iod-app-footer__links">
+              <a href="help_centre.html">Help Centre</a><span>|</span>
+              <a href="Academy.html">Academy</a><span>|</span>
+              <a href="community.html">Community</a><span>|</span>
+              <a href="about.html">About</a>
+            </div>
+            <p class="iod-app-footer__copy">© 2025 <span>TimeERP</span>. All rights reserved.</p>
+          </footer>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="iod-del-pop" id="iodDelPop" hidden>
+    <div class="iod-del-pop__row">
+      <span class="iod-del-pop__warn">!</span>
+      <span class="iod-del-pop__text">Are you sure to delete this?</span>
+    </div>
+    <div class="iod-del-pop__btns">
+      <button type="button" class="iod-del-pop__no" id="iodDelNo">No</button>
+      <button type="button" class="iod-del-pop__yes" id="iodDelYes">Yes</button>
+    </div>
+  </div>
+
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/inward-outward.js?v=4"></script>
+</body>
+</html>

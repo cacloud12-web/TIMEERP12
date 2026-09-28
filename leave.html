@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leave Management | Requests, Balances &amp; Holidays | TimeERP</title>
+  <meta name="description" content="TimeERP Leave Management: leave types, requests, multi-level approvals, leave balance, half-day leave, holiday calendar, leave history, team coverage, and reports for HR and managers.">
+  <meta name="keywords" content="leave management, leave balance, leave approval, holiday calendar, casual leave, sick leave, TimeERP leave">
+  <link rel="canonical" href="https://timeerp.com/leave.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Leave Management | TimeERP">
+  <meta property="og:description" content="Streamlined leave requests, approvals, balances, and holiday calendar inside TimeERP.">
+  <meta property="og:url" content="https://timeerp.com/leave.html">
+  <meta property="og:image" content="https://timeerp.com/assets/image0-transparent.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Leave Management | TimeERP">
+  <meta name="twitter:description" content="Leave types, approvals, balances, and holiday calendar for modern organisations.">
+  <meta name="twitter:image" content="https://timeerp.com/assets/image0-transparent.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "TimeERP Leave Management",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "url": "https://timeerp.com/leave.html",
+        "description": "Enterprise leave management for types, balances, requests, approvals, holiday calendar, and leave reports.",
+        "provider": { "@type": "Organization", "name": "TimeERP", "url": "https://timeerp.com/" }
+      },
+      {
+        "@type": "Product",
+        "name": "TimeERP Leave Management",
+        "description": "Streamlined leave requests, approvals, and balance management.",
+        "brand": { "@type": "Brand", "name": "TimeERP" },
+        "url": "https://timeerp.com/leave.html"
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <link rel="stylesheet" href="css/site-nav.css?v=13">
+  <link rel="stylesheet" href="css/site-footer.css">
+  <link rel="stylesheet" href="css/leave.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="lv-page" id="leave" aria-labelledby="lv-title">
+    <!-- Hero -->
+    <section class="lv-hero" aria-label="Leave Management hero">
+      <div class="lv-hero__bg" aria-hidden="true">
+        <div class="lv-hero__grid-pattern"></div>
+        <span class="lv-hero__orb lv-hero__orb--1"></span>
+        <span class="lv-hero__orb lv-hero__orb--2"></span>
+        <span class="lv-hero__dot lv-hero__dot--1"></span>
+        <span class="lv-hero__dot lv-hero__dot--2"></span>
+        <span class="lv-hero__dot lv-hero__dot--3"></span>
+      </div>
+
+      <div class="container lv-hero__layout">
+        <div class="lv-reveal lv-reveal--left">
+          <h1 id="lv-title">Leave Management</h1>
+          <p class="lv-hero__lead">Streamlined leave requests, approvals, and balance management with holiday calendars and policy control inside TimeERP.</p>
+
+          <ul class="lv-feat-grid" aria-label="Leave Management capabilities">
+            <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span> Leave Types</li>
+            <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span> Leave Policies</li>
+            <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span> Leave Balance</li>
+            <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span> Leave Requests</li>
+            <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span> Approval Workflow</li>
+            <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span> Holiday Calendar</li>
+            <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span> Half-Day Leave</li>
+            <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span> Leave History</li>
+            <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span> Team Coverage</li>
+            <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span> Proof Upload</li>
+            <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span> Attendance Link</li>
+            <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span> Leave Reports</li>
+          </ul>
+
+          <div class="lv-hero__actions">
+            <a class="btn btn--primary" href="home.html#module/leave">
+              Explore Leave
+              <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+            </a>
+            <a class="btn btn--ghost" href="#" data-book-demo>Book Demo</a>
+            <a class="btn btn--ghost" href="contact_sales.html">Contact Sales</a>
+          </div>
+        </div>
+
+        <div class="lv-visual lv-reveal lv-reveal--right" aria-hidden="true">
+          <div class="lv-float lv-float--1"><span class="material-symbols-outlined">event_available</span> 12 pending</div>
+          <div class="lv-float lv-float--2"><span class="material-symbols-outlined">beach_access</span> Casual 6 left</div>
+          <div class="lv-float lv-float--3"><span class="material-symbols-outlined">calendar_month</span> Holidays</div>
+          <div class="lv-float lv-float--4"><span class="material-symbols-outlined">fact_check</span> Approved</div>
+          <div class="lv-float lv-float--5"><span class="material-symbols-outlined">groups</span> 4 on leave</div>
+
+          <div class="lv-visual__scene">
+            <div class="lv-card">
+              <div class="lv-card__top">
+                <div class="lv-card__user">
+                  <div class="lv-card__avatar">NS</div>
+                  <div>
+                    <strong>My leave balance</strong>
+                    <span>Policy year 2026</span>
+                  </div>
+                </div>
+                <span class="lv-card__status">
+                  <span class="material-symbols-outlined" style="font-size:14px">hourglass_top</span>
+                  2 pending
+                </span>
+              </div>
+              <div class="lv-card__metrics">
+                <div class="lv-card__metric"><em>Casual left</em><strong>6</strong></div>
+                <div class="lv-card__metric"><em>Sick left</em><strong>8</strong></div>
+                <div class="lv-card__metric"><em>Paid left</em><strong>11</strong></div>
+              </div>
+              <div class="lv-card__progress">
+                <div class="lv-card__progress-label"><span>Annual utilisation</span><strong>42%</strong></div>
+                <div class="lv-card__bar"><span></span></div>
+              </div>
+              <div class="lv-card__bottom">
+                <div>
+                  <div class="lv-card__progress-label" style="margin-bottom:8px">
+                    <span>Applications this quarter</span>
+                    <strong>Team: 4 out today</strong>
+                  </div>
+                  <div class="lv-card__chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                </div>
+                <div class="lv-ring">
+                  <svg viewBox="0 0 88 88" aria-hidden="true">
+                    <circle class="lv-ring__bg" cx="44" cy="44" r="36"></circle>
+                    <circle class="lv-ring__fg" cx="44" cy="44" r="36"></circle>
+                  </svg>
+                  <div class="lv-ring__label"><strong>58%</strong><span>Remaining</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lv-trust" aria-label="Leave management audiences">
+      <div class="container lv-trust__inner">
+        <p>Built for workforce time-off control</p>
+        <div class="lv-trust__stats">
+          <span class="lv-trust__chip">Employees self-serve</span>
+          <span class="lv-trust__chip">Manager approvals</span>
+          <span class="lv-trust__chip">HR policy control</span>
+          <span class="lv-trust__chip">Holiday alignment</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Overview metrics -->
+    <section class="lv-section lv-section--panel" id="lvDash" aria-labelledby="lv-dash-title">
+      <div class="container">
+        <div class="lv-section__head lv-reveal">
+          <p class="eyebrow">Overview</p>
+          <h2 class="section-title" id="lv-dash-title">Leave control metrics HR watches weekly</h2>
+          <p class="section-lead">Illustrative metrics for a sample organisation. Live figures depend on headcount, policies, and calendars you configure.</p>
+        </div>
+        <div class="lv-dash lv-reveal">
+          <div class="lv-dash__main">
+            <h3>Leave health snapshot</h3>
+            <p>Balances, queues, holidays, and people out today.</p>
+            <div class="lv-dash__metrics">
+              <div class="lv-metric"><strong data-count="1240">0</strong><span>Total leave days planned</span></div>
+              <div class="lv-metric"><strong data-count="18">0</strong><span>Pending approvals</span></div>
+              <div class="lv-metric"><strong data-count="11">0</strong><span>Upcoming holidays</span></div>
+              <div class="lv-metric"><strong data-count="4">0</strong><span>On leave today</span></div>
+              <div class="lv-metric"><strong data-count="92" data-suffix="%">0%</strong><span>Auto-routed apps</span></div>
+              <div class="lv-metric"><strong data-count="6">0</strong><span>Leave types active</span></div>
+            </div>
+          </div>
+          <div class="lv-dash__side">
+            <div class="lv-dash__card">
+              <h4>Approval SLA health</h4>
+              <div class="lv-bar" data-width="78"><span></span></div>
+              <p>Most requests clear within the expected manager window.</p>
+            </div>
+            <div class="lv-dash__card">
+              <h4>Balance remaining (sample staff mix)</h4>
+              <div class="lv-bar" data-width="58"><span></span></div>
+              <p>Remaining entitlement keeps applications realistic mid-year.</p>
+            </div>
+            <div class="lv-dash__card">
+              <h4>Holiday-aware planning</h4>
+              <div class="lv-bar" data-width="100"><span></span></div>
+              <p>Holiday calendar stays linked so leave and official closures do not clash silently.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Balance cards -->
+    <section class="lv-section lv-section--soft" id="lvBalances" aria-labelledby="lv-bal-title">
+      <div class="container">
+        <div class="lv-section__head lv-reveal">
+          <p class="eyebrow">Leave balance</p>
+          <h2 class="section-title" id="lv-bal-title">Casual, sick, and paid leave at a glance</h2>
+          <p class="section-lead">Sample quotas. Real balances follow your leave types, policies, and employee entitlements.</p>
+        </div>
+        <div class="lv-balance-grid lv-reveal">
+          <article class="lv-balance-card">
+            <h3>Casual leave</h3>
+            <div class="lv-balance-meta"><span>Remaining</span><strong>6</strong></div>
+            <div class="lv-balance-bar" data-width="50"><span></span></div>
+            <div class="lv-balance-foot"><span>Total 12</span><span>Used 6</span></div>
+          </article>
+          <article class="lv-balance-card">
+            <h3>Sick leave</h3>
+            <div class="lv-balance-meta"><span>Remaining</span><strong>8</strong></div>
+            <div class="lv-balance-bar" data-width="67"><span></span></div>
+            <div class="lv-balance-foot"><span>Total 12</span><span>Used 4</span></div>
+          </article>
+          <article class="lv-balance-card">
+            <h3>Paid leave</h3>
+            <div class="lv-balance-meta"><span>Remaining</span><strong>11</strong></div>
+            <div class="lv-balance-bar" data-width="61"><span></span></div>
+            <div class="lv-balance-foot"><span>Total 18</span><span>Used 7</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why -->
+    <section class="lv-section" aria-labelledby="lv-why-title">
+      <div class="container">
+        <div class="lv-section__head lv-reveal">
+          <p class="eyebrow">Why TimeERP Leave</p>
+          <h2 class="section-title" id="lv-why-title">Leave that people can apply and managers can control</h2>
+          <p class="section-lead">Home Leave Management covers types, requests, approval workflow, holiday calendar, balance, and reports, so time-off stays inside the same ERP people already use.</p>
+        </div>
+        <div class="lv-why lv-reveal">
+          <article class="lv-why__card">
+            <div class="lv-why__icon"><span class="material-symbols-outlined">edit_calendar</span></div>
+            <h3>Self-service requests</h3>
+            <p>Employees apply with type, dates, half-day, reason, and proof without chasing HR for forms.</p>
+          </article>
+          <article class="lv-why__card">
+            <div class="lv-why__icon"><span class="material-symbols-outlined">fact_check</span></div>
+            <h3>Approval discipline</h3>
+            <p>Pending, approved, and rejected statuses keep coverage and entitlement decisions visible.</p>
+          </article>
+          <article class="lv-why__card">
+            <div class="lv-why__icon"><span class="material-symbols-outlined">account_balance_wallet</span></div>
+            <h3>Balance clarity</h3>
+            <p>Total, used, and remaining quotas reduce invalid applications before they hit managers.</p>
+          </article>
+          <article class="lv-why__card">
+            <div class="lv-why__icon"><span class="material-symbols-outlined">calendar_month</span></div>
+            <h3>Holiday alignment</h3>
+            <p>Company holiday calendars keep leave planning honest around official closures.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features explorer -->
+    <section class="lv-section lv-section--soft" id="features" aria-labelledby="lv-feat-title">
+      <div class="container">
+        <div class="lv-section__head lv-reveal">
+          <p class="eyebrow">Core capabilities</p>
+          <h2 class="section-title" id="lv-feat-title">Everything TimeERP Leave Management is built to do</h2>
+          <p class="section-lead">Interactive explorer for set-up, employee self-service, control, and insight, aligned with My Leave and HRMS leave policies.</p>
+        </div>
+        <div class="lv-filters lv-reveal" role="tablist" aria-label="Filter leave features">
+          <button type="button" class="lv-filter is-active" data-filter="all" aria-selected="true">All</button>
+          <button type="button" class="lv-filter" data-filter="setup" aria-selected="false">Policies &amp; calendar</button>
+          <button type="button" class="lv-filter" data-filter="people" aria-selected="false">Employee self-service</button>
+          <button type="button" class="lv-filter" data-filter="control" aria-selected="false">Control</button>
+          <button type="button" class="lv-filter" data-filter="insight" aria-selected="false">Insight</button>
+        </div>
+        <div class="lv-feat-layout lv-reveal">
+          <div class="lv-feat-list" id="lvFeatList" role="tablist" aria-label="Leave features"></div>
+          <aside class="lv-panel" role="tabpanel" aria-live="polite">
+            <div class="lv-panel__inner">
+              <span class="lv-panel__badge"><span class="material-symbols-outlined" id="lvPanelIcon" aria-hidden="true">beach_access</span> TIME ERP</span>
+              <h3 id="lvPanelName">Leave Types</h3>
+              <p class="lv-panel__desc" id="lvPanelDesc"></p>
+              <span class="lv-panel__label">Key capabilities</span>
+              <ul class="lv-caps" id="lvPanelCaps"></ul>
+              <span class="lv-panel__label">Business value</span>
+              <p class="lv-benefits-box" id="lvPanelBenefits"></p>
+              <div class="lv-panel__actions">
+                <a class="btn btn--primary" href="#" data-book-demo>Book Demo</a>
+                <a class="btn btn--ghost" href="contact_sales.html">Contact Sales</a>
+                <a class="btn btn--ghost" href="home.html#module/leave">Open Leave</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive ops preview -->
+    <section class="lv-section" aria-labelledby="lv-ops-title">
+      <div class="container">
+        <div class="lv-section__head lv-reveal">
+          <p class="eyebrow">Module preview</p>
+          <h2 class="section-title" id="lv-ops-title">How teams run leave day to day</h2>
+          <p class="section-lead">Sample approvals, leave types, and holidays. Your live data reflects policy configuration.</p>
+        </div>
+
+        <div class="lv-reveal">
+          <div class="lv-ops-tabs" role="tablist" aria-label="Leave preview panels">
+            <button type="button" class="lv-ops-tab is-active" data-panel="panel-req" aria-selected="true">Requests &amp; Approvals</button>
+            <button type="button" class="lv-ops-tab" data-panel="panel-types" aria-selected="false">Leave Types</button>
+            <button type="button" class="lv-ops-tab" data-panel="panel-holidays" aria-selected="false">Holiday Calendar</button>
+          </div>
+
+          <div id="panel-req" class="lv-ops-panel is-active" role="tabpanel">
+            <div class="lv-toolbar">
+              <label class="eyebrow" for="lvStatusFilter" style="margin:0">Filter status</label>
+              <select id="lvStatusFilter" aria-label="Filter leave request status">
+                <option value="">All statuses</option>
+                <option value="pending">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+              </select>
+            </div>
+            <div class="lv-table-wrap">
+              <table class="lv-table" id="lvReqTable">
+                <thead>
+                  <tr>
+                    <th scope="col">Employee</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Dates</th>
+                    <th scope="col">Reason</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-status="pending">
+                    <td><strong>R. Kapoor</strong></td>
+                    <td>Casual</td>
+                    <td>12-13 Aug 2026</td>
+                    <td>Family function</td>
+                    <td><span class="lv-badge lv-badge--late">Pending</span></td>
+                  </tr>
+                  <tr data-status="approved">
+                    <td><strong>A. Sharma</strong></td>
+                    <td>Sick</td>
+                    <td>04 Aug 2026 (half day)</td>
+                    <td>Medical appointment</td>
+                    <td><span class="lv-badge lv-badge--ok">Approved</span></td>
+                  </tr>
+                  <tr data-status="approved">
+                    <td><strong>M. Verma</strong></td>
+                    <td>Paid</td>
+                    <td>18-22 Aug 2026</td>
+                    <td>Annual travel</td>
+                    <td><span class="lv-badge lv-badge--ok">Approved</span></td>
+                  </tr>
+                  <tr data-status="rejected">
+                    <td><strong>S. Iqbal</strong></td>
+                    <td>Casual</td>
+                    <td>15 Aug 2026</td>
+                    <td>Personal work</td>
+                    <td><span class="lv-badge lv-badge--leave">Rejected</span></td>
+                  </tr>
+                  <tr data-status="pending">
+                    <td><strong>P. Mehta</strong></td>
+                    <td>Comp style</td>
+                    <td>20 Aug 2026</td>
+                    <td>Post weekend delivery cover</td>
+                    <td><span class="lv-badge lv-badge--late">Pending</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div id="panel-types" class="lv-ops-panel" role="tabpanel">
+            <div class="lv-shift-grid">
+              <article class="lv-shift-card">
+                <h4>Casual leave</h4>
+                <p>Short notice personal absence · Linked to annual quota and half-day option.</p>
+              </article>
+              <article class="lv-shift-card">
+                <h4>Sick leave</h4>
+                <p>Health-related absence · Proof attachment when policy requires it.</p>
+              </article>
+              <article class="lv-shift-card">
+                <h4>Paid / earned leave</h4>
+                <p>Planned longer leave · Balance deductions against earned entitlement.</p>
+              </article>
+            </div>
+          </div>
+
+          <div id="panel-holidays" class="lv-ops-panel" role="tabpanel">
+            <div class="lv-holiday-list">
+              <div class="lv-holiday">
+                <div class="lv-holiday__date"><strong>15</strong><span>Aug</span></div>
+                <div>
+                  <h4>Independence Day</h4>
+                  <p>National holiday · All India template</p>
+                </div>
+              </div>
+              <div class="lv-holiday">
+                <div class="lv-holiday__date"><strong>02</strong><span>Oct</span></div>
+                <div>
+                  <h4>Gandhi Jayanti</h4>
+                  <p>National holiday · Added from template</p>
+                </div>
+              </div>
+              <div class="lv-holiday">
+                <div class="lv-holiday__date"><strong>25</strong><span>Dec</span></div>
+                <div>
+                  <h4>Christmas</h4>
+                  <p>Optional calendar · Branch selection where used</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Workflow -->
+    <section class="lv-section lv-section--soft" aria-labelledby="lv-flow-title">
+      <div class="container">
+        <div class="lv-section__head lv-reveal">
+          <p class="eyebrow">Workflow</p>
+          <h2 class="section-title" id="lv-flow-title">From apply to balance update</h2>
+        </div>
+        <div class="lv-flow lv-reveal" aria-label="Leave approval workflow">
+          <div class="lv-flow__step is-on">
+            <span class="lv-flow__num">1</span>
+            <strong>Employee applies</strong>
+            <span>Type, dates, reason, proof</span>
+          </div>
+          <span class="lv-flow__arrow material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          <div class="lv-flow__step">
+            <span class="lv-flow__num">2</span>
+            <strong>Balance checked</strong>
+            <span>Entitlement verified</span>
+          </div>
+          <span class="lv-flow__arrow material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          <div class="lv-flow__step">
+            <span class="lv-flow__num">3</span>
+            <strong>Manager review</strong>
+            <span>Coverage considered</span>
+          </div>
+          <span class="lv-flow__arrow material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          <div class="lv-flow__step">
+            <span class="lv-flow__num">4</span>
+            <strong>Decision logged</strong>
+            <span>Approve or reject</span>
+          </div>
+          <span class="lv-flow__arrow material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          <div class="lv-flow__step">
+            <span class="lv-flow__num">5</span>
+            <strong>Balance updated</strong>
+            <span>Used days reflected</span>
+          </div>
+          <span class="lv-flow__arrow material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          <div class="lv-flow__step">
+            <span class="lv-flow__num">6</span>
+            <strong>Attendance informed</strong>
+            <span>On-leave visibility</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="lv-section" aria-labelledby="lv-ben-title">
+      <div class="container">
+        <div class="lv-section__head lv-reveal">
+          <p class="eyebrow">Outcomes</p>
+          <h2 class="section-title" id="lv-ben-title">Benefits by audience</h2>
+        </div>
+        <div class="lv-ben lv-reveal">
+          <article class="lv-ben__card">
+            <h3><span class="material-symbols-outlined">person</span> Employees</h3>
+            <ul>
+              <li>Apply leave with clear remaining balance</li>
+              <li>Track status without chasing managers</li>
+              <li>See holidays before planning travel</li>
+            </ul>
+          </article>
+          <article class="lv-ben__card">
+            <h3><span class="material-symbols-outlined">supervisor_account</span> Managers</h3>
+            <ul>
+              <li>Approve with team coverage context</li>
+              <li>Reduce overlapping absences</li>
+              <li>One queue instead of inbox threads</li>
+            </ul>
+          </article>
+          <article class="lv-ben__card">
+            <h3><span class="material-symbols-outlined">badge</span> HR</h3>
+            <ul>
+              <li>Own types, policies, and holidays</li>
+              <li>History for disputes and audits</li>
+              <li>Consistent rules across branches</li>
+            </ul>
+          </article>
+          <article class="lv-ben__card">
+            <h3><span class="material-symbols-outlined">payments</span> Operations</h3>
+            <ul>
+              <li>Cleaner attendance on leave days</li>
+              <li>Predictable staffing signals</li>
+              <li>Reports without spreadsheet rebuilds</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Integrations -->
+    <section class="lv-section lv-section--soft" aria-labelledby="lv-int-title">
+      <div class="container">
+        <div class="lv-section__head lv-reveal">
+          <p class="eyebrow">Integrations</p>
+          <h2 class="section-title" id="lv-int-title">Works with the rest of TimeERP</h2>
+          <p class="section-lead">Integrate leave with HR, attendance, payroll, and reporting for unified workforce management.</p>
+        </div>
+        <div class="lv-int lv-reveal">
+          <a class="lv-int__card" href="hrms.html">
+            <span class="lv-int__icon"><span class="material-symbols-outlined">groups</span></span>
+            <span><h3>HRMS</h3><p>Employee masters, managers, and organisation hierarchy for ownership and routing.</p></span>
+          </a>
+          <a class="lv-int__card" href="attendance.html">
+            <span class="lv-int__icon"><span class="material-symbols-outlined">how_to_reg</span></span>
+            <span><h3>Attendance</h3><p>Approved leave shows as on-leave so presence is not treated as unexplained absence.</p></span>
+          </a>
+          <a class="lv-int__card" href="payroll.html">
+            <span class="lv-int__icon"><span class="material-symbols-outlined">account_balance_wallet</span></span>
+            <span><h3>Payroll</h3><p>Leave context supports compensation decisions when policy requires payroll inputs.</p></span>
+          </a>
+          <a class="lv-int__card" href="timesheet.html">
+            <span class="lv-int__icon"><span class="material-symbols-outlined">schedule</span></span>
+            <span><h3>Timesheet</h3><p>Time-off context keeps effort reviews fair when people were approved off.</p></span>
+          </a>
+          <a class="lv-int__card" href="dashboard.html">
+            <span class="lv-int__icon"><span class="material-symbols-outlined">dashboard</span></span>
+            <span><h3>Dashboard</h3><p>Surface leave queues and coverage signals in leadership overviews.</p></span>
+          </a>
+          <a class="lv-int__card" href="setup.html">
+            <span class="lv-int__icon"><span class="material-symbols-outlined">settings</span></span>
+            <span><h3>Setup</h3><p>Organisation defaults and leave configuration entry points sit with setup practices.</p></span>
+          </a>
+          <a class="lv-int__card" href="project_management.html">
+            <span class="lv-int__icon"><span class="material-symbols-outlined">view_kanban</span></span>
+            <span><h3>Projects</h3><p>Delivery leads plan around approved absences on critical client work.</p></span>
+          </a>
+          <a class="lv-int__card" href="compliance_management.html">
+            <span class="lv-int__icon"><span class="material-symbols-outlined">gavel</span></span>
+            <span><h3>Compliance</h3><p>Documented policies and histories support workforce control reviews.</p></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="lv-section" aria-labelledby="lv-faq-title">
+      <div class="container">
+        <div class="lv-section__head lv-reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2 class="section-title" id="lv-faq-title">Questions about Leave Management</h2>
+        </div>
+        <div class="lv-faq lv-reveal">
+          <div class="lv-faq__item">
+            <button type="button" class="lv-faq__q" aria-expanded="false">What does TimeERP Leave Management include?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="lv-faq__a">Leave types, leave requests, approval workflow, holiday calendar, leave balance, and leave reports, with employee self-service apply and history tracking.</div>
+          </div>
+          <div class="lv-faq__item">
+            <button type="button" class="lv-faq__q" aria-expanded="false">How do employees apply for leave?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="lv-faq__a">Staff select leave type, dates, optional half-day, reason, and proof where required, then submit for manager or HR approval.</div>
+          </div>
+          <div class="lv-faq__item">
+            <button type="button" class="lv-faq__q" aria-expanded="false">Can we configure custom leave types?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="lv-faq__a">Yes. HR can define leave types and policies so applications map to your organisation’s rule set, not only a fixed personal tracker.</div>
+          </div>
+          <div class="lv-faq__item">
+            <button type="button" class="lv-faq__q" aria-expanded="false">How does the holiday calendar work?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="lv-faq__a">Holidays can be added from templates, single entry, or bulk entry so leave planning and calendars stay aligned with company closures.</div>
+          </div>
+          <div class="lv-faq__item">
+            <button type="button" class="lv-faq__q" aria-expanded="false">Does leave connect to attendance?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="lv-faq__a">Approved leave can appear as on-leave on attendance so those days are not treated as unexplained absences.</div>
+          </div>
+          <div class="lv-faq__item">
+            <button type="button" class="lv-faq__q" aria-expanded="false">Who can approve leave?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="lv-faq__a">Managers review team applications while HR retains visibility for policies, exceptions, and organisation-wide coverage.</div>
+          </div>
+          <div class="lv-faq__item">
+            <button type="button" class="lv-faq__q" aria-expanded="false">How do we open Leave in the product?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="lv-faq__a">Use Explore Leave on this page to open the Leave Management module in TimeERP home, or open it from HRMS after sign-in.</div>
+          </div>
+          <div class="lv-faq__item">
+            <button type="button" class="lv-faq__q" aria-expanded="false">Is leave balance visible before apply?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="lv-faq__a">Yes. Balance views show remaining days by type so employees can plan applications against true entitlement.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="lv-section lv-section--soft" aria-labelledby="lv-cta-title">
+      <div class="container">
+        <div class="lv-cta lv-reveal">
+          <h2 id="lv-cta-title">Make leave simple to request and safe to approve</h2>
+          <p>See balances, approvals, leave types, and holiday calendars in a live TimeERP walkthrough for your workforce policy.</p>
+          <div class="lv-cta__actions">
+            <a class="btn btn--primary" href="#" data-book-demo>Book Demo</a>
+            <a class="btn btn--ghost-dark" href="contact_sales.html">Contact Sales</a>
+            <a class="btn btn--ghost-dark" href="home.html#module/leave">Open Leave</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__main">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo" aria-label="TimeERP home">
+            <img src="assets/image01-footer.svg" alt="TimeERP" width="196" height="48" loading="lazy">
+          </a>
+          <p class="footer__desc">One Platform. Complete Business Management. Enterprise ERP for modern businesses.</p>
+          <div class="footer__stats">
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">◆</span><span>650+ Businesses</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">◎</span><span>99.8% Uptime</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">☁</span><span>Cloud ERP</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">⛨</span><span>Secure</span></div>
+          </div>
+        </div>
+        <div class="footer__cols">
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Products</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Products</h3>
+            <ul class="footer__links">
+              <li><a href="index.html#products">Modules</a></li>
+              <li><a href="hrms.html">HRMS</a></li>
+              <li><a href="attendance.html">Attendance</a></li>
+              <li><a href="price.html">Pricing</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Industries</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Industries</h3>
+            <ul class="footer__links">
+              <li><a href="construction.html">Construction</a></li>
+              <li><a href="msme.html">MSME</a></li>
+              <li><a href="CA.html">CA Firms</a></li>
+              <li><a href="real_Estate.html">Real Estate</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Company</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Company</h3>
+            <ul class="footer__links">
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="careers.html">Careers</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="contact_sales.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Support</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Support</h3>
+            <ul class="footer__links">
+              <li><a href="help_centre.html">Help Center</a></li>
+              <li><a href="contact_sales.html">Sales</a></li>
+              <li><a href="custom_quote.html">Get a Quote</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer__connect">
+        <div class="footer__connect-item">
+          <span class="footer__connect-label">Visit us</span>
+          <address class="footer__address">
+            <a class="footer__address-link" href="https://www.google.com/maps/search/?api=1&query=Ansal+Sumedha+Building+RDC+Ghaziabad+201002" target="_blank" rel="noopener noreferrer" aria-label="View office location on Google Maps">
+              BM-08, Ansal Sumedha Building, RDC,<br>
+              Ghaziabad, Delhi NCR, UP 201002
+            </a>
+          </address>
+          <div class="footer__quick">
+            <a class="footer__quick-btn" href="#" data-book-demo>Book Demo</a>
+            <a class="footer__quick-btn" href="real_time_support.html">Get Support</a>
+          </div>
+        </div>
+        <div class="footer__connect-item">
+          <span class="footer__connect-label">Follow us</span>
+          <div class="footer__social">
+            <a href="https://www.linkedin.com/in/ca-clouddesk-381510388" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23.5h-4V8.5zM8.5 8.5h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1v8.9h-4v-7.88c0-1.88-.03-4.3-2.62-4.3-2.62 0-3.02 2.05-3.02 4.17v7.01h-4V8.5z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/erptime/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@ERPTime" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.5v-7l6 3.5-6 3.5z"/></svg>
+            </a>
+            <a href="https://x.com/erptime" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke-linecap="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bar">
+        <p class="footer__copy">© 2026 TimeERP <a href="https://lawseva.com/" target="_blank" rel="noopener noreferrer">Law Seva Management Private Limited</a></p>
+        <nav class="footer__legal" aria-label="Legal">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="security.html">Security</a>
+          <a href="contact_sales.html">Contact Us</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/leave.js" defer></script>
+  <script src="js/footer-accordion.js" defer></script>
+  <script src="js/site-nav.js?v=13" defer></script>
+  <script src="js/site-footer.js?v=6"></script>
+</body>
+</html>

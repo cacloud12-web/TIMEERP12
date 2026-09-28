@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 196 48" fill="none" role="img" aria-label="TimeERP">
+  <g class="logo-mark" transform="translate(2 2)">
+    <circle cx="22" cy="22" r="20" fill="#25b7a7"/>
+    <path d="M22 2a20 20 0 0 0-14.14 5.86A20 20 0 0 0 2 22h6a16 16 0 0 1 14-14V2z" fill="#1a3354"/>
+    <circle cx="22" cy="22" r="13.5" fill="#fff"/>
+    <g class="logo-hands" transform="translate(22 22)">
+      <g class="logo-hand logo-hand--hour"><line x1="0" y1="0" x2="-5.63" y2="-3.25" stroke="#25b7a7" stroke-width="2.4" stroke-linecap="round"/></g>
+      <g class="logo-hand logo-hand--minute"><line x1="0" y1="0" x2="7.36" y2="-4.25" stroke="#1a3354" stroke-width="2.4" stroke-linecap="round"/></g>
+      <circle cx="0" cy="0" r="2.2" fill="#25b7a7"/>
+    </g>
+  </g>
+  <text x="54" y="33" font-family="Inter,Segoe UI,Helvetica,Arial,sans-serif" font-size="27" font-weight="700" letter-spacing="-0.6">
+    <tspan fill="#083530">Time</tspan><tspan fill="#25b7a7">ERP</tspan>
+  </text>
+</svg>

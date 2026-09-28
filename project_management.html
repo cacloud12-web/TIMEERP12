@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Management | TimeERP</title>
+  <meta name="description" content="TIME ERP Project Management — plan, assign, and deliver client work with recurring tasks, mobile access, timesheets, billing, and profit visibility.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <link rel="stylesheet" href="css/site-nav.css?v=13">
+  <link rel="stylesheet" href="css/site-footer.css">
+  <style>
+    :root {
+      --primary: #25b7a7; --primary-dark: #1a9e8f; --primary-light: #e8f8f6; --primary-deeper: #0d7a6e;
+      --secondary: #243F64; --accent: #17C3B2; --heading-dark: #083530; --text-body: #3d5250;
+      --text-muted: #7a9593; --bg: #F8FCFC; --card: #FFFFFF; --border: #d0eeec; --radius: 18px;
+      --shadow: 0 20px 60px rgba(36, 63, 100, 0.08); --shadow-lg: 0 32px 80px rgba(37, 183, 167, 0.14);
+      --max: 1280px; --pad: clamp(20px, 4vw, 48px); --section: clamp(72px, 10vw, 120px);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif; font-size: 16px; line-height: 1.7; color: var(--text-body); background: var(--bg); overflow-x: hidden; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    ul { list-style: none; }
+    .container { width: min(var(--max), 100% - var(--pad) * 2); margin-inline: auto; }
+    .eyebrow { display: block; margin: 0 0 10px; font-size: 16px; font-weight: 600; line-height: 1.4; color: #0F172A; }
+    .section-title { font-size: clamp(1.75rem, 2.8vw, 2.25rem); font-weight: 700; letter-spacing: -.02em; line-height: 1.35; color: #000; margin: 0 0 16px; }
+    .section-lead { font-size: 16px; color: var(--text-muted); max-width: 720px; line-height: 1.7; margin: 0 0 28px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 28px; border-radius: 999px; font-size: 15px; font-weight: 600; transition: transform .2s, box-shadow .2s, background .2s, border-color .2s, color .2s; text-decoration: none; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn--primary { background: linear-gradient(135deg, var(--primary), var(--accent)); color: #fff; box-shadow: 0 12px 32px rgba(37, 183, 167, .35); }
+    .btn--ghost { background: #fff; border: 1.5px solid var(--border); color: var(--secondary); }
+    .btn--ghost:hover { border-color: var(--primary); color: var(--primary-dark); background: var(--primary-light); }
+    .mkt-page { position: relative; padding: calc(76px + clamp(36px, 5vw, 56px)) 0 var(--section); background: linear-gradient(180deg, #fff 0%, #f0faf8 40%, var(--bg) 100%); }
+    .mkt-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+    .mkt-filter { padding: 9px 16px; border-radius: 999px; border: 1px solid var(--border); background: #fff; font-size: 13px; font-weight: 600; color: var(--heading-dark); transition: background .18s, border-color .18s, color .18s, box-shadow .18s; }
+    .mkt-filter:hover { border-color: rgba(37, 183, 167, .4); background: #f4fafa; }
+    .mkt-filter.is-active { background: var(--primary); border-color: var(--primary); color: #fff; box-shadow: 0 8px 20px rgba(37, 183, 167, .28); }
+    .mkt-layout { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr); gap: 28px; align-items: start; }
+    .mkt-features { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .mkt-feat { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; width: 100%; text-align: left; padding: 18px 16px; border-radius: 16px; border: 1.5px solid var(--border); background: var(--card); color: var(--heading-dark); transition: transform .2s, box-shadow .2s, border-color .2s, background .2s; min-height: 118px; }
+    .mkt-feat:hover { transform: translateY(-3px); border-color: rgba(37, 183, 167, .4); box-shadow: var(--shadow); }
+    .mkt-feat.is-active { border-color: var(--primary); background: linear-gradient(165deg, #eefaf8 0%, #fff 72%); box-shadow: 0 14px 32px rgba(37, 183, 167, .14); }
+    .mkt-feat:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+    .mkt-feat__top { display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 10px; }
+    .mkt-feat__icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(37, 183, 167, .12); display: flex; align-items: center; justify-content: center; }
+    .mkt-feat__icon img { width: 24px; height: 24px; object-fit: contain; }
+    .mkt-feat.is-active .mkt-feat__icon { background: rgba(37, 183, 167, .22); transform: scale(1.05); }
+    .mkt-feat__check { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid #cfe5e2; display: grid; place-items: center; opacity: 0; transform: scale(.8); transition: opacity .2s, transform .2s, background .2s, border-color .2s; }
+    .mkt-feat__check .material-symbols-outlined { font-size: 14px; color: #fff; line-height: 1; }
+    .mkt-feat.is-active .mkt-feat__check { opacity: 1; transform: scale(1); background: var(--primary); border-color: var(--primary); }
+    .mkt-feat__label { font-size: 15px; font-weight: 700; line-height: 1.3; color: var(--heading-dark); }
+    .mkt-feat__desc { font-size: 13px; font-weight: 400; line-height: 1.45; color: var(--text-muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .mkt-panel { position: sticky; top: 96px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow); overflow: hidden; }
+    .mkt-panel__inner { padding: 28px; display: flex; flex-direction: column; min-height: 480px; transition: opacity .2s, transform .2s; }
+    .mkt-panel__inner.is-updating { opacity: .4; transform: translateY(6px); }
+    .mkt-panel__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+    .mkt-panel__icon { width: 64px; height: 64px; border-radius: 16px; background: linear-gradient(135deg, #e8f8f6, #fff); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; }
+    .mkt-panel__icon img { width: 34px; height: 34px; object-fit: contain; }
+    .mkt-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; font-size: 12px; font-weight: 700; background: var(--primary-light); color: var(--primary-deeper); border: 1px solid rgba(37, 183, 167, .25); }
+    .mkt-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+    .mkt-panel__name { font-size: 22px; font-weight: 700; color: #000; letter-spacing: -.02em; line-height: 1.3; margin: 0 0 8px; }
+    .mkt-panel__desc { font-size: 15px; line-height: 1.65; color: var(--text-muted); margin: 0 0 20px; }
+    .mkt-block { margin-bottom: 18px; }
+    .mkt-block__label { display: block; font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--primary-dark); margin-bottom: 10px; }
+    .mkt-caps { display: flex; flex-direction: column; gap: 8px; }
+    .mkt-caps li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; line-height: 1.5; color: var(--text-body); }
+    .mkt-caps li .material-symbols-outlined { font-size: 18px; color: var(--primary); flex-shrink: 0; margin-top: 1px; }
+    .mkt-benefits { padding: 14px 16px; border-radius: 14px; background: #f0faf8; border: 1px solid rgba(37, 183, 167, .2); font-size: 14px; line-height: 1.6; color: var(--text-body); }
+    .mkt-related__chip { display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 999px; background: #fff; border: 1px solid var(--border); font-size: 13px; font-weight: 600; color: var(--heading-dark); transition: border-color .18s, background .18s; }
+    .mkt-related__chip:hover { border-color: var(--primary); background: var(--primary-light); }
+    .mkt-related__chip .material-symbols-outlined { font-size: 16px; color: var(--primary-dark); }
+    .mkt-panel__actions { margin-top: auto; padding-top: 12px; display: flex; flex-wrap: wrap; gap: 10px; }
+    .mkt-panel__actions .btn { padding: 12px 22px; font-size: 14px; }
+    .mkt-connect { margin-top: 48px; padding-top: 36px; border-top: 1px solid var(--border); }
+    .mkt-connect h2 { font-size: 18px; font-weight: 700; color: #000; margin: 0 0 8px; }
+    .mkt-connect > p { font-size: 15px; color: var(--text-muted); max-width: 640px; margin: 0 0 20px; }
+    .mkt-connect__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .mkt-connect__card { display: flex; gap: 14px; align-items: flex-start; padding: 20px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow); transition: transform .2s, border-color .2s, box-shadow .2s; }
+    .mkt-connect__card:hover { transform: translateY(-4px); border-color: rgba(37, 183, 167, .35); box-shadow: var(--shadow-lg); }
+    .mkt-connect__icon { width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0; background: var(--primary-light); color: var(--primary-deeper); display: grid; place-items: center; }
+    .mkt-connect__icon .material-symbols-outlined { font-size: 22px; }
+    .mkt-connect__card h3 { font-size: 15px; font-weight: 700; color: var(--heading-dark); margin: 0 0 4px; }
+    .mkt-connect__card p { font-size: 13px; line-height: 1.55; color: var(--text-muted); margin: 0; }
+    .mkt-empty { grid-column: 1 / -1; padding: 28px; text-align: center; border: 1px dashed var(--border); border-radius: 16px; color: var(--text-muted); font-size: 14px; display: none; }
+    .mkt-empty.is-visible { display: block; }
+
+    .pm-hero {
+      display: grid; grid-template-columns: 1.2fr .8fr; gap: 24px; align-items: center;
+      margin: 0 0 28px; padding: 32px 36px; border-radius: 22px;
+      background: linear-gradient(135deg, #0d7a6e 0%, #25b7a7 55%, #17C3B2 100%);
+      color: #fff; box-shadow: var(--shadow-lg); overflow: hidden;
+    }
+    .pm-hero h1 { font-size: clamp(1.75rem, 3vw, 2.35rem); font-weight: 700; color: #fff; letter-spacing: -.02em; margin: 0 0 12px; }
+    .pm-hero p { font-size: 16px; line-height: 1.65; color: rgba(255,255,255,.9); max-width: 540px; margin: 0 0 18px; }
+    .pm-hero__link { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; color: #fff; }
+    .pm-hero__link:hover { text-decoration: underline; }
+    .pm-hero__art { justify-self: end; }
+    .pm-hero__art img { width: min(160px, 28vw); height: auto; filter: brightness(0) invert(1); opacity: .55; }
+
+    .pm-journey { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 0 0 28px; }
+    .pm-journey__step {
+      display: flex; flex-direction: column; gap: 8px; align-items: flex-start;
+      width: 100%; text-align: left; padding: 16px 14px;
+      border-radius: 16px; border: 1.5px solid var(--border); background: #fff;
+      transition: transform .2s, border-color .2s, box-shadow .2s, background .2s;
+    }
+    .pm-journey__step:hover, .pm-journey__step.is-active {
+      transform: translateY(-3px); border-color: rgba(37,183,167,.45); box-shadow: var(--shadow);
+      background: linear-gradient(165deg, #eefaf8 0%, #fff 70%);
+    }
+    .pm-journey__num {
+      width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center;
+      font-size: 12px; font-weight: 700; color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+    }
+    .pm-journey__step strong { font-size: 14px; font-weight: 700; color: var(--heading-dark); line-height: 1.3; }
+    .pm-journey__text { font-size: 12px; color: var(--text-muted); line-height: 1.45; }
+
+    .pm-modules { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0 0 36px; }
+    .pm-mod {
+      display: flex; flex-direction: column; gap: 10px; padding: 18px 14px; border-radius: var(--radius);
+      background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow);
+      transition: transform .2s, border-color .2s; text-align: left;
+    }
+    .pm-mod:hover { transform: translateY(-3px); border-color: rgba(37,183,167,.35); }
+    .pm-mod__icon { width: 48px; height: 48px; border-radius: 14px; background: var(--primary-light); display: grid; place-items: center; }
+    .pm-mod__icon img { width: 28px; height: 28px; object-fit: contain; }
+    .pm-mod h3 { font-size: 14px; font-weight: 700; color: var(--heading-dark); margin: 0; }
+    .pm-mod p { font-size: 12px; color: var(--text-muted); margin: 0; line-height: 1.45; }
+
+    .pm-cta {
+      margin-top: 48px; padding: 36px 32px; border-radius: 22px; text-align: center;
+      background: linear-gradient(135deg, #083530 0%, #0d7a6e 55%, #25b7a7 100%); color: #fff;
+    }
+    .pm-cta h2 { font-size: clamp(1.35rem, 2.4vw, 1.75rem); font-weight: 700; color: #fff; margin: 0 0 10px; }
+    .pm-cta p { font-size: 15px; color: rgba(255,255,255,.82); max-width: 560px; margin: 0 auto 20px; }
+    .pm-cta .btn--primary { background: #fff; color: var(--primary-deeper); box-shadow: none; }
+    .pm-cta .btn--ghost { background: transparent; border-color: rgba(255,255,255,.35); color: #fff; }
+    .pm-cta .btn--ghost:hover { background: rgba(255,255,255,.1); border-color: #fff; color: #fff; }
+
+    @media (max-width: 980px) {
+      .pm-hero { grid-template-columns: 1fr; }
+      .pm-hero__art { justify-self: start; }
+      .mkt-layout { grid-template-columns: 1fr; }
+      .mkt-panel { position: static; order: -1; }
+      .mkt-panel__inner { min-height: 0; }
+      .mkt-connect__grid { grid-template-columns: 1fr 1fr; }
+      .pm-journey { grid-template-columns: 1fr 1fr; }
+      .pm-modules { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .mkt-features, .mkt-connect__grid, .pm-journey, .pm-modules { grid-template-columns: 1fr; }
+      .mkt-panel__inner { padding: 22px; }
+      .mkt-feat { min-height: 0; }
+      .pm-hero { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="mkt-page" id="project-management" aria-labelledby="pm-title">
+    <div class="container">
+      <p class="eyebrow">Products</p>
+
+      <section class="pm-hero" aria-labelledby="pm-title">
+        <div>
+          <h1 id="pm-title">Project Management</h1>
+          <p>Plan, assign, and deliver client work across teams with recurring tasks, mobile access, timesheets, billing, and profit visibility in one workspace.</p>
+          <a class="pm-hero__link" href="#pm-explorer">Explore features <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="pm-hero__art" aria-hidden="true">
+          <img src="assets/home-icons/project-management.svg" alt="" width="160" height="160">
+        </div>
+      </section>
+
+
+      <div class="pm-journey" id="pmJourney" aria-label="Project delivery flow">
+        <button type="button" class="pm-journey__step is-active" data-journey="scope">
+          <span class="pm-journey__num">1</span>
+          <strong>Scope work</strong>
+          <span class="pm-journey__text">Multi assign, customer, and client coverage</span>
+        </button>
+        <button type="button" class="pm-journey__step" data-journey="tasks">
+          <span class="pm-journey__num">2</span>
+          <strong>Run tasks</strong>
+          <span class="pm-journey__text">Create, recur, remind, and bulk-update work</span>
+        </button>
+        <button type="button" class="pm-journey__step" data-journey="collaborate">
+          <span class="pm-journey__num">3</span>
+          <strong>Collaborate</strong>
+          <span class="pm-journey__text">Mobile access, client share, and permissions</span>
+        </button>
+        <button type="button" class="pm-journey__step" data-journey="measure">
+          <span class="pm-journey__num">4</span>
+          <strong>Bill &amp; measure</strong>
+          <span class="pm-journey__text">Timesheets, task billing, and P/L</span>
+        </button>
+      </div>
+
+      <!-- Module cards removed -->
+
+      <section id="pm-explorer" aria-labelledby="pmExplorerTitle">
+        <h2 class="section-title" id="pmExplorerTitle" style="font-size:clamp(1.25rem,2vw,1.5rem);margin-bottom:8px">Explore Project Management in detail</h2>
+        <p class="section-lead">Browse each Project Management capability included in TIME ERP.</p>
+
+        <div class="mkt-filters" role="tablist" aria-label="Filter project features" id="pmFilters">
+          <button type="button" class="mkt-filter is-active" data-filter="all" aria-selected="true">All</button>
+          <button type="button" class="mkt-filter" data-filter="scope" aria-selected="false">Scope</button>
+          <button type="button" class="mkt-filter" data-filter="tasks" aria-selected="false">Tasks</button>
+          <button type="button" class="mkt-filter" data-filter="collaborate" aria-selected="false">Collaborate</button>
+          <button type="button" class="mkt-filter" data-filter="measure" aria-selected="false">Bill &amp; measure</button>
+        </div>
+
+        <div class="mkt-layout">
+          <div class="mkt-features" role="tablist" aria-label="Project Management features" id="pmFeatList">
+            <p class="mkt-empty" id="pmEmpty">No features in this group.</p>
+          </div>
+          <aside class="mkt-panel" id="pmPanel" role="tabpanel" aria-live="polite">
+            <div class="mkt-panel__inner" id="pmPanelInner">
+              <div class="mkt-panel__top">
+                <div class="mkt-panel__icon" aria-hidden="true">
+                  <img src="assets/home-icons/task-multi.svg" alt="" id="pmPanelIcon" width="34" height="34">
+                </div>
+                <span class="mkt-badge">TIME ERP</span>
+              </div>
+              <h2 class="mkt-panel__name" id="pmPanelName">Multi Assign</h2>
+              <p class="mkt-panel__desc" id="pmPanelDesc">Assign project tasks across team members so delivery ownership stays clear.</p>
+              <div class="mkt-block">
+                <span class="mkt-block__label">Key Capabilities</span>
+                <ul class="mkt-caps" id="pmPanelCaps"></ul>
+              </div>
+              <div class="mkt-block">
+                <span class="mkt-block__label">Business Benefits</span>
+                <p class="mkt-benefits" id="pmPanelBenefits"></p>
+              </div>
+              <div class="mkt-panel__actions">
+                <a class="btn btn--primary" id="pmPanelCta" href="home.html#module/project-management">Explore Project Management</a>
+                <a class="btn btn--ghost" href="contact_sales.html">Contact Sales</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="mkt-connect" aria-labelledby="pmConnectTitle">
+        <h2 id="pmConnectTitle">Connected across TIME ERP</h2>
+        <p>Project Management connects client delivery with CRM, billing, and documents.</p>
+        <div class="mkt-connect__grid">
+          <a class="mkt-connect__card" href="crm.html">
+            <span class="mkt-connect__icon" aria-hidden="true"><span class="material-symbols-outlined">handshake</span></span>
+            <span>
+              <h3>CRM : Client Desk</h3>
+              <p>Keep customer context close while teams execute client work in projects.</p>
+            </span>
+          </a>
+          <a class="mkt-connect__card" href="billing.html">
+            <span class="mkt-connect__icon" aria-hidden="true"><span class="material-symbols-outlined">receipt_long</span></span>
+            <span>
+              <h3>Billing Management</h3>
+              <p>Align task billing and delivery work with invoices and receipts.</p>
+            </span>
+          </a>
+          <a class="mkt-connect__card" href="document_management.html">
+            <span class="mkt-connect__icon" aria-hidden="true"><span class="material-symbols-outlined">folder_open</span></span>
+            <span>
+              <h3>Document Vault</h3>
+              <p>Store working papers and client files alongside project delivery.</p>
+            </span>
+          </a>
+        </div>
+      </section>
+
+      <section class="pm-cta" aria-labelledby="pmCtaTitle">
+        <h2 id="pmCtaTitle">Deliver client work in one project workspace</h2>
+        <p>See how TIME ERP Project Management covers multi-client delivery, recurring tasks, timesheets, billing, and profit visibility.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+          <a class="btn btn--primary" href="#" data-book-demo>Book Demo</a>
+          <a class="btn btn--ghost" href="contact_sales.html">Contact Sales</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+<footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__main">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo" aria-label="TimeERP home">
+            <img src="assets/image01-footer.svg" alt="TimeERP" width="196" height="48" loading="lazy">
+          </a>
+          <p class="footer__desc">One Platform. Complete Business Management. Enterprise ERP for modern businesses.</p>
+          <div class="footer__stats">
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">◆</span><span>650+ Businesses</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">◎</span><span>99.8% Uptime</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">☁</span><span>Cloud ERP</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">⛨</span><span>Secure</span></div>
+          </div>
+        </div>
+        <div class="footer__cols">
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Products</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Products</h3>
+            <ul class="footer__links">
+              <li><a href="index.html#products">Modules</a></li>
+              <li><a href="index.html#benefits">Benefits</a></li>
+              <li><a href="project_management.html">Project Management</a></li>
+              <li><a href="index.html#solutions">Platform</a></li>
+              <li><a href="price.html">Pricing</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Industries</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Industries</h3>
+            <ul class="footer__links">
+              <li><a href="construction.html">Construction</a></li>
+              <li><a href="real_Estate.html">Real Estate</a></li>
+              <li><a href="msme.html">MSME</a></li>
+              <li><a href="CA.html">CA Firms</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Company</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Company</h3>
+            <ul class="footer__links">
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="Our_Presence.html">Our Presence</a></li>
+              <li><a href="careers.html">Careers</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="contact_sales.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Support</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Support</h3>
+            <ul class="footer__links">
+              <li><a href="help_centre.html">Help Center</a></li>
+              <li><a href="contact_sales.html">Sales</a></li>
+              <li><a href="custom_quote.html">Get a Quote</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer__connect">
+        <div class="footer__connect-item">
+          <span class="footer__connect-label">Visit us</span>
+          <address class="footer__address">
+            <a class="footer__address-link" href="https://www.google.com/maps/search/?api=1&query=Ansal+Sumedha+Building+RDC+Ghaziabad+201002" target="_blank" rel="noopener noreferrer" aria-label="View office location on Google Maps">
+              BM-08, Ansal Sumedha Building, RDC,<br>
+              Ghaziabad, Delhi NCR, UP 201002
+            </a>
+          </address>
+          <div class="footer__quick">
+            <a class="footer__quick-btn" href="#" data-book-demo>Book Demo</a>
+            <a class="footer__quick-btn" href="real_time_support.html">Get Support</a>
+          </div>
+        </div>
+        <div class="footer__connect-item">
+          <span class="footer__connect-label">Follow us</span>
+          <div class="footer__social">
+            <a href="https://www.linkedin.com/in/ca-clouddesk-381510388" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23.5h-4V8.5zM8.5 8.5h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1v8.9h-4v-7.88c0-1.88-.03-4.3-2.62-4.3-2.62 0-3.02 2.05-3.02 4.17v7.01h-4V8.5z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/erptime/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@ERPTime" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.5v-7l6 3.5-6 3.5z"/></svg>
+            </a>
+            <a href="https://x.com/erptime" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke-linecap="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bar">
+        <p class="footer__copy">© 2026 TimeERP · <a href="https://lawseva.com/" target="_blank" rel="noopener noreferrer">Law Seva Management Private Limited</a></p>
+        <nav class="footer__legal" aria-label="Legal">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="security.html">Security</a>
+          <a href="contact_sales.html">Contact Us</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/project-management.js" defer></script>
+  <script src="js/footer-accordion.js" defer></script>
+  <script src="js/site-nav.js?v=13" defer></script>
+  <script src="js/site-footer.js?v=6"></script>
+</body>
+</html>

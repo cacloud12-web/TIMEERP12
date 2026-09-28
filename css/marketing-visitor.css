@@ -1,0 +1,411 @@
+/* TIME ERP — Reception / Visitor (marketing_visitor.html) */
+a.sidebar__item { color: inherit; text-decoration: none; }
+
+.crm-top-checkout {
+  height: 32px; padding: 0 14px; border: none; border-radius: 4px;
+  background: #25b7a7; color: #fff; font-size: 13px; font-weight: 600;
+  cursor: pointer; white-space: nowrap; flex-shrink: 0;
+}
+.crm-top-clock {
+  font-size: 16px; font-weight: 600; color: #25B7A7;
+  font-variant-numeric: tabular-nums; min-width: 46px; text-align: center;
+}
+.crm-top-icon { color: #25B7A7 !important; }
+.crm-profile-caret { width: 14px; height: 14px; color: #94a3b8; flex-shrink: 0; }
+
+.mvr-page {
+  min-height: 100%;
+  margin: -16px calc(var(--content-pad-x, 16px) * -1) -24px;
+  padding: 16px 24px 28px;
+  background: #f3f5f7;
+}
+
+.mvr-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 16px; margin-bottom: 14px;
+}
+.mvr-header__left { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.mvr-header__crumb { display: flex; align-items: center; gap: 10px; }
+.mvr-back {
+  width: 28px; height: 28px; border-radius: 4px; background: #25b7a7; color: #fff;
+  display: inline-flex; align-items: center; justify-content: center;
+  text-decoration: none; flex-shrink: 0;
+}
+.mvr-back svg { width: 16px; height: 16px; stroke: #fff; }
+.mvr-back:hover { background: #1fa396; }
+.mvr-crumb { font-size: 14px; font-weight: 500; color: rgba(0, 0, 0, .55); }
+.mvr-title {
+  margin: 0; font-size: 28px; font-weight: 700; color: #1f2937; line-height: 1.2;
+  letter-spacing: -.01em;
+}
+
+.mvr-panel {
+  background: #fff; border: 1px solid #e8edf2; border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, .04); overflow: visible;
+}
+
+.mvr-add-btn {
+  width: 36px; height: 36px; border: none; border-radius: 6px;
+  background: #25b7a7; color: #fff; cursor: pointer; flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-top: 2px;
+}
+.mvr-add-btn svg { width: 18px; height: 18px; }
+.mvr-add-btn:hover { background: #1fa396; }
+
+.mvr-filters {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+  padding: 12px 16px; border-bottom: 1px solid #eef2f6;
+}
+
+.mvr-combo { position: relative; display: block; }
+.mvr-combo--client { width: min(220px, 100%); flex: 1 1 180px; }
+.mvr-combo--employee { width: min(200px, 100%); flex: 1 1 160px; }
+
+.mvr-combo input {
+  width: 100%; height: 36px; border: 1px solid #d9d9d9; border-radius: 4px;
+  padding: 0 32px 0 12px; font-size: 14px; color: rgba(0, 0, 0, .85);
+  background: #fff; font-family: inherit;
+}
+.mvr-combo.is-open input,
+.mvr-combo input:focus {
+  outline: none; border-color: #25B7A7; box-shadow: 0 0 0 2px rgba(37, 183, 167, .12);
+}
+.mvr-combo__icon {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  width: 14px; height: 14px; color: #bfbfbf; pointer-events: none;
+}
+.mvr-combo__menu {
+  position: absolute; left: 0; right: 0; top: calc(100% + 4px);
+  background: #fff; border-radius: 4px; box-shadow: 0 6px 16px rgba(0, 0, 0, .12);
+  z-index: 25; display: none; max-height: 240px; overflow: auto; padding: 4px 0;
+}
+.mvr-combo.is-open .mvr-combo__menu { display: block; }
+.mvr-combo__item {
+  padding: 8px 12px; font-size: 14px; color: rgba(0, 0, 0, .85); cursor: pointer;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.mvr-combo__item:hover { background: #f5f5f5; }
+
+.mvr-date-range { position: relative; flex: 1 1 240px; min-width: 220px; max-width: 340px; }
+.mvr-date-range__btn {
+  width: 100%; height: 36px; border: 1px solid #d9d9d9; border-radius: 4px;
+  background: #fff; padding: 0 36px 0 12px; font-size: 14px; color: rgba(0, 0, 0, .45);
+  font-family: inherit; cursor: pointer; text-align: left;
+  display: flex; align-items: center; gap: 6px; white-space: nowrap;
+}
+.mvr-date-range__btn.is-open,
+.mvr-date-range__btn:hover { border-color: #25B7A7; }
+.mvr-date-range__btn.has-value { color: rgba(0, 0, 0, .85); }
+.mvr-date-range__arrow { color: rgba(0, 0, 0, .45); flex-shrink: 0; }
+.mvr-date-range__cal {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  width: 16px; height: 16px; color: #bfbfbf; pointer-events: none;
+}
+.mvr-date-pop {
+  position: absolute; right: 0; top: calc(100% + 4px); z-index: 30;
+  background: #fff; border: 1px solid #f0f0f0; border-radius: 4px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, .12); padding: 12px;
+}
+.mvr-date-pop[hidden] { display: none !important; }
+.mvr-date-pop__calendars { display: flex; gap: 16px; margin-bottom: 10px; }
+.mvr-cal { min-width: 220px; }
+.mvr-cal__head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 8px; font-size: 14px; font-weight: 600; color: rgba(0, 0, 0, .85);
+}
+.mvr-cal__nav { display: flex; gap: 2px; }
+.mvr-cal__nav button {
+  width: 22px; height: 22px; border: none; background: none; color: rgba(0, 0, 0, .45);
+  cursor: pointer; font-size: 12px; padding: 0; border-radius: 2px;
+}
+.mvr-cal__nav button:hover { background: #f5f5f5; color: #25B7A7; }
+.mvr-cal__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; text-align: center; }
+.mvr-cal__dow { font-size: 12px; color: rgba(0, 0, 0, .45); padding: 4px 0; font-weight: 500; }
+.mvr-cal__day {
+  height: 28px; border: none; background: none; font-size: 13px;
+  color: rgba(0, 0, 0, .85); cursor: pointer; border-radius: 2px; font-family: inherit;
+}
+.mvr-cal__day:hover { background: #f5f5f5; }
+.mvr-cal__day.is-other { color: rgba(0, 0, 0, .25); }
+.mvr-cal__day.is-selected { border: 1px solid #25B7A7; color: #25B7A7; font-weight: 600; }
+.mvr-date-pop__actions { display: flex; gap: 8px; justify-content: flex-end; }
+.mvr-date-pop__apply,
+.mvr-date-pop__clear {
+  height: 30px; padding: 0 12px; border-radius: 4px; font-size: 13px; font-family: inherit; cursor: pointer;
+}
+.mvr-date-pop__apply { border: none; background: #25B7A7; color: #fff; }
+.mvr-date-pop__clear { border: 1px solid #d9d9d9; background: #fff; color: rgba(0, 0, 0, .65); }
+
+.mvr-export-btn {
+  width: 36px; height: 36px; border: 1px solid #d1d5db; border-radius: 6px;
+  background: #fff; cursor: pointer; padding: 0; margin-left: auto;
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.mvr-export-btn svg { width: 18px; height: 18px; display: block; }
+.mvr-export-btn:hover { background: #f8fafc; border-color: #cbd5e1; }
+
+.mvr-table-wrap { overflow-x: auto; }
+.mvr-table {
+  width: 100%; border-collapse: collapse; font-size: 14px; min-width: 1400px;
+}
+.mvr-table th {
+  text-align: left; padding: 10px 12px; font-weight: 600; color: rgba(0, 0, 0, .65);
+  background: #fafafa; border-bottom: 1px solid #eef2f6; white-space: nowrap;
+}
+.mvr-table td {
+  padding: 10px 12px; color: rgba(0, 0, 0, .85);
+  border-bottom: 1px solid #f0f0f0; vertical-align: middle; white-space: nowrap;
+}
+.mvr-table tbody tr:hover { background: #fafafa; }
+.mvr-th-check { width: 40px; text-align: center; }
+.mvr-th-actions { position: sticky; right: 0; background: #fafafa; box-shadow: -4px 0 8px rgba(0,0,0,.04); }
+.mvr-table td.mvr-td-actions {
+  position: sticky; right: 0; background: #fff; box-shadow: -4px 0 8px rgba(0,0,0,.04);
+}
+.mvr-table tbody tr:hover td.mvr-td-actions { background: #fafafa; }
+
+.mvr-actions { display: inline-flex; align-items: center; gap: 6px; }
+.mvr-act-edit {
+  width: 28px; height: 28px; border: none; background: none; color: #25B7A7;
+  cursor: pointer; padding: 0; display: inline-flex; align-items: center; justify-content: center;
+}
+.mvr-act-edit svg { width: 16px; height: 16px; }
+.mvr-act-del {
+  width: 28px; height: 28px; border: none; background: none; color: #ff4d4f;
+  cursor: pointer; padding: 0; display: inline-flex; align-items: center; justify-content: center;
+}
+.mvr-act-del svg { width: 16px; height: 16px; }
+
+.mvr-pagination {
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+  padding: 12px 16px; border-top: 1px solid #eef2f6; gap: 12px;
+}
+.mvr-pagination__center { display: flex; align-items: center; gap: 8px; justify-content: center; }
+.mvr-pagination__right { display: flex; justify-content: flex-end; }
+.mvr-page-nav {
+  width: 28px; height: 28px; border: 1px solid #d9d9d9; border-radius: 4px;
+  background: #fff; color: rgba(0, 0, 0, .45); cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; padding: 0;
+}
+.mvr-page-nav:disabled { opacity: .45; cursor: not-allowed; }
+.mvr-page-nav svg { width: 14px; height: 14px; }
+.mvr-page-input {
+  width: 40px; height: 28px; border: 1px solid #d9d9d9; border-radius: 4px;
+  text-align: center; font-size: 14px; font-family: inherit;
+}
+.mvr-page-of { font-size: 14px; color: rgba(0, 0, 0, .65); }
+.mvr-count {
+  display: inline-block; padding: 4px 10px; border: 1px solid #d9d9d9;
+  border-radius: 4px; font-size: 13px; color: rgba(0, 0, 0, .65);
+}
+
+.mvr-app-footer {
+  margin-top: 20px; text-align: center; font-size: 13px; color: rgba(0, 0, 0, .45);
+}
+.mvr-app-footer__links { margin-bottom: 6px; }
+.mvr-app-footer__links a { color: rgba(0, 0, 0, .65); text-decoration: none; }
+.mvr-app-footer__links a:hover { color: #25B7A7; }
+.mvr-app-footer__links span { margin: 0 8px; color: #d9d9d9; }
+.mvr-app-footer__copy span { color: #25B7A7; margin-left: 4px; }
+
+/* Modal */
+.mvr-modal-scrim {
+  position: fixed; inset: 0; z-index: 120; background: rgba(15, 23, 42, .45);
+  display: flex; align-items: flex-start; justify-content: center; padding: 40px 24px;
+  overflow-y: auto;
+}
+.mvr-modal-scrim[hidden] { display: none !important; }
+.mvr-modal {
+  width: min(520px, 100%); background: #fff; border-radius: 4px;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, .2); overflow: visible; position: relative;
+}
+.mvr-modal__head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 20px; border-bottom: 1px solid #eef2f6;
+}
+.mvr-modal__head h2 { margin: 0; font-size: 16px; font-weight: 600; color: rgba(0, 0, 0, .88); }
+.mvr-modal__close {
+  width: 28px; height: 28px; border: none; background: none;
+  font-size: 22px; line-height: 1; color: #94a3b8; cursor: pointer; padding: 0;
+}
+.mvr-modal__body { padding: 18px 20px 8px; }
+.mvr-modal__foot {
+  display: flex; justify-content: flex-end; gap: 10px;
+  padding: 12px 20px 18px; border-top: 1px solid #eef2f6;
+}
+
+.mvr-edit-field { margin-bottom: 16px; }
+.mvr-edit-field label {
+  display: block; margin-bottom: 6px; font-size: 14px; font-weight: 500; color: rgba(0, 0, 0, .85);
+}
+.mvr-req { color: #ff4d4f; margin-left: 2px; }
+.mvr-check {
+  display: inline-flex; align-items: center; gap: 8px; font-size: 14px;
+  color: rgba(0, 0, 0, .85); cursor: pointer;
+}
+.mvr-check input { width: 16px; height: 16px; accent-color: #25B7A7; }
+.mvr-edit-row { display: flex; gap: 12px; }
+.mvr-edit-field--half { flex: 1; min-width: 0; }
+.mvr-edit-textarea {
+  width: 100%; border: 1px solid #d9d9d9; border-radius: 4px;
+  padding: 8px 12px; font-size: 14px; font-family: inherit; resize: vertical; min-height: 72px;
+}
+.mvr-edit-textarea:focus { outline: none; border-color: #25B7A7; box-shadow: 0 0 0 2px rgba(37, 183, 167, .12); }
+
+.mvr-modal-combo { position: relative; display: block; }
+.mvr-modal-combo input {
+  width: 100%; height: 36px; border: 1px solid #d9d9d9; border-radius: 4px;
+  padding: 0 32px 0 12px; font-size: 14px; color: rgba(0, 0, 0, .85);
+  background: #fff; font-family: inherit;
+}
+.mvr-modal-combo--emp { min-height: 36px; }
+.mvr-modal-combo--emp input {
+  border: none; height: 32px; padding: 0 32px 0 4px; flex: 1; min-width: 80px;
+}
+.mvr-modal-combo--emp {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 4px;
+  border: 1px solid #d9d9d9; border-radius: 4px; padding: 2px 32px 2px 8px; min-height: 36px;
+}
+.mvr-modal-combo--emp.is-open,
+.mvr-modal-combo--emp:focus-within { border-color: #25B7A7; box-shadow: 0 0 0 2px rgba(37, 183, 167, .12); }
+.mvr-modal-combo--emp .mvr-modal-combo__chev { right: 10px; top: 50%; transform: translateY(-50%); position: absolute; }
+.mvr-modal-combo.is-open input,
+.mvr-modal-combo input:focus {
+  outline: none; border-color: #25B7A7; box-shadow: 0 0 0 2px rgba(37, 183, 167, .12);
+}
+.mvr-modal-combo--emp.is-open input,
+.mvr-modal-combo--emp input:focus { border: none; box-shadow: none; }
+.mvr-modal-combo__chev {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  width: 14px; height: 14px; color: #bfbfbf; pointer-events: none;
+}
+.mvr-modal-combo__menu {
+  position: absolute; left: 0; right: 0; top: calc(100% + 4px);
+  background: #fff; border-radius: 4px; box-shadow: 0 6px 16px rgba(0, 0, 0, .12);
+  z-index: 30; display: none; max-height: 220px; overflow: auto; padding: 4px 0;
+}
+.mvr-modal-combo.is-open .mvr-modal-combo__menu { display: block; }
+.mvr-modal-combo__item {
+  padding: 8px 12px; font-size: 14px; color: rgba(0, 0, 0, .85); cursor: pointer;
+}
+.mvr-modal-combo__item:hover { background: #e6f7ff; }
+
+.mvr-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.mvr-tag {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px 8px; border-radius: 4px; background: #f5f5f5;
+  font-size: 13px; color: rgba(0, 0, 0, .85);
+}
+.mvr-tag__x {
+  border: none; background: none; color: #94a3b8; cursor: pointer;
+  font-size: 14px; line-height: 1; padding: 0;
+}
+
+.mvr-dt-field { position: relative; }
+.mvr-dt-field input {
+  width: 100%; height: 36px; border: 1px solid #d9d9d9; border-radius: 4px;
+  padding: 0 36px 0 12px; font-size: 14px; color: rgba(0, 0, 0, .85);
+  background: #fff; font-family: inherit; cursor: pointer;
+}
+.mvr-dt-field.is-open input,
+.mvr-dt-field input:focus {
+  outline: none; border-color: #25B7A7; box-shadow: 0 0 0 2px rgba(37, 183, 167, .12);
+}
+.mvr-dt-field__icon {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  width: 16px; height: 16px; color: #bfbfbf; pointer-events: none;
+}
+
+.mvr-dt-pop {
+  position: absolute; left: 20px; z-index: 40;
+  background: #fff; border: 1px solid #f0f0f0; border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .12); width: min(420px, calc(100vw - 48px));
+}
+.mvr-dt-pop[hidden] { display: none !important; }
+.mvr-dt-pop__main { display: flex; border-bottom: 1px solid #f0f0f0; }
+.mvr-dt-cal { flex: 1; padding: 8px 10px; min-width: 0; }
+.mvr-dt-cal__head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 8px; font-size: 14px; font-weight: 600;
+}
+.mvr-dt-cal__nav { display: flex; gap: 2px; }
+.mvr-dt-cal__nav button {
+  width: 22px; height: 22px; border: none; background: none; cursor: pointer; font-size: 12px;
+}
+.mvr-dt-cal__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; text-align: center; }
+.mvr-dt-cal__dow { font-size: 12px; color: rgba(0, 0, 0, .45); padding: 4px 0; }
+.mvr-dt-cal__day {
+  height: 28px; border: none; background: none; font-size: 13px; cursor: pointer; font-family: inherit;
+}
+.mvr-dt-cal__day.is-other { color: rgba(0, 0, 0, .25); }
+.mvr-dt-cal__day.is-selected { border: 1px solid #25B7A7; color: #25B7A7; font-weight: 600; }
+.mvr-dt-time { display: flex; border-left: 1px solid #f0f0f0; width: 120px; flex-shrink: 0; }
+.mvr-dt-time__col { flex: 1; max-height: 220px; overflow-y: auto; }
+.mvr-dt-time__opt {
+  display: block; width: 100%; border: none; background: none; padding: 6px 0;
+  font-size: 13px; cursor: pointer; font-family: inherit;
+}
+.mvr-dt-time__opt.is-selected { background: #e6f7ff; color: #25B7A7; font-weight: 600; }
+.mvr-dt-pop__foot {
+  display: flex; align-items: center; justify-content: space-between; padding: 8px 12px;
+}
+.mvr-dt-now { border: none; background: none; color: #25B7A7; font-size: 14px; cursor: pointer; font-family: inherit; }
+.mvr-dt-ok {
+  height: 28px; padding: 0 14px; border: none; border-radius: 4px;
+  background: #25B7A7; color: #fff; font-size: 13px; cursor: pointer; font-family: inherit;
+}
+
+.mvr-upload-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  height: 36px; padding: 0 14px; border: 1px solid #d9d9d9; border-radius: 4px;
+  background: #fff; font-size: 14px; color: rgba(0, 0, 0, .65); cursor: pointer; font-family: inherit;
+}
+.mvr-upload-btn svg { width: 16px; height: 16px; color: rgba(0, 0, 0, .45); }
+.mvr-upload-btn:hover { border-color: #25B7A7; color: #25B7A7; }
+.mvr-file-list { margin-top: 6px; font-size: 13px; color: rgba(0, 0, 0, .65); }
+
+.mvr-btn {
+  height: 34px; padding: 0 16px; border-radius: 4px; font-size: 14px;
+  font-weight: 500; font-family: inherit; cursor: pointer;
+}
+.mvr-btn--sm { height: 28px; padding: 0 12px; font-size: 13px; }
+.mvr-btn--ghost { border: 1px solid #d9d9d9; background: #fff; color: rgba(0, 0, 0, .85); }
+.mvr-btn--primary { border: none; background: #25B7A7; color: #fff; }
+.mvr-btn--primary:hover { background: #1fa396; }
+.mvr-btn--blue { border: none; background: #25b7a7; color: #fff; }
+.mvr-btn--blue:hover { background: #096dd9; }
+
+/* Delete popover */
+.mvr-del-pop {
+  position: fixed; z-index: 130; width: 280px;
+}
+.mvr-del-pop[hidden] { display: none !important; }
+.mvr-del-pop__inner {
+  background: #fff; border-radius: 4px; box-shadow: 0 6px 20px rgba(0, 0, 0, .15);
+  padding: 14px 16px 12px; display: grid; grid-template-columns: auto 1fr; gap: 8px 10px;
+}
+.mvr-del-pop__icon {
+  width: 22px; height: 22px; border-radius: 50%; background: #faad14; color: #fff;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700; grid-row: span 2;
+}
+.mvr-del-pop__inner p {
+  margin: 0; font-size: 14px; color: rgba(0, 0, 0, .85); line-height: 1.4;
+}
+.mvr-del-pop__actions {
+  grid-column: 2; display: flex; justify-content: flex-end; gap: 8px;
+}
+.mvr-del-pop__caret {
+  display: block; width: 12px; height: 12px; background: #fff;
+  transform: rotate(45deg); margin: -6px auto 0;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, .08);
+}
+
+@media (max-width: 768px) {
+  .mvr-page { padding: 12px 12px 24px; }
+  .mvr-filters { flex-direction: column; align-items: stretch; }
+  .mvr-combo--client, .mvr-combo--employee, .mvr-date-range { width: 100%; max-width: none; }
+  .mvr-export-btn { margin-left: 0; align-self: flex-end; }
+  .mvr-date-pop__calendars { flex-direction: column; }
+}

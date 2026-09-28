@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lead Management Report — TimeERP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/lead-report.css?v=3">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="dv-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="dv-top-clock" id="dvTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn dv-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn dv-top-icon" id="notifBtn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="dv-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="home.html" class="dropdown__item"><strong>Dashboard</strong><span>Back to home</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="lr-page">
+          <div class="lr-back-row">
+            <a class="lr-back" href="home.html#reports" aria-label="Back to Reports">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <span class="lr-back-title">Lead Management Report</span>
+          </div>
+
+          <section class="lr-card" id="lrFilterCard" aria-labelledby="lrTitle">
+            <div class="lr-card__head">
+              <h1 class="lr-card__title" id="lrTitle">Lead Management Report</h1>
+              <div class="lr-type-wrap">
+                <button type="button" class="lr-type-btn" id="lrTypeBtn" aria-haspopup="listbox" aria-expanded="false">
+                  <span id="lrTypeLabel">Active Leads Report</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+                <ul class="lr-type-list" id="lrTypeList" role="listbox" hidden>
+                  <li role="option" data-value="Active Leads Report" aria-selected="true">Active Leads Report</li>
+                </ul>
+              </div>
+              <button type="button" class="lr-collapse" id="lrCollapseBtn" aria-expanded="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                Collapse
+              </button>
+            </div>
+
+            <div class="lr-filters">
+              <div class="lr-field">
+                <div class="lr-combo" id="lrAssignWrap">
+                  <input type="text" id="lrAssignTo" class="lr-combo__input" placeholder="Assign To" autocomplete="off" aria-label="Assign To">
+                  <svg class="lr-combo__search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                  <ul class="lr-combo__list" id="lrAssignList" hidden>
+                    <li data-value="Tarun Gaur">Tarun Gaur</li>
+                    <li data-value="Suhanshi Rawat">Suhanshi Rawat</li>
+                    <li data-value="SONIYA KASHYAP">SONIYA KASHYAP</li>
+                    <li data-value="Hardik rawat">Hardik rawat</li>
+                    <li data-value="SIMRAN KASHYAP">SIMRAN KASHYAP</li>
+                    <li data-value="KAPIL">KAPIL</li>
+                    <li data-value="Aastha Tyagi">Aastha Tyagi</li>
+                    <li data-value="Shivam Kumar">Shivam Kumar</li>
+                    <li data-value="Saurabh Bhardwaj">Saurabh Bhardwaj</li>
+                    <li data-value="Dev Aggarwal">Dev Aggarwal</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="lr-field">
+                <div class="lr-range-wrap" id="lrRangeWrap">
+                  <input type="text" id="lrDateRange" placeholder="Start date → End date" readonly aria-haspopup="dialog" aria-expanded="false" aria-label="Date range">
+                  <svg class="lr-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                  <div class="lr-rangepicker" id="lrRangepicker" hidden role="dialog" aria-label="Choose date range">
+                    <div class="lr-rangepicker__panels">
+                      <div class="lr-cal-panel">
+                        <div class="lr-cal-panel__head">
+                          <button type="button" data-nav="prev-year" aria-label="Previous year">&lt;&lt;</button>
+                          <button type="button" data-nav="prev-month" aria-label="Previous month">&lt;</button>
+                          <span class="lr-cal-panel__label" id="lrCalLeftLabel">Aug 2026</span>
+                        </div>
+                        <div class="lr-cal-weekdays"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+                        <div class="lr-cal-grid" id="lrCalLeftGrid"></div>
+                      </div>
+                      <div class="lr-cal-panel">
+                        <div class="lr-cal-panel__head">
+                          <span class="lr-cal-panel__label" id="lrCalRightLabel">Sep 2026</span>
+                          <button type="button" data-nav="next-month" aria-label="Next month">&gt;</button>
+                          <button type="button" data-nav="next-year" aria-label="Next year">&gt;&gt;</button>
+                        </div>
+                        <div class="lr-cal-weekdays"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+                        <div class="lr-cal-grid" id="lrCalRightGrid"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="lr-generate">
+              <button type="button" class="lr-btn" id="lrGenerateBtn">Generate Report</button>
+            </div>
+          </section>
+
+          <section class="lr-card lr-result is-visible" id="lrResult" aria-label="Lead report results">
+            <div class="lr-toolbar">
+              <div class="lr-cols-wrap" id="lrColsWrap">
+                <button type="button" class="lr-tool-btn" id="lrColsBtn" aria-haspopup="true" aria-expanded="false" title="Columns">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                    <rect x="3" y="4" width="7" height="7" rx="1"/><rect x="14" y="4" width="7" height="7" rx="1"/>
+                    <rect x="3" y="13" width="7" height="7" rx="1"/><rect x="14" y="13" width="7" height="7" rx="1"/>
+                  </svg>
+                  <svg class="lr-tool-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+                <div class="lr-cols-panel" id="lrColsPanel" hidden role="dialog" aria-label="Columns">
+                  <div class="lr-cols-panel__head">
+                    <span class="lr-cols-panel__title">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="1.5"/><path d="M5 9.33h14M5 14.67h14"/><path d="M8 6.85h5M8 12h5M8 17.15h5"/></svg>
+                      Columns
+                    </span>
+                    <button type="button" class="lr-cols-select-all" id="lrSelectAll">Select All</button>
+                  </div>
+                  <ul class="lr-cols-list" id="lrColsList"></ul>
+                </div>
+              </div>
+              <button type="button" class="lr-excel" id="lrExcelBtn" title="Export Excel" aria-label="Export Excel">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.7"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9.2 12.2l5.6 5.6M14.8 12.2l-5.6 5.6"/></svg>
+              </button>
+            </div>
+
+            <div class="lr-table-wrap">
+              <table class="lr-table" id="lrDataTable">
+                <thead>
+                  <tr id="lrTableHead"></tr>
+                </thead>
+                <tbody id="lrTableBody"></tbody>
+              </table>
+              <div class="lr-empty" id="lrEmpty">
+                <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+                  <rect x="14" y="18" width="36" height="30" rx="3" stroke="#cbd5e1" stroke-width="2"/>
+                  <path d="M22 18v-3a3 3 0 013-3h14a3 3 0 013 3v3" stroke="#cbd5e1" stroke-width="2"/>
+                  <path d="M24 30h16M24 38h10" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <p>No data</p>
+              </div>
+            </div>
+
+            <div class="lr-pager">
+              <button type="button" class="lr-pager__btn" id="lrPrev" aria-label="Previous page" disabled>&lt;</button>
+              <input type="text" id="lrPageInput" value="1" aria-label="Page number">
+              <span>of <span id="lrPageTotal">1</span></span>
+              <button type="button" class="lr-pager__btn" id="lrNext" aria-label="Next page" disabled>&gt;</button>
+              <span class="lr-pager__count" id="lrPageCount">0 / 0</span>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/lead-report.js?v=1"></script>
+</body>
+</html>

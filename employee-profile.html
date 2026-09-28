@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Profile — TIME ERP</title>
+  <meta name="description" content="TIME ERP employee information prototype for manager review.">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #25b7a7;
+      --primary-dark: #1a9e8f;
+      --primary-light: #e8f8f6;
+      --heading: #0f2a28;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e6eaee;
+      --bg: #f4f7f9;
+      --white: #ffffff;
+      --ok: #15803d;
+      --ok-bg: #dcfce7;
+      --shadow: 0 8px 24px rgba(15, 42, 40, 0.05);
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { margin: 0; }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    a { color: var(--primary-dark); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 3px;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 28px 16px 72px;
+    }
+
+    .crumb {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .crumb span[aria-hidden] { opacity: 0.45; }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 20px;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--text);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .back-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary-dark);
+    }
+
+    .back-btn svg { width: 16px; height: 16px; }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 32px;
+      padding: 32px;
+      background:
+        linear-gradient(180deg, #f3fbfa 0%, #ffffff 42%);
+    }
+
+    .photo-wrap {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto;
+      padding: 8px;
+      border-radius: 28px;
+      background: var(--primary-light);
+      border: 1px solid #d4eee9;
+    }
+
+    .employee-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 22px;
+      display: block;
+      background: #dceeed;
+    }
+
+    .photo-fallback {
+      width: 100%;
+      height: 100%;
+      border-radius: 22px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 42px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      background: #d9f3ef;
+    }
+
+    .photo-wrap.is-fallback .employee-photo { display: none; }
+    .photo-wrap.is-fallback .photo-fallback { display: flex; }
+
+    .identity h1 {
+      margin: 0 0 4px;
+      font-size: 2rem;
+      line-height: 1.15;
+      color: var(--heading);
+      letter-spacing: -0.02em;
+    }
+
+    .role {
+      margin: 0 0 2px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+
+    .dept {
+      margin: 0 0 12px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .id-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 14px;
+      margin-bottom: 18px;
+    }
+
+    .code {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .code strong { color: var(--text); font-weight: 600; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      background: var(--ok-bg);
+      color: var(--ok);
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 22px;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .meta-item svg {
+      width: 16px;
+      height: 16px;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      margin: 16px 0 22px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .summary-item {
+      background: var(--white);
+      padding: 16px 18px;
+    }
+
+    .summary-item span {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .summary-item strong {
+      font-size: 15px;
+      color: var(--heading);
+    }
+
+    .section {
+      padding: 22px 24px 24px;
+    }
+
+    .section + .section { border-top: 1px solid var(--border); }
+
+    .section h2 {
+      margin: 0 0 14px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--heading);
+    }
+
+    .about {
+      margin: 0;
+      max-width: 72ch;
+      font-size: 15px;
+      color: #334155;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px 20px;
+    }
+
+    .field span {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    .field strong,
+    .field a {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .field a { color: var(--primary-dark); }
+
+    .personal {
+      background: #fafbfc;
+    }
+
+    .personal .info-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill {
+      display: inline-flex;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid #d7ece8;
+      background: var(--primary-light);
+      color: #0f524b;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .duties {
+      margin: 0;
+      padding-left: 18px;
+      color: #334155;
+      font-size: 14px;
+    }
+
+    .duties li { margin: 0 0 6px; }
+    .duties li:last-child { margin-bottom: 0; }
+
+    .missing {
+      padding: 48px 20px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 160px 1fr; gap: 22px; padding: 24px; }
+      .photo-wrap { width: 150px; height: 150px; }
+      .identity h1 { font-size: 1.6rem; }
+      .info-grid,
+      .personal .info-grid,
+      .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 22px 18px;
+      }
+      .photo-wrap { width: 168px; height: 168px; }
+      .id-row, .meta { justify-content: center; }
+      .identity h1 { font-size: 1.5rem; }
+      .about { text-align: left; }
+      .summary,
+      .info-grid,
+      .personal .info-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span aria-hidden="true">›</span>
+      <span>Company</span>
+      <span aria-hidden="true">›</span>
+      <a href="team.html">Team</a>
+      <span aria-hidden="true">›</span>
+      <span aria-current="page">Employee Profile</span>
+    </nav>
+
+    <button type="button" class="back-btn" id="backToTeam">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      Back to Team
+    </button>
+
+    <article id="profileRoot" aria-live="polite"></article>
+  </main>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var EMPLOYEES = {
+        TM01: {
+          id: 'TM01',
+          name: 'Vikram Malhotra',
+          designation: 'Head of Leadership',
+          department: 'Leadership',
+          status: 'Active',
+          type: 'Full-time',
+          location: 'Delhi NCR',
+          joining: '12 Jan 2024',
+          manager: '—',
+          email: 'vikram.malhotra@timeerp.com',
+          mobile: '9810012345',
+          gender: 'Male',
+          dob: '14 Mar 1987',
+          blood: 'O+',
+          experience: '12+ Years',
+          photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=640&h=640&q=80',
+          about: 'Vikram leads strategic direction at TIME ERP and works with cross-functional teams to strengthen product vision, organizational culture and long-term customer outcomes.',
+          skills: ['Leadership', 'Strategy', 'Team Building', 'Stakeholder Management', 'Process Planning'],
+          responsibilities: [
+            'Set organizational priorities',
+            'Guide leadership alignment',
+            'Support cross-department execution',
+            'Strengthen customer-focused culture'
+          ]
+        },
+        TM02: {
+          id: 'TM02',
+          name: 'Ananya Krishnan',
+          designation: 'Product Manager',
+          department: 'Product',
+          status: 'Active',
+          type: 'Full-time',
+          location: 'Bengaluru',
+          joining: '08 Jun 2024',
+          manager: 'Vikram Malhotra',
+          email: 'ananya.krishnan@timeerp.com',
+          mobile: '9886011122',
+          gender: 'Female',
+          dob: '22 Aug 1993',
+          blood: 'B+',
+          experience: '7+ Years',
+          photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=640&h=640&q=80',
+          about: 'Ananya shapes the TIME ERP product experience, translating customer needs into clear roadmaps and collaborating with design and engineering to ship practical workflows.',
+          skills: ['Product Strategy', 'Roadmapping', 'UX Collaboration', 'Requirements', 'Analytics'],
+          responsibilities: [
+            'Define product priorities',
+            'Coordinate feature delivery',
+            'Gather customer feedback',
+            'Improve module usability'
+          ]
+        },
+        TM03: {
+          id: 'TM03',
+          name: 'Rohan Desai',
+          designation: 'Customer Success Lead',
+          department: 'Customer Success',
+          status: 'Active',
+          type: 'Full-time',
+          location: 'Mumbai',
+          joining: '19 Sep 2024',
+          manager: 'Vikram Malhotra',
+          email: 'rohan.desai@timeerp.com',
+          mobile: '9820014455',
+          gender: 'Male',
+          dob: '03 Nov 1991',
+          blood: 'A+',
+          experience: '8+ Years',
+          photo: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=640&h=640&q=80',
+          about: 'Rohan partners with TIME ERP customers to improve onboarding, adoption and ongoing support so firms get lasting value from the platform.',
+          skills: ['Customer Success', 'Onboarding', 'Account Care', 'Training', 'Communication'],
+          responsibilities: [
+            'Lead customer onboarding',
+            'Improve product adoption',
+            'Coordinate support escalations',
+            'Share customer insights with product'
+          ]
+        },
+        TM04: {
+          id: 'TM04',
+          name: 'Meera Iyer',
+          designation: 'Delivery Manager',
+          department: 'Delivery',
+          status: 'Active',
+          type: 'Full-time',
+          location: 'Chennai',
+          joining: '04 Feb 2025',
+          manager: 'Ananya Krishnan',
+          email: 'meera.iyer@timeerp.com',
+          mobile: '9840017788',
+          gender: 'Female',
+          dob: '17 May 1994',
+          blood: 'AB+',
+          experience: '6+ Years',
+          photo: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=640&h=640&q=80',
+          about: 'Meera manages delivery timelines and quality across implementation workstreams, keeping teams coordinated and releases predictable for TIME ERP customers.',
+          skills: ['Delivery Management', 'Planning', 'Quality Control', 'Team Coordination', 'Risk Tracking'],
+          responsibilities: [
+            'Plan delivery schedules',
+            'Track implementation milestones',
+            'Coordinate handoffs across teams',
+            'Maintain delivery quality standards'
+          ]
+        }
+      };
+
+      function esc(value) {
+        return String(value == null ? '' : value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function initials(name) {
+        return String(name || '')
+          .split(/\s+/)
+          .filter(Boolean)
+          .slice(0, 2)
+          .map(function (part) { return part.charAt(0).toUpperCase(); })
+          .join('') || '?';
+      }
+
+      function field(label, value) {
+        return '<div class="field"><span>' + esc(label) + '</span><strong>' + esc(value) + '</strong></div>';
+      }
+
+      function render(employee) {
+        var root = document.getElementById('profileRoot');
+        if (!employee) {
+          root.innerHTML = '<div class="card missing">Employee not found. Return to Team and select a profile.</div>';
+          return;
+        }
+
+        document.title = employee.name + ' — Employee Profile | TIME ERP';
+
+        root.innerHTML =
+          '<section class="card hero" aria-label="Employee profile">' +
+            '<div class="photo-wrap" id="photoWrap">' +
+              '<img class="employee-photo" id="employeePhoto" src="' + esc(employee.photo) + '" alt="Portrait of ' + esc(employee.name) + '">' +
+              '<div class="photo-fallback" aria-hidden="true">' + esc(initials(employee.name)) + '</div>' +
+            '</div>' +
+            '<div class="identity">' +
+              '<h1>' + esc(employee.name) + '</h1>' +
+              '<p class="role">' + esc(employee.designation) + '</p>' +
+              '<p class="dept">' + esc(employee.department) + ' Department</p>' +
+              '<div class="id-row">' +
+                '<span class="code">Employee Code: <strong>' + esc(employee.id) + '</strong></span>' +
+                '<span class="badge">' + esc(employee.status) + '</span>' +
+              '</div>' +
+              '<div class="meta">' +
+                '<span class="meta-item">' +
+                  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s7-5.4 7-11a7 7 0 10-14 0c0 5.6 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>' +
+                  esc(employee.location) +
+                '</span>' +
+                '<span class="meta-item">' +
+                  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5h8v2"/></svg>' +
+                  esc(employee.type) +
+                '</span>' +
+                '<span class="meta-item">' +
+                  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>' +
+                  'Joined ' + esc(employee.joining) +
+                '</span>' +
+              '</div>' +
+            '</div>' +
+          '</section>' +
+
+          '<div class="summary" aria-label="Profile summary">' +
+            '<div class="summary-item"><span>Department</span><strong>' + esc(employee.department) + '</strong></div>' +
+            '<div class="summary-item"><span>Experience</span><strong>' + esc(employee.experience) + '</strong></div>' +
+            '<div class="summary-item"><span>Location</span><strong>' + esc(employee.location) + '</strong></div>' +
+            '<div class="summary-item"><span>Employment</span><strong>' + esc(employee.type) + '</strong></div>' +
+          '</div>' +
+
+          '<section class="card">' +
+            '<div class="section">' +
+              '<h2>About</h2>' +
+              '<p class="about">' + esc(employee.about) + '</p>' +
+            '</div>' +
+            '<div class="section">' +
+              '<h2>Professional Information</h2>' +
+              '<div class="info-grid">' +
+                field('Employee Code', employee.id) +
+                field('Designation', employee.designation) +
+                field('Department', employee.department) +
+                field('Employment Type', employee.type) +
+                field('Reporting Manager', employee.manager) +
+                field('Work Location', employee.location) +
+                field('Joining Date', employee.joining) +
+                field('Current Status', employee.status) +
+              '</div>' +
+            '</div>' +
+            '<div class="section">' +
+              '<h2>Contact Information</h2>' +
+              '<div class="info-grid">' +
+                '<div class="field"><span>Professional Email</span><a href="mailto:' + esc(employee.email) + '">' + esc(employee.email) + '</a></div>' +
+                '<div class="field"><span>Work Mobile</span><a href="tel:' + esc(employee.mobile) + '">' + esc(employee.mobile) + '</a></div>' +
+                field('Work Location', employee.location) +
+              '</div>' +
+            '</div>' +
+            '<div class="section">' +
+              '<h2>Skills &amp; Expertise</h2>' +
+              '<div class="pills">' + employee.skills.map(function (skill) {
+                return '<span class="pill">' + esc(skill) + '</span>';
+              }).join('') + '</div>' +
+            '</div>' +
+            '<div class="section">' +
+              '<h2>Responsibilities</h2>' +
+              '<ul class="duties">' + employee.responsibilities.map(function (item) {
+                return '<li>' + esc(item) + '</li>';
+              }).join('') + '</ul>' +
+            '</div>' +
+            '<div class="section personal">' +
+              '<h2>Personal Information</h2>' +
+              '<div class="info-grid">' +
+                field('Full Name', employee.name) +
+                field('Gender', employee.gender) +
+                field('Date of Birth', employee.dob) +
+                field('Blood Group', employee.blood) +
+              '</div>' +
+            '</div>' +
+          '</section>';
+
+        var img = document.getElementById('employeePhoto');
+        var wrap = document.getElementById('photoWrap');
+        if (img && wrap) {
+          img.addEventListener('error', function () {
+            wrap.classList.add('is-fallback');
+          });
+        }
+      }
+
+      document.getElementById('backToTeam').addEventListener('click', function () {
+        window.location.href = 'team.html';
+      });
+
+      var params = new URLSearchParams(window.location.search || '');
+      var id = params.get('id') || 'TM01';
+      render(EMPLOYEES[id] || EMPLOYEES.TM01);
+    })();
+  </script>
+</body>
+</html>

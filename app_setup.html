@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Setup — TimeERP</title>
+  <meta name="description" content="Guided organization setup: branches, designations, employees, clients, SMTP, leaves, billing, and documents.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/my-profile.css?v=46">
+  <link rel="stylesheet" href="css/module-hub.css?v=3">
+  <link rel="stylesheet" href="css/app-setup.css?v=1">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="shell-top-checkin is-checked-in is-orange" id="shellTopCheckInBtn">Check Out</button>
+            <time class="shell-top-clock" id="shellTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn shell-top-icon" id="shellCalBtn" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn shell-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <a class="shell-account" id="profileBtn" href="my_profile.html" aria-label="Open profile">
+              <span class="shell-account__org" aria-hidden="true"><img src="assets/favicon-mark.png" alt="" width="28" height="28"></span>
+              <span class="shell-account__name">CA Cloud..</span>
+              <span class="shell-account__user" aria-hidden="true"><img src="assets/favicon-mark.png" alt="" width="28" height="28"></span>
+            </a>
+          </div>
+        </div>
+      </header>
+      <main class="main">
+        <div class="mp-page mh-page">
+          <nav class="mp-mod-nav" aria-label="Profile modules">
+            <div class="mp-mod-nav__pills">
+              <a href="my_profile.html" class="mp-mod-pill">Profile</a><a href="organization.html" class="mp-mod-pill">Organization</a><a href="hrms.html" class="mp-mod-pill">HRMS</a><a href="payroll.html" class="mp-mod-pill">Payroll</a><a href="import_utility.html" class="mp-mod-pill">Import Utility</a><a href="notification.html" class="mp-mod-pill">Notification</a><a href="settings.html" class="mp-mod-pill">Settings</a><a href="app_setup.html" class="mp-mod-pill is-active" aria-current="page">Setup</a>
+            </div>
+            <div class="mp-mod-nav__actions">
+              <button type="button" class="mp-mod-icon-btn" aria-label="Trash" title="Trash">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 5h6"/><path d="M10 5V4h4v1"/><path d="M4.5 7.5h15"/><path d="M7 7.5l.9 12.2a1 1 0 0 0 1 .9h6.2a1 1 0 0 0 1-.9L17 7.5"/></svg>
+              </button>
+              <button type="button" class="mp-mod-icon-btn" aria-label="Unlock" title="Unlock">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><circle cx="12" cy="16" r="1" fill="currentColor" stroke="none"/><path d="M16 11V7.5a4 4 0 0 0-7.6-1.7"/></svg>
+              </button>
+              <button type="button" class="mp-mod-icon-btn" aria-label="Logout" title="Logout">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 4a8 8 0 1 0 0 16"/><path d="M12 12h8"/><path d="M17.5 9l3 3-3 3"/></svg>
+              </button>
+            </div>
+          </nav>
+          <div class="mh-body su-body">
+            <div class="su-banner">
+              <h1>Setup</h1>
+              <p>Configure these steps to get the best from the software. Complete them in order.</p>
+            </div>
+            <div class="su-progress">
+              <p>9 of 12 steps complete.</p>
+              <div class="su-progress__bar" role="progressbar" aria-valuenow="9" aria-valuemin="0" aria-valuemax="12"><span style="width:75%"></span></div>
+            </div>
+            <div class="su-guide">
+              <h2>Setup</h2>
+              <p>A quick guide to help you get started.</p>
+              <h3>CONFIGURATION STEPS (12)</h3>
+            </div>
+            <div class="su-grid" id="suGrid">
+              <a class="su-step su-step--completed" href="#" style="--su-bg:#e8f8ef" data-step="1">
+                <span class="su-step__badge">COMPLETED</span>
+                <strong>Add Branches</strong>
+                <p>Configure office branches and map employees and clients.</p>
+                <span class="su-step__num" aria-hidden="true">1</span>
+              </a>              <a class="su-step su-step--pending" href="#" style="--su-bg:#fff4e8" data-step="2">
+                <span class="su-step__badge">PENDING</span>
+                <strong>Designation</strong>
+                <p>Create designation roles and assign module permissions (tasks, HRMS, billing, reports) for each role.</p>
+                <span class="su-step__num" aria-hidden="true">2</span>
+              </a>              <a class="su-step su-step--completed" href="#" style="--su-bg:#e8f3ff" data-step="3">
+                <span class="su-step__badge">COMPLETED</span>
+                <strong>Add Shift</strong>
+                <p>Define shift timings and patterns for attendance rules.</p>
+                <span class="su-step__num" aria-hidden="true">3</span>
+              </a>              <a class="su-step su-step--pending" href="#" style="--su-bg:#f3e8ff" data-step="4">
+                <span class="su-step__badge">PENDING</span>
+                <strong>Add Employees</strong>
+                <p>Onboard employees with details, permissions, and login credentials.</p>
+                <span class="su-step__num" aria-hidden="true">4</span>
+              </a>              <a class="su-step su-step--completed" href="#" style="--su-bg:#e8f3ff" data-step="5">
+                <span class="su-step__badge">COMPLETED</span>
+                <strong>Service Master</strong>
+                <p>Create services & sub-services, stages, templates, and billing rules for tasks.</p>
+                <span class="su-step__num" aria-hidden="true">5</span>
+              </a>              <a class="su-step su-step--pending" href="#" style="--su-bg:#ffe8f1" data-step="6">
+                <span class="su-step__badge">PENDING</span>
+                <strong>Add Clients</strong>
+                <p>Create client masters for tasks, billing, and client portal.</p>
+                <span class="su-step__num" aria-hidden="true">6</span>
+              </a>              <a class="su-step su-step--completed" href="#" style="--su-bg:#fff8e8" data-step="7">
+                <span class="su-step__badge">COMPLETED</span>
+                <strong>Add Holidays</strong>
+                <p>Maintain the holiday calendar for working days and attendance.</p>
+                <span class="su-step__num" aria-hidden="true">7</span>
+              </a>              <a class="su-step su-step--completed" href="#" style="--su-bg:#fff9db" data-step="8">
+                <span class="su-step__badge">COMPLETED</span>
+                <strong>Add SMTP</strong>
+                <p>Set up outgoing email for notifications and documents.</p>
+                <span class="su-step__num" aria-hidden="true">8</span>
+              </a>              <a class="su-step su-step--completed" href="#" style="--su-bg:#ffe8f1" data-step="9">
+                <span class="su-step__badge">COMPLETED</span>
+                <strong>Add Leaves</strong>
+                <p>Create leave types: casual, sick, and other policies.</p>
+                <span class="su-step__num" aria-hidden="true">9</span>
+              </a>              <a class="su-step su-step--completed" href="#" style="--su-bg:#e8f3ff" data-step="10">
+                <span class="su-step__badge">COMPLETED</span>
+                <strong>Billing Settings</strong>
+                <p>Configure billing settings for the organization.</p>
+                <span class="su-step__num" aria-hidden="true">10</span>
+              </a>              <a class="su-step su-step--completed" href="#" style="--su-bg:#e8f8ef" data-step="11">
+                <span class="su-step__badge">COMPLETED</span>
+                <strong>Add Pay Details</strong>
+                <p>Capture salary structure and pay components per employee.</p>
+                <span class="su-step__num" aria-hidden="true">11</span>
+              </a>              <a class="su-step su-step--pending" href="#" style="--su-bg:#f3f4f6" data-step="12">
+                <span class="su-step__badge">PENDING</span>
+                <strong>Add Client Documents</strong>
+                <p>Upload and manage client documents for compliance and tasks.</p>
+                <span class="su-step__num" aria-hidden="true">12</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+
+</body>
+</html>

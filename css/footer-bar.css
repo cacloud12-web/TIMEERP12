@@ -110,6 +110,44 @@
   }
 }
 
+/* Legacy mega-footer social icons (pages that still use .footer__social) */
+.footer__social {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.footer__social a {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  background: #fff;
+  transition: transform 0.2s ease, color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.footer__social a:hover {
+  color: var(--primary, #25b7a7);
+  border-color: var(--primary, #25b7a7);
+  background: var(--primary-light, #e8f8f6);
+}
+
+.footer__social svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  fill: currentColor;
+}
+
+.footer__social svg[fill="none"] {
+  fill: none;
+  stroke: currentColor;
+}
+
 /* Contact sales simplified footer */
 .td-footer .td-footer__bar-inner {
   flex-wrap: wrap;
@@ -121,7 +159,7 @@
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
-    gap: 24px;
+    gap: 12px;
   }
 
   .td-footer .td-footer__contact {

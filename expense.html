@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Management | Claims, Approvals &amp; Reimbursements | TimeERP</title>
+  <meta name="description" content="TimeERP Expense Management: capture claims, travel and fuel spends, multi-level approvals, reimbursements, project and department costing, budgets, GST-aware tracking, and financial reports.">
+  <meta name="keywords" content="expense management, employee reimbursement, expense claims, travel expenses, petty cash, cost center, project expense, TimeERP expense, ERP expenses India">
+  <link rel="canonical" href="https://timeerp.com/expense.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Expense Management | TimeERP">
+  <meta property="og:description" content="Capture, approve, and reimburse business expenses with project costing, budgets, and audit-ready trails.">
+  <meta property="og:url" content="https://timeerp.com/expense.html">
+  <meta property="og:image" content="https://timeerp.com/assets/image0-transparent.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Expense Management | TimeERP">
+  <meta name="twitter:description" content="Enterprise expense claims, approvals, reimbursements, and cost control inside TimeERP.">
+  <meta name="twitter:image" content="https://timeerp.com/assets/image0-transparent.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "TimeERP Expense Management",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "url": "https://timeerp.com/expense.html",
+        "description": "Enterprise expense claims, multi-level approvals, reimbursements, project and department costing, budgets, and reports for TimeERP.",
+        "provider": { "@type": "Organization", "name": "TimeERP", "url": "https://timeerp.com/" }
+      },
+      {
+        "@type": "Product",
+        "name": "TimeERP Expense",
+        "description": "Capture, approve, and reimburse business expenses with financial control.",
+        "brand": { "@type": "Brand", "name": "TimeERP" },
+        "url": "https://timeerp.com/expense.html"
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <link rel="stylesheet" href="css/site-nav.css?v=13">
+  <link rel="stylesheet" href="css/site-footer.css">
+  <link rel="stylesheet" href="css/expense.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="ex-page" id="expense" aria-labelledby="ex-title">
+    <section class="ex-hero" aria-label="Expense Management hero">
+      <div class="ex-hero__bg" aria-hidden="true">
+        <span class="ex-hero__orb ex-hero__orb--1"></span>
+        <span class="ex-hero__orb ex-hero__orb--2"></span>
+      </div>
+      <div class="container ex-hero__grid">
+        <div>
+          <h1 id="ex-title">Smart Expense Management for Complete Financial Control</h1>
+          <p class="ex-hero__lead">Capture business spends, route multi-level approvals, reimburse employees, and allocate costs to projects, departments, and cost centres, without losing the receipt trail.</p>
+          <div class="ex-hero__pills" aria-label="Key capabilities">
+            <span class="ex-pill"><span class="material-symbols-outlined" aria-hidden="true">receipt_long</span> Claims</span>
+            <span class="ex-pill"><span class="material-symbols-outlined" aria-hidden="true">flight</span> Travel</span>
+            <span class="ex-pill"><span class="material-symbols-outlined" aria-hidden="true">payments</span> Reimbursement</span>
+            <span class="ex-pill"><span class="material-symbols-outlined" aria-hidden="true">analytics</span> Reports</span>
+          </div>
+          <div class="ex-hero__actions">
+            <a class="btn btn--primary" href="#" data-book-demo>Request Demo</a>
+            <a class="btn btn--ghost" href="contact_sales.html">Contact Sales</a>
+            <a class="btn btn--ghost" href="hrms.html">Related: HRMS</a>
+          </div>
+          <p class="ex-hero__note">Built for organisations that need policy-led spend control, not personal money trackers, with the same claims, travel, reimbursement, and reporting capabilities shown on the TimeERP home modules.</p>
+        </div>
+
+        <div class="ex-hero-visual" aria-hidden="true">
+          <div class="ex-float-card ex-float-card--1"><span class="material-symbols-outlined">schedule</span> 12 pending approval</div>
+          <div class="ex-float-card ex-float-card--2"><span class="material-symbols-outlined">payments</span> Reimbursed ₹2.4L</div>
+          <div class="ex-float-card ex-float-card--3"><span class="material-symbols-outlined">monitoring</span> Budget 78%</div>
+          <div class="ex-dash-mock">
+            <div class="ex-dash-mock__bar">
+              <strong>Expense control panel</strong>
+              <span>This month</span>
+            </div>
+            <div class="ex-dash-mock__stats">
+              <div class="ex-dash-mock__stat"><em>Total spend</em><strong>₹18.6L</strong></div>
+              <div class="ex-dash-mock__stat"><em>Pending</em><strong>₹3.1L</strong></div>
+              <div class="ex-dash-mock__stat"><em>Approved</em><strong>₹14.2L</strong></div>
+              <div class="ex-dash-mock__stat"><em>Rejected</em><strong>₹0.4L</strong></div>
+            </div>
+            <div class="ex-dash-mock__list">
+              <div class="ex-dash-mock__row">
+                <span class="material-symbols-outlined">flight</span>
+                <strong>Travel, Delhi client visit</strong>
+                <em class="is-pending">Pending</em>
+              </div>
+              <div class="ex-dash-mock__row">
+                <span class="material-symbols-outlined">local_gas_station</span>
+                <strong>Fuel, site vehicle 04</strong>
+                <em class="is-ok">Approved</em>
+              </div>
+              <div class="ex-dash-mock__row">
+                <span class="material-symbols-outlined">apartment</span>
+                <strong>Site petty, Plot B</strong>
+                <em class="is-ok">Paid</em>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ex-trust" aria-label="Trusted by businesses">
+      <div class="container ex-trust__inner">
+        <p>Built for TimeERP industries</p>
+        <div class="ex-trust__stats">
+          <span class="ex-trust__chip">CA and professional firms</span>
+          <span class="ex-trust__chip">Construction sites</span>
+          <span class="ex-trust__chip">MSME operations</span>
+          <span class="ex-trust__chip">Multi-branch teams</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="ex-section ex-section--soft" aria-labelledby="ex-why-title">
+      <div class="container">
+        <div class="ex-section__head ex-reveal">
+          <p class="eyebrow">Why TimeERP Expense</p>
+          <h2 class="section-title" id="ex-why-title">Why choose TimeERP Expense Management</h2>
+          <p class="section-lead">Move from scattered WhatsApp bills and Excel claims to a governed process that managers and finance both trust.</p>
+        </div>
+        <div class="ex-why ex-reveal">
+          <article class="ex-why__card">
+            <div class="ex-why__icon" aria-hidden="true"><span class="material-symbols-outlined">hub</span></div>
+            <h3>Centralised expense tracking</h3>
+            <p>Every claim, site spend, and vendor bill lives in one system of record with categories, owners, and attachments.</p>
+          </article>
+          <article class="ex-why__card">
+            <div class="ex-why__icon" aria-hidden="true"><span class="material-symbols-outlined">speed</span></div>
+            <h3>Faster approval workflow</h3>
+            <p>Route manager then finance gates, or multi-level checks for higher amounts, without chasing email chains.</p>
+          </article>
+          <article class="ex-why__card">
+            <div class="ex-why__icon" aria-hidden="true"><span class="material-symbols-outlined">account_balance_wallet</span></div>
+            <h3>Budget control</h3>
+            <p>Compare actual spend with department or project budgets before overruns become permanent.</p>
+          </article>
+          <article class="ex-why__card">
+            <div class="ex-why__icon" aria-hidden="true"><span class="material-symbols-outlined">visibility</span></div>
+            <h3>Real-time financial visibility</h3>
+            <p>Pending queues, category mix, and reimbursements update as decisions are made, not after month-end cleanup.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="ex-section" id="features" aria-labelledby="ex-feat-title">
+      <div class="container">
+        <div class="ex-section__head ex-reveal">
+          <p class="eyebrow">Core features</p>
+          <h2 class="section-title" id="ex-feat-title">Everything TimeERP Expense is built to do</h2>
+          <p class="section-lead">Interactive explorer for capture, people claims, control, operations, and insight, aligned with how ERP customers run spend.</p>
+        </div>
+        <div class="ex-filters ex-reveal" role="tablist" aria-label="Filter expense features" id="exFilters">
+          <button type="button" class="ex-filter is-active" data-filter="all">All</button>
+          <button type="button" class="ex-filter" data-filter="capture">Capture</button>
+          <button type="button" class="ex-filter" data-filter="people">People and payout</button>
+          <button type="button" class="ex-filter" data-filter="control">Control</button>
+          <button type="button" class="ex-filter" data-filter="ops">Operations</button>
+          <button type="button" class="ex-filter" data-filter="insight">Insight</button>
+        </div>
+        <div class="ex-feat-layout ex-reveal">
+          <div class="ex-feat-grid" id="exFeatList" role="tablist" aria-label="Expense features"></div>
+          <aside class="ex-panel" role="tabpanel" aria-live="polite">
+            <div class="ex-panel__inner" id="exPanelInner">
+              <span class="ex-panel__badge"><span class="material-symbols-outlined" id="exPanelIcon" aria-hidden="true" style="font-size:16px">receipt_long</span> TIME ERP</span>
+              <h3 id="exPanelName">Expense Entry</h3>
+              <p class="ex-panel__desc" id="exPanelDesc"></p>
+              <span class="ex-panel__label">Key capabilities</span>
+              <ul class="ex-caps" id="exPanelCaps"></ul>
+              <span class="ex-panel__label">Business value</span>
+              <p class="ex-benefits-box" id="exPanelBenefits"></p>
+              <div class="ex-panel__actions">
+                <a class="btn btn--primary" href="#" data-book-demo>Book Demo</a>
+                <a class="btn btn--ghost" href="contact_sales.html">Contact Sales</a>
+                <a class="btn btn--ghost" href="home.html#module/expense">Open Expense</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="ex-section ex-section--panel" aria-labelledby="ex-cat-title">
+      <div class="container">
+        <div class="ex-section__head ex-reveal">
+          <p class="eyebrow">Categories</p>
+          <h2 class="section-title" id="ex-cat-title">Expense categories that stay consistent in reports</h2>
+          <p class="section-lead">Configure the taxonomy your organisation needs. These are the common corporate spends TimeERP teams typically monitor.</p>
+        </div>
+        <div class="ex-cats ex-reveal" id="exCats">
+          <div class="ex-cat"><span class="material-symbols-outlined" aria-hidden="true">badge</span><strong>Employee</strong><span>Claims and reimbursable out-of-pocket</span></div>
+          <div class="ex-cat"><span class="material-symbols-outlined" aria-hidden="true">flight</span><strong>Travel</strong><span>Fares, lodging, local conveyance</span></div>
+          <div class="ex-cat"><span class="material-symbols-outlined" aria-hidden="true">local_gas_station</span><strong>Fuel</strong><span>Fleet and field vehicle fuel</span></div>
+          <div class="ex-cat"><span class="material-symbols-outlined" aria-hidden="true">domain</span><strong>Office</strong><span>Stationery, supplies, admin</span></div>
+          <div class="ex-cat"><span class="material-symbols-outlined" aria-hidden="true">bolt</span><strong>Utilities</strong><span>Power, connectivity, facilities</span></div>
+          <div class="ex-cat"><span class="material-symbols-outlined" aria-hidden="true">campaign</span><strong>Marketing</strong><span>Campaign and promo spends</span></div>
+          <div class="ex-cat"><span class="material-symbols-outlined" aria-hidden="true">view_kanban</span><strong>Projects</strong><span>Job-linked materials and costs</span></div>
+          <div class="ex-cat"><span class="material-symbols-outlined" aria-hidden="true">build</span><strong>Maintenance</strong><span>Repairs and AMC style costs</span></div>
+          <div class="ex-cat"><span class="material-symbols-outlined" aria-hidden="true">storefront</span><strong>Vendor</strong><span>Supplier and contractor bills</span></div>
+          <div class="ex-cat"><span class="material-symbols-outlined" aria-hidden="true">devices</span><strong>Equipment</strong><span>Tools and small capital-related</span></div>
+          <div class="ex-cat"><span class="material-symbols-outlined" aria-hidden="true">school</span><strong>Training</strong><span>Learning and upskilling spends</span></div>
+          <div class="ex-cat"><span class="material-symbols-outlined" aria-hidden="true">more_horiz</span><strong>Miscellaneous</strong><span>Controlled residual category</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ex-section ex-section--soft" aria-labelledby="ex-flow-title">
+      <div class="container">
+        <div class="ex-section__head ex-reveal">
+          <p class="eyebrow">Workflow</p>
+          <h2 class="section-title" id="ex-flow-title">From claim created to books and reports</h2>
+          <p class="section-lead">A governed path prevents payout before proof and policy checks are complete.</p>
+        </div>
+        <div class="ex-flow ex-reveal" aria-label="Expense approval workflow">
+          <div class="ex-flow__step is-on"><span class="ex-flow__num">1</span><strong>Expense created</strong><span>Employee or finance captures the spend</span></div>
+          <span class="ex-flow__arrow material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          <div class="ex-flow__step"><span class="ex-flow__num">2</span><strong>Receipt uploaded</strong><span>Proof attached to the claim</span></div>
+          <span class="ex-flow__arrow material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          <div class="ex-flow__step"><span class="ex-flow__num">3</span><strong>Manager review</strong><span>Policy and business purpose check</span></div>
+          <span class="ex-flow__arrow material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          <div class="ex-flow__step"><span class="ex-flow__num">4</span><strong>Finance approval</strong><span>Budget, tax, and completeness</span></div>
+          <span class="ex-flow__arrow material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          <div class="ex-flow__step"><span class="ex-flow__num">5</span><strong>Payment / reimbursement</strong><span>Settle employee or vendor</span></div>
+          <span class="ex-flow__arrow material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          <div class="ex-flow__step"><span class="ex-flow__num">6</span><strong>Accounting updated</strong><span>Cost centre and books impact</span></div>
+          <span class="ex-flow__arrow material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          <div class="ex-flow__step"><span class="ex-flow__num">7</span><strong>Reports generated</strong><span>Leadership and audit packs</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ex-section" aria-labelledby="ex-cases-title">
+      <div class="container">
+        <div class="ex-section__head ex-reveal">
+          <p class="eyebrow">Industries</p>
+          <h2 class="section-title" id="ex-cases-title">Business use cases with measurable value</h2>
+        </div>
+        <div class="ex-cases ex-reveal">
+          <article class="ex-case"><span class="material-symbols-outlined" aria-hidden="true">engineering</span><h3>Construction</h3><p>Site peties, material related spends, and crew travel stay tagged to the active project before margin slips.</p></article>
+          <article class="ex-case"><span class="material-symbols-outlined" aria-hidden="true">apartment</span><h3>Real Estate</h3><p>Broker and site-visit costs land on the right inventory project instead of a generic admin bucket.</p></article>
+          <article class="ex-case"><span class="material-symbols-outlined" aria-hidden="true">precision_manufacturing</span><h3>Manufacturing</h3><p>Plant consumables, tools, and logistics fuel are visible to production and finance together.</p></article>
+          <article class="ex-case"><span class="material-symbols-outlined" aria-hidden="true">storefront</span><h3>Retail</h3><p>Store-level spends and marketing activations compare cleanly across branches.</p></article>
+          <article class="ex-case"><span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span><h3>Healthcare</h3><p>Operational claims keep approval trails for regulated environments and multi-department control.</p></article>
+          <article class="ex-case"><span class="material-symbols-outlined" aria-hidden="true">school</span><h3>Education</h3><p>Campus and department budgets cover travel, events, and utilities without spreadsheet chaos.</p></article>
+          <article class="ex-case"><span class="material-symbols-outlined" aria-hidden="true">account_balance</span><h3>Professional services</h3><p>CA and consulting firms charge client-related costs correctly and reimburse staff on time.</p></article>
+          <article class="ex-case"><span class="material-symbols-outlined" aria-hidden="true">local_shipping</span><h3>Logistics</h3><p>Fuel and line-haul related expenses connect to operations with better driver claim discipline.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="ex-section ex-section--panel" id="exDash" aria-labelledby="ex-dash-title">
+      <div class="container">
+        <div class="ex-section__head ex-reveal">
+          <p class="eyebrow">Dashboard preview</p>
+          <h2 class="section-title" id="ex-dash-title">Spend control you can scan in seconds</h2>
+          <p class="section-lead">Illustrative control metrics teams monitor once Expense is live. Actual figures depend on your claim volume and policy set-up.</p>
+        </div>
+        <div class="ex-dash ex-reveal">
+          <div class="ex-dash__main">
+            <h3>Expense health snapshot</h3>
+            <p>Queue health and cost mix for a multi-branch TimeERP organisation.</p>
+            <div class="ex-dash__metrics">
+              <div class="ex-metric"><strong data-count="1860000" data-prefix="₹">0</strong><span>Total expenses</span></div>
+              <div class="ex-metric"><strong data-count="42">0</strong><span>Pending approval</span></div>
+              <div class="ex-metric"><strong data-count="318">0</strong><span>Approved this month</span></div>
+              <div class="ex-metric"><strong data-count="9">0</strong><span>Rejected claims</span></div>
+              <div class="ex-metric"><strong data-count="78" data-suffix="%">0%</strong><span>Budget utilisation</span></div>
+              <div class="ex-metric"><strong data-count="24" data-suffix="%">0%</strong><span>Travel share</span></div>
+            </div>
+          </div>
+          <div class="ex-dash__side">
+            <div class="ex-dash__card">
+              <h4>Top categories</h4>
+              <div class="ex-bar" data-width="72"><span></span></div>
+              <p>Travel and fuel often lead for field and CA client visit heavy teams.</p>
+            </div>
+            <div class="ex-dash__card">
+              <h4>Department spend</h4>
+              <div class="ex-bar" data-width="54"><span></span></div>
+              <p>Operations and sales typically dominate out-of-pocket claims.</p>
+            </div>
+            <div class="ex-dash__card">
+              <h4>Project expenses</h4>
+              <div class="ex-bar" data-width="61"><span></span></div>
+              <p>Job-tagged costs protect delivery margin reviews.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ex-section ex-section--soft" aria-labelledby="ex-ben-title">
+      <div class="container">
+        <div class="ex-section__head ex-reveal">
+          <p class="eyebrow">Outcomes</p>
+          <h2 class="section-title" id="ex-ben-title">Benefits across the organisation</h2>
+        </div>
+        <div class="ex-ben ex-reveal">
+          <article class="ex-ben__card">
+            <h3><span class="material-symbols-outlined" aria-hidden="true">business_center</span> Business</h3>
+            <ul>
+              <li>Clear ownership of every rupee spent outside core ledger journal entries</li>
+              <li>Less surprise spend at month-end board packs</li>
+              <li>Consistent process across branches and partners</li>
+            </ul>
+          </article>
+          <article class="ex-ben__card">
+            <h3><span class="material-symbols-outlined" aria-hidden="true">payments</span> Financial</h3>
+            <ul>
+              <li>Faster, documented reimbursements with lower dispute rate</li>
+              <li>Budget vs actual for departments and projects</li>
+              <li>GST-aware capture when tax amounts are required</li>
+            </ul>
+          </article>
+          <article class="ex-ben__card">
+            <h3><span class="material-symbols-outlined" aria-hidden="true">settings_suggest</span> Operational</h3>
+            <ul>
+              <li>Sites and projects receive cost signals in time to act</li>
+              <li>Managers approve from queues instead of inboxes</li>
+              <li>Petty cash and fuel no longer hide in notebooks</li>
+            </ul>
+          </article>
+          <article class="ex-ben__card">
+            <h3><span class="material-symbols-outlined" aria-hidden="true">groups</span> Employee</h3>
+            <ul>
+              <li>Transparent claim status from draft to paid</li>
+              <li>Mobile-friendly capture of receipts on the road</li>
+              <li>Fewer rejected claims when rules are visible up front</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="ex-section" aria-labelledby="ex-int-title">
+      <div class="container">
+        <div class="ex-section__head ex-reveal">
+          <p class="eyebrow">Integrations</p>
+          <h2 class="section-title" id="ex-int-title">Works with the rest of TimeERP</h2>
+          <p class="section-lead">Expense is strongest when connected to the people, projects, and money systems already in the platform.</p>
+        </div>
+        <div class="ex-int ex-reveal">
+          <a class="ex-int__card" href="billing.html"><span class="ex-int__icon" aria-hidden="true"><span class="material-symbols-outlined">receipt_long</span></span><span><h3>Billing and finance</h3><p>Settle claims and align spend with invoicing context.</p></span></a>
+          <a class="ex-int__card" href="hrms.html"><span class="ex-int__icon" aria-hidden="true"><span class="material-symbols-outlined">groups</span></span><span><h3>HRMS</h3><p>Employee masters and claim owners tied to org structure.</p></span></a>
+          <a class="ex-int__card" href="payroll.html"><span class="ex-int__icon" aria-hidden="true"><span class="material-symbols-outlined">account_balance_wallet</span></span><span><h3>Payroll</h3><p>Handoff reimbursements into payout cycles when policy allows.</p></span></a>
+          <a class="ex-int__card" href="project_management.html"><span class="ex-int__icon" aria-hidden="true"><span class="material-symbols-outlined">view_kanban</span></span><span><h3>Projects</h3><p>Job costing reflects real field and client-linked spends.</p></span></a>
+          <a class="ex-int__card" href="inventory_management.html"><span class="ex-int__icon" aria-hidden="true"><span class="material-symbols-outlined">inventory_2</span></span><span><h3>Inventory</h3><p>Connect material and site costs with stock movements where used.</p></span></a>
+          <a class="ex-int__card" href="crm.html"><span class="ex-int__icon" aria-hidden="true"><span class="material-symbols-outlined">handshake</span></span><span><h3>CRM</h3><p>Client-visit costs stay near the opportunity that caused them.</p></span></a>
+          <a class="ex-int__card" href="document_management.html"><span class="ex-int__icon" aria-hidden="true"><span class="material-symbols-outlined">folder_open</span></span><span><h3>Document Vault</h3><p>Store invoices and receipts under controlled vault rules.</p></span></a>
+          <a class="ex-int__card" href="dashboard.html"><span class="ex-int__icon" aria-hidden="true"><span class="material-symbols-outlined">dashboard</span></span><span><h3>Dashboard</h3><p>Surface expense KPIs beside broader operations metrics.</p></span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="ex-section ex-section--panel" aria-labelledby="ex-sec-title">
+      <div class="container">
+        <div class="ex-section__head ex-reveal">
+          <p class="eyebrow">Trust</p>
+          <h2 class="section-title" id="ex-sec-title">Security and control foundations</h2>
+        </div>
+        <div class="ex-sec ex-reveal">
+          <article class="ex-sec__item"><span class="material-symbols-outlined" aria-hidden="true">admin_panel_settings</span><h3>Role-based access</h3><p>Employees submit, managers approve, finance reimburses, under clear permissions.</p></article>
+          <article class="ex-sec__item"><span class="material-symbols-outlined" aria-hidden="true">fact_check</span><h3>Approval logs</h3><p>Every decision is attributable for disputes and audits.</p></article>
+          <article class="ex-sec__item"><span class="material-symbols-outlined" aria-hidden="true">history</span><h3>Expense history</h3><p>Full claim lifecycle stays queryable after payout.</p></article>
+          <article class="ex-sec__item"><span class="material-symbols-outlined" aria-hidden="true">policy</span><h3>Audit trail</h3><p>Status changes and comments support internal control reviews.</p></article>
+          <article class="ex-sec__item"><span class="material-symbols-outlined" aria-hidden="true">lock</span><h3>Secure documents</h3><p>Receipts and invoices ride secure storage practices used across TimeERP.</p></article>
+          <article class="ex-sec__item"><span class="material-symbols-outlined" aria-hidden="true">gavel</span><h3>GST readiness</h3><p>Capture tax components to support finance compliance workflows for India operations.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="ex-section" aria-labelledby="ex-faq-title">
+      <div class="container">
+        <div class="ex-section__head ex-reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2 class="section-title" id="ex-faq-title">Questions finance and operations ask</h2>
+        </div>
+        <div class="ex-faq ex-reveal">
+          <div class="ex-faq__item"><button type="button" class="ex-faq__q" aria-expanded="false">How do employees submit expenses?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button><div class="ex-faq__a">Employees create a claim, choose a category, enter amount and details, attach receipts, and submit for approval. Drafts can be completed when receipts arrive later.</div></div>
+          <div class="ex-faq__item"><button type="button" class="ex-faq__q" aria-expanded="false">Who approves expense claims?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button><div class="ex-faq__a">Typical flows go manager first, then finance. Multi-level approval can be used for higher thresholds or sensitive categories according to your configuration.</div></div>
+          <div class="ex-faq__item"><button type="button" class="ex-faq__q" aria-expanded="false">How do reimbursements work?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button><div class="ex-faq__a">After approval, finance marks claims for reimbursement and records settlement. Status remains on the claim so employees can see when paid.</div></div>
+          <div class="ex-faq__item"><button type="button" class="ex-faq__q" aria-expanded="false">Can we track project expenses?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button><div class="ex-faq__a">Yes. Tag spends to projects so delivery leads and finance see job costs beyond labour and payroll alone.</div></div>
+          <div class="ex-faq__item"><button type="button" class="ex-faq__q" aria-expanded="false">Do budgets update in real time?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button><div class="ex-faq__a">Budget monitoring compares actuals as approved spends accumulate, giving controllers time to intervene within the period.</div></div>
+          <div class="ex-faq__item"><button type="button" class="ex-faq__q" aria-expanded="false">What reports are available?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button><div class="ex-faq__a">Registers by period, department, project, category, and claim status, plus dashboard widgets for queues and utilisation.</div></div>
+          <div class="ex-faq__item"><button type="button" class="ex-faq__q" aria-expanded="false">Is GST supported on expenses?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button><div class="ex-faq__a">Tax fields can capture GST components on eligible lines so finance can review input eligibility as part of close. Exact tax treatment remains a finance policy decision.</div></div>
+          <div class="ex-faq__item"><button type="button" class="ex-faq__q" aria-expanded="false">How is data secured?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button><div class="ex-faq__a">Role-based access, approval logs, and controlled document storage keep spend details with authorised roles only.</div></div>
+          <div class="ex-faq__item"><button type="button" class="ex-faq__q" aria-expanded="false">Does Expense integrate with payroll?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button><div class="ex-faq__a">Approved reimbursements can hand off into payout processes where your organisation pays through payroll cycles. Some firms pay reimbursement separately from salary.</div></div>
+          <div class="ex-faq__item"><button type="button" class="ex-faq__q" aria-expanded="false">Can field staff use mobile devices?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button><div class="ex-faq__a">TimeERP mobile access covers operational workflows including claim capture patterns suited to people on site or travel, subject to your deployment plan.</div></div>
+          <div class="ex-faq__item"><button type="button" class="ex-faq__q" aria-expanded="false">How is petty cash handled?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button><div class="ex-faq__a">Petty cash vouchers record small floats with categories and receipts, supporting reconciliation of imprest balances.</div></div>
+          <div class="ex-faq__item"><button type="button" class="ex-faq__q" aria-expanded="false">Can vendors expenses be recorded?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button><div class="ex-faq__a">Yes. Vendor-linked expenses hold supplier context for utilities, contractors, and services beside employee claims.</div></div>
+          <div class="ex-faq__item"><button type="button" class="ex-faq__q" aria-expanded="false">What happens when a claim is rejected?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button><div class="ex-faq__a">Owners see the rejection with rationale, can correct and resubmit, and finance retains the history of both decisions.</div></div>
+          <div class="ex-faq__item"><button type="button" class="ex-faq__q" aria-expanded="false">Can expenses be split across cost centres?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button><div class="ex-faq__a">Allocation to cost centres or departments supports shared services and internal charge models during posting.</div></div>
+          <div class="ex-faq__item"><button type="button" class="ex-faq__q" aria-expanded="false">How long is expense history retained?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button><div class="ex-faq__a">History remains available for internal control and audit windows according to your organisation retention policy within TimeERP.</div></div>
+          <div class="ex-faq__item"><button type="button" class="ex-faq__q" aria-expanded="false">Is this the same as personal expense apps?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button><div class="ex-faq__a">No. TimeERP Expense is an ERP module for business control, approvals, reimbursements, and costing, integrated with HR and projects.</div></div>
+          <div class="ex-faq__item"><button type="button" class="ex-faq__q" aria-expanded="false">How do we start implementation?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button><div class="ex-faq__a">Most teams configure categories, approvers, and one pilot department, then expand to sites and projects. Book a demo to map this to your org chart.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ex-section" aria-labelledby="ex-cta-title">
+      <div class="container">
+        <div class="ex-cta ex-reveal">
+          <h2 id="ex-cta-title">Take control of every business expense</h2>
+          <p>See claims, multi-level approvals, reimbursements, and cost allocation for your industry in a live TimeERP walkthrough.</p>
+          <div class="ex-cta__actions">
+            <a class="btn btn--primary" href="#" data-book-demo>Book Demo</a>
+            <a class="btn btn--ghost-dark" href="contact_sales.html">Contact Sales</a>
+            <a class="btn btn--ghost-dark" href="price.html">View Pricing</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__main">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo" aria-label="TimeERP home">
+            <img src="assets/image01-footer.svg" alt="TimeERP" width="196" height="48" loading="lazy">
+          </a>
+          <p class="footer__desc">One Platform. Complete Business Management. Enterprise ERP for modern businesses.</p>
+          <div class="footer__stats">
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">◆</span><span>650+ Businesses</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">◎</span><span>99.8% Uptime</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">☁</span><span>Cloud ERP</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">⛨</span><span>Secure</span></div>
+          </div>
+        </div>
+        <div class="footer__cols">
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Products</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Products</h3>
+            <ul class="footer__links">
+              <li><a href="index.html#products">Modules</a></li>
+              <li><a href="index.html#benefits">Benefits</a></li>
+              <li><a href="index.html#task-management">Project Management</a></li>
+              <li><a href="index.html#solutions">Platform</a></li>
+              <li><a href="price.html">Pricing</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Industries</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Industries</h3>
+            <ul class="footer__links">
+              <li><a href="construction.html">Construction</a></li>
+              <li><a href="real_Estate.html">Real Estate</a></li>
+              <li><a href="msme.html">MSME</a></li>
+              <li><a href="CA.html">CA Firms</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Company</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Company</h3>
+            <ul class="footer__links">
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="Our_Presence.html">Our Presence</a></li>
+              <li><a href="careers.html">Careers</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="contact_sales.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Support</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Support</h3>
+            <ul class="footer__links">
+              <li><a href="help_centre.html">Help Center</a></li>
+              <li><a href="contact_sales.html">Sales</a></li>
+              <li><a href="custom_quote.html">Get a Quote</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer__connect">
+        <div class="footer__connect-item">
+          <span class="footer__connect-label">Visit us</span>
+          <address class="footer__address">
+            <a class="footer__address-link" href="https://www.google.com/maps/search/?api=1&query=Ansal+Sumedha+Building+RDC+Ghaziabad+201002" target="_blank" rel="noopener noreferrer" aria-label="View office location on Google Maps">
+              BM-08, Ansal Sumedha Building, RDC,<br>
+              Ghaziabad, Delhi NCR, UP 201002
+            </a>
+          </address>
+          <div class="footer__quick">
+            <a class="footer__quick-btn" href="#" data-book-demo>Book Demo</a>
+            <a class="footer__quick-btn" href="real_time_support.html">Get Support</a>
+          </div>
+        </div>
+        <div class="footer__connect-item">
+          <span class="footer__connect-label">Follow us</span>
+          <div class="footer__social">
+            <a href="https://www.linkedin.com/in/ca-clouddesk-381510388" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23.5h-4V8.5zM8.5 8.5h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1v8.9h-4v-7.88c0-1.88-.03-4.3-2.62-4.3-2.62 0-3.02 2.05-3.02 4.17v7.01h-4V8.5z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/erptime/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@ERPTime" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.5v-7l6 3.5-6 3.5z"/></svg>
+            </a>
+            <a href="https://x.com/erptime" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke-linecap="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bar">
+        <p class="footer__copy">© 2026 TimeERP <a href="https://lawseva.com/" target="_blank" rel="noopener noreferrer">Law Seva Management Private Limited</a></p>
+        <nav class="footer__legal" aria-label="Legal">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="security.html">Security</a>
+          <a href="contact_sales.html">Contact Us</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/expense.js" defer></script>
+  <script src="js/footer-accordion.js" defer></script>
+  <script src="js/site-nav.js?v=13" defer></script>
+  <script src="js/site-footer.js?v=6"></script>
+</body>
+</html>

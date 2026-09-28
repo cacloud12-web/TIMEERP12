@@ -1,0 +1,36 @@
+/* Footer Template — upload control (reuses met-* + mce-* styles) */
+.mft-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.mft-upload__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 14px;
+  border: 1px dashed #d9d9d9;
+  border-radius: 4px;
+  background: #fafafa;
+  color: #595959;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+}
+.mft-upload__btn svg {
+  width: 16px;
+  height: 16px;
+  color: #8c8c8c;
+}
+.mft-upload__btn:hover {
+  border-color: #25B7A7;
+  color: #25B7A7;
+  background: #e6fffb;
+}
+.mft-upload__btn:hover svg { color: #25B7A7; }
+.mft-upload__name {
+  font-size: 12px;
+  color: #8c8c8c;
+}

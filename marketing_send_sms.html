@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMS — TimeERP Marketing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/marketing-send-sms.css?v=3">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="crm-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="crm-top-clock" id="crmTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn crm-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn crm-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">3</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="crm-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="home.html#module/marketing" class="dropdown__item"><strong>Marketing</strong><span>Back to module hub</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="mss-page">
+          <header class="mss-header">
+            <a class="mss-back" href="home.html#module/marketing" aria-label="Back to Marketing">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <h1 class="mss-title">SMS</h1>
+          </header>
+
+          <div class="mss-panel">
+            <div class="mss-tabs" role="tablist" aria-label="SMS sections">
+              <button type="button" class="mss-tab is-active" role="tab" id="mssTabSend" aria-selected="true" aria-controls="mssPaneSend" data-tab="send">Send SMS</button>
+              <button type="button" class="mss-tab" role="tab" id="mssTabSent" aria-selected="false" aria-controls="mssPaneSent" data-tab="sent">View Sent SMS</button>
+            </div>
+
+            <div class="mss-pane" id="mssPaneSend" role="tabpanel" aria-labelledby="mssTabSend">
+              <form class="mss-form" id="mssForm" novalidate>
+                <div class="mss-form__left">
+                  <div class="mss-row">
+                    <label class="mss-label" for="mssClient">Client<span class="mss-req">*</span></label>
+                    <div class="mss-field-wrap">
+                      <span class="mss-combo" data-list="client"><input type="text" id="mssClient" placeholder="" autocomplete="off"><svg class="mss-combo__search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><div class="mss-combo__menu"></div></span>
+                      <a class="mss-quick-link" href="crm_add_client.html">Add New Client</a>
+                    </div>
+                  </div>
+                  <div class="mss-row">
+                    <label class="mss-label" for="mssTemplate">SMS Template<span class="mss-req">*</span></label>
+                    <span class="mss-combo" data-list="template"><input type="text" id="mssTemplate" placeholder="" autocomplete="off"><svg class="mss-combo__search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><div class="mss-combo__menu"></div></span>
+                  </div>
+                  <div class="mss-actions">
+                    <button type="button" class="mss-action mss-action--sms" id="mssSendSms">Send SMS</button>
+                    <button type="button" class="mss-action mss-action--wa" id="mssSendWa">Send WhatsApp</button>
+                    <button type="button" class="mss-action mss-action--ghost" id="mssReset">Reset</button>
+                  </div>
+                </div>
+                <div class="mss-preview" aria-label="Final content preview">
+                  <div class="mss-preview__box" id="mssPreview">Final Content</div>
+                </div>
+              </form>
+            </div>
+
+            <div class="mss-pane" id="mssPaneSent" role="tabpanel" aria-labelledby="mssTabSent" hidden>
+              <div class="mss-filters">
+                <span class="mss-filters__label">Filters:</span>
+                <span class="mss-combo mss-combo--filter" data-list="clientFilter"><input type="text" id="mssFilterClient" placeholder="Client" autocomplete="off"><svg class="mss-combo__search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><div class="mss-combo__menu"></div></span>
+                <div class="mss-date-range" id="mssDateRange">
+                  <button type="button" class="mss-date-range__btn" id="mssDateBtn" aria-haspopup="dialog" aria-expanded="false">
+                    <span class="mss-date-range__part" id="mssDateStartWrap"><span id="mssDateStart">Start date</span></span>
+                    <span class="mss-date-range__arrow" aria-hidden="true">→</span>
+                    <span class="mss-date-range__part" id="mssDateEndWrap"><span id="mssDateEnd">End date</span></span>
+                    <svg class="mss-date-range__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                  </button>
+                  <div class="mss-date-pop" id="mssDatePop" hidden role="dialog" aria-label="Choose date range">
+                    <div class="mss-date-pop__caret" aria-hidden="true"></div>
+                    <div class="mss-range-pop__header">
+                      <div class="mss-range-pop__nav mss-range-pop__nav--left">
+                        <button type="button" data-mss-nav="y-prev" aria-label="Previous year">&lt;&lt;</button>
+                        <button type="button" data-mss-nav="m-prev" aria-label="Previous month">&lt;</button>
+                      </div>
+                      <div class="mss-range-pop__titles">
+                        <span id="mssCalTitleLeft">Aug 2026</span>
+                        <span id="mssCalTitleRight">Sep 2026</span>
+                      </div>
+                      <div class="mss-range-pop__nav mss-range-pop__nav--right">
+                        <button type="button" data-mss-nav="m-next" aria-label="Next month">&gt;</button>
+                        <button type="button" data-mss-nav="y-next" aria-label="Next year">&gt;&gt;</button>
+                      </div>
+                    </div>
+                    <div class="mss-range-pop__cals" id="mssRangeCals"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="mss-table-wrap">
+                <table class="mss-table" id="mssSentTable">
+                  <thead>
+                    <tr>
+                      <th>S. No.</th>
+                      <th>Name</th>
+                      <th>Mobile No.</th>
+                      <th>Date</th>
+                      <th>Time</th>
+                      <th>SMS Template</th>
+                      <th>Content</th>
+                    </tr>
+                  </thead>
+                  <tbody id="mssSentBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="mss-modal-scrim" id="mssModal" role="dialog" aria-modal="true" aria-labelledby="mssModalTitle" hidden>
+    <div class="mss-modal">
+      <div class="mss-modal__head">
+        <h2 id="mssModalTitle">Sent SMS</h2>
+        <button type="button" class="mss-modal__close" id="mssModalClose" aria-label="Close">×</button>
+      </div>
+      <div class="mss-modal__body" id="mssModalBody"></div>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/marketing-send-sms.js?v=2"></script>
+</body>
+</html>

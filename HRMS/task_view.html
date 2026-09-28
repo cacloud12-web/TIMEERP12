@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="../assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="../assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task View — TIME ERP HRMS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/task-view.css?v=tv5">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="../home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="../assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="tv-top-checkin">Check In</button>
+            <time class="tv-top-clock" id="tvTopClock">14:42</time>
+            <button type="button" class="topbar__icon-btn" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn" id="notifBtn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">3</span>
+              </button>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile">
+                <span class="topbar__avatar">CC</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk..</strong></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="tv-page">
+          <header class="tv-header">
+            <a class="tv-back" href="my_timesheet.html" aria-label="Back to timesheet">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <h1 class="tv-title">Task View</h1>
+          </header>
+
+          <section class="tv-card">
+            <div class="tv-card__top">
+              <div class="tv-card__id-row">
+                <strong class="tv-task-id" id="tvTaskId">TSK01190</strong>
+                <span class="tv-delay-badge" id="tvDelayBadge">Delayed By : 121 days</span>
+              </div>
+              <div class="tv-card__tools">
+                <div class="tv-status-wrap">
+                  <button type="button" class="tv-status-btn" id="tvStatusBtn" aria-expanded="false">OPEN <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+                  <div class="tv-status-pop" id="tvStatusPop" hidden>
+                    <button type="button" class="tv-status-opt tv-status-opt--blue">Final Submission</button>
+                    <button type="button" class="tv-status-opt tv-status-opt--green">Complete</button>
+                  </div>
+                </div>
+                <button type="button" class="tv-tool-btn" id="tvStartTimerBtn" aria-label="Start Timer" title="Start Timer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></button>
+                <button type="button" class="tv-tool-btn tv-tool-btn--active" id="tvTaskRemindBtn" aria-label="Task Remind" title="Task Remind">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/><path d="M4 12H2M6 8l-1-1"/></svg>
+                </button>
+                <button type="button" class="tv-tool-btn" id="tvTagsBtn" aria-label="Add Tags" title="Add Tags"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 8l4 8M14 8l-4 8M6 12H2M18 12h4"/></svg></button>
+                <button type="button" class="tv-tool-btn" aria-label="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12M8 11l4 4 4-4"/><path d="M5 21h14"/></svg></button>
+                <a class="tv-tool-btn tv-tool-btn--edit" id="tvEditBtn" href="task_edit.html?id=TSK01190" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></a>
+                <button type="button" class="tv-tool-btn tv-tool-btn--delete" id="tvDeleteBtn" aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button>
+              </div>
+            </div>
+
+            <div class="tv-card__body">
+              <div class="tv-col tv-col--main">
+                <h2 class="tv-task-name" id="tvTaskName">Client consultation call</h2>
+                <dl class="tv-meta">
+                  <div><dt>Target Date</dt><dd id="tvTargetDate">13/04/2026</dd></div>
+                  <div><dt>Due Date</dt><dd id="tvDueDate">18/04/2026 12:38 AM</dd></div>
+                  <div><dt>Created At</dt><dd id="tvCreatedAt">13/04/2026 9:41 PM</dd></div>
+                  <div><dt>Priority</dt><dd class="tv-priority" id="tvPriority">Medium</dd></div>
+                  <div><dt>Created By</dt><dd id="tvCreatedBy">Dev Aggarwal</dd></div>
+                  <div><dt>Current Stage</dt><dd><button type="button" class="tv-link">View</button> <span class="tv-info" aria-hidden="true">ⓘ</span></dd></div>
+                  <div><dt>Service</dt><dd id="tvService">Tax consultation</dd></div>
+                  <div><dt>Sub Service</dt><dd id="tvSubService">Income tax consult...</dd></div>
+                </dl>
+              </div>
+              <div class="tv-col tv-col--people">
+                <div class="tv-people-block">
+                  <span class="tv-people-label">Assignees</span>
+                  <span class="tv-avatar">DA</span>
+                </div>
+                <div class="tv-people-block">
+                  <span class="tv-people-label">Client</span>
+                  <span class="tv-client-chip"><span class="tv-avatar tv-avatar--sm">I</span> Internal</span>
+                </div>
+                <div class="tv-people-block">
+                  <span class="tv-people-label">Efficiency</span>
+                  <span class="tv-eff-bar"></span>
+                </div>
+              </div>
+              <div class="tv-col tv-col--progress">
+                <div class="tv-progress-ring" aria-label="Progress 100 percent">
+                  <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="48" class="tv-ring-bg"/><circle cx="60" cy="60" r="48" class="tv-ring-fill"/></svg>
+                  <span class="tv-progress-val">100.00%</span>
+                </div>
+                <span class="tv-progress-label">Progress</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="tv-more">
+            <button type="button" class="tv-more__toggle" id="tvMoreToggle" aria-expanded="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>
+              More Fields
+              <svg class="tv-more__caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="tv-more__body" id="tvMoreBody">
+              <div class="tv-more__item"><span>Reviewer</span><span class="tv-avatar">SR</span> Suhanshi Rawat</div>
+              <div class="tv-more__item"><span>Consultant</span><span class="tv-avatar">DA</span> Dev Aggarwal</div>
+            </div>
+          </section>
+
+          <section class="tv-tabs-card">
+            <nav class="tv-tabs" role="tablist">
+              <button type="button" class="tv-tab" role="tab">Stages</button>
+              <button type="button" class="tv-tab" role="tab">Subtask</button>
+              <button type="button" class="tv-tab" role="tab">SOP</button>
+              <button type="button" class="tv-tab" role="tab">Attachments</button>
+              <button type="button" class="tv-tab" role="tab">Billing</button>
+              <button type="button" class="tv-tab is-active" role="tab" aria-selected="true">Comments</button>
+              <button type="button" class="tv-tab" role="tab">Timesheet</button>
+              <button type="button" class="tv-tab" role="tab">History</button>
+              <button type="button" class="tv-tab" role="tab">Custom Field</button>
+            </nav>
+            <div class="tv-tab-panel">
+              <div class="tv-comment-compose">
+                <span class="tv-comment-avatar" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                </span>
+                <div class="tv-comment-input-wrap">
+                  <input type="text" class="tv-comment-input" placeholder="Add a comment" aria-label="Add a comment">
+                  <button type="button" class="tv-comment-mic" aria-label="Voice input">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 14a3 3 0 003-3V7a3 3 0 10-6 0v4a3 3 0 003 3z"/><path d="M19 11a7 7 0 01-14 0M12 18v3"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="tv-modal-scrim" id="tvTimeModal" hidden>
+    <div class="tv-time-modal" role="dialog" aria-modal="true" aria-labelledby="tvTimeTitle">
+      <div class="tv-time-modal__head">
+        <h2 id="tvTimeTitle">Time Tracking</h2>
+        <button type="button" class="tv-modal-close" id="tvTimeClose" aria-label="Close">×</button>
+      </div>
+      <div class="tv-time-modal__body">
+        <div class="tv-time-meta">
+          <div><span>Task Name :</span> <strong id="tvTimeTaskName">Client consultation call</strong></div>
+          <div><span>Task Number :</span> <strong id="tvTimeTaskNo">TSK01190</strong></div>
+        </div>
+        <div class="tv-time-mode">
+          <label><input type="radio" name="tvTrackMode" value="auto" checked> Automatic Time Tracking</label>
+          <label><input type="radio" name="tvTrackMode" value="manual"> Manual Time Tracking</label>
+        </div>
+        <button type="button" class="tv-time-start" id="tvTimeStartBtn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Start
+        </button>
+        <div class="tv-time-section-head">
+          <h3>Time Tracking Activity for the Task</h3>
+          <button type="button" class="tv-excel-btn" title="Export Excel">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 2.75h7.5L19.25 7.5V20.5a.75.75 0 01-.75.75H7a.75.75 0 01-.75-.75V3.5A.75.75 0 017 2.75z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M14.5 2.75V7.5h4.75" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9.5 11.5l5 5M14.5 11.5l-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            EXCEL
+          </button>
+        </div>
+        <h4 class="tv-track-title">Automatically Tracked</h4>
+        <div class="tv-track-table-wrap">
+          <table class="tv-track-table">
+            <thead><tr><th>Employee Name</th><th>Date</th><th>Total Hours</th><th>Start Time (HH:MM)</th><th>End Time (HH:MM)</th><th>Status</th><th>Comment</th><th>Action</th></tr></thead>
+            <tbody><tr><td colspan="8"><div class="tv-track-empty"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 28l6-8h32l6 8"/><path d="M10 28h44v22a4 4 0 01-4 4H14a4 4 0 01-4-4V28z"/></svg><p>No data</p></div></td></tr></tbody>
+            <tfoot><tr><td colspan="2" class="tv-total-label">Total Time Tracked</td><td class="tv-total-val">0</td><td colspan="5"></td></tr></tfoot>
+          </table>
+        </div>
+        <h4 class="tv-track-title">Manual Tracked</h4>
+        <div class="tv-track-table-wrap">
+          <table class="tv-track-table" id="tvManualTable">
+            <thead><tr><th>Employee Name</th><th>Date</th><th>Total Hours</th><th>Start Time (HH:MM)</th><th>End Time (HH:MM)</th><th>Status</th><th>Comment</th><th>Action</th></tr></thead>
+            <tbody id="tvManualBody">
+              <tr>
+                <td>Kamal Kant Sharma</td><td>17 Aug 2026</td><td>04:00:00</td><td>--</td><td>--</td>
+                <td><span class="tv-status-pending">Pending</span></td><td>--</td>
+                <td class="tv-td-action">
+                  <button type="button" class="tv-edit-btn" data-action="edit-track" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
+                  <button type="button" class="tv-del-btn" aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot><tr><td colspan="2" class="tv-total-label">Total Time Tracked</td><td class="tv-total-val">04:00:00</td><td colspan="5"></td></tr></tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tv-modal-scrim" id="tvEditTrackModal" hidden>
+    <div class="tv-edit-modal" role="dialog" aria-modal="true" aria-labelledby="tvEditTrackTitle">
+      <div class="tv-edit-modal__head">
+        <h2 id="tvEditTrackTitle">Edit Time Track</h2>
+        <button type="button" class="tv-modal-close" id="tvEditTrackClose" aria-label="Close">×</button>
+      </div>
+      <form class="tv-edit-modal__body" id="tvEditTrackForm" onsubmit="return false;">
+        <div class="tv-edit-row">
+          <label class="tv-edit-field"><span>Select Date <em>*</em></span>
+            <div class="tv-edit-date"><input type="text" id="tvEditDate" value="17-08-2026" readonly><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></div>
+          </label>
+          <label class="tv-edit-field"><span>Select Hours :</span>
+            <div class="tv-edit-date"><input type="text" id="tvEditHours" value="04:00"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div>
+          </label>
+          <label class="tv-edit-check"><input type="checkbox" id="tvEditSpecify"> Specify Time</label>
+        </div>
+        <label class="tv-edit-field tv-edit-field--full"><span>Comments :</span>
+          <textarea id="tvEditComments" rows="4" placeholder="Comments"></textarea>
+        </label>
+        <div class="tv-edit-submit-wrap"><button type="submit" class="tv-edit-save">Save</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="tv-modal-scrim" id="tvRemindModal" hidden>
+    <div class="tv-remind-modal" role="dialog" aria-modal="true" aria-labelledby="tvRemindTitle">
+      <div class="tv-remind-modal__head">
+        <h2 id="tvRemindTitle">Task Reminder</h2>
+        <button type="button" class="tv-modal-close" id="tvRemindClose" aria-label="Close">×</button>
+      </div>
+      <div class="tv-remind-modal__body">
+        <div class="tv-remind-form">
+          <span>Remind me after</span>
+          <input type="text" class="tv-remind-num" id="tvRemindNum" placeholder="Enter numbe...">
+          <select class="tv-remind-unit" id="tvRemindUnit" aria-label="Reminder unit">
+            <option value="" disabled selected hidden>Select ...</option>
+            <option value="minutes">Minutes</option>
+            <option value="hours">Hours</option>
+            <option value="days">Days</option>
+            <option value="weeks">Weeks</option>
+          </select>
+          <span>from Now</span>
+        </div>
+        <label class="tv-remind-check"><input type="checkbox" id="tvRemindRecurring"> Recurring Notification</label>
+        <button type="button" class="tv-remind-save" id="tvRemindSave">Save</button>
+        <div class="tv-remind-table-wrap">
+          <table class="tv-remind-table">
+            <thead><tr><th>Title</th><th>Action</th></tr></thead>
+            <tbody id="tvRemindBody">
+              <tr><td colspan="2"><div class="tv-remind-empty"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 28l6-8h32l6 8"/><path d="M10 28h44v22a4 4 0 01-4 4H14a4 4 0 01-4-4V28z"/></svg><p>No data</p></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tv-modal-scrim" id="tvTagsModal" hidden>
+    <div class="tv-tags-modal" role="dialog" aria-modal="true" aria-labelledby="tvTagsTitle">
+      <div class="tv-tags-modal__head">
+        <h2 id="tvTagsTitle">Add Tags</h2>
+        <button type="button" class="tv-modal-close" id="tvTagsClose" aria-label="Close">×</button>
+      </div>
+      <form class="tv-tags-modal__body" id="tvTagsForm" onsubmit="return false;">
+        <input type="text" class="tv-tags-input" id="tvTagsInput" placeholder="Tags" aria-label="Tags">
+        <button type="submit" class="tv-tags-save" id="tvTagsSave">Save</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="tv-del-pop" id="tvDelPop" hidden role="dialog" aria-label="Confirm delete">
+    <div class="tv-del-pop__inner">
+      <div class="tv-del-pop__msg">
+        <span class="tv-del-pop__icon" aria-hidden="true">!</span>
+        <span>Are you sure to delete this?</span>
+      </div>
+      <div class="tv-del-pop__actions">
+        <button type="button" class="tv-del-pop__no" id="tvDelNo">No</button>
+        <button type="button" class="tv-del-pop__yes" id="tvDelYes">Yes</button>
+      </div>
+    </div>
+    <span class="tv-del-pop__arrow" aria-hidden="true"></span>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/task-view.js?v=tv4"></script>
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Vault Report — TimeERP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/document-vault-report.css?v=3">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="dv-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="dv-top-clock" id="dvTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn dv-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn dv-top-icon" id="notifBtn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="dv-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="home.html" class="dropdown__item"><strong>Dashboard</strong><span>Back to home</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="dvr-page">
+          <div class="dvr-back-row">
+            <a class="dvr-back" href="home.html#reports" aria-label="Back to Reports">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <span class="dvr-back-title">Document Vault Report</span>
+          </div>
+
+          <section class="dvr-card" id="dvrFilterCard" aria-labelledby="dvrTitle">
+            <div class="dvr-card__head">
+              <h1 class="dvr-card__title" id="dvrTitle">Document Vault Report</h1>
+              <div class="dvr-type-wrap">
+                <button type="button" class="dvr-type-btn has-value" id="dvrTypeBtn" aria-haspopup="listbox" aria-expanded="false">
+                  <span id="dvrTypeLabel">DSC Report</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+                <ul class="dvr-type-list" id="dvrTypeList" role="listbox" hidden>
+                  <li role="option" data-value="DSC Report" aria-selected="true">DSC Report</li>
+                  <li role="option" data-value="Customer Password">Customer Password</li>
+                </ul>
+              </div>
+              <button type="button" class="dvr-collapse" id="dvrCollapseBtn" aria-expanded="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                Collapse
+              </button>
+            </div>
+
+            <div class="dvr-filters">
+              <div class="dvr-field">
+                <label for="dvrFy">Financial Year</label>
+                <div class="dvr-combo" data-combo="fy">
+                  <input type="text" id="dvrFy" class="dvr-combo__input" placeholder="Select FY" autocomplete="off">
+                  <svg class="dvr-combo__search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                  <ul class="dvr-combo__list" hidden>
+                    <li data-value="FY 27-28">FY 27-28</li>
+                    <li data-value="FY 26-27">FY 26-27</li>
+                    <li data-value="FY 25-26">FY 25-26</li>
+                    <li data-value="FY 24-25">FY 24-25</li>
+                    <li data-value="FY 23-24">FY 23-24</li>
+                    <li data-value="FY 22-23">FY 22-23</li>
+                    <li data-value="FY 21-22">FY 21-22</li>
+                    <li data-value="FY 20-21">FY 20-21</li>
+                    <li data-value="FY 19-20">FY 19-20</li>
+                    <li data-value="FY 18-19">FY 18-19</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="dvr-field">
+                <label for="dvrDateRange">Date</label>
+                <div class="dvr-range-wrap" data-range="date">
+                  <input type="text" id="dvrDateRange" value="14-08-2026 → 21-08-2026" readonly aria-haspopup="dialog" aria-expanded="false">
+                  <svg class="dvr-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                  <div class="dvr-rangepicker" hidden role="dialog" aria-label="Choose date range">
+                    <div class="dvr-rangepicker__panels">
+                      <div class="dvr-cal-panel">
+                        <div class="dvr-cal-panel__head">
+                          <button type="button" data-nav="prev-year" aria-label="Previous year">&lt;&lt;</button>
+                          <button type="button" data-nav="prev-month" aria-label="Previous month">&lt;</button>
+                          <span class="dvr-cal-panel__label" data-left-label>Aug 2026</span>
+                        </div>
+                        <div class="dvr-cal-weekdays"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+                        <div class="dvr-cal-grid" data-left-grid></div>
+                      </div>
+                      <div class="dvr-cal-panel">
+                        <div class="dvr-cal-panel__head">
+                          <span class="dvr-cal-panel__label" data-right-label>Sep 2026</span>
+                          <button type="button" data-nav="next-month" aria-label="Next month">&gt;</button>
+                          <button type="button" data-nav="next-year" aria-label="Next year">&gt;&gt;</button>
+                        </div>
+                        <div class="dvr-cal-weekdays"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+                        <div class="dvr-cal-grid" data-right-grid></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="dvr-field">
+                <label for="dvrCustomer">Customer</label>
+                <div class="dvr-combo" data-combo="customer">
+                  <input type="text" id="dvrCustomer" class="dvr-combo__input" placeholder="Customer" autocomplete="off">
+                  <svg class="dvr-combo__search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                  <ul class="dvr-combo__list" hidden>
+                    <li data-value="(21) Internal">(21) Internal</li>
+                    <li data-value="(174) SAURABH BHARDWAJ">(174) SAURABH BHARDWAJ</li>
+                    <li data-value="(TH296) THE GOLD RING">(TH296) THE GOLD RING</li>
+                    <li data-value="(CA001) CA CloudDesk">(CA001) CA CloudDesk</li>
+                    <li data-value="(BL002) Bluemon Wealth">(BL002) Bluemon Wealth</li>
+                    <li data-value="(LS003) Law Seva Management">(LS003) Law Seva Management</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="dvr-field">
+                <label for="dvrBranch">Branch</label>
+                <div class="dvr-combo" data-combo="branch">
+                  <input type="text" id="dvrBranch" class="dvr-combo__input" placeholder="Branch" autocomplete="off">
+                  <svg class="dvr-combo__search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                  <ul class="dvr-combo__list" hidden>
+                    <li data-value="CA CloudDesk">CA CloudDesk</li>
+                    <li data-value="Bluemon Wealth Management">Bluemon Wealth Management</li>
+                    <li data-value="Law Seva Management Private Limited">Law Seva Management Private Limited</li>
+                    <li data-value="saurabh bharadwaj">saurabh bharadwaj</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="dvr-field">
+                <label for="dvrValidity">Validity</label>
+                <div class="dvr-range-wrap" data-range="validity">
+                  <input type="text" id="dvrValidity" placeholder="Start date → End date" readonly aria-haspopup="dialog" aria-expanded="false">
+                  <svg class="dvr-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                  <div class="dvr-rangepicker" hidden role="dialog" aria-label="Choose validity range">
+                    <div class="dvr-rangepicker__panels">
+                      <div class="dvr-cal-panel">
+                        <div class="dvr-cal-panel__head">
+                          <button type="button" data-nav="prev-year" aria-label="Previous year">&lt;&lt;</button>
+                          <button type="button" data-nav="prev-month" aria-label="Previous month">&lt;</button>
+                          <span class="dvr-cal-panel__label" data-left-label>Aug 2026</span>
+                        </div>
+                        <div class="dvr-cal-weekdays"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+                        <div class="dvr-cal-grid" data-left-grid></div>
+                      </div>
+                      <div class="dvr-cal-panel">
+                        <div class="dvr-cal-panel__head">
+                          <span class="dvr-cal-panel__label" data-right-label>Sep 2026</span>
+                          <button type="button" data-nav="next-month" aria-label="Next month">&gt;</button>
+                          <button type="button" data-nav="next-year" aria-label="Next year">&gt;&gt;</button>
+                        </div>
+                        <div class="dvr-cal-weekdays"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+                        <div class="dvr-cal-grid" data-right-grid></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="dvr-field">
+                <label for="dvrStatus">Status</label>
+                <div class="dvr-combo" data-combo="status">
+                  <input type="text" id="dvrStatus" class="dvr-combo__input" placeholder="Select Status" autocomplete="off">
+                  <svg class="dvr-combo__search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                  <ul class="dvr-combo__list" hidden>
+                    <li data-value="Active">Active</li>
+                    <li data-value="Recent Expiring">Recent Expiring</li>
+                    <li data-value="Recent Expired">Recent Expired</li>
+                    <li data-value="No Expiry Date">No Expiry Date</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="dvr-generate">
+              <button type="button" class="dvr-btn" id="dvrGenerateBtn">Generate Report</button>
+            </div>
+          </section>
+
+          <section class="dvr-card dvr-result is-visible" id="dvrResult" aria-label="Document vault report results">
+            <div class="dvr-toolbar">
+              <span class="dvr-total">Total Count: <strong id="dvrTotalCount">0</strong></span>
+              <div class="dvr-toolbar__right">
+                <div class="dvr-cols-wrap" id="dvrColsWrap">
+                  <button type="button" class="dvr-cols-btn" id="dvrColsBtn" aria-haspopup="true" aria-expanded="false">
+                    Columns
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                  </button>
+                  <div class="dvr-cols-panel" id="dvrColsPanel" hidden role="dialog" aria-label="Columns">
+                    <label class="dvr-cols-all"><input type="checkbox" id="dvrSelectAll"> Select All</label>
+                    <ul class="dvr-cols-list" id="dvrColsList"></ul>
+                  </div>
+                </div>
+                <button type="button" class="dvr-excel" id="dvrExcelBtn" title="Export Excel">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.7"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9.2 12.2l5.6 5.6M14.8 12.2l-5.6 5.6"/></svg>
+                  EXCEL
+                </button>
+              </div>
+            </div>
+
+            <div class="dvr-table-wrap">
+              <table class="dvr-table" id="dvrDataTable">
+                <thead>
+                  <tr id="dvrTableHead"></tr>
+                </thead>
+                <tbody id="dvrTableBody"></tbody>
+              </table>
+              <div class="dvr-empty" id="dvrEmpty">
+                <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+                  <path d="M18 22h28v26a3 3 0 01-3 3H21a3 3 0 01-3-3V22z" stroke="#cbd5e1" stroke-width="2"/>
+                  <path d="M18 22l4-8h20l4 8" stroke="#cbd5e1" stroke-width="2" stroke-linejoin="round"/>
+                  <path d="M26 34h12M26 42h8" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <p>No data</p>
+              </div>
+            </div>
+
+            <div class="dvr-pager">
+              <button type="button" class="dvr-pager__btn" id="dvrPrev" aria-label="Previous page" disabled>&lt;</button>
+              <input type="text" id="dvrPageInput" value="1" aria-label="Page number">
+              <span>of <span id="dvrPageTotal">1</span></span>
+              <button type="button" class="dvr-pager__btn" id="dvrNext" aria-label="Next page" disabled>&gt;</button>
+              <span class="dvr-pager__count" id="dvrPageCount">0 / 0</span>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/document-vault-report.js?v=1"></script>
+</body>
+</html>

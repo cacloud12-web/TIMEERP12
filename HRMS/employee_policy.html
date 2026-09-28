@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="../assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="../assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Policy — TIME ERP HRMS</title>
+  <meta name="description" content="Create and manage employee policies in TIME ERP HRMS.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/employee-policy.css?v=ep1">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="../home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="../assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="ep-top-checkin is-in" id="epTopCheckInBtn">Check In</button>
+            <time class="ep-top-clock" id="epTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn ep-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn ep-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">3</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">TE</span>
+                <span class="topbar__profile-meta"><strong>Admin</strong><span>TimeERP</span></span>
+                <svg class="ep-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="../home.html" class="dropdown__item"><strong>Go to home</strong><span>Module hub overview</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="ep-page" id="epPage">
+          <header class="ep-header">
+            <a class="ep-back" href="../home.html#module/hrms" aria-label="Back to HRMS">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <h1 class="ep-title">Employee Policy</h1>
+          </header>
+
+          <section class="ep-card" aria-label="Create employee policy">
+            <h2 class="ep-card__heading">Employee Policy</h2>
+
+            <form class="ep-form" id="epForm" novalidate>
+              <div class="ep-row">
+                <label class="ep-label" for="epCategoryInput">Policy Category <span class="ep-req" aria-hidden="true">*</span></label>
+                <div class="ep-field">
+                  <div class="ep-combo" id="epCategoryWrap">
+                    <input type="text" class="ep-combo__input" id="epCategoryInput" placeholder="Select policy category" autocomplete="off" aria-required="true" aria-autocomplete="list" aria-controls="epCategoryList" aria-expanded="false">
+                    <span class="ep-combo__icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                    </span>
+                    <div class="ep-combo__list" id="epCategoryList" role="listbox" hidden></div>
+                  </div>
+                  <p class="ep-error" id="epCategoryError" hidden>Please select a policy category.</p>
+                </div>
+              </div>
+
+              <div class="ep-row ep-row--editor">
+                <label class="ep-label" for="epEditor">Description</label>
+                <div class="ep-field">
+                  <div class="ep-editor" id="epEditorWrap">
+                    <div class="ep-editor__toolbar" role="toolbar" aria-label="Formatting">
+                      <button type="button" class="ep-tool" data-cmd="undo" title="Undo" aria-label="Undo">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 14l-4-4 4-4"/><path d="M5 10h8a5 5 0 015 5v1"/></svg>
+                      </button>
+                      <button type="button" class="ep-tool" data-cmd="redo" title="Redo" aria-label="Redo">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 14l4-4-4-4"/><path d="M19 10H11a5 5 0 00-5 5v1"/></svg>
+                      </button>
+                      <span class="ep-tool-sep" aria-hidden="true"></span>
+                      <div class="ep-tool-select-wrap">
+                        <select class="ep-tool-select" id="epBlockFormat" aria-label="Paragraph format">
+                          <option value="p">Paragraph</option>
+                          <option value="h1">Heading 1</option>
+                          <option value="h2">Heading 2</option>
+                          <option value="h3">Heading 3</option>
+                        </select>
+                      </div>
+                      <span class="ep-tool-sep" aria-hidden="true"></span>
+                      <button type="button" class="ep-tool" data-cmd="bold" title="Bold" aria-label="Bold"><strong>B</strong></button>
+                      <button type="button" class="ep-tool" data-cmd="italic" title="Italic" aria-label="Italic"><em>I</em></button>
+                      <span class="ep-tool-sep" aria-hidden="true"></span>
+                      <button type="button" class="ep-tool" data-cmd="justifyLeft" title="Align left" aria-label="Align left">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 10h10M4 14h16M4 18h10"/></svg>
+                      </button>
+                      <button type="button" class="ep-tool" data-cmd="justifyCenter" title="Align center" aria-label="Align center">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M7 10h10M4 14h16M7 18h10"/></svg>
+                      </button>
+                      <button type="button" class="ep-tool" data-cmd="justifyRight" title="Align right" aria-label="Align right">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M10 10h10M4 14h16M10 18h10"/></svg>
+                      </button>
+                      <span class="ep-tool-sep" aria-hidden="true"></span>
+                      <button type="button" class="ep-tool" data-cmd="more" title="More" aria-label="More options" id="epMoreBtn">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="18" cy="12" r="1.5"/></svg>
+                      </button>
+                      <div class="ep-more-menu" id="epMoreMenu" hidden>
+                        <button type="button" data-cmd="underline">Underline</button>
+                        <button type="button" data-cmd="strikeThrough">Strikethrough</button>
+                        <button type="button" data-cmd="insertUnorderedList">Bullet list</button>
+                        <button type="button" data-cmd="insertOrderedList">Numbered list</button>
+                        <button type="button" data-cmd="removeFormat">Clear formatting</button>
+                      </div>
+                    </div>
+                    <div class="ep-editor__body" id="epEditor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Policy description"></div>
+                    <div class="ep-editor__foot">
+                      <span class="ep-editor__path" id="epEditorPath">p</span>
+                      <span class="ep-editor__words" id="epWordCount">0 words</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ep-actions">
+                <button type="submit" class="ep-create" id="epCreateBtn">Create Policy</button>
+              </div>
+            </form>
+          </section>
+
+          <footer class="ep-app-footer" aria-label="App footer"></footer>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/employee-policy.js?v=ep1"></script>
+</body>
+</html>

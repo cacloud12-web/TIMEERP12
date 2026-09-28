@@ -1,0 +1,63 @@
+/* Email Template page — extends marketing-compose-email.css */
+
+.mce-tab {
+  cursor: pointer;
+  color: #64748b;
+}
+.mce-tab.is-active {
+  color: #25B7A7;
+}
+.mce-tab:hover {
+  color: #25B7A7;
+}
+
+.met-panel[hidden] { display: none !important; }
+
+.met-empty {
+  padding: 48px 16px;
+  text-align: center;
+  color: #8c8c8c;
+  font-size: 14px;
+}
+
+.met-table-wrap {
+  overflow-x: auto;
+  border: 1px solid #eef2f6;
+  border-radius: 4px;
+}
+.met-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.met-table th,
+.met-table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
+}
+.met-table th {
+  background: #fafafa;
+  font-weight: 600;
+  color: #595959;
+}
+.met-table td { color: #262626; }
+.met-table tr:last-child td { border-bottom: 0; }
+.met-link {
+  color: #25B7A7;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  padding: 0;
+  margin-right: 12px;
+}
+.met-link:hover { text-decoration: underline; }
+.met-link--danger { color: #ff4d4f; }
+
+@media (max-width: 900px) {
+  .mce-form { grid-template-columns: 1fr; }
+  .mce-row { grid-template-columns: 1fr; }
+  .mce-label { text-align: left; padding-top: 0; }
+}

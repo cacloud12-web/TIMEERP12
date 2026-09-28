@@ -2,8 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" href="assets/image0.png" type="image/png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Real Estate | TimeERP</title>
   <meta name="description" content="TimeERP for real estate developers and firms: project lifecycle, RERA compliance, stakeholder portals, GST and TDS automation, and portfolio control. Built for Indian real estate operations.">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' mailto:">
@@ -844,6 +848,30 @@
       color:rgba(255,255,255,.72);
       margin-bottom:16px;
     }
+    .footer__address-link{
+      display:block;
+      color:inherit;
+      text-decoration:none;
+      border-radius:8px;
+      background-image:linear-gradient(currentColor, currentColor);
+      background-position:0 100%;
+      background-repeat:no-repeat;
+      background-size:0 1px;
+      transition:color .2s ease, background-size .25s ease;
+      width:fit-content;
+      max-width:100%;
+      cursor:pointer;
+    }
+    .footer__address-link:hover,
+    .footer__address-link:focus-visible{
+      color:#fff;
+      background-size:100% 1px;
+    }
+    .footer__address-link:focus-visible{
+      outline:2px solid var(--accent, #25b7a7);
+      outline-offset:4px;
+    }
+
     .footer__quick{display:flex;flex-wrap:wrap;gap:10px}
     .footer__quick-btn{
       display:inline-flex;
@@ -952,7 +980,7 @@
       .sp-calc__controls,.sp-calc__result-panel{padding:20px;}
     }
   </style>
-  <link rel="stylesheet" href="css/site-nav.css">
+  <link rel="stylesheet" href="css/site-nav.css?v=13">
 </head>
 <body>
 
@@ -1458,7 +1486,7 @@
     <div class="container">
       <div class="footer__main">
         <div class="footer__brand">
-          <a href="home1.html" class="footer__logo" aria-label="TimeERP home">
+          <a href="index.html" class="footer__logo" aria-label="TimeERP home">
             <img src="assets/image01-footer.svg" alt="TimeERP" width="196" height="48" loading="lazy">
           </a>
           <p class="footer__desc">One Platform. Complete Business Management. Enterprise ERP for modern businesses.</p>
@@ -1475,10 +1503,10 @@
             <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Products</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
             <h4 class="footer__col-title">Products</h4>
             <ul class="footer__links">
-              <li><a href="home1.html#products">Modules</a></li>
-              <li><a href="home1.html#benefits">Benefits</a></li>
-              <li><a href="home1.html#task-management">Project Management</a></li>
-              <li><a href="home1.html#solutions">Platform</a></li>
+              <li><a href="index.html#products">Modules</a></li>
+              <li><a href="index.html#benefits">Benefits</a></li>
+              <li><a href="index.html#task-management">Project Management</a></li>
+              <li><a href="index.html#solutions">Platform</a></li>
               <li><a href="price.html">Pricing</a></li>
             </ul>
           </div>
@@ -1499,6 +1527,7 @@
               <li><a href="about.html">About Us</a></li>
               <li><a href="Our_Presence.html">Our Presence</a></li>
               <li><a href="careers.html">Careers</a></li>
+              <li><a href="blog.html">Blog</a></li>
               <li><a href="contact_sales.html">Contact</a></li>
             </ul>
           </div>
@@ -1506,7 +1535,7 @@
             <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Support</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
             <h4 class="footer__col-title">Support</h4>
             <ul class="footer__links">
-              <li><a href="real_time_support.html">Help Center</a></li>
+              <li><a href="help_centre.html">Help Center</a></li>
               <li><a href="contact_sales.html">Sales</a></li>
               <li><a href="custom_quote.html">Get a Quote</a></li>
             </ul>
@@ -1518,8 +1547,10 @@
         <div class="footer__connect-item">
           <span class="footer__connect-label">Visit us</span>
           <address class="footer__address">
-            BM-08, Ansal Sumedha Building, RDC,<br>
-            Ghaziabad, Delhi NCR, UP 201002
+            <a class="footer__address-link" href="https://www.google.com/maps/search/?api=1&query=Ansal+Sumedha+Building+RDC+Ghaziabad+201002" target="_blank" rel="noopener noreferrer" aria-label="View office location on Google Maps">
+              BM-08, Ansal Sumedha Building, RDC,<br>
+              Ghaziabad, Delhi NCR, UP 201002
+            </a>
           </address>
           <div class="footer__quick">
             <a class="footer__quick-btn" href="#" data-book-demo>Book Demo</a>
@@ -1550,6 +1581,7 @@
         <nav class="footer__legal" aria-label="Legal">
           <a href="privacy.html">Privacy</a>
           <a href="terms.html">Terms</a>
+          <a href="security.html">Security</a>
           <a href="contact_sales.html">Contact Us</a>
         </nav>
       </div>
@@ -1558,6 +1590,7 @@
 <script src="js/scroll-animations.js" defer></script>
   <script src="js/footer-accordion.js" defer></script>
   <script src="js/real-estate.js" defer></script>
-  <script src="js/site-nav.js" defer></script>
+  <script src="js/site-nav.js?v=13" defer></script>
+  <script src="js/site-footer.js?v=6"></script>
 </body>
 </html>

@@ -1,0 +1,94 @@
+/* Integration settings page */
+
+.int-page .int-body {
+  padding: 16px 16px 32px;
+}
+
+.int-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.int-back {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #25b7a7;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.int-back svg { width: 16px; height: 16px; }
+.int-back:hover { background: #1a9e8f; }
+
+.int-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.int-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, .05);
+  overflow: hidden;
+}
+
+.int-table-wrap {
+  overflow-x: auto;
+}
+
+.int-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.int-table thead th {
+  text-align: left;
+  padding: 12px 18px;
+  background: #f8fafc;
+  color: #1e293b;
+  font-weight: 700;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.int-table thead th:last-child {
+  text-align: right;
+}
+
+.int-table tbody td {
+  padding: 14px 18px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.int-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.int-table__link-col {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.int-view-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: #25b7a7;
+  text-decoration: none;
+}
+
+.int-view-link:hover {
+  color: #1a9e8f;
+  text-decoration: underline;
+}

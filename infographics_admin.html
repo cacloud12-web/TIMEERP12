@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infographics Admin — TimeERP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/infographics-admin.css?v=2">
+</head>
+<body>
+  <header class="iga-header">
+    <div class="iga-header__inner">
+      <a class="iga-logo" href="home.html" aria-label="TimeERP home">
+        <img src="assets/logo-nav.svg" alt="TimeERP" width="140" height="36">
+      </a>
+      <nav class="iga-nav" aria-label="Admin navigation">
+        <button type="button" class="iga-nav__link is-active" data-view="infographics">Infographics</button>
+        <button type="button" class="iga-nav__link" data-view="categories">Categories</button>
+        <a class="iga-nav__link" href="infographics.html">Home</a>
+        <a class="iga-nav__link" href="infographics.html">Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="iga-main">
+    <!-- Infographics admin -->
+    <section class="iga-view is-active" id="igaViewInfographics" data-panel="infographics">
+      <div class="iga-upload-card">
+        <h2 class="iga-upload-card__title">UPLOAD INFOGRAPHICS</h2>
+        <form class="iga-upload-grid" id="igaUploadForm">
+          <label class="iga-drop" id="igaDrop" for="igaFile">
+            <input type="file" id="igaFile" accept="image/*" hidden>
+            <span class="iga-drop__preview" id="igaDropPreview" hidden></span>
+            <span class="iga-drop__hint" id="igaDropHint">Drag &amp; drop or click to upload</span>
+          </label>
+          <div class="iga-upload-fields">
+            <label class="iga-field">
+              <span>Title</span>
+              <input type="text" id="igaTitle" placeholder="Title" required>
+            </label>
+            <label class="iga-field">
+              <span>Description</span>
+              <textarea id="igaDesc" rows="4" placeholder="Description"></textarea>
+            </label>
+            <label class="iga-field">
+              <span>Categories</span>
+              <select id="igaCategory" required>
+                <option value="">Select...</option>
+              </select>
+            </label>
+            <button type="submit" class="iga-btn-submit">Submit</button>
+            <p class="iga-note">NOTE: Please upload images with a 4:5 portrait aspect ratio. Preferred resolution is 1080x1350 pixels.</p>
+          </div>
+        </form>
+      </div>
+
+      <div class="iga-library">
+        <h2 class="iga-library__title">Infographics</h2>
+        <form class="iga-search-row" id="igaSearchForm">
+          <input type="search" id="igaSearchDesc" placeholder="Search by description">
+          <select id="igaSearchCat">
+            <option value="">Search by Categories</option>
+          </select>
+          <button type="submit" class="iga-btn-search">Search</button>
+        </form>
+        <div class="iga-cards" id="igaCards"></div>
+      </div>
+    </section>
+
+    <!-- Categories admin -->
+    <section class="iga-view" id="igaViewCategories" data-panel="categories" hidden>
+      <div class="iga-upload-card iga-upload-card--narrow">
+        <h2 class="iga-upload-card__title">CATEGORIES</h2>
+        <form class="iga-cat-form" id="igaCatForm">
+          <label class="iga-field">
+            <span>Category name</span>
+            <input type="text" id="igaCatName" placeholder="e.g. Festival" required>
+          </label>
+          <button type="submit" class="iga-btn-submit">Add Category</button>
+        </form>
+        <ul class="iga-cat-list" id="igaCatList"></ul>
+      </div>
+    </section>
+  </main>
+
+  <div class="iga-toast" id="igaToast" hidden></div>
+
+  <div class="iga-modal-scrim" id="igaEditModal" hidden>
+    <div class="iga-modal" role="dialog" aria-modal="true" aria-labelledby="igaEditTitle">
+      <header class="iga-modal__head">
+        <h2 id="igaEditTitle">Edit Infographic</h2>
+        <button type="button" class="iga-modal__close" id="igaEditClose" aria-label="Close">&times;</button>
+      </header>
+      <form class="iga-modal__body" id="igaEditForm">
+        <div class="iga-modal__fields">
+          <label class="iga-field">
+            <span>Title</span>
+            <input type="text" id="igaEditTitleInput" required>
+          </label>
+          <label class="iga-field">
+            <span>Description</span>
+            <textarea id="igaEditDesc" rows="4"></textarea>
+          </label>
+          <label class="iga-field">
+            <span>Categories</span>
+            <div class="iga-cat-select" id="igaEditCatWrap">
+              <span class="iga-cat-chip" id="igaEditCatChip" hidden></span>
+              <select id="igaEditCategory" required>
+                <option value="">Select...</option>
+              </select>
+            </div>
+          </label>
+          <button type="submit" class="iga-btn-update">Update</button>
+          <button type="button" class="iga-btn-cancel" id="igaEditCancel">Cancel</button>
+        </div>
+        <div class="iga-modal__image">
+          <p class="iga-modal__image-label">Upload Image</p>
+          <label class="iga-edit-drop" id="igaEditDrop" for="igaEditFile">
+            <input type="file" id="igaEditFile" accept="image/*" hidden>
+            <span class="iga-edit-drop__preview" id="igaEditPreview"></span>
+            <span class="iga-edit-drop__hint" id="igaEditHint">Click to change image</span>
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/infographics-admin.js?v=2"></script>
+</body>
+</html>

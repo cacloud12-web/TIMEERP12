@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" fill="none" role="img" aria-label="TimeERP">
+  <circle cx="22" cy="22" r="20" fill="#25b7a7"/>
+  <path d="M22 2a20 20 0 0 0-14.14 5.86A20 20 0 0 0 2 22h6a16 16 0 0 1 14-14V2z" fill="#1a3354"/>
+  <circle cx="22" cy="22" r="13.5" fill="#fff"/>
+  <g transform="translate(22 22)">
+    <line x1="0" y1="0" x2="-5.63" y2="-3.25" stroke="#25b7a7" stroke-width="2.4" stroke-linecap="round"/>
+    <line x1="0" y1="0" x2="7.36" y2="-4.25" stroke="#1a3354" stroke-width="2.4" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="2.2" fill="#25b7a7"/>
+  </g>
+</svg>

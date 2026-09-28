@@ -1,0 +1,154 @@
+/* In-app Setup wizard */
+
+.su-banner {
+  background: #25b7a7;
+  color: #fff;
+  border-radius: 12px;
+  padding: 22px 24px;
+  margin-bottom: 16px;
+}
+
+.su-banner h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.su-banner p {
+  margin: 6px 0 0;
+  font-size: 14px;
+  opacity: .95;
+}
+
+.su-progress {
+  margin-bottom: 18px;
+}
+
+.su-progress p {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.su-progress__bar {
+  height: 8px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  overflow: hidden;
+}
+
+.su-progress__bar span {
+  display: block;
+  height: 100%;
+  background: #25b7a7;
+  border-radius: 999px;
+}
+
+.su-guide h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.su-guide p {
+  margin: 4px 0 12px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.su-guide h3 {
+  margin: 0 0 14px;
+  font-size: 12px;
+  letter-spacing: .06em;
+  color: #475569;
+  font-weight: 800;
+}
+
+.su-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px 16px;
+  position: relative;
+}
+
+.su-step {
+  position: relative;
+  display: block;
+  min-height: 140px;
+  padding: 14px 14px 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(15, 23, 42, .06);
+  background: var(--su-bg, #f8fafc);
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, .04);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.su-step:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, .1);
+}
+
+.su-step__badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .03em;
+  display: inline-flex;
+  align-items: center;
+}
+
+.su-step--completed .su-step__badge {
+  background: #22c55e;
+  color: #fff;
+}
+
+.su-step--pending .su-step__badge {
+  background: #e5e7eb;
+  color: #475569;
+}
+
+.su-step strong {
+  display: block;
+  margin: 0 72px 8px 0;
+  font-size: 15px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.su-step p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #475569;
+  max-width: 90%;
+}
+
+.su-step__num {
+  position: absolute;
+  right: 10px;
+  bottom: 0;
+  font-size: 64px;
+  font-weight: 800;
+  color: rgba(15, 23, 42, .08);
+  line-height: 1;
+  pointer-events: none;
+}
+
+@media (max-width: 1100px) {
+  .su-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .su-grid { grid-template-columns: 1fr; }
+}

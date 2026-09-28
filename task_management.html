@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Management — TimeERP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/task-management.css?v=teal3">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="dv-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="dv-top-clock" id="dvTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn dv-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn dv-top-icon" id="notifBtn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="dv-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="home.html" class="dropdown__item"><strong>Dashboard</strong><span>Back to home</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="tm-page">
+          <!-- Top Tab Bar -->
+          <div class="tm-tabs">
+            <div class="tm-tabs-left">
+              <button class="tm-tab" data-tab="dashboard">Task Dashboard</button>
+              <button class="tm-tab is-active" data-tab="table">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;vertical-align:-1px"><rect x="5" y="4" width="14" height="16" rx="1.5"/><path d="M5 9.33h14M5 14.67h14"/><path d="M8 6.85h5M8 12h5M8 17.15h5"/></svg> Table View
+              </button>
+              <button class="tm-tab" data-tab="cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;vertical-align:-1px"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg> Cart View
+              </button>
+            </div>
+            <div class="tm-tabs-right">
+              <div class="tm-settings-wrap" id="settingsWrap">
+                <button class="tm-settings-btn" id="settingsBtn" title="Settings">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 00-2 2v.18a2 2 0 01-1 1.73l-.43.25a2 2 0 01-2 0l-.15-.08a2 2 0 00-2.73.73l-.22.38a2 2 0 00.73 2.73l.15.1a2 2 0 011 1.72v.51a2 2 0 01-1 1.74l-.15.09a2 2 0 00-.73 2.73l.22.38a2 2 0 002.73.73l.15-.08a2 2 0 012 0l.43.25a2 2 0 011 1.73V20a2 2 0 002 2h.44a2 2 0 002-2v-.18a2 2 0 011-1.73l.43-.25a2 2 0 012 0l.15.08a2 2 0 002.73-.73l.22-.39a2 2 0 00-.73-2.73l-.15-.08a2 2 0 01-1-1.74v-.5a2 2 0 011-1.74l.15-.09a2 2 0 00.73-2.73l-.22-.38a2 2 0 00-2.73-.73l-.15.08a2 2 0 01-2 0l-.43-.25a2 2 0 01-1-1.73V4a2 2 0 00-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+                <ul class="tm-settings-dd" id="settingsDD">
+                  <li data-action="master-services">Master services</li>
+                  <li data-action="task-settings">Task settings</li>
+                </ul>
+              </div>
+              <div class="tm-fy-wrap" id="tmFYWrap">
+                <button type="button" class="tm-fy-trigger" id="tmFYBtn" aria-haspopup="listbox" aria-expanded="false">
+                  <span class="tm-fy-value" id="tmFYValue">FY 26-27</span>
+                  <span class="tm-fy-clear" id="tmFYClear" title="Clear" aria-label="Clear">×</span>
+                </button>
+                <div class="tm-fy-dd" id="tmFYDD" hidden>
+                  <ul class="tm-fy-list" id="tmFYList" role="listbox">
+                    <li data-fy="FY 27-28">FY 27-28</li>
+                    <li data-fy="FY 26-27" class="is-selected">FY 26-27</li>
+                    <li data-fy="FY 25-26">FY 25-26</li>
+                    <li data-fy="FY 24-25">FY 24-25</li>
+                    <li data-fy="FY 23-24">FY 23-24</li>
+                    <li data-fy="FY 22-23">FY 22-23</li>
+                    <li data-fy="FY 21-22">FY 21-22</li>
+                    <li data-fy="FY 20-21">FY 20-21</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="tm-settings-wrap" id="addWrap">
+                <button class="tm-add-btn" id="addBtn" title="Add" aria-label="Add">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+              </button>
+                <ul class="tm-add-dd" id="addDD">
+                  <li data-action="quick-task">Quick Task Add</li>
+                  <li data-action="create-task">Create Task</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- ══ TABLE VIEW ══ -->
+          <section class="tm-panel is-active" id="panel-table">
+            <div class="tm-toolbar">
+              <div class="tm-view-wrap" id="tmViewWrap">
+                <button type="button" class="tm-toolbar-btn tm-toolbar-btn--view" id="tmViewBtn" aria-haspopup="listbox" aria-expanded="false">
+                  <svg class="tm-toolbar-btn__eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <span class="tm-view-label" id="tmViewLabel">Table</span>
+                  <span class="tm-toolbar-btn__caret" aria-hidden="true">▼</span>
+                </button>
+                <ul class="tm-view-dd" id="tmViewDD" role="listbox" hidden>
+                  <li role="option" data-view="table" class="is-selected" aria-selected="true">Table</li>
+                  <li role="option" data-view="calendar" aria-selected="false">Calendar</li>
+                  <li role="option" data-view="service" aria-selected="false">Service wise</li>
+                </ul>
+                <div class="tm-select-svc" id="tmSelectSvc" hidden role="dialog" aria-label="Select Services">
+                  <div class="tm-select-svc__title">Select Services</div>
+                  <ul class="tm-select-svc__list" id="tmSelectSvcList">
+                    <li><label><input type="checkbox" value="audit"> Audit</label></li>
+                    <li><label><input type="checkbox" value="gst"> Gst</label></li>
+                    <li><label><input type="checkbox" value="income-tax"> Income tax</label></li>
+                    <li><label><input type="checkbox" value="p-tax"> P-Tax</label></li>
+                    <li><label><input type="checkbox" value="roc"> Roc</label></li>
+                  </ul>
+                  <div class="tm-select-svc__actions">
+                    <button type="button" class="tm-select-svc__link" id="tmSelectSvcAll">Select all</button>
+                    <button type="button" class="tm-select-svc__link" id="tmSelectSvcNone">Deselect all</button>
+                  </div>
+                  <button type="button" class="tm-select-svc__apply" id="tmSelectSvcApply">Apply</button>
+                </div>
+              </div>
+              <div class="tm-filters-wrap" id="tmFiltersWrap">
+                <button type="button" class="tm-toolbar-btn tm-toolbar-btn--filters" id="tmFiltersBtn" aria-haspopup="true" aria-expanded="false">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 5h16l-6.2 7.4V19l-3.6 2v-8.6L4 5z"/></svg>
+                  Filters
+                  <span class="tm-toolbar-btn__caret" aria-hidden="true">▼</span>
+                </button>
+                <div class="tm-filters-dd" id="tmFiltersDD" hidden role="dialog" aria-label="Filters">
+                  <div class="tm-filters-dd__section">
+                    <div class="tm-filters-dd__row">
+                      <span class="tm-filters-dd__label">Type</span>
+                      <button type="button" class="tm-filters-dd__reset" id="tmFiltersReset">Reset</button>
+                    </div>
+                    <div class="tm-filters-chips" id="tmFilterType" data-group="type">
+                      <button type="button" class="tm-filters-chip is-active" data-value="all">All</button>
+                      <button type="button" class="tm-filters-chip" data-value="rt">RT</button>
+                      <button type="button" class="tm-filters-chip" data-value="st">ST</button>
+                    </div>
+                  </div>
+                  <div class="tm-filters-dd__section">
+                    <span class="tm-filters-dd__label">Category</span>
+                    <div class="tm-filters-chips" id="tmFilterCategory" data-group="category">
+                      <button type="button" class="tm-filters-chip" data-value="completed">Completed</button>
+                      <button type="button" class="tm-filters-chip" data-value="deleted">Deleted</button>
+                    </div>
+                  </div>
+                  <div class="tm-filters-dd__section">
+                    <span class="tm-filters-dd__label">Status</span>
+                    <div class="tm-filters-select-wrap">
+                      <select class="tm-filters-select" id="tmFilterStatus" aria-label="Status">
+                        <option value="">-- No auto-invoice --</option>
+                        <option value="open">Open</option>
+                        <option value="processing">Processing</option>
+                        <option value="stuck">Stuck</option>
+                        <option value="completed">Completed</option>
+                        <option value="under_review">Under Review</option>
+                      </select>
+                    </div>
+                  </div>
+                  <button type="button" class="tm-filters-apply" id="tmFiltersApply">Apply</button>
+                </div>
+              </div>
+              <div class="tm-search-box">
+                <input type="text" placeholder="Search tasks...">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+              </div>
+              <div class="tm-toolbar-right">
+                <button type="button" class="tm-icon-btn" title="Edit">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#25B7A7" stroke-width="2"><path d="M17 3a2.83 2.83 0 114 4L7.5 20.5 2 22l1.5-5.5z"/></svg>
+                </button>
+                <button type="button" class="tm-icon-btn tm-icon-btn--reports" id="reportsBtn" title="Reports" aria-pressed="false">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+                </button>
+                <div class="tm-cols-wrap" id="colsWrap">
+                  <button type="button" class="tm-icon-btn tm-icon-btn--combo" id="colsBtn" title="Columns" aria-expanded="false" aria-haspopup="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="4" width="14" height="16" rx="1.5"/><path d="M5 9.33h14M5 14.67h14"/><path d="M8 6.85h5M8 12h5M8 17.15h5"/></svg>
+                    <svg class="tm-icon-btn__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                  </button>
+                  <div class="tm-cols-dd" id="colsDD" hidden>
+                    <div class="tm-cols-dd__head">
+                      <span class="tm-cols-dd__title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="1.5"/><path d="M5 9.33h14M5 14.67h14"/><path d="M8 6.85h5M8 12h5M8 17.15h5"/></svg>
+                        Columns
+                      </span>
+                      <button type="button" class="tm-cols-dd__select-all" id="colsSelectAll">Select All</button>
+                    </div>
+                    <ul class="tm-cols-dd__list" id="colsList"></ul>
+                    <span class="tm-cols-dd__caret" aria-hidden="true"></span>
+                  </div>
+                </div>
+                <div class="tm-more-wrap" id="moreWrap">
+                  <button type="button" class="tm-icon-btn" id="moreBtn" title="More actions">···</button>
+                  <ul class="tm-more-dd" id="moreDD">
+                    <li>Broadcast</li>
+                    <li>Recurring Tasks</li>
+                    <li>Pending bill (task completed)</li>
+                    <li>Export list</li>
+                    <li>Refresh</li>
+                    <li class="has-arrow">View settings</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="tm-reports-panel" id="reportsPanel" hidden>
+              <div class="tm-reports-chart-wrap">
+                <div class="tm-reports-yaxis">
+                  <span>600</span><span>500</span><span>400</span><span>300</span><span>200</span><span>100</span><span>0</span>
+                </div>
+                <div class="tm-reports-chart" id="reportsChart"></div>
+                <div class="tm-reports-legend">
+                  <div class="tm-reports-legend-item"><span class="tm-reports-legend-dot tm-reports-legend-dot--open"></span> OPEN</div>
+                  <div class="tm-reports-legend-item"><span class="tm-reports-legend-dot tm-reports-legend-dot--processing"></span> PROCESSING</div>
+                  <div class="tm-reports-legend-item"><span class="tm-reports-legend-dot tm-reports-legend-dot--stuck"></span> STUCK</div>
+                  <div class="tm-reports-legend-item"><span class="tm-reports-legend-dot tm-reports-legend-dot--completed"></span> COMPLETED</div>
+                  <div class="tm-reports-legend-item"><span class="tm-reports-legend-dot tm-reports-legend-dot--review"></span> UNDER_REVIEW</div>
+                  <div class="tm-reports-legend-item"><span class="tm-reports-legend-dot tm-reports-legend-dot--deleted"></span> DELETED</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tm-subview" id="tmSubviewTable">
+            <div class="tm-table-wrap">
+              <table class="tm-table" id="tmTable">
+                <thead>
+                  <tr class="tm-head-row">
+                    <th class="tm-th tm-th--cb tm-sticky-left tm-sticky-left--0"><input type="checkbox" id="tmCheckAll" aria-label="Select all"></th>
+                    <th class="tm-th tm-th--sort tm-sticky-left tm-sticky-left--1"><span class="tm-th-label">Task</span><span class="tm-sort" aria-hidden="true"><svg viewBox="0 0 10 12"><path d="M5 1L8 4H2z" fill="currentColor"/><path d="M5 11L2 8h6z" fill="currentColor"/></svg></span></th>
+                    <th class="tm-th tm-th--sort" data-col="client"><span class="tm-th-label">Client</span><span class="tm-sort" aria-hidden="true"><svg viewBox="0 0 10 12"><path d="M5 1L8 4H2z" fill="currentColor"/><path d="M5 11L2 8h6z" fill="currentColor"/></svg></span></th>
+                    <th class="tm-th tm-th--sort" data-col="assignees"><span class="tm-th-label">Assignees</span><span class="tm-sort" aria-hidden="true"><svg viewBox="0 0 10 12"><path d="M5 1L8 4H2z" fill="currentColor"/><path d="M5 11L2 8h6z" fill="currentColor"/></svg></span></th>
+                    <th class="tm-th" data-col="invoiceStatus"><span class="tm-th-label">Invoice Status</span></th>
+                    <th class="tm-th tm-th--sort" data-col="status"><span class="tm-th-label">Status</span><span class="tm-sort" aria-hidden="true"><svg viewBox="0 0 10 12"><path d="M5 1L8 4H2z" fill="currentColor"/><path d="M5 11L2 8h6z" fill="currentColor"/></svg></span></th>
+                    <th class="tm-th tm-th--sort" data-col="targetDate"><span class="tm-th-label">Target Date</span><span class="tm-sort" aria-hidden="true"><svg viewBox="0 0 10 12"><path d="M5 1L8 4H2z" fill="currentColor"/><path d="M5 11L2 8h6z" fill="currentColor"/></svg></span></th>
+                    <th class="tm-th tm-th--sort" data-col="createdDate"><span class="tm-th-label">Created Date</span><span class="tm-sort" aria-hidden="true"><svg viewBox="0 0 10 12"><path d="M5 1L8 4H2z" fill="currentColor"/><path d="M5 11L2 8h6z" fill="currentColor"/></svg></span></th>
+                    <th class="tm-th" data-col="description"><span class="tm-th-label">Description</span></th>
+                    <th class="tm-th tm-th--sort" data-col="priority"><span class="tm-th-label">Priority</span><span class="tm-sort" aria-hidden="true"><svg viewBox="0 0 10 12"><path d="M5 1L8 4H2z" fill="currentColor"/><path d="M5 11L2 8h6z" fill="currentColor"/></svg></span></th>
+                    <th class="tm-th" data-col="currentStage"><span class="tm-th-label">Current Stage</span></th>
+                    <th class="tm-th tm-th--sort" data-col="reviewer"><span class="tm-th-label">Reviewer</span><span class="tm-sort" aria-hidden="true"><svg viewBox="0 0 10 12"><path d="M5 1L8 4H2z" fill="currentColor"/><path d="M5 11L2 8h6z" fill="currentColor"/></svg></span></th>
+                    <th class="tm-th" data-col="period"><span class="tm-th-label">Period</span></th>
+                    <th class="tm-th" data-col="service"><span class="tm-th-label">Service</span></th>
+                    <th class="tm-th tm-th--sort" data-col="createdBy"><span class="tm-th-label">Created By</span><span class="tm-sort" aria-hidden="true"><svg viewBox="0 0 10 12"><path d="M5 1L8 4H2z" fill="currentColor"/><path d="M5 11L2 8h6z" fill="currentColor"/></svg></span></th>
+                    <th class="tm-th" data-col="consultant"><span class="tm-th-label">Consultant</span></th>
+                    <th class="tm-th" data-col="tags"><span class="tm-th-label">Tags</span></th>
+                    <th class="tm-th" data-col="clientGroup"><span class="tm-th-label">Client Group</span></th>
+                    <th class="tm-th" data-col="comments"><span class="tm-th-label">Comments</span></th>
+                    <th class="tm-th" data-col="lastComment"><span class="tm-th-label">Last Comment</span></th>
+                    <th class="tm-th" data-col="followers"><span class="tm-th-label">Followers</span></th>
+                    <th class="tm-th" data-col="subService"><span class="tm-th-label">Sub Service</span></th>
+                    <th class="tm-th" data-col="authorisedSignatory"><span class="tm-th-label">Authorised Signatory Name</span></th>
+                    <th class="tm-th" data-col="dueDate"><span class="tm-th-label">Due Date</span></th>
+                    <th class="tm-th" data-col="lastCompleteStage"><span class="tm-th-label">Last Complete Stage</span></th>
+                    <th class="tm-th tm-th--actions tm-sticky-right"><span class="tm-th-label">Actions</span></th>
+                  </tr>
+                  <tr class="tm-filter-row">
+                    <td class="tm-td-sticky-left tm-sticky-left--0"></td>
+                    <td class="tm-td-sticky-left tm-sticky-left--1"><input type="text" placeholder="Task"></td>
+                    <td data-col="client"><input type="text" placeholder="Client"></td>
+                    <td data-col="assignees"><input type="text" placeholder="Assignees"></td>
+                    <td data-col="invoiceStatus"><input type="text" placeholder="Invoice Stat..."></td>
+                    <td data-col="status"><input type="text" placeholder="Status"></td>
+                    <td data-col="targetDate"><div class="tm-date-filter"><input type="text" placeholder="S..."><span>→</span><input type="text" placeholder="E..."><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></div></td>
+                    <td data-col="createdDate"><div class="tm-date-filter"><input type="text" placeholder="S..."><span>→</span><input type="text" placeholder="E..."><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></div></td>
+                    <td data-col="description"><input type="text" placeholder="Descrip..."></td>
+                    <td data-col="priority"><input type="text" placeholder="Priority"></td>
+                    <td data-col="currentStage"><input type="text" placeholder="Current..."></td>
+                    <td data-col="reviewer"><input type="text" placeholder="Reviewer"></td>
+                    <td data-col="period"><div class="tm-date-filter"><input type="text" placeholder="S..."><span>→</span><input type="text" placeholder="E..."><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></div></td>
+                    <td data-col="service"><input type="text" placeholder="Service"></td>
+                    <td data-col="createdBy"><input type="text" placeholder="Created By"></td>
+                    <td data-col="consultant"><input type="text" placeholder="Consultant"></td>
+                    <td data-col="tags"></td>
+                    <td data-col="clientGroup"></td>
+                    <td data-col="comments"></td>
+                    <td data-col="lastComment"></td>
+                    <td data-col="followers"></td>
+                    <td data-col="subService"><input type="text" placeholder="Sub Service"></td>
+                    <td data-col="authorisedSignatory"><input type="text" placeholder="Authorised..."></td>
+                    <td data-col="dueDate"><div class="tm-date-filter"><input type="text" placeholder="S..."><span>→</span><input type="text" placeholder="E..."><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></div></td>
+                    <td data-col="lastCompleteStage"></td>
+                    <td class="tm-td-sticky-right"></td>
+                  </tr>
+                </thead>
+                <tbody id="tmTableBody"></tbody>
+              </table>
+            </div>
+            </div>
+
+            <div class="tm-subview" id="tmSubviewCalendar" hidden>
+              <div class="tm-cal">
+                <div class="tm-cal__toolbar">
+                  <div class="tm-cal__toolbar-left">
+                    <div class="tm-cal__month-nav">
+                      <button type="button" class="tm-cal__nav-btn" id="tmCalPrev" aria-label="Previous month">‹</button>
+                      <input type="month" id="tmCalMonth" class="tm-cal__month-input" value="2026-08" aria-label="Month">
+                      <button type="button" class="tm-cal__nav-btn" id="tmCalNext" aria-label="Next month">›</button>
+                    </div>
+                    <select class="tm-cal__employee" id="tmCalEmployee" aria-label="Employee">
+                      <option value="">Employee</option>
+                      <option value="all">All Employees</option>
+                      <option value="aakash">Aakash</option>
+                      <option value="dev">Dev Aggarwal</option>
+                    </select>
+                  </div>
+                  <div class="tm-cal__actions">
+                    <button type="button" class="tm-cal__btn tm-cal__btn--teal" id="tmCalAddAppt">Add Appointment</button>
+                    <button type="button" class="tm-cal__btn tm-cal__btn--google" id="tmCalGoogle">
+                      <svg class="tm-cal__g" viewBox="0 0 24 24" aria-hidden="true"><path fill="#EA4335" d="M12 10.2v3.6h5.1c-.2 1.2-.9 2.2-1.9 2.9l3.1 2.4c1.8-1.7 2.8-4.1 2.8-7 0-.7-.1-1.3-.2-1.9H12z"/><path fill="#34A853" d="M5.3 14.3l-.8.6-2.5 1.9C3.7 20.1 7.5 22.5 12 22.5c2.7 0 4.9-.9 6.5-2.4l-3.1-2.4c-.9.6-2 .9-3.4.9-2.6 0-4.8-1.8-5.6-4.1z"/><path fill="#4A90E2" d="M3.9 7.2C3.3 8.4 3 9.7 3 11.1c0 1.4.3 2.7.9 3.9l3.3-2.5c-.2-.6-.3-1.2-.3-1.9 0-.6.1-1.2.3-1.8L3.9 7.2z"/><path fill="#FBBC05" d="M12 5.5c1.5 0 2.8.5 3.8 1.5l2.8-2.8C16.9 2.5 14.7 1.5 12 1.5 7.5 1.5 3.7 3.9 2 7.2l3.3 2.5C6.1 7.3 8.4 5.5 12 5.5z"/></svg>
+                      Sign in with Google
+                    </button>
+                  </div>
+                </div>
+
+                <div class="tm-cal__filters" role="group" aria-label="Calendar filters">
+                  <button type="button" class="tm-cal-chip is-active" data-cal-filter="all">All</button>
+                  <button type="button" class="tm-cal-chip" data-cal-filter="appointment">Appointment</button>
+                  <button type="button" class="tm-cal-chip" data-cal-filter="task">Task</button>
+                  <button type="button" class="tm-cal-chip" data-cal-filter="festival">Festival</button>
+                  <button type="button" class="tm-cal-chip" data-cal-filter="circular">Circular</button>
+                  <button type="button" class="tm-cal-chip" data-cal-filter="compliance">Compliance</button>
+                  <button type="button" class="tm-cal-chip" data-cal-filter="attendance">Attendance</button>
+                  <button type="button" class="tm-cal-chip" data-cal-filter="litigation">Litigation</button>
+                </div>
+
+                <div class="tm-cal__view-row">
+                  <div class="tm-cal-nav-group" role="group" aria-label="Calendar navigation">
+                    <button type="button" class="tm-cal-nav-btn" id="tmCalToday">Today</button>
+                    <button type="button" class="tm-cal-nav-btn" id="tmCalBack">Back</button>
+                    <button type="button" class="tm-cal-nav-btn" id="tmCalFwd">Next</button>
+                  </div>
+                  <div class="tm-cal__range-label" id="tmCalRangeLabel">August 2026</div>
+                  <div class="tm-cal-views" role="tablist" aria-label="Calendar view">
+                    <button type="button" class="tm-cal-view is-active" data-cal-view="month">Month</button>
+                    <button type="button" class="tm-cal-view" data-cal-view="week">Week</button>
+                    <button type="button" class="tm-cal-view" data-cal-view="day">Day</button>
+                    <button type="button" class="tm-cal-view" data-cal-view="agenda">Agenda</button>
+                  </div>
+                </div>
+
+                <div class="tm-cal__board" id="tmCalBoardMonth" data-tm-cal-panel="month">
+                  <div class="tm-cal__weekdays" aria-hidden="true">
+                    <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                  </div>
+                  <div class="tm-cal__grid" id="tmCalGrid" role="grid" aria-label="Calendar month"></div>
+                </div>
+
+                <div class="tm-cal__board tm-cal__board--time" id="tmCalBoardWeek" data-tm-cal-panel="week" hidden>
+                  <div class="tm-cal-timegrid" id="tmCalWeekGrid"></div>
+                </div>
+
+                <div class="tm-cal__board tm-cal__board--time" id="tmCalBoardDay" data-tm-cal-panel="day" hidden>
+                  <div class="tm-cal-timegrid" id="tmCalDayGrid"></div>
+                </div>
+
+                <div class="tm-cal__board tm-cal__board--agenda" id="tmCalBoardAgenda" data-tm-cal-panel="agenda" hidden>
+                  <p class="tm-cal-agenda-empty">There are no events in this range.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="tm-subview" id="tmSubviewService" hidden>
+              <div class="tm-mysvc">
+                <div class="tm-mysvc__head">
+                  <h2 class="tm-mysvc__title">My Services</h2>
+                  <div class="tm-mysvc__tools">
+                    <div class="tm-mysvc__search">
+                      <input type="text" id="tmMySvcSearch" placeholder="Search Service" aria-label="Search Service">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+                    </div>
+                    <a href="#" class="tm-mysvc__link" id="tmViewSR">View SR</a>
+                    <button type="button" class="tm-mysvc__add" id="tmMySvcAdd" aria-label="Add service" title="Add">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="tm-mysvc__table-wrap">
+                  <table class="tm-mysvc__table" id="tmMySvcTable">
+                    <thead>
+                      <tr>
+                        <th>S.No.</th>
+                        <th>Service Name</th>
+                        <th>HSN</th>
+                        <th>Frequency</th>
+                        <th>Customers</th>
+                        <th>Short Description</th>
+                        <th>Questionnaire</th>
+                        <th>Share Questionnaire</th>
+                        <th>Questionnaire Details</th>
+                        <th>Description</th>
+                        <th>FAQ</th>
+                        <th colspan="3" class="tm-mysvc__task-group">Task</th>
+                      </tr>
+                      <tr class="tm-mysvc__subhead">
+                        <th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th>
+                        <th>Completed</th>
+                        <th>Processing</th>
+                        <th>Open</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tmMySvcBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ══ TASK DASHBOARD ══ -->
+          <section class="tm-panel" id="panel-dashboard">
+            <!-- Header -->
+            <div class="td-header">
+              <div class="td-header__left">
+                <h2 class="td-title">Task Dashboard</h2>
+                <div class="td-eye-wrap" id="tdEyeWrap">
+                  <button type="button" class="td-eye-btn" id="tdEyeBtn" title="Preferred task view" aria-label="Preferred task view" aria-expanded="false" aria-haspopup="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  </button>
+                  <div class="td-view-pop" id="tdViewPop" hidden role="dialog" aria-label="Preferred task view">
+                    <div class="td-view-pop__title">Preferred task view</div>
+                    <label class="td-view-pop__opt">
+                      <input type="radio" name="tdPreferredView" value="dashboard">
+                      <span>Dashboard view</span>
+                    </label>
+                    <label class="td-view-pop__opt">
+                      <input type="radio" name="tdPreferredView" value="table">
+                      <span>Table view</span>
+                    </label>
+                    <label class="td-view-pop__opt">
+                      <input type="radio" name="tdPreferredView" value="cart">
+                      <span>Card view</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="td-header-right">
+                <div class="td-view-icons">
+                  <div class="tm-settings-wrap" id="tdSettingsWrap">
+                    <button type="button" class="td-vbtn td-vbtn--settings" id="tdSettingsBtn" title="Settings" aria-expanded="false" aria-haspopup="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 00-2 2v.18a2 2 0 01-1 1.73l-.43.25a2 2 0 01-2 0l-.15-.08a2 2 0 00-2.73.73l-.22.38a2 2 0 00.73 2.73l.15.1a2 2 0 011 1.72v.51a2 2 0 01-1 1.74l-.15.09a2 2 0 00-.73 2.73l.22.38a2 2 0 002.73.73l.15-.08a2 2 0 012 0l.43.25a2 2 0 011 1.73V20a2 2 0 002 2h.44a2 2 0 002-2v-.18a2 2 0 011-1.73l.43-.25a2 2 0 012 0l.15.08a2 2 0 002.73-.73l.22-.39a2 2 0 00-.73-2.73l-.15-.08a2 2 0 01-1-1.74v-.5a2 2 0 011-1.74l.15-.09a2 2 0 00.73-2.73l-.22-.38a2 2 0 00-2.73-.73l-.15.08a2 2 0 01-2 0l-.43-.25a2 2 0 01-1-1.73V4a2 2 0 00-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </button>
+                    <ul class="tm-settings-dd" id="tdSettingsDD">
+                      <li data-action="master-services">Master services</li>
+                      <li data-action="task-settings">Task settings</li>
+                    </ul>
+                  </div>
+                  <button type="button" class="td-vbtn" id="tdTableViewBtn" title="Table view">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                  </button>
+                  <button type="button" class="td-vbtn" id="tdCartViewBtn" title="Cart view">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="4" width="14" height="16" rx="1.5"/><path d="M5 9.33h14M5 14.67h14"/><path d="M8 6.85h5M8 12h5M8 17.15h5"/></svg>
+                  </button>
+                </div>
+                <div class="tm-fy-wrap td-fy-wrap" id="tdFYWrap">
+                  <button type="button" class="tm-fy-trigger td-fy-trigger has-value" id="tdFYBtn" aria-haspopup="listbox" aria-expanded="false">
+                    <span class="tm-fy-value" id="tdFYValue">FY 26-27</span>
+                    <svg class="td-fy-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                  </button>
+                  <div class="tm-fy-dd td-fy-dd" id="tdFYDD" hidden>
+                    <ul class="tm-fy-list" id="tdFYList" role="listbox">
+                      <li data-fy="FY 27-28">FY 27-28</li>
+                      <li data-fy="FY 26-27" class="is-selected">FY 26-27</li>
+                      <li data-fy="FY 25-26">FY 25-26</li>
+                      <li data-fy="FY 24-25">FY 24-25</li>
+                      <li data-fy="FY 23-24">FY 23-24</li>
+                      <li data-fy="FY 22-23">FY 22-23</li>
+                      <li data-fy="FY 21-22">FY 21-22</li>
+                      <li data-fy="FY 20-21">FY 20-21</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="tm-settings-wrap td-add-wrap" id="tdAddWrap">
+                  <button type="button" class="tm-add-btn td-add-btn" id="tdAddBtn" title="Add" aria-label="Add" aria-haspopup="true" aria-expanded="false">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                  </button>
+                  <ul class="tm-add-dd" id="tdAddDD" role="menu">
+                    <li data-action="quick-task" role="menuitem">Quick Task Add</li>
+                    <li data-action="create-task" role="menuitem">Create Task</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="td-board">
+            <!-- Filter Tags -->
+            <div class="td-tags">
+              <button class="td-tag-arrow">&lt;</button>
+              <button class="td-tag is-active">All</button>
+              <button class="td-tag">bank audit Ankit</button>
+              <button class="td-tag">ca121</button>
+              <button class="td-tag">development</button>
+              <button class="td-tag">gst filling Ankit</button>
+              <button class="td-tag">Gst Filling Gst R1</button>
+              <button class="td-tag">IT</button>
+              <button class="td-tag">lead generation-c...</button>
+              <button class="td-tag">LICENSE</button>
+              <button class="td-tag-arrow">&gt;</button>
+            </div>
+
+            <!-- Due Date Summary Cards -->
+            <div class="td-due-cards">
+              <div class="td-due-card td-due--yellow"><span class="td-due-num" data-pm-due="dueToday">2</span><span class="td-due-label">DUE TODAY</span></div>
+              <div class="td-due-card td-due--green"><span class="td-due-num">3</span><span class="td-due-label">DUE TOMORROW</span></div>
+              <div class="td-due-card td-due--blue"><span class="td-due-num" data-pm-due="weekly">64</span><span class="td-due-label">DUE IN 7 DAYS</span></div>
+              <div class="td-due-card td-due--purple"><span class="td-due-num">176</span><span class="td-due-label">DUE AFTER 7 DAYS</span></div>
+              <div class="td-due-card td-due--pink"><span class="td-due-num">8</span><span class="td-due-label">OVERDUE UP TO 7 DAYS</span></div>
+              <div class="td-due-card td-due--red"><span class="td-due-num" data-pm-due="overdue">253</span><span class="td-due-label">OVERDUE MORE THAN 7 DAYS</span></div>
+              <div class="td-due-card td-due--sky"><span class="td-due-num">378</span><span class="td-due-label">DUE TOTAL</span></div>
+              <div class="td-due-card td-due--sky"><span class="td-due-num">0</span><span class="td-due-label">CHARGEABLE</span></div>
+              <div class="td-due-card td-due--cyan"><span class="td-due-num">0</span><span class="td-due-label">NON CHARGEABLE</span></div>
+            </div>
+            </div>
+
+            <!-- Kanban: By status & due date -->
+            <h3 class="td-section-title">By status &amp; due date</h3>
+            <div class="td-kanban">
+              <div class="td-kanban-col">
+                <div class="td-kanban-head td-kanban-head--teal"><span class="td-kh-icon"><svg viewBox="0 0 16 16" fill="none" stroke="#25B7A7" stroke-width="1.5" style="width:14px;height:14px"><circle cx="8" cy="8" r="6"/></svg></span> Open <span class="td-kh-count" data-pm-kanban="open">32</span></div>
+                <div class="td-kanban-body">
+                  <div class="td-task-card"><a class="td-tc-id" href="#">TSK02488</a><span class="td-tc-badge">GST FILLING 1</span><div class="td-tc-name">Gst Filling 3B</div><div class="td-tc-meta">Saksham (SA128007) · 25 Aug</div></div>
+                  <div class="td-task-card"><a class="td-tc-id" href="#">TSK02487</a><span class="td-tc-badge">TAX AUDIT</span><div class="td-tc-name">Tax Audit</div><div class="td-tc-meta">Saksham (SA128007) · 25 Aug</div></div>
+                  <div class="td-task-card"><a class="td-tc-id" href="#">TSK02486</a><span class="td-tc-badge">GST FILLING 1</span><div class="td-tc-name">Gst Filling 3B</div><div class="td-tc-meta">Saksham (SA128007) · 25 Aug</div></div>
+                  <div class="td-task-card"><a class="td-tc-id" href="#">TSK02485</a><span class="td-tc-badge">GST FILLING 1</span><div class="td-tc-name">Gst Filling 3B</div><div class="td-tc-meta">Saksham (SA128007) · 25 Aug</div></div>
+                  <div class="td-task-card"><a class="td-tc-id" href="#">TSK02478</a><span class="td-tc-badge">AUDIT</span><div class="td-tc-name">bank audit</div><div class="td-tc-meta">-- · 03 Sep</div></div>
+                  <div class="td-task-card"><a class="td-tc-id" href="#">TSK02476</a><span class="td-tc-badge">GST FILLING</span><div class="td-tc-name">GST R1</div><div class="td-tc-meta">-- · 21 Aug</div></div>
+                </div>
+                <a class="td-view-all" href="#">View all →</a>
+              </div>
+              <div class="td-kanban-col">
+                <div class="td-kanban-head td-kanban-head--yellow"><span class="td-kh-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px"><circle cx="8" cy="8" r="6" fill="none" stroke="#eab308" stroke-width="1.5"/><path d="M8 2a6 6 0 010 12z" fill="#eab308"/></svg></span> Processing <span class="td-kh-count" data-pm-kanban="processing">26</span></div>
+                <div class="td-kanban-body">
+                  <div class="td-task-card"><a class="td-tc-id" href="#">TSK02484</a><span class="td-tc-badge">GST FILLING 1</span><div class="td-tc-name">Gst Filling 3B</div><div class="td-tc-meta">Saksham (SA128007) · 25 Aug</div></div>
+                  <div class="td-task-card"><a class="td-tc-id" href="#">TSK02483</a><span class="td-tc-badge">GST FILLING 1</span><div class="td-tc-name">Gst Filling 3B</div><div class="td-tc-meta">Saksham (SA128007) · 25 Aug</div></div>
+                  <div class="td-task-card"><a class="td-tc-id" href="#">TSK02482</a><span class="td-tc-badge">GST FILLING 1</span><div class="td-tc-name">Gst Filling 3B</div><div class="td-tc-meta">Saksham (SA128007) · 25 Aug</div></div>
+                  <div class="td-task-card"><a class="td-tc-id" href="#">TSK02473</a><span class="td-tc-badge">GST LICENSE</span><div class="td-tc-name">GSt Registration</div><div class="td-tc-meta">Saksham (SA128007) · 21 Aug</div></div>
+                  <div class="td-task-card"><a class="td-tc-id" href="#">TSK02470</a><span class="td-tc-badge">GST FILING</span><div class="td-tc-name">GST FILLING</div><div class="td-tc-meta">law seva management pr... · 20 Aug</div></div>
+                </div>
+                <a class="td-view-all" href="#">View all →</a>
+              </div>
+              <div class="td-kanban-col">
+                <div class="td-kanban-head td-kanban-head--purple"><span class="td-kh-icon"><svg viewBox="0 0 16 16" fill="none" stroke="#8b5cf6" stroke-width="1.5" style="width:14px;height:14px"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/></svg></span> Under Review <span class="td-kh-count" data-pm-kanban="review">0</span></div>
+                <div class="td-kanban-body">
+                  <div class="td-task-card"><a class="td-tc-id" href="#">TSK01688</a><span class="td-tc-badge">ACCOUNTS</span><div class="td-tc-name">TALLY</div><div class="td-tc-meta">Internal (21) · 25 Jun</div></div>
+                  <div class="td-task-card"><a class="td-tc-id" href="#">TSK01670</a><span class="td-tc-badge">10BD</span><div class="td-tc-name">qqq</div><div class="td-tc-meta">THE GOLD REALTY (TH296)</div></div>
+                  <div class="td-task-card"><a class="td-tc-id" href="#">TSK01665</a><span class="td-tc-badge">ACCOUNTS</span><div class="td-tc-name">Book Keeping</div><div class="td-tc-meta">Internal (21) · 22 Jun</div></div>
+                  <div class="td-task-card"><a class="td-tc-id" href="#">TSK01660</a><span class="td-tc-badge">GST</span><div class="td-tc-name">Review Filing</div><div class="td-tc-meta">Saksham (SA128007) · 20 Jun</div></div>
+                  <div class="td-task-card"><a class="td-tc-id" href="#">TSK01655</a><span class="td-tc-badge">ITR</span><div class="td-tc-name">ITR Review</div><div class="td-tc-meta">Saksham (SA128007) · 18 Jun</div></div>
+                </div>
+                <a class="td-view-all" href="#">View all →</a>
+              </div>
+            </div>
+
+            <div class="td-kanban" style="margin-top:16px">
+              <div class="td-kanban-col">
+                <div class="td-kanban-head td-kanban-head--gray"><span class="td-kh-icon"><svg viewBox="0 0 16 16" fill="none" stroke="#9ca3af" stroke-width="1.5" style="width:14px;height:14px"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/></svg></span> Under Consultation <span class="td-kh-count">0</span></div>
+                <div class="td-kanban-body td-kanban-empty">No tasks</div>
+                <a class="td-view-all" href="#">View all →</a>
+              </div>
+              <div class="td-kanban-col">
+                <div class="td-kanban-head td-kanban-head--green"><span class="td-kh-icon"><svg viewBox="0 0 16 16" fill="none" stroke="#22c55e" stroke-width="2" style="width:14px;height:14px"><path d="M4 8l3 3 5-6"/></svg></span> Reviewed <span class="td-kh-count">0</span></div>
+                <div class="td-kanban-body td-kanban-empty">No tasks</div>
+                <a class="td-view-all" href="#">View all →</a>
+              </div>
+              <div class="td-kanban-col">
+                <div class="td-kanban-head td-kanban-head--red"><span class="td-kh-icon"><svg viewBox="0 0 16 16" fill="#ef4444" style="width:14px;height:14px"><rect x="4" y="3" width="3" height="10" rx="1"/><rect x="9" y="3" width="3" height="10" rx="1"/></svg></span> Stuck <span class="td-kh-count" data-pm-kanban="stuck">0</span></div>
+                <div class="td-kanban-body">
+                  <div class="td-task-card"><a class="td-tc-id" href="#">TSK01627</a><span class="td-tc-badge">ACCOUNTING</span><div class="td-tc-name">Account</div><div class="td-tc-meta">law seva management pr... · 20 Jun</div></div>
+                </div>
+                <a class="td-view-all" href="#">View all →</a>
+              </div>
+            </div>
+
+            <div class="td-kanban" style="margin-top:16px">
+              <div class="td-kanban-col">
+                <div class="td-kanban-head td-kanban-head--blue"><span class="td-kh-icon"><svg viewBox="0 0 16 16" fill="none" stroke="#25b7a7" stroke-width="2" style="width:14px;height:14px"><path d="M4 8l3 3 5-6"/></svg></span> Completed <span class="td-kh-count" data-pm-kanban="completed">12</span></div>
+                <div class="td-kanban-body">
+                  <div class="td-task-card"><a class="td-tc-id" href="#">TSK02480</a><span class="td-tc-badge">GST FILLING</span><div class="td-tc-name">GST FILLING</div><div class="td-tc-meta">law seva management pr... · 20 Aug</div></div>
+                  <div class="td-task-card"><a class="td-tc-id" href="#">TSK02479</a><span class="td-tc-badge">GST FILLING</span><div class="td-tc-name">GST FILLING</div><div class="td-tc-meta">law seva management pr... · 20 Aug</div></div>
+                </div>
+                <a class="td-view-all" href="#">View all →</a>
+              </div>
+              <div class="td-kanban-col">
+                <div class="td-kanban-head td-kanban-head--orange"><span class="td-kh-icon"><svg viewBox="0 0 16 16" fill="none" stroke="#f97316" stroke-width="1.5" style="width:14px;height:14px"><path d="M2 8a6 6 0 0111.3-2.8M14 2v3.2h-3.2M14 8a6 6 0 01-11.3 2.8M2 14v-3.2h3.2"/></svg></span> Finalised for Submission <span class="td-kh-count">6</span></div>
+                <div class="td-kanban-body">
+                  <div class="td-task-card"><a class="td-tc-id" href="#">TSK01547</a><span class="td-tc-badge">GST FILLING</span><div class="td-tc-name">Gst Filling R1</div><div class="td-tc-meta">Saksham (SA128007) · 10 Jun</div></div>
+                  <div class="td-task-card"><a class="td-tc-id" href="#">TSK01545</a><span class="td-tc-badge">BANK</span><div class="td-tc-name">documentation</div><div class="td-tc-meta">law seva management pr... · 12 Jun</div></div>
+                </div>
+                <a class="td-view-all" href="#">View all →</a>
+              </div>
+              <div class="td-kanban-col"></div>
+            </div>
+
+            <!-- All Task Summary – Userwise -->
+            <div class="td-userwise">
+              <div class="td-userwise__head">
+                <h3 class="td-userwise__title">All Task Summary – Userwise</h3>
+                <select class="td-userwise__filter" aria-label="Filter users">
+                  <option selected>All</option>
+                  <option>Assigned</option>
+                  <option>Unassigned</option>
+                </select>
+              </div>
+              <div class="td-userwise__table-wrap">
+                <table class="td-userwise__table">
+                  <thead>
+                    <tr><th>User</th><th>Total tasks</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Dev Aggarwal (DE6203)</td><td>9</td></tr>
+                    <tr><td>Aakash (AA6215)</td><td>6</td></tr>
+                    <tr><td>Unassigned</td><td>426</td></tr>
+                  </tbody>
+                  <tfoot>
+                    <tr><td>Total</td><td>441</td></tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+
+            <!-- Summary widgets -->
+            <div class="td-summary-grid">
+              <div class="td-summary-card">
+                <h3 class="td-summary-card__title">Pending Aging Tasks</h3>
+                <div class="td-sum-row"><span class="td-sum-badge td-sum-badge--red-light">60</span><span>More than 60 days</span><strong class="td-sum-count--red">117</strong></div>
+                <div class="td-sum-row"><span class="td-sum-badge td-sum-badge--orange-light">31–60</span><span>31–60 days</span><strong class="td-sum-count--red">233</strong></div>
+                <div class="td-sum-row"><span class="td-sum-badge td-sum-badge--blue-light">15–30</span><span>15–30 days</span><strong class="td-sum-count--red">29</strong></div>
+                <div class="td-sum-row"><span class="td-sum-badge td-sum-badge--green-light">7–14</span><span>7–14 days</span><strong class="td-sum-count--red">46</strong></div>
+                <div class="td-sum-row"><span class="td-sum-badge td-sum-badge--gray-light">7</span><span>Less than 7 days</span><strong class="td-sum-count--red">16</strong></div>
+              </div>
+              <div class="td-summary-card">
+                <h3 class="td-summary-card__title">Task Priority Count</h3>
+                <div class="td-sum-row"><span class="td-sum-icon td-sum-icon--red">!</span><span>High Priority</span><strong class="td-sum-count--red">67</strong></div>
+                <div class="td-sum-row"><span class="td-sum-icon td-sum-icon--orange">●</span><span>Medium Priority</span><strong class="td-sum-count--red">76</strong></div>
+                <div class="td-sum-row"><span class="td-sum-icon td-sum-icon--green">–</span><span>Low Priority</span><strong class="td-sum-count--green">9</strong></div>
+                <div class="td-sum-row"><span class="td-sum-icon td-sum-icon--blue">ø</span><span>Non-Priority</span><strong class="td-sum-count--green">289</strong></div>
+              </div>
+              <div class="td-summary-card td-summary-card--right">
+                <div class="td-stat td-stat--red"><span>Unassigned tasks</span><strong>54</strong></div>
+                <div class="td-stat td-stat--green"><span>Assigned tasks</span><strong>387</strong></div>
+                <div class="td-stat td-stat--purple"><span>Total tasks</span><strong>441</strong></div>
+              </div>
+            </div>
+
+            <!-- Collapsible Reports -->
+            <div class="td-accordion">
+              <div class="td-acc-item">
+                <button type="button" class="td-acc-btn" id="tdAccPeriod" aria-expanded="false">
+                  <span class="td-acc-chev" aria-hidden="true">›</span> Task wise and period wise report
+                </button>
+                <div class="td-acc-panel" id="tdAccPeriodPanel" hidden>
+                  <div class="td-period-block">
+                    <h4 class="td-period-title">All Task Summary (Monthly)</h4>
+                    <div class="td-period-table-head"><span>TASK</span><span>TOTAL</span></div>
+                    <p class="td-period-empty">No task frequency set yet—please define recurring frequency in the Service Master</p>
+                  </div>
+                  <div class="td-period-block">
+                    <h4 class="td-period-title">All Task Summary (Quarterly)</h4>
+                    <div class="td-period-table-head"><span>TASK</span><span>TOTAL</span></div>
+                    <p class="td-period-empty">No task frequency set yet—please define recurring frequency in the Service Master</p>
+                  </div>
+                  <div class="td-period-block">
+                    <h4 class="td-period-title">All Task Summary (Yearly)</h4>
+                    <div class="td-period-table-head"><span>TASK</span><span>TOTAL</span></div>
+                    <p class="td-period-empty">No task frequency set yet—please define recurring frequency in the Service Master</p>
+                  </div>
+                  <div class="td-period-block">
+                    <h4 class="td-period-title">All Task Summary (Half-Yearly)</h4>
+                    <div class="td-period-table-head"><span>TASK</span><span>TOTAL</span></div>
+                    <p class="td-period-empty">No task frequency set yet—please define recurring frequency in the Service Master</p>
+                  </div>
+                  <div class="td-period-block">
+                    <h4 class="td-period-title">All Task Summary (Weekly)</h4>
+                    <div class="td-period-table-head"><span>TASK</span><span>TOTAL</span></div>
+                    <p class="td-period-empty">No task frequency set yet—please define recurring frequency in the Service Master</p>
+                  </div>
+                  <div class="td-period-block">
+                    <h4 class="td-period-title">All Task Summary (15-Day Periods)</h4>
+                    <div class="td-period-table-head"><span>TASK</span><span>TOTAL</span></div>
+                    <p class="td-period-empty">No task frequency set yet—please define recurring frequency in the Service Master</p>
+                  </div>
+                </div>
+              </div>
+              <div class="td-acc-item">
+                <button type="button" class="td-acc-btn" id="tdAccUserDue" aria-expanded="false">
+                  <span class="td-acc-chev" aria-hidden="true">›</span> User wise due date report
+                </button>
+                <div class="td-acc-panel" id="tdAccUserDuePanel" hidden>
+                  <div class="td-due-report-wrap">
+                    <table class="td-due-report">
+                      <thead>
+                        <tr>
+                          <th>USER</th>
+                          <th>DUE TODAY</th>
+                          <th>DUE TOMORROW</th>
+                          <th>DUE IN 7 DAYS</th>
+                          <th>DUE AFTER 7 DAYS</th>
+                          <th>OVERDUE UP TO 7 DAYS</th>
+                          <th>OVERDUE MORE THAN 7 DAYS</th>
+                          <th>TOTAL</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>Aakash (AA6215)</td><td>0</td><td>1</td><td>16</td><td>227</td><td>2</td><td>0</td><td>6</td></tr>
+                        <tr><td>Dev Aggarwal (DE6203)</td><td>0</td><td>0</td><td>11</td><td>57</td><td>1</td><td>1</td><td>4</td></tr>
+                        <tr><td>Unassigned</td><td>0</td><td>0</td><td>0</td><td>198</td><td>9</td><td>155</td><td>62</td></tr>
+                      </tbody>
+                      <tfoot>
+                        <tr><td>Total</td><td>0</td><td>1</td><td>27</td><td>482</td><td>12</td><td>156</td><td>72</td></tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </section>
+
+          <!-- ══ CART VIEW ══ -->
+          <section class="tm-panel" id="panel-cart">
+            <nav class="tm-cart-tabs">
+              <button class="tm-cart-tab is-active" data-cart="all">ALL MY TASKS</button>
+              <button class="tm-cart-tab" data-cart="review">REVIEW</button>
+              <button class="tm-cart-tab" data-cart="consultant">CONSULTANT</button>
+              <button class="tm-cart-tab" data-cart="overdue">OVERDUE</button>
+              <button class="tm-cart-tab" data-cart="inv-pending">INV PENDING</button>
+            </nav>
+            <div class="tm-services-label" id="cartLabel">MY SERVICES (24)</div>
+            <div class="tm-cards-grid" id="cartGrid"></div>
+          </section>
+
+          <!-- ══ MASTER SERVICES ══ -->
+          <section class="tm-panel" id="panel-master">
+            <div class="tm-services-label">MASTER SERVICES</div>
+            <div class="tm-cards-grid" id="masterGrid"></div>
+          </section>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Create Task Settings modal -->
+  <div class="tm-modal-scrim" id="taskSettingsModal" hidden>
+    <div class="tm-modal tm-modal--settings" role="dialog" aria-modal="true" aria-labelledby="taskSettingsTitle">
+      <div class="tm-modal__head">
+        <h2 class="tm-modal__title" id="taskSettingsTitle">Create Task – Settings</h2>
+        <button type="button" class="tm-modal__close" id="taskSettingsClose" aria-label="Close">×</button>
+      </div>
+      <nav class="tm-set-tabs" aria-label="Task settings tabs">
+        <button type="button" class="tm-set-tab is-active" data-set-tab="reasons">Status reasons</button>
+        <button type="button" class="tm-set-tab" data-set-tab="stages">Stages</button>
+        <button type="button" class="tm-set-tab" data-set-tab="status">Task status</button>
+      </nav>
+      <div class="tm-set-body">
+        <!-- Status reasons -->
+        <div class="tm-set-panel is-active" id="setPanel-reasons">
+          <p class="tm-set-hint">Preview of reasons available for your organisation. Selection happens on the Add Task form; here you can add new reasons so they appear in those dropdowns.</p>
+          <div class="tm-set-cols">
+            <div class="tm-set-col">
+              <h3 class="tm-set-col-title">Pending – reasons</h3>
+              <div class="tm-set-add-row">
+                <input type="text" id="pendingReasonInput" placeholder="Add your own reason">
+                <button type="button" class="tm-set-add-btn" id="pendingReasonAdd">Add</button>
+              </div>
+              <div class="tm-set-tags" id="pendingReasonTags">
+                <span class="tm-set-tag">Payment pending<button type="button" class="tm-set-tag-del" aria-label="Remove">×</button></span>
+                <span class="tm-set-tag">PENDING FROM DEPARTMENT<button type="button" class="tm-set-tag-del" aria-label="Remove">×</button></span>
+                <span class="tm-set-tag">document not recieved<button type="button" class="tm-set-tag-del" aria-label="Remove">×</button></span>
+                <span class="tm-set-tag">stuck<button type="button" class="tm-set-tag-del" aria-label="Remove">×</button></span>
+              </div>
+            </div>
+            <div class="tm-set-col">
+              <h3 class="tm-set-col-title">Stuck – reasons</h3>
+              <div class="tm-set-add-row">
+                <input type="text" id="stuckReasonInput" placeholder="Add your own reason">
+                <button type="button" class="tm-set-add-btn" id="stuckReasonAdd">Add</button>
+              </div>
+              <div class="tm-set-tags" id="stuckReasonTags">
+                <span class="tm-set-tag">client<button type="button" class="tm-set-tag-del" aria-label="Remove">×</button></span>
+                <span class="tm-set-tag">department<button type="button" class="tm-set-tag-del" aria-label="Remove">×</button></span>
+                <span class="tm-set-tag">cl<button type="button" class="tm-set-tag-del" aria-label="Remove">×</button></span>
+                <span class="tm-set-tag">incomplete information<button type="button" class="tm-set-tag-del" aria-label="Remove">×</button></span>
+                <span class="tm-set-tag">ewdwe<button type="button" class="tm-set-tag-del" aria-label="Remove">×</button></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Stages -->
+        <div class="tm-set-panel" id="setPanel-stages">
+          <p class="tm-set-hint">Create stages with a name. They appear in the stage dropdown when creating or editing tasks.</p>
+          <div class="tm-set-stage-add">
+            <div class="tm-set-stage-input-wrap">
+              <input type="text" id="stageNameInput" maxlength="50" placeholder="New stage name">
+              <span class="tm-set-stage-count" id="stageNameCount">0 / 50</span>
+            </div>
+            <button type="button" class="tm-set-add-btn" id="stageNameAdd">Add stage</button>
+          </div>
+          <div class="tm-set-stage-list" id="stageList">
+            <div class="tm-set-stage-item"><span class="tm-set-stage-drag" aria-hidden="true">⋮⋮</span><span class="tm-set-stage-name">A</span><button type="button" class="tm-set-stage-del" aria-label="Remove"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button></div>
+            <div class="tm-set-stage-item"><span class="tm-set-stage-drag" aria-hidden="true">⋮⋮</span><span class="tm-set-stage-name">B</span><button type="button" class="tm-set-stage-del" aria-label="Remove"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button></div>
+            <div class="tm-set-stage-item"><span class="tm-set-stage-drag" aria-hidden="true">⋮⋮</span><span class="tm-set-stage-name">C</span><button type="button" class="tm-set-stage-del" aria-label="Remove"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button></div>
+            <div class="tm-set-stage-item"><span class="tm-set-stage-drag" aria-hidden="true">⋮⋮</span><span class="tm-set-stage-name">Preparation</span><button type="button" class="tm-set-stage-del" aria-label="Remove"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button></div>
+            <div class="tm-set-stage-item"><span class="tm-set-stage-drag" aria-hidden="true">⋮⋮</span><span class="tm-set-stage-name">Review</span><button type="button" class="tm-set-stage-del" aria-label="Remove"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button></div>
+          </div>
+        </div>
+        <!-- Task status -->
+        <div class="tm-set-panel" id="setPanel-status">
+          <p class="tm-set-hint">Create task statuses and manage default statuses.</p>
+          <div class="tm-set-default">
+            <h3 class="tm-set-subtitle">Default statuses</h3>
+            <p class="tm-set-subhint">These are the default statuses selected for a sub-service. They will appear in the task dropdown by default.</p>
+            <div class="tm-set-status-badges">
+              <span class="tm-set-status-badge">OPEN</span>
+              <span class="tm-set-status-badge">PROCESSING</span>
+              <span class="tm-set-status-badge">COMPLETED</span>
+              <span class="tm-set-status-badge">STUCK</span>
+              <span class="tm-set-status-badge">UNDER REVIEW</span>
+              <span class="tm-set-status-badge">OVER DUE</span>
+              <span class="tm-set-status-badge">UNDER CONSULTATION</span>
+              <span class="tm-set-status-badge">FINALISED FOR SUBMISSION</span>
+            </div>
+          </div>
+          <div class="tm-set-status-add">
+            <div class="tm-set-stage-input-wrap">
+              <input type="text" id="statusNameInput" maxlength="50" placeholder="New task status">
+              <span class="tm-set-stage-count" id="statusNameCount">0 / 50</span>
+            </div>
+            <button type="button" class="tm-set-add-btn" id="statusNameAdd">Add status</button>
+          </div>
+          <div class="tm-set-tags tm-set-tags--status" id="customStatusTags">
+            <span class="tm-set-tag">CANCELED<button type="button" class="tm-set-tag-del" aria-label="Remove">×</button></span>
+            <span class="tm-set-tag">22<button type="button" class="tm-set-tag-del" aria-label="Remove">×</button></span>
+            <span class="tm-set-tag">video<button type="button" class="tm-set-tag-del" aria-label="Remove">×</button></span>
+            <span class="tm-set-tag">HELLO<button type="button" class="tm-set-tag-del" aria-label="Remove">×</button></span>
+            <span class="tm-set-tag">ghj<button type="button" class="tm-set-tag-del" aria-label="Remove">×</button></span>
+            <span class="tm-set-tag">jhk<button type="button" class="tm-set-tag-del" aria-label="Remove">×</button></span>
+            <span class="tm-set-tag">kamal<button type="button" class="tm-set-tag-del" aria-label="Remove">×</button></span>
+            <span class="tm-set-tag">BILLED<button type="button" class="tm-set-tag-del" aria-label="Remove">×</button></span>
+            <span class="tm-set-tag">UNBILLED<button type="button" class="tm-set-tag-del" aria-label="Remove">×</button></span>
+            <span class="tm-set-tag">iii<button type="button" class="tm-set-tag-del" aria-label="Remove">×</button></span>
+          </div>
+        </div>
+      </div>
+      <div class="tm-modal__foot tm-modal__foot--settings">
+        <button type="button" class="tm-set-close-btn" id="taskSettingsCloseBtn">Close</button>
+        <button type="button" class="tm-set-save-btn" id="taskSettingsSave">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Task Add modal -->
+  <div class="tm-modal-scrim" id="quickTaskModal" hidden>
+    <div class="tm-modal tm-modal--quick" role="dialog" aria-modal="true" aria-labelledby="quickTaskModalTitle">
+      <div class="tm-modal__head">
+        <h2 class="tm-modal__title" id="quickTaskModalTitle">Quick Task Add</h2>
+        <div class="tm-quick-head-actions">
+          <button type="button" class="tm-quick-settings" title="Settings" aria-label="Settings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 00-2 2v.18a2 2 0 01-1 1.73l-.43.25a2 2 0 01-2 0l-.15-.08a2 2 0 00-2.73.73l-.22.38a2 2 0 00.73 2.73l.15.1a2 2 0 011 1.72v.51a2 2 0 01-1 1.74l-.15.09a2 2 0 00-.73 2.73l.22.38a2 2 0 002.73.73l.15-.08a2 2 0 012 0l.43.25a2 2 0 011 1.73V20a2 2 0 002 2h.44a2 2 0 002-2v-.18a2 2 0 011-1.73l.43-.25a2 2 0 012 0l.15.08a2 2 0 002.73-.73l.22-.39a2 2 0 00-.73-2.73l-.15-.08a2 2 0 01-1-1.74v-.5a2 2 0 011-1.74l.15-.09a2 2 0 00.73-2.73l-.22-.38a2 2 0 00-2.73-.73l-.15.08a2 2 0 01-2 0l-.43-.25a2 2 0 01-1-1.73V4a2 2 0 00-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+          <button type="button" class="tm-modal__close" id="quickTaskModalClose" aria-label="Close">×</button>
+        </div>
+      </div>
+      <form class="tm-quick-form" id="quickTaskForm" autocomplete="off">
+        <div class="tm-quick-field">
+          <label>Service <span class="req">*</span></label>
+          <select required>
+            <option value="">Select service</option>
+            <option>GST Filing</option>
+            <option>ITR</option>
+            <option>Audit</option>
+            <option>Book Keeping</option>
+            <option>TDS FILLING</option>
+          </select>
+        </div>
+        <div class="tm-quick-field">
+          <label>Task name <span class="req">*</span></label>
+          <div class="tm-quick-title-wrap">
+            <input type="text" id="quickTaskName" maxlength="200" placeholder="e.g. File GSTR-1 for Jan 2025" required>
+            <span class="tm-quick-count" id="quickTaskCount">0 / 200</span>
+          </div>
+        </div>
+        <div class="tm-quick-field">
+          <label>Customer</label>
+          <div class="tm-quick-customer-row">
+            <select>
+              <option value="">Select customer</option>
+              <option>Saksham</option>
+              <option>law seva management private limited</option>
+              <option>Internal</option>
+            </select>
+            <button type="button" class="tm-quick-add-customer" title="Add customer" aria-label="Add customer">+</button>
+          </div>
+        </div>
+        <div class="tm-quick-field">
+          <label>Assignee</label>
+          <select>
+            <option value="">Select assignee(s)</option>
+            <option>Ankit Sharma</option>
+            <option>Deepak Agarwal</option>
+            <option>Saksham</option>
+          </select>
+        </div>
+        <div class="tm-quick-field tm-quick-field--reviewer">
+          <label>Reviewer</label>
+          <div class="tm-quick-reviewer-row">
+            <select>
+              <option selected>Ca Ram Kumar (KA001)</option>
+              <option>Deepak Agarwal (DA)</option>
+              <option>Admin User (AU)</option>
+            </select>
+            <span class="tm-quick-avatar">KK</span>
+          </div>
+        </div>
+        <div class="tm-quick-field">
+          <label>Due date</label>
+          <div class="tm-quick-date">
+            <input type="text" placeholder="Due date" readonly>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+          </div>
+        </div>
+        <div class="tm-quick-foot">
+          <button type="submit" class="tm-quick-save">Save</button>
+          <button type="button" class="tm-quick-other" id="quickTaskOther">Other details</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Client groups modal -->
+  <div class="tm-modal-scrim" id="clientGroupsModal" hidden>
+    <div class="tm-modal tm-modal--client-groups" role="dialog" aria-modal="true" aria-labelledby="clientGroupsTitle">
+      <div class="tm-modal__head">
+        <h2 class="tm-modal__title" id="clientGroupsTitle">Client groups</h2>
+        <button type="button" class="tm-modal__close" id="clientGroupsClose" aria-label="Close">×</button>
+      </div>
+      <div class="tm-client-groups-body">
+        <div class="tm-client-groups-list" id="clientGroupsList"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Suggested board templates modal -->
+  <div class="tm-modal-scrim" id="templatesModal" hidden>
+    <div class="tm-modal tm-modal--templates" role="dialog" aria-modal="true" aria-labelledby="templatesModalTitle">
+      <div class="tm-modal__head">
+        <h2 class="tm-modal__title" id="templatesModalTitle">Suggested board templates</h2>
+        <button type="button" class="tm-modal__close" id="templatesModalClose" aria-label="Close">×</button>
+      </div>
+      <div class="tm-modal__body tm-modal__body--templates">
+        <button type="button" class="tm-tpl-nav tm-tpl-nav--prev" id="tplPrev" aria-label="Previous">‹</button>
+        <div class="tm-tpl-viewport">
+          <div class="tm-tpl-track" id="tplTrack">
+            <div class="tm-tpl-page">
+              <button type="button" class="tm-tpl-card">AUDIT</button>
+              <button type="button" class="tm-tpl-card">BOOK KEEPING</button>
+              <button type="button" class="tm-tpl-card">ESI | PF REGISTRATION &amp; FILLING</button>
+              <button type="button" class="tm-tpl-card">FOOD LICENSE – FSSAI</button>
+              <button type="button" class="tm-tpl-card">GST Filling</button>
+              <button type="button" class="tm-tpl-card">GST License</button>
+              <button type="button" class="tm-tpl-card">IMPORT &amp; EXPORT CODE – IEC</button>
+              <button type="button" class="tm-tpl-card">Incorporation of Pvt Ltd Co./ proprietorship...</button>
+              <button type="button" class="tm-tpl-card">ITR</button>
+              <button type="button" class="tm-tpl-card">LABOUR LICENSE</button>
+              <button type="button" class="tm-tpl-card">ROC/MCA</button>
+              <button type="button" class="tm-tpl-card">TDS FILLING</button>
+            </div>
+            <div class="tm-tpl-page">
+              <button type="button" class="tm-tpl-card">Accounting</button>
+              <button type="button" class="tm-tpl-card">Bank Audit</button>
+              <button type="button" class="tm-tpl-card">DSC – Digital Signature</button>
+              <button type="button" class="tm-tpl-card">GEM Registration</button>
+              <button type="button" class="tm-tpl-card">MSME – Udyam</button>
+              <button type="button" class="tm-tpl-card">Sexual Harassment</button>
+              <button type="button" class="tm-tpl-card">Tax income Audit</button>
+              <button type="button" class="tm-tpl-card">TDS Litigation</button>
+              <button type="button" class="tm-tpl-card">Trademark</button>
+              <button type="button" class="tm-tpl-card">UDIN Repository</button>
+              <button type="button" class="tm-tpl-card">Website Compliance</button>
+              <button type="button" class="tm-tpl-card">Payroll</button>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="tm-tpl-nav tm-tpl-nav--next" id="tplNext" aria-label="Next">›</button>
+      </div>
+      <div class="tm-modal__foot tm-modal__foot--templates">
+        <button type="button" class="tm-tpl-scratch" id="tplScratch">Create service from scratch</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/pm-dashboard-stats.js?v=3"></script>
+  <script src="js/task-management.js?v=24"></script>
+</body>
+</html>

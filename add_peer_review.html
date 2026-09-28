@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Peer Review — TimeERP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/add-peer-review.css?v=1">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand"><a href="home.html" class="sidebar__brand-logo"><img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48"></a></div>
+      <div class="sidebar__toolbar" role="group"><button type="button" class="sidebar__search-btn" id="sidebarSearchToggle"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button><button type="button" class="sidebar__create-btn" id="sidebarCreate"><span class="sidebar__create-icon">+</span><span>Create</span></button></div>
+      <nav class="sidebar__nav" id="sidebarList"></nav>
+    </aside>
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle">☰</button>
+          <div class="topbar__search" role="search"><input type="search" id="globalSearch" placeholder="Search..." autocomplete="off"></div>
+          <div class="topbar__actions">
+            <button type="button" class="apr-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="apr-top-clock" id="aprTopClock">--:--</time>
+            <button type="button" class="topbar__icon-btn apr-top-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></button>
+            <div class="topbar__menu" style="position:relative"><button type="button" class="topbar__icon-btn apr-top-icon" id="notifBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg></button><div class="dropdown" id="notifDropdown" role="menu"><div class="dropdown__title">Notifications</div><div id="notifList"></div></div></div>
+            <div class="topbar__menu" style="position:relative"><button type="button" class="topbar__profile" id="profileBtn"><span class="topbar__avatar">CA</span><span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span><svg class="apr-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="dropdown" id="profileDropdown" role="menu"><div class="dropdown__title">Account</div><a href="home.html" class="dropdown__item"><strong>Dashboard</strong><span>Back to home</span></a></div></div>
+          </div>
+        </div>
+      </header>
+      <main class="main">
+        <div class="apr-page">
+          <div class="apr-header">
+            <a class="apr-back" href="peer_review.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></a>
+            <span class="apr-header__title">Peer Review</span>
+          </div>
+
+          <div class="apr-top-btns">
+            <a class="apr-top-btn apr-top-btn--teal" href="crm_add_client.html">Add Client</a>
+            <button class="apr-top-btn apr-top-btn--teal">Add UDIN</button>
+            <button class="apr-top-btn apr-top-btn--blue" onclick="window.location.href='peer_review.html'">View Peer Review</button>
+          </div>
+
+          <!-- Stepper -->
+          <div class="apr-stepper">
+            <div class="apr-step is-active" id="aprStep1"><span class="apr-step__dot"></span> Peer Review</div>
+            <span class="apr-step__line"></span>
+            <div class="apr-step" id="aprStep2"><span class="apr-step__dot"></span> Upload Documents</div>
+          </div>
+
+          <!-- Step 1: Peer Review form -->
+          <div class="apr-form" id="aprPanel1">
+            <div class="apr-cols">
+              <div class="apr-col">
+                <div class="apr-mf">
+                  <label class="apr-mf__label">UDIN No.</label>
+                  <div class="apr-mf__combo" id="aprUdinCombo">
+                    <input type="text" class="apr-mf__input" id="aprUdinInput" placeholder="UDIN No" autocomplete="off">
+                    <svg class="apr-combo__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    <div class="apr-combo__menu" id="aprUdinMenu"></div>
+                  </div>
+                </div>
+                <div class="apr-mf">
+                  <label class="apr-mf__label">Name of Branch/HO of PU<span class="apr-req">*</span></label>
+                  <div class="apr-mf__combo" id="aprBranchCombo">
+                    <input type="text" class="apr-mf__input" id="aprBranchInput" value="Bluemon Wealth Management" autocomplete="off">
+                    <svg class="apr-combo__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                    <div class="apr-combo__menu" id="aprBranchMenu"></div>
+                  </div>
+                </div>
+                <div class="apr-mf">
+                  <label class="apr-mf__label">Name of the Client<span class="apr-req">*</span></label>
+                  <div class="apr-mf__combo" id="aprClientCombo">
+                    <input type="text" class="apr-mf__input" id="aprClientInput" placeholder="Name of the Client" autocomplete="off">
+                    <svg class="apr-combo__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                    <div class="apr-combo__menu" id="aprClientMenu"></div>
+                  </div>
+                </div>
+                <div class="apr-mf">
+                  <label class="apr-mf__label">Name of the Signing Partner<span class="apr-req">*</span></label>
+                  <select class="apr-mf__select" id="aprSigningPartner"><option value="">Select Partner</option><option value="2">2</option><option value="Kamal Kant Sharma">Kamal Kant Sharma</option><option value="Saurabh Bhardwaj">Saurabh Bhardwaj</option></select>
+                </div>
+                <div class="apr-mf">
+                  <label class="apr-mf__label">Team Incharge</label>
+                  <select class="apr-mf__select" id="aprTeamIncharge"><option value="">Name of the Team Incharge</option><option value="NIRANJAN SINGH">NIRANJAN SINGH</option><option value="Saurabh Bhardwaj">Saurabh Bhardwaj</option><option value="CA ram Kumar">CA ram Kumar</option><option value="CA Aditi Sharma">CA Aditi Sharma</option></select>
+                </div>
+                <div class="apr-mf">
+                  <label class="apr-mf__label">File No.</label>
+                  <input type="text" class="apr-mf__input" id="aprFileNo" placeholder="File No.">
+                </div>
+                <div class="apr-mf">
+                  <label class="apr-mf__label">Networth</label>
+                  <input type="text" class="apr-mf__input" id="aprNetworth" placeholder="Networth">
+                </div>
+                <div class="apr-mf">
+                  <label class="apr-mf__label">Borrowings from Banks/ NBFCs (incl. Short Term &amp; Long Term)</label>
+                  <input type="text" class="apr-mf__input" id="aprBorrow" placeholder="Borrowings from Banks/ NBFCs (incl. Short Term & Long Term)">
+                </div>
+                <div class="apr-mf">
+                  <label class="apr-mf__label">Net Profit</label>
+                  <input type="text" class="apr-mf__input" id="aprNetProfit" placeholder="Net Profit">
+                </div>
+              </div>
+              <div class="apr-col">
+                <div class="apr-mf">
+                  <label class="apr-mf__label">Financial Year<span class="apr-req">*</span></label>
+                  <div class="apr-mf__combo" id="aprFYCombo">
+                    <input type="text" class="apr-mf__input" id="aprFYInput" value="FY 26-27" autocomplete="off">
+                    <svg class="apr-combo__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                    <div class="apr-combo__menu" id="aprFYMenu"></div>
+                  </div>
+                </div>
+                <div class="apr-mf">
+                  <label class="apr-mf__label">Professional Employee</label>
+                  <input type="text" class="apr-mf__input" id="aprProfEmployee" placeholder="Professional Employee">
+                </div>
+                <div class="apr-mf">
+                  <label class="apr-mf__label">Services<span class="apr-req">*</span></label>
+                  <input type="text" class="apr-mf__input" id="aprServices" placeholder="Services">
+                </div>
+                <div class="apr-mf">
+                  <label class="apr-mf__label">Team<span class="apr-req">*</span></label>
+                  <div class="apr-mf__combo" id="aprTeamCombo">
+                    <input type="text" class="apr-mf__input" id="aprTeamInput" placeholder="Select Team" autocomplete="off">
+                    <svg class="apr-combo__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                    <div class="apr-combo__menu" id="aprTeamMenu"></div>
+                  </div>
+                </div>
+                <div class="apr-mf">
+                  <label class="apr-mf__label">PAN No.</label>
+                  <input type="text" class="apr-mf__input" id="aprPan" placeholder="PAN No.">
+                </div>
+                <div class="apr-mf">
+                  <label class="apr-mf__label">Turnover</label>
+                  <input type="text" class="apr-mf__input" id="aprTurnover" placeholder="Turnover">
+                </div>
+                <div class="apr-mf">
+                  <label class="apr-mf__label">Paid up/ Partner's/ Proprietor's Capital</label>
+                  <input type="text" class="apr-mf__input" id="aprPaid" placeholder="Paid up/ Partner's/ Proprietor's Capital">
+                </div>
+                <div class="apr-mf">
+                  <label class="apr-mf__label">Fees</label>
+                  <input type="text" class="apr-mf__input" id="aprFees" placeholder="Fees">
+                </div>
+                <div class="apr-mf">
+                  <label class="apr-mf__label">Balance Sheet</label>
+                  <div class="apr-radios">
+                    <label><input type="radio" name="aprBS" value="IND AS"> IND AS</label>
+                    <label><input type="radio" name="aprBS" value="AS"> AS</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="apr-mf">
+              <label class="apr-mf__label">Weather Engagement Quality Review Done</label>
+              <div class="apr-radios">
+                <label><input type="radio" name="aprWeather" value="Yes"> Yes</label>
+                <label><input type="radio" name="aprWeather" value="No"> No</label>
+              </div>
+            </div>
+            <div class="apr-mf">
+              <label class="apr-mf__label">Remarks</label>
+              <input type="text" class="apr-mf__input" id="aprRemarks" placeholder="Remarks" style="max-width:100%">
+            </div>
+            <button class="apr-next" id="aprNextBtn">Next</button>
+          </div>
+
+          <!-- Step 2: Upload Documents (hidden initially) -->
+          <div class="apr-form" id="aprPanel2" style="display:none">
+            <p style="font-size:14px;color:#374151;margin-bottom:16px">Upload relevant documents for this peer review.</p>
+            <div class="apr-mf">
+              <label class="apr-mf__label">Attachment</label>
+              <button class="apr-top-btn apr-top-btn--teal" onclick="document.getElementById('aprFileInput').click()" style="height:34px">⬆ Click to Upload</button>
+              <input type="file" id="aprFileInput" hidden>
+            </div>
+            <button class="apr-next" id="aprSaveBtn">Save</button>
+          </div>
+
+          <footer class="apr-app-footer"></footer>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/add-peer-review.js?v=2"></script>
+</body>
+</html>

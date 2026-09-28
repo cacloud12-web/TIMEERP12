@@ -2,630 +2,328 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" href="assets/image0.png" type="image/png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Consultants | TimeERP</title>
-  <meta name="description" content="Work with TIME ERP implementation consultants for configuration, deployment, training, and optimization aligned to your business processes.">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Implementation Consulting | TimeERP</title>
+  <meta name="description" content="TimeERP implementation consulting for CA firms, construction, real estate, MSME, and professional services. Guided setup for HRMS, CRM, payroll, billing, projects, and compliance.">
+  <meta name="theme-color" content="#25B7A7">
+  <link rel="canonical" href="https://timeerp.com/consultants.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
-  <link rel="stylesheet" href="css/site-nav.css">
+  <link rel="stylesheet" href="css/site-nav.css?v=13">
   <link rel="stylesheet" href="css/site-footer.css">
-  <style>
-    :root {
-      --primary: #25b7a7;
-      --primary-dark: #1a9e8f;
-      --primary-light: #e8f8f6;
-      --primary-deeper: #0d7a6e;
-      --secondary: #243F64;
-      --accent: #17C3B2;
-      --heading-dark: #083530;
-      --text-body: #3d5250;
-      --text-muted: #7a9593;
-      --bg: #F8FCFC;
-      --card: #FFFFFF;
-      --border: #d0eeec;
-      --radius: 18px;
-      --shadow: 0 20px 60px rgba(36, 63, 100, 0.08);
-      --shadow-lg: 0 32px 80px rgba(37, 183, 167, 0.14);
-      --max: 1280px;
-      --pad: clamp(20px, 4vw, 48px);
-      --section: clamp(56px, 8vw, 96px);
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
-      font-size: 16px; line-height: 1.7; color: var(--text-body);
-      background: var(--bg); overflow-x: hidden;
-    }
-    img { max-width: 100%; display: block; }
-    a { color: inherit; text-decoration: none; }
-    button { font-family: inherit; cursor: pointer; border: none; background: none; }
-    ul { list-style: none; }
-
-    .container { width: min(var(--max), 100% - var(--pad) * 2); margin-inline: auto; }
-    .eyebrow {
-      display: block; margin: 0 0 10px;
-      font-size: 16px; font-weight: 600; line-height: 1.4; color: #0F172A;
-    }
-    .section-title {
-      font-size: clamp(1.75rem, 2.8vw, 2.25rem);
-      font-weight: 700; letter-spacing: -.02em; line-height: 1.35;
-      color: #000; margin: 0 0 16px;
-    }
-    .section-lead {
-      font-size: 16px; color: var(--text-muted); max-width: 680px;
-      line-height: 1.7; margin: 0 0 28px;
-    }
-    .section-head { max-width: 680px; margin-bottom: 28px; }
-    .section-head .section-lead { margin-bottom: 0; }
-
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      padding: 14px 28px; border-radius: 999px; font-size: 15px; font-weight: 600;
-      transition: transform .2s, box-shadow .2s, background .2s, border-color .2s, color .2s;
-      text-decoration: none;
-    }
-    .btn:hover { transform: translateY(-2px); }
-    .btn--primary {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: #fff; box-shadow: 0 12px 32px rgba(37, 183, 167, .35);
-    }
-    .btn--primary:hover { box-shadow: 0 16px 40px rgba(37, 183, 167, .45); }
-    .btn--ghost {
-      background: #fff; border: 1.5px solid var(--border); color: var(--secondary);
-    }
-    .btn--ghost:hover {
-      border-color: var(--primary); color: var(--primary-dark); background: var(--primary-light);
-    }
-    .btn .material-symbols-outlined { font-size: 18px; }
-
-    .cs-page { padding: calc(76px + clamp(36px, 5vw, 56px)) 0 0; }
-    .cs-section { padding: var(--section) 0; }
-    .cs-section--soft {
-      background: linear-gradient(180deg, #fff 0%, #f0faf8 50%, var(--bg) 100%);
-    }
-    .cs-section--panel { background: #fff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-
-    /* Hero */
-    .cs-hero {
-      position: relative;
-      padding-bottom: 48px;
-      background:
-        radial-gradient(ellipse 70% 50% at 8% 0%, rgba(37,183,167,.14), transparent 55%),
-        radial-gradient(ellipse 45% 40% at 100% 10%, rgba(23,195,178,.08), transparent 50%),
-        linear-gradient(180deg, #eef9f8 0%, var(--bg) 100%);
-    }
-    .cs-hero__actions { display: flex; flex-wrap: wrap; gap: 12px; }
-
-    /* Services */
-    .cs-services-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
-      gap: 24px;
-      align-items: start;
-    }
-    .cs-service-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-    .cs-service {
-      display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
-      width: 100%; text-align: left;
-      padding: 18px 16px;
-      border-radius: 16px;
-      border: 1.5px solid var(--border);
-      background: var(--card);
-      transition: transform .2s, box-shadow .2s, border-color .2s, background .2s;
-      min-height: 132px;
-    }
-    .cs-service:hover {
-      transform: translateY(-3px);
-      border-color: rgba(37, 183, 167, .4);
-      box-shadow: var(--shadow);
-    }
-    .cs-service.is-active {
-      border-color: var(--primary);
-      background: linear-gradient(165deg, #eefaf8 0%, #fff 70%);
-      box-shadow: 0 14px 32px rgba(37, 183, 167, .14);
-    }
-    .cs-service:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
-    .cs-service__icon {
-      width: 44px; height: 44px; border-radius: 12px;
-      background: rgba(37, 183, 167, .12);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--primary-deeper);
-      transition: background .2s, transform .2s, color .2s;
-    }
-    .cs-service__icon .material-symbols-outlined { font-size: 24px; }
-    .cs-service.is-active .cs-service__icon {
-      background: linear-gradient(145deg, #25b7a7, #3dd5c5);
-      color: #fff; transform: scale(1.04);
-    }
-    .cs-service__name {
-      font-size: 15px; font-weight: 700; line-height: 1.3; color: var(--heading-dark);
-    }
-    .cs-service__desc {
-      font-size: 13px; line-height: 1.5; color: var(--text-muted);
-      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-    }
-
-    .cs-detail {
-      position: sticky; top: 96px;
-      border-radius: var(--radius);
-      background: var(--card);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      padding: 28px;
-      min-height: 360px;
-      display: flex; flex-direction: column;
-      transition: opacity .2s, transform .2s;
-    }
-    .cs-detail.is-updating { opacity: .45; transform: translateY(6px); }
-    .cs-detail__icon {
-      width: 56px; height: 56px; border-radius: 14px; margin-bottom: 16px;
-      background: linear-gradient(135deg, #e8f8f6, #fff);
-      border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--primary-deeper);
-    }
-    .cs-detail__icon .material-symbols-outlined { font-size: 28px; }
-    .cs-detail h3 {
-      font-size: 20px; font-weight: 700; color: #000; margin: 0 0 8px; letter-spacing: -.02em;
-    }
-    .cs-detail > p {
-      font-size: 15px; line-height: 1.65; color: var(--text-muted); margin: 0 0 18px;
-    }
-    .cs-detail__label {
-      display: block; font-size: 12px; font-weight: 700;
-      letter-spacing: .04em; text-transform: uppercase;
-      color: var(--primary-dark); margin-bottom: 10px;
-    }
-    .cs-detail__list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
-    .cs-detail__list li {
-      display: flex; align-items: flex-start; gap: 10px;
-      font-size: 14px; line-height: 1.5; color: var(--text-body);
-    }
-    .cs-detail__list .material-symbols-outlined {
-      font-size: 18px; color: var(--primary); flex-shrink: 0; margin-top: 1px;
-    }
-    .cs-detail .btn { margin-top: auto; align-self: flex-start; padding: 12px 22px; font-size: 14px; }
-
-    /* Process timeline */
-    .cs-process {
-      display: grid;
-      grid-template-columns: 240px minmax(0, 1fr);
-      gap: 24px;
-      align-items: start;
-    }
-    .cs-steps {
-      display: flex; flex-direction: column; gap: 6px;
-      position: sticky; top: 96px;
-    }
-    .cs-step {
-      display: flex; align-items: center; gap: 12px;
-      width: 100%; text-align: left;
-      padding: 12px 14px; border-radius: 12px;
-      color: var(--text-muted);
-      transition: background .18s, color .18s, transform .18s, box-shadow .18s;
-    }
-    .cs-step:hover { background: #f4fafa; color: var(--heading-dark); transform: translateX(2px); }
-    .cs-step.is-active {
-      background: linear-gradient(135deg, #e8f8f6 0%, #fff 100%);
-      color: var(--heading-dark);
-      box-shadow: inset 0 0 0 1px #b8e8e2;
-    }
-    .cs-step__num {
-      width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
-      display: grid; place-items: center;
-      font-size: 12px; font-weight: 700;
-      background: #eef6f5; color: var(--text-muted);
-      transition: background .2s, color .2s, box-shadow .2s;
-    }
-    .cs-step.is-active .cs-step__num {
-      background: var(--primary); color: #fff;
-      box-shadow: 0 6px 16px rgba(37, 183, 167, .35);
-    }
-    .cs-step__label { font-size: 14px; font-weight: 600; line-height: 1.3; }
-
-    .cs-process-panel {
-      border-radius: var(--radius);
-      background: var(--card);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      padding: 32px;
-      min-height: 280px;
-      transition: opacity .2s, transform .2s;
-    }
-    .cs-process-panel.is-updating { opacity: .4; transform: translateY(8px); }
-    .cs-process-panel__eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      margin-bottom: 10px; font-size: 13px; font-weight: 700; color: var(--primary-dark);
-    }
-    .cs-process-panel__eyebrow .dot {
-      width: 7px; height: 7px; border-radius: 50%; background: var(--primary);
-      box-shadow: 0 0 0 4px rgba(37, 183, 167, .18);
-    }
-    .cs-process-panel h3 {
-      font-size: clamp(1.35rem, 2.2vw, 1.6rem);
-      font-weight: 700; color: var(--heading-dark);
-      letter-spacing: -.02em; margin: 0 0 10px;
-    }
-    .cs-process-panel p {
-      font-size: 15px; line-height: 1.7; color: var(--text-muted); max-width: 560px; margin: 0 0 18px;
-    }
-    .cs-process-panel__meta {
-      display: flex; flex-wrap: wrap; gap: 10px;
-    }
-    .cs-chip {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 8px 12px; border-radius: 999px;
-      background: var(--primary-light); border: 1px solid rgba(37, 183, 167, .22);
-      font-size: 13px; font-weight: 600; color: var(--primary-deeper);
-    }
-    .cs-chip .material-symbols-outlined { font-size: 16px; }
-
-    /* Industries */
-    .cs-industries {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 12px;
-    }
-    .cs-industry {
-      display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
-      padding: 22px 18px;
-      border-radius: var(--radius);
-      background: var(--card);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      transition: transform .2s, border-color .2s, box-shadow .2s;
-      min-height: 140px;
-    }
-    .cs-industry:hover {
-      transform: translateY(-4px);
-      border-color: rgba(37, 183, 167, .35);
-      box-shadow: var(--shadow-lg);
-    }
-    .cs-industry__icon {
-      width: 42px; height: 42px; border-radius: 12px;
-      background: var(--primary-light); color: var(--primary-deeper);
-      display: grid; place-items: center;
-    }
-    .cs-industry__icon .material-symbols-outlined { font-size: 22px; }
-    .cs-industry h3 {
-      font-size: 15px; font-weight: 700; color: var(--heading-dark); margin: 0;
-    }
-    .cs-industry p {
-      font-size: 13px; line-height: 1.5; color: var(--text-muted); margin: 0;
-    }
-
-    /* Benefits */
-    .cs-benefits {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-    .cs-benefit {
-      padding: 24px 20px;
-      border-radius: var(--radius);
-      background: var(--card);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      transition: transform .2s, border-color .2s, box-shadow .2s;
-    }
-    .cs-benefit:hover {
-      transform: translateY(-4px);
-      border-color: rgba(37, 183, 167, .35);
-      box-shadow: var(--shadow-lg);
-    }
-    .cs-benefit__icon {
-      width: 44px; height: 44px; border-radius: 12px; margin-bottom: 14px;
-      background: var(--primary-light); color: var(--primary-deeper);
-      display: grid; place-items: center;
-    }
-    .cs-benefit__icon .material-symbols-outlined { font-size: 22px; }
-    .cs-benefit h3 {
-      font-size: 16px; font-weight: 700; color: var(--heading-dark); margin: 0 0 8px;
-    }
-    .cs-benefit p {
-      font-size: 14px; line-height: 1.6; color: var(--text-muted); margin: 0;
-    }
-
-    /* Training resources */
-    .cs-resources {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
-    .cs-resource {
-      display: flex; align-items: flex-start; gap: 14px;
-      padding: 20px;
-      border-radius: 16px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      transition: transform .2s, border-color .2s, box-shadow .2s, background .2s;
-    }
-    .cs-resource:hover {
-      transform: translateY(-3px);
-      border-color: rgba(37, 183, 167, .4);
-      box-shadow: var(--shadow);
-      background: linear-gradient(165deg, #eefaf8 0%, #fff 70%);
-    }
-    .cs-resource__icon {
-      width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0;
-      background: rgba(37, 183, 167, .12); color: var(--primary-deeper);
-      display: grid; place-items: center;
-    }
-    .cs-resource__icon .material-symbols-outlined { font-size: 22px; }
-    .cs-resource h3 {
-      font-size: 15px; font-weight: 700; color: var(--heading-dark); margin: 0 0 4px;
-    }
-    .cs-resource p {
-      font-size: 13px; line-height: 1.5; color: var(--text-muted); margin: 0;
-    }
-
-    /* Contact CTA */
-    .cs-contact {
-      border-radius: 22px;
-      background: linear-gradient(145deg, #e8f8f6 0%, #fff 55%);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      padding: clamp(28px, 5vw, 48px);
-      display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 28px;
-      align-items: center;
-    }
-    .cs-contact h2 {
-      font-size: clamp(1.5rem, 2.4vw, 1.85rem);
-      font-weight: 700; color: #000; letter-spacing: -.02em; margin: 0 0 10px;
-    }
-    .cs-contact p {
-      font-size: 16px; color: var(--text-muted); line-height: 1.7; margin: 0;
-    }
-    .cs-contact__actions {
-      display: flex; flex-direction: column; gap: 12px; align-items: stretch;
-    }
-    .cs-contact__actions .btn { width: 100%; }
-
-    @media (max-width: 1100px) {
-      .cs-industries { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    }
-    @media (max-width: 980px) {
-      .cs-services-layout, .cs-process, .cs-contact { grid-template-columns: 1fr; }
-      .cs-detail, .cs-steps { position: static; }
-      .cs-benefits, .cs-resources { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 640px) {
-      .cs-service-grid, .cs-industries, .cs-benefits, .cs-resources { grid-template-columns: 1fr; }
-      .cs-detail { min-height: 0; padding: 22px; }
-    }
-  </style>
+  <link rel="stylesheet" href="css/consultants.css">
 </head>
 <body>
   <div id="site-header"></div>
 
-  <main class="cs-page">
-    <!-- 1. Hero -->
-    <header class="cs-hero">
-      <div class="container">
-        <p class="eyebrow">Resources</p>
-        <h1 class="section-title">TIME ERP Consultants</h1>
-        <p class="section-lead">Work with experienced implementation consultants who help you configure, deploy, train, and optimize TIME ERP according to your business processes.</p>
-        <div class="cs-hero__actions">
-          <a class="btn btn--primary" href="contact_sales.html">
-            <span class="material-symbols-outlined" aria-hidden="true">support_agent</span>
-            Talk to a Consultant
-          </a>
-          <a class="btn btn--ghost" href="contact_sales.html">Book Consultation</a>
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero section" aria-labelledby="cs-hero-title">
+      <div class="container hero__grid">
+        <div class="reveal">
+          <p class="eyebrow">Implementation Consulting</p>
+          <h1 class="hero__title" id="cs-hero-title">Launch TimeERP with<br><span>expert guidance</span></h1>
+          <p class="hero__sub">Our consulting team helps you configure HRMS, CRM, payroll, billing, projects, and compliance workflows so your organization can go live with confidence, not guesswork.</p>
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="#" data-book-demo>Book Free Demo</a>
+            <a class="btn btn--ghost" href="contact_sales.html">Talk to Expert</a>
+          </div>
+          <div class="hero__badges">
+            <span class="hero__badge"><span class="hero__badge-dot"></span> Guided setup</span>
+            <span class="hero__badge"><span class="hero__badge-dot"></span> Module configuration</span>
+            <span class="hero__badge"><span class="hero__badge-dot"></span> Training included</span>
+          </div>
+        </div>
+        <div class="hero__visual reveal">
+          <div class="hero__panel card" id="csHeroPanel">
+            <div class="hero__panel-head">
+              <strong>Implementation workspace</strong>
+              <span id="csHeroStatus">In progress</span>
+            </div>
+            <div class="hero__panel-progress" aria-hidden="true">
+              <span class="hero__panel-progress-fill" id="csHeroProgress"></span>
+            </div>
+            <div class="hero__panel-list" id="csHeroSteps">
+              <button type="button" class="hero__panel-row is-active" data-step="0">
+                <span class="material-symbols-outlined" aria-hidden="true">checklist</span>
+                <div>
+                  <strong>Requirements aligned</strong>
+                  <span>Modules, roles, and rollout plan confirmed</span>
+                </div>
+              </button>
+              <button type="button" class="hero__panel-row" data-step="1">
+                <span class="material-symbols-outlined" aria-hidden="true">groups</span>
+                <div>
+                  <strong>HRMS configured</strong>
+                  <span>Employees, attendance, and leave policies</span>
+                </div>
+              </button>
+              <button type="button" class="hero__panel-row" data-step="2">
+                <span class="material-symbols-outlined" aria-hidden="true">handshake</span>
+                <div>
+                  <strong>CRM workflows live</strong>
+                  <span>Leads, clients, and follow up stages</span>
+                </div>
+              </button>
+              <button type="button" class="hero__panel-row" data-step="3">
+                <span class="material-symbols-outlined" aria-hidden="true">receipt_long</span>
+                <div>
+                  <strong>Billing &amp; compliance</strong>
+                  <span>Invoicing, GST, ESIC, and EPFO readiness</span>
+                </div>
+              </button>
+              <button type="button" class="hero__panel-row" data-step="4">
+                <span class="material-symbols-outlined" aria-hidden="true">school</span>
+                <div>
+                  <strong>User training scheduled</strong>
+                  <span>Role based sessions for admins and teams</span>
+                </div>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-    </header>
+    </section>
 
-    <!-- 2. Consultant Services -->
-    <section class="cs-section cs-section--soft" id="services" aria-labelledby="services-title">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Consultant Services</p>
-          <h2 class="section-title" id="services-title">How consultants help you deploy TIME ERP</h2>
-          <p class="section-lead">Select a service to see how implementation experts support configuration, training, and go-live across TIME ERP modules.</p>
+    <!-- Why consulting -->
+    <section class="section section--soft" aria-labelledby="cs-why-title">
+      <div class="container reveal">
+        <p class="eyebrow">Why consulting matters</p>
+        <h2 class="section-title" id="cs-why-title">A smoother path from signup to go live</h2>
+        <p class="section-lead">TimeERP brings HR, CRM, payroll, billing, projects, and compliance into one platform. Consulting helps you configure it correctly for how your team actually works.</p>
+        <div class="value-grid">
+          <article class="value-card card reveal-child">
+            <div class="value-card__icon"><span class="material-symbols-outlined" aria-hidden="true">route</span></div>
+            <h3>Structured rollout</h3>
+            <p>Clear milestones from requirement discussion through configuration, training, and go live, so nothing critical is missed.</p>
+          </article>
+          <article class="value-card card reveal-child">
+            <div class="value-card__icon"><span class="material-symbols-outlined" aria-hidden="true">tune</span></div>
+            <h3>Module configuration</h3>
+            <p>Hands on setup for HRMS, CRM, billing, compliance, project management, roles, and permissions across your organization.</p>
+          </article>
+          <article class="value-card card reveal-child">
+            <div class="value-card__icon"><span class="material-symbols-outlined" aria-hidden="true">school</span></div>
+            <h3>Role based training</h3>
+            <p>Practical sessions for administrators and end users so teams adopt the modules they need from day one.</p>
+          </article>
+          <article class="value-card card reveal-child">
+            <div class="value-card__icon"><span class="material-symbols-outlined" aria-hidden="true">support_agent</span></div>
+            <h3>Post go live support</h3>
+            <p>Continued guidance after launch for refinements, questions, and smoother ongoing use of the platform.</p>
+          </article>
         </div>
+      </div>
+    </section>
 
-        <div class="cs-services-layout">
-          <div class="cs-service-grid" role="tablist" aria-label="Consultant services" id="csServiceList"></div>
-          <aside class="cs-detail" id="csDetail" role="tabpanel" aria-live="polite">
-            <div class="cs-detail__icon" aria-hidden="true" id="csDetailIconWrap">
-              <span class="material-symbols-outlined" id="csDetailIcon">map</span>
+    <!-- Services -->
+    <section class="section" id="services" aria-labelledby="cs-services-title">
+      <div class="container reveal">
+        <p class="eyebrow">Consultant services</p>
+        <h2 class="section-title" id="cs-services-title">Everything you need for a successful rollout</h2>
+        <p class="section-lead">From planning and configuration to migration, training, and post implementation support. Select a service to see what is included.</p>
+        <div class="services-layout">
+          <div class="service-grid" id="csServiceList" role="tablist" aria-label="Consultant services"></div>
+          <aside class="service-detail card" id="csDetail" aria-live="polite">
+            <div class="service-detail__icon" id="csDetailIconWrap">
+              <span class="material-symbols-outlined" id="csDetailIcon" aria-hidden="true">map</span>
             </div>
             <h3 id="csDetailTitle">Implementation Planning</h3>
-            <p id="csDetailDesc">Define scope, modules, timelines, and ownership so your TIME ERP rollout follows a clear plan.</p>
-            <span class="cs-detail__label">What consultants cover</span>
-            <ul class="cs-detail__list" id="csDetailList"></ul>
-            <a class="btn btn--primary" href="contact_sales.html" id="csDetailCta">Talk to a Consultant</a>
+            <p id="csDetailDesc">Define scope, modules, timelines, and ownership for a structured TimeERP rollout.</p>
+            <span class="service-detail__label">What's included</span>
+            <ul class="service-detail__list" id="csDetailList"></ul>
+            <a class="btn btn--primary" href="contact_sales.html">Discuss this service</a>
           </aside>
         </div>
       </div>
     </section>
 
-    <!-- 3. Consulting Process -->
-    <section class="cs-section" id="process" aria-labelledby="process-title">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Consulting Process</p>
-          <h2 class="section-title" id="process-title">A clear path from discovery to continuous support</h2>
-          <p class="section-lead">Follow the implementation journey consultants use to move your organization from requirements to confident go-live.</p>
-        </div>
-
-        <div class="cs-process">
-          <div class="cs-steps" role="tablist" aria-label="Consulting process steps" id="csStepList"></div>
-          <div class="cs-process-panel" id="csProcessPanel" role="tabpanel" aria-live="polite">
-            <div class="cs-process-panel__eyebrow"><span class="dot" aria-hidden="true"></span><span id="csProcessStepLabel">Step 1 of 8</span></div>
-            <h3 id="csProcessTitle">Requirement Discussion</h3>
-            <p id="csProcessDesc">Align on business goals, current workflows, and the TIME ERP modules your teams need before configuration begins.</p>
-            <div class="cs-process-panel__meta" id="csProcessMeta"></div>
+    <!-- Process -->
+    <section class="section section--soft" id="process" aria-labelledby="cs-process-title">
+      <div class="container reveal">
+        <p class="eyebrow">Implementation process</p>
+        <h2 class="section-title" id="cs-process-title">How we guide your TimeERP rollout</h2>
+        <p class="section-lead">A proven eight step approach from first conversation to continuous support after go live.</p>
+        <div class="process-layout" id="csProcessWrap">
+          <div class="process-steps" id="csStepList" role="tablist" aria-label="Implementation steps"></div>
+          <div class="process-main">
+            <div class="process-progress" aria-hidden="true">
+              <span class="process-progress__fill" id="csProcessProgress"></span>
+            </div>
+            <article class="process-panel card" id="csProcessPanel" aria-live="polite">
+              <p class="process-panel__eyebrow"><span class="dot" aria-hidden="true"></span><span id="csProcessStepLabel">Step 1 of 8</span></p>
+              <h3 id="csProcessTitle">Requirement Discussion</h3>
+              <p id="csProcessDesc">Align on business goals, current workflows, and the TimeERP modules your teams need before configuration begins.</p>
+              <div class="process-panel__chips" id="csProcessMeta"></div>
+            </article>
+            <div class="process-nav">
+              <button type="button" class="process-nav__btn" id="csProcessPrev" aria-label="Previous step">
+                <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span> Previous
+              </button>
+              <button type="button" class="process-nav__btn process-nav__btn--next" id="csProcessNext" aria-label="Next step">
+                Next <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 4. Industries -->
-    <section class="cs-section cs-section--panel" id="industries" aria-labelledby="industries-title">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Industries We Support</p>
-          <h2 class="section-title" id="industries-title">Industry-aware implementation guidance</h2>
-          <p class="section-lead">Consultants apply TIME ERP practices to the industries your organization already serves on the platform.</p>
-        </div>
-        <div class="cs-industries">
-          <a class="cs-industry" href="construction.html">
-            <span class="cs-industry__icon" aria-hidden="true"><span class="material-symbols-outlined">apartment</span></span>
+    <!-- Industries -->
+    <section class="section" id="industries" aria-labelledby="cs-industries-title">
+      <div class="container reveal">
+        <p class="eyebrow">Industry solutions</p>
+        <h2 class="section-title" id="cs-industries-title">Consulting tailored to your sector</h2>
+        <p class="section-lead">Implementation guidance shaped for the industries TimeERP is built to serve.</p>
+        <div class="industries__grid">
+          <article class="industry-card card">
+            <div class="industry-card__icon"><img src="assets/industry-icons/1.png" alt="" loading="lazy"></div>
             <h3>Construction</h3>
-            <p>Projects, site operations, and team workflows for construction groups.</p>
-          </a>
-          <a class="cs-industry" href="real_Estate.html">
-            <span class="cs-industry__icon" aria-hidden="true"><span class="material-symbols-outlined">home_work</span></span>
+            <p>Configure projects, labour, materials, and billing workflows across multiple sites.</p>
+            <a href="construction.html">Learn More</a>
+          </article>
+          <article class="industry-card card">
+            <div class="industry-card__icon"><img src="assets/industry-icons/2.png" alt="" loading="lazy"></div>
             <h3>Real Estate</h3>
-            <p>Inventory, sales follow-up, and project operations for real estate teams.</p>
-          </a>
-          <a class="cs-industry" href="msme.html">
-            <span class="cs-industry__icon" aria-hidden="true"><span class="material-symbols-outlined">precision_manufacturing</span></span>
-            <h3>Manufacturing</h3>
-            <p>Operations, workforce, and process setup for manufacturing businesses.</p>
-          </a>
-          <a class="cs-industry" href="msme.html">
-            <span class="cs-industry__icon" aria-hidden="true"><span class="material-symbols-outlined">storefront</span></span>
+            <p>Set up property tracking, client records, agreements, and commission workflows.</p>
+            <a href="real_Estate.html">Learn More</a>
+          </article>
+          <article class="industry-card card">
+            <div class="industry-card__icon"><img src="assets/industry-icons/3.png" alt="" loading="lazy"></div>
+            <h3>Property Dealer</h3>
+            <p>Configure lead management, site visits, and deal closure processes.</p>
+            <a href="property_dealer.html">Learn More</a>
+          </article>
+          <article class="industry-card card">
+            <div class="industry-card__icon"><img src="assets/industry-icons/4.png" alt="" loading="lazy"></div>
+            <h3>Chartered Accountant</h3>
+            <p>Align client tasks, compliance deadlines, billing, and document workflows.</p>
+            <a href="CA.html">Learn More</a>
+          </article>
+          <a class="industry-card card" href="msme.html">
+            <div class="industry-card__icon"><img src="assets/industry-icons/5.png" alt="" loading="lazy"></div>
             <h3>MSME</h3>
-            <p>Practical ERP configuration for growing MSME organizations.</p>
+            <p>Roll out HR, CRM, and operations modules for growing businesses.</p>
+            <span>Learn More</span>
           </a>
-          <a class="cs-industry" href="CA.html">
-            <span class="cs-industry__icon" aria-hidden="true"><span class="material-symbols-outlined">account_balance</span></span>
+          <article class="industry-card card">
+            <div class="industry-card__icon"><img src="assets/industry-icons/6.png" alt="" loading="lazy"></div>
             <h3>Professional Services</h3>
-            <p>Practice workflows for CA firms and professional service teams.</p>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. Why choose -->
-    <section class="cs-section cs-section--soft" id="why" aria-labelledby="why-title">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Why Choose TIME ERP Consultants</p>
-          <h2 class="section-title" id="why-title">Implementation support grounded in the product</h2>
-          <p class="section-lead">Consultants focus on accurate configuration, role-based training, and smoother adoption across your TIME ERP workspace.</p>
-        </div>
-        <div class="cs-benefits">
-          <article class="cs-benefit">
-            <div class="cs-benefit__icon" aria-hidden="true"><span class="material-symbols-outlined">bolt</span></div>
-            <h3>Faster Implementation</h3>
-            <p>Move from discovery to configuration with a structured plan tied to your selected TIME ERP modules.</p>
-          </article>
-          <article class="cs-benefit">
-            <div class="cs-benefit__icon" aria-hidden="true"><span class="material-symbols-outlined">lightbulb</span></div>
-            <h3>Best Practice Guidance</h3>
-            <p>Apply proven setup patterns for HRMS, CRM, billing, compliance, projects, and document workflows.</p>
-          </article>
-          <article class="cs-benefit">
-            <div class="cs-benefit__icon" aria-hidden="true"><span class="material-symbols-outlined">schedule</span></div>
-            <h3>Reduced Deployment Time</h3>
-            <p>Avoid trial-and-error setup by configuring roles, modules, and processes with expert direction.</p>
-          </article>
-          <article class="cs-benefit">
-            <div class="cs-benefit__icon" aria-hidden="true"><span class="material-symbols-outlined">account_tree</span></div>
-            <h3>Business Process Optimization</h3>
-            <p>Map your current process into TIME ERP so teams work from one aligned operational system.</p>
-          </article>
-          <article class="cs-benefit">
-            <div class="cs-benefit__icon" aria-hidden="true"><span class="material-symbols-outlined">psychology</span></div>
-            <h3>Expert Product Knowledge</h3>
-            <p>Work with consultants who understand TIME ERP modules, permissions, and industry workflows.</p>
-          </article>
-          <article class="cs-benefit">
-            <div class="cs-benefit__icon" aria-hidden="true"><span class="material-symbols-outlined">handshake</span></div>
-            <h3>Dedicated Support</h3>
-            <p>Get guided help through training, go-live, and post-implementation questions with your consulting contact.</p>
+            <p>Configure time tracking, client billing, and project delivery workflows.</p>
+            <a href="contact_sales.html">Learn More</a>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- 6. Training & Knowledge -->
-    <section class="cs-section" id="training" aria-labelledby="training-title">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Training &amp; Knowledge Resources</p>
-          <h2 class="section-title" id="training-title">Help your teams learn TIME ERP with confidence</h2>
-          <p class="section-lead">Combine consultant-led training with platform resources already available across TIME ERP.</p>
-        </div>
-        <div class="cs-resources">
-          <a class="cs-resource" href="contact_sales.html">
-            <span class="cs-resource__icon" aria-hidden="true"><span class="material-symbols-outlined">school</span></span>
-            <span>
-              <h3>User Training</h3>
-              <p>Role-based sessions so employees can use their assigned TIME ERP modules day to day.</p>
-            </span>
-          </a>
-          <a class="cs-resource" href="contact_sales.html">
-            <span class="cs-resource__icon" aria-hidden="true"><span class="material-symbols-outlined">admin_panel_settings</span></span>
-            <span>
-              <h3>Administrator Training</h3>
-              <p>Guidance for workspace admins on setup, permissions, and ongoing configuration.</p>
-            </span>
-          </a>
-          <a class="cs-resource" href="real_time_support.html">
-            <span class="cs-resource__icon" aria-hidden="true"><span class="material-symbols-outlined">help</span></span>
-            <span>
+    <!-- Resources -->
+    <section class="section section--soft" id="resources" aria-labelledby="cs-resources-title">
+      <div class="container reveal">
+        <p class="eyebrow">Resources &amp; training</p>
+        <h2 class="section-title" id="cs-resources-title">Support beyond the rollout</h2>
+        <p class="section-lead">Access help, onboarding tools, and learning resources to keep your team productive on TimeERP.</p>
+        <div class="resources-grid">
+          <a class="resource-link" href="help_centre.html">
+            <span class="resource-link__icon"><span class="material-symbols-outlined" aria-hidden="true">help</span></span>
+            <div>
               <h3>Help Centre</h3>
-              <p>Access support resources and get help with product questions after go-live.</p>
-            </span>
+              <p>Guides and answers for common TimeERP tasks and workflows.</p>
+            </div>
           </a>
-          <a class="cs-resource" href="home1.html#faq">
-            <span class="cs-resource__icon" aria-hidden="true"><span class="material-symbols-outlined">description</span></span>
-            <span>
-              <h3>Documentation</h3>
-              <p>Review platform FAQs and product guidance linked from TIME ERP Resources.</p>
-            </span>
+          <a class="resource-link" href="Academy.html">
+            <span class="resource-link__icon"><span class="material-symbols-outlined" aria-hidden="true">menu_book</span></span>
+            <div>
+              <h3>TimeERP Academy</h3>
+              <p>Structured learning for admins and users across platform modules.</p>
+            </div>
           </a>
-          <a class="cs-resource" href="community.html">
-            <span class="cs-resource__icon" aria-hidden="true"><span class="material-symbols-outlined">play_circle</span></span>
-            <span>
-              <h3>Video Tutorials</h3>
-              <p>Learn through Academy and community learning resources for TIME ERP teams.</p>
-            </span>
+          <a class="resource-link" href="onboarding_services.html">
+            <span class="resource-link__icon"><span class="material-symbols-outlined" aria-hidden="true">settings_suggest</span></span>
+            <div>
+              <h3>Onboarding Setup</h3>
+              <p>Configure organization profile, branches, teams, and modules.</p>
+            </div>
           </a>
-          <a class="cs-resource" href="community.html">
-            <span class="cs-resource__icon" aria-hidden="true"><span class="material-symbols-outlined">menu_book</span></span>
-            <span>
-              <h3>Knowledge Base</h3>
-              <p>Explore shared practices and learning content through the TIME ERP community.</p>
-            </span>
+          <a class="resource-link" href="real_time_support.html">
+            <span class="resource-link__icon"><span class="material-symbols-outlined" aria-hidden="true">headset_mic</span></span>
+            <div>
+              <h3>Real Time Support</h3>
+              <p>Get help when you need it during and after implementation.</p>
+            </div>
+          </a>
+          <a class="resource-link" href="community.html">
+            <span class="resource-link__icon"><span class="material-symbols-outlined" aria-hidden="true">forum</span></span>
+            <div>
+              <h3>Community</h3>
+              <p>Connect with other TimeERP users and share best practices.</p>
+            </div>
+          </a>
+          <a class="resource-link" href="contact_sales.html">
+            <span class="resource-link__icon"><span class="material-symbols-outlined" aria-hidden="true">chat</span></span>
+            <div>
+              <h3>Contact Sales</h3>
+              <p>Discuss implementation scope, pricing, and next steps with our team.</p>
+            </div>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- 7. Contact -->
-    <section class="cs-section cs-section--soft" id="contact" aria-labelledby="contact-title">
-      <div class="container">
-        <div class="cs-contact">
-          <div>
-            <p class="eyebrow">Contact Consultant</p>
-            <h2 id="contact-title">Ready to plan your TIME ERP implementation?</h2>
-            <p>Speak with an implementation expert about configuration, training, data migration, and go-live support for your organization.</p>
+    <!-- FAQ -->
+    <section class="section" id="faq" aria-labelledby="cs-faq-title">
+      <div class="container reveal">
+        <p class="eyebrow">FAQ</p>
+        <h2 class="section-title" id="cs-faq-title">Frequently asked questions</h2>
+        <div class="faq" id="faq-list">
+          <div class="faq__item is-open">
+            <button type="button" class="faq__q" aria-expanded="true" aria-controls="faq-a-1" id="faq-q-1">What does TimeERP implementation consulting include?<span>+</span></button>
+            <div class="faq__a" id="faq-a-1" role="region" aria-labelledby="faq-q-1"><p>Consulting covers planning, business process review, module configuration, data migration assistance, user training, go live support, and post implementation guidance tailored to the TimeERP modules your organization uses.</p></div>
           </div>
-          <div class="cs-contact__actions">
-            <a class="btn btn--primary" href="contact_sales.html">
-              <span class="material-symbols-outlined" aria-hidden="true">event</span>
-              Book Consultation
-            </a>
-            <a class="btn btn--ghost" href="contact_sales.html">
-              <span class="material-symbols-outlined" aria-hidden="true">support_agent</span>
-              Contact Expert
-            </a>
+          <div class="faq__item">
+            <button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-a-2" id="faq-q-2">Who provides TimeERP consulting?<span>+</span></button>
+            <div class="faq__a" id="faq-a-2" role="region" aria-labelledby="faq-q-2"><p>Implementation consulting is delivered by the TimeERP team through sales, onboarding, and support channels. Contact our team to discuss scope and scheduling for your rollout.</p></div>
           </div>
+          <div class="faq__item">
+            <button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-a-3" id="faq-q-3">Which modules can be configured during implementation?<span>+</span></button>
+            <div class="faq__a" id="faq-a-3" role="region" aria-labelledby="faq-q-3"><p>HRMS, CRM, payroll, billing, compliance, project management, document vault, user roles, and related platform settings based on the modules included in your TimeERP plan.</p></div>
+          </div>
+          <div class="faq__item">
+            <button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-a-4" id="faq-q-4">Do you help with data migration?<span>+</span></button>
+            <div class="faq__a" id="faq-a-4" role="region" aria-labelledby="faq-q-4"><p>Yes. Consulting includes assistance with planning and validating master data and opening records migrated from spreadsheets or legacy tools before go live.</p></div>
+          </div>
+          <div class="faq__item">
+            <button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-a-5" id="faq-q-5">Is training included?<span>+</span></button>
+            <div class="faq__a" id="faq-a-5" role="region" aria-labelledby="faq-q-5"><p>Yes. Role based training for administrators and end users is part of the implementation process, along with access to the Help Centre and TimeERP Academy.</p></div>
+          </div>
+          <div class="faq__item">
+            <button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-a-6" id="faq-q-6">How do I get started?<span>+</span></button>
+            <div class="faq__a" id="faq-a-6" role="region" aria-labelledby="faq-q-6"><p>Book a free demo or contact sales to review your requirements. Our team will outline the recommended modules, implementation steps, and support available for your organization.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta-final section" aria-labelledby="cs-cta-title" id="csCta">
+      <div class="cta-final__bg" aria-hidden="true"></div>
+      <div class="container reveal">
+        <h2 class="section-title" id="cs-cta-title">Ready to launch TimeERP the right way?</h2>
+        <p class="section-lead">Join 650+ businesses already running on TimeERP.</p>
+        <div class="cta-final__actions">
+          <a class="btn btn--primary" href="#" data-book-demo>Book Free Demo</a>
+          <a class="btn btn--ghost" href="contact_sales.html">Talk to Expert</a>
+        </div>
+        <div class="cta-final__chips" aria-label="Highlights">
+          <span class="cta-final__chip"><span class="material-symbols-outlined" aria-hidden="true">cloud_done</span> 99.8% cloud uptime</span>
+          <span class="cta-final__chip"><span class="material-symbols-outlined" aria-hidden="true">domain</span> Built for 5+ industries</span>
+          <span class="cta-final__chip"><span class="material-symbols-outlined" aria-hidden="true">support_agent</span> Guided implementation</span>
         </div>
       </div>
     </section>
@@ -635,7 +333,7 @@
     <div class="container">
       <div class="footer__main">
         <div class="footer__brand">
-          <a href="home1.html" class="footer__logo" aria-label="TimeERP home">
+          <a href="#top" class="footer__logo" aria-label="TimeERP home">
             <img src="assets/image01-footer.svg" alt="TimeERP" width="196" height="48" loading="lazy">
           </a>
           <p class="footer__desc">One Platform. Complete Business Management. Enterprise ERP for modern businesses.</p>
@@ -646,15 +344,16 @@
             <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">⛨</span><span>Secure</span></div>
           </div>
         </div>
+
         <div class="footer__cols">
           <div class="footer__col">
             <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Products</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
             <h3 class="footer__col-title">Products</h3>
             <ul class="footer__links">
-              <li><a href="home1.html#products">Modules</a></li>
-              <li><a href="home1.html#benefits">Benefits</a></li>
-              <li><a href="home1.html#project-management">Project Management</a></li>
-              <li><a href="home1.html#solutions">Platform</a></li>
+              <li><a href="index.html#products">Modules</a></li>
+              <li><a href="index.html#benefits">Benefits</a></li>
+              <li><a href="index.html#task-management">Project Management</a></li>
+              <li><a href="index.html#solutions">Platform</a></li>
               <li><a href="price.html">Pricing</a></li>
             </ul>
           </div>
@@ -675,6 +374,7 @@
               <li><a href="about.html">About Us</a></li>
               <li><a href="Our_Presence.html">Our Presence</a></li>
               <li><a href="careers.html">Careers</a></li>
+              <li><a href="blog.html">Blog</a></li>
               <li><a href="contact_sales.html">Contact</a></li>
             </ul>
           </div>
@@ -682,19 +382,22 @@
             <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Support</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
             <h3 class="footer__col-title">Support</h3>
             <ul class="footer__links">
-              <li><a href="real_time_support.html">Help Center</a></li>
+              <li><a href="help_centre.html">Help Center</a></li>
               <li><a href="contact_sales.html">Sales</a></li>
               <li><a href="custom_quote.html">Get a Quote</a></li>
             </ul>
           </div>
         </div>
       </div>
+
       <div class="footer__connect">
         <div class="footer__connect-item">
           <span class="footer__connect-label">Visit us</span>
           <address class="footer__address">
-            BM-08, Ansal Sumedha Building, RDC,<br>
-            Ghaziabad, Delhi NCR, UP 201002
+            <a class="footer__address-link" href="https://www.google.com/maps/search/?api=1&query=Ansal+Sumedha+Building+RDC+Ghaziabad+201002" target="_blank" rel="noopener noreferrer" aria-label="View office location on Google Maps">
+              BM-08, Ansal Sumedha Building, RDC,<br>
+              Ghaziabad, Delhi NCR, UP 201002
+            </a>
           </address>
           <div class="footer__quick">
             <a class="footer__quick-btn" href="#" data-book-demo>Book Demo</a>
@@ -719,291 +422,23 @@
           </div>
         </div>
       </div>
+
       <div class="footer__bar">
         <p class="footer__copy">© 2026 TimeERP · <a href="https://lawseva.com/" target="_blank" rel="noopener noreferrer">Law Seva Management Private Limited</a></p>
         <nav class="footer__legal" aria-label="Legal">
           <a href="privacy.html">Privacy</a>
           <a href="terms.html">Terms</a>
+          <a href="security.html">Security</a>
           <a href="contact_sales.html">Contact Us</a>
         </nav>
       </div>
     </div>
   </footer>
 
-  <script>
-  (function () {
-    'use strict';
-
-    var services = [
-      {
-        icon: 'map',
-        title: 'Implementation Planning',
-        desc: 'Define scope, modules, timelines, and ownership for a structured TIME ERP rollout.',
-        points: [
-          'Confirm modules and rollout priorities',
-          'Set implementation milestones and owners',
-          'Align stakeholders before configuration starts'
-        ]
-      },
-      {
-        icon: 'analytics',
-        title: 'Business Process Analysis',
-        desc: 'Review current workflows and map them into TIME ERP processes before setup.',
-        points: [
-          'Document current operating processes',
-          'Identify gaps and process improvements',
-          'Translate requirements into TIME ERP configuration'
-        ]
-      },
-      {
-        icon: 'tune',
-        title: 'System Configuration',
-        desc: 'Configure organization settings, branches, departments, and workspace defaults.',
-        points: [
-          'Set organization and branch structure',
-          'Configure defaults and preferences',
-          'Prepare the workspace for module activation'
-        ]
-      },
-      {
-        icon: 'groups',
-        title: 'HRMS Setup',
-        desc: 'Configure employee records, attendance, leave, and HR operations in TIME ERP HRMS.',
-        points: [
-          'Set up employee structure and HR workflows',
-          'Configure attendance and leave policies',
-          'Prepare HR teams for day-to-day use'
-        ]
-      },
-      {
-        icon: 'handshake',
-        title: 'CRM Setup',
-        desc: 'Configure lead handling, client records, follow-ups, and CRM Client Desk workflows.',
-        points: [
-          'Set lead and client process stages',
-          'Configure follow-up and activity tracking',
-          'Align sales teams to CRM Client Desk'
-        ]
-      },
-      {
-        icon: 'receipt_long',
-        title: 'Billing Configuration',
-        desc: 'Set up invoicing, payment tracking, and billing workflows for your organization.',
-        points: [
-          'Configure billing processes and invoice flow',
-          'Align collections with finance operations',
-          'Prepare finance users for billing tasks'
-        ]
-      },
-      {
-        icon: 'gavel',
-        title: 'Compliance Configuration',
-        desc: 'Configure statutory reporting readiness for GST, ESIC, EPFO, and related compliance needs.',
-        points: [
-          'Review compliance reporting requirements',
-          'Configure compliance-related workflows',
-          'Prepare teams for audit-ready reporting'
-        ]
-      },
-      {
-        icon: 'account_tree',
-        title: 'Project Management Setup',
-        desc: 'Configure projects, milestones, worklogs, and delivery tracking in Project Management.',
-        points: [
-          'Set project structures and milestones',
-          'Configure task and progress tracking',
-          'Align delivery teams to project workflows'
-        ]
-      },
-      {
-        icon: 'database',
-        title: 'Data Migration Assistance',
-        desc: 'Support migration of master data and opening records from spreadsheets or legacy tools.',
-        points: [
-          'Plan migration scope and validation checks',
-          'Assist with master data preparation',
-          'Verify records before go-live'
-        ]
-      },
-      {
-        icon: 'admin_panel_settings',
-        title: 'User Role & Permission Setup',
-        desc: 'Define roles, access levels, and permissions so teams see only what they need.',
-        points: [
-          'Design role-based access for each team',
-          'Configure permissions across modules',
-          'Validate access before rollout'
-        ]
-      },
-      {
-        icon: 'school',
-        title: 'Employee Training',
-        desc: 'Train users and admins on the modules and processes they will use every day.',
-        points: [
-          'Deliver role-based user training',
-          'Prepare administrators for ongoing setup',
-          'Support adoption during early usage'
-        ]
-      },
-      {
-        icon: 'rocket_launch',
-        title: 'Go-Live Support',
-        desc: 'Guide cutover, final checks, and launch readiness when your TIME ERP workspace goes live.',
-        points: [
-          'Complete pre-go-live validation',
-          'Support launch-day readiness',
-          'Stabilize early operational usage'
-        ]
-      },
-      {
-        icon: 'support_agent',
-        title: 'Post Implementation Support',
-        desc: 'Continue guidance after go-live for configuration refinements and process questions.',
-        points: [
-          'Address post-launch configuration needs',
-          'Support teams during early adoption',
-          'Refine workflows based on live usage'
-        ]
-      }
-    ];
-
-    var processSteps = [
-      {
-        title: 'Requirement Discussion',
-        desc: 'Align on business goals, current workflows, and the TIME ERP modules your teams need before configuration begins.',
-        chips: ['Goals', 'Modules', 'Stakeholders']
-      },
-      {
-        title: 'Business Analysis',
-        desc: 'Map your operating processes into TIME ERP so configuration reflects how construction, real estate, MSME, or professional service teams actually work.',
-        chips: ['Process map', 'Gaps', 'Priorities']
-      },
-      {
-        title: 'Solution Planning',
-        desc: 'Define the implementation plan, module sequence, migration scope, training plan, and go-live checklist.',
-        chips: ['Plan', 'Sequence', 'Owners']
-      },
-      {
-        title: 'System Configuration',
-        desc: 'Configure organization settings, roles, HRMS, CRM, billing, compliance, projects, and related TIME ERP modules.',
-        chips: ['Setup', 'Modules', 'Permissions']
-      },
-      {
-        title: 'Data Migration',
-        desc: 'Prepare and validate master data and opening records so teams start work in TIME ERP with reliable information.',
-        chips: ['Masters', 'Validation', 'Cutover']
-      },
-      {
-        title: 'User Training',
-        desc: 'Train employees and administrators on the modules and workflows they will use after go-live.',
-        chips: ['Users', 'Admins', 'Adoption']
-      },
-      {
-        title: 'Go-Live',
-        desc: 'Complete final checks and launch TIME ERP with consulting support during the critical cutover window.',
-        chips: ['Launch', 'Checks', 'Stabilization']
-      },
-      {
-        title: 'Continuous Support',
-        desc: 'Continue post-implementation guidance for refinements, questions, and smoother ongoing platform use.',
-        chips: ['Support', 'Refinement', 'Optimization']
-      }
-    ];
-
-    function escapeHtml(s) {
-      return String(s).replace(/[&<>"']/g, function (c) {
-        return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
-      });
-    }
-
-    /* Services */
-    var serviceList = document.getElementById('csServiceList');
-    var detailEl = document.getElementById('csDetail');
-    var serviceBtns = [];
-    var serviceIndex = 0;
-
-    serviceList.innerHTML = services.map(function (s, i) {
-      return '<button type="button" class="cs-service' + (i === 0 ? ' is-active' : '') + '" role="tab" aria-selected="' + (i === 0 ? 'true' : 'false') + '" data-service="' + i + '" id="cs-service-' + i + '">'
-        + '<span class="cs-service__icon" aria-hidden="true"><span class="material-symbols-outlined">' + s.icon + '</span></span>'
-        + '<span class="cs-service__name">' + escapeHtml(s.title) + '</span>'
-        + '<span class="cs-service__desc">' + escapeHtml(s.desc) + '</span></button>';
-    }).join('');
-    serviceBtns = Array.prototype.slice.call(serviceList.querySelectorAll('.cs-service'));
-
-    function activateService(index) {
-      if (index < 0 || index >= services.length) return;
-      serviceIndex = index;
-      var item = services[index];
-      serviceBtns.forEach(function (btn, i) {
-        var on = i === index;
-        btn.classList.toggle('is-active', on);
-        btn.setAttribute('aria-selected', on ? 'true' : 'false');
-      });
-      detailEl.classList.add('is-updating');
-      window.setTimeout(function () {
-        document.getElementById('csDetailIcon').textContent = item.icon;
-        document.getElementById('csDetailTitle').textContent = item.title;
-        document.getElementById('csDetailDesc').textContent = item.desc;
-        document.getElementById('csDetailList').innerHTML = item.points.map(function (p) {
-          return '<li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span><span>' + escapeHtml(p) + '</span></li>';
-        }).join('');
-        detailEl.classList.remove('is-updating');
-      }, 140);
-    }
-
-    serviceBtns.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        activateService(parseInt(btn.getAttribute('data-service'), 10));
-        if (window.matchMedia('(max-width: 980px)').matches) {
-          detailEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-      });
-    });
-    activateService(0);
-
-    /* Process */
-    var stepList = document.getElementById('csStepList');
-    var processPanel = document.getElementById('csProcessPanel');
-    var stepBtns = [];
-    var stepIndex = 0;
-
-    stepList.innerHTML = processSteps.map(function (s, i) {
-      return '<button type="button" class="cs-step' + (i === 0 ? ' is-active' : '') + '" role="tab" aria-selected="' + (i === 0 ? 'true' : 'false') + '" data-step="' + i + '">'
-        + '<span class="cs-step__num">' + (i + 1) + '</span>'
-        + '<span class="cs-step__label">' + escapeHtml(s.title) + '</span></button>';
-    }).join('');
-    stepBtns = Array.prototype.slice.call(stepList.querySelectorAll('.cs-step'));
-
-    function activateStep(index) {
-      if (index < 0 || index >= processSteps.length) return;
-      stepIndex = index;
-      var item = processSteps[index];
-      stepBtns.forEach(function (btn, i) {
-        var on = i === index;
-        btn.classList.toggle('is-active', on);
-        btn.setAttribute('aria-selected', on ? 'true' : 'false');
-      });
-      processPanel.classList.add('is-updating');
-      window.setTimeout(function () {
-        document.getElementById('csProcessStepLabel').textContent = 'Step ' + (index + 1) + ' of ' + processSteps.length;
-        document.getElementById('csProcessTitle').textContent = item.title;
-        document.getElementById('csProcessDesc').textContent = item.desc;
-        document.getElementById('csProcessMeta').innerHTML = item.chips.map(function (c) {
-          return '<span class="cs-chip"><span class="material-symbols-outlined" aria-hidden="true">check</span>' + escapeHtml(c) + '</span>';
-        }).join('');
-        processPanel.classList.remove('is-updating');
-      }, 140);
-    }
-
-    stepBtns.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        activateStep(parseInt(btn.getAttribute('data-step'), 10));
-      });
-    });
-    activateStep(0);
-  })();
-  </script>
-  <script src="js/site-nav.js" defer></script>
+  <script src="js/consultants.js" defer></script>
+  <script src="js/book-demo-modal.js?v=17" defer></script>
+  <script src="js/site-nav.js?v=13" defer></script>
   <script src="js/footer-accordion.js" defer></script>
+  <script src="js/site-footer.js?v=6"></script>
 </body>
 </html>

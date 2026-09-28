@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Appointments — TimeERP Marketing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/marketing-appointments.css?v=2">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="crm-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="crm-top-clock" id="crmTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn crm-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn crm-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">3</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="crm-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="home.html#module/marketing" class="dropdown__item"><strong>Marketing</strong><span>Back to module hub</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="map-page">
+          <header class="map-header">
+            <a class="map-back" href="home.html#module/marketing" aria-label="Back to Marketing">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <h1 class="map-title">Appointments</h1>
+          </header>
+
+          <div class="map-panel">
+            <div class="map-panel__head">
+              <div class="map-tabs" role="tablist">
+                <button type="button" class="map-tab is-active" role="tab" data-tab="pending" aria-selected="true">Pending Appointments</button>
+                <button type="button" class="map-tab" role="tab" data-tab="approved" aria-selected="false">Approved Appointments</button>
+                <button type="button" class="map-tab" role="tab" data-tab="rejected" aria-selected="false">Rejected Appointments</button>
+              </div>
+              <button type="button" class="map-add-btn" id="mapAddBtn" title="Add appointment" aria-label="Add appointment">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+              </button>
+            </div>
+
+            <div class="map-filters">
+              <span class="map-combo map-combo--client" data-list="client"><input type="text" id="mapFilterClient" placeholder="Client" autocomplete="off"><svg class="map-combo__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><div class="map-combo__menu"></div></span>
+              <span class="map-combo map-combo--status" data-list="status"><input type="text" id="mapFilterStatus" placeholder="Status" autocomplete="off" readonly><svg class="map-combo__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg><div class="map-combo__menu"></div></span>
+              <span class="map-combo map-combo--employee" data-list="employee"><input type="text" id="mapFilterEmployee" placeholder="Employee" autocomplete="off"><svg class="map-combo__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><div class="map-combo__menu"></div></span>
+              <div class="map-date-range" id="mapDateRange">
+                <button type="button" class="map-date-range__btn" id="mapDateBtn" aria-haspopup="true" aria-expanded="false">
+                  <span id="mapDateStart">Start date</span>
+                  <span class="map-date-range__arrow" aria-hidden="true">→</span>
+                  <span id="mapDateEnd">End date</span>
+                  <svg class="map-date-range__cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                </button>
+                <div class="map-date-pop map-date-pop--dual" id="mapDatePop" hidden>
+                  <div class="map-dual-cal" id="mapDualCal"></div>
+                  <input type="hidden" id="mapStartDate"><input type="hidden" id="mapEndDate">
+                </div>
+              </div>
+            </div>
+
+            <div class="map-table-wrap">
+              <table class="map-table">
+                <thead>
+                  <tr>
+                    <th>S. No.</th>
+                    <th>Date</th>
+                    <th>Client</th>
+                    <th>Partner</th>
+                    <th>Created by</th>
+                    <th>Reason</th>
+                    <th>Link</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="mapTableBody"></tbody>
+              </table>
+            </div>
+
+            <footer class="map-pagination" aria-label="Appointments pagination">
+              <div class="map-pagination__left"></div>
+              <div class="map-pagination__center">
+                <button type="button" class="map-page-nav" id="mapPrev" aria-label="Previous page" disabled>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <input type="text" class="map-page-input" id="mapPageInput" value="1" inputmode="numeric" aria-label="Current page" readonly>
+                <span class="map-page-of">of <span id="mapPageTotal">1</span></span>
+                <button type="button" class="map-page-nav" id="mapNext" aria-label="Next page" disabled>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+              </div>
+              <div class="map-pagination__right"><span class="map-count" id="mapCount">3 / 3</span></div>
+            </footer>
+          </div>
+
+          <footer class="map-app-footer" aria-label="App footer"></footer>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="map-modal-scrim" id="mapEditModal" role="dialog" aria-modal="true" aria-labelledby="mapEditTitle" hidden>
+    <div class="map-modal">
+      <div class="map-modal__head">
+        <h2 id="mapEditTitle">Edit appointment</h2>
+        <button type="button" class="map-modal__close" id="mapEditClose" aria-label="Close">×</button>
+      </div>
+      <form class="map-modal__body" id="mapEditForm" novalidate>
+        <div class="map-edit-field">
+          <label for="mapEditClient">Client <span class="map-req">*</span></label>
+          <span class="map-modal-combo" data-list="modalClient">
+            <input type="text" id="mapEditClient" placeholder="Client" autocomplete="off" required>
+            <button type="button" class="map-modal-combo__clear" id="mapEditClientClear" aria-label="Clear client" hidden>×</button>
+            <svg class="map-modal-combo__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            <div class="map-modal-combo__menu"></div>
+          </span>
+        </div>
+        <div class="map-edit-field">
+          <label for="mapEditEmployee">Employee <span class="map-req">*</span></label>
+          <span class="map-modal-combo" data-list="modalEmployee">
+            <input type="text" id="mapEditEmployee" placeholder="Employee" autocomplete="off" required>
+            <button type="button" class="map-modal-combo__clear" id="mapEditEmployeeClear" aria-label="Clear employee" hidden>×</button>
+            <svg class="map-modal-combo__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            <div class="map-modal-combo__menu"></div>
+          </span>
+        </div>
+        <div class="map-edit-field">
+          <label for="mapEditDateTime">Date &amp; time <span class="map-req">*</span></label>
+          <div class="map-dt-field" id="mapDtField">
+            <input type="text" id="mapEditDateTime" placeholder="Select date" readonly required>
+            <svg class="map-dt-field__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            <div class="map-dt-pop" id="mapDtPop" hidden>
+              <div class="map-dt-pop__main">
+                <div class="map-dt-cal" id="mapDtCal"></div>
+                <div class="map-dt-time">
+                  <div class="map-dt-time__col" data-part="h" id="mapDtHours"></div>
+                  <div class="map-dt-time__col" data-part="m" id="mapDtMins"></div>
+                  <div class="map-dt-time__col" data-part="s" id="mapDtSecs"></div>
+                </div>
+              </div>
+              <div class="map-dt-pop__foot">
+                <button type="button" class="map-dt-now" id="mapDtNow">Now</button>
+                <button type="button" class="map-dt-ok" id="mapDtOk">OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="map-edit-field">
+          <label for="mapEditReason">Reason</label>
+          <input type="text" id="mapEditReason" class="map-edit-input" placeholder="Reason">
+        </div>
+        <div class="map-edit-field">
+          <label for="mapEditDescription">Description</label>
+          <textarea id="mapEditDescription" class="map-edit-textarea" rows="3" placeholder="Description"></textarea>
+        </div>
+        <div class="map-edit-field">
+          <label for="mapEditLink">Meeting link</label>
+          <input type="url" id="mapEditLink" class="map-edit-input" placeholder="https://...">
+        </div>
+        <div class="map-edit-field">
+          <label for="mapEditStatus">Status <span class="map-req">*</span></label>
+          <span class="map-modal-combo map-modal-combo--status" data-list="modalStatus">
+            <input type="text" id="mapEditStatus" readonly required>
+            <svg class="map-modal-combo__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            <div class="map-modal-combo__menu"></div>
+          </span>
+        </div>
+        <div class="map-edit-row">
+          <div class="map-edit-field map-edit-field--half">
+            <label for="mapEditRemindVal">Remind before (value)</label>
+            <input type="text" id="mapEditRemindVal" class="map-edit-input" placeholder="e.g. 15">
+          </div>
+          <div class="map-edit-field map-edit-field--half">
+            <label for="mapEditRemindUnit">Remind before (unit)</label>
+            <span class="map-modal-combo" data-list="modalUnit">
+              <input type="text" id="mapEditRemindUnit" placeholder="Select unit" readonly>
+              <svg class="map-modal-combo__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              <div class="map-modal-combo__menu"></div>
+            </span>
+          </div>
+        </div>
+      </form>
+      <div class="map-modal__foot">
+        <button type="button" class="map-btn map-btn--ghost" id="mapEditCancel">Cancel</button>
+        <button type="button" class="map-btn map-btn--primary" id="mapModalSubmit">Update</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/marketing-appointments.js?v=3"></script>
+</body>
+</html>

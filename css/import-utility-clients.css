@@ -1,0 +1,186 @@
+/* Import Utility — Clients upload page */
+
+.iuc-page .iuc-body {
+  padding: 16px 16px 32px;
+}
+
+.iuc-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.iuc-back {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #25b7a7;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.iuc-back svg { width: 16px; height: 16px; }
+.iuc-back:hover { background: #1a9e8f; }
+
+.iuc-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.iuc-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, .05);
+  overflow: hidden;
+}
+
+.iuc-table-wrap {
+  overflow-x: auto;
+}
+
+.iuc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.iuc-table thead th {
+  text-align: left;
+  padding: 12px 18px;
+  background: #f8fafc;
+  color: #1e293b;
+  font-weight: 700;
+  border-bottom: 1px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+.iuc-table tbody td {
+  padding: 14px 18px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.iuc-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.iuc-table__sn {
+  width: 72px;
+  text-align: center;
+}
+
+.iuc-table thead th.iuc-table__sn {
+  text-align: center;
+}
+
+.iuc-table__view {
+  width: 160px;
+  text-align: center;
+}
+
+.iuc-table thead th.iuc-table__view {
+  text-align: center;
+}
+
+.iuc-table__action {
+  width: 220px;
+  text-align: right;
+}
+
+.iuc-table thead th.iuc-table__action {
+  text-align: right;
+}
+
+.iuc-view-btn {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: #e8f8f6;
+  color: #25b7a7;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.iuc-view-btn svg { width: 16px; height: 16px; }
+.iuc-view-btn:hover { background: #e8f8f6; color: #1a9e8f; }
+
+.iuc-view-empty {
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.iuc-upload-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #fff;
+  color: #334155;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.iuc-upload-btn svg {
+  width: 16px;
+  height: 16px;
+  color: #64748b;
+  flex-shrink: 0;
+}
+
+.iuc-upload-btn:hover {
+  border-color: #25b7a7;
+  color: #25b7a7;
+}
+
+.iuc-upload-btn:hover svg { color: #25b7a7; }
+
+.iuc-toast-stack {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.iuc-toast {
+  min-width: 220px;
+  max-width: 360px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: #1e293b;
+  color: #fff;
+  font-size: 13px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, .25);
+  pointer-events: auto;
+}
+
+.iuc-toast strong {
+  display: block;
+  margin-bottom: 2px;
+}
+
+@media (max-width: 640px) {
+  .iuc-table__action { text-align: left; }
+  .iuc-table thead th.iuc-table__action { text-align: left; }
+}

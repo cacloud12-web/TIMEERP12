@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reception — TimeERP Marketing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/marketing-visitor.css?v=4">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="crm-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="crm-top-clock" id="crmTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn crm-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn crm-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">3</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="crm-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="home.html#module/marketing" class="dropdown__item"><strong>Marketing</strong><span>Back to module hub</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="mvr-page">
+          <header class="mvr-header">
+            <div class="mvr-header__left">
+              <div class="mvr-header__crumb">
+                <a class="mvr-back" href="home.html#module/marketing" aria-label="Back to Marketing">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+                </a>
+                <span class="mvr-crumb">Reception</span>
+              </div>
+              <h1 class="mvr-title">Reception</h1>
+            </div>
+            <button type="button" class="mvr-add-btn" id="mvrAddBtn" title="Create visitor" aria-label="Create visitor">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </header>
+
+          <div class="mvr-panel">
+            <div class="mvr-filters">
+              <span class="mvr-combo mvr-combo--client" data-list="client"><input type="text" id="mvrFilterClient" placeholder="Client" autocomplete="off"><svg class="mvr-combo__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><div class="mvr-combo__menu"></div></span>
+              <span class="mvr-combo mvr-combo--employee" data-list="employee"><input type="text" id="mvrFilterEmployee" placeholder="Employee" autocomplete="off"><svg class="mvr-combo__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><div class="mvr-combo__menu"></div></span>
+              <div class="mvr-date-range" id="mvrDateRange">
+                <button type="button" class="mvr-date-range__btn" id="mvrDateBtn" aria-haspopup="true" aria-expanded="false">
+                  <span id="mvrDateStart">Start date</span>
+                  <span class="mvr-date-range__arrow" aria-hidden="true">→</span>
+                  <span id="mvrDateEnd">End date</span>
+                  <svg class="mvr-date-range__cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                </button>
+                <div class="mvr-date-pop" id="mvrDatePop" hidden>
+                  <div class="mvr-date-pop__calendars">
+                    <div class="mvr-cal" id="mvrCalLeft"></div>
+                    <div class="mvr-cal" id="mvrCalRight"></div>
+                  </div>
+                  <div class="mvr-date-pop__actions">
+                    <button type="button" class="mvr-date-pop__apply" id="mvrDateApply">Apply</button>
+                    <button type="button" class="mvr-date-pop__clear" id="mvrDateClear">Clear</button>
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="mvr-export-btn" id="mvrExportBtn" title="Export to Excel" aria-label="Export to Excel">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M7 2.75h7.5L19.25 7.5V20.5a.75.75 0 01-.75.75H7a.75.75 0 01-.75-.75V3.5A.75.75 0 017 2.75z" stroke="#217346" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M14.5 2.75V7.5h4.75" stroke="#217346" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M9.5 11.5l5 5M14.5 11.5l-5 5" stroke="#217346" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+              </button>
+            </div>
+
+            <div class="mvr-table-wrap">
+              <table class="mvr-table">
+                <thead>
+                  <tr>
+                    <th class="mvr-th-check"><input type="checkbox" id="mvrCheckAll" aria-label="Select all"></th>
+                    <th>S. No.</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Client</th>
+                    <th>Contact name</th>
+                    <th>Contact phone</th>
+                    <th>Authorized</th>
+                    <th>Partner</th>
+                    <th>Branch</th>
+                    <th>Responsible employee</th>
+                    <th>Notes</th>
+                    <th>Attachments</th>
+                    <th class="mvr-th-actions">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="mvrTableBody"></tbody>
+              </table>
+            </div>
+
+            <footer class="mvr-pagination" aria-label="Reception pagination">
+              <div class="mvr-pagination__left"></div>
+              <div class="mvr-pagination__center">
+                <button type="button" class="mvr-page-nav" id="mvrPrev" aria-label="Previous page" disabled>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <input type="text" class="mvr-page-input" id="mvrPageInput" value="1" inputmode="numeric" aria-label="Current page" readonly>
+                <span class="mvr-page-of">of <span id="mvrPageTotal">1</span></span>
+                <button type="button" class="mvr-page-nav" id="mvrNext" aria-label="Next page" disabled>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+              </div>
+              <div class="mvr-pagination__right"><span class="mvr-count" id="mvrCount">1 / 1</span></div>
+            </footer>
+          </div>
+
+          <footer class="mvr-app-footer" aria-label="App footer"></footer>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Create / Edit visitor modal -->
+  <div class="mvr-modal-scrim" id="mvrModal" role="dialog" aria-modal="true" aria-labelledby="mvrModalTitle" hidden>
+    <div class="mvr-modal">
+      <div class="mvr-modal__head">
+        <h2 id="mvrModalTitle">Create visitor</h2>
+        <button type="button" class="mvr-modal__close" id="mvrModalClose" aria-label="Close">×</button>
+      </div>
+      <form class="mvr-modal__body" id="mvrForm" novalidate>
+        <div class="mvr-edit-field" id="mvrAuthField" hidden>
+          <label class="mvr-check"><input type="checkbox" id="mvrAuthorized"> Authorized client</label>
+        </div>
+        <div class="mvr-edit-field">
+          <label for="mvrClient">Client <span class="mvr-req">*</span></label>
+          <span class="mvr-modal-combo" data-list="modalClient">
+            <input type="text" id="mvrClient" autocomplete="off" required>
+            <svg class="mvr-modal-combo__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            <div class="mvr-modal-combo__menu"></div>
+          </span>
+        </div>
+        <div class="mvr-edit-field">
+          <label for="mvrBranch">Branch <span class="mvr-req">*</span></label>
+          <span class="mvr-modal-combo" data-list="modalBranch">
+            <input type="text" id="mvrBranch" placeholder="Branch" autocomplete="off" required>
+            <svg class="mvr-modal-combo__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            <div class="mvr-modal-combo__menu"></div>
+          </span>
+        </div>
+        <div class="mvr-edit-row">
+          <div class="mvr-edit-field mvr-edit-field--half">
+            <label for="mvrFrom">From <span class="mvr-req">*</span></label>
+            <div class="mvr-dt-field" data-dt="from">
+              <input type="text" id="mvrFrom" placeholder="Select date" readonly required>
+              <svg class="mvr-dt-field__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </div>
+          </div>
+          <div class="mvr-edit-field mvr-edit-field--half">
+            <label for="mvrTo">To <span class="mvr-req">*</span></label>
+            <div class="mvr-dt-field" data-dt="to">
+              <input type="text" id="mvrTo" placeholder="Select date" readonly required>
+              <svg class="mvr-dt-field__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="mvr-dt-pop" id="mvrDtPop" hidden>
+          <div class="mvr-dt-pop__main">
+            <div class="mvr-dt-cal" id="mvrDtCal"></div>
+            <div class="mvr-dt-time">
+              <div class="mvr-dt-time__col" data-part="h" id="mvrDtHours"></div>
+              <div class="mvr-dt-time__col" data-part="m" id="mvrDtMins"></div>
+              <div class="mvr-dt-time__col" data-part="s" id="mvrDtSecs"></div>
+            </div>
+          </div>
+          <div class="mvr-dt-pop__foot">
+            <button type="button" class="mvr-dt-now" id="mvrDtNow">Now</button>
+            <button type="button" class="mvr-dt-ok" id="mvrDtOk">OK</button>
+          </div>
+        </div>
+        <div class="mvr-edit-field">
+          <label for="mvrEmployees">Responsible employees</label>
+          <span class="mvr-modal-combo mvr-modal-combo--emp" data-list="modalEmployee">
+            <div class="mvr-tags" id="mvrEmpTags"></div>
+            <input type="text" id="mvrEmployees" placeholder="Select employees" autocomplete="off">
+            <svg class="mvr-modal-combo__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            <div class="mvr-modal-combo__menu"></div>
+          </span>
+        </div>
+        <div class="mvr-edit-field">
+          <label>Attachments</label>
+          <button type="button" class="mvr-upload-btn" id="mvrUploadBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 20h16"/></svg>
+            Click to Upload
+          </button>
+          <input type="file" id="mvrFileInput" hidden multiple>
+          <div class="mvr-file-list" id="mvrFileList"></div>
+        </div>
+        <div class="mvr-edit-field">
+          <label for="mvrNotes">Notes</label>
+          <textarea id="mvrNotes" class="mvr-edit-textarea" rows="3" placeholder="Notes"></textarea>
+        </div>
+      </form>
+      <div class="mvr-modal__foot">
+        <button type="button" class="mvr-btn mvr-btn--ghost" id="mvrModalCancel">Cancel</button>
+        <button type="button" class="mvr-btn mvr-btn--primary" id="mvrModalSubmit">Create</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete confirm popover -->
+  <div class="mvr-del-pop" id="mvrDelPop" hidden role="alertdialog" aria-labelledby="mvrDelText">
+    <div class="mvr-del-pop__inner">
+      <span class="mvr-del-pop__icon" aria-hidden="true">!</span>
+      <p id="mvrDelText">Are you sure you want to delete this visitor?</p>
+      <div class="mvr-del-pop__actions">
+        <button type="button" class="mvr-btn mvr-btn--ghost mvr-btn--sm" id="mvrDelNo">No</button>
+        <button type="button" class="mvr-btn mvr-btn--blue mvr-btn--sm" id="mvrDelYes">Yes</button>
+      </div>
+    </div>
+    <span class="mvr-del-pop__caret" aria-hidden="true"></span>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/marketing-visitor.js?v=1"></script>
+</body>
+</html>

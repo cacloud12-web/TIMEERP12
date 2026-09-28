@@ -2,8 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" href="assets/image0.png" type="image/png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Startup Launch Pad | TimeERP</title>
   <meta name="description" content="Launch, manage, and scale your startup with TimeERP, one platform for CRM, projects, billing, payroll, and finance.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,7 +44,7 @@
     @media (max-width:1100px){:root{--content-pad-x:40px;}}
     @media (max-width:768px){:root{--content-pad-x:20px;--section-pad:72px;}}
   </style>
-  <link rel="stylesheet" href="css/site-nav.css">
+  <link rel="stylesheet" href="css/site-nav.css?v=13">
   <link rel="stylesheet" href="css/site-footer.css">
   <link rel="stylesheet" href="css/startup_launchpad.css">
 </head>
@@ -59,7 +63,7 @@
           <h1 id="slp-hero-heading">From first idea to a running company, in one workspace</h1>
           <p class="slp-hero__lead">TimeERP gives founders the operating system to find customers, run projects, invoice with confidence, and keep the team moving, without stitching together five tools.</p>
           <div class="slp-hero__ctas">
-            <a class="btn btn--white" href="contact_sales.html">Book a demo</a>
+            <a class="btn btn--white" href="#" data-book-demo>Book a demo</a>
             <a class="btn btn--outline-light" href="custom_quote.html">Get a quote</a>
           </div>
           <div class="slp-hero__chips" aria-label="Highlights">
@@ -509,16 +513,39 @@
     </section>
 
     <!-- 9. Final CTA -->
-    <section class="slp-cta" aria-labelledby="slp-cta-heading">
-      <div class="slp-cta__deco" aria-hidden="true"></div>
-      <div class="section-inner anim-up">
-        <span class="section-label">Next Step</span>
+    <section class="slp-cta" id="slpCta" aria-labelledby="slp-cta-heading">
+      <div class="slp-cta__bg" aria-hidden="true">
+        <div class="slp-cta__mesh"></div>
+        <div class="slp-cta__deco slp-cta__deco--left" data-parallax-cta="-22"></div>
+        <div class="slp-cta__deco slp-cta__deco--right" data-parallax-cta="22"></div>
+        <div class="slp-cta__orb slp-cta__orb--a" data-parallax-cta="14"></div>
+        <div class="slp-cta__orb slp-cta__orb--b" data-parallax-cta="-12"></div>
+        <div class="slp-cta__ring slp-cta__ring--a"></div>
+        <div class="slp-cta__ring slp-cta__ring--b"></div>
+      </div>
+      <div class="section-inner slp-cta__inner anim-up">
+        <span class="section-label slp-cta__label">Next Step</span>
         <h2 id="slp-cta-heading">Ready to launch your startup?</h2>
-        <p>Bring CRM, projects, billing, and people ops into one calm system, and spend your energy on the product, not the plumbing.</p>
+        <p class="slp-cta__lead">Bring CRM, projects, billing, and people ops into one calm system, and spend your energy on the product, not the plumbing.</p>
         <div class="slp-cta__actions">
-          <a class="btn btn--white" href="contact_sales.html">Book a demo</a>
-          <a class="btn btn--outline-light" href="custom_quote.html">Get a quote</a>
+          <a class="slp-cta__btn slp-cta__btn--primary" href="#" data-book-demo>Book Free Demo</a>
+          <a class="slp-cta__btn slp-cta__btn--ghost" href="custom_quote.html">Get a Quote</a>
         </div>
+        <div class="slp-cta__divider" aria-hidden="true"></div>
+        <ul class="slp-cta__trust" aria-label="Launch highlights">
+          <li>
+            <span class="slp-cta__trust-icon"><span class="material-symbols-outlined" aria-hidden="true">rocket_launch</span></span>
+            <span>Go live in days</span>
+          </li>
+          <li>
+            <span class="slp-cta__trust-icon"><span class="material-symbols-outlined" aria-hidden="true">hub</span></span>
+            <span>One unified platform</span>
+          </li>
+          <li>
+            <span class="slp-cta__trust-icon"><span class="material-symbols-outlined" aria-hidden="true">support_agent</span></span>
+            <span>Founder-first support</span>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -528,7 +555,7 @@
     <div class="container">
       <div class="footer__main">
         <div class="footer__brand">
-          <a href="home1.html" class="footer__logo" aria-label="TimeERP home">
+          <a href="index.html" class="footer__logo" aria-label="TimeERP home">
             <img src="assets/image01-footer.svg" alt="TimeERP" width="196" height="48" loading="lazy">
           </a>
           <p class="footer__desc">One Platform. Complete Business Management. Enterprise ERP for modern businesses.</p>
@@ -544,10 +571,10 @@
             <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Products</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
             <h4 class="footer__col-title">Products</h4>
             <ul class="footer__links">
-              <li><a href="home1.html#products">Modules</a></li>
-              <li><a href="home1.html#benefits">Benefits</a></li>
-              <li><a href="home1.html#task-management">Project Management</a></li>
-              <li><a href="home1.html#solutions">Platform</a></li>
+              <li><a href="index.html#products">Modules</a></li>
+              <li><a href="index.html#benefits">Benefits</a></li>
+              <li><a href="index.html#task-management">Project Management</a></li>
+              <li><a href="index.html#solutions">Platform</a></li>
               <li><a href="price.html">Pricing</a></li>
             </ul>
           </div>
@@ -569,6 +596,7 @@
               <li><a href="about.html">About Us</a></li>
               <li><a href="Our_Presence.html">Our Presence</a></li>
               <li><a href="careers.html">Careers</a></li>
+              <li><a href="blog.html">Blog</a></li>
               <li><a href="contact_sales.html">Contact</a></li>
             </ul>
           </div>
@@ -576,7 +604,7 @@
             <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Support</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
             <h4 class="footer__col-title">Support</h4>
             <ul class="footer__links">
-              <li><a href="real_time_support.html">Help Center</a></li>
+              <li><a href="help_centre.html">Help Center</a></li>
               <li><a href="contact_sales.html">Sales</a></li>
               <li><a href="custom_quote.html">Get a Quote</a></li>
             </ul>
@@ -587,8 +615,10 @@
         <div class="footer__connect-item">
           <span class="footer__connect-label">Visit us</span>
           <address class="footer__address">
-            BM-08, Ansal Sumedha Building, RDC,<br>
-            Ghaziabad, Delhi NCR, UP 201002
+            <a class="footer__address-link" href="https://www.google.com/maps/search/?api=1&query=Ansal+Sumedha+Building+RDC+Ghaziabad+201002" target="_blank" rel="noopener noreferrer" aria-label="View office location on Google Maps">
+              BM-08, Ansal Sumedha Building, RDC,<br>
+              Ghaziabad, Delhi NCR, UP 201002
+            </a>
           </address>
           <div class="footer__quick">
             <a class="footer__quick-btn" href="#" data-book-demo>Book Demo</a>
@@ -618,14 +648,17 @@
         <nav class="footer__legal" aria-label="Legal">
           <a href="privacy.html">Privacy</a>
           <a href="terms.html">Terms</a>
+          <a href="security.html">Security</a>
           <a href="contact_sales.html">Contact Us</a>
         </nav>
       </div>
     </div>
   </footer>
 <script src="js/scroll-animations.js" defer></script>
+  <script src="js/book-demo-modal.js?v=17" defer></script>
   <script src="js/footer-accordion.js" defer></script>
   <script src="js/startup_launchpad.js" defer></script>
-  <script src="js/site-nav.js" defer></script>
+  <script src="js/site-nav.js?v=13" defer></script>
+  <script src="js/site-footer.js?v=6"></script>
 </body>
 </html>

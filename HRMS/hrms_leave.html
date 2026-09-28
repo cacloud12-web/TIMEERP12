@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="../assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="../assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HRMS Leave — TIME ERP HRMS</title>
+  <meta name="description" content="Manage leave applications, compensatory off, leave counts, logs, credit/debit, and on duty in TIME ERP.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/hrms-leave.css?v=hl8">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="../home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="../assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="hl-top-checkin is-in" id="hlTopCheckInBtn">Check In</button>
+            <time class="hl-top-clock" id="hlTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn hl-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn hl-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">3</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">TE</span>
+                <span class="topbar__profile-meta"><strong>Admin</strong><span>TimeERP</span></span>
+                <svg class="hl-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="../home.html" class="dropdown__item"><strong>Go to home</strong><span>Module hub overview</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="hl-page" id="hlPage">
+          <header class="hl-header">
+            <a class="hl-back" href="../home.html#module/hrms" aria-label="Back to HRMS">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <h1 class="hl-title">HRMS Leave</h1>
+          </header>
+
+          <nav class="hl-tabs" aria-label="HRMS leave sections">
+            <div class="hl-tabs__list" role="tablist">
+              <button type="button" class="hl-tab is-active" role="tab" aria-selected="true" data-tab="view">View Leave</button>
+              <button type="button" class="hl-tab" role="tab" aria-selected="false" data-tab="compoff">Comp Off</button>
+              <button type="button" class="hl-tab" role="tab" aria-selected="false" data-tab="count">Leave Count</button>
+              <button type="button" class="hl-tab" role="tab" aria-selected="false" data-tab="log">Leave Log</button>
+              <button type="button" class="hl-tab" role="tab" aria-selected="false" data-tab="credit">Leave Credit/Debit</button>
+              <button type="button" class="hl-tab" role="tab" aria-selected="false" data-tab="onduty">On Duty</button>
+            </div>
+            <button type="button" class="hl-tabs__add" id="hlTabAdd" aria-label="Add">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </nav>
+
+          <div id="hlDynamic" class="hl-dynamic" aria-live="polite"></div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Apply Leave modal -->
+  <div class="hl-modal" id="hlApplyModal" hidden>
+    <div class="hl-modal__backdrop" data-hl-close="apply"></div>
+    <div class="hl-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="hlApplyTitle">
+      <div class="hl-modal__head">
+        <h2 class="hl-modal__title" id="hlApplyTitle">Apply Leave</h2>
+        <button type="button" class="hl-modal__close" data-hl-close="apply" aria-label="Close">&times;</button>
+      </div>
+      <form class="hl-modal__body" id="hlApplyForm" onsubmit="return false;">
+        <div class="hl-form-grid">
+          <div class="hl-field">
+            <label class="hl-field__label" for="hlEmployee">Employee <span class="hl-req">*</span></label>
+            <select class="hl-input hl-input--select" id="hlEmployee" name="employee" required>
+              <option value="">Employee</option>
+            </select>
+          </div>
+          <div class="hl-field">
+            <label class="hl-field__label" for="hlLeaveType">Leave <span class="hl-req">*</span></label>
+            <select class="hl-input hl-input--select" id="hlLeaveType" name="leave" required>
+              <option value="">Type of leave</option>
+              <option value="AL">Audit Leave (AL)</option>
+              <option value="EL">Earned Leave (EL)</option>
+              <option value="CL">Casual Leave (CL)</option>
+              <option value="SL">Sick Leave (SL)</option>
+              <option value="TL">Training Leave (TL)</option>
+              <option value="DL">Demo Leave (DL)</option>
+            </select>
+          </div>
+          <div class="hl-field">
+            <label class="hl-field__label" for="hlFromDate">From Date <span class="hl-req">*</span></label>
+            <div class="hl-date">
+              <input class="hl-input" type="text" id="hlFromDate" name="fromDate" placeholder="Select From date" required>
+              <span class="hl-date__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+              </span>
+            </div>
+          </div>
+          <fieldset class="hl-field hl-field--radios">
+            <legend class="hl-field__label">From Half <span class="hl-req">*</span></legend>
+            <div class="hl-radios">
+              <label class="hl-radio"><input type="radio" name="fromHalf" value="first"> First Half</label>
+              <label class="hl-radio"><input type="radio" name="fromHalf" value="second"> Second Half</label>
+              <label class="hl-radio"><input type="radio" name="fromHalf" value="full" checked> Full Day</label>
+            </div>
+          </fieldset>
+          <div class="hl-field">
+            <label class="hl-field__label" for="hlToDate">To Date <span class="hl-req">*</span></label>
+            <div class="hl-date">
+              <input class="hl-input" type="text" id="hlToDate" name="toDate" placeholder="Select to date" required>
+              <span class="hl-date__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+              </span>
+            </div>
+          </div>
+          <fieldset class="hl-field hl-field--radios">
+            <legend class="hl-field__label">To Half <span class="hl-req">*</span></legend>
+            <div class="hl-radios">
+              <label class="hl-radio"><input type="radio" name="toHalf" value="first"> First Half</label>
+              <label class="hl-radio"><input type="radio" name="toHalf" value="full" checked> Full Day</label>
+            </div>
+          </fieldset>
+        </div>
+        <label class="hl-check hl-check--skip">
+          <input type="checkbox" id="hlSkipRules" name="skipRules">
+          <span>Skip Rules</span>
+          <span class="hl-check__yes">Yes</span>
+        </label>
+        <div class="hl-field hl-field--full">
+          <label class="hl-field__label" for="hlReason">Reason</label>
+          <textarea class="hl-textarea" id="hlReason" name="reason" rows="3" placeholder="Enter reason"></textarea>
+        </div>
+        <div class="hl-modal__foot">
+          <span class="hl-days" id="hlDaysCount">No. of Days : 0</span>
+          <div class="hl-modal__actions">
+            <button type="button" class="hl-btn-outline" data-hl-close="apply">Cancel</button>
+            <button type="submit" class="hl-btn-teal" id="hlApplySubmit">Apply Leave</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Leave Credit/Debit modal -->
+  <div class="hl-modal" id="hlCreditModal" hidden>
+    <div class="hl-modal__backdrop" data-hl-close="credit"></div>
+    <div class="hl-modal__dialog hl-modal__dialog--credit" role="dialog" aria-modal="true" aria-label="Leave Credit/Debit">
+      <div class="hl-modal__body hl-modal__body--credit" id="hlCreditModalBody"></div>
+    </div>
+  </div>
+
+  <!-- Bulk Upload modal -->
+  <div class="hl-modal" id="hlBulkUploadModal" hidden>
+    <div class="hl-modal__backdrop" data-hl-close="bulk-upload"></div>
+    <div class="hl-modal__dialog hl-modal__dialog--bulk" role="dialog" aria-modal="true" aria-labelledby="hlBulkUploadTitle">
+      <div class="hl-modal__head">
+        <h2 class="hl-modal__title" id="hlBulkUploadTitle">Bulk Upload</h2>
+        <button type="button" class="hl-modal__close" data-hl-close="bulk-upload" aria-label="Close">&times;</button>
+      </div>
+      <form class="hl-modal__body" id="hlBulkUploadForm" onsubmit="return false;">
+        <p class="hl-bulk-upload__hint">Download the <button type="button" class="hl-bulk-upload__link" data-bulk-sample>sample Excel file</button> and prepare and upload the Excel file below according to the guidelines mentioned in the sample Excel file.</p>
+        <label class="hl-bulk-upload__btn" id="hlBulkUploadBtn">
+          <input type="file" id="hlBulkUploadFile" accept=".xlsx,.xls,.csv" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+          <span id="hlBulkUploadLabel">Click to Upload</span>
+        </label>
+        <div class="hl-field hl-field--full">
+          <label class="hl-field__label" for="hlBulkRemarks">Remarks</label>
+          <textarea class="hl-textarea" id="hlBulkRemarks" rows="4" placeholder="Remarks"></textarea>
+        </div>
+        <div class="hl-modal__foot hl-modal__foot--center">
+          <button type="submit" class="hl-btn-teal hl-btn-teal--lg">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/hrms-leave.js?v=hl8"></script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peer Review — TimeERP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/peer-review.css?v=5">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand"><a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home"><img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48"></a></div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate"><span class="sidebar__create-icon" aria-hidden="true">+</span><span>Create</span></button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search"><input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search"></div>
+          <div class="topbar__actions">
+            <button type="button" class="pr-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="pr-top-clock" id="prTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn pr-top-icon" aria-label="Calendar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn pr-top-icon" id="notifBtn" aria-label="Notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg></button>
+              <div class="dropdown" id="notifDropdown" role="menu"><div class="dropdown__title">Notifications</div><div id="notifList"></div></div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile"><span class="topbar__avatar">CA</span><span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span><svg class="pr-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+              <div class="dropdown" id="profileDropdown" role="menu"><div class="dropdown__title">Account</div><a href="home.html" class="dropdown__item"><strong>Dashboard</strong><span>Back to home</span></a></div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <main class="main">
+        <div class="pr-page">
+          <div class="pr-header">
+            <a class="pr-back" href="document_vault.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></a>
+            <span class="pr-header__title">Peer Review</span>
+          </div>
+
+          <div class="pr-title-row">
+            <h1 class="pr-title">Peer Review</h1>
+            <div class="pr-actions">
+              <div class="pr-combo" id="prClientCombo">
+                <input type="text" class="pr-combo__input pr-combo__input--client" id="prClientInput" placeholder="Client" autocomplete="off">
+                <svg class="pr-combo__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                <div class="pr-combo__menu" id="prClientMenu"></div>
+              </div>
+              <div class="pr-combo" id="prEmpCombo">
+                <input type="text" class="pr-combo__input pr-combo__input--emp" id="prEmpInput" placeholder="Select Employee" autocomplete="off">
+                <svg class="pr-combo__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                <div class="pr-combo__menu" id="prEmpMenu"></div>
+              </div>
+              <button type="button" class="pr-icon-btn pr-icon-btn--excel" title="Export Excel" aria-label="Export Excel">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 2.75h7.5L19.25 7.5V20.5a.75.75 0 01-.75.75H7a.75.75 0 01-.75-.75V3.5A.75.75 0 017 2.75z" stroke="#217346" stroke-width="1.5" stroke-linejoin="round"/><path d="M14.5 2.75V7.5h4.75" stroke="#217346" stroke-width="1.5" stroke-linejoin="round"/><path d="M9.2 10.2l5.6 7.6M14.8 10.2l-5.6 7.6" stroke="#217346" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </button>
+              <div class="pr-col-wrap" id="prColWrap">
+                <button type="button" class="pr-col-btn" id="prColBtn" title="Columns" aria-label="Columns">
+                  <svg class="pr-col-btn__list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h14M4 12h14M4 17h14"/></svg>
+                  <svg class="pr-col-btn__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+                <div class="pr-col-drop" id="prColDrop">
+                  <div class="pr-col-drop__head"><span>Columns</span><a href="#" id="prColAll">Select All</a></div>
+                  <div id="prColList"></div>
+                </div>
+              </div>
+              <div class="pr-filter-wrap" id="prFilterWrap">
+                <button type="button" class="pr-filter-btn" title="Filter" id="prFilterBtn" aria-label="Filter">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 5h16l-6.2 7.4V19l-3.6 2v-8.6L4 5z"/></svg>
+                </button>
+                <div class="pr-filter-drop" id="prFilterDrop">
+                  <div class="pr-filter-head"><span>Filter</span><a href="#" id="prFilterReset">Reset</a></div>
+                  <details class="pr-filter-group"><summary>Branch</summary><div class="pr-filter-group__body"><select><option>Branch</option></select></div></details>
+                  <details class="pr-filter-group"><summary>Services</summary><div class="pr-filter-group__body"><select><option>Services</option></select></div></details>
+                  <details class="pr-filter-group"><summary>Financial Year</summary><div class="pr-filter-group__body"><select><option>Financial Year</option></select></div></details>
+                  <details class="pr-filter-group"><summary>Net Worth</summary><div class="pr-filter-group__body"><select><option>Net Worth</option></select></div></details>
+                  <details class="pr-filter-group"><summary>Turnover</summary><div class="pr-filter-group__body"><select><option>Turnover</option></select></div></details>
+                  <details class="pr-filter-group"><summary>Balance Sheet</summary><div class="pr-filter-group__body"><select><option>Balance Sheet</option></select></div></details>
+                  <details class="pr-filter-group"><summary>Fees</summary><div class="pr-filter-group__body"><select><option>Fees</option></select></div></details>
+                  <details class="pr-filter-group"><summary>Proprietor Capital</summary><div class="pr-filter-group__body"><select><option>Proprietor Capital</option></select></div></details>
+                </div>
+              </div>
+              <a class="pr-add-btn" href="add_peer_review.html" title="Add" aria-label="Add">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="pr-table-section">
+            <div class="pr-table-wrap" id="prTableWrap">
+              <table class="pr-table" id="prTable">
+                <thead>
+                  <tr>
+                    <th class="pr-th pr-th--num">#</th>
+                    <th class="pr-th"><span class="pr-th-inner"><span class="pr-th-label">Client Name</span></span></th>
+                    <th class="pr-th"><span class="pr-th-inner"><span class="pr-th-label">Financial Year</span><span class="pr-sort" aria-hidden="true"><svg viewBox="0 0 10 12" fill="none"><path d="M5 1 8.5 5h-7L5 1z" fill="#bfbfbf"/><path d="M5 11 1.5 7h7L5 11z" fill="#bfbfbf"/></svg></span></span></th>
+                    <th class="pr-th"><span class="pr-th-inner"><span class="pr-th-label">UDIN No.</span></span></th>
+                    <th class="pr-th"><span class="pr-th-inner"><span class="pr-th-label">PAN</span></span></th>
+                    <th class="pr-th"><span class="pr-th-inner"><span class="pr-th-label">File NO.</span></span></th>
+                    <th class="pr-th"><span class="pr-th-inner"><span class="pr-th-label">Name of Branch/HO of PU</span><span class="pr-sort" aria-hidden="true"><svg viewBox="0 0 10 12" fill="none"><path d="M5 1 8.5 5h-7L5 1z" fill="#bfbfbf"/><path d="M5 11 1.5 7h7L5 11z" fill="#bfbfbf"/></svg></span></span></th>
+                    <th class="pr-th"><span class="pr-th-inner"><span class="pr-th-label">Team InCharge</span></span></th>
+                    <th class="pr-th"><span class="pr-th-inner"><span class="pr-th-label">Services</span><span class="pr-sort" aria-hidden="true"><svg viewBox="0 0 10 12" fill="none"><path d="M5 1 8.5 5h-7L5 1z" fill="#bfbfbf"/><path d="M5 11 1.5 7h7L5 11z" fill="#bfbfbf"/></svg></span></span></th>
+                    <th class="pr-th"><span class="pr-th-inner"><span class="pr-th-label">Turnover &gt; 250 Cr</span><span class="pr-sort" aria-hidden="true"><svg viewBox="0 0 10 12" fill="none"><path d="M5 1 8.5 5h-7L5 1z" fill="#bfbfbf"/><path d="M5 11 1.5 7h7L5 11z" fill="#bfbfbf"/></svg></span></span></th>
+                    <th class="pr-th"><span class="pr-th-inner"><span class="pr-th-label">Networth &gt; 100 Cr</span><span class="pr-sort" aria-hidden="true"><svg viewBox="0 0 10 12" fill="none"><path d="M5 1 8.5 5h-7L5 1z" fill="#bfbfbf"/><path d="M5 11 1.5 7h7L5 11z" fill="#bfbfbf"/></svg></span></span></th>
+                    <th class="pr-th"><span class="pr-th-inner"><span class="pr-th-label">IND AS Balance Sheet</span></span></th>
+                    <th class="pr-th pr-th--wide"><span class="pr-th-inner"><span class="pr-th-label">Weather Engagement Quality Review Done</span></span></th>
+                    <th class="pr-th pr-th--wide"><span class="pr-th-inner"><span class="pr-th-label">Paid up/ Partner's/ Proprietor's Capital</span></span></th>
+                    <th class="pr-th pr-th--wide"><span class="pr-th-inner"><span class="pr-th-label">Borrowings from Banks/ NBFCs (incl. Short Term &amp; Long Term)</span></span></th>
+                    <th class="pr-th"><span class="pr-th-inner"><span class="pr-th-label">Fees</span><span class="pr-sort" aria-hidden="true"><svg viewBox="0 0 10 12" fill="none"><path d="M5 1 8.5 5h-7L5 1z" fill="#bfbfbf"/><path d="M5 11 1.5 7h7L5 11z" fill="#bfbfbf"/></svg></span></span></th>
+                    <th class="pr-th"><span class="pr-th-inner"><span class="pr-th-label">Net Profit</span></span></th>
+                    <th class="pr-th"><span class="pr-th-inner"><span class="pr-th-label">Remarks</span></span></th>
+                    <th class="pr-th"><span class="pr-th-inner"><span class="pr-th-label">View Attachment</span></span></th>
+                    <th class="pr-th"><span class="pr-th-inner"><span class="pr-th-label">Action</span></span></th>
+                  </tr>
+                </thead>
+                <tbody id="prBody"></tbody>
+              </table>
+            </div>
+            <div class="pr-table-footer">
+              <div class="pr-scroll-bar" id="prScrollBar" aria-hidden="true">
+                <div class="pr-scroll-bar__track">
+                  <div class="pr-scroll-bar__thumb" id="prScrollThumb"></div>
+                </div>
+              </div>
+              <footer class="pr-pagination" aria-label="Pagination">
+                <div class="pr-pagination__left"></div>
+                <div class="pr-pagination__center">
+                  <button type="button" class="pr-page-nav" id="prPrev" aria-label="Previous page" disabled>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                  </button>
+                  <input type="text" class="pr-page-input" id="prPageInput" value="1" inputmode="numeric" aria-label="Current page" readonly>
+                  <span class="pr-page-of">of <span id="prPageTotal">2</span></span>
+                  <button type="button" class="pr-page-nav" id="prNext" aria-label="Next page">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                  </button>
+                </div>
+                <div class="pr-pagination__right"><span class="pr-count" id="prCount">20 / 36</span></div>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/peer-review.js?v=5"></script>
+</body>
+</html>

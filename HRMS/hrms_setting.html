@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="../assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="../assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HRMS Setting — TIME ERP HRMS</title>
+  <meta name="description" content="Configure holidays, shifts, leave, and core HRMS settings in TIME ERP.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/hrms-setting.css?v=hs22">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="../home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="../assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="hs-top-checkin is-in" id="hsTopCheckInBtn">Check In</button>
+            <time class="hs-top-clock" id="hsTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn hs-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn hs-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">3</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">TE</span>
+                <span class="topbar__profile-meta"><strong>Admin</strong><span>TimeERP</span></span>
+                <svg class="hs-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="../home.html" class="dropdown__item"><strong>Go to home</strong><span>Module hub overview</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="hs-page" id="hsPage">
+          <header class="hs-header">
+            <a class="hs-back" href="../home.html#module/hrms" aria-label="Back to HRMS">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <h1 class="hs-title">HRMS Setting</h1>
+          </header>
+
+          <nav class="hs-tabs" aria-label="HRMS setting sections">
+            <div class="hs-tabs__list" role="tablist">
+              <button type="button" class="hs-tab is-active" role="tab" aria-selected="true" data-tab="holiday">Holiday</button>
+              <button type="button" class="hs-tab" role="tab" aria-selected="false" data-tab="shift">Shift</button>
+              <button type="button" class="hs-tab" role="tab" aria-selected="false" data-tab="leave">Leave</button>
+              <button type="button" class="hs-tab" role="tab" aria-selected="false" data-tab="blacklist">Blacklist Leave</button>
+              <button type="button" class="hs-tab" role="tab" aria-selected="false" data-tab="quota">Leave Quota</button>
+              <button type="button" class="hs-tab" role="tab" aria-selected="false" data-tab="club">Club Rules</button>
+              <button type="button" class="hs-tab" role="tab" aria-selected="false" data-tab="attendance">HR Attendance</button>
+              <button type="button" class="hs-tab" role="tab" aria-selected="false" data-tab="regularization">Bulk Regularization</button>
+              <button type="button" class="hs-tab" role="tab" aria-selected="false" data-tab="summary">Summary</button>
+              <button type="button" class="hs-tab" role="tab" aria-selected="false" data-tab="viewlock">View-Lock</button>
+              <button type="button" class="hs-tab" role="tab" aria-selected="false" data-tab="unlock">Unlock Timesheet</button>
+              <button type="button" class="hs-tab" role="tab" aria-selected="false" data-tab="nodues">No Dues Form</button>
+            </div>
+          </nav>
+
+          <div id="hsDynamic" class="hs-dynamic" aria-live="polite"></div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Holiday modal -->
+  <div class="hs-modal" id="hsHolidayModal" hidden>
+    <div class="hs-modal__backdrop" data-hs-close="holiday"></div>
+    <div class="hs-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="hsModalTitle">
+      <div class="hs-modal__head">
+        <h2 class="hs-modal__title" id="hsModalTitle">Edit Holiday</h2>
+        <button type="button" class="hs-modal__close" data-hs-close="holiday" aria-label="Close">&times;</button>
+      </div>
+      <form class="hs-modal__body" id="hsHolidayForm">
+        <div class="hs-form-grid">
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsFromDate">From Date <span class="hs-info" title="Start date">ⓘ</span> <span class="hs-req">*</span></label>
+            <div class="hs-date" id="hsFromDateWrap">
+              <input class="hs-input" type="text" id="hsFromDate" name="fromDate" placeholder="Select date" readonly required>
+              <span class="hs-date__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+              </span>
+            </div>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsToDate">To Date <span class="hs-info" title="End date">ⓘ</span> <span class="hs-req">*</span></label>
+            <div class="hs-date" id="hsToDateWrap">
+              <input class="hs-input" type="text" id="hsToDate" name="toDate" placeholder="Select date" readonly required>
+              <span class="hs-date__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+              </span>
+            </div>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsHolidayName">Holiday Name <span class="hs-info" title="Name of holiday">ⓘ</span></label>
+            <input class="hs-input" type="text" id="hsHolidayName" name="name" placeholder="Holiday Name">
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsHolidayType">Holiday Type <span class="hs-info" title="Type of holiday">ⓘ</span></label>
+            <select class="hs-input hs-input--select" id="hsHolidayType" name="type">
+              <option value="" disabled selected hidden>Select Holiday Type</option>
+              <option value="Weekly Holiday">Weekly Holiday</option>
+              <option value="National Holiday">National Holiday</option>
+              <option value="Religious">Religious</option>
+              <option value="Public Holiday">Public Holiday</option>
+              <option value="Restricted Holiday">Restricted Holiday</option>
+            </select>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsBranch">Branch</label>
+            <select class="hs-input hs-input--select" id="hsBranch" name="branch">
+              <option value="All" selected>All</option>
+              <option value="CA CloudDesk">CA CloudDesk</option>
+              <option value="Bluemon Wealth Management">Bluemon Wealth Management</option>
+              <option value="Law Seva Management Private Limited">Law Seva Management Private Limited</option>
+              <option value="saurabh bharadwaj">saurabh bharadwaj</option>
+            </select>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsOffice">Office</label>
+            <input class="hs-input" type="text" id="hsOffice" name="office" placeholder="Office">
+          </div>
+        </div>
+        <div class="hs-field hs-field--full">
+          <label class="hs-field__label" for="hsDesc">Description <span class="hs-info" title="Holiday description">ⓘ</span></label>
+          <textarea class="hs-textarea" id="hsDesc" name="description" rows="4" placeholder="Description"></textarea>
+        </div>
+        <div class="hs-checks">
+          <label class="hs-check">
+            <span class="hs-check__label">Optional Holiday <span class="hs-info" title="Mark as optional">ⓘ</span></span>
+            <input type="checkbox" id="hsOptional" name="optional">
+            <span class="hs-check__yes">Yes</span>
+          </label>
+          <label class="hs-check">
+            <span class="hs-check__label">Sandwich</span>
+            <input type="checkbox" id="hsSandwich" name="sandwich" checked>
+            <span class="hs-check__yes">Yes</span>
+          </label>
+        </div>
+        <div class="hs-modal__foot">
+          <button type="submit" class="hs-btn-save">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add Bulk Holidays modal -->
+  <div class="hs-modal" id="hsBulkHolidayModal" hidden>
+    <div class="hs-modal__backdrop" data-hs-close="bulk-holiday"></div>
+    <div class="hs-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="hsBulkHolidayTitle">
+      <div class="hs-modal__head">
+        <h2 class="hs-modal__title" id="hsBulkHolidayTitle">Add Bulk Holidays</h2>
+        <button type="button" class="hs-modal__close" data-hs-close="bulk-holiday" aria-label="Close">&times;</button>
+      </div>
+      <form class="hs-modal__body" id="hsBulkHolidayForm">
+        <div class="hs-form-grid">
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsBulkFromDate">From Date <span class="hs-info" title="Start date">ⓘ</span> <span class="hs-req">*</span></label>
+            <div class="hs-date" id="hsBulkFromDateWrap">
+              <input class="hs-input" type="text" id="hsBulkFromDate" placeholder="Select date" readonly required>
+              <span class="hs-date__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span>
+            </div>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsBulkToDate">To Date <span class="hs-info" title="End date">ⓘ</span> <span class="hs-req">*</span></label>
+            <div class="hs-date" id="hsBulkToDateWrap">
+              <input class="hs-input" type="text" id="hsBulkToDate" placeholder="Select date" readonly required>
+              <span class="hs-date__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span>
+            </div>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsBulkName">Holiday Name <span class="hs-info" title="Name of holiday">ⓘ</span></label>
+            <input class="hs-input" type="text" id="hsBulkName" placeholder="Holiday Name">
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsBulkType">Holiday Type <span class="hs-info" title="Type of holiday">ⓘ</span></label>
+            <select class="hs-input hs-input--select" id="hsBulkType">
+              <option value="" disabled selected hidden>Select Holiday Type</option>
+              <option value="Weekly Holiday">Weekly Holiday</option>
+              <option value="National Holiday">National Holiday</option>
+              <option value="Religious">Religious</option>
+              <option value="Public Holiday">Public Holiday</option>
+              <option value="Restricted Holiday">Restricted Holiday</option>
+            </select>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsBulkBranch">Branch</label>
+            <select class="hs-input hs-input--select" id="hsBulkBranch">
+              <option value="All" selected>All</option>
+              <option value="CA CloudDesk">CA CloudDesk</option>
+              <option value="Bluemon Wealth Management">Bluemon Wealth Management</option>
+              <option value="Law Seva Management Private Limited">Law Seva Management Private Limited</option>
+              <option value="saurabh bharadwaj">saurabh bharadwaj</option>
+            </select>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsBulkOffice">Office</label>
+            <input class="hs-input" type="text" id="hsBulkOffice" placeholder="Office">
+          </div>
+        </div>
+        <div class="hs-checks hs-checks--bulk">
+          <label class="hs-check"><span class="hs-check__label">All Saturday <span class="hs-info" title="All Saturdays in range">ⓘ</span></span><input type="checkbox" id="hsBulkAllSat"><span class="hs-check__yes">Yes</span></label>
+          <label class="hs-check"><span class="hs-check__label">Odd Saturday <span class="hs-info" title="Odd Saturdays">ⓘ</span></span><input type="checkbox" id="hsBulkOddSat"><span class="hs-check__yes">Yes</span></label>
+          <label class="hs-check"><span class="hs-check__label">Even Saturday <span class="hs-info" title="Even Saturdays">ⓘ</span></span><input type="checkbox" id="hsBulkEvenSat"><span class="hs-check__yes">Yes</span></label>
+          <label class="hs-check"><span class="hs-check__label">All Sunday <span class="hs-info" title="All Sundays in range">ⓘ</span></span><input type="checkbox" id="hsBulkAllSun"><span class="hs-check__yes">Yes</span></label>
+          <label class="hs-check"><span class="hs-check__label">All Friday <span class="hs-info" title="All Fridays in range">ⓘ</span></span><input type="checkbox" id="hsBulkAllFri"><span class="hs-check__yes">Yes</span></label>
+        </div>
+        <div class="hs-field hs-field--full">
+          <label class="hs-field__label" for="hsBulkDesc">Description <span class="hs-info" title="Holiday description">ⓘ</span></label>
+          <textarea class="hs-textarea" id="hsBulkDesc" rows="4" placeholder="Description"></textarea>
+        </div>
+        <div class="hs-modal__foot">
+          <button type="submit" class="hs-btn-save">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add Shift modal -->
+  <div class="hs-modal" id="hsShiftModal" hidden>
+    <div class="hs-modal__backdrop" data-hs-close="shift"></div>
+    <div class="hs-modal__dialog hs-modal__dialog--shift" role="dialog" aria-modal="true" aria-labelledby="hsShiftModalTitle">
+      <div class="hs-modal__head">
+        <h2 class="hs-modal__title" id="hsShiftModalTitle">Add Shift</h2>
+        <button type="button" class="hs-modal__close" data-hs-close="shift" aria-label="Close">&times;</button>
+      </div>
+      <form class="hs-modal__body" id="hsShiftForm">
+        <div class="hs-shift-form">
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsShiftName">Shift Name <span class="hs-info" title="Name of shift">ⓘ</span> <span class="hs-req">*</span></label>
+            <input class="hs-input" type="text" id="hsShiftName" name="name" placeholder="Shift Name" required>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsInTime">In Time <span class="hs-info" title="Shift start">ⓘ</span> <span class="hs-req">*</span></label>
+            <div class="hs-time">
+              <input class="hs-input" type="text" id="hsInTime" name="inTime" placeholder="HH:MM:SS" required>
+              <span class="hs-time__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            </div>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsOutTime">Out Time <span class="hs-info" title="Shift end">ⓘ</span> <span class="hs-req">*</span></label>
+            <div class="hs-time">
+              <input class="hs-input" type="text" id="hsOutTime" name="outTime" placeholder="HH:MM:SS" required>
+              <span class="hs-time__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            </div>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsLateIn">Late In <span class="hs-info" title="Late threshold">ⓘ</span> <span class="hs-req">*</span></label>
+            <div class="hs-time">
+              <input class="hs-input" type="text" id="hsLateIn" name="lateIn" placeholder="HH:MM:SS" required>
+              <span class="hs-time__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            </div>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsEarlyOut">Early Out <span class="hs-info" title="Early out threshold">ⓘ</span> <span class="hs-req">*</span></label>
+            <div class="hs-time">
+              <input class="hs-input" type="text" id="hsEarlyOut" name="earlyOut" placeholder="HH:MM:SS" required>
+              <span class="hs-time__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            </div>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsFullDay">Full-Day Time <span class="hs-info" title="Full day hours">ⓘ</span> <span class="hs-req">*</span></label>
+            <div class="hs-time">
+              <input class="hs-input" type="text" id="hsFullDay" name="fullDay" placeholder="HH:MM:SS" required>
+              <span class="hs-time__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            </div>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsHalfDay">Half-Day Time <span class="hs-info" title="Half day hours">ⓘ</span> <span class="hs-req">*</span></label>
+            <div class="hs-time">
+              <input class="hs-input" type="text" id="hsHalfDay" name="halfDay" placeholder="HH:MM:SS" required>
+              <span class="hs-time__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            </div>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsFullCoff">Full-Day Comp-Off <span class="hs-info" title="Full day comp-off">ⓘ</span> <span class="hs-req">*</span></label>
+            <div class="hs-time">
+              <input class="hs-input" type="text" id="hsFullCoff" name="fullCoff" placeholder="HH:MM:SS" required>
+              <span class="hs-time__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            </div>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsHalfCoff">Half-Day Comp-Off <span class="hs-info" title="Half day comp-off">ⓘ</span> <span class="hs-req">*</span></label>
+            <div class="hs-time">
+              <input class="hs-input" type="text" id="hsHalfCoff" name="halfCoff" placeholder="HH:MM:SS" required>
+              <span class="hs-time__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            </div>
+          </div>
+          <label class="hs-check hs-check--default">
+            <span class="hs-field__label hs-field__label--solo">Mark as Default</span>
+            <input type="checkbox" id="hsMarkDefault" name="isDefault">
+          </label>
+        </div>
+        <div class="hs-modal__foot">
+          <button type="submit" class="hs-btn-save">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit Leave modal -->
+  <div class="hs-modal" id="hsLeaveModal" hidden>
+    <div class="hs-modal__backdrop" data-hs-close="leave"></div>
+    <div class="hs-modal__dialog hs-modal__dialog--leave" role="dialog" aria-modal="true" aria-labelledby="hsLeaveModalTitle">
+      <div class="hs-modal__head">
+        <h2 class="hs-modal__title" id="hsLeaveModalTitle">Edit Leave</h2>
+        <button type="button" class="hs-modal__close" data-hs-close="leave" aria-label="Close">&times;</button>
+      </div>
+      <form class="hs-modal__body" id="hsLeaveForm">
+        <div class="hs-form-grid">
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsLeaveName">Leave Name <span class="hs-info" title="Name of leave">ⓘ</span> <span class="hs-req">*</span></label>
+            <input class="hs-input" type="text" id="hsLeaveName" placeholder="Leave Name" required>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsLeaveAbbr">Leave Abbreviation <span class="hs-info" title="Short code">ⓘ</span> <span class="hs-req">*</span></label>
+            <input class="hs-input" type="text" id="hsLeaveAbbr" placeholder="Leave Abbreviation" required>
+          </div>
+          <div class="hs-field hs-field--span2 hs-field--payable">
+            <span class="hs-field__label">Leave Payable: Yes <span class="hs-info" title="Is leave payable">ⓘ</span> <span class="hs-req">*</span></span>
+            <input type="checkbox" id="hsLeavePayable" aria-label="Leave Payable">
+          </div>
+          <div class="hs-field hs-field--span2">
+            <label class="hs-field__label" for="hsLeaveGenders">Applicable Genders <span class="hs-info" title="Who can apply">ⓘ</span> <span class="hs-req">*</span></label>
+            <div class="hs-tags" id="hsLeaveGenders">
+              <input class="hs-tags__input" type="text" placeholder="" aria-label="Add gender">
+            </div>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsLeaveCreditFreq">Credit Frequency <span class="hs-info" title="How often leave is credited">ⓘ</span> <span class="hs-req">*</span></label>
+            <select class="hs-input hs-input--select" id="hsLeaveCreditFreq" required>
+              <option value="Yearly">Yearly</option>
+              <option value="Monthly">Monthly</option>
+              <option value="Quarterly">Quarterly</option>
+            </select>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsLeaveCreditDate">Next Credit Date <span class="hs-info" title="Next credit date">ⓘ</span> <span class="hs-req">*</span></label>
+            <div class="hs-date" id="hsLeaveCreditDateWrap">
+              <input class="hs-input" type="text" id="hsLeaveCreditDate" placeholder="Select date" readonly required>
+              <span class="hs-date__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span>
+            </div>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsLeavePastDays">Past Days <span class="hs-info" title="Past days allowed">ⓘ</span> <span class="hs-req">*</span></label>
+            <input class="hs-input" type="text" id="hsLeavePastDays" placeholder="Past Days" required>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsLeaveFutureDays">Future Days <span class="hs-info" title="Future days allowed">ⓘ</span> <span class="hs-req">*</span></label>
+            <input class="hs-input" type="text" id="hsLeaveFutureDays" placeholder="Future Days" required>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsLeaveType">Leave Type <span class="hs-info" title="Leave type">ⓘ</span> <span class="hs-req">*</span></label>
+            <select class="hs-input hs-input--select" id="hsLeaveType" required>
+              <option value="Accumulate">Accumulate</option>
+              <option value="Encash">Encash</option>
+              <option value="Fixed">Fixed</option>
+            </select>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsLeaveMaxAccum">Max Accumulate <span class="hs-info" title="Maximum accumulation">ⓘ</span></label>
+            <input class="hs-input" type="text" id="hsLeaveMaxAccum" placeholder="Max Accumulate">
+          </div>
+          <div class="hs-leave-checks hs-field--span2">
+            <label class="hs-check"><span class="hs-check__label">Hourly Count <span class="hs-info" title="Count by hour">ⓘ</span></span><input type="checkbox" id="hsLeaveHourly"><span class="hs-check__yes">Yes</span></label>
+            <label class="hs-check"><span class="hs-check__label">Sandwich <span class="hs-info" title="Sandwich rule">ⓘ</span></span><input type="checkbox" id="hsLeaveSandwich"><span class="hs-check__yes">Yes</span></label>
+            <label class="hs-check"><span class="hs-check__label">Optional <span class="hs-info" title="Optional leave">ⓘ</span></span><input type="checkbox" id="hsLeaveOptional"><span class="hs-check__yes">Yes</span></label>
+            <label class="hs-check"><span class="hs-check__label">Auto Approved <span class="hs-info" title="Auto approve">ⓘ</span></span><input type="checkbox" id="hsLeaveAutoApproved"><span class="hs-check__yes">Yes</span></label>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsLeaveMaxCount">Max Count <span class="hs-info" title="Maximum count">ⓘ</span> <span class="hs-req">*</span></label>
+            <input class="hs-input" type="text" id="hsLeaveMaxCount" placeholder="Max Count" required>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsLeaveMaxHol">Max Count With Holiday <span class="hs-info" title="Max with holiday">ⓘ</span> <span class="hs-req">*</span></label>
+            <input class="hs-input" type="text" id="hsLeaveMaxHol" placeholder="Max Count With Holiday" required>
+          </div>
+        </div>
+        <div class="hs-modal__foot">
+          <button type="submit" class="hs-btn-save">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit Leave Quota modal -->
+  <div class="hs-modal" id="hsQuotaModal" hidden>
+    <div class="hs-modal__backdrop" data-hs-close="quota"></div>
+    <div class="hs-modal__dialog hs-modal__dialog--quota" role="dialog" aria-modal="true" aria-labelledby="hsQuotaModalTitle">
+      <div class="hs-modal__head">
+        <h2 class="hs-modal__title" id="hsQuotaModalTitle">Edit Leave Quota</h2>
+        <button type="button" class="hs-modal__close" data-hs-close="quota" aria-label="Close">&times;</button>
+      </div>
+      <form class="hs-modal__body" id="hsQuotaForm">
+        <div class="hs-form-grid">
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsQuotaLeave">Leave <span class="hs-req">*</span></label>
+            <select class="hs-input hs-input--select" id="hsQuotaLeave" required></select>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsQuotaBranches">Branch <span class="hs-req">*</span></label>
+            <div class="hs-tags" id="hsQuotaBranches">
+              <input class="hs-tags__input" type="text" aria-label="Add branch">
+            </div>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsQuotaDesignations">Designation <span class="hs-req">*</span></label>
+            <div class="hs-tags" id="hsQuotaDesignations">
+              <input class="hs-tags__input" type="text" aria-label="Add designation">
+            </div>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsQuotaCount">Annual Count <span class="hs-req">*</span></label>
+            <input class="hs-input" type="text" id="hsQuotaCount" placeholder="Annual Count" required>
+          </div>
+        </div>
+        <div class="hs-modal__foot">
+          <button type="submit" class="hs-btn-save">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- User Details modal (Leave Quota) -->
+  <div class="hs-modal" id="hsQuotaUsersModal" hidden>
+    <div class="hs-modal__backdrop" data-hs-close="quota-users"></div>
+    <div class="hs-modal__dialog hs-modal__dialog--users" role="dialog" aria-modal="true" aria-labelledby="hsQuotaUsersTitle">
+      <div class="hs-modal__head">
+        <h2 class="hs-modal__title" id="hsQuotaUsersTitle">User Details</h2>
+        <button type="button" class="hs-modal__close" data-hs-close="quota-users" aria-label="Close">&times;</button>
+      </div>
+      <div class="hs-modal__body hs-modal__body--users">
+        <div class="hs-quota-tabs" role="tablist">
+          <button type="button" class="hs-quota-tab is-active" data-quota-user-tab="included" role="tab" aria-selected="true">Included Users</button>
+          <button type="button" class="hs-quota-tab" data-quota-user-tab="excluded" role="tab" aria-selected="false">Not Included Users</button>
+        </div>
+        <input class="hs-input hs-quota-search" type="search" id="hsQuotaUserSearch" placeholder="Search by Employee Name, Code, Designation, Email, or B...">
+        <div class="hs-table-wrap hs-table-wrap--modal">
+          <table class="hs-table hs-table--compact">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Employee Name</th>
+                <th>Employee Code</th>
+                <th>Designation</th>
+                <th>Email</th>
+                <th>Branch</th>
+              </tr>
+            </thead>
+            <tbody id="hsQuotaUsersBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Blacklist Leave modal -->
+  <div class="hs-modal" id="hsBlacklistModal" hidden>
+    <div class="hs-modal__backdrop" data-hs-close="blacklist"></div>
+    <div class="hs-modal__dialog hs-modal__dialog--bl" role="dialog" aria-modal="true" aria-labelledby="hsBlacklistModalTitle">
+      <div class="hs-modal__head">
+        <h2 class="hs-modal__title" id="hsBlacklistModalTitle">Edit Blacklist Leave</h2>
+        <button type="button" class="hs-modal__close" data-hs-close="blacklist" aria-label="Close">&times;</button>
+      </div>
+      <form class="hs-modal__body" id="hsBlacklistForm">
+        <div class="hs-form-grid">
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsBlName">Leave Name <span class="hs-req">*</span></label>
+            <input class="hs-input" type="text" id="hsBlName" placeholder="Leave Name" required>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsBlStartDate">Start Date <span class="hs-req">*</span></label>
+            <div class="hs-date" id="hsBlStartDateWrap">
+              <input class="hs-input" type="text" id="hsBlStartDate" placeholder="Select date" readonly required>
+              <span class="hs-date__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span>
+            </div>
+          </div>
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsBlEndDate">End Date <span class="hs-req">*</span></label>
+            <div class="hs-date" id="hsBlEndDateWrap">
+              <input class="hs-input" type="text" id="hsBlEndDate" placeholder="Select date" readonly required>
+              <span class="hs-date__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span>
+            </div>
+          </div>
+        </div>
+        <div class="hs-modal__foot">
+          <button type="submit" class="hs-btn-save">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add Holiday From Template modal -->
+  <div class="hs-modal" id="hsHolidayTplModal" hidden>
+    <div class="hs-modal__backdrop" data-hs-close="holiday-tpl"></div>
+    <div class="hs-modal__dialog hs-modal__dialog--wide" role="dialog" aria-modal="true" aria-labelledby="hsHolidayTplTitle">
+      <div class="hs-modal__head">
+        <h2 class="hs-modal__title" id="hsHolidayTplTitle">Add Holiday From Template</h2>
+        <button type="button" class="hs-modal__close" data-hs-close="holiday-tpl" aria-label="Close">&times;</button>
+      </div>
+      <div class="hs-modal__body hs-modal__body--table">
+        <div class="hs-tpl-modal-toolbar">
+          <button type="button" class="hs-btn-outline" data-holiday-lib>Browse Template Library</button>
+          <select class="hs-select" id="hsTplFy" aria-label="Financial year">
+            <option selected>FY 26-27</option>
+            <option>FY 25-26</option>
+            <option>FY 24-25</option>
+          </select>
+          <button type="button" class="hs-btn-teal" id="hsTplSave">Save Holiday</button>
+        </div>
+        <div class="hs-table-wrap hs-table-wrap--modal">
+          <table class="hs-table hs-table--compact hs-table--tpl">
+            <thead>
+              <tr>
+                <th class="hs-th-check"><input type="checkbox" id="hsTplCheckAll" aria-label="Select all templates"></th>
+                <th>Holiday Name</th>
+                <th>Date</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <tbody id="hsHolidayTplBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Holiday Template library modal -->
+  <div class="hs-modal" id="hsHolidayLibModal" hidden>
+    <div class="hs-modal__backdrop" data-hs-close="holiday-lib"></div>
+    <div class="hs-modal__dialog hs-modal__dialog--wide" role="dialog" aria-modal="true" aria-labelledby="hsHolidayLibTitle">
+      <div class="hs-modal__head">
+        <h2 class="hs-modal__title" id="hsHolidayLibTitle">Holiday Template</h2>
+        <button type="button" class="hs-modal__close" data-hs-close="holiday-lib" aria-label="Close">&times;</button>
+      </div>
+      <div class="hs-modal__body hs-modal__body--table">
+        <div class="hs-table-wrap hs-table-wrap--modal">
+          <table class="hs-table hs-table--compact hs-table--hol-lib">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Holiday Name</th>
+                <th>From Date</th>
+                <th>To Date</th>
+                <th>Holiday Type</th>
+                <th>Branch</th>
+                <th>Description</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="hsHolidayLibBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shift Template modal -->
+  <div class="hs-modal" id="hsTemplateModal" hidden>
+    <div class="hs-modal__backdrop" data-hs-close="template"></div>
+    <div class="hs-modal__dialog hs-modal__dialog--wide" role="dialog" aria-modal="true" aria-labelledby="hsTemplateModalTitle">
+      <div class="hs-modal__head">
+        <h2 class="hs-modal__title" id="hsTemplateModalTitle">Shift Template</h2>
+        <button type="button" class="hs-modal__close" data-hs-close="template" aria-label="Close">&times;</button>
+      </div>
+      <div class="hs-modal__body hs-modal__body--table">
+        <div class="hs-table-wrap hs-table-wrap--modal">
+          <table class="hs-table hs-table--compact" id="hsTemplateTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Shift Name</th>
+                <th>In Time</th>
+                <th>Out Time</th>
+                <th>Late In</th>
+                <th>Early Out</th>
+                <th>Full-Day (Hr)</th>
+                <th>Half-Day (Hr)</th>
+                <th>Full-Day (C-off)</th>
+                <th>Half-Day (C-off)</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="hsTemplateBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Upload Attendance modal -->
+  <div class="hs-modal" id="hsAttUploadModal" hidden>
+    <div class="hs-modal__backdrop" data-hs-close="att-upload"></div>
+    <div class="hs-modal__dialog hs-modal__dialog--att-upload" role="dialog" aria-modal="true" aria-labelledby="hsAttUploadTitle">
+      <div class="hs-modal__head">
+        <h2 class="hs-modal__title" id="hsAttUploadTitle">Upload Attendance</h2>
+        <button type="button" class="hs-modal__close" data-hs-close="att-upload" aria-label="Close">&times;</button>
+      </div>
+      <form class="hs-modal__body" id="hsAttUploadForm">
+        <div class="hs-att-upload">
+          <div class="hs-att-upload__row">
+            <label class="hs-att-upload__label">Attendance Excel :</label>
+            <div class="hs-att-upload__content">
+              <p class="hs-att-upload__hint">Download the <button type="button" class="hs-att-upload__link" data-att-sample>sample Excel file</button> and prepare and upload the Excel file below according to the guidelines mentioned in the sample Excel file.</p>
+              <label class="hs-att-upload__btn" id="hsAttUploadBtn">
+                <input type="file" id="hsAttUploadFile" accept=".xlsx,.xls,.csv" hidden>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+                <span id="hsAttUploadLabel">Click to Upload</span>
+              </label>
+            </div>
+          </div>
+          <div class="hs-att-upload__row">
+            <label class="hs-att-upload__label" for="hsAttRemarks">Remarks :</label>
+            <input class="hs-input hs-att-upload__input" type="text" id="hsAttRemarks" placeholder="Enter Remarks">
+          </div>
+        </div>
+        <div class="hs-modal__foot hs-modal__foot--left">
+          <button type="submit" class="hs-btn-save">Save</button>
+          <button type="button" class="hs-btn-outline" data-hs-close="att-upload">Cancel</button>
+          <button type="button" class="hs-link-reset" data-att-upload-reset>Reset</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Lock Attendance modal -->
+  <div class="hs-modal" id="hsLockModal" hidden>
+    <div class="hs-modal__backdrop" data-hs-close="lock"></div>
+    <div class="hs-modal__dialog hs-modal__dialog--lock" role="dialog" aria-modal="true" aria-labelledby="hsLockTitle">
+      <div class="hs-modal__head">
+        <h2 class="hs-modal__title" id="hsLockTitle">Lock Attendance</h2>
+        <button type="button" class="hs-modal__close" data-hs-close="lock" aria-label="Close">&times;</button>
+      </div>
+      <form class="hs-modal__body" id="hsLockForm">
+        <div class="hs-field">
+          <label class="hs-field__label" for="hsLockMonthInput">Month and Year <span class="hs-info" title="Select month to lock attendance">ⓘ</span> <span class="hs-req">*</span></label>
+          <div class="hs-lock-month" id="hsLockMonthWrap">
+            <div class="hs-date">
+              <input class="hs-input" type="text" id="hsLockMonthInput" placeholder="Select month" readonly aria-haspopup="true" aria-expanded="false">
+              <span class="hs-date__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span>
+            </div>
+            <div class="hs-month-picker" id="hsLockMonthPicker" hidden role="dialog" aria-label="Select month">
+              <div class="hs-month-picker__head">
+                <button type="button" data-lock-year="-1" aria-label="Previous year">«</button>
+                <strong id="hsLockPickerYear">2026</strong>
+                <button type="button" data-lock-year="1" aria-label="Next year">»</button>
+              </div>
+              <div class="hs-month-picker__grid" id="hsLockMonthGrid"></div>
+            </div>
+          </div>
+        </div>
+        <div class="hs-modal__foot">
+          <button type="submit" class="hs-btn-save">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Unlock Timesheet modal -->
+  <div class="hs-modal" id="hsUnlockModal" hidden>
+    <div class="hs-modal__backdrop" data-hs-close="unlock"></div>
+    <div class="hs-modal__dialog hs-modal__dialog--unlock" role="dialog" aria-modal="true" aria-labelledby="hsUnlockTitle">
+      <div class="hs-modal__head">
+        <h2 class="hs-modal__title" id="hsUnlockTitle">Unlock Timesheet</h2>
+        <button type="button" class="hs-modal__close" data-hs-close="unlock" aria-label="Close">&times;</button>
+      </div>
+      <form class="hs-modal__body" id="hsUnlockForm">
+        <div class="hs-unlock-form">
+          <div class="hs-field">
+            <label class="hs-field__label" for="hsUnlockEmployees">Employees <span class="hs-req">*</span></label>
+            <div class="hs-unlock-emp" id="hsUnlockEmpWrap">
+              <div class="hs-unlock-emp__field">
+                <span class="hs-emp-tag" id="hsUnlockEmpTag" hidden><span id="hsUnlockEmpTagText"></span><button type="button" class="hs-emp-tag__x" data-unlock-emp-clear aria-label="Remove employee">×</button></span>
+                <input class="hs-unlock-emp__input" type="text" id="hsUnlockEmployees" placeholder="Employees">
+              </div>
+            </div>
+          </div>
+          <div class="hs-unlock-form__grid">
+            <div class="hs-field">
+              <label class="hs-field__label" for="hsUnlockStart">Start Date <span class="hs-info" title="Unlock start date">ⓘ</span></label>
+              <div class="hs-date">
+                <input class="hs-input" type="text" id="hsUnlockStart" placeholder="Select Date" data-unlock-date>
+                <span class="hs-date__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span>
+              </div>
+            </div>
+            <div class="hs-field">
+              <label class="hs-field__label" for="hsUnlockEnd">End Date <span class="hs-info" title="Unlock end date">ⓘ</span></label>
+              <div class="hs-date">
+                <input class="hs-input" type="text" id="hsUnlockEnd" placeholder="Select Date" data-unlock-date>
+                <span class="hs-date__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span>
+              </div>
+            </div>
+            <div class="hs-field">
+              <label class="hs-field__label" for="hsUnlockSince">Since Date <span class="hs-info" title="Since date">ⓘ</span></label>
+              <div class="hs-date">
+                <input class="hs-input" type="text" id="hsUnlockSince" placeholder="Select Date" data-unlock-date>
+                <span class="hs-date__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span>
+              </div>
+            </div>
+            <div class="hs-field">
+              <label class="hs-field__label" for="hsUnlockTill">Till Date <span class="hs-info" title="Till date">ⓘ</span></label>
+              <div class="hs-date">
+                <input class="hs-input" type="text" id="hsUnlockTill" placeholder="Select Date" data-unlock-date>
+                <span class="hs-date__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hs-modal__foot">
+          <button type="submit" class="hs-btn-save">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="hs-del-pop" id="hsCopyPop" hidden role="dialog" aria-label="Confirm copy">
+    <div class="hs-del-pop__inner">
+      <div class="hs-del-pop__msg">
+        <span class="hs-del-pop__icon" aria-hidden="true">!</span>
+        <span>Are you sure to copy this?</span>
+      </div>
+      <div class="hs-del-pop__actions">
+        <button type="button" class="hs-del-pop__no" id="hsCopyNo">No</button>
+        <button type="button" class="hs-del-pop__yes" id="hsCopyYes">Yes</button>
+      </div>
+    </div>
+    <span class="hs-del-pop__arrow" aria-hidden="true"></span>
+  </div>
+
+  <div class="hs-del-pop" id="hsDelPop" hidden role="dialog" aria-label="Confirm delete">
+    <div class="hs-del-pop__inner">
+      <div class="hs-del-pop__msg">
+        <span class="hs-del-pop__icon" aria-hidden="true">!</span>
+        <span>Are you sure to delete this?</span>
+      </div>
+      <div class="hs-del-pop__actions">
+        <button type="button" class="hs-del-pop__no" id="hsDelNo">No</button>
+        <button type="button" class="hs-del-pop__yes" id="hsDelYes">Yes</button>
+      </div>
+    </div>
+    <span class="hs-del-pop__arrow" aria-hidden="true"></span>
+  </div>
+
+  <div class="hs-date-pop" id="hsDatePop" hidden role="dialog" aria-label="Select date">
+    <div class="hs-date-pop__nav">
+      <button type="button" data-hol-nav="yy-prev">«</button>
+      <button type="button" data-hol-nav="m-prev">‹</button>
+      <strong id="hsDatePopLabel">Aug 2026</strong>
+      <button type="button" data-hol-nav="m-next">›</button>
+      <button type="button" data-hol-nav="yy-next">»</button>
+    </div>
+    <div class="hs-date-pop__grid" id="hsDatePopGrid"></div>
+    <button type="button" class="hs-date-pop__today" id="hsDatePopToday">Today</button>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/hrms-setting.js?v=hs22"></script>
+</body>
+</html>

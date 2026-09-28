@@ -1,0 +1,88 @@
+/* SMTP Configuration page */
+.msmtp-form { max-width: 720px; }
+.msmtp-pass { position: relative; }
+.msmtp-pass .mce-input { padding-right: 40px; }
+.msmtp-pass__toggle {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  border: 0;
+  background: none;
+  color: #94a3b8;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.msmtp-pass__toggle svg { width: 18px; height: 18px; }
+.msmtp-pass__toggle:hover { color: #25B7A7; }
+
+.msmtp-checks {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-height: 36px;
+  flex-wrap: wrap;
+}
+.msmtp-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+}
+.msmtp-check input { accent-color: #25B7A7; width: 16px; height: 16px; }
+
+.msmtp-actions {
+  display: flex;
+  justify-content: center;
+  padding: 8px 0 20px;
+}
+
+.msmtp-guide {
+  margin-top: 8px;
+  padding: 20px 22px 24px;
+  background: #f0f7ff;
+  border: 1px solid #d6e4ff;
+  border-radius: 8px;
+}
+.msmtp-guide__title {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1677ff;
+}
+.msmtp-guide__intro {
+  margin: 0 0 18px;
+  font-size: 13px;
+  color: #595959;
+  line-height: 1.5;
+}
+.msmtp-guide__item { margin-bottom: 16px; }
+.msmtp-guide__item:last-child { margin-bottom: 0; }
+.msmtp-guide__item h3 {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #262626;
+}
+.msmtp-guide__item p {
+  margin: 0 0 4px;
+  font-size: 13px;
+  color: #595959;
+  line-height: 1.45;
+}
+.msmtp-guide__ex {
+  color: #8c8c8c !important;
+  font-size: 12px !important;
+}
+
+@media (max-width: 720px) {
+  .msmtp-form .mce-row { grid-template-columns: 1fr; }
+  .msmtp-form .mce-label { text-align: left; padding-top: 0; }
+}

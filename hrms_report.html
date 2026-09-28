@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manager Reports — TimeERP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/task-report.css?v=4">
+  <link rel="stylesheet" href="css/hrms-report.css?v=9">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="dv-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="dv-top-clock" id="dvTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn dv-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn dv-top-icon" id="notifBtn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="dv-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="home.html" class="dropdown__item"><strong>Dashboard</strong><span>Back to home</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="mr-page">
+          <div class="mr-back-row">
+            <a class="mr-back" href="home.html#module/hrms" aria-label="Back to HRMS">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <span class="mr-back-title">Manager Reports</span>
+          </div>
+
+          <nav class="mr-pills" aria-label="Report categories">
+            <button type="button" class="mr-pill is-active" data-tab="task">Task</button>
+            <button type="button" class="mr-pill" data-tab="hrms">HRMS</button>
+            <button type="button" class="mr-pill" data-tab="timesheet">Timesheet</button>
+            <button type="button" class="mr-pill" data-tab="attendance">Attendance Summary</button>
+            <button type="button" class="mr-pill" data-tab="leave">Leave Count</button>
+          </nav>
+
+          <!-- TASK TAB -->
+          <div class="mr-panel is-active" id="mrPanelTask" data-panel="task">
+            <section class="tr-card" id="trFilterCard" aria-labelledby="trTitle">
+              <div class="tr-card__head">
+                <h1 class="tr-card__title" id="trTitle">
+                  Task Report
+                  <button type="button" class="tr-play" title="Play" aria-label="Play report guide">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                  </button>
+                </h1>
+                <select class="tr-type-select" id="trReportType" aria-label="Report type">
+                  <option selected>Daily Task</option>
+                  <option>Monthly Task</option>
+                  <option>Detailed Task</option>
+                  <option>Task Planing</option>
+                  <option>Task Status</option>
+                  <option>Yearly Status</option>
+                  <option>Task Employee Status</option>
+                  <option>Employee Wise report</option>
+                </select>
+                <button type="button" class="tr-collapse" id="trCollapseBtn" aria-expanded="true">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M4 5.5l4 3.5 4-3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Collapse
+                </button>
+              </div>
+
+              <div class="tr-filters">
+                <div class="tr-field">
+                  <label for="trDate">Date</label>
+                  <div class="tr-date-wrap" id="trDateWrap">
+                    <input type="text" id="trDate" value="29-08-2026" readonly aria-haspopup="dialog" aria-expanded="false">
+                    <svg class="tr-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                    <div class="tr-datepicker" id="trDatepicker" hidden role="dialog" aria-label="Choose date">
+                      <div class="tr-datepicker__head">
+                        <button type="button" class="tr-datepicker__nav" data-nav="prev-year" aria-label="Previous year">&lt;&lt;</button>
+                        <button type="button" class="tr-datepicker__nav" data-nav="prev-month" aria-label="Previous month">&lt;</button>
+                        <span class="tr-datepicker__label" id="trCalLabel">Aug 2026</span>
+                        <button type="button" class="tr-datepicker__nav" data-nav="next-month" aria-label="Next month">&gt;</button>
+                        <button type="button" class="tr-datepicker__nav" data-nav="next-year" aria-label="Next year">&gt;&gt;</button>
+                      </div>
+                      <div class="tr-datepicker__weekdays" aria-hidden="true">
+                        <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+                      </div>
+                      <div class="tr-datepicker__grid" id="trCalGrid"></div>
+                      <div class="tr-datepicker__foot">
+                        <button type="button" class="tr-datepicker__today" id="trCalToday">Today</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tr-field">
+                  <label for="trEmployee">Employee</label>
+                  <div class="tr-combo" data-placeholder="Select Employee">
+                    <input type="text" id="trEmployee" class="tr-combo__input" placeholder="Select Employee" autocomplete="off">
+                    <ul class="tr-combo__list" hidden>
+                      <li data-value="All">All</li>
+                      <li data-value="(SA2) Saurabh Bhardwaj">(SA2) Saurabh Bhardwaj</li>
+                      <li data-value="(erp03) Anupam">(erp03) Anupam</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="tr-field">
+                  <label for="trCustomer">Customer</label>
+                  <div class="tr-combo" data-placeholder="Select Customer">
+                    <input type="text" id="trCustomer" class="tr-combo__input" placeholder="Select Customer" autocomplete="off">
+                    <ul class="tr-combo__list" hidden>
+                      <li data-value="All">All</li>
+                      <li data-value="(IN1) Internal">(IN1) Internal</li>
+                      <li data-value="(KA2) Kamal Kant Sharma">(KA2) Kamal Kant Sharma</li>
+                      <li data-value="(TE4) testing">(TE4) testing</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="tr-field">
+                  <label for="trCustomerGroup">Customer Group</label>
+                  <div class="tr-combo" data-placeholder="Select Customer Group">
+                    <input type="text" id="trCustomerGroup" class="tr-combo__input" placeholder="Select Customer Group" autocomplete="off">
+                    <ul class="tr-combo__list" hidden>
+                      <li data-value="All">All</li>
+                      <li data-value="Tax Audit">Tax Audit</li>
+                      <li data-value="ITR">ITR</li>
+                      <li data-value="GST">GST</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="tr-field">
+                  <label for="trTeam">Team</label>
+                  <div class="tr-combo" data-placeholder="Select Team">
+                    <input type="text" id="trTeam" class="tr-combo__input" placeholder="Select Team" autocomplete="off">
+                    <ul class="tr-combo__list" hidden>
+                      <li data-value="GST">GST</li>
+                      <li data-value="Team 1">Team 1</li>
+                      <li data-value="GST Team">GST Team</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="tr-field">
+                  <label>&nbsp;</label>
+                  <label class="tr-as-on"><input type="checkbox" id="trAsOn"> As On</label>
+                </div>
+              </div>
+
+              <div class="tr-generate">
+                <button type="button" class="tr-btn" id="trGenerateBtn">Generate Report</button>
+              </div>
+            </section>
+
+            <section class="tr-card tr-result is-visible" id="trResult" aria-label="Task report results">
+              <div class="mr-simple-stat" id="mrSimpleStat">
+                <span class="mr-simple-stat__label">Total Task Created</span>
+                <strong class="mr-simple-stat__val" id="mrTotalCreated">0</strong>
+              </div>
+
+              <div class="mr-status-view" id="mrStatusView" hidden>
+                <div class="tr-summary-row">
+                  <span>Total Task : <strong id="mrTotalTask">0</strong></span>
+                  <span>Cancelled Task : <strong id="mrCancelledTask">0</strong></span>
+                  <button type="button" class="tr-excel" id="trExcelBtn" title="Export Excel">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.7"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9.2 12.2l5.6 5.6M14.8 12.2l-5.6 5.6"/></svg>
+                    EXCEL
+                  </button>
+                </div>
+                <div class="tr-table-wrap">
+                  <table class="tr-table" id="trStatusTable">
+                    <thead>
+                      <tr>
+                        <th>Task Status</th>
+                        <th>Count</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>OPEN</td><td>--</td></tr>
+                      <tr><td>PROCESSING</td><td>--</td></tr>
+                      <tr><td>COMPLETED</td><td>--</td></tr>
+                      <tr><td>UNDER REVIEW</td><td>--</td></tr>
+                      <tr><td>UNDER CONSULTATION</td><td>--</td></tr>
+                      <tr><td>REVIEWED</td><td>--</td></tr>
+                      <tr><td>STUCK</td><td>--</td></tr>
+                      <tr><td>FINALISED FOR SUBMISSION</td><td>--</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <!-- HRMS TAB -->
+          <div class="mr-panel" id="mrPanelHrms" data-panel="hrms" hidden>
+            <section class="hr-card" id="hrFilterCard" aria-labelledby="hrTitle">
+              <div class="hr-card__head">
+                <h1 class="hr-card__title" id="hrTitle">HRMS Report</h1>
+                <select class="hr-type-select" id="hrReportType" aria-label="Report type">
+                  <option selected>Attendance Summary</option>
+                  <option>Detailed Attendance</option>
+                  <option>Month Wise Attendance Summary</option>
+                  <option>Month Wise EPF Summary</option>
+                  <option>Month Wise ESI Summary</option>
+                  <option>Team Wise Planning</option>
+                  <option>Team Wise Revenue</option>
+                  <option>Probation Period</option>
+                </select>
+                <button type="button" class="hr-collapse" id="hrCollapseBtn" aria-expanded="true">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M4 5.5l4 3.5 4-3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Collapse
+                </button>
+              </div>
+
+              <div class="hr-filters">
+                <div class="hr-field">
+                  <label for="hrDateRange">Date</label>
+                  <div class="hr-range-wrap" id="hrRangeWrap">
+                    <input type="text" id="hrDateRange" value="22-08-2026 -> 29-08-2026" readonly aria-haspopup="dialog" aria-expanded="false">
+                    <svg class="hr-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                    <div class="hr-rangepicker" id="hrRangepicker" hidden role="dialog" aria-label="Choose date range">
+                      <div class="hr-rangepicker__panels">
+                        <div class="hr-cal-panel">
+                          <div class="hr-cal-panel__head">
+                            <button type="button" data-nav="prev-year" aria-label="Previous year">&lt;&lt;</button>
+                            <button type="button" data-nav="prev-month" aria-label="Previous month">&lt;</button>
+                            <span class="hr-cal-panel__label" id="hrCalLeftLabel">Aug 2026</span>
+                          </div>
+                          <div class="hr-cal-weekdays"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+                          <div class="hr-cal-grid" id="hrCalLeftGrid"></div>
+                        </div>
+                        <div class="hr-cal-panel">
+                          <div class="hr-cal-panel__head">
+                            <span class="hr-cal-panel__label" id="hrCalRightLabel">Sep 2026</span>
+                            <button type="button" data-nav="next-month" aria-label="Next month">&gt;</button>
+                            <button type="button" data-nav="next-year" aria-label="Next year">&gt;&gt;</button>
+                          </div>
+                          <div class="hr-cal-weekdays"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+                          <div class="hr-cal-grid" id="hrCalRightGrid"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="hr-field">
+                  <label for="hrEmployee">Employee</label>
+                  <div class="hr-combo">
+                    <input type="text" id="hrEmployee" class="hr-combo__input" placeholder="Select Employee" autocomplete="off">
+                    <ul class="hr-combo__list" hidden>
+                      <li data-value="All">All</li>
+                      <li data-value="(erp03) Anupam">(erp03) Anupam</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="hr-field">
+                  <label for="hrBranch">Branch</label>
+                  <div class="hr-combo">
+                    <input type="text" id="hrBranch" class="hr-combo__input" placeholder="Branch" autocomplete="off">
+                    <ul class="hr-combo__list" hidden>
+                      <li data-value="TimeErp Demo">TimeErp Demo</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="hr-field">
+                  <label for="hrTeam">Team</label>
+                  <div class="hr-combo">
+                    <input type="text" id="hrTeam" class="hr-combo__input" placeholder="Select Team" autocomplete="off">
+                    <ul class="hr-combo__list" hidden>
+                      <li data-value="GST">GST</li>
+                      <li data-value="Team 1">Team 1</li>
+                      <li data-value="GST Team">GST Team</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="hr-field">
+                  <label for="hrStatus">Employee Status</label>
+                  <div class="hr-combo hr-combo--clearable">
+                    <input type="text" id="hrStatus" class="hr-combo__input" value="Active" autocomplete="off">
+                    <button type="button" class="hr-combo__clear" id="hrStatusClear" aria-label="Clear status">×</button>
+                    <ul class="hr-combo__list" hidden>
+                      <li data-value="All">All</li>
+                      <li data-value="Active">Active</li>
+                      <li data-value="In Active">In Active</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hr-generate">
+                <button type="button" class="hr-btn" id="hrGenerateBtn">Generate Report</button>
+              </div>
+            </section>
+
+            <section class="hr-card hr-result is-visible" id="hrResult" aria-label="Attendance summary results">
+              <div class="hr-export-row">
+                <button type="button" class="hr-excel" id="hrExcelBtn1" title="Export Excel">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.7"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9.2 12.2l5.6 5.6M14.8 12.2l-5.6 5.6"/></svg>
+                  EXCEL
+                </button>
+                <button type="button" class="hr-excel" id="hrExcelBtn2" title="Export Excel">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.7"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9.2 12.2l5.6 5.6M14.8 12.2l-5.6 5.6"/></svg>
+                  EXCEL
+                </button>
+              </div>
+
+              <div class="hr-table-wrap">
+                <table class="hr-table" id="hrDataTable">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>S. No.</th>
+                      <th>Employee Name &#8693;</th>
+                      <th>Office &#8693;</th>
+                      <th>P</th>
+                      <th>H</th>
+                      <th>Leave</th>
+                      <th>OD</th>
+                      <th>AB</th>
+                      <th>LI</th>
+                      <th>EO</th>
+                      <th>WorkHrs</th>
+                    </tr>
+                  </thead>
+                  <tbody id="hrTableBody"></tbody>
+                </table>
+              </div>
+
+              <div class="hr-pager">
+                <button type="button" class="hr-pager__btn" id="hrPrev" aria-label="Previous page" disabled>&lt;</button>
+                <input type="text" id="hrPageInput" value="1" aria-label="Page number" readonly>
+                <span>of <span id="hrPageTotal">1</span></span>
+                <button type="button" class="hr-pager__btn" id="hrNext" aria-label="Next page" disabled>&gt;</button>
+                <span class="hr-pager__count" id="hrPageCount">1 / 1</span>
+              </div>
+            </section>
+          </div>
+
+          <!-- TIMESHEET TAB -->
+          <div class="mr-panel" id="mrPanelTimesheet" data-panel="timesheet" hidden>
+            <section class="ts-card" id="tsFilterCard" aria-labelledby="tsTitle">
+              <div class="ts-card__head">
+                <h1 class="ts-card__title" id="tsTitle">Timesheet Report</h1>
+                <select class="ts-type-select" id="tsReportType" aria-label="Report type">
+                  <option selected>Detailed Timesheet</option>
+                  <option>Timesheet with Attendance</option>
+                  <option>Timesheet without Attendance</option>
+                </select>
+                <button type="button" class="ts-collapse" id="tsCollapseBtn" aria-expanded="true">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M4 5.5l4 3.5 4-3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Collapse
+                </button>
+              </div>
+
+              <div class="ts-filters">
+                <div class="ts-field">
+                  <label for="tsFY">Financial Year</label>
+                  <div class="ts-combo">
+                    <input type="text" id="tsFY" class="ts-combo__input" placeholder="Select FY" autocomplete="off">
+                    <ul class="ts-combo__list" hidden>
+                      <li data-value="FY 27-28">FY 27-28</li>
+                      <li data-value="FY 26-27">FY 26-27</li>
+                      <li data-value="FY 25-26">FY 25-26</li>
+                      <li data-value="FY 24-25">FY 24-25</li>
+                      <li data-value="FY 23-24">FY 23-24</li>
+                      <li data-value="FY 22-23">FY 22-23</li>
+                      <li data-value="FY 21-22">FY 21-22</li>
+                      <li data-value="FY 20-21">FY 20-21</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="ts-field">
+                  <label for="tsDateRange">Date</label>
+                  <div class="ts-range-wrap" id="tsRangeWrap">
+                    <input type="text" id="tsDateRange" value="22-08-2026 -> 29-08-2026" readonly aria-haspopup="dialog" aria-expanded="false">
+                    <svg class="ts-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                    <div class="ts-rangepicker" id="tsRangepicker" hidden role="dialog" aria-label="Choose date range">
+                      <div class="ts-rangepicker__panels">
+                        <div class="ts-cal-panel">
+                          <div class="ts-cal-panel__head">
+                            <button type="button" data-nav="prev-year" aria-label="Previous year">&lt;&lt;</button>
+                            <button type="button" data-nav="prev-month" aria-label="Previous month">&lt;</button>
+                            <span class="ts-cal-panel__label" id="tsCalLeftLabel">Aug 2026</span>
+                          </div>
+                          <div class="ts-cal-weekdays"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+                          <div class="ts-cal-grid" id="tsCalLeftGrid"></div>
+                        </div>
+                        <div class="ts-cal-panel">
+                          <div class="ts-cal-panel__head">
+                            <span class="ts-cal-panel__label" id="tsCalRightLabel">Sep 2026</span>
+                            <button type="button" data-nav="next-month" aria-label="Next month">&gt;</button>
+                            <button type="button" data-nav="next-year" aria-label="Next year">&gt;&gt;</button>
+                          </div>
+                          <div class="ts-cal-weekdays"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+                          <div class="ts-cal-grid" id="tsCalRightGrid"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="ts-field">
+                  <label for="tsEmployee">Employee</label>
+                  <div class="ts-combo">
+                    <input type="text" id="tsEmployee" class="ts-combo__input" placeholder="Employee" autocomplete="off">
+                    <ul class="ts-combo__list" hidden>
+                      <li data-value="All">All</li>
+                      <li data-value="(erp03) Anupam">(erp03) Anupam</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="ts-field">
+                  <label for="tsCustomer">Customer</label>
+                  <div class="ts-combo">
+                    <input type="text" id="tsCustomer" class="ts-combo__input" placeholder="Select Customer" autocomplete="off">
+                    <ul class="ts-combo__list" hidden>
+                      <li data-value="All">All</li>
+                      <li data-value="(IN1) Internal">(IN1) Internal</li>
+                      <li data-value="(KA2) Kamal Kant Sharma">(KA2) Kamal Kant Sharma</li>
+                      <li data-value="(TE4) testing">(TE4) testing</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="ts-field">
+                  <label for="tsTeam">Team</label>
+                  <div class="ts-combo">
+                    <input type="text" id="tsTeam" class="ts-combo__input" placeholder="Select Team" autocomplete="off">
+                    <ul class="ts-combo__list" hidden>
+                      <li data-value="GST">GST</li>
+                      <li data-value="Team 1">Team 1</li>
+                      <li data-value="GST Team">GST Team</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="ts-field">
+                  <label for="tsServices">Services</label>
+                  <div class="ts-combo">
+                    <input type="text" id="tsServices" class="ts-combo__input" placeholder="Select Services" autocomplete="off">
+                    <ul class="ts-combo__list" hidden>
+                      <li data-value="All">All</li>
+                      <li data-value="Tax Consultation">Tax Consultation</li>
+                      <li data-value="GST Filing">GST Filing</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="ts-field">
+                  <label for="tsReviewer">Reviewer</label>
+                  <div class="ts-combo">
+                    <input type="text" id="tsReviewer" class="ts-combo__input" placeholder="Reviewer" autocomplete="off">
+                    <ul class="ts-combo__list" hidden>
+                      <li data-value="All">All</li>
+                      <li data-value="(erp03) Anupam">(erp03) Anupam</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="ts-field">
+                  <label for="tsTask">Task</label>
+                  <div class="ts-combo">
+                    <input type="text" id="tsTask" class="ts-combo__input" placeholder="Select Task" autocomplete="off">
+                    <ul class="ts-combo__list" hidden>
+                      <li data-value="All">All</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="ts-field">
+                  <label for="tsStatus">Time Sheet Status</label>
+                  <div class="ts-combo">
+                    <input type="text" id="tsStatus" class="ts-combo__input" placeholder="Select Status" autocomplete="off">
+                    <ul class="ts-combo__list" hidden>
+                      <li data-value="All">All</li>
+                      <li data-value="Pending">Pending</li>
+                      <li data-value="Rejected">Rejected</li>
+                      <li data-value="Approved">Approved</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ts-generate">
+                <button type="button" class="ts-btn" id="tsGenerateBtn">Generate Report</button>
+              </div>
+            </section>
+
+            <section class="ts-card ts-result is-visible" id="tsResult" aria-label="Timesheet report results">
+              <div class="ts-summary-row">
+                <span>Total Count : <strong id="tsTotalCount">0</strong></span>
+                <span>Total Time Spent : <strong id="tsTotalTime"></strong></span>
+                <div class="ts-toolbar">
+                  <div class="ts-cols-wrap" id="tsColsWrap">
+                    <button type="button" class="ts-cols-btn" id="tsColsBtn" aria-haspopup="true" aria-expanded="false">
+                      Columns
+                      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M4 5.5l4 3.5 4-3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div class="ts-cols-panel" id="tsColsPanel" hidden role="dialog" aria-label="Columns">
+                      <div class="ts-cols-panel__head">
+                        <span>Columns</span>
+                        <button type="button" class="ts-cols-all" id="tsSelectAllCols">Select All</button>
+                      </div>
+                      <ul class="ts-cols-list" id="tsColsList">
+                        <li><label><input type="checkbox" checked data-col="employee"> Employee Name</label></li>
+                        <li><label><input type="checkbox" checked data-col="customer"> Customer Name</label></li>
+                        <li><label><input type="checkbox" checked data-col="task"> Task Name</label></li>
+                        <li><label><input type="checkbox" checked data-col="date"> Date</label></li>
+                        <li><label><input type="checkbox" checked data-col="start"> Start Time</label></li>
+                        <li><label><input type="checkbox" checked data-col="end"> End Time</label></li>
+                        <li><label><input type="checkbox" checked data-col="total"> Total Time (H:M:S)</label></li>
+                        <li><label><input type="checkbox" checked data-col="created"> Created At</label></li>
+                        <li><label><input type="checkbox" checked data-col="remark"> Remark</label></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <button type="button" class="ts-excel" id="tsExcelBtn" title="Export Excel" aria-label="Export Excel">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.7"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9.2 12.2l5.6 5.6M14.8 12.2l-5.6 5.6"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="ts-table-wrap">
+                <table class="ts-table" id="tsDataTable">
+                  <thead>
+                    <tr>
+                      <th data-col="employee">Employee Name</th>
+                      <th data-col="customer">Customer Name</th>
+                      <th data-col="task">Task Name</th>
+                      <th data-col="date">Date</th>
+                      <th data-col="start">Start Time</th>
+                      <th data-col="end">End Time</th>
+                      <th data-col="total">Total Time (H:M:S)</th>
+                      <th data-col="created">Created At</th>
+                      <th data-col="remark">Remark</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tsTableBody"></tbody>
+                </table>
+                <div class="ts-empty" id="tsEmpty">
+                  <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+                    <rect x="14" y="18" width="36" height="30" rx="3" stroke="#cbd5e1" stroke-width="2"/>
+                    <path d="M22 18v-3a3 3 0 013-3h14a3 3 0 013 3v3" stroke="#cbd5e1" stroke-width="2"/>
+                    <path d="M24 30h16M24 38h10" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                  <p>No data</p>
+                </div>
+              </div>
+
+              <div class="ts-pager">
+                <button type="button" class="ts-pager__btn" id="tsPrev" aria-label="Previous page" disabled>&lt;</button>
+                <input type="text" id="tsPageInput" value="1" aria-label="Page number" readonly>
+                <span>of <span id="tsPageTotal">1</span></span>
+                <button type="button" class="ts-pager__btn" id="tsNext" aria-label="Next page" disabled>&gt;</button>
+                <span class="ts-pager__count" id="tsPageCount">0 / 0</span>
+              </div>
+            </section>
+          </div>
+
+          <!-- ATTENDANCE SUMMARY TAB -->
+          <div class="mr-panel" id="mrPanelAttendance" data-panel="attendance" hidden>
+            <div class="as-toolbar">
+              <div class="as-range-wrap" id="asRangeWrap">
+                <input type="text" id="asDateRange" value="01/08/2026 -> 29/08/2026" readonly aria-haspopup="dialog" aria-expanded="false">
+                <svg class="as-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                <div class="as-rangepicker" id="asRangepicker" hidden role="dialog" aria-label="Choose date range">
+                  <div class="as-rangepicker__panels">
+                    <div class="as-cal-panel">
+                      <div class="as-cal-panel__head">
+                        <button type="button" data-nav="prev-year" aria-label="Previous year">&lt;&lt;</button>
+                        <button type="button" data-nav="prev-month" aria-label="Previous month">&lt;</button>
+                        <span class="as-cal-panel__label" id="asCalLeftLabel">Aug 2026</span>
+                      </div>
+                      <div class="as-cal-weekdays"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+                      <div class="as-cal-grid" id="asCalLeftGrid"></div>
+                    </div>
+                    <div class="as-cal-panel">
+                      <div class="as-cal-panel__head">
+                        <span class="as-cal-panel__label" id="asCalRightLabel">Sep 2026</span>
+                        <button type="button" data-nav="next-month" aria-label="Next month">&gt;</button>
+                        <button type="button" data-nav="next-year" aria-label="Next year">&gt;&gt;</button>
+                      </div>
+                      <div class="as-cal-weekdays"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+                      <div class="as-cal-grid" id="asCalRightGrid"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <select class="as-emp-select" id="asEmpSelect" aria-label="Employee count">
+                <option value="2" selected>2</option>
+                <option value="1">1</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+
+            <div class="as-charts">
+              <section class="as-card as-donut-card">
+                <div class="as-card__head">
+                  <h2 class="as-card__title">Attendance</h2>
+                  <span class="as-card__metric">0</span>
+                </div>
+                <div class="as-donut-body">
+                  <div class="as-donut" aria-hidden="true">
+                    <div class="as-donut__ring"></div>
+                  </div>
+                  <div class="as-donut-legend">
+                    <button type="button" class="as-menu-btn" aria-label="Chart menu">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+                    </button>
+                    <ul>
+                      <li><span class="as-dot as-dot--a"></span> Absent</li>
+                      <li><span class="as-dot as-dot--h"></span> Holiday</li>
+                      <li><span class="as-dot as-dot--p"></span> Present</li>
+                      <li><span class="as-dot as-dot--od"></span> On Duty</li>
+                      <li><span class="as-dot as-dot--co"></span> Comp Off</li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+
+              <section class="as-card as-bar-card">
+                <div class="as-card__head">
+                  <h2 class="as-card__title">Attendance Report</h2>
+                  <button type="button" class="as-menu-btn" aria-label="Chart menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+                  </button>
+                </div>
+                <div class="as-bar-chart" aria-hidden="true">
+                  <div class="as-bar-y"><span>1.0</span><span>0.5</span><span>0.0</span></div>
+                  <div class="as-bar-area">
+                    <div class="as-bar-group">
+                      <div class="as-bar-pair">
+                        <div class="as-bar as-bar--p" style="height:100%"></div>
+                        <div class="as-bar as-bar--p" style="height:100%"></div>
+                      </div>
+                      <span class="as-bar-label">Aug 29</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="as-status-key">
+                  <span><i class="as-key as-key--p">P</i> Present</span>
+                  <span><i class="as-key as-key--a">A</i> Absent</span>
+                  <span><i class="as-key as-key--h">H</i> Holiday</span>
+                  <span><i class="as-key as-key--od">OD</i> On Duty <em>First Half</em> <em>Second Half</em></span>
+                  <span><i class="as-key as-key--co">CO</i> Comp Off</span>
+                </div>
+              </section>
+            </div>
+
+            <section class="as-card as-summary-card">
+              <div class="as-summary-top">
+                <div class="as-month-wrap" id="asMonthWrap">
+                  <input type="text" id="asMonthInput" value="2026-08" readonly aria-haspopup="dialog" aria-expanded="false">
+                  <svg class="as-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                  <div class="as-monthpicker" id="asMonthpicker" hidden role="dialog" aria-label="Choose month">
+                    <div class="as-monthpicker__head">
+                      <button type="button" data-nav="prev-year" aria-label="Previous year">&lt;&lt;</button>
+                      <span id="asMonthYearLabel">2026</span>
+                      <button type="button" data-nav="next-year" aria-label="Next year">&gt;&gt;</button>
+                    </div>
+                    <div class="as-month-grid" id="asMonthGrid"></div>
+                  </div>
+                </div>
+                <h2 class="as-summary-title">Summary for the month August 2026</h2>
+              </div>
+              <div class="as-summary-grid">
+                <dl class="as-summary-col">
+                  <div><dt>Employee</dt><dd>Saurabh Bhardwaj</dd></div>
+                  <div><dt>Total Day</dt><dd>31</dd></div>
+                  <div><dt>Holidays/ Weekly Offs</dt><dd>0</dd></div>
+                  <div><dt>Total Working Days</dt><dd>31</dd></div>
+                  <div><dt>Leave Count</dt><dd>0</dd></div>
+                  <div><dt>Hourly Leaves</dt><dd>0</dd></div>
+                  <div><dt>Out Duty</dt><dd>0</dd></div>
+                  <div><dt>Total Absent</dt><dd>29</dd></div>
+                  <div><dt>Total Payable Days</dt><dd>0</dd></div>
+                </dl>
+                <dl class="as-summary-col">
+                  <div><dt>Full Day Count</dt><dd>0</dd></div>
+                  <div><dt>Half Day Count</dt><dd>0</dd></div>
+                  <div><dt>Total Work Hours</dt><dd>0:00</dd></div>
+                  <div><dt>Actual Work Hours</dt><dd>0:00</dd></div>
+                  <div><dt>Extra / Loss</dt><dd>0</dd></div>
+                  <div><dt>Incomplete Work Hour (Days)</dt><dd>0</dd></div>
+                  <div><dt>No of Late Coming</dt><dd>0</dd></div>
+                </dl>
+              </div>
+            </section>
+          </div>
+
+          <!-- LEAVE COUNT TAB -->
+          <div class="mr-panel" id="mrPanelLeave" data-panel="leave" hidden>
+            <section class="lc-card">
+              <div class="lc-filter">
+                <div class="lc-combo">
+                  <input type="text" id="lcEmployee" class="lc-combo__input" placeholder="Employee" autocomplete="off">
+                  <svg class="lc-combo__search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></svg>
+                  <ul class="lc-combo__list" hidden>
+                    <li data-value="(erp03) Anupam">(erp03) Anupam</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="lc-table-wrap">
+                <table class="lc-table" id="lcDataTable">
+                  <thead>
+                    <tr>
+                      <th>S. No.</th>
+                      <th>Employee Name</th>
+                      <th>Employee Code</th>
+                      <th>Leave Name</th>
+                      <th>Leave Abbreviation</th>
+                      <th>Count</th>
+                      <th>Booked Count</th>
+                    </tr>
+                  </thead>
+                  <tbody id="lcTableBody"></tbody>
+                </table>
+                <div class="lc-empty" id="lcEmpty">
+                  <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+                    <rect x="14" y="18" width="36" height="30" rx="3" stroke="#cbd5e1" stroke-width="2"/>
+                    <path d="M22 18v-3a3 3 0 013-3h14a3 3 0 013 3v3" stroke="#cbd5e1" stroke-width="2"/>
+                    <path d="M24 30h16M24 38h10" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                  <p>No data</p>
+                </div>
+              </div>
+
+              <div class="lc-pager">
+                <select class="lc-page-size" id="lcPageSize" aria-label="Rows per page">
+                  <option value="10">10</option>
+                  <option value="20" selected>20</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+                <div class="lc-pager__center">
+                  <button type="button" class="lc-pager__btn" id="lcPrev" aria-label="Previous page" disabled>&lt;</button>
+                  <input type="text" id="lcPageInput" value="1" aria-label="Page number" readonly>
+                  <span>of <span id="lcPageTotal">1</span></span>
+                  <button type="button" class="lc-pager__btn" id="lcNext" aria-label="Next page" disabled>&gt;</button>
+                </div>
+                <span class="lc-pager__count" id="lcPageCount">0 / 0</span>
+              </div>
+            </section>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/hrms-report.js?v=7"></script>
+</body>
+</html>

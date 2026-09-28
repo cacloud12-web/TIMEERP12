@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" fill="none">
+  <rect x="48" y="38" width="56" height="22" rx="3" fill="#C4A882"/>
+  <rect x="48" y="34" width="56" height="6" rx="2" fill="#A8845A"/>
+  <text x="76" y="52" text-anchor="middle" font-size="7" font-weight="700" fill="#fff" font-family="Inter,sans-serif">RECEPTION</text>
+  <circle cx="28" cy="48" r="14" fill="#FFE8CC"/>
+  <path d="M18 64c2-8 8-12 16-12s14 4 16 12" fill="#243F64"/>
+  <rect x="22" y="56" width="12" height="8" rx="2" fill="#25B7A7"/>
+</svg>

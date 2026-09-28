@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Form 145 Part A — TimeERP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/form145.css?v=3">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand"><a href="home.html" class="sidebar__brand-logo"><img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48"></a></div>
+      <div class="sidebar__toolbar" role="group"><button type="button" class="sidebar__search-btn" id="sidebarSearchToggle"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button><button type="button" class="sidebar__create-btn" id="sidebarCreate"><span class="sidebar__create-icon">+</span><span>Create</span></button></div>
+      <nav class="sidebar__nav" id="sidebarList"></nav>
+    </aside>
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle">☰</button>
+          <div class="topbar__search" role="search"><input type="search" id="globalSearch" placeholder="Search..." autocomplete="off"></div>
+          <div class="topbar__actions">
+            <button type="button" class="f1-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="f1-top-clock" id="f1TopClock">--:--</time>
+            <button type="button" class="topbar__icon-btn f1-top-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></button>
+            <div class="topbar__menu" style="position:relative"><button type="button" class="topbar__icon-btn f1-top-icon" id="notifBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg></button><div class="dropdown" id="notifDropdown" role="menu"><div class="dropdown__title">Notifications</div><div id="notifList"></div></div></div>
+            <div class="topbar__menu" style="position:relative"><button type="button" class="topbar__profile" id="profileBtn"><span class="topbar__avatar">CA</span><span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span><svg class="f1-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="dropdown" id="profileDropdown" role="menu"><div class="dropdown__title">Account</div><a href="home.html" class="dropdown__item"><strong>Dashboard</strong><span>Back to home</span></a></div></div>
+          </div>
+        </div>
+      </header>
+      <main class="main">
+        <div class="f1-page">
+          <div class="f1-header">
+            <a class="f1-back" href="document_vault.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></a>
+            <span class="f1-header__title">View Form 145 Part A</span>
+          </div>
+
+          <div class="f1-title-row">
+            <h1 class="f1-title">View Form 145 Part A</h1>
+            <div class="f1-actions">
+              <div class="f1-combo" id="f1ClientCombo">
+                <input class="f1-combo__input" placeholder="Client" autocomplete="off">
+                <svg class="f1-combo__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                <div class="f1-combo__list" id="f1ClientList"></div>
+              </div>
+              <div class="f1-filter-wrap" id="f1FilterWrap">
+                <button type="button" class="f1-filter-btn" id="f1FilterBtn" title="Filter" aria-label="Filter">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 5h16l-6.2 7.4V19l-3.6 2v-8.6L4 5z"/></svg>
+                </button>
+                <div class="f1-filter-drop" id="f1FilterDrop">
+                  <div class="f1-filter-drop__head"><span class="f1-filter-drop__title">Filter</span><button type="button" class="f1-filter-drop__reset">Reset</button></div>
+                  <div class="f1-fsec"><div class="f1-fsec__head" data-sec="country"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg> Country</div><div class="f1-fsec__body" data-body="country"><select><option>Country</option></select></div></div>
+                  <div class="f1-fsec"><div class="f1-fsec__head" data-sec="bank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg> Name of Bank</div><div class="f1-fsec__body" data-body="bank"><select><option>Name of Bank</option></select></div></div>
+                  <div class="f1-fsec"><div class="f1-fsec__head" data-sec="client"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg> Client</div><div class="f1-fsec__body" data-body="client"><select><option>Client</option></select></div></div>
+                  <div class="f1-fsec"><div class="f1-fsec__head" data-sec="employee"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg> Employee</div><div class="f1-fsec__body" data-body="employee"><select><option>Partner</option></select></div></div>
+                  <div class="f1-fsec"><div class="f1-fsec__head" data-sec="amount"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg> Amount</div><div class="f1-fsec__body" data-body="amount"><select><option>Amount</option></select></div></div>
+                  <div class="f1-fsec"><div class="f1-fsec__head" data-sec="created"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg> Created at</div><div class="f1-fsec__body" data-body="created"><select><option>Created at</option></select></div></div>
+                </div>
+              </div>
+              <a class="f1-add-btn" href="add_form145.html" title="Add" aria-label="Add">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="f1-tabs">
+            <button class="f1-tab active" data-tab="partA">Form 145 Part A</button>
+            <button class="f1-tab" data-tab="drafts">Drafts</button>
+          </div>
+
+          <!-- Form 145 Part A tab -->
+          <div class="f1-panel" id="panelPartA">
+            <div class="f1-table-wrap">
+              <table class="f1-table" id="f1TableA">
+                <thead class="f1-thead">
+                  <tr class="f1-thead__row f1-thead__row--main">
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--serial">Serial No.</th>
+                    <th rowspan="2" class="f1-th f1-th--span">Client Name</th>
+                    <th rowspan="2" class="f1-th f1-th--span">Remitter Name</th>
+                    <th rowspan="2" class="f1-th f1-th--span">Remitter PAN</th>
+                    <th rowspan="2" class="f1-th f1-th--span">Remitter Status</th>
+                    <th colspan="8" class="f1-th f1-th--group">Remitter Address</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top">Remitter Mobile</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top">Remitter Email</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top f1-th--wide">Name of recipient of remittance</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top">Save this remittee as</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top f1-th--wide">PAN of recipient of remittance</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top">Country</th>
+                    <th colspan="7" class="f1-th f1-th--group">Remittee Address</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top f1-th--wide">Country to which remittance is made</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top f1-th--xwide">Amount payable before TDS (In Indian Currency)</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top f1-th--xwide">Aggregate amount of remittance made during the financial year including this proposed remittance</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top">ifsc</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top">Name of Bank</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top">SPECIFY Bank Name</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top">Name of Branch</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top">Proposed Date of Remittance</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top">Nature of Remittance</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top">SPECIFY Nature of Remittance</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top">Purpose Code Rbi</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top">Sub Code</th>
+                    <th colspan="3" class="f1-th f1-th--group">TDS Details</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--center">Verification</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--center">Tags</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--center">Document</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--center">Action</th>
+                  </tr>
+                  <tr class="f1-thead__row f1-thead__row--sub">
+                    <th class="f1-th f1-th--sub">Country</th>
+                    <th class="f1-th f1-th--sub">Floor/Door/Building</th>
+                    <th class="f1-th f1-th--sub">Road/Street</th>
+                    <th class="f1-th f1-th--sub">Zip Code</th>
+                    <th class="f1-th f1-th--sub">Post Office</th>
+                    <th class="f1-th f1-th--sub f1-th--bottom">Area/Locality</th>
+                    <th class="f1-th f1-th--sub f1-th--bottom">Town/City/District</th>
+                    <th class="f1-th f1-th--sub f1-th--bottom">State</th>
+                    <th class="f1-th f1-th--sub">Flat/Door/Building</th>
+                    <th class="f1-th f1-th--sub f1-th--truncate">Road/Street/Block/Se...</th>
+                    <th class="f1-th f1-th--sub">ZIP Code</th>
+                    <th class="f1-th f1-th--sub">Post Office</th>
+                    <th class="f1-th f1-th--sub f1-th--bottom">Area/Locality</th>
+                    <th class="f1-th f1-th--sub f1-th--bottom">District</th>
+                    <th class="f1-th f1-th--sub f1-th--bottom">State</th>
+                    <th class="f1-th f1-th--sub">Amount of TDS</th>
+                    <th class="f1-th f1-th--sub">Rate of TDS</th>
+                    <th class="f1-th f1-th--sub">Date of deduction</th>
+                  </tr>
+                </thead>
+                <tbody id="f1BodyA"></tbody>
+              </table>
+            </div>
+            <div class="f1-pager">
+              <div></div>
+              <div class="f1-pager__nav"><button class="f1-pager__btn">&lt;</button><button class="f1-pager__btn f1-pager__btn--active">1</button><span style="font-size:12px;color:#6b7280">of 1</span><button class="f1-pager__btn">&gt;</button></div>
+              <span class="f1-pager__info" id="f1InfoA">1 / 1</span>
+            </div>
+          </div>
+
+          <!-- Drafts tab -->
+          <div class="f1-panel" id="panelDrafts" hidden>
+            <div class="f1-table-wrap">
+              <table class="f1-table" id="f1TableD">
+                <thead class="f1-thead">
+                  <tr class="f1-thead__row f1-thead__row--main">
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--serial">Serial No.</th>
+                    <th rowspan="2" class="f1-th f1-th--span">Client Name</th>
+                    <th rowspan="2" class="f1-th f1-th--span">Remitter Name</th>
+                    <th rowspan="2" class="f1-th f1-th--span">Remitter PAN</th>
+                    <th rowspan="2" class="f1-th f1-th--span">Remitter Status</th>
+                    <th colspan="8" class="f1-th f1-th--group">Remitter Address</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top">Remitter Mobile</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top">Remitter Email</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top f1-th--wide">Name of recipient of remittance</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top">Save this remittee as</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top f1-th--wide">PAN of recipient of remittance</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top">Country</th>
+                    <th colspan="7" class="f1-th f1-th--group">Remittee Address</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top f1-th--wide">Country to which remittance is made</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top f1-th--xwide">Amount payable before TDS (In Indian Currency)</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top f1-th--xwide">Aggregate amount of remittance made during the financial year including this proposed remittance</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top">ifsc</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top">Name of Bank</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top">SPECIFY Bank Name</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top">Name of Branch</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top">Proposed Date of Remittance</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top">Nature of Remittance</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top">SPECIFY Nature of Remittance</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top">Purpose Code Rbi</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--top">Sub Code</th>
+                    <th colspan="3" class="f1-th f1-th--group">TDS Details</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--center">Verification</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--center">Tags</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--center">Document</th>
+                    <th rowspan="2" class="f1-th f1-th--span f1-th--center">Action</th>
+                  </tr>
+                  <tr class="f1-thead__row f1-thead__row--sub">
+                    <th class="f1-th f1-th--sub">Country</th>
+                    <th class="f1-th f1-th--sub">Floor/Door/Building</th>
+                    <th class="f1-th f1-th--sub">Road/Street</th>
+                    <th class="f1-th f1-th--sub">Zip Code</th>
+                    <th class="f1-th f1-th--sub">Post Office</th>
+                    <th class="f1-th f1-th--sub f1-th--bottom">Area/Locality</th>
+                    <th class="f1-th f1-th--sub f1-th--bottom">Town/City/District</th>
+                    <th class="f1-th f1-th--sub f1-th--bottom">State</th>
+                    <th class="f1-th f1-th--sub">Flat/Door/Building</th>
+                    <th class="f1-th f1-th--sub f1-th--truncate">Road/Street/Block/Se...</th>
+                    <th class="f1-th f1-th--sub">ZIP Code</th>
+                    <th class="f1-th f1-th--sub">Post Office</th>
+                    <th class="f1-th f1-th--sub f1-th--bottom">Area/Locality</th>
+                    <th class="f1-th f1-th--sub f1-th--bottom">District</th>
+                    <th class="f1-th f1-th--sub f1-th--bottom">State</th>
+                    <th class="f1-th f1-th--sub">Amount of TDS</th>
+                    <th class="f1-th f1-th--sub">Rate of TDS</th>
+                    <th class="f1-th f1-th--sub">Date of deduction</th>
+                  </tr>
+                </thead>
+                <tbody id="f1BodyD"></tbody>
+              </table>
+            </div>
+            <div class="f1-pager">
+              <div></div>
+              <div class="f1-pager__nav"><button class="f1-pager__btn">&lt;</button><button class="f1-pager__btn f1-pager__btn--active">1</button><span style="font-size:12px;color:#6b7280">of 1</span><button class="f1-pager__btn">&gt;</button></div>
+              <span class="f1-pager__info" id="f1InfoD">3 / 3</span>
+            </div>
+          </div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/form145.js?v=3"></script>
+</body>
+</html>

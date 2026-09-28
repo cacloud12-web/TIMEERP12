@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="../assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="../assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transaction — TIME ERP HRMS</title>
+  <meta name="description" content="Manage payable days, deductions, TDS, salary hold, generate, release, arrear, and tax computation in TIME ERP.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/employee-transactions.css?v=et15">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="../home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="../assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="et-top-checkin is-in" id="etTopCheckInBtn">Check In</button>
+            <time class="et-top-clock" id="etTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn et-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn et-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">3</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">TE</span>
+                <span class="topbar__profile-meta"><strong>Admin</strong><span>TimeERP</span></span>
+                <svg class="et-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="../home.html" class="dropdown__item"><strong>Go to home</strong><span>Module hub overview</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="et-page" id="etPage">
+          <header class="et-header">
+            <a class="et-back" href="../home.html#module/hrms" aria-label="Back to HRMS">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <h1 class="et-title">Transaction</h1>
+          </header>
+
+          <nav class="et-tabs" aria-label="Transaction sections">
+            <div class="et-tabs__list" role="tablist">
+              <button type="button" class="et-tab is-active" role="tab" aria-selected="true" data-tab="payable">Payable Days</button>
+              <button type="button" class="et-tab" role="tab" aria-selected="false" data-tab="variable">Variable Deduction</button>
+              <button type="button" class="et-tab" role="tab" aria-selected="false" data-tab="additional">Additional Pay</button>
+              <button type="button" class="et-tab" role="tab" aria-selected="false" data-tab="tds">Manual TDS</button>
+              <button type="button" class="et-tab" role="tab" aria-selected="false" data-tab="hold">Hold</button>
+              <button type="button" class="et-tab" role="tab" aria-selected="false" data-tab="generate">Generate</button>
+              <button type="button" class="et-tab" role="tab" aria-selected="false" data-tab="release">Release</button>
+              <button type="button" class="et-tab" role="tab" aria-selected="false" data-tab="released">Released</button>
+              <button type="button" class="et-tab" role="tab" aria-selected="false" data-tab="arrear">Arrear</button>
+              <button type="button" class="et-tab" role="tab" aria-selected="false" data-tab="tax">Tax Computation</button>
+            </div>
+          </nav>
+
+          <div id="etDynamic" class="et-dynamic" aria-live="polite"></div>
+
+          <footer class="et-app-footer" aria-label="App footer"></footer>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Add Payable Days -->
+  <div class="et-modal" id="etPayableModal" hidden>
+    <div class="et-modal__backdrop" data-et-close="payable"></div>
+    <div class="et-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="etPayableTitle">
+      <div class="et-modal__head">
+        <h2 class="et-modal__title" id="etPayableTitle">Add Payable Days</h2>
+        <button type="button" class="et-modal__close" data-et-close="payable" aria-label="Close">&times;</button>
+      </div>
+      <form class="et-modal__body" id="etPayableForm" onsubmit="return false;">
+        <div class="et-grid2">
+          <div class="et-field"><label>Month</label><input type="month" name="month"></div>
+          <div class="et-field"><label>Employee <span class="et-req">*</span></label>
+            <select name="employee" id="etPayableEmp" required><option value="">Select Employee</option></select>
+          </div>
+          <div class="et-field"><label>Payable Days <span class="et-req">*</span></label><input type="number" step="0.5" name="days" placeholder="Enter Payable Days" required></div>
+          <div class="et-field"><label>Reason</label><textarea name="reason" placeholder="Reason" rows="3"></textarea></div>
+        </div>
+        <div class="et-modal__foot"><button type="submit" class="et-btn et-btn--primary">Save</button></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add Hold Salary -->
+  <div class="et-modal" id="etHoldModal" hidden>
+    <div class="et-modal__backdrop" data-et-close="hold"></div>
+    <div class="et-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="etHoldTitle">
+      <div class="et-modal__head">
+        <h2 class="et-modal__title" id="etHoldTitle">Add Hold Salary</h2>
+        <button type="button" class="et-modal__close" data-et-close="hold" aria-label="Close">&times;</button>
+      </div>
+      <form class="et-modal__body" id="etHoldForm" onsubmit="return false;">
+        <div class="et-field"><label>Employees <span class="et-req">*</span></label>
+          <select name="employee" id="etHoldEmp" required><option value="">Employee</option></select>
+        </div>
+        <div class="et-grid2">
+          <div class="et-field"><label>From Month <span class="et-req">*</span></label><input type="month" name="fromMonth" required></div>
+          <div class="et-field"><label>To Month <span class="et-req">*</span></label><input type="month" name="toMonth" required></div>
+        </div>
+        <div class="et-field"><label>Remark</label><textarea name="remark" placeholder="Remark" rows="3"></textarea></div>
+        <div class="et-modal__foot"><button type="submit" class="et-btn et-btn--primary">Save</button></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Generic add modal for empty tabs -->
+  <div class="et-modal" id="etGenericModal" hidden>
+    <div class="et-modal__backdrop" data-et-close="generic"></div>
+    <div class="et-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="etGenericTitle">
+      <div class="et-modal__head">
+        <h2 class="et-modal__title" id="etGenericTitle">Add</h2>
+        <button type="button" class="et-modal__close" data-et-close="generic" aria-label="Close">&times;</button>
+      </div>
+      <form class="et-modal__body" id="etGenericForm" onsubmit="return false;">
+        <div class="et-field"><label>Employee <span class="et-req">*</span></label>
+          <select name="employee" id="etGenericEmp" required><option value="">Select Employee</option></select>
+        </div>
+        <div class="et-grid2">
+          <div class="et-field"><label>Month</label><input type="month" name="month"></div>
+          <div class="et-field"><label>Amount</label><input type="number" name="amount" placeholder="Amount"></div>
+        </div>
+        <div class="et-field"><label>Remark</label><textarea name="remark" placeholder="Remark" rows="3"></textarea></div>
+        <div class="et-modal__foot"><button type="submit" class="et-btn et-btn--primary">Save</button></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- View Tax Computation -->
+  <div class="et-modal" id="etTaxViewModal" hidden>
+    <div class="et-modal__backdrop" data-et-close="taxView"></div>
+    <div class="et-modal__dialog et-modal__dialog--wide" role="dialog" aria-modal="true" aria-labelledby="etTaxViewTitle">
+      <div class="et-modal__head">
+        <h2 class="et-modal__title" id="etTaxViewTitle">Tax Computation</h2>
+        <button type="button" class="et-modal__close" data-et-close="taxView" aria-label="Close">&times;</button>
+      </div>
+      <div class="et-modal__body" id="etTaxViewBody"></div>
+    </div>
+  </div>
+
+  <!-- View HRA Computation -->
+  <div class="et-modal" id="etHraViewModal" hidden>
+    <div class="et-modal__backdrop" data-et-close="hraView"></div>
+    <div class="et-modal__dialog et-modal__dialog--wide" role="dialog" aria-modal="true" aria-labelledby="etHraViewTitle">
+      <div class="et-modal__head">
+        <h2 class="et-modal__title" id="etHraViewTitle">HRA Computation</h2>
+        <button type="button" class="et-modal__close" data-et-close="hraView" aria-label="Close">&times;</button>
+      </div>
+      <div class="et-modal__body" id="etHraViewBody"></div>
+    </div>
+  </div>
+
+  <!-- View Salary Slip -->
+  <div class="et-modal" id="etSlipViewModal" hidden>
+    <div class="et-modal__backdrop" data-et-close="slipView"></div>
+    <div class="et-modal__dialog et-modal__dialog--wide" role="dialog" aria-modal="true" aria-labelledby="etSlipViewTitle">
+      <div class="et-modal__head">
+        <h2 class="et-modal__title" id="etSlipViewTitle">Salary Slip</h2>
+        <button type="button" class="et-modal__close" data-et-close="slipView" aria-label="Close">&times;</button>
+      </div>
+      <div class="et-modal__body" id="etSlipViewBody"></div>
+    </div>
+  </div>
+
+  <div class="et-del-pop" id="etDelPop" hidden role="dialog" aria-label="Confirm delete">
+    <div class="et-del-pop__inner">
+      <div class="et-del-pop__msg">
+        <span class="et-del-pop__icon" aria-hidden="true">!</span>
+        <span>Are you sure to delete this? It will delete Manual Update only.</span>
+      </div>
+      <div class="et-del-pop__actions">
+        <button type="button" class="et-del-pop__no" id="etDelNo">No</button>
+        <button type="button" class="et-del-pop__yes" id="etDelYes">Yes</button>
+      </div>
+    </div>
+    <span class="et-del-pop__arrow" aria-hidden="true"></span>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/employee-transactions.js?v=et14"></script>
+</body>
+</html>

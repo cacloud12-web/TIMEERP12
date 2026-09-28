@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="../assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="../assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Settings — TIME ERP HRMS</title>
+  <meta name="description" content="Configure payroll dropdowns, salary ingredients, deductions, pay details, and expense settings in TIME ERP.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/account-settings.css?v=as11">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="../home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="../assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="as-top-checkin is-in" id="asTopCheckInBtn">Check In</button>
+            <time class="as-top-clock" id="asTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn as-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn as-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">3</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">TE</span>
+                <span class="topbar__profile-meta"><strong>Admin</strong><span>TimeERP</span></span>
+                <svg class="as-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="../home.html" class="dropdown__item"><strong>Go to home</strong><span>Module hub overview</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="as-page" id="asPage">
+          <header class="as-header">
+            <a class="as-back" href="../home.html#module/hrms" aria-label="Back to HRMS">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <h1 class="as-title">Account Settings</h1>
+          </header>
+
+          <nav class="as-tabs" aria-label="Account settings sections">
+            <div class="as-tabs__list" role="tablist">
+              <button type="button" class="as-tab is-active" role="tab" aria-selected="true" data-tab="dropdown">DropDown Setting</button>
+              <button type="button" class="as-tab" role="tab" aria-selected="false" data-tab="salary">Salary Ingredients</button>
+              <button type="button" class="as-tab" role="tab" aria-selected="false" data-tab="deduction">Constant Deduction</button>
+              <button type="button" class="as-tab" role="tab" aria-selected="false" data-tab="pay">Pay Details</button>
+              <button type="button" class="as-tab" role="tab" aria-selected="false" data-tab="overhead">Overhead Expense</button>
+              <button type="button" class="as-tab" role="tab" aria-selected="false" data-tab="manual">Manual Costing</button>
+              <button type="button" class="as-tab" role="tab" aria-selected="false" data-tab="limit">Expense Limit</button>
+            </div>
+          </nav>
+
+          <div id="asDynamic" class="as-dynamic" aria-live="polite"></div>
+
+          <footer class="as-app-footer" aria-label="App footer"></footer>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Modals -->
+  <div class="as-modal" id="asSalaryModal" hidden>
+    <div class="as-modal__backdrop" data-as-close="salary"></div>
+    <div class="as-modal__dialog as-modal__dialog--lg" role="dialog" aria-modal="true" aria-labelledby="asSalaryTitle">
+      <div class="as-modal__head">
+        <h2 class="as-modal__title" id="asSalaryTitle">Add Salary Ingredients</h2>
+        <button type="button" class="as-modal__close" data-as-close="salary" aria-label="Close">&times;</button>
+      </div>
+      <form class="as-modal__body" id="asSalaryForm" onsubmit="return false;">
+        <div class="as-grid2">
+          <div class="as-field"><label>Name <span class="as-req">*</span></label><input type="text" name="name" placeholder="Name" required></div>
+          <div class="as-field"><label>Employee Head <span class="as-req">*</span></label><input type="text" name="employeeHead" placeholder="Employee Head" required></div>
+          <div class="as-field"><label>Order <span class="as-req">*</span></label><input type="text" name="order" placeholder="Order" required></div>
+          <div class="as-field">
+            <label>Component Type <span class="as-req">*</span></label>
+            <div class="as-scombo" data-field="componentType">
+              <input type="text" class="as-scombo__input" data-as="salaryDdInput" data-field="componentType" placeholder="Component Type" autocomplete="off">
+              <input type="hidden" name="componentType" id="asSalaryComponentType">
+              <span class="as-scombo__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3-3"/></svg></span>
+              <div class="as-scombo__list" id="asSalaryComponentList" hidden></div>
+            </div>
+          </div>
+          <div class="as-field">
+            <label>Nature <span class="as-req">*</span></label>
+            <div class="as-scombo" data-field="nature">
+              <input type="text" class="as-scombo__input" data-as="salaryDdInput" data-field="nature" placeholder="Nature type" autocomplete="off">
+              <input type="hidden" name="nature" id="asSalaryNature">
+              <span class="as-scombo__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3-3"/></svg></span>
+              <div class="as-scombo__list" id="asSalaryNatureList" hidden></div>
+            </div>
+          </div>
+          <div class="as-field"><label>Tax Status <span class="as-req">*</span></label>
+            <select name="taxStatus" required><option value="">Tax Status</option><option>Taxable</option><option>Non-Taxable</option></select>
+          </div>
+          <div class="as-field"><label>Financial Year</label><div class="as-fy-tags" id="asSalaryFyTags"></div></div>
+          <div class="as-field as-field--check"><label class="as-check"><input type="checkbox" name="showPayslip" checked> Show in Payslip</label></div>
+        </div>
+        <div class="as-modal__foot"><button type="submit" class="as-btn as-btn--primary">Save</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="as-modal" id="asFyViewModal" hidden>
+    <div class="as-modal__backdrop" data-as-close="fyView"></div>
+    <div class="as-modal__dialog as-modal__dialog--fy" role="dialog" aria-modal="true" aria-label="Financial Years">
+      <div class="as-modal__head as-modal__head--compact">
+        <button type="button" class="as-modal__close" data-as-close="fyView" aria-label="Close">&times;</button>
+      </div>
+      <div class="as-modal__body as-modal__body--compact">
+        <div class="as-ay-grid" id="asFyViewGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="as-modal" id="asSalaryDetailsModal" hidden>
+    <div class="as-modal__backdrop" data-as-close="salaryDetails"></div>
+    <div class="as-modal__dialog as-modal__dialog--salary" role="dialog" aria-modal="true" aria-labelledby="asSalaryDetailsTitle">
+      <div class="as-modal__head">
+        <h2 class="as-modal__title as-modal__title--salary" id="asSalaryDetailsTitle">Salary Details</h2>
+        <button type="button" class="as-modal__close" data-as-close="salaryDetails" aria-label="Close">&times;</button>
+      </div>
+      <div class="as-modal__body as-modal__body--salary">
+        <div class="as-salary-table-wrap">
+          <table class="as-salary-table">
+            <thead>
+              <tr><th>S. No.</th><th>Component</th><th>Nature</th><th>Value</th></tr>
+            </thead>
+            <tbody id="asSalaryDetailsBody"></tbody>
+            <tfoot>
+              <tr><td colspan="3"><strong>Gross Salary</strong></td><td><strong id="asSalaryDetailsGross">0</strong></td></tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="as-modal" id="asOverheadDetailsModal" hidden>
+    <div class="as-modal__backdrop" data-as-close="overheadDetails"></div>
+    <div class="as-modal__dialog as-modal__dialog--salary" role="dialog" aria-modal="true" aria-labelledby="asOverheadDetailsTitle">
+      <div class="as-modal__head">
+        <h2 class="as-modal__title as-modal__title--salary" id="asOverheadDetailsTitle">Overhead Details</h2>
+        <button type="button" class="as-modal__close" data-as-close="overheadDetails" aria-label="Close">&times;</button>
+      </div>
+      <div class="as-modal__body as-modal__body--salary">
+        <div class="as-salary-table-wrap">
+          <table class="as-salary-table">
+            <thead>
+              <tr><th>S. No.</th><th>Component</th><th>Value</th></tr>
+            </thead>
+            <tbody id="asOverheadDetailsBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="as-modal" id="asPayModal" hidden>
+    <div class="as-modal__backdrop" data-as-close="pay"></div>
+    <div class="as-modal__dialog as-modal__dialog--pay" role="dialog" aria-modal="true" aria-labelledby="asPayTitle">
+      <div class="as-modal__head">
+        <h2 class="as-modal__title" id="asPayTitle">Edit Pay Bills</h2>
+        <button type="button" class="as-modal__close" data-as-close="pay" aria-label="Close">&times;</button>
+      </div>
+      <form class="as-modal__body as-modal__body--pay" id="asPayForm" onsubmit="return false;">
+        <div class="as-grid2 as-grid2--pay">
+          <div class="as-field">
+            <label>Valid From <span class="as-req">*</span></label>
+            <div class="as-month-wrap as-month-wrap--pay">
+              <input type="text" class="as-month-input" id="asPayValidFrom" name="validFrom" placeholder="MM-YYYY" required>
+              <button type="button" class="as-month-btn" id="asPayMonthBtn" aria-label="Open month picker">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+              </button>
+              <div class="as-month-pop" id="asPayMonthPop" hidden>
+                <div class="as-month-pop__head">
+                  <button type="button" data-as="payMonthPrevYear" aria-label="Previous year">&lt;&lt;</button>
+                  <span id="asPayMonthYear">2026</span>
+                  <button type="button" data-as="payMonthNextYear" aria-label="Next year">&gt;&gt;</button>
+                </div>
+                <div class="as-month-pop__grid" id="asPayMonthGrid"></div>
+              </div>
+            </div>
+          </div>
+          <div class="as-field">
+            <label>Employee <span class="as-req">*</span></label>
+            <select name="employee" id="asPayEmployee" required></select>
+          </div>
+          <div class="as-field">
+            <label>Payment Mode <span class="as-req">*</span></label>
+            <select name="paymentMode" required>
+              <option value="">Payment Mode</option>
+              <option>Bank Account</option>
+              <option>NEFT</option>
+              <option>RTGS</option>
+              <option>Cash</option>
+              <option>Cheque</option>
+            </select>
+          </div>
+          <div class="as-field">
+            <label>Account Name</label>
+            <input type="text" name="accountName" class="as-input-readonly" readonly>
+          </div>
+          <div class="as-field">
+            <label>Bank Account Number</label>
+            <input type="text" name="bankAccount" class="as-input-readonly" readonly>
+          </div>
+          <div class="as-field">
+            <label>IFSC Code</label>
+            <input type="text" name="ifsc" class="as-input-readonly" readonly>
+          </div>
+          <div class="as-field"><label>PAN No</label><input type="text" name="pan" placeholder="PAN No"></div>
+          <div class="as-field"><label>UAN No</label><input type="text" name="uan" placeholder="UAN No"></div>
+          <div class="as-field"><label>Aadhar No</label><input type="text" name="aadhar" placeholder="Aadhar No"></div>
+          <div class="as-field">
+            <label>Constant Deductions</label>
+            <div class="as-pay-tags" id="asPayDedTags"></div>
+          </div>
+        </div>
+        <div class="as-pay-comp-block">
+          <h3 class="as-pay-comp-block__title">Component</h3>
+          <div class="as-pay-comp-table">
+            <div class="as-pay-comp-table__head"><span></span><span>Name</span><span>Value</span></div>
+            <div id="asPayCompRows"></div>
+            <div class="as-pay-comp-table__foot">
+              <span></span><span>Gross Salary</span><span id="asPayGross">0</span>
+            </div>
+          </div>
+        </div>
+        <div class="as-field as-field--notes">
+          <label>Notes</label>
+          <textarea name="notes" rows="3" placeholder="Notes"></textarea>
+        </div>
+        <div class="as-modal__foot"><button type="submit" class="as-btn as-btn--primary">Save</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="as-modal" id="asDeductionModal" hidden>
+    <div class="as-modal__backdrop" data-as-close="deduction"></div>
+    <div class="as-modal__dialog as-modal__dialog--lg" role="dialog" aria-modal="true" aria-labelledby="asDeductionTitle">
+      <div class="as-modal__head">
+        <h2 class="as-modal__title" id="asDeductionTitle">Add Constant Deduction</h2>
+        <button type="button" class="as-modal__close" data-as-close="deduction" aria-label="Close">&times;</button>
+      </div>
+      <form class="as-modal__body" id="asDeductionForm" onsubmit="return false;">
+        <div class="as-grid2">
+          <div class="as-field"><label>Name <span class="as-req">*</span></label><input type="text" name="name" placeholder="Name" required></div>
+          <div class="as-field"><label>Employee Head <span class="as-req">*</span></label><input type="text" name="employeeHead" placeholder="Employee Head" required></div>
+          <div class="as-field">
+            <label>Start Month <span class="as-req">*</span></label>
+            <div class="as-month-wrap">
+              <input type="text" class="as-month-input" id="asDedStartMonth" placeholder="Select month" readonly required aria-label="Start month">
+              <input type="hidden" name="startMonth" id="asDedStartMonthVal">
+              <button type="button" class="as-month-btn" id="asDedMonthBtn" aria-label="Open month picker">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+              </button>
+              <div class="as-month-pop" id="asDedMonthPop" hidden>
+                <div class="as-month-pop__head">
+                  <button type="button" data-as="dedMonthPrevYear" aria-label="Previous year">&lt;&lt;</button>
+                  <span id="asDedMonthYear">2026</span>
+                  <button type="button" data-as="dedMonthNextYear" aria-label="Next year">&gt;&gt;</button>
+                </div>
+                <div class="as-month-pop__grid" id="asDedMonthGrid"></div>
+              </div>
+            </div>
+          </div>
+          <div class="as-field"><label>Deduction Type <span class="as-req">*</span></label>
+            <select name="deductionType" required><option value="">Deduction Type</option><option>Value Wise</option><option>Formula Based</option></select>
+          </div>
+          <div class="as-field"><label>Value</label><input type="text" name="value" placeholder="Value"></div>
+          <div class="as-field"><label>Type <span class="as-req">*</span></label>
+            <select name="type" required><option value="">Type</option><option>Monthly</option><option>Yearly</option></select>
+          </div>
+          <div class="as-field"><label>Tax Status</label>
+            <select name="taxStatus"><option value="">Tax Status</option><option>Non-Deductible</option><option>Deductible</option></select>
+          </div>
+          <div class="as-field"><label>Order <span class="as-req">*</span></label><input type="text" name="order" placeholder="Order" required></div>
+        </div>
+        <div class="as-ded-checks">
+          <label class="as-check"><input type="checkbox" name="attachTax"> Attach with Tax Declaration</label>
+          <label class="as-check"><input type="checkbox" name="showPayslip" checked> Show in payslip</label>
+          <label class="as-check"><input type="checkbox" name="deductFixed" checked> Deduct Fixed Value</label>
+        </div>
+        <div class="as-field as-field--fy">
+          <label>Financial Year</label>
+          <div class="as-fy-tags" id="asDedFyTags"></div>
+        </div>
+        <div class="as-modal__foot"><button type="submit" class="as-btn as-btn--primary">Save</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="as-modal" id="asOverheadModal" hidden>
+    <div class="as-modal__backdrop" data-as-close="overhead"></div>
+    <div class="as-modal__dialog as-modal__dialog--pay" role="dialog" aria-modal="true" aria-labelledby="asOverheadTitle">
+      <div class="as-modal__head">
+        <h2 class="as-modal__title" id="asOverheadTitle">Add Overhead</h2>
+        <button type="button" class="as-modal__close" data-as-close="overhead" aria-label="Close">&times;</button>
+      </div>
+      <form class="as-modal__body as-modal__body--pay" id="asOverheadForm" onsubmit="return false;">
+        <div class="as-grid2 as-grid2--pay">
+          <div class="as-field">
+            <label>Valid From <span class="as-req">*</span></label>
+            <div class="as-month-wrap as-month-wrap--oh">
+              <input type="text" class="as-month-input" id="asOhValidFrom" name="validFrom" placeholder="MM-YYYY" required>
+              <button type="button" class="as-month-btn" id="asOhMonthBtn" aria-label="Open month picker">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+              </button>
+              <div class="as-month-pop" id="asOhMonthPop" hidden>
+                <div class="as-month-pop__head">
+                  <button type="button" data-as="ohMonthPrevYear" aria-label="Previous year">&lt;&lt;</button>
+                  <span id="asOhMonthYear">2026</span>
+                  <button type="button" data-as="ohMonthNextYear" aria-label="Next year">&gt;&gt;</button>
+                </div>
+                <div class="as-month-pop__grid" id="asOhMonthGrid"></div>
+              </div>
+            </div>
+          </div>
+          <div class="as-field">
+            <label>Employee <span class="as-req">*</span></label>
+            <select name="employee" id="asOverheadEmp" required></select>
+          </div>
+        </div>
+        <div class="as-pay-comp-block">
+          <h3 class="as-pay-comp-block__title">Component</h3>
+          <div class="as-pay-comp-table">
+            <div class="as-pay-comp-table__head"><span></span><span>Name</span><span>Value</span></div>
+            <div id="asOverheadComponents"></div>
+          </div>
+        </div>
+        <div class="as-modal__foot"><button type="submit" class="as-btn as-btn--primary">Save</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="as-modal" id="asManualModal" hidden>
+    <div class="as-modal__backdrop" data-as-close="manual"></div>
+    <div class="as-modal__dialog as-modal__dialog--sm" role="dialog" aria-modal="true" aria-labelledby="asManualTitle">
+      <div class="as-modal__head">
+        <h2 class="as-modal__title" id="asManualTitle">Add Manual Costing</h2>
+        <button type="button" class="as-modal__close" data-as-close="manual" aria-label="Close">&times;</button>
+      </div>
+      <form class="as-modal__body as-modal__body--pay" id="asManualForm" onsubmit="return false;">
+        <div class="as-field" id="asManualEmpField">
+          <label>Employee <span class="as-req">*</span></label>
+          <select name="employee" id="asManualEmp" required></select>
+        </div>
+        <div class="as-field" id="asManualEmpReadonly" hidden>
+          <label>Employee <span class="as-req">*</span></label>
+          <input type="text" class="as-input-readonly" id="asManualEmpReadonlyInput" readonly>
+        </div>
+        <div class="as-field">
+          <label>Month <span class="as-req">*</span></label>
+          <div class="as-month-wrap as-month-wrap--manual">
+            <input type="text" class="as-month-input" id="asManualMonth" name="month" placeholder="Mon-YYYY" required>
+            <button type="button" class="as-month-btn" id="asManualMonthBtn" aria-label="Open month picker">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="as-month-pop" id="asManualMonthPop" hidden>
+              <div class="as-month-pop__head">
+                <button type="button" data-as="manualMonthPrevYear" aria-label="Previous year">&lt;&lt;</button>
+                <span id="asManualMonthYear">2026</span>
+                <button type="button" data-as="manualMonthNextYear" aria-label="Next year">&gt;&gt;</button>
+              </div>
+              <div class="as-month-pop__grid" id="asManualMonthGrid"></div>
+            </div>
+          </div>
+        </div>
+        <div class="as-field">
+          <label>Per Minute Salary <span class="as-req">*</span></label>
+          <input type="text" name="perMinute" placeholder="Per Minute Salary" required>
+        </div>
+        <div class="as-modal__foot"><button type="submit" class="as-btn as-btn--primary">Save</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="as-modal" id="asLimitModal" hidden>
+    <div class="as-modal__backdrop" data-as-close="limit"></div>
+    <div class="as-modal__dialog as-modal__dialog--sm" role="dialog" aria-modal="true" aria-labelledby="asLimitTitle">
+      <div class="as-modal__head">
+        <h2 class="as-modal__title" id="asLimitTitle">Add Expense Limit</h2>
+        <button type="button" class="as-modal__close" data-as-close="limit" aria-label="Close">&times;</button>
+      </div>
+      <form class="as-modal__body" id="asLimitForm" onsubmit="return false;">
+        <div class="as-grid2">
+          <div class="as-field"><label>Expense <span class="as-req">*</span></label>
+            <select name="expense" required><option value="">Select Expense</option><option>Travel</option><option>Food</option><option>Fuel</option><option>Internet</option></select>
+          </div>
+          <div class="as-field"><label>Designation <span class="as-req">*</span></label>
+            <select name="designation" required><option value="">Select Designation</option><option>Manager</option><option>Executive</option><option>Associate</option><option>CA</option></select>
+          </div>
+        </div>
+        <div class="as-field"><label>Amount <span class="as-req">*</span></label><input type="number" name="amount" placeholder="Amount" required></div>
+        <div class="as-modal__foot"><button type="submit" class="as-btn as-btn--primary">Save</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/account-settings.js?v=as15"></script>
+</body>
+</html>

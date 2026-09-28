@@ -1,4 +1,4 @@
-/* Shared Book Demo modal — same UX as home1.html */
+/* Shared Book Demo modal — same UX as index.html */
 .book-demo-modal {
   position: fixed;
   inset: 0;
@@ -34,8 +34,8 @@
   position: relative;
   z-index: 1;
   width: min(960px, 100%);
-  max-height: min(90vh, 920px);
-  overflow: hidden;
+  max-height: min(92vh, 980px);
+  overflow: auto;
   background: var(--card, #fff);
   border: 1px solid var(--border, #d0eeec);
   border-radius: var(--radius, 18px);
@@ -128,6 +128,24 @@
   grid-template-columns: 1fr 1fr;
   gap: 10px 14px;
 }
+.book-demo-hp {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.book-demo-modal__form-error {
+  margin: 8px 0 0;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #fdecea;
+  color: #c0392b;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.book-demo-modal__form-error[hidden] { display: none !important; }
 .book-demo-field { margin-bottom: 0; }
 .book-demo-field--full { grid-column: 1 / -1; }
 .book-demo-field label {
@@ -184,6 +202,50 @@
   color: #c0392b;
 }
 .book-demo-field.is-error .book-demo-field__error { min-height: 14px; }
+/* Security check stays hidden until the user enters any form detail */
+.book-demo-captcha.is-hidden,
+.book-demo-captcha[hidden] {
+  display: none !important;
+}
+.book-demo-captcha__row {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+.book-demo-captcha__canvas {
+  flex: 0 0 auto;
+  width: 148px;
+  height: 46px;
+  border-radius: 10px;
+  background: #e8f7f5;
+  display: block;
+}
+.book-demo-captcha__refresh {
+  flex: 0 0 auto;
+  width: 42px;
+  border: 1px solid rgba(13, 58, 53, 0.12);
+  border-radius: 10px;
+  background: #fff;
+  color: #0d7a6e;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.book-demo-captcha__refresh:hover {
+  background: #f3fbfa;
+  border-color: rgba(37, 183, 167, 0.45);
+}
+.book-demo-captcha__row input {
+  flex: 1 1 auto;
+  min-width: 0;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.book-demo-field.is-error .book-demo-captcha__canvas {
+  box-shadow: 0 0 0 3px rgba(229, 115, 115, 0.12);
+}
 .book-demo-modal__submit-wrap { margin-top: 10px; }
 .book-demo-modal__submit {
   width: 100%;
@@ -239,6 +301,84 @@
   animation: bookDemoSpin .7s linear infinite;
 }
 @keyframes bookDemoSpin { to { transform: rotate(360deg); } }
+.book-demo-success {
+  position: fixed;
+  inset: 0;
+  z-index: 10250;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+.book-demo-success[hidden] { display: none !important; }
+.book-demo-success__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 53, 48, 0.5);
+  backdrop-filter: blur(4px);
+}
+.book-demo-success__panel {
+  position: relative;
+  z-index: 1;
+  width: min(420px, 100%);
+  padding: 28px 24px 22px;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid var(--border, #d0eeec);
+  box-shadow: 0 24px 60px rgba(36, 63, 100, 0.22);
+  text-align: center;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  animation: bookDemoSuccessIn .28s ease;
+}
+.book-demo-success__icon {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #25b7a7, #17C3B2);
+  box-shadow: 0 10px 24px rgba(37, 183, 167, 0.35);
+}
+.book-demo-success__panel h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--heading-dark, #083530);
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+}
+.book-demo-success__panel p {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-muted, #7a9593);
+  margin: 0 0 18px;
+}
+.book-demo-success__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  padding: 11px 28px;
+  border: none;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #25b7a7, #17C3B2);
+  box-shadow: 0 10px 24px rgba(37, 183, 167, 0.3);
+}
+.book-demo-success__btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(37, 183, 167, 0.38);
+}
+@keyframes bookDemoSuccessIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
 .book-demo-toast {
   position: fixed;
   left: 50%;

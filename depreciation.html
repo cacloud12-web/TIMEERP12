@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Depreciation — TimeERP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/depreciation.css?v=4">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand"><a href="home.html" class="sidebar__brand-logo"><img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48"></a></div>
+      <div class="sidebar__toolbar" role="group"><button type="button" class="sidebar__search-btn" id="sidebarSearchToggle"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button><button type="button" class="sidebar__create-btn" id="sidebarCreate"><span class="sidebar__create-icon">+</span><span>Create</span></button></div>
+      <nav class="sidebar__nav" id="sidebarList"></nav>
+    </aside>
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle">☰</button>
+          <div class="topbar__search" role="search"><input type="search" id="globalSearch" placeholder="Search..." autocomplete="off"></div>
+          <div class="topbar__actions">
+            <button type="button" class="dp-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="dp-top-clock" id="dpTopClock">--:--</time>
+            <button type="button" class="topbar__icon-btn dp-top-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></button>
+            <div class="topbar__menu" style="position:relative"><button type="button" class="topbar__icon-btn dp-top-icon" id="notifBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg></button><div class="dropdown" id="notifDropdown" role="menu"><div class="dropdown__title">Notifications</div><div id="notifList"></div></div></div>
+            <div class="topbar__menu" style="position:relative"><button type="button" class="topbar__profile" id="profileBtn"><span class="topbar__avatar">CA</span><span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span><svg class="dp-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="dropdown" id="profileDropdown" role="menu"><div class="dropdown__title">Account</div><a href="home.html" class="dropdown__item"><strong>Dashboard</strong><span>Back to home</span></a></div></div>
+          </div>
+        </div>
+      </header>
+      <main class="main">
+        <div class="dp-page">
+          <div class="dp-header">
+            <a class="dp-back" href="asset_register.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></a>
+          </div>
+
+          <div class="dp-title-row">
+            <div class="dp-actions">
+              <div class="dp-filter-wrap" id="dpFilterWrap">
+                <button type="button" class="dp-icon-btn dp-icon-btn--filter" id="dpFilterBtn" title="Filter" aria-label="Filter" aria-expanded="false" aria-haspopup="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
+                </button>
+                <div class="dp-filter-drop" id="dpFilterDrop" hidden role="dialog" aria-label="Filter">
+                  <span class="dp-filter-drop__caret" aria-hidden="true"></span>
+                  <div class="dp-filter-drop__title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
+                    Filter
+                  </div>
+                  <div class="dp-filter-list">
+                    <div class="dp-filter-section">
+                      <button type="button" class="dp-filter-section__head" data-section="method">
+                        <svg class="dp-filter-section__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+                        Depreciation Method
+                      </button>
+                      <div class="dp-filter-section__body" data-body="method" hidden>
+                        <select id="dpFilterMethod" aria-label="Depreciation Method">
+                          <option value="">Select depreciation method</option>
+                          <option>Straight Line</option>
+                          <option>Declining Balance</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="dp-filter-section">
+                      <button type="button" class="dp-filter-section__head" data-section="freq">
+                        <svg class="dp-filter-section__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+                        Depreciation frequency
+                      </button>
+                      <div class="dp-filter-section__body" data-body="freq" hidden>
+                        <select id="dpFilterFreq" aria-label="Depreciation frequency">
+                          <option value="">Select depreciation frequency</option>
+                          <option>Monthly</option>
+                          <option>Quarterly</option>
+                          <option>Semi-Annually</option>
+                          <option>Annually</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="dp-filter-section">
+                      <button type="button" class="dp-filter-section__head" data-section="comp">
+                        <svg class="dp-filter-section__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+                        Computation Type
+                      </button>
+                      <div class="dp-filter-section__body" data-body="comp" hidden>
+                        <select id="dpFilterComp" aria-label="Computation Type">
+                          <option value="">Select computation type</option>
+                          <option>Pro-Rata</option>
+                          <option>Full Month</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a class="dp-add-btn" href="register_asset.html" title="Add">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="dp-table-wrap">
+            <table class="dp-table">
+              <thead>
+                <tr><th>S. No.</th><th>Name</th><th>Depreciation Method</th><th>Depreciation Percentage</th><th>Depreciation Frequency</th><th>Asset Life</th><th>Computation Type</th><th>Action</th></tr>
+              </thead>
+              <tbody id="dpBody"></tbody>
+            </table>
+          </div>
+
+          <div class="dp-pager">
+            <div class="dp-page-size" id="dpPageSize">
+              <button type="button" class="dp-page-size__btn" id="dpPageSizeBtn" aria-label="Rows per page" aria-haspopup="listbox" aria-expanded="false">
+                <span class="dp-page-size__val" id="dpPageSizeVal">10</span>
+                <svg viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="dp-page-size__list" id="dpPageSizeList" role="listbox" hidden>
+                <button type="button" class="dp-page-size__opt is-active" role="option" data-size="10">10</button>
+                <button type="button" class="dp-page-size__opt" role="option" data-size="20">20</button>
+                <button type="button" class="dp-page-size__opt" role="option" data-size="50">50</button>
+                <button type="button" class="dp-page-size__opt" role="option" data-size="100">100</button>
+                <button type="button" class="dp-page-size__opt" role="option" data-size="200">200</button>
+                <button type="button" class="dp-page-size__opt" role="option" data-size="500">500</button>
+                <button type="button" class="dp-page-size__opt" role="option" data-size="1000">1000</button>
+              </div>
+            </div>
+            <div class="dp-pager__nav">
+              <button type="button" class="dp-pager__btn" id="dpPrev" disabled>&lt;</button>
+              <button type="button" class="dp-pager__btn dp-pager__btn--active" id="dpPageNum">1</button>
+              <span class="dp-pager__of">of <span id="dpPageOf">1</span></span>
+              <button type="button" class="dp-pager__btn" id="dpNext" disabled>&gt;</button>
+            </div>
+            <span class="dp-pager__info" id="dpPagerInfo">4 / 4</span>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/depreciation.js?v=4"></script>
+</body>
+</html>

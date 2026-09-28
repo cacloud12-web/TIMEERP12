@@ -1,0 +1,209 @@
+:root {
+  --sidebar-w-collapsed: 64px;
+}
+
+.sidebar__collapse-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #25b7a7;
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease;
+}
+
+.sidebar__collapse-btn:hover {
+  background: rgba(37, 183, 167, 0.1);
+  color: #1f9a8c;
+}
+
+.sidebar__collapse-btn svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.app-shell.is-sidebar-collapsed {
+  grid-template-columns: var(--sidebar-w-collapsed) 1fr;
+}
+
+/* Brand: chevron + mark in one row, fully visible (no clip) */
+.app-shell.is-sidebar-collapsed .sidebar__brand {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 10px 4px;
+  height: auto;
+  min-height: 52px;
+  max-height: none;
+  overflow: visible;
+}
+
+.app-shell.is-sidebar-collapsed .sidebar__collapse-btn {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+}
+
+.app-shell.is-sidebar-collapsed .sidebar__collapse-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.app-shell.is-sidebar-collapsed .sidebar__brand-split {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  min-width: 0;
+  flex: 0 0 auto;
+}
+
+.app-shell.is-sidebar-collapsed .sidebar__brand-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  overflow: hidden;
+  flex: 0 0 28px;
+}
+
+.app-shell.is-sidebar-collapsed .sidebar__brand-logo img {
+  height: 28px;
+  width: 28px;
+  max-width: 28px;
+  object-fit: contain;
+  object-position: left center;
+  display: block;
+}
+
+.app-shell.is-sidebar-collapsed .sidebar__brand-wordmark {
+  display: none !important;
+}
+
+.app-shell.is-sidebar-collapsed .sidebar__brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  line-height: 0;
+  overflow: visible;
+}
+
+.app-shell.is-sidebar-collapsed .sidebar__brand-mark img,
+.app-shell.is-sidebar-collapsed .sidebar__logo-svg--mark,
+.app-shell.is-sidebar-collapsed .sidebar__brand-mark .sidebar__logo-svg {
+  display: block;
+  width: 28px !important;
+  height: 28px !important;
+  max-width: 28px;
+  max-height: 28px;
+}
+
+.app-shell.is-sidebar-collapsed .sidebar__toolbar {
+  flex-direction: column;
+  align-items: center;
+  margin: 8px 6px 6px;
+  gap: 8px;
+}
+
+.app-shell.is-sidebar-collapsed .sidebar__search-btn {
+  display: none !important;
+}
+
+.app-shell.is-sidebar-collapsed .sidebar__create-btn {
+  flex: 0 0 36px;
+  width: 36px;
+  min-width: 36px;
+  height: 36px;
+  padding: 0;
+  justify-content: center;
+  border-radius: 999px;
+}
+
+.app-shell.is-sidebar-collapsed .sidebar__create-btn > span:not(.sidebar__create-icon) {
+  display: none;
+}
+
+.app-shell.is-sidebar-collapsed .sidebar__item {
+  justify-content: center;
+  padding: 10px 6px;
+  gap: 0;
+  background: transparent;
+}
+
+.app-shell.is-sidebar-collapsed .sidebar__item:hover {
+  background: #f5f8fa;
+}
+
+.app-shell.is-sidebar-collapsed .sidebar__item.is-active {
+  background: #f0f4f6;
+  color: #334155;
+  font-weight: 600;
+}
+
+.app-shell.is-sidebar-collapsed .sidebar__item > span:not(.sidebar__icon) {
+  display: none;
+}
+
+.app-shell.is-sidebar-collapsed .sidebar__item::before {
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+}
+
+.app-shell.is-sidebar-collapsed .sidebar__icon {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0;
+}
+
+.app-shell.is-sidebar-collapsed .sidebar__icon img,
+.app-shell.is-sidebar-collapsed .sidebar__item:hover .sidebar__icon img,
+.app-shell.is-sidebar-collapsed .sidebar__item.is-active .sidebar__icon img {
+  filter: none !important;
+  opacity: 1;
+}
+
+.app-shell.is-sidebar-collapsed .sidebar__collapse-btn .sidebar__collapse-icon--expand {
+  display: block;
+}
+
+.app-shell.is-sidebar-collapsed .sidebar__collapse-btn .sidebar__collapse-icon--collapse {
+  display: none;
+}
+
+.sidebar__collapse-btn .sidebar__collapse-icon--expand {
+  display: none;
+}
+
+.sidebar__collapse-btn .sidebar__collapse-icon--collapse {
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .sidebar__collapse-btn {
+    display: none;
+  }
+
+  .app-shell.is-sidebar-collapsed {
+    grid-template-columns: 1fr;
+  }
+}

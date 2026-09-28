@@ -6,7 +6,7 @@
 
   var STAGES = [
     { id: 'applied', label: 'Applied', color: '#94a3b8' },
-    { id: 'screening', label: 'Screening', color: '#3b82f6' },
+    { id: 'screening', label: 'Screening', color: '#25b7a7' },
     { id: 'shortlisted', label: 'Shortlisted', color: '#8b5cf6' },
     { id: 'technical', label: 'Technical Interview', color: '#f59e0b' },
     { id: 'hr', label: 'HR Interview', color: '#25b7a7' },

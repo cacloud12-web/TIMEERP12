@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Portal Policy — TimeERP</title>
+  <meta name="description" content="Manage client portal policies and portal access settings.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/my-profile.css?v=46">
+  <link rel="stylesheet" href="css/module-hub.css?v=3">
+  <link rel="stylesheet" href="css/client-portal-policy.css?v=1">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="shell-top-checkin is-checked-in is-orange" id="shellTopCheckInBtn">Check Out</button>
+            <time class="shell-top-clock" id="shellTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn shell-top-icon" id="shellCalBtn" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn shell-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <a class="shell-account" id="profileBtn" href="my_profile.html" aria-label="Open profile">
+              <span class="shell-account__org" aria-hidden="true"><img src="assets/favicon-mark.png" alt="" width="28" height="28"></span>
+              <span class="shell-account__name">CA Cloud..</span>
+              <span class="shell-account__user" aria-hidden="true"><img src="assets/favicon-mark.png" alt="" width="28" height="28"></span>
+            </a>
+          </div>
+        </div>
+      </header>
+      <main class="main">
+        <div class="mp-page mh-page cpp-page">
+          <nav class="mp-mod-nav" aria-label="Profile modules">
+            <div class="mp-mod-nav__pills">
+              <a href="my_profile.html" class="mp-mod-pill">Profile</a><a href="organization.html" class="mp-mod-pill">Organization</a><a href="hrms.html" class="mp-mod-pill">HRMS</a><a href="payroll.html" class="mp-mod-pill">Payroll</a><a href="import_utility.html" class="mp-mod-pill">Import Utility</a><a href="notification.html" class="mp-mod-pill">Notification</a><a href="settings.html" class="mp-mod-pill is-active" aria-current="page">Settings</a><a href="app_setup.html" class="mp-mod-pill">Setup</a>
+            </div>
+            <div class="mp-mod-nav__actions">
+              <button type="button" class="mp-mod-icon-btn" aria-label="Trash" title="Trash">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 5h6"/><path d="M10 5V4h4v1"/><path d="M4.5 7.5h15"/><path d="M7 7.5l.9 12.2a1 1 0 0 0 1 .9h6.2a1 1 0 0 0 1-.9L17 7.5"/></svg>
+              </button>
+              <button type="button" class="mp-mod-icon-btn" aria-label="Unlock" title="Unlock">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><circle cx="12" cy="16" r="1" fill="currentColor" stroke="none"/><path d="M16 11V7.5a4 4 0 0 0-7.6-1.7"/></svg>
+              </button>
+              <button type="button" class="mp-mod-icon-btn" aria-label="Logout" title="Logout">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 4a8 8 0 1 0 0 16"/><path d="M12 12h8"/><path d="M17.5 9l3 3-3 3"/></svg>
+              </button>
+            </div>
+          </nav>
+
+          <div class="cpp-body">
+            <div class="cpp-title-row">
+              <a class="cpp-back" href="settings.html" aria-label="Back to Settings">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+              </a>
+              <h1 class="cpp-title">Policy</h1>
+            </div>
+
+            <div class="cpp-card">
+              <div class="cpp-tabs" role="tablist" aria-label="Policy sections">
+                <button type="button" class="cpp-tab is-active" data-cpp-tab="policy" role="tab" aria-selected="true">Client Portal Policy</button>
+                <button type="button" class="cpp-tab" data-cpp-tab="access" role="tab" aria-selected="false">Portal Access</button>
+              </div>
+
+              <section class="cpp-pane is-active" data-cpp-pane="policy">
+                <div class="cpp-view" id="cppPolicyView">
+                  <h2 class="cpp-section-title">View Partner Policy</h2>
+                  <div class="cpp-table-wrap">
+                    <table class="cpp-table">
+                      <thead>
+                        <tr>
+                          <th>Policy Type</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody id="cppPolicyBody">
+                        <tr data-policy="Refund policy">
+                          <td>Refund policy</td>
+                          <td class="cpp-row-actions">
+                            <button type="button" class="cpp-icon-btn cpp-icon-btn--view" data-cpp-view aria-label="View Refund policy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                            <button type="button" class="cpp-icon-btn cpp-icon-btn--edit" data-cpp-edit aria-label="Edit Refund policy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
+                            <button type="button" class="cpp-icon-btn cpp-icon-btn--del" data-cpp-del aria-label="Delete Refund policy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 7h16"/><path d="M10 7V5a1 1 0 011-1h2a1 1 0 011 1v2"/><path d="M6 7l1 13a2 2 0 002 2h6a2 2 0 002-2l1-13"/><path d="M10 11v7M14 11v7"/></svg></button>
+                          </td>
+                        </tr>
+                        <tr data-policy="Cache Policy">
+                          <td>Cache Policy</td>
+                          <td class="cpp-row-actions">
+                            <button type="button" class="cpp-icon-btn cpp-icon-btn--view" data-cpp-view aria-label="View Cache Policy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                            <button type="button" class="cpp-icon-btn cpp-icon-btn--edit" data-cpp-edit aria-label="Edit Cache Policy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
+                            <button type="button" class="cpp-icon-btn cpp-icon-btn--del" data-cpp-del aria-label="Delete Cache Policy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 7h16"/><path d="M10 7V5a1 1 0 011-1h2a1 1 0 011 1v2"/><path d="M6 7l1 13a2 2 0 002 2h6a2 2 0 002-2l1-13"/><path d="M10 11v7M14 11v7"/></svg></button>
+                          </td>
+                        </tr>
+                        <tr data-policy="EULA">
+                          <td>EULA</td>
+                          <td class="cpp-row-actions">
+                            <button type="button" class="cpp-icon-btn cpp-icon-btn--view" data-cpp-view aria-label="View EULA"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                            <button type="button" class="cpp-icon-btn cpp-icon-btn--edit" data-cpp-edit aria-label="Edit EULA"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
+                          </td>
+                        </tr>
+                        <tr data-policy="Privacy Policy">
+                          <td>Privacy Policy</td>
+                          <td class="cpp-row-actions">
+                            <button type="button" class="cpp-icon-btn cpp-icon-btn--view" data-cpp-view aria-label="View Privacy Policy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                            <button type="button" class="cpp-icon-btn cpp-icon-btn--edit" data-cpp-edit aria-label="Edit Privacy Policy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
+                          </td>
+                        </tr>
+                        <tr data-policy="Terms &amp; Conditions">
+                          <td>Terms &amp; Conditions</td>
+                          <td class="cpp-row-actions">
+                            <button type="button" class="cpp-icon-btn cpp-icon-btn--view" data-cpp-view aria-label="View Terms and Conditions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                            <button type="button" class="cpp-icon-btn cpp-icon-btn--edit" data-cpp-edit aria-label="Edit Terms and Conditions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
+                          </td>
+                        </tr>
+                        <tr data-policy="Community Policies">
+                          <td>Community Policies</td>
+                          <td class="cpp-row-actions">
+                            <button type="button" class="cpp-icon-btn cpp-icon-btn--view" data-cpp-view aria-label="View Community Policies"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                            <button type="button" class="cpp-icon-btn cpp-icon-btn--edit" data-cpp-edit aria-label="Edit Community Policies"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="cpp-editor" id="cppPolicyEditor" hidden>
+                  <h2 class="cpp-section-title">Partner Policy</h2>
+                  <form class="cpp-form" id="cppPolicyForm" novalidate>
+                    <div class="cpp-form-row">
+                      <label for="cppPolicySelect">Policy <span class="cpp-req">*</span></label>
+                      <div class="cpp-select" id="cppPolicyDropdown">
+                        <input class="cpp-select__input" id="cppPolicySelect" type="text" value="Refund policy" autocomplete="off" aria-label="Policy type" required>
+                        <div class="cpp-select__menu" role="listbox">
+                          <div class="cpp-select__item is-active" role="option">Cache Policy</div>
+                          <div class="cpp-select__item" role="option">Community Policies</div>
+                          <div class="cpp-select__item" role="option">EULA</div>
+                          <div class="cpp-select__item" role="option">Privacy Policy</div>
+                          <div class="cpp-select__item" role="option">Refund policy</div>
+                          <div class="cpp-select__item" role="option">Terms &amp; Conditions</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cpp-form-row cpp-form-row--editor">
+                      <label for="cppPolicyEditorBody">Policy Details</label>
+                      <div class="cpp-richtext">
+                        <div class="cpp-richtext__toolbar" role="toolbar" aria-label="Formatting">
+                          <button type="button" class="cpp-rt-btn" data-cmd="undo" title="Undo">↶</button>
+                          <button type="button" class="cpp-rt-btn" data-cmd="redo" title="Redo">↷</button>
+                          <select class="cpp-rt-select" aria-label="Block format">
+                            <option>Paragraph</option>
+                            <option>Heading 1</option>
+                            <option>Heading 2</option>
+                          </select>
+                          <button type="button" class="cpp-rt-btn" data-cmd="bold" title="Bold"><strong>B</strong></button>
+                          <button type="button" class="cpp-rt-btn" data-cmd="italic" title="Italic"><em>I</em></button>
+                          <button type="button" class="cpp-rt-btn" data-cmd="justifyLeft" title="Align left">≡</button>
+                          <button type="button" class="cpp-rt-btn" data-cmd="justifyCenter" title="Align center">≡</button>
+                          <button type="button" class="cpp-rt-btn" data-cmd="justifyRight" title="Align right">≡</button>
+                          <button type="button" class="cpp-rt-btn" data-cmd="justifyFull" title="Justify">≡</button>
+                          <button type="button" class="cpp-rt-btn" title="More">⋯</button>
+                        </div>
+                        <div class="cpp-richtext__body" id="cppPolicyEditorBody" contenteditable="true" aria-label="Policy details"></div>
+                        <div class="cpp-richtext__foot"><span id="cppWordCount">0 words</span></div>
+                      </div>
+                    </div>
+                    <div class="cpp-form-actions">
+                      <button type="submit" class="cpp-btn cpp-btn--save">Save Changes</button>
+                      <button type="button" class="cpp-btn cpp-btn--reset" id="cppPolicyReset">Reset</button>
+                    </div>
+                  </form>
+                </div>
+              </section>
+
+              <section class="cpp-pane" data-cpp-pane="access" hidden>
+                <h2 class="cpp-section-title">Portal Access Settings</h2>
+                <ul class="cpp-access-list" id="cppAccessList">
+                  <li><span>Service Request</span><label class="cpp-toggle"><input type="checkbox" checked><span></span></label></li>
+                  <li><span>Documents</span><label class="cpp-toggle"><input type="checkbox" checked><span></span></label></li>
+                  <li><span>Personal Docs Vault</span><label class="cpp-toggle"><input type="checkbox" checked><span></span></label></li>
+                  <li><span>Create Documents</span><label class="cpp-toggle"><input type="checkbox" checked><span></span></label></li>
+                  <li><span>Switch User</span><label class="cpp-toggle"><input type="checkbox" checked><span></span></label></li>
+                  <li><span>Make Payment</span><label class="cpp-toggle"><input type="checkbox" checked><span></span></label></li>
+                  <li><span>Ledger</span><label class="cpp-toggle"><input type="checkbox" checked><span></span></label></li>
+                  <li><span>Feedback</span><label class="cpp-toggle"><input type="checkbox" checked><span></span></label></li>
+                  <li><span>My Notes</span><label class="cpp-toggle"><input type="checkbox" checked><span></span></label></li>
+                  <li><span>Track SR</span><label class="cpp-toggle"><input type="checkbox" checked><span></span></label></li>
+                  <li><span>Track Tasks</span><label class="cpp-toggle"><input type="checkbox" checked><span></span></label></li>
+                </ul>
+              </section>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/client-portal-policy.js?v=1"></script>
+</body>
+</html>

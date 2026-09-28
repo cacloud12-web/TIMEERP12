@@ -2,15 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" href="assets/image0.png" type="image/png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Onboarding Setup | TimeERP</title>
   <meta name="description" content="Configure your TimeERP organization — company profile, branches, teams, modules, billing, compliance, documents, and projects.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
-  <link rel="stylesheet" href="css/site-nav.css">
+  <link rel="stylesheet" href="css/site-nav.css?v=13">
   <link rel="stylesheet" href="css/site-footer.css">
   <style>
     :root {
@@ -739,9 +743,9 @@
             <!-- 10 Documents -->
             <section class="ob-panel" data-step="10" aria-labelledby="ob-s10-title" hidden>
               <div class="ob-panel__head">
-                <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Document Management</p>
+                <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Document Vault</p>
                 <h2 id="ob-s10-title">Document Vault</h2>
-                <p>Enable Document Management capabilities for your organization.</p>
+                <p>Enable Document Vault capabilities for your organization.</p>
               </div>
               <div class="ob-grid" data-ob-cards>
                 <button type="button" class="ob-card is-selected" data-card><span class="ob-card__icon" aria-hidden="true"><span class="material-symbols-outlined">folder</span></span><span class="ob-card__body"><strong>Store Documents</strong><span>Secure document storage</span></span><span class="ob-card__check" aria-hidden="true"><span class="material-symbols-outlined">check</span></span></button>
@@ -800,7 +804,7 @@
     <div class="container">
       <div class="footer__main">
         <div class="footer__brand">
-          <a href="home1.html" class="footer__logo" aria-label="TimeERP home">
+          <a href="index.html" class="footer__logo" aria-label="TimeERP home">
             <img src="assets/image01-footer.svg" alt="TimeERP" width="196" height="48" loading="lazy">
           </a>
           <p class="footer__desc">One Platform. Complete Business Management. Enterprise ERP for modern businesses.</p>
@@ -815,11 +819,12 @@
           <div class="footer__col">
             <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Products</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
             <h3 class="footer__col-title">Products</h3>
-            <ul class="footer__links">
-              <li><a href="home1.html#products">Modules</a></li>
-              <li><a href="home1.html#benefits">Benefits</a></li>
-              <li><a href="home1.html#project-management">Project Management</a></li>
-              <li><a href="home1.html#solutions">Platform</a></li>
+                        <ul class="footer__links">
+              <li><a href="features.html">Features</a></li>
+              <li><a href="hrms.html">HRMS</a></li>
+              <li><a href="crm.html">CRM</a></li>
+              <li><a href="project_management.html">Project Management</a></li>
+              <li><a href="billing.html">Billing</a></li>
               <li><a href="price.html">Pricing</a></li>
             </ul>
           </div>
@@ -840,6 +845,7 @@
               <li><a href="about.html">About Us</a></li>
               <li><a href="Our_Presence.html">Our Presence</a></li>
               <li><a href="careers.html">Careers</a></li>
+              <li><a href="blog.html">Blog</a></li>
               <li><a href="contact_sales.html">Contact</a></li>
             </ul>
           </div>
@@ -847,7 +853,7 @@
             <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Support</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
             <h3 class="footer__col-title">Support</h3>
             <ul class="footer__links">
-              <li><a href="real_time_support.html">Help Center</a></li>
+              <li><a href="help_centre.html">Help Center</a></li>
               <li><a href="contact_sales.html">Sales</a></li>
               <li><a href="custom_quote.html">Get a Quote</a></li>
             </ul>
@@ -859,8 +865,10 @@
         <div class="footer__connect-item">
           <span class="footer__connect-label">Visit us</span>
           <address class="footer__address">
-            BM-08, Ansal Sumedha Building, RDC,<br>
-            Ghaziabad, Delhi NCR, UP 201002
+            <a class="footer__address-link" href="https://www.google.com/maps/search/?api=1&query=Ansal+Sumedha+Building+RDC+Ghaziabad+201002" target="_blank" rel="noopener noreferrer" aria-label="View office location on Google Maps">
+              BM-08, Ansal Sumedha Building, RDC,<br>
+              Ghaziabad, Delhi NCR, UP 201002
+            </a>
           </address>
           <div class="footer__quick">
             <a class="footer__quick-btn" href="#" data-book-demo>Book Demo</a>
@@ -891,6 +899,7 @@
         <nav class="footer__legal" aria-label="Legal">
           <a href="privacy.html">Privacy</a>
           <a href="terms.html">Terms</a>
+          <a href="security.html">Security</a>
           <a href="contact_sales.html">Contact Us</a>
         </nav>
       </div>
@@ -1022,7 +1031,8 @@
     showStep(1);
   })();
   </script>
-  <script src="js/site-nav.js" defer></script>
+  <script src="js/site-nav.js?v=13" defer></script>
   <script src="js/footer-accordion.js" defer></script>
+  <script src="js/site-footer.js?v=6"></script>
 </body>
 </html>

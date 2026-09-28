@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhatsApp API | Business Messaging for TimeERP</title>
+  <meta name="description" content="TimeERP WhatsApp API: official WhatsApp Business Platform messaging with templates, webhooks, delivery reports, ERP automation, CRM follow-ups, invoices, HR alerts, and inventory notifications.">
+  <meta name="keywords" content="WhatsApp API, WhatsApp Business Platform, Cloud API, message templates, webhooks, delivery reports, TimeERP WhatsApp, ERP messaging, customer notifications">
+  <link rel="canonical" href="https://timeerp.com/whatsapp_api.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="WhatsApp API | Business Messaging for TimeERP">
+  <meta property="og:description" content="Connect official WhatsApp Business API messaging to CRM, billing, inventory, HR, and projects inside TimeERP.">
+  <meta property="og:url" content="https://timeerp.com/whatsapp_api.html">
+  <meta property="og:image" content="https://timeerp.com/assets/image0-transparent.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="WhatsApp API | TimeERP">
+  <meta name="twitter:description" content="Templates, webhooks, delivery reports, and ERP-triggered WhatsApp automation for modern businesses.">
+  <meta name="twitter:image" content="https://timeerp.com/assets/image0-transparent.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "TimeERP WhatsApp API",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "url": "https://timeerp.com/whatsapp_api.html",
+        "description": "WhatsApp Business Platform messaging for templates, webhooks, delivery reporting, and ERP workflow automation inside TimeERP.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR", "description": "Available on eligible TimeERP plans" },
+        "provider": { "@type": "Organization", "name": "TimeERP", "url": "https://timeerp.com/" }
+      },
+      {
+        "@type": "Product",
+        "name": "TimeERP WhatsApp API",
+        "description": "Enterprise WhatsApp automation with templates, webhooks, and ERP integrations.",
+        "brand": { "@type": "Brand", "name": "TimeERP" },
+        "url": "https://timeerp.com/whatsapp_api.html"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is TimeERP WhatsApp API built on the official WhatsApp Business Platform?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. TimeERP is designed to integrate with Meta’s official WhatsApp Business Platform (Cloud API) for business messaging, not unofficial automation tools."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can we send any free-form message to customers at any time?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Business-initiated messages outside the customer service window require approved message templates. Free-form replies apply after a customer messages you within WhatsApp’s conversation rules."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <link rel="stylesheet" href="css/site-nav.css?v=13">
+  <link rel="stylesheet" href="css/site-footer.css">
+  <link rel="stylesheet" href="css/whatsapp-api.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="wa-page" id="whatsapp-api" aria-labelledby="wa-title">
+    <!-- 1. Hero -->
+    <section class="wa-hero" aria-label="WhatsApp API hero">
+      <div class="wa-hero__bg" aria-hidden="true">
+        <span class="wa-hero__orb wa-hero__orb--1"></span>
+        <span class="wa-hero__orb wa-hero__orb--2"></span>
+      </div>
+      <div class="container wa-hero__grid">
+        <div>
+          <h1 id="wa-title">WhatsApp API that speaks the language of your ERP</h1>
+          <p class="wa-hero__lead">Connect official WhatsApp Business Platform messaging to CRM, billing, inventory, HR, and projects, with templates, webhooks, delivery reports, and automation rules inside TimeERP.</p>
+          <div class="wa-hero__pills" aria-label="Key capabilities">
+            <span class="wa-pill"><span class="material-symbols-outlined" aria-hidden="true">verified</span> Official API ready</span>
+            <span class="wa-pill"><span class="material-symbols-outlined" aria-hidden="true">description</span> Message templates</span>
+            <span class="wa-pill"><span class="material-symbols-outlined" aria-hidden="true">webhook</span> Webhooks</span>
+            <span class="wa-pill"><span class="material-symbols-outlined" aria-hidden="true">fact_check</span> Delivery reports</span>
+          </div>
+          <div class="wa-hero__actions">
+            <a class="btn btn--primary" href="#" data-book-demo>Book Demo</a>
+            <a class="btn btn--ghost" href="contact_sales.html">Contact Sales</a>
+            <a class="btn btn--ghost" href="communication.html">Communication Center</a>
+          </div>
+          <p class="wa-hero__note">WhatsApp is a trademark of Meta. TimeERP integrates with the WhatsApp Business Platform according to Meta’s terms; capabilities depend on your business verification, template approvals, and plan configuration.</p>
+        </div>
+
+        <div class="wa-phone" aria-hidden="true">
+          <div class="wa-phone__float wa-phone__float--1">
+            <span class="material-symbols-outlined">payments</span> Invoice delivered
+          </div>
+          <div class="wa-phone__float wa-phone__float--2">
+            <span class="material-symbols-outlined">task_alt</span> CRM task created
+          </div>
+          <div class="wa-phone__device">
+            <img class="wa-phone__frame" src="assets/phone-frame-transparent.png" alt="" width="388" height="780" loading="eager" decoding="async">
+            <div class="wa-phone__screen">
+              <div class="wa-phone__top">
+                <div class="wa-phone__avatar">TE</div>
+                <div>
+                  <strong>TimeERP Alerts</strong>
+                  <span>Business account, online</span>
+                </div>
+              </div>
+              <div class="wa-phone__thread">
+                <div class="wa-bubble wa-bubble--out" data-delay="200">
+                  Hi Ananya, invoice #INV-24081 for ₹48,500 is ready. Tap to view PDF.
+                  <span class="wa-bubble__meta">10:24 ✓✓</span>
+                </div>
+                <div class="wa-bubble wa-bubble--in" data-delay="900">
+                  Thanks, payment by Friday works.
+                  <span class="wa-bubble__meta">10:26</span>
+                </div>
+                <div class="wa-bubble wa-bubble--out" data-delay="1500">
+                  Great. We've logged your note on the CRM follow-up. Reminder scheduled for Friday.
+                  <span class="wa-bubble__meta">10:27 ✓✓</span>
+                </div>
+                <div class="wa-bubble wa-bubble--out" data-delay="2200">
+                  Site visit confirmed for Sun 4:00 PM. Reply 1 to reschedule, 2 for agent call.
+                  <span class="wa-bubble__meta">Template, utility</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Trust -->
+    <section class="wa-trust" aria-label="Trusted by businesses">
+      <div class="container wa-trust__inner">
+        <p>Trusted across TimeERP industries</p>
+        <div class="wa-trust__stats">
+          <span class="wa-trust__chip">650+ businesses on TimeERP</span>
+          <span class="wa-trust__chip">Cloud ERP, multi-location</span>
+          <span class="wa-trust__chip">CA, Construction, Real Estate, MSME</span>
+          <span class="wa-trust__chip">99.8% platform uptime target</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Why -->
+    <section class="wa-section wa-section--soft" aria-labelledby="wa-why-title">
+      <div class="container">
+        <div class="wa-section__head wa-reveal">
+          <p class="eyebrow">Why TimeERP</p>
+          <h2 class="section-title" id="wa-why-title">WhatsApp that starts from the business event</h2>
+          <p class="section-lead">Most tools send messages. TimeERP sends messages when stock, invoices, leads, and tasks actually change, then records the outcome next to the same record.</p>
+        </div>
+        <div class="wa-why wa-reveal">
+          <article class="wa-why__card">
+            <div class="wa-why__icon" aria-hidden="true"><span class="material-symbols-outlined">hub</span></div>
+            <h3>ERP is the system of record</h3>
+            <p>Messages are triggered from billing, CRM, inventory, HR, and projects, not a disconnected spreadsheet of phone numbers.</p>
+          </article>
+          <article class="wa-why__card">
+            <div class="wa-why__icon" aria-hidden="true"><span class="material-symbols-outlined">rule</span></div>
+            <h3>Policy-aware outbound</h3>
+            <p>Use approved message templates for business-initiated outreach and free-form replies inside WhatsApp’s conversation rules.</p>
+          </article>
+          <article class="wa-why__card">
+            <div class="wa-why__icon" aria-hidden="true"><span class="material-symbols-outlined">monitoring</span></div>
+            <h3>Delivery you can measure</h3>
+            <p>Webhook-backed status updates help you see delivered, read, and failed outcomes for critical notifications and campaigns.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Core features -->
+    <section class="wa-section" id="features" aria-labelledby="wa-feat-title">
+      <div class="container">
+        <div class="wa-section__head wa-reveal">
+          <p class="eyebrow">Core capabilities</p>
+          <h2 class="section-title" id="wa-feat-title">Official messaging features, mapped to ERP work</h2>
+          <p class="section-lead">Explore platform, messaging, operations, and module integrations. Content reflects WhatsApp Business Platform patterns TimeERP implements for customers, not unofficial bulk tools.</p>
+        </div>
+
+        <div class="wa-filters wa-reveal" role="tablist" aria-label="Filter WhatsApp API features" id="waFilters">
+          <button type="button" class="wa-filter is-active" data-filter="all">All</button>
+          <button type="button" class="wa-filter" data-filter="platform">Platform</button>
+          <button type="button" class="wa-filter" data-filter="messaging">Messaging</button>
+          <button type="button" class="wa-filter" data-filter="ops">Operations</button>
+          <button type="button" class="wa-filter" data-filter="integrations">ERP integrations</button>
+        </div>
+
+        <div class="wa-feat-layout wa-reveal">
+          <div class="wa-feat-grid" id="waFeatList" role="tablist" aria-label="WhatsApp API features"></div>
+          <aside class="wa-panel" role="tabpanel" aria-live="polite">
+            <div class="wa-panel__inner" id="waPanelInner">
+              <span class="wa-panel__badge"><span class="material-symbols-outlined" id="waPanelIcon" aria-hidden="true" style="font-size:16px">verified</span> TIME ERP</span>
+              <h3 id="waPanelName">Official WhatsApp Business API</h3>
+              <p class="wa-panel__desc" id="waPanelDesc">Connect through Meta’s WhatsApp Business Platform for business messaging.</p>
+              <span class="wa-panel__label">Key capabilities</span>
+              <ul class="wa-caps" id="waPanelCaps"></ul>
+              <span class="wa-panel__label">Business value</span>
+              <p class="wa-benefits-box" id="waPanelBenefits"></p>
+              <div class="wa-panel__actions">
+                <a class="btn btn--primary" href="#" data-book-demo>Book Demo</a>
+                <a class="btn btn--ghost" href="contact_sales.html">Talk to Sales</a>
+                <a class="btn btn--ghost" href="home.html#module/marketing">Open Marketing workspace</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Use cases -->
+    <section class="wa-section wa-section--panel" aria-labelledby="wa-cases-title">
+      <div class="container">
+        <div class="wa-section__head wa-reveal">
+          <p class="eyebrow">Industries</p>
+          <h2 class="section-title" id="wa-cases-title">Business use cases that match TimeERP customers</h2>
+          <p class="section-lead">The same WhatsApp channel serves sales, delivery, collections, and internal ops, with module context for each industry pack.</p>
+        </div>
+        <div class="wa-cases wa-reveal">
+          <article class="wa-case">
+            <span class="material-symbols-outlined" aria-hidden="true">apartment</span>
+            <h3>Real Estate</h3>
+            <p>Site-visit reminders, booking updates, and document requests tied to CRM leads and project inventory.</p>
+          </article>
+          <article class="wa-case">
+            <span class="material-symbols-outlined" aria-hidden="true">engineering</span>
+            <h3>Construction</h3>
+            <p>Material GRN notices, site progress updates, and vendor payment reminders linked to project records.</p>
+          </article>
+          <article class="wa-case">
+            <span class="material-symbols-outlined" aria-hidden="true">precision_manufacturing</span>
+            <h3>Manufacturing / MSME</h3>
+            <p>Low-stock alerts, dispatch notices, and order status templates for buyers and plant teams.</p>
+          </article>
+          <article class="wa-case">
+            <span class="material-symbols-outlined" aria-hidden="true">storefront</span>
+            <h3>Retail</h3>
+            <p>Order confirmations, delivery windows, and utility campaigns with delivery reporting.</p>
+          </article>
+          <article class="wa-case">
+            <span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span>
+            <h3>Healthcare services</h3>
+            <p>Appointment reminders and authentication messages for secure portal access (policy dependent).</p>
+          </article>
+          <article class="wa-case">
+            <span class="material-symbols-outlined" aria-hidden="true">school</span>
+            <h3>Education</h3>
+            <p>Fee reminders, schedule changes, and parent/student notifications from admin workflows.</p>
+          </article>
+          <article class="wa-case">
+            <span class="material-symbols-outlined" aria-hidden="true">account_balance</span>
+            <h3>Professional services / CA</h3>
+            <p>Document ready alerts, Client Desk requests, and statutory filing reminders for clients.</p>
+          </article>
+          <article class="wa-case">
+            <span class="material-symbols-outlined" aria-hidden="true">real_estate_agent</span>
+            <h3>Property dealers</h3>
+            <p>Listing updates, visit logs, and lead nurturing without losing conversation context outside CRM.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. ERP workflow -->
+    <section class="wa-section wa-section--soft" aria-labelledby="wa-flow-title">
+      <div class="container">
+        <div class="wa-section__head wa-reveal">
+          <p class="eyebrow">Workflow</p>
+          <h2 class="section-title" id="wa-flow-title">From ERP event to customer reply, then back into TimeERP</h2>
+          <p class="section-lead">A closed loop: the business system starts the message, WhatsApp delivers it, and delivery status plus customer replies can drive the next task.</p>
+        </div>
+        <div class="wa-flow wa-reveal" id="waFlow" aria-label="ERP to WhatsApp workflow">
+          <div class="wa-flow__step is-on">
+            <span class="wa-flow__num">1</span>
+            <strong>ERP event</strong>
+            <span>Invoice posted, lead stalled, stock low</span>
+          </div>
+          <span class="wa-flow__arrow material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          <div class="wa-flow__step">
+            <span class="wa-flow__num">2</span>
+            <strong>Automation rule</strong>
+            <span>Template + recipient from master data</span>
+          </div>
+          <span class="wa-flow__arrow material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          <div class="wa-flow__step">
+            <span class="wa-flow__num">3</span>
+            <strong>WhatsApp API</strong>
+            <span>Cloud API send with business profile</span>
+          </div>
+          <span class="wa-flow__arrow material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          <div class="wa-flow__step">
+            <span class="wa-flow__num">4</span>
+            <strong>Customer</strong>
+            <span>Delivered on WhatsApp they already use</span>
+          </div>
+          <span class="wa-flow__arrow material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          <div class="wa-flow__step">
+            <span class="wa-flow__num">5</span>
+            <strong>Reply</strong>
+            <span>Session window for free-form agent replies</span>
+          </div>
+          <span class="wa-flow__arrow material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          <div class="wa-flow__step">
+            <span class="wa-flow__num">6</span>
+            <strong>ERP updated</strong>
+            <span>Status, notes, tasks, and campaign logs</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Integrations -->
+    <section class="wa-section" aria-labelledby="wa-int-title">
+      <div class="container">
+        <div class="wa-section__head wa-reveal">
+          <p class="eyebrow">Integrations</p>
+          <h2 class="section-title" id="wa-int-title">Every module that can speak on WhatsApp</h2>
+          <p class="section-lead">Connect the channel once, then notify customers and teams from the workflows they already run in TimeERP.</p>
+        </div>
+        <div class="wa-int wa-reveal">
+          <a class="wa-int__card" href="crm.html">
+            <span class="wa-int__icon" aria-hidden="true"><span class="material-symbols-outlined">handshake</span></span>
+            <span><h3>CRM : Client Desk</h3><p>Lead follow-ups, visit reminders, document requests.</p></span>
+          </a>
+          <a class="wa-int__card" href="billing.html">
+            <span class="wa-int__icon" aria-hidden="true"><span class="material-symbols-outlined">receipt_long</span></span>
+            <span><h3>Billing Management</h3><p>Invoice ready, due reminders, payment receipts.</p></span>
+          </a>
+          <a class="wa-int__card" href="inventory_management.html">
+            <span class="wa-int__icon" aria-hidden="true"><span class="material-symbols-outlined">inventory_2</span></span>
+            <span><h3>Inventory</h3><p>Low stock, GRN, and transfer alerts for operations.</p></span>
+          </a>
+          <a class="wa-int__card" href="hrms.html">
+            <span class="wa-int__icon" aria-hidden="true"><span class="material-symbols-outlined">groups</span></span>
+            <span><h3>HRMS &amp; Payroll</h3><p>Leave decisions, attendance nudges, payslip notices.</p></span>
+          </a>
+          <a class="wa-int__card" href="project_management.html">
+            <span class="wa-int__icon" aria-hidden="true"><span class="material-symbols-outlined">view_kanban</span></span>
+            <span><h3>Project Management</h3><p>Task reminders and milestone updates to owners.</p></span>
+          </a>
+          <a class="wa-int__card" href="market.html">
+            <span class="wa-int__icon" aria-hidden="true"><span class="material-symbols-outlined">campaign</span></span>
+            <span><h3>Marketing</h3><p>Template campaigns and broadcast coordination.</p></span>
+          </a>
+          <a class="wa-int__card" href="communication.html">
+            <span class="wa-int__icon" aria-hidden="true"><span class="material-symbols-outlined">forum</span></span>
+            <span><h3>Communication Center</h3><p>Channel control, templates, and notification logs.</p></span>
+          </a>
+          <a class="wa-int__card" href="document_management.html">
+            <span class="wa-int__icon" aria-hidden="true"><span class="material-symbols-outlined">folder_open</span></span>
+            <span><h3>Document Vault</h3><p>Notify when packs are ready or inward items need review.</p></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Dashboard preview -->
+    <section class="wa-section wa-section--panel" id="waDash" aria-labelledby="wa-dash-title">
+      <div class="container">
+        <div class="wa-section__head wa-reveal">
+          <p class="eyebrow">Visibility</p>
+          <h2 class="section-title" id="wa-dash-title">Messaging health at a glance</h2>
+          <p class="section-lead">Sample operational metrics your teams can monitor once WhatsApp is live, actual figures depend on traffic, template quality, and list hygiene.</p>
+        </div>
+        <div class="wa-dash wa-reveal">
+          <div class="wa-dash__main">
+            <h3>Campaign &amp; alert performance</h3>
+            <p>Illustrative 30-day snapshot for a mid-market TimeERP deployment using utility + marketing templates.</p>
+            <div class="wa-dash__metrics">
+              <div class="wa-metric"><strong data-count="18420" data-suffix="">0</strong><span>Messages attempted</span></div>
+              <div class="wa-metric"><strong data-count="96" data-suffix="%">0%</strong><span>Delivered rate</span></div>
+              <div class="wa-metric"><strong data-count="68" data-suffix="%">0%</strong><span>Read rate</span></div>
+              <div class="wa-metric"><strong data-count="2.4" data-suffix="%">0%</strong><span>Failed / blocked</span></div>
+              <div class="wa-metric"><strong data-count="42" data-suffix="">0</strong><span>Active templates</span></div>
+              <div class="wa-metric"><strong data-count="31" data-suffix="%">0%</strong><span>Reply rate (sessions)</span></div>
+            </div>
+          </div>
+          <div class="wa-dash__side">
+            <div class="wa-dash__card">
+              <h4>Utility reminders</h4>
+              <div class="wa-bar" data-width="94"><span></span></div>
+              <p>Invoice and appointment reminders typically show the highest delivery quality when numbers are validated.</p>
+            </div>
+            <div class="wa-dash__card">
+              <h4>Marketing campaigns</h4>
+              <div class="wa-bar" data-width="78"><span></span></div>
+              <p>Marketing templates require careful audience management to protect quality rating.</p>
+            </div>
+            <div class="wa-dash__card">
+              <h4>Failed sends</h4>
+              <div class="wa-bar" data-width="12"><span></span></div>
+              <p>Investigate invalid numbers, opt-out errors, and template pauses before the next campaign.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. Benefits -->
+    <section class="wa-section wa-section--soft" aria-labelledby="wa-ben-title">
+      <div class="container">
+        <div class="wa-section__head wa-reveal">
+          <p class="eyebrow">Outcomes</p>
+          <h2 class="section-title" id="wa-ben-title">Benefits across business, ops, finance, and customers</h2>
+        </div>
+        <div class="wa-ben wa-reveal">
+          <article class="wa-ben__card">
+            <h3><span class="material-symbols-outlined" aria-hidden="true">business_center</span> Business</h3>
+            <ul>
+              <li>One branded channel for lifecycle messages your customers actually open</li>
+              <li>Faster lead response without shadow IT chat groups</li>
+              <li>Consistent messaging policy across branches and partners</li>
+            </ul>
+          </article>
+          <article class="wa-ben__card">
+            <h3><span class="material-symbols-outlined" aria-hidden="true">settings_suggest</span> Operational</h3>
+            <ul>
+              <li>Event-driven alerts from inventory, projects, and approvals</li>
+              <li>Less manual copy-paste from ERP into personal phones</li>
+              <li>Clear logs for who was notified and with which template</li>
+            </ul>
+          </article>
+          <article class="wa-ben__card">
+            <h3><span class="material-symbols-outlined" aria-hidden="true">payments</span> Financial</h3>
+            <ul>
+              <li>Invoice and due reminders that reduce collection lag</li>
+              <li>Fewer missed follow-ups on high-value recoveries</li>
+              <li>Optional PDF delivery reducing “please resend invoice” traffic</li>
+            </ul>
+          </article>
+          <article class="wa-ben__card">
+            <h3><span class="material-symbols-outlined" aria-hidden="true">sentiment_satisfied</span> Customer experience</h3>
+            <ul>
+              <li>Messages arrive on the app people already check daily</li>
+              <li>Interactive choices cut back-and-forth for simple decisions</li>
+              <li>Two-way help after the customer engages, not spam-only blasts</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. Security -->
+    <section class="wa-section" aria-labelledby="wa-sec-title">
+      <div class="container">
+        <div class="wa-section__head wa-reveal">
+          <p class="eyebrow">Trust</p>
+          <h2 class="section-title" id="wa-sec-title">Security &amp; compliance foundations</h2>
+          <p class="section-lead">Messaging stays within Meta’s platform security model while TimeERP applies organization-level access control to who can send and configure templates.</p>
+        </div>
+        <div class="wa-sec wa-reveal">
+          <article class="wa-sec__item">
+            <span class="material-symbols-outlined" aria-hidden="true">verified_user</span>
+            <h3>Official Business Platform</h3>
+            <p>Designed for Meta’s WhatsApp Business Platform, not grey-market bulk send tools that risk number bans.</p>
+          </article>
+          <article class="wa-sec__item">
+            <span class="material-symbols-outlined" aria-hidden="true">lock</span>
+            <h3>Encrypted transport</h3>
+            <p>WhatsApp end-to-end encryption applies to conversations handled through the official platform model.</p>
+          </article>
+          <article class="wa-sec__item">
+            <span class="material-symbols-outlined" aria-hidden="true">admin_panel_settings</span>
+            <h3>Role-based access</h3>
+            <p>Limit who can edit templates, launch campaigns, or view customer numbers inside TimeERP roles.</p>
+          </article>
+          <article class="wa-sec__item">
+            <span class="material-symbols-outlined" aria-hidden="true">key</span>
+            <h3>Secure authentication</h3>
+            <p>API credentials and admin access follow enterprise controls used across the TimeERP platform.</p>
+          </article>
+          <article class="wa-sec__item">
+            <span class="material-symbols-outlined" aria-hidden="true">history</span>
+            <h3>Audit-friendly logs</h3>
+            <p>Keep send history and delivery status linked to campaigns and business documents for later review.</p>
+          </article>
+          <article class="wa-sec__item">
+            <span class="material-symbols-outlined" aria-hidden="true">gavel</span>
+            <h3>Policy compliance</h3>
+            <p>Respect template categories, opt-out handling, and quality rating requirements to keep the channel healthy.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. FAQ -->
+    <section class="wa-section wa-section--panel" aria-labelledby="wa-faq-title">
+      <div class="container">
+        <div class="wa-section__head wa-reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2 class="section-title" id="wa-faq-title">Questions teams ask before going live</h2>
+        </div>
+        <div class="wa-faq wa-reveal" id="waFaq">
+          <div class="wa-faq__item">
+            <button type="button" class="wa-faq__q" aria-expanded="false">Is this the official WhatsApp Business API?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="wa-faq__a">Yes. TimeERP is designed to work with Meta’s official WhatsApp Business Platform (Cloud API) for business messaging. It is not an unofficial bulk-messaging workaround.</div>
+          </div>
+          <div class="wa-faq__item">
+            <button type="button" class="wa-faq__q" aria-expanded="false">Can we send free-form text to any number anytime?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="wa-faq__a">No. Outside the customer service window, business-initiated messages must use approved message templates. Free-form replies are available after the customer messages you, subject to WhatsApp conversation rules.</div>
+          </div>
+          <div class="wa-faq__item">
+            <button type="button" class="wa-faq__q" aria-expanded="false">What are message templates?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="wa-faq__a">Templates are pre-approved message formats (for utility, marketing, or authentication categories) used for business-initiated outreach. Content and placeholders must pass Meta review before production use.</div>
+          </div>
+          <div class="wa-faq__item">
+            <button type="button" class="wa-faq__q" aria-expanded="false">Do delivery and read receipts appear in TimeERP?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="wa-faq__a">Where webhooks and platform status events are available, TimeERP can record sent, delivered, read, and failed outcomes on communication logs and campaign views.</div>
+          </div>
+          <div class="wa-faq__item">
+            <button type="button" class="wa-faq__q" aria-expanded="false">Can we send invoices as PDF on WhatsApp?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="wa-faq__a">Yes in principle: media and document messages are supported by the Business Platform. Availability of automatic invoice PDF attachment depends on your TimeERP billing configuration and template design.</div>
+          </div>
+          <div class="wa-faq__item">
+            <button type="button" class="wa-faq__q" aria-expanded="false">Does it support OTP / authentication messages?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="wa-faq__a">Authentication-category templates can deliver OTP-style codes when configured and approved. Use them for verification flows, not for marketing content.</div>
+          </div>
+          <div class="wa-faq__item">
+            <button type="button" class="wa-faq__q" aria-expanded="false">How do webhooks help my operations team?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="wa-faq__a">Webhooks push message status events back to TimeERP so you can reopen failed notifications, update campaign dashboards, and create follow-up tasks without guessing delivery outcomes.</div>
+          </div>
+          <div class="wa-faq__item">
+            <button type="button" class="wa-faq__q" aria-expanded="false">Can we run promotional campaigns?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="wa-faq__a">Marketing-category templates support promotional outreach when approved. Keep audience quality high, repeated customer blocks hurt your messaging quality rating.</div>
+          </div>
+          <div class="wa-faq__item">
+            <button type="button" class="wa-faq__q" aria-expanded="false">Which TimeERP modules can trigger WhatsApp messages?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="wa-faq__a">Typical triggers include CRM lead/follow-up events, Billing invoices and dues, Inventory low-stock and GRN events, HR notifications, Project task reminders, Document ready alerts, and Marketing/Communication campaigns.</div>
+          </div>
+          <div class="wa-faq__item">
+            <button type="button" class="wa-faq__q" aria-expanded="false">Is two-way chat supported?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="wa-faq__a">Yes. After a customer engages, agents can reply within the platform conversation window. TimeERP positions WhatsApp as a controlled business channel with CRM/task context, not an unrestricted personal chat export.</div>
+          </div>
+          <div class="wa-faq__item">
+            <button type="button" class="wa-faq__q" aria-expanded="false">Do we need Meta business verification?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="wa-faq__a">Business verification and display-name processes follow Meta’s onboarding requirements. Your TimeERP customer success and Meta partner steps guide this at go-live.</div>
+          </div>
+          <div class="wa-faq__item">
+            <button type="button" class="wa-faq__q" aria-expanded="false">Are there rate limits?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="wa-faq__a">Yes. Messaging limits depend on Meta’s current phone-number quality ratings and throughput rules. TimeERP does not bypass those platform limits.</div>
+          </div>
+          <div class="wa-faq__item">
+            <button type="button" class="wa-faq__q" aria-expanded="false">How is pricing structured?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="wa-faq__a">WhatsApp conversation and message pricing is set by Meta and may change. TimeERP plan access to the WhatsApp channel is separate. Ask sales for the current commercial package for your industry.</div>
+          </div>
+          <div class="wa-faq__item">
+            <button type="button" class="wa-faq__q" aria-expanded="false">Can employees receive HR alerts on WhatsApp?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="wa-faq__a">Where policy allows and employee numbers are consented/valid, HR templates can notify leave decisions, attendance reminders, and payslip availability without replacing formal HR records.</div>
+          </div>
+          <div class="wa-faq__item">
+            <button type="button" class="wa-faq__q" aria-expanded="false">What about interactive buttons and lists?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="wa-faq__a">Interactive reply buttons and list messages are part of the Business Platform message types and can be used to collect simple customer choices when configured in your automation.</div>
+          </div>
+          <div class="wa-faq__item">
+            <button type="button" class="wa-faq__q" aria-expanded="false">Will this replace our Communication Center email/SMS tools?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="wa-faq__a">No. WhatsApp sits alongside Email, SMS, and in-app notifications. Many firms use WhatsApp for high-attention utility messages and keep email for longer documents or formal correspondence.</div>
+          </div>
+          <div class="wa-faq__item">
+            <button type="button" class="wa-faq__q" aria-expanded="false">How long does go-live take?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="wa-faq__a">Timeline depends on Meta verification, template approval, contact data quality, and which ERP events you enable first. Most teams start with one utility path (invoices or visit reminders) then expand.</div>
+          </div>
+          <div class="wa-faq__item">
+            <button type="button" class="wa-faq__q" aria-expanded="false">Is TimeERP claiming a Meta partnership logo or endorsement?<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+            <div class="wa-faq__a">No brand claim is made beyond the technical capability to integrate with the official WhatsApp Business Platform under Meta’s terms. Always use only approved branding assets if Meta grants partner marks for your account.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. Final CTA -->
+    <section class="wa-section" aria-labelledby="wa-cta-title">
+      <div class="container">
+        <div class="wa-cta wa-reveal">
+          <h2 id="wa-cta-title">Put WhatsApp next to the work that creates the message</h2>
+          <p>See templates, delivery logs, and ERP-triggered notifications for your industry, in a live TimeERP walkthrough with our specialists.</p>
+          <div class="wa-cta__actions">
+            <a class="btn btn--primary" href="#" data-book-demo>Book Demo</a>
+            <a class="btn btn--ghost-dark" href="contact_sales.html">Contact Sales</a>
+            <a class="btn btn--ghost-dark" href="price.html">View Pricing</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__main">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo" aria-label="TimeERP home">
+            <img src="assets/image01-footer.svg" alt="TimeERP" width="196" height="48" loading="lazy">
+          </a>
+          <p class="footer__desc">One Platform. Complete Business Management. Enterprise ERP for modern businesses.</p>
+          <div class="footer__stats">
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">◆</span><span>650+ Businesses</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">◎</span><span>99.8% Uptime</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">☁</span><span>Cloud ERP</span></div>
+            <div class="footer__stat"><span class="footer__stat-icon" aria-hidden="true">⛨</span><span>Secure</span></div>
+          </div>
+        </div>
+        <div class="footer__cols">
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Products</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Products</h3>
+            <ul class="footer__links">
+              <li><a href="index.html#products">Modules</a></li>
+              <li><a href="communication.html">Communication</a></li>
+              <li><a href="whatsapp_api.html">WhatsApp API</a></li>
+              <li><a href="market.html">Marketing</a></li>
+              <li><a href="price.html">Pricing</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Industries</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Industries</h3>
+            <ul class="footer__links">
+              <li><a href="construction.html">Construction</a></li>
+              <li><a href="real_Estate.html">Real Estate</a></li>
+              <li><a href="msme.html">MSME</a></li>
+              <li><a href="CA.html">CA Firms</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Company</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Company</h3>
+            <ul class="footer__links">
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="Our_Presence.html">Our Presence</a></li>
+              <li><a href="careers.html">Careers</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="contact_sales.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Support</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
+            <h3 class="footer__col-title">Support</h3>
+            <ul class="footer__links">
+              <li><a href="help_centre.html">Help Center</a></li>
+              <li><a href="contact_sales.html">Sales</a></li>
+              <li><a href="custom_quote.html">Get a Quote</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer__connect">
+        <div class="footer__connect-item">
+          <span class="footer__connect-label">Visit us</span>
+          <address class="footer__address">
+            <a class="footer__address-link" href="https://www.google.com/maps/search/?api=1&query=Ansal+Sumedha+Building+RDC+Ghaziabad+201002" target="_blank" rel="noopener noreferrer" aria-label="View office location on Google Maps">
+              BM-08, Ansal Sumedha Building, RDC,<br>
+              Ghaziabad, Delhi NCR, UP 201002
+            </a>
+          </address>
+          <div class="footer__quick">
+            <a class="footer__quick-btn" href="#" data-book-demo>Book Demo</a>
+            <a class="footer__quick-btn" href="real_time_support.html">Get Support</a>
+          </div>
+        </div>
+        <div class="footer__connect-item">
+          <span class="footer__connect-label">Follow us</span>
+          <div class="footer__social">
+            <a href="https://www.linkedin.com/in/ca-clouddesk-381510388" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23.5h-4V8.5zM8.5 8.5h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1v8.9h-4v-7.88c0-1.88-.03-4.3-2.62-4.3-2.62 0-3.02 2.05-3.02 4.17v7.01h-4V8.5z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/erptime/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@ERPTime" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.5v-7l6 3.5-6 3.5z"/></svg>
+            </a>
+            <a href="https://x.com/erptime" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke-linecap="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bar">
+        <p class="footer__copy">© 2026 TimeERP <a href="https://lawseva.com/" target="_blank" rel="noopener noreferrer">Law Seva Management Private Limited</a></p>
+        <nav class="footer__legal" aria-label="Legal">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="security.html">Security</a>
+          <a href="contact_sales.html">Contact Us</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/whatsapp-api.js" defer></script>
+  <script src="js/footer-accordion.js" defer></script>
+  <script src="js/site-nav.js?v=13" defer></script>
+  <script src="js/site-footer.js?v=6"></script>
+</body>
+</html>

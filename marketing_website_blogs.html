@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blogs — TimeERP Website</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/marketing-website-blogs.css?v=1">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="mwb-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="mwb-top-clock" id="mwbTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn mwb-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn mwb-top-icon" id="notifBtn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="mwb-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="marketing_website.html" class="dropdown__item"><strong>Website</strong><span>Back to website hub</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="mwb-page">
+          <header class="mwb-header">
+            <a class="mwb-back" href="marketing_website.html" aria-label="Back to Website">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <span class="mwb-crumb">Blogs</span>
+          </header>
+
+          <div class="mwb-panel">
+            <div class="mwb-section-head">
+              <h1 class="mwb-title">Blogs</h1>
+              <div class="mwb-add-wrap">
+                <button type="button" class="mwb-plus" id="mwbAddBtn" aria-label="Add">+</button>
+                <div class="mwb-add-menu" id="mwbAddMenu" hidden>
+                  <button type="button" data-action="tag">Add New Tag</button>
+                  <button type="button" data-action="category">Add New Category</button>
+                  <a href="marketing_website_blog_add.html">Add New Blog</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="mwb-table-wrap" id="mwbTableWrap">
+              <table class="mwb-table">
+                <thead>
+                  <tr>
+                    <th>Title <button type="button" class="mwb-sort" aria-label="Sort title">↕</button></th>
+                    <th>Short Description</th>
+                    <th>Created At <button type="button" class="mwb-sort" aria-label="Sort date">↕</button></th>
+                    <th>Is Trending</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="mwbTableBody"></tbody>
+              </table>
+              <div class="mwb-empty" id="mwbEmpty">
+                <svg viewBox="0 0 64 41" aria-hidden="true"><g transform="translate(0 1)" fill="none"><ellipse fill="#f5f5f5" cx="32" cy="33" rx="32" ry="7"/><g stroke="#d9d9d9"><path d="M55 12.76L44.854 1.258C44.367.474 43.656 0 42.907 0H21.093c-.749 0-1.46.474-1.947 1.257L9 12.761V22h46v-9.24z"/><path d="M41.613 15.931c0-1.605.994-2.93 2.227-2.931H55v18.137C55 33.26 53.68 35 52.05 35h-40.1C10.32 35 9 33.259 9 31.137V13h11.16c1.233 0 2.227 1.323 2.227 2.928v.022c0 1.605 1.005 2.901 2.237 2.901h14.752c1.232 0 2.237-1.308 2.237-2.913v-.007z" fill="#fafafa"/></g></g></svg>
+                <p>No data</p>
+              </div>
+            </div>
+
+            <footer class="mwb-pagination" aria-label="Blogs pagination">
+              <select class="mwb-page-size" id="mwbPageSize" aria-label="Rows per page">
+                <option value="20" selected>20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+              <div class="mwb-pagination__center">
+                <button type="button" class="mwb-page-nav" disabled aria-label="Previous page">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <input type="text" class="mwb-page-input" value="1" readonly>
+                <span class="mwb-page-of">of <span id="mwbPageTotal">1</span></span>
+                <button type="button" class="mwb-page-nav" disabled aria-label="Next page">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+              </div>
+              <div class="mwb-pagination__right"><span class="mwb-count" id="mwbCount">0 / 0</span></div>
+            </footer>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Add Tag modal -->
+  <div class="mwb-modal-scrim" id="mwbTagModal" hidden>
+    <div class="mwb-modal" role="dialog" aria-labelledby="mwbTagTitle">
+      <div class="mwb-modal__head">
+        <h2 id="mwbTagTitle">Add Tag</h2>
+        <button type="button" class="mwb-modal__close" data-close="tag" aria-label="Close">&times;</button>
+      </div>
+      <form class="mwb-modal__body" id="mwbTagForm">
+        <div class="mwb-field"><label>Tag<span class="mwb-req">*</span></label><input type="text" id="mwbTagInput" required></div>
+        <button type="submit" class="mwb-save">Save</button>
+      </form>
+      <div class="mwb-modal__foot"><button type="button" class="mwb-close-btn" data-close="tag">Close</button></div>
+    </div>
+  </div>
+
+  <!-- Add Category modal -->
+  <div class="mwb-modal-scrim" id="mwbCatModal" hidden>
+    <div class="mwb-modal" role="dialog" aria-labelledby="mwbCatTitle">
+      <div class="mwb-modal__head">
+        <h2 id="mwbCatTitle">Add Category</h2>
+        <button type="button" class="mwb-modal__close" data-close="cat" aria-label="Close">&times;</button>
+      </div>
+      <form class="mwb-modal__body" id="mwbCatForm">
+        <div class="mwb-field"><label>Category<span class="mwb-req">*</span></label><input type="text" id="mwbCatInput" required></div>
+        <button type="submit" class="mwb-save">Save</button>
+      </form>
+      <div class="mwb-modal__foot"><button type="button" class="mwb-close-btn" data-close="cat">Close</button></div>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/marketing-website-blogs.js?v=2"></script>
+</body>
+</html>

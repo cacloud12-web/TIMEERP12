@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DSC Tracker — TimeERP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/dsc-tracker.css?v=7">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="dsc-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="dsc-top-clock" id="dscTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn dsc-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn dsc-top-icon" id="notifBtn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="dsc-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="home.html" class="dropdown__item"><strong>Dashboard</strong><span>Back to home</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="dsc-page">
+
+          <div class="dsc-header">
+            <a class="dsc-back" href="document_vault.html" aria-label="Back">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <span class="dsc-header__title">DSC Tracker</span>
+          </div>
+
+          <h1 class="dsc-page-title">DSC Tracker</h1>
+
+          <!-- Filters -->
+          <div class="dsc-filters">
+            <div class="dsc-filter">
+              <span class="dsc-filter__label">Financial Year :</span>
+              <div class="dsc-combo" id="dscFYCombo">
+                <input type="text" class="dsc-combo__input" id="dscFYInput" placeholder="Select FY" autocomplete="off" readonly>
+                <svg class="dsc-combo__chev" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="dsc-combo__menu" id="dscFYMenu" role="listbox"></div>
+              </div>
+            </div>
+
+            <div class="dsc-filter">
+              <span class="dsc-filter__label">Client :</span>
+              <div class="dsc-combo" id="dscClientCombo">
+                <input type="text" class="dsc-combo__input" id="dscClientInput" placeholder="Client" autocomplete="off" readonly>
+                <svg class="dsc-combo__chev" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="dsc-combo__menu" id="dscClientMenu" role="listbox"></div>
+              </div>
+            </div>
+
+            <div class="dsc-filter dsc-filter--validity">
+              <span class="dsc-filter__label">Validity :</span>
+              <div class="dsc-validity" id="dscValidityWrap">
+                <input type="text" class="dsc-validity__input" id="dscValidityDisplay" readonly value="19-08-2026 → 26-08-2026" aria-haspopup="dialog" aria-expanded="false" aria-label="Validity date range">
+                <svg class="dsc-validity__cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                <div class="dsc-validity__panel" id="dscValidityPanel" hidden role="dialog" aria-label="Choose validity range">
+                  <label>From <input type="date" id="dscStartDate"></label>
+                  <label>To <input type="date" id="dscEndDate"></label>
+                </div>
+              </div>
+            </div>
+
+            <div class="dsc-filter dsc-filter--expired">
+              <span class="dsc-filter__label">Expired :</span>
+              <label class="dsc-expired-toggle" title="Show expired only">
+                <input type="checkbox" id="dscExpired">
+                <span class="dsc-toggle-track"><span class="dsc-toggle-thumb"></span></span>
+              </label>
+            </div>
+
+            <button type="button" class="dsc-add-btn" title="Add DSC" aria-label="Add DSC">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+
+          <!-- Donut chart -->
+          <div class="dsc-chart-area">
+            <div class="dsc-donut-wrap">
+              <canvas id="dscDonut" width="440" height="360"></canvas>
+              <div class="dsc-donut-center">
+                <span class="dsc-donut-center__label">Total</span>
+                <span class="dsc-donut-center__value">21</span>
+              </div>
+            </div>
+            <div class="dsc-legend" aria-label="DSC status legend">
+              <div class="dsc-legend__item"><span class="dsc-legend__dot" style="background:#5b8def"></span> Active</div>
+              <div class="dsc-legend__item"><span class="dsc-legend__dot" style="background:#7dd3b0"></span> Recent Expiring</div>
+              <div class="dsc-legend__item"><span class="dsc-legend__dot" style="background:#6b7c93"></span> Recent Expired</div>
+              <div class="dsc-legend__item"><span class="dsc-legend__dot" style="background:#f5c542"></span> No Expiry Date</div>
+            </div>
+          </div>
+
+          <!-- Table bar -->
+          <div class="dsc-table-bar">
+            <span class="dsc-total">Total Count : 24</span>
+            <div class="dsc-table-actions">
+              <button type="button" class="dsc-delete-btn" id="dscDeleteBtn" title="Delete selected" aria-label="Delete selected" hidden>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                  <path d="M9 5h6"/><path d="M10 5V4h4v1"/><path d="M4.5 7.5h15"/><path d="M7 7.5l.9 12.2a1 1 0 0 0 1 .9h6.2a1 1 0 0 0 1-.9L17 7.5"/><path d="M10 11v6M14 11v6"/>
+                </svg>
+              </button>
+              <div class="dsc-col-wrap" id="dscColWrap">
+                <button type="button" class="dsc-columns-btn" id="dscColumnsBtn" title="Columns" aria-haspopup="true" aria-expanded="false">
+                  Columns
+                  <svg class="dsc-columns-btn__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+                <div class="dsc-col-drop" id="dscColDrop" hidden role="menu" aria-label="Toggle columns">
+                  <label class="dsc-col-drop__item dsc-col-drop__item--all">
+                    <input type="checkbox" id="dscColSelectAll">
+                    <span class="dsc-col-check" aria-hidden="true"></span>
+                    <span>Select All</span>
+                  </label>
+                  <div class="dsc-col-drop__sep" aria-hidden="true"></div>
+                  <label class="dsc-col-drop__item"><input type="checkbox" data-dsc-col="dscNo"><span class="dsc-col-check" aria-hidden="true"></span><span>DSC No.</span></label>
+                  <label class="dsc-col-drop__item"><input type="checkbox" data-dsc-col="mobile"><span class="dsc-col-check" aria-hidden="true"></span><span>Mobile</span></label>
+                  <label class="dsc-col-drop__item"><input type="checkbox" data-dsc-col="email"><span class="dsc-col-check" aria-hidden="true"></span><span>Email</span></label>
+                  <label class="dsc-col-drop__item"><input type="checkbox" data-dsc-col="validFrom"><span class="dsc-col-check" aria-hidden="true"></span><span>Valid From</span></label>
+                  <label class="dsc-col-drop__item"><input type="checkbox" data-dsc-col="billing" checked><span class="dsc-col-check" aria-hidden="true"></span><span>Billing</span></label>
+                  <label class="dsc-col-drop__item"><input type="checkbox" data-dsc-col="receivedOn"><span class="dsc-col-check" aria-hidden="true"></span><span>Received On</span></label>
+                </div>
+              </div>
+              <button type="button" class="dsc-excel-btn" title="Export Excel">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 2.75h7.5L19.25 7.5V20.5a.75.75 0 01-.75.75H7a.75.75 0 01-.75-.75V3.5A.75.75 0 017 2.75z" stroke="#217346" stroke-width="1.5" stroke-linejoin="round"/><path d="M14.5 2.75V7.5h4.75" stroke="#217346" stroke-width="1.5" stroke-linejoin="round"/><path d="M9.2 10.2l5.6 7.6M14.8 10.2l-5.6 7.6" stroke="#217346" stroke-width="1.8" stroke-linecap="round"/></svg>
+                EXCEL
+              </button>
+            </div>
+          </div>
+
+          <!-- Table -->
+          <div class="dsc-table-wrap">
+            <table class="dsc-table" id="dscTable">
+              <thead>
+                <tr>
+                  <th><input type="checkbox" id="dscCheckAll"></th>
+                  <th>Client <span class="dsc-sort">⇅</span></th>
+                  <th data-dsc-col="dscNo" hidden>DSC No.</th>
+                  <th>DSC Holder <span class="dsc-sort">⇅</span></th>
+                  <th data-dsc-col="mobile" hidden>Mobile</th>
+                  <th data-dsc-col="email" hidden>Email</th>
+                  <th>Signing Partner <span class="dsc-sort">⇅</span></th>
+                  <th data-dsc-col="validFrom" hidden>Valid From</th>
+                  <th>Valid To</th>
+                  <th>Handed Over to Custodian</th>
+                  <th>Current Custodian</th>
+                  <th data-dsc-col="billing">Billing</th>
+                  <th data-dsc-col="receivedOn" hidden>Received On</th>
+                  <th>Receiver <span class="dsc-sort">⇅</span></th>
+                  <th>Remarks</th>
+                </tr>
+              </thead>
+              <tbody id="dscBody"></tbody>
+            </table>
+          </div>
+
+          <footer class="dsc-pagination" aria-label="Table pagination">
+            <div class="dsc-pagination__rail" aria-hidden="true"></div>
+            <div class="dsc-pagination__bar">
+              <div class="dsc-pagination__left"></div>
+              <div class="dsc-pagination__center">
+                <button type="button" class="dsc-page-nav" id="dscPrev" aria-label="Previous page" disabled>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <input type="text" class="dsc-page-input" id="dscPageInput" value="1" inputmode="numeric" aria-label="Current page">
+                <span class="dsc-page-of">of <span id="dscPageTotal">5</span></span>
+                <button type="button" class="dsc-page-nav" id="dscNext" aria-label="Next page">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+              </div>
+              <div class="dsc-pagination__right">
+                <span class="dsc-page-count" id="dscPageCount">5 / 24</span>
+              </div>
+            </div>
+          </footer>
+
+          <footer class="dsc-app-footer">
+            <div class="dsc-app-footer__links">
+              <a href="help_centre.html">Help Centre</a><span>|</span>
+              <a href="Academy.html">Academy</a><span>|</span>
+              <a href="community.html">Community</a><span>|</span>
+              <a href="about.html">About</a>
+            </div>
+            <p class="dsc-app-footer__copy">© 2025 <span>TimeERP</span>. All rights reserved.</p>
+          </footer>
+
+        </div>
+
+        <!-- Invoice Modal -->
+        <div class="dsc-modal-scrim" id="dscInvoiceModal" hidden>
+          <div class="dsc-modal" style="width:min(560px,calc(100vw - 32px))">
+            <div class="dsc-modal__head">
+              <h3 class="dsc-modal__title">Invoice</h3>
+              <button class="dsc-modal__close" id="dscInvClose" aria-label="Close">&times;</button>
+            </div>
+            <div class="dsc-modal__body">
+              <div class="dsc-mf">
+                <label class="dsc-mf__label">Invoice Type<span class="dsc-req">*</span></label>
+                <div style="display:flex;align-items:center;gap:16px;padding-top:4px">
+                  <label style="display:flex;align-items:center;gap:4px;font-size:13px;color:#374151;cursor:pointer"><input type="radio" name="invType" value="Proforma"> Proforma</label>
+                  <label style="display:flex;align-items:center;gap:4px;font-size:13px;color:#374151;cursor:pointer"><input type="radio" name="invType" value="Invoice" checked> Invoice</label>
+                </div>
+              </div>
+              <div class="dsc-mf">
+                <label class="dsc-mf__label">Branch<span class="dsc-req">*</span></label>
+                <div class="dsc-combo dsc-mf__combo" id="invBranchCombo">
+                  <input type="text" class="dsc-combo__input dsc-mf__input" id="invBranchInput" placeholder="Branch" autocomplete="off">
+                  <svg class="dsc-combo__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                  <div class="dsc-combo__menu" id="invBranchMenu" role="listbox"></div>
+                </div>
+              </div>
+              <div class="dsc-mf">
+                <label class="dsc-mf__label">Invoice Date</label>
+                <input type="date" class="dsc-mf__input" id="invDate">
+              </div>
+              <div class="dsc-mf">
+                <label class="dsc-mf__label">DSC</label>
+                <input type="text" class="dsc-mf__input" id="invDsc" value="Class 2" readonly style="background:#f9fafb">
+              </div>
+              <div class="dsc-mf">
+                <label class="dsc-mf__label">Team</label>
+                <div class="dsc-combo dsc-mf__combo" id="invTeamCombo">
+                  <input type="text" class="dsc-combo__input dsc-mf__input" id="invTeamInput" placeholder="Select Team" autocomplete="off">
+                  <svg class="dsc-combo__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                  <div class="dsc-combo__menu" id="invTeamMenu" role="listbox"></div>
+                </div>
+              </div>
+              <div class="dsc-mf">
+                <label class="dsc-mf__label">Exp. Pay Date</label>
+                <input type="date" class="dsc-mf__input" id="invExpDate">
+              </div>
+              <div class="dsc-mf">
+                <label class="dsc-mf__label">Price<span class="dsc-req">*</span></label>
+                <input type="number" class="dsc-mf__input" placeholder="Price">
+              </div>
+              <div class="dsc-mf">
+                <label class="dsc-mf__label">Case HSN</label>
+                <div class="dsc-combo dsc-mf__combo" id="invHsnCombo">
+                  <input type="text" class="dsc-combo__input dsc-mf__input" id="invHsnInput" placeholder="Select HSN" autocomplete="off">
+                  <svg class="dsc-combo__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                  <div class="dsc-combo__menu" id="invHsnMenu" role="listbox"></div>
+                </div>
+              </div>
+              <div class="dsc-mf">
+                <label class="dsc-mf__label">Discount</label>
+                <input type="text" class="dsc-mf__input" placeholder="Discount">
+              </div>
+              <div class="dsc-mf">
+                <label class="dsc-mf__label">Invoice Initial<span class="dsc-req">*</span></label>
+                <select class="dsc-mf__select"><option>001/26-27</option></select>
+              </div>
+              <div class="dsc-mf">
+                <label class="dsc-mf__label">Service<span class="dsc-req">*</span></label>
+                <select class="dsc-mf__select"><option value="">Select Services</option><option>DSC</option><option>Audit</option><option>GST</option></select>
+              </div>
+              <div class="dsc-mf">
+                <label class="dsc-mf__label">Client<span class="dsc-req">*</span></label>
+                <select class="dsc-mf__select"><option value="">Select Client</option></select>
+              </div>
+              <div class="dsc-mf">
+                <label class="dsc-mf__label">Description</label>
+                <input type="text" class="dsc-mf__input" placeholder="Description">
+              </div>
+              <div style="text-align:center;padding-top:8px">
+                <button class="dsc-modal__save" id="dscInvSave">Add Invoice</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add DSC Modal -->
+        <div class="dsc-modal-scrim" id="dscAddModal" hidden>
+          <div class="dsc-modal">
+            <div class="dsc-modal__head">
+              <h3 class="dsc-modal__title">Add Dsc</h3>
+              <button class="dsc-modal__close" id="dscModalClose" aria-label="Close">&times;</button>
+            </div>
+            <div class="dsc-modal__body">
+              <div class="dsc-modal__cols">
+                <!-- Left column -->
+                <div class="dsc-modal__col">
+                  <div class="dsc-mf">
+                    <label class="dsc-mf__label">Client<span class="dsc-req">*</span></label>
+                    <input type="text" class="dsc-mf__input" placeholder="Client">
+                  </div>
+                  <div class="dsc-mf">
+                    <label class="dsc-mf__label">Pan No.</label>
+                    <input type="text" class="dsc-mf__input" placeholder="Pan No">
+                  </div>
+                  <div class="dsc-mf">
+                    <label class="dsc-mf__label">Name of DSC Holder</label>
+                    <input type="text" class="dsc-mf__input" placeholder="Name Of DSC Holder">
+                  </div>
+                  <div class="dsc-mf">
+                    <label class="dsc-mf__label">Email<span class="dsc-req">*</span></label>
+                    <input type="email" class="dsc-mf__input" placeholder="Email">
+                  </div>
+                  <div class="dsc-mf">
+                    <label class="dsc-mf__label">Valid From</label>
+                    <input type="date" class="dsc-mf__input">
+                  </div>
+                  <div class="dsc-mf">
+                    <label class="dsc-mf__label">Service</label>
+                    <input type="text" class="dsc-mf__input" placeholder="Service">
+                  </div>
+                  <div class="dsc-mf">
+                    <label class="dsc-mf__label">Handed Over By</label>
+                    <div class="dsc-combo dsc-mf__combo" id="dscHandedByCombo">
+                      <input type="text" class="dsc-combo__input dsc-mf__input" id="dscHandedByInput" placeholder="Handed Over By" autocomplete="off">
+                      <svg class="dsc-combo__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                      <div class="dsc-combo__menu" id="dscHandedByMenu" role="listbox"></div>
+                    </div>
+                  </div>
+                  <div class="dsc-mf">
+                    <label class="dsc-mf__label">Received By<span class="dsc-req">*</span></label>
+                    <div class="dsc-combo dsc-mf__combo" id="dscReceivedByCombo">
+                      <input type="text" class="dsc-combo__input dsc-mf__input" id="dscReceivedByInput" placeholder="Received By" autocomplete="off">
+                      <svg class="dsc-combo__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                      <div class="dsc-combo__menu" id="dscReceivedByMenu" role="listbox"></div>
+                    </div>
+                  </div>
+                  <div class="dsc-mf">
+                    <label class="dsc-mf__label">Physical Location</label>
+                    <input type="text" class="dsc-mf__input" placeholder="Physical Location">
+                  </div>
+                  <div class="dsc-mf">
+                    <label class="dsc-mf__label">Category</label>
+                    <div class="dsc-combo dsc-mf__combo" id="dscCatCombo">
+                      <input type="text" class="dsc-combo__input dsc-mf__input" id="dscCatInput" placeholder="Category" autocomplete="off">
+                      <svg class="dsc-combo__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                      <div class="dsc-combo__menu" id="dscCatMenu" role="listbox"></div>
+                    </div>
+                  </div>
+                  <div class="dsc-mf">
+                    <label class="dsc-mf__label">DSC Number</label>
+                    <input type="text" class="dsc-mf__input" placeholder="DSC Number">
+                  </div>
+                </div>
+                <!-- Right column -->
+                <div class="dsc-modal__col">
+                  <div class="dsc-mf">
+                    <label class="dsc-mf__label">DSC Type<span class="dsc-req">*</span></label>
+                    <select class="dsc-mf__select">
+                      <option value="">DSC Type</option>
+                      <option>Class 1</option><option>Class 2</option><option>Class 3</option>
+                      <option>DGFT</option><option>IEC</option>
+                    </select>
+                  </div>
+                  <div class="dsc-mf">
+                    <label class="dsc-mf__label">Password</label>
+                    <input type="text" class="dsc-mf__input" placeholder="Password">
+                  </div>
+                  <div class="dsc-mf">
+                    <label class="dsc-mf__label">DIN No.</label>
+                    <input type="text" class="dsc-mf__input" placeholder="DIN No.">
+                  </div>
+                  <div class="dsc-mf">
+                    <label class="dsc-mf__label">Mobile<span class="dsc-req">*</span></label>
+                    <input type="text" class="dsc-mf__input" placeholder="Mobile No.">
+                  </div>
+                  <div class="dsc-mf">
+                    <label class="dsc-mf__label">Valid To</label>
+                    <input type="date" class="dsc-mf__input">
+                  </div>
+                  <div class="dsc-mf">
+                    <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:#374151;cursor:pointer">
+                      <input type="checkbox"> Is handed over to client
+                    </label>
+                  </div>
+                  <div class="dsc-mf">
+                    <label class="dsc-mf__label">Handed Over On</label>
+                    <input type="date" class="dsc-mf__input">
+                  </div>
+                  <div class="dsc-mf">
+                    <label class="dsc-mf__label">Received On</label>
+                    <input type="date" class="dsc-mf__input">
+                  </div>
+                  <div class="dsc-mf">
+                    <label class="dsc-mf__label">Branch</label>
+                    <div class="dsc-combo dsc-mf__combo" id="dscBranchCombo">
+                      <input type="text" class="dsc-combo__input dsc-mf__input" id="dscBranchInput" placeholder="Branch" autocomplete="off">
+                      <svg class="dsc-combo__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                      <div class="dsc-combo__menu" id="dscBranchMenu" role="listbox"></div>
+                    </div>
+                  </div>
+                  <div class="dsc-mf">
+                    <label class="dsc-mf__label">Signing Person</label>
+                    <div class="dsc-combo dsc-mf__combo" id="dscSignCombo">
+                      <input type="text" class="dsc-combo__input dsc-mf__input" id="dscSignInput" placeholder="Signing Person" autocomplete="off">
+                      <svg class="dsc-combo__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                      <div class="dsc-combo__menu" id="dscSignMenu" role="listbox"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Additional documents -->
+              <div class="dsc-mf dsc-mf--full" style="margin-top:12px">
+                <label class="dsc-mf__label" style="font-weight:600">Any additional documents</label>
+                <button class="dsc-mf__add-doc" id="dscAddDoc">＋ Add Document</button>
+              </div>
+
+              <!-- Notes -->
+              <div class="dsc-mf dsc-mf--full" style="margin-top:12px">
+                <label class="dsc-mf__label" style="font-weight:600">Notes</label>
+                <textarea class="dsc-mf__textarea" placeholder="Notes"></textarea>
+              </div>
+            </div>
+            <div class="dsc-modal__foot">
+              <button class="dsc-modal__cancel" id="dscModalCancel">Cancel</button>
+              <button class="dsc-modal__save" id="dscModalSave">Save</button>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/dsc-tracker.js?v=6"></script>
+</body>
+</html>

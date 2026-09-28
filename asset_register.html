@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asset Register — TimeERP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/asset-register.css?v=10">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand"><a href="home.html" class="sidebar__brand-logo"><img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48"></a></div>
+      <div class="sidebar__toolbar" role="group"><button type="button" class="sidebar__search-btn" id="sidebarSearchToggle"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button><button type="button" class="sidebar__create-btn" id="sidebarCreate"><span class="sidebar__create-icon">+</span><span>Create</span></button></div>
+      <nav class="sidebar__nav" id="sidebarList"></nav>
+    </aside>
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle">☰</button>
+          <div class="topbar__search" role="search"><input type="search" id="globalSearch" placeholder="Search..." autocomplete="off"></div>
+          <div class="topbar__actions">
+            <button type="button" class="ar-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="ar-top-clock" id="arTopClock">--:--</time>
+            <button type="button" class="topbar__icon-btn ar-top-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></button>
+            <div class="topbar__menu" style="position:relative"><button type="button" class="topbar__icon-btn ar-top-icon" id="notifBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg></button><div class="dropdown" id="notifDropdown" role="menu"><div class="dropdown__title">Notifications</div><div id="notifList"></div></div></div>
+            <div class="topbar__menu" style="position:relative"><button type="button" class="topbar__profile" id="profileBtn"><span class="topbar__avatar">CA</span><span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span><svg class="ar-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="dropdown" id="profileDropdown" role="menu"><div class="dropdown__title">Account</div><a href="home.html" class="dropdown__item"><strong>Dashboard</strong><span>Back to home</span></a></div></div>
+          </div>
+        </div>
+      </header>
+      <main class="main">
+        <div class="ar-page">
+          <div class="ar-header">
+            <a class="ar-back" href="document_vault.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></a>
+            <span class="ar-header__title">Asset Register</span>
+          </div>
+
+          <div class="ar-title-row">
+            <h1 class="ar-title">Asset Register</h1>
+            <div class="ar-actions">
+              <a class="ar-icon-btn" href="depreciation.html" title="Settings" style="text-decoration:none">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+              </a>
+              <a class="ar-add-btn" href="register_asset.html" title="Add Asset">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="ar-table-wrap">
+            <table class="ar-table" id="arTable">
+              <thead>
+                <tr>
+                  <th>S. No.</th><th>Asset Type</th><th>Name</th><th>Description</th><th>Employee</th>
+                  <th>Asset Details</th><th>Location</th><th>Depreciation Details</th><th>Remarks</th><th>Status</th><th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="arBody"></tbody>
+            </table>
+          </div>
+
+          <div class="ar-pager">
+            <div class="ar-page-size" id="arPageSize">
+              <button type="button" class="ar-page-size__btn" id="arPageSizeBtn" aria-label="Rows per page" aria-haspopup="listbox" aria-expanded="false">
+                <span class="ar-page-size__val" id="arPageSizeVal">10</span>
+                <svg viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="ar-page-size__list" id="arPageSizeList" role="listbox" hidden>
+                <button type="button" class="ar-page-size__opt is-active" role="option" data-size="10">10</button>
+                <button type="button" class="ar-page-size__opt" role="option" data-size="20">20</button>
+                <button type="button" class="ar-page-size__opt" role="option" data-size="50">50</button>
+                <button type="button" class="ar-page-size__opt" role="option" data-size="100">100</button>
+                <button type="button" class="ar-page-size__opt" role="option" data-size="200">200</button>
+                <button type="button" class="ar-page-size__opt" role="option" data-size="500">500</button>
+                <button type="button" class="ar-page-size__opt" role="option" data-size="1000">1000</button>
+              </div>
+            </div>
+            <div class="ar-pager__nav">
+              <button type="button" class="ar-pager__btn" id="arPrev" title="Prev" disabled>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <button type="button" class="ar-pager__btn ar-pager__btn--active" id="arPageNum">1</button>
+              <span class="ar-pager__of">of <span id="arPageOf">1</span></span>
+              <button type="button" class="ar-pager__btn" id="arNext" title="Next" disabled>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+            </div>
+            <span class="ar-pager__info" id="arPagerInfo">4 / 4</span>
+          </div>
+
+          <footer class="ar-app-footer"></footer>
+        </div>
+
+        <!-- Depreciation Details Modal -->
+        <div class="ar-modal-scrim" id="arDepModal" hidden>
+          <div class="ar-modal">
+            <div class="ar-modal__head">
+              <h3 class="ar-modal__title">Depreciation Details</h3>
+              <button class="ar-modal__close" id="arDepClose">&times;</button>
+            </div>
+            <div class="ar-modal__body">
+              <table class="ar-detail-table">
+                <tr><td>Depreciation Method</td><td>Declining Balance</td></tr>
+                <tr><td>Depreciation Percentage</td><td>30%</td></tr>
+                <tr><td>Depreciation Frequency</td><td>Annually</td></tr>
+                <tr><td>Asset Life</td><td>60 months</td></tr>
+                <tr><td>Computation Type</td><td>Pro-Rata</td></tr>
+                <tr><td>Depreciation Start Date</td><td>01/12/2025</td></tr>
+              </table>
+            </div>
+            <div class="ar-modal__foot">
+              <button class="ar-modal__close-btn" id="arDepCloseBtn">Close</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Asset Details Modal -->
+        <div class="ar-modal-scrim" id="arAssetModal" hidden>
+          <div class="ar-modal">
+            <div class="ar-modal__head">
+              <h3 class="ar-modal__title">Asset Details</h3>
+              <button class="ar-modal__close" id="arAssetClose">&times;</button>
+            </div>
+            <div class="ar-modal__body">
+              <table class="ar-detail-table" id="arAssetTable"></table>
+            </div>
+            <div class="ar-modal__foot">
+              <button class="ar-modal__close-btn" id="arAssetCloseBtn">Close</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Write Off Asset Modal -->
+        <div class="ar-modal-scrim" id="arWriteOffModal" hidden>
+          <div class="ar-modal ar-modal--form">
+            <div class="ar-modal__head">
+              <h3 class="ar-modal__title">Write Off Asset</h3>
+              <button type="button" class="ar-modal__close" id="arWriteOffClose" aria-label="Close">&times;</button>
+            </div>
+            <div class="ar-modal__body ar-modal__body--form">
+              <div class="ar-wo-field">
+                <label class="ar-wo-label" for="arWriteOffDate">Write Off Date <span class="ar-wo-req">*</span></label>
+                <div class="ar-wo-date-wrap" id="arWriteOffDateWrap">
+                  <input type="text" class="ar-wo-input" id="arWriteOffDate" placeholder="Select write off date" autocomplete="off" readonly>
+                  <button type="button" class="ar-wo-date-clear" id="arWriteOffDateClear" aria-label="Clear date" hidden>&times;</button>
+                  <span class="ar-wo-date-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                  </span>
+                  <div class="ar-wo-cal" id="arWriteOffCal"></div>
+                </div>
+              </div>
+              <div class="ar-wo-field">
+                <label class="ar-wo-label" for="arWriteOffRemarks">Remarks</label>
+                <textarea class="ar-wo-textarea" id="arWriteOffRemarks" placeholder="Enter remarks"></textarea>
+              </div>
+            </div>
+            <div class="ar-modal__foot ar-modal__foot--form">
+              <button type="button" class="ar-wo-btn ar-wo-btn--ghost" id="arWriteOffCancel">Cancel</button>
+              <button type="button" class="ar-wo-btn ar-wo-btn--primary" id="arWriteOffSubmit">Submit</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Transfer Asset Modal -->
+        <div class="ar-modal-scrim" id="arTransferModal" hidden>
+          <div class="ar-modal ar-modal--form">
+            <div class="ar-modal__head">
+              <h3 class="ar-modal__title">Transfer Asset</h3>
+              <button type="button" class="ar-modal__close" id="arTransferClose" aria-label="Close">&times;</button>
+            </div>
+            <div class="ar-modal__body ar-modal__body--form">
+              <div class="ar-wo-field">
+                <label class="ar-wo-label" for="arTransferPartner">Partner <span class="ar-wo-req">*</span></label>
+                <div class="ar-partner-combo" id="arTransferPartnerWrap" data-combo="partner">
+                  <input type="text" class="ar-partner-combo__input" id="arTransferPartner" placeholder="Select Partner" autocomplete="off">
+                  <span class="ar-partner-combo__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3-3"/></svg>
+                  </span>
+                  <div class="ar-partner-combo__list" id="arTransferPartnerList"></div>
+                </div>
+              </div>
+            </div>
+            <div class="ar-modal__foot ar-modal__foot--form">
+              <button type="button" class="ar-wo-btn ar-wo-btn--ghost" id="arTransferCancel">Cancel</button>
+              <button type="button" class="ar-wo-btn ar-wo-btn--primary" id="arTransferSubmit">Submit</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sell Asset Modal -->
+        <div class="ar-modal-scrim" id="arSellModal" hidden>
+          <div class="ar-modal ar-modal--form">
+            <div class="ar-modal__head">
+              <h3 class="ar-modal__title">Sell Asset</h3>
+              <button type="button" class="ar-modal__close" id="arSellClose" aria-label="Close">&times;</button>
+            </div>
+            <div class="ar-modal__body ar-modal__body--form">
+              <div class="ar-wo-field">
+                <label class="ar-wo-label" for="arSellAmount">Amount <span class="ar-wo-req">*</span></label>
+                <input type="text" class="ar-wo-input ar-wo-input--plain" id="arSellAmount" placeholder="Enter amount" autocomplete="off">
+              </div>
+              <div class="ar-wo-field">
+                <label class="ar-wo-label" for="arSellDate">Sell Date <span class="ar-wo-req">*</span></label>
+                <div class="ar-wo-date-wrap">
+                  <input type="text" class="ar-wo-input" id="arSellDate" placeholder="Select sell date" autocomplete="off" readonly>
+                  <button type="button" class="ar-wo-date-clear" id="arSellDateClear" aria-label="Clear date" hidden>&times;</button>
+                  <span class="ar-wo-date-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                  </span>
+                  <div class="ar-wo-cal" id="arSellCal"></div>
+                </div>
+              </div>
+              <div class="ar-wo-field">
+                <label class="ar-wo-label" for="arSellRemarks">Remarks</label>
+                <textarea class="ar-wo-textarea" id="arSellRemarks" placeholder="Enter remarks"></textarea>
+              </div>
+            </div>
+            <div class="ar-modal__foot ar-modal__foot--form">
+              <button type="button" class="ar-wo-btn ar-wo-btn--ghost" id="arSellCancel">Cancel</button>
+              <button type="button" class="ar-wo-btn ar-wo-btn--primary" id="arSellSubmit">Submit</button>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/asset-register.js?v=13"></script>
+</body>
+</html>

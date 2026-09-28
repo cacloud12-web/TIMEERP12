@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Master — TimeERP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/service-master.css?v=1">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="dv-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="dv-top-clock" id="dvTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn dv-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn dv-top-icon" id="notifBtn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="dv-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="home.html" class="dropdown__item"><strong>Dashboard</strong><span>Back to home</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="sm-page">
+          <div class="sm-head-row">
+            <h1 class="sm-title">Service Master</h1>
+            <button type="button" class="sm-add-btn" id="smAddBtn" title="Add service" aria-label="Add service">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+
+          <nav class="sm-tabs" aria-label="Service status">
+            <button type="button" class="sm-tab is-active" data-tab="active">Active Service</button>
+            <button type="button" class="sm-tab" data-tab="inactive">Non Active Service</button>
+          </nav>
+
+          <div class="sm-toolbar">
+            <div class="sm-boards-label" id="smBoardsLabel">MY BOARDS (142)</div>
+            <div class="sm-toolbar-right">
+              <input type="text" class="sm-search" id="smSearch" placeholder="Search service name" aria-label="Search service name">
+              <button type="button" class="sm-export" title="Export" aria-label="Export">
+                <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="2" fill="#22c55e"/><path d="M8 7h8M8 11h8M8 15h5" stroke="#fff" stroke-width="1.5"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="sm-cards-grid" id="smGrid"></div>
+
+          <footer class="sm-footer"></footer>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Suggested board templates modal -->
+  <div class="sm-modal-scrim" id="templatesModal" hidden>
+    <div class="sm-modal sm-modal--templates" role="dialog" aria-modal="true" aria-labelledby="templatesModalTitle">
+      <div class="sm-modal__head">
+        <h2 class="sm-modal__title" id="templatesModalTitle">Suggested board templates</h2>
+        <button type="button" class="sm-modal__close" id="templatesModalClose" aria-label="Close">×</button>
+      </div>
+      <div class="sm-modal__body sm-modal__body--templates">
+        <button type="button" class="sm-tpl-nav sm-tpl-nav--prev" id="tplPrev" aria-label="Previous">‹</button>
+        <div class="sm-tpl-viewport">
+          <div class="sm-tpl-track" id="tplTrack">
+            <div class="sm-tpl-page">
+              <button type="button" class="sm-tpl-card">AUDIT</button>
+              <button type="button" class="sm-tpl-card">BOOK KEEPING</button>
+              <button type="button" class="sm-tpl-card">ESI | PF REGISTRATION &amp; FILLING</button>
+              <button type="button" class="sm-tpl-card">FOOD LICENSE – FSSAI</button>
+              <button type="button" class="sm-tpl-card">GST Filling</button>
+              <button type="button" class="sm-tpl-card">GST License</button>
+              <button type="button" class="sm-tpl-card">IMPORT &amp; EXPORT CODE – IEC</button>
+              <button type="button" class="sm-tpl-card">Incorporation of Pvt Ltd Co./ proprietorship...</button>
+              <button type="button" class="sm-tpl-card">ITR</button>
+              <button type="button" class="sm-tpl-card">LABOUR LICENSE</button>
+              <button type="button" class="sm-tpl-card">ROC/MCA</button>
+              <button type="button" class="sm-tpl-card">TDS FILLING</button>
+            </div>
+            <div class="sm-tpl-page">
+              <button type="button" class="sm-tpl-card">Accounting</button>
+              <button type="button" class="sm-tpl-card">Bank Audit</button>
+              <button type="button" class="sm-tpl-card">DSC – Digital Signature</button>
+              <button type="button" class="sm-tpl-card">GEM Registration</button>
+              <button type="button" class="sm-tpl-card">MSME – Udyam</button>
+              <button type="button" class="sm-tpl-card">Sexual Harassment</button>
+              <button type="button" class="sm-tpl-card">Tax income Audit</button>
+              <button type="button" class="sm-tpl-card">TDS Litigation</button>
+              <button type="button" class="sm-tpl-card">Trademark</button>
+              <button type="button" class="sm-tpl-card">UDIN Repository</button>
+              <button type="button" class="sm-tpl-card">Website Compliance</button>
+              <button type="button" class="sm-tpl-card">Payroll</button>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="sm-tpl-nav sm-tpl-nav--next" id="tplNext" aria-label="Next">›</button>
+      </div>
+      <div class="sm-modal__foot sm-modal__foot--templates">
+        <button type="button" class="sm-tpl-scratch" id="tplScratch">Create service from scratch</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/service-master.js?v=1"></script>
+</body>
+</html>

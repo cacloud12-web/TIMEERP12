@@ -1,0 +1,46 @@
+/* Sidebar footer — trash, WhatsApp, logout (outline icons on teal) */
+
+.sidebar__footer-btn svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sidebar__footer-btn svg .sidebar-footer-fill {
+  fill: currentColor;
+  stroke: none;
+}
+
+.sidebar__footer-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* Collapsed rail: stacked full-width teal cells (all 3 icons visible) */
+.app-shell.is-sidebar-collapsed .sidebar__footer {
+  flex: 0 0 auto !important;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-end;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  padding: 0;
+  gap: 0;
+}
+
+.app-shell.is-sidebar-collapsed .sidebar__footer-btn {
+  width: 100%;
+  height: 44px;
+  min-height: 44px;
+  border-radius: 0;
+  flex-shrink: 0;
+}
+
+.app-shell.is-sidebar-collapsed .sidebar__footer-btn + .sidebar__footer-btn {
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="../assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="../assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Task — TIME ERP HRMS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/task-edit.css?v=te1">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="../home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="../assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="te-top-checkin">Check In</button>
+            <time class="te-top-clock" id="teTopClock">14:45</time>
+            <button type="button" class="topbar__icon-btn" aria-label="Settings">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+            </button>
+            <button type="button" class="topbar__icon-btn" aria-label="Home">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1v-9.5z"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile">
+                <span class="topbar__avatar">CC</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk..</strong></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="te-page">
+          <header class="te-header">
+            <div class="te-header__left">
+              <a class="te-back" id="teBackLink" href="task_view.html?id=TSK01190" aria-label="Back to task">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+              </a>
+              <span class="te-back-label">Tasks</span>
+              <h1 class="te-title">Edit task: <span id="teTaskId">TSK01190</span></h1>
+              <button type="button" class="te-info-btn" aria-label="Info">ⓘ</button>
+              <button type="button" class="te-play-btn" aria-label="Start timer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+            </div>
+            <div class="te-header__right">
+              <button type="button" class="te-icon-btn" aria-label="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></button>
+              <button type="button" class="te-icon-btn" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1v-9.5z"/></svg></button>
+            </div>
+          </header>
+
+          <form class="te-form" id="teForm" onsubmit="return false;">
+            <section class="te-panel">
+              <div class="te-row te-row--3">
+                <label class="te-field">
+                  <span class="te-label">Service <em>*</em></span>
+                  <div class="te-search-select" data-te-select="service">
+                    <button type="button" class="te-search-select__btn" id="teServiceBtn" aria-expanded="false">Tax consultation</button>
+                    <div class="te-search-select__pop" hidden>
+                      <div class="te-search-select__search"><input type="text" placeholder="Search..." aria-label="Search service"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></div>
+                      <ul class="te-search-select__list" id="teServiceList"></ul>
+                    </div>
+                  </div>
+                </label>
+                <label class="te-field">
+                  <span class="te-label">Subservice <em>*</em></span>
+                  <select class="te-input" id="teSubservice">
+                    <option>Income tax consultation</option>
+                    <option>GST consultation</option>
+                    <option>TDS consultation</option>
+                  </select>
+                </label>
+                <button type="button" class="te-refresh-btn" aria-label="Refresh subservice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h5M20 20v-5h-5"/><path d="M20 9A8 8 0 006.34 6.34M4 15a8 8 0 0013.66 2.66"/></svg></button>
+              </div>
+              <label class="te-field te-field--full">
+                <span class="te-label">Task title <em>*</em></span>
+                <div class="te-title-wrap">
+                  <input type="text" class="te-input" id="teTaskTitle" maxlength="200" value="Client consultation call">
+                  <span class="te-char-count" id="teCharCount">24 / 200</span>
+                </div>
+              </label>
+            </section>
+
+            <section class="te-panel te-panel--cols">
+              <div class="te-col">
+                <label class="te-field"><span class="te-label">Target date</span>
+                  <div class="te-date-wrap"><input type="text" class="te-input" id="teTargetDate" value="13/04/2026" readonly><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></div>
+                </label>
+                <label class="te-field"><span class="te-label">Due date</span>
+                  <div class="te-date-wrap te-date-wrap--active" id="teDueDateWrap">
+                    <input type="text" class="te-input" id="teDueDate" value="18/04/2026 06:08:00" readonly>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                  </div>
+                </label>
+                <div class="te-row te-row--2">
+                  <label class="te-field"><span class="te-label">Period from</span>
+                    <div class="te-date-wrap"><input type="text" class="te-input" value="04/2026" readonly><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></div>
+                  </label>
+                  <label class="te-field"><span class="te-label">Period to</span>
+                    <div class="te-date-wrap"><input type="text" class="te-input" value="11/2026" readonly><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></div>
+                  </label>
+                </div>
+                <label class="te-field"><span class="te-label">Reviewer</span>
+                  <select class="te-input"><option selected>Suhanshi Rawat (SA009)</option><option>Dev Aggarwal (DE6203)</option></select>
+                  <span class="te-avatar">SR</span>
+                </label>
+                <label class="te-check"><input type="checkbox" checked> Approval required from reviewer</label>
+              </div>
+              <div class="te-col">
+                <div class="te-field">
+                  <div class="te-label-row">
+                    <span class="te-label">Assignee</span>
+                    <span class="te-est">Total estimation: 0:00 <button type="button" class="te-est-edit" aria-label="Edit estimation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button></span>
+                  </div>
+                  <div class="te-tag-input" data-te-tags="assignee">
+                    <span class="te-tag">Dev Aggarwal (DE6203) <button type="button" aria-label="Remove">×</button></span>
+                    <button type="button" class="te-tag-add" aria-label="Add assignee">+</button>
+                  </div>
+                  <span class="te-avatar">DA</span>
+                </div>
+                <label class="te-check"><input type="checkbox"> Auto assign RM</label>
+                <div class="te-field">
+                  <div class="te-label-row">
+                    <span class="te-label">Clients</span>
+                    <label class="te-check te-check--inline"><input type="checkbox"> Share / Update with Client</label>
+                  </div>
+                  <select class="te-input"><option selected>Internal (21)</option><option>Client A (12)</option></select>
+                  <span class="te-client-chip"><span class="te-avatar te-avatar--sm">I</span> Internal</span>
+                </div>
+                <div class="te-field">
+                  <span class="te-label">Followers</span>
+                  <div class="te-tag-input">
+                    <span class="te-tag">Dev Aggarwal (DE6203) <button type="button" aria-label="Remove">×</button></span>
+                  </div>
+                  <span class="te-avatar">DA</span>
+                </div>
+                <label class="te-field">
+                  <span class="te-label">Consultant</span>
+                  <div class="te-search-select" data-te-select="consultant">
+                    <button type="button" class="te-search-select__btn" id="teConsultantBtn" aria-expanded="false">Dev Aggarwal (DE6203)</button>
+                    <div class="te-search-select__pop" hidden>
+                      <div class="te-search-select__search"><input type="text" placeholder="Search..." aria-label="Search consultant"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></div>
+                      <ul class="te-search-select__list" id="teConsultantList"></ul>
+                    </div>
+                  </div>
+                  <span class="te-avatar">DA</span>
+                </label>
+                <label class="te-field"><span class="te-label">Priority</span>
+                  <select class="te-input" id="tePriority"><option>Low</option><option selected>Medium</option><option>High</option></select>
+                </label>
+              </div>
+            </section>
+
+            <section class="te-panel">
+              <div class="te-section-head">
+                <h2>Branch, when this task occurs &amp; workflow</h2>
+                <button type="button" class="te-custom-fields"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg> Custom fields</button>
+              </div>
+              <div class="te-row te-row--2">
+                <label class="te-field"><span class="te-label">Branch <em>*</em></span>
+                  <select class="te-input"><option selected>CA CloudDesk</option></select>
+                </label>
+                <label class="te-field"><span class="te-label">When this Task occurs</span>
+                  <select class="te-input"><option selected>Onetime</option><option>Recurring</option></select>
+                </label>
+              </div>
+              <p class="te-hint">Pick a workflow stage and current status.</p>
+
+              <div class="te-stages">
+                <div class="te-stages-head">
+                  <span>Stages</span>
+                  <label class="te-check te-check--inline"><input type="checkbox"> Follow Sequentially <span class="te-info-sm">ⓘ</span></label>
+                </div>
+                <p class="te-hint">Set weightage on all stages (total 100%) or leave all empty for equal split.</p>
+                <div class="te-stage-table">
+                  <div class="te-stage-row te-stage-row--head"><span>Stage</span><span>Assignee</span><span>Weightage</span><span></span></div>
+                  <div class="te-stage-row" id="teStageBody">
+                    <select class="te-input te-input--sm"><option selected>Consultation in progress</option></select>
+                    <select class="te-input te-input--sm"><option selected>6405</option></select>
+                    <input type="text" class="te-input te-input--sm" placeholder="Enter Weightage">
+                    <button type="button" class="te-stage-del" aria-label="Remove stage">−</button>
+                  </div>
+                </div>
+                <button type="button" class="te-add-stage" id="teAddStage">+ Add stage</button>
+              </div>
+
+              <div class="te-status-block">
+                <span class="te-label">Status <em>*</em></span>
+                <div class="te-status-btns" id="teStatusBtns">
+                  <button type="button" class="te-status-pill te-status-pill--active" data-status="Open">Open</button>
+                  <button type="button" class="te-status-pill" data-status="Processing">Processing</button>
+                  <button type="button" class="te-status-pill" data-status="Completed">Completed</button>
+                  <button type="button" class="te-status-pill" data-status="Finalised For Submission">Finalised For Submission</button>
+                  <button type="button" class="te-status-pill" data-status="Stuck">Stuck</button>
+                  <button type="button" class="te-status-pill" data-status="Under Review">Under Review</button>
+                  <button type="button" class="te-status-pill" data-status="Over Due">Over Due</button>
+                </div>
+              </div>
+
+              <div class="te-row te-row--2">
+                <div class="te-field">
+                  <span class="te-label">Pending - reasons</span>
+                  <div class="te-tag-input te-tag-input--multi">
+                    <span class="te-tag">Payment pending <button type="button" aria-label="Remove">×</button></span>
+                  </div>
+                </div>
+                <div class="te-field">
+                  <span class="te-label">Stuck - reasons</span>
+                  <div class="te-tag-input te-tag-input--multi">
+                    <span class="te-tag">incomplete inform... <button type="button" aria-label="Remove">×</button></span>
+                  </div>
+                </div>
+              </div>
+              <label class="te-field te-field--full"><span class="te-label">Auto-create invoice when status is</span>
+                <select class="te-input"><option selected>Completed</option><option>Finalised For Submission</option></select>
+              </label>
+            </section>
+
+            <div class="te-accordions">
+              <details class="te-accordion"><summary>Details</summary><div class="te-accordion__body"><textarea class="te-textarea" rows="4" placeholder="Task details"></textarea></div></details>
+              <details class="te-accordion"><summary>Subtasks</summary><div class="te-accordion__body"><p class="te-empty">No subtasks added.</p></div></details>
+              <details class="te-accordion"><summary>Attachments</summary><div class="te-accordion__body"><p class="te-empty">No attachments uploaded.</p></div></details>
+            </div>
+
+            <div class="te-submit-wrap">
+              <button type="submit" class="te-submit" id="teSubmitBtn">Update task</button>
+            </div>
+          </form>
+
+          <footer class="te-footer" aria-label="App footer"></footer>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="te-dtp-scrim" id="teDtpScrim" hidden>
+    <div class="te-dtp" role="dialog" aria-modal="true" aria-label="Pick due date">
+      <div class="te-dtp__cal">
+        <div class="te-dtp__nav">
+          <button type="button" data-nav="yy-prev">«</button><button type="button" data-nav="m-prev">‹</button>
+          <strong id="teDtpLabel">Apr 2026</strong>
+          <button type="button" data-nav="m-next">›</button><button type="button" data-nav="yy-next">»</button>
+        </div>
+        <div class="te-dtp__grid" id="teDtpGrid"></div>
+        <button type="button" class="te-dtp__now" id="teDtpNow">Now</button>
+      </div>
+      <div class="te-dtp__time">
+        <strong id="teDtpTimeLabel">06:08</strong>
+        <div class="te-dtp__cols">
+          <div class="te-dtp__col" id="teDtpHours"></div>
+          <div class="te-dtp__col" id="teDtpMins"></div>
+        </div>
+        <button type="button" class="te-dtp__ok" id="teDtpOk">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/task-edit.js?v=te1"></script>
+</body>
+</html>

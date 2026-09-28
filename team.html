@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meet the People Behind TimeERP</title>
+  <meta name="description" content="Meet the people behind TimeERP.">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #25b7a7;
+      --primary-dark: #1a9e8f;
+      --primary-soft: #e8f8f6;
+      --heading: #0b2422;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e5ecea;
+      --bg: #f3f7f6;
+      --white: #ffffff;
+      --shadow: 0 8px 24px rgba(11, 36, 34, 0.06);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color: var(--text);
+      line-height: 1.5;
+      background:
+        radial-gradient(1200px 420px at 10% -10%, rgba(37, 183, 167, 0.14), transparent 60%),
+        radial-gradient(900px 380px at 100% 0%, rgba(26, 158, 143, 0.08), transparent 55%),
+        var(--bg);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 3px;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 16px 72px;
+    }
+
+    .hero {
+      position: relative;
+      padding: 8px 0 6px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(1.7rem, 3.2vw, 2.35rem);
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+      color: var(--heading);
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 28px;
+      padding: 6px;
+      width: fit-content;
+      max-width: 100%;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 16px rgba(11, 36, 34, 0.04);
+    }
+
+    .filter-btn {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .15s ease, color .15s ease;
+    }
+
+    .filter-btn:hover { color: var(--heading); }
+    .filter-btn.is-active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 6px 14px rgba(37, 183, 167, 0.28);
+    }
+
+    .team-section {
+      margin-bottom: 34px;
+      scroll-margin-top: 16px;
+    }
+
+    .team-section.is-hidden { display: none; }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: 1rem;
+      letter-spacing: -0.01em;
+      color: var(--heading);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-head h2::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 0 4px rgba(37, 183, 167, 0.16);
+    }
+
+    .section-head span {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--primary-dark);
+      background: var(--primary-soft);
+      border: 1px solid #d4eee9;
+      padding: 4px 9px;
+      border-radius: 999px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .person-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px 12px 18px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      min-width: 0;
+    }
+
+    .person-card::before { display: none; }
+
+    .person-card:hover {
+      transform: translateY(-4px);
+      border-color: #c7e4df;
+      box-shadow: 0 16px 32px rgba(37, 183, 167, 0.14);
+    }
+
+    .person-card:hover::before { display: none; }
+
+    .portrait {
+      width: 100%;
+      max-width: 168px;
+      aspect-ratio: 3 / 4;
+      height: auto;
+      flex-shrink: 0;
+      border-radius: 12px;
+      background:
+        linear-gradient(180deg, #f2fafa 0%, #e6f2f0 100%);
+      border: 1px solid #d5e7e3;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+      position: relative;
+      overflow: hidden;
+      margin: 0 auto 12px;
+    }
+
+    .portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+      display: block;
+    }
+
+    .portrait-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .portrait-placeholder span {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(37, 183, 167, 0.22);
+    }
+
+    .card-body {
+      min-width: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .card-body h3 {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--heading);
+      letter-spacing: -0.015em;
+      line-height: 1.25;
+    }
+
+    .card-role {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .view-link {
+      margin-top: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .view-link svg {
+      width: 12px;
+      height: 12px;
+      transition: transform .15s ease;
+    }
+
+    .person-card:hover .view-link { color: var(--primary-dark); }
+    .person-card:hover .view-link svg { transform: translateX(2px); }
+
+    .advisors {
+      padding: 16px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(232, 248, 246, 0.85), rgba(238, 245, 244, 0.95));
+      border: 1px solid #d5e6e2;
+    }
+
+    .closing {
+      margin-top: 10px;
+      padding: 28px 22px;
+      text-align: center;
+      border-radius: 18px;
+      border: 1px solid #d7e8e4;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(240, 250, 248, 0.98));
+      box-shadow: var(--shadow);
+    }
+
+    .closing h2 {
+      margin: 0 0 8px;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+      color: var(--heading);
+    }
+
+    .closing p {
+      margin: 0 auto;
+      max-width: 52ch;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 12px;
+        overflow-x: auto;
+        padding-bottom: 6px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+      }
+      .person-card {
+        flex: 0 0 168px;
+      }
+      .portrait { max-width: none; }
+    }
+
+    @media (max-width: 760px) {
+      .filters {
+        border-radius: 16px;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <h1>Meet the People Behind TimeERP</h1>
+    </header>
+
+    <nav class="filters" aria-label="Team filters">
+      <button type="button" class="filter-btn is-active" data-filter="all">All</button>
+      <button type="button" class="filter-btn" data-filter="leadership">Leadership</button>
+      <button type="button" class="filter-btn" data-filter="growth">Customer Relationship &amp; Growth</button>
+      <button type="button" class="filter-btn" data-filter="technology">Technology</button>
+      <button type="button" class="filter-btn" data-filter="advisors">Advisors</button>
+    </nav>
+
+    <div id="sectionsRoot"></div>
+
+    <section class="closing" aria-label="One Team. One Vision.">
+      <h2>One Team. One Vision.</h2>
+      <p>Every team member brings a unique perspective, with one shared goal — smarter, simpler and more reliable technology for modern businesses.</p>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var GROUPS = [
+        { id: 'leadership', title: 'Leadership Team' },
+        { id: 'growth', title: 'Customer Relationship & Growth Team' },
+        { id: 'technology', title: 'Technology Team' },
+        { id: 'advisors', title: 'Our Advisors', advisors: true }
+      ];
+
+      var PEOPLE = [
+        { id: 'janki-sharma', group: 'leadership', name: 'Janki Sharma', role: 'Founder & CEO', image: 'assets/team/janki-sharma.jpg?v=1', focus: 'center 18%' },
+        { id: 'shivam-chaurasia', group: 'leadership', name: 'Shivam Chaurasia', role: 'Chief Technical Officer', image: 'assets/team/shivam-chaurasia.jpg?v=1', focus: 'center 18%' },
+        { id: 'saurabh-bhardwaj', group: 'leadership', name: 'Saurabh Bhardwaj', role: 'Branch Manager | Ghaziabad', image: 'assets/team/saurabh-bhardwaj.jpg?v=1', focus: 'center 18%' },
+        { id: 'kamal-kant-sharma', group: 'leadership', name: 'Kamal Kant Sharma', role: 'Sales Manager', image: 'assets/team/kamal-kant-sharma.jpg?v=1', focus: 'center 18%' },
+        { id: 'tarun-gaur', group: 'leadership', name: 'Tarun Gaur', role: 'Finance Head', image: 'assets/team/tarun-gaur.jpg?v=1', focus: 'center 18%' },
+        { id: 'dev-aggarwal', group: 'growth', name: 'Dev Aggarwal', role: 'Relationship Manager', image: 'assets/team/dev-aggarwal.jpg?v=1', focus: 'center 18%' },
+        { id: 'monu-kumar', group: 'growth', name: 'Monu Kumar', role: 'Relationship Officer', image: 'assets/team/monu-kumar.jpg?v=1', focus: 'center 18%' },
+        { id: 'simran-kashyap', group: 'growth', name: 'Simran Kashyap', role: 'Relationship Officer', image: 'assets/team/simran-kashyap.jpg?v=5', focus: 'center 18%' },
+        { id: 'soniya-kashyap', group: 'growth', name: 'Soniya Kashyap', role: 'Relationship Officer', image: 'assets/team/soniya-kashyap.jpg?v=2', focus: 'center 18%' },
+        { id: 'aastha-tyagi', group: 'technology', name: 'Aastha Tyagi', role: 'Junior Developer', image: 'assets/team/aastha-tyagi.jpg?v=2', focus: 'center 18%' },
+        { id: 'suhanshi-rawat', group: 'technology', name: 'Suhanshi Rawat', role: 'Junior Developer', image: 'assets/team/suhanshi-rawat.jpg?v=1', focus: 'center 18%' },
+        { id: 'kaushal-kishore', group: 'advisors', name: 'Kaushal Kishore', role: 'Advisor | Banking & Financial Services', image: 'assets/team/kaushal-kishore.jpg?v=1', focus: 'center 18%' },
+        { id: 'ankur-bhardwaj', group: 'advisors', name: 'Ankur Bhardwaj', role: 'Advisor | Business & Management', image: 'assets/team/ankur-bhardwaj.jpg?v=1', focus: 'center 18%' },
+        { id: 'khushi-chaudhary', group: 'advisors', name: 'Khushi Chaudhary', role: 'Advisor | Legal & Business Advisory', image: 'assets/team/khushi-chaudhary.jpg?v=4', focus: 'center 18%' }
+      ];
+
+      var activeFilter = 'all';
+
+      function esc(value) {
+        return String(value == null ? '' : value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function initials(name) {
+        return String(name || '').split(/\s+/).filter(Boolean).slice(0, 2)
+          .map(function (part) { return part.charAt(0).toUpperCase(); })
+          .join('') || '?';
+      }
+
+      function portrait(person) {
+        if (person.image) {
+          var focus = person.focus || 'center 18%';
+          return '<div class="portrait"><img src="' + esc(person.image) +
+            '" alt="Portrait of ' + esc(person.name) +
+            '" loading="lazy" style="object-position:' + esc(focus) + '"></div>';
+        }
+        return '<div class="portrait" aria-hidden="true"><div class="portrait-placeholder"><span>' +
+          esc(initials(person.name)) + '</span></div></div>';
+      }
+
+      function peopleIn(groupId) {
+        return PEOPLE.filter(function (person) { return person.group === groupId; });
+      }
+
+      function render() {
+        var root = document.getElementById('sectionsRoot');
+        if (!root) return;
+
+        root.innerHTML = GROUPS.map(function (group) {
+          var people = peopleIn(group.id);
+          var hidden = activeFilter !== 'all' && activeFilter !== group.id ? ' is-hidden' : '';
+          var cls = 'team-section' + (group.advisors ? ' advisors' : '') + hidden;
+
+          return '<section class="' + cls + '" id="section-' + group.id + '">' +
+            '<div class="section-head">' +
+              '<h2>' + esc(group.title) + '</h2>' +
+              '<span>' + people.length + (people.length === 1 ? ' member' : ' members') + '</span>' +
+            '</div>' +
+            '<div class="grid" style="--cols:' + people.length + '">' +
+              people.map(function (person) {
+                return '<a class="person-card" href="team-member.html?id=' + encodeURIComponent(person.id) +
+                  '" aria-label="Open profile for ' + esc(person.name) + '">' +
+                  portrait(person) +
+                  '<span class="card-body">' +
+                    '<h3>' + esc(person.name) + '</h3>' +
+                    '<p class="card-role">' + esc(person.role) + '</p>' +
+                  '</span>' +
+                '</a>';
+              }).join('') +
+            '</div>' +
+          '</section>';
+        }).join('');
+      }
+
+      document.querySelectorAll('.filter-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          activeFilter = btn.getAttribute('data-filter') || 'all';
+          document.querySelectorAll('.filter-btn').forEach(function (item) {
+            item.classList.toggle('is-active', item === btn);
+          });
+          render();
+          if (activeFilter !== 'all') {
+            var section = document.getElementById('section-' + activeFilter);
+            if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      render();
+    })();
+  </script>
+</body>
+</html>

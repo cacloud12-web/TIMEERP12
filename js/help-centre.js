@@ -6,24 +6,26 @@
   'use strict';
 
   var modules = [
-    { id: 'dashboard', name: 'Dashboard', icon: 'assets/home-icons/dashboard.svg', desc: 'Business overview with KPIs, attendance summary, and project status.', href: 'home1.html#dashboard' },
-    { id: 'hrms', name: 'HRMS', icon: 'assets/home-icons/hrms.svg', desc: 'Hire, onboard, manage attendance, leave, and employee records.', href: 'home1.html#hrms' },
-    { id: 'crm', name: 'CRM', icon: 'assets/home-icons/crm.svg', desc: 'Manage leads, pipeline, and customer relationships in Client Desk.', href: 'home1.html#crm' },
-    { id: 'projects', name: 'Project Management', icon: 'assets/home-icons/project-management.svg', desc: 'Plan projects, tasks, timesheets, and delivery visibility.', href: 'home1.html#project-management' },
-    { id: 'billing', name: 'Billing', icon: 'assets/home-icons/billing.svg', desc: 'Invoices, receipts, ledgers, and digital payment workflows.', href: 'home1.html#billing' },
-    { id: 'compliance', name: 'Compliance', icon: 'assets/home-icons/task-gst.svg', desc: 'GST, ESIC, EPFO, gratuity, and TDS reporting readiness.', href: 'home1.html#compliance' },
-    { id: 'documents', name: 'Document Vault', icon: 'assets/home-icons/document-vault.svg', desc: 'Store, share, version, and control business documents.', href: 'home1.html#document-vault' },
+    { id: 'dashboard', name: 'Dashboard', icon: 'assets/home-icons/dashboard.svg', desc: 'Business overview with attendance summary and project status.', href: 'dashboard.html' },
+    { id: 'hrms', name: 'HRMS', icon: 'assets/home-icons/hrms.svg', desc: 'Hire, onboard, manage attendance, leave, and employee records.', href: 'hrms.html' },
+    { id: 'payroll', name: 'Payroll', icon: 'assets/home-icons/payroll.svg', desc: 'Salary structure, PF & ESI, TDS, payslips, and bank transfer.', href: 'payroll.html' },
+    { id: 'crm', name: 'CRM', icon: 'assets/home-icons/crm.svg', desc: 'Manage leads, pipeline, and customer relationships in Client Desk.', href: 'crm.html' },
+    { id: 'projects', name: 'Project Management', icon: 'assets/home-icons/project-management.svg', desc: 'Plan projects, tasks, timesheets, and delivery visibility.', href: 'project_management.html' },
+    { id: 'billing', name: 'Billing', icon: 'assets/home-icons/billing.svg', desc: 'Invoices, receipts, ledgers, and digital payment workflows.', href: 'billing.html' },
+    { id: 'compliance', name: 'Compliance', icon: 'assets/home-icons/task-gst.svg', desc: 'GST, ESIC, EPFO, gratuity, and TDS reporting readiness.', href: 'compliance_management.html' },
+    { id: 'documents', name: 'Document Vault', icon: 'assets/home-icons/document-vault.svg', desc: 'Store, share, version, and control business documents.', href: 'document_management.html' },
     { id: 'marketing', name: 'Marketing', icon: 'assets/home-icons/task-campaign.svg', desc: 'Website, leads, email, SMS, WhatsApp, and campaign tools.', href: 'market.html' },
-    { id: 'communication', name: 'Communication', icon: 'assets/home-icons/communication.svg', desc: 'Email, SMS, WhatsApp notifications and broadcast outreach.', href: 'home1.html#communication' },
-    { id: 'reports', name: 'Reports', icon: 'assets/home-icons/reports.svg', desc: 'Operational and financial reporting across TIME ERP modules.', href: 'home1.html#products' }
+    { id: 'communication', name: 'Communication', icon: 'assets/home-icons/communication.svg', desc: 'Email, SMS, WhatsApp notifications and broadcast outreach.', href: 'communication.html' },
+    { id: 'reports', name: 'Reports', icon: 'assets/home-icons/reports.svg', desc: 'Operational and financial reporting across TIME ERP modules.', href: 'index.html#products' }
   ];
 
   var articles = [
-    { id: 'a-dash-1', module: 'dashboard', type: 'guide', title: 'Understanding the TIME ERP Dashboard', body: 'Use the Dashboard for a real-time overview of KPIs, revenue analytics, attendance summary, and project status so leadership can monitor operations from one view.' },
+    { id: 'a-dash-1', module: 'dashboard', type: 'guide', title: 'Understanding the TIME ERP Dashboard', body: 'Use the Dashboard for a real-time overview of revenue analytics, attendance summary, and project status so leadership can monitor operations from one view.' },
     { id: 'a-hrms-1', module: 'hrms', type: 'guide', title: 'Add employees and manage profiles', body: 'Create employee records in HRMS, complete profile details, and keep workforce data centralized for attendance, leave, and payroll processes.' },
     { id: 'a-hrms-2', module: 'hrms', type: 'guide', title: 'Configure attendance tracking', body: 'Set up biometric, geo, or shift-based attendance so teams can track presence in real time from HRMS Attendance.' },
     { id: 'a-hrms-3', module: 'hrms', type: 'guide', title: 'Manage leave requests and balances', body: 'Use Leave Management to submit requests, route approvals, and track balances for each employee.' },
     { id: 'a-hrms-4', module: 'hrms', type: 'guide', title: 'Process payroll and payslips', body: 'Configure salary structures, statutory components, and payslip distribution from Payroll so finance can run cycles with HR data.' },
+    { id: 'a-pay-1', module: 'payroll', type: 'guide', title: 'Configure salary structure and statutory components', body: 'Set up Salary Structure, PF & ESI, and TDS in Payroll, then generate payslips and bank transfer files after attendance is locked.' },
     { id: 'a-crm-1', module: 'crm', type: 'guide', title: 'Capture and assign leads', body: 'Log inbound leads in CRM : Client Desk, assign owners, and track follow-ups so opportunities do not get lost outside TIME ERP.' },
     { id: 'a-crm-2', module: 'crm', type: 'guide', title: 'Use Client Desk for collaboration', body: 'Share documents and requests through Client Desk so clients and teams collaborate securely inside the platform.' },
     { id: 'a-proj-1', module: 'projects', type: 'guide', title: 'Create projects and milestones', body: 'Set up projects, assign work, and track milestones so delivery teams manage client work in Project Management.' },
@@ -71,7 +73,7 @@
     { icon: 'admin_panel_settings', title: 'Administrator Guide', desc: 'Setup guidance for roles, permissions, branches, and workspace configuration.', href: '#getting-started' },
     { icon: 'tune', title: 'Configuration Guide', desc: 'Configure attendance, payroll, CRM, billing, compliance, and documents.', href: '#getting-started' },
     { icon: 'rocket_launch', title: 'Implementation Guide', desc: 'Follow consulting and onboarding paths for deployment and go-live.', href: 'consultants.html' },
-    { icon: 'chat', title: 'WhatsApp API', desc: 'WhatsApp API is available as a Communication capability for templates and automation.', href: 'home1.html#communication' },
+    { icon: 'chat', title: 'WhatsApp API', desc: 'WhatsApp API is available as a Communication capability for templates and automation.', href: 'whatsapp_api.html' },
     { icon: 'verified', title: 'Best Practices', desc: 'Recommended setup patterns for roles, process mapping, and module adoption.', href: 'consultants.html' }
   ];
 

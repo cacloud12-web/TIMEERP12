@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="../assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="../assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Declaration — TIME ERP HRMS</title>
+  <meta name="description" content="Unlock and approve Form 12B / 12BB employee declarations in TIME ERP.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/employee-declaration.css?v=ed5">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="../home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="../assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="ed-top-checkin is-in" id="edTopCheckInBtn">Check In</button>
+            <time class="ed-top-clock" id="edTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn ed-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn ed-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">3</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">TE</span>
+                <span class="topbar__profile-meta"><strong>Admin</strong><span>TimeERP</span></span>
+                <svg class="ed-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="../home.html" class="dropdown__item"><strong>Go to home</strong><span>Module hub overview</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="ed-page" id="edPage">
+          <header class="ed-header">
+            <a class="ed-back" href="../home.html#module/hrms" aria-label="Back to HRMS">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <h1 class="ed-title">Declaration</h1>
+          </header>
+
+          <nav class="ed-tabs" aria-label="Declaration sections">
+            <div class="ed-tabs__list" role="tablist">
+              <button type="button" class="ed-tab is-active" role="tab" aria-selected="true" data-tab="unlock12bb">Unlock Form 12BB</button>
+              <button type="button" class="ed-tab" role="tab" aria-selected="false" data-tab="unlock12b">Unlock Form 12B</button>
+              <button type="button" class="ed-tab" role="tab" aria-selected="false" data-tab="approve12b">Approval Form 12B</button>
+              <button type="button" class="ed-tab" role="tab" aria-selected="false" data-tab="approve12bb">Approval Form 12BB</button>
+            </div>
+          </nav>
+
+          <div id="edDynamic" class="ed-dynamic" aria-live="polite"></div>
+
+          <footer class="ed-app-footer" aria-label="App footer"></footer>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="ed-modal" id="edUnlockModal" hidden>
+    <div class="ed-modal__backdrop" data-ed-close></div>
+    <div class="ed-modal__dialog ed-modal__dialog--unlock" role="dialog" aria-modal="true" aria-labelledby="edUnlockTitle">
+      <div class="ed-modal__head">
+        <h2 class="ed-modal__title" id="edUnlockTitle">Unlock Form</h2>
+        <button type="button" class="ed-modal__close" data-ed-close aria-label="Close">&times;</button>
+      </div>
+      <form class="ed-modal__body ed-modal__body--unlock" id="edUnlockForm" onsubmit="return false;">
+        <div class="ed-grid2 ed-grid2--unlock">
+          <div class="ed-field">
+            <label for="edUnlockFy">Financial Year <span class="ed-req">*</span></label>
+            <select name="fy" id="edUnlockFy" required>
+              <option value="FY 26-27 (AY 27-28)">FY 26-27 (AY 27-28)</option>
+              <option value="FY 25-26 (AY 26-27)">FY 25-26 (AY 26-27)</option>
+              <option value="FY 24-25 (AY 25-26)">FY 24-25 (AY 25-26)</option>
+            </select>
+          </div>
+          <div class="ed-field">
+            <label>Employees <span class="ed-req">*</span></label>
+            <div class="ed-emp-tags-wrap" id="edUnlockEmpWrap">
+              <div class="ed-emp-tags" id="edUnlockEmpTags"></div>
+              <input type="text" class="ed-emp-tags__input" id="edUnlockEmpInput" placeholder="" autocomplete="off" aria-label="Add employee">
+              <div class="ed-emp-tags__list" id="edUnlockEmpList" hidden></div>
+            </div>
+          </div>
+          <div class="ed-field">
+            <label for="edUnlockStart">Start Date</label>
+            <div class="ed-dt-wrap" data-dt="start">
+              <input type="text" class="ed-dt-input" id="edUnlockStart" name="start" placeholder="Select Date" readonly>
+              <button type="button" class="ed-dt-btn" data-ed="dtToggle" data-dt="start" aria-label="Open start date picker">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="ed-field">
+            <label for="edUnlockEnd">End Date</label>
+            <div class="ed-dt-wrap" data-dt="end">
+              <input type="text" class="ed-dt-input" id="edUnlockEnd" name="end" placeholder="Select Date" readonly>
+              <button type="button" class="ed-dt-btn" data-ed="dtToggle" data-dt="end" aria-label="Open end date picker">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="ed-dt-pop" id="edDtPop" hidden>
+          <div class="ed-dt-pop__main">
+            <div class="ed-dt-pop__cal">
+              <div class="ed-dt-pop__cal-head">
+                <button type="button" data-ed="dtPrevYear" aria-label="Previous year">&lt;&lt;</button>
+                <button type="button" data-ed="dtPrevMonth" aria-label="Previous month">&lt;</button>
+                <span id="edDtMonthLabel">Feb 2025</span>
+                <button type="button" data-ed="dtNextMonth" aria-label="Next month">&gt;</button>
+                <button type="button" data-ed="dtNextYear" aria-label="Next year">&gt;&gt;</button>
+              </div>
+              <div class="ed-dt-pop__weekdays"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+              <div class="ed-dt-pop__days" id="edDtDays"></div>
+              <button type="button" class="ed-dt-pop__now" data-ed="dtNow">Now</button>
+            </div>
+            <div class="ed-dt-pop__time">
+              <div class="ed-dt-pop__time-head" id="edDtTimeHead">--</div>
+              <div class="ed-dt-pop__time-cols">
+                <div class="ed-dt-pop__col" id="edDtHours"></div>
+                <div class="ed-dt-pop__col" id="edDtMinutes"></div>
+                <div class="ed-dt-pop__col" id="edDtAmPm"></div>
+              </div>
+              <button type="button" class="ed-dt-pop__ok" data-ed="dtOk">OK</button>
+            </div>
+          </div>
+        </div>
+        <div class="ed-modal__foot"><button type="submit" class="ed-btn ed-btn--primary">Save</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="ed-del-pop" id="edDelPop" hidden role="dialog" aria-label="Confirm delete">
+    <div class="ed-del-pop__inner">
+      <div class="ed-del-pop__msg">
+        <span class="ed-del-pop__icon" aria-hidden="true">!</span>
+        <span>Are you sure to delete this?</span>
+      </div>
+      <div class="ed-del-pop__actions">
+        <button type="button" class="ed-del-pop__no" id="edDelNo">No</button>
+        <button type="button" class="ed-del-pop__yes" id="edDelYes">Yes</button>
+      </div>
+    </div>
+    <span class="ed-del-pop__arrow" aria-hidden="true"></span>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/employee-declaration.js?v=ed6"></script>
+</body>
+</html>

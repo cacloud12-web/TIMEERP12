@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — TimeERP Website</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/marketing-website-services.css?v=2">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="mwsv-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="mwsv-top-clock" id="mwsvTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn mwsv-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn mwsv-top-icon" id="notifBtn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="mwsv-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="marketing_website.html" class="dropdown__item"><strong>Website</strong><span>Back to website hub</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="mwsv-page">
+          <header class="mwsv-header">
+            <a class="mwsv-back" href="marketing_website.html" aria-label="Back to Website">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <span class="mwsv-crumb">Services</span>
+          </header>
+
+          <div class="mwsv-panel">
+            <div class="mwsv-grid">
+              <div class="mwsv-field">
+                <label class="mwsv-label">Select a Service<span class="mwsv-req">*</span></label>
+                <span class="mwsv-combo" data-list="service">
+                  <input type="text" id="mwsvServiceInput" placeholder="Choose a service" autocomplete="off">
+                  <svg class="mwsv-combo__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                  <div class="mwsv-combo__menu"></div>
+                </span>
+              </div>
+              <div class="mwsv-field">
+                <label class="mwsv-label">Select a Category<span class="mwsv-req">*</span></label>
+                <span class="mwsv-combo" data-list="category">
+                  <input type="text" id="mwsvCategoryInput" placeholder="Choose a category" autocomplete="off">
+                  <svg class="mwsv-combo__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                  <div class="mwsv-combo__menu"></div>
+                </span>
+              </div>
+            </div>
+
+            <div class="mwsv-editor" id="mwsvEditor" hidden>
+              <div class="mwsv-acc is-open" data-sec="1">
+                <button type="button" class="mwsv-acc__head" aria-expanded="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                  Section 1
+                </button>
+                <div class="mwsv-acc__body">
+                  <div class="mwsv-field"><label>Description<span class="mwsv-req">*</span></label><input type="text" id="mwsvSec1Desc" placeholder="Description"></div>
+                  <div class="mwsv-field"><label>Image<span class="mwsv-req">*</span></label>
+                    <button type="button" class="mwsv-upload" data-upload="sec1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 16V8"/><path d="M8 12l4-4 4 4"/><path d="M4 20h16"/></svg><span>Click to Upload</span></button>
+                    <input type="file" id="mwsvSec1Image" accept="image/*" hidden>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mwsv-acc is-open" data-sec="2">
+                <button type="button" class="mwsv-acc__head" aria-expanded="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                  Section 2
+                </button>
+                <div class="mwsv-acc__body">
+                  <div class="mwsv-field"><label>Heading<span class="mwsv-req">*</span></label><input type="text" id="mwsvSec2Heading" placeholder="Heading"></div>
+                  <div class="mwsv-field"><label>Description<span class="mwsv-req">*</span></label>
+                    <div class="mwsv-rte">
+                      <div class="mwsv-rte__bar">
+                        <button type="button" data-cmd="undo" title="Undo">↶</button>
+                        <button type="button" data-cmd="redo" title="Redo">↷</button>
+                        <select class="mwsv-rte__fmt"><option>Paragraph</option><option>Heading 1</option><option>Heading 2</option></select>
+                        <button type="button" data-cmd="bold" title="Bold"><b>B</b></button>
+                        <button type="button" data-cmd="italic" title="Italic"><i>I</i></button>
+                        <button type="button" data-cmd="foreColor" title="Color">A</button>
+                        <button type="button" title="Emoji">☺</button>
+                        <button type="button" title="Source">&lt;&gt;</button>
+                        <button type="button" data-cmd="justifyLeft" title="Align left">≡</button>
+                        <button type="button" data-cmd="justifyCenter" title="Align center">≡</button>
+                        <button type="button" data-cmd="justifyRight" title="Align right">≡</button>
+                        <button type="button" data-cmd="insertUnorderedList" title="Bullet list">•</button>
+                        <button type="button" data-cmd="insertOrderedList" title="Numbered list">1.</button>
+                        <button type="button" title="Table">▦</button>
+                      </div>
+                      <div class="mwsv-rte__area" id="mwsvSec2Rte" contenteditable="true"></div>
+                      <div class="mwsv-rte__foot"><span>p</span><span id="mwsvWordCount">0 words</span></div>
+                    </div>
+                  </div>
+                  <div class="mwsv-field"><label>Image<span class="mwsv-req">*</span></label>
+                    <button type="button" class="mwsv-upload" data-upload="sec2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 16V8"/><path d="M8 12l4-4 4 4"/><path d="M4 20h16"/></svg><span>Click to Upload</span></button>
+                    <input type="file" id="mwsvSec2Image" accept="image/*" hidden>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mwsv-acc is-open" data-sec="3">
+                <button type="button" class="mwsv-acc__head" aria-expanded="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                  Section 3
+                </button>
+                <div class="mwsv-acc__body">
+                  <div class="mwsv-field"><label>Heading<span class="mwsv-req">*</span></label><input type="text" id="mwsvSec3Heading" placeholder="Heading"></div>
+                  <div class="mwsv-points">
+                    <div class="mwsv-field"><label>Point 1<span class="mwsv-req">*</span></label><input type="text" id="mwsvSec3P1" placeholder="Description"></div>
+                    <div class="mwsv-field"><label>Point 2<span class="mwsv-req">*</span></label><input type="text" id="mwsvSec3P2" placeholder="Description"></div>
+                    <div class="mwsv-field"><label>Point 3<span class="mwsv-req">*</span></label><input type="text" id="mwsvSec3P3" placeholder="Description"></div>
+                    <div class="mwsv-field"><label>Point 4<span class="mwsv-req">*</span></label><input type="text" id="mwsvSec3P4" placeholder="Description"></div>
+                  </div>
+                </div>
+              </div>
+
+              <button type="button" class="mwsv-save" id="mwsvSaveBtn">Save</button>
+            </div>
+          </div>
+
+          <footer class="mwsv-app-footer" aria-label="App footer"></footer>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/marketing-website-services.js?v=2"></script>
+</body>
+</html>

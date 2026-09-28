@@ -645,8 +645,8 @@
       toggle.addEventListener('click', function () {
         if (!drawer.innerHTML) {
           drawer.innerHTML =
-            '<a class="nav__link" href="home1.html#products">Products</a>' +
-            '<a class="nav__link" href="home1.html#industries">Industries</a>' +
+            '<a class="nav__link" href="index.html#products">Products</a>' +
+            '<a class="nav__link" href="index.html#industries">Industries</a>' +
             '<a class="nav__link" href="Our_Presence.html">Our Presence</a>' +
             '<a class="nav__link" href="price.html">Pricing</a>' +
             '<a class="nav__link" href="contact_sales.html">Contact</a>' +

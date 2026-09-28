@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="../assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="../assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Set Designation — TIME ERP HRMS</title>
+  <meta name="description" content="View and manage designation permission sets in TIME ERP HRMS.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/set-designation.css?v=sd6">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="../home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="../assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="sd-top-checkin is-in" id="sdTopCheckInBtn">Check In</button>
+            <time class="sd-top-clock" id="sdTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn sd-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn sd-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">3</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">TE</span>
+                <span class="topbar__profile-meta"><strong>Admin</strong><span>TimeERP</span></span>
+                <svg class="sd-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="../home.html" class="dropdown__item"><strong>Go to home</strong><span>Module hub overview</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="sd-page" id="sdPage">
+          <div id="sdListView">
+            <header class="sd-header">
+              <a class="sd-back" href="../home.html#module/hrms" aria-label="Back to HRMS">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+              </a>
+              <h1 class="sd-title">HRMS</h1>
+            </header>
+
+            <section class="sd-card" aria-label="View Permission Sets">
+              <div class="sd-card__head">
+                <h2 class="sd-card__title">View Permission Sets</h2>
+                <button type="button" class="sd-add" id="sdAddBtn" aria-label="Add designation">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                </button>
+              </div>
+              <div class="sd-table-wrap">
+                <table class="sd-table" id="sdTable">
+                  <thead>
+                    <tr>
+                      <th>S.NO</th>
+                      <th>Designation</th>
+                      <th>Description</th>
+                      <th>Permissions</th>
+                      <th>Employee</th>
+                      <th>Assign</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="sdTableBody"></tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+
+          <div id="sdEditView" class="sd-edit" hidden>
+            <header class="sd-header">
+              <button type="button" class="sd-back" id="sdEditBack" aria-label="Back to View Permission Sets">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <h1 class="sd-title">View Permission Sets</h1>
+            </header>
+
+            <section class="sd-edit-panel" aria-label="Edit permission set">
+              <h2 class="sd-edit-title" id="sdEditTitle">Edit Permission Set</h2>
+              <form class="sd-edit-form" id="sdEditForm">
+                <div class="sd-edit-row">
+                  <label class="sd-edit-label" for="sdEditName">Designation <span class="sd-req">*</span></label>
+                  <div class="sd-edit-control">
+                    <input class="sd-input" type="text" id="sdEditName" name="name" placeholder="Designation" required autocomplete="off">
+                  </div>
+                </div>
+                <div class="sd-edit-row">
+                  <label class="sd-edit-label" for="sdEditDesc">Description :</label>
+                  <div class="sd-edit-control">
+                    <input class="sd-input" type="text" id="sdEditDesc" name="description" placeholder="Description" autocomplete="off">
+                  </div>
+                </div>
+                <div class="sd-edit-row sd-edit-row--perms">
+                  <div class="sd-edit-label">Permissions :</div>
+                  <div class="sd-edit-control">
+                    <div class="sd-edit-perm-list" id="sdEditPermList"></div>
+                  </div>
+                </div>
+                <div class="sd-edit-foot">
+                  <button type="submit" class="sd-btn-save">Save</button>
+                </div>
+              </form>
+            </section>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="sd-modal sd-modal--perms" id="sdPermViewModal" hidden>
+    <div class="sd-modal__backdrop" data-perm-view-close></div>
+    <div class="sd-modal__dialog sd-modal__dialog--wide" role="dialog" aria-modal="true" aria-labelledby="sdPermViewTitle">
+      <div class="sd-modal__head">
+        <h2 class="sd-modal__title sd-modal__title--dark" id="sdPermViewTitle">Permissions</h2>
+        <button type="button" class="sd-modal__close" data-perm-view-close aria-label="Close">&times;</button>
+      </div>
+      <div class="sd-modal__body sd-perm-view-body">
+        <div class="sd-perm-view-box" id="sdPermViewContent"></div>
+      </div>
+      <div class="sd-modal__foot sd-modal__foot--end">
+        <button type="button" class="sd-btn-cancel" data-perm-view-close>Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="sd-modal" id="sdEmpViewModal" hidden>
+    <div class="sd-modal__backdrop" data-emp-view-close></div>
+    <div class="sd-modal__dialog sd-modal__dialog--emp" role="dialog" aria-modal="true" aria-labelledby="sdEmpViewTitle">
+      <div class="sd-modal__head">
+        <h2 class="sd-modal__title sd-modal__title--dark" id="sdEmpViewTitle">Employees under this Job Title</h2>
+        <button type="button" class="sd-modal__close" data-emp-view-close aria-label="Close">&times;</button>
+      </div>
+      <div class="sd-modal__body sd-emp-view-body">
+        <div class="sd-emp-table-wrap">
+          <table class="sd-emp-table">
+            <thead>
+              <tr>
+                <th>S.No</th>
+                <th>Employee Name</th>
+                <th>Emp Code</th>
+                <th>Email</th>
+                <th>Branch</th>
+              </tr>
+            </thead>
+            <tbody id="sdEmpViewBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sd-modal" id="sdAssignModal" hidden>
+    <div class="sd-modal__backdrop" data-assign-close></div>
+    <div class="sd-modal__dialog sd-modal__dialog--assign" role="dialog" aria-modal="true" aria-labelledby="sdAssignTitle">
+      <div class="sd-modal__head">
+        <h2 class="sd-modal__title sd-modal__title--dark" id="sdAssignTitle">Add Employees to this Job Role</h2>
+        <button type="button" class="sd-modal__close" data-assign-close aria-label="Close">&times;</button>
+      </div>
+      <div class="sd-modal__body sd-assign-body">
+        <label class="sd-assign-label" for="sdAssignSearch">Select Employees <span class="sd-req">*</span></label>
+        <div class="sd-assign-select" id="sdAssignSelect">
+          <div class="sd-assign-tags" id="sdAssignTags"></div>
+          <input class="sd-assign-search" type="text" id="sdAssignSearch" placeholder="" autocomplete="off" aria-label="Search employees">
+          <div class="sd-assign-dropdown" id="sdAssignDropdown" hidden></div>
+        </div>
+      </div>
+      <div class="sd-modal__foot sd-modal__foot--end">
+        <button type="button" class="sd-btn-cancel" data-assign-close>Cancel</button>
+        <button type="button" class="sd-btn-primary" id="sdAssignSave">Add Employees</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="sd-del-pop" id="sdDelPop" hidden role="dialog" aria-label="Confirm delete">
+    <div class="sd-del-pop__inner">
+      <div class="sd-del-pop__msg">
+        <span class="sd-del-pop__icon" aria-hidden="true">!</span>
+        <span>Are you sure to delete this?</span>
+      </div>
+      <div class="sd-del-pop__actions">
+        <button type="button" class="sd-del-pop__no" id="sdDelNo">No</button>
+        <button type="button" class="sd-del-pop__yes" id="sdDelYes">Yes</button>
+      </div>
+    </div>
+    <span class="sd-del-pop__arrow" aria-hidden="true"></span>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/set-designation.js?v=sd6"></script>
+</body>
+</html>

@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add New Client | TimeERP CRM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/crm-add-client.css?v=7">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="crm-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="crm-top-clock" id="crmTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn crm-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn crm-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">3</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="crm-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="home.html" class="dropdown__item"><strong>Go to home</strong><span>Module hub overview</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="ac-page">
+          <a class="ac-back" href="home.html#module/crm">
+            <span class="ac-back__btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg></span>
+            Dashboard
+          </a>
+          <h1 class="ac-title">Add New Client</h1>
+
+          <div class="ac-steps" aria-label="Add client steps">
+            <div class="ac-steps__fill" id="acStepsFill"></div>
+            <button class="ac-step is-active" type="button"><i class="ac-step__dot"></i><span>Basic Information</span></button>
+            <button class="ac-step" type="button"><i class="ac-step__dot"></i><span>Authorized Sig Details</span></button>
+            <button class="ac-step" type="button"><i class="ac-step__dot"></i><span>Documents</span></button>
+            <button class="ac-step" type="button"><i class="ac-step__dot"></i><span>ID and Password</span></button>
+            <button class="ac-step" type="button"><i class="ac-step__dot"></i><span>Services</span></button>
+            <button class="ac-step" type="button"><i class="ac-step__dot"></i><span>Other</span></button>
+          </div>
+
+          <section class="ac-panel" data-step="0">
+            <div class="ac-card">
+              <div class="ac-grid">
+                <div class="ac-pair">
+                  <label class="ac-field">Relationship Manager
+                    <span class="ac-combo" data-list="rm"><input type="text" placeholder="Select Relationship Manager" autocomplete="off"><div class="ac-combo__menu"></div></span>
+                  </label>
+                  <label class="ac-field">Team
+                    <span class="ac-combo" data-list="team"><input type="text" value="dummy" autocomplete="off"><div class="ac-combo__menu"></div></span>
+                  </label>
+                </div>
+                <label class="ac-field">File Number
+                  <input class="ac-input" id="acFileNumber" type="text" placeholder="Enter File Number">
+                </label>
+                <label class="ac-field">Mobile No
+                  <input class="ac-input" type="text" placeholder="Enter Mobile Number">
+                </label>
+                <label class="ac-field">Alternate No
+                  <input class="ac-input" type="text" placeholder="Enter Alternate Number">
+                </label>
+                <div class="ac-field"><span class="ac-label">Client Type<span class="ac-req">*</span></span>
+                  <div class="ac-radios">
+                    <label class="ac-radio"><input type="radio" name="clientType" checked> Business</label>
+                    <label class="ac-radio"><input type="radio" name="clientType"> Non-Business</label>
+                  </div>
+                </div>
+                <div class="ac-field"><span class="ac-label">Allow auto Invoice</span>
+                  <div class="ac-radios">
+                    <label class="ac-radio"><input type="radio" name="autoInv" checked> Yes</label>
+                    <label class="ac-radio"><input type="radio" name="autoInv"> No</label>
+                  </div>
+                </div>
+                <div class="ac-field"><span class="ac-label">GST Available</span>
+                  <div class="ac-radios">
+                    <label class="ac-radio"><input type="radio" name="gstAvail" checked> Yes</label>
+                    <label class="ac-radio"><input type="radio" name="gstAvail"> No</label>
+                  </div>
+                </div>
+                <div class="ac-field">
+                  <span class="ac-label ac-gstin-label">GSTIN <input type="checkbox"></span>
+                  <span class="ac-gstin">
+                    <input class="ac-input" type="text" placeholder="Enter GSTIN">
+                    <button class="ac-gstin__btn" type="button" id="acGstinRefresh" aria-label="Refresh GSTIN"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12a8 8 0 11-2.3-5.6"/><path d="M20 5v5h-5"/></svg></button>
+                  </span>
+                </div>
+                <label class="ac-field"><span class="ac-label">Trade Name<span class="ac-req">*</span></span>
+                  <input class="ac-input" id="acTradeName" type="text" value="testing">
+                </label>
+                <label class="ac-field">Email
+                  <input class="ac-input" type="email">
+                </label>
+                <label class="ac-field">Additional Trade Name
+                  <input class="ac-input" type="text" placeholder="Enter Additional Trade Name">
+                </label>
+                <label class="ac-field">Ownership Type
+                  <span class="ac-combo" data-list="ownership"><input type="text" placeholder="Ownership Type" autocomplete="off"><div class="ac-combo__menu"></div></span>
+                </label>
+                <label class="ac-field">CIN / PIN
+                  <input class="ac-input" type="text" placeholder="Enter CIN / PIN">
+                </label>
+                <label class="ac-field">MSME / Udyam No
+                  <input class="ac-input" type="text" placeholder="Enter MSME / Udyam No">
+                </label>
+                <label class="ac-field">TAN No
+                  <input class="ac-input" type="text" placeholder="Enter TAN No">
+                </label>
+                <label class="ac-field">ESIC No
+                  <input class="ac-input" type="text" placeholder="Enter ESIC No">
+                </label>
+                <div class="ac-field"><span class="ac-label">GST Status</span>
+                  <div class="ac-radios">
+                    <label class="ac-radio"><input type="radio" name="gstStatus"> Active</label>
+                    <label class="ac-radio"><input type="radio" name="gstStatus"> Inactive</label>
+                    <label class="ac-radio"><input type="radio" name="gstStatus"> Cancelled</label>
+                  </div>
+                </div>
+                <label class="ac-field">Effective date
+                  <span class="ac-date">
+                    <input class="ac-input" type="text" placeholder="Effective date" readonly>
+                    <span class="ac-date__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span>
+                    <input type="date">
+                  </span>
+                </label>
+                <label class="ac-field">PAN No
+                  <input class="ac-input" type="text" placeholder="Enter PAN No.">
+                </label>
+                <div class="ac-field"><span class="ac-label">GST Type</span>
+                  <div class="ac-radios">
+                    <label class="ac-radio"><input type="radio" name="gstType"> Regular</label>
+                    <label class="ac-radio"><input type="radio" name="gstType"> Composition</label>
+                    <label class="ac-radio"><input type="radio" name="gstType" checked> Other</label>
+                  </div>
+                </div>
+                <label class="ac-field">EPFO No
+                  <input class="ac-input" type="text" placeholder="Enter EPFO No">
+                </label>
+                <label class="ac-field">Registration Date
+                  <span class="ac-date">
+                    <input class="ac-input" type="text" placeholder="Select date" readonly>
+                    <span class="ac-date__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span>
+                    <input type="date">
+                  </span>
+                </label>
+                <label class="ac-field ac-field--full">Address
+                  <textarea class="ac-textarea" placeholder="Enter Address"></textarea>
+                </label>
+              </div>
+
+              <div id="acSecondAddr">
+                <div class="ac-subhead">Second Address (Optional) <button class="ac-remove" type="button" id="acRemoveAddr">Remove</button></div>
+                <div class="ac-grid">
+                  <label class="ac-field ac-field--full">Address
+                    <textarea class="ac-textarea" placeholder="Enter Second Address"></textarea>
+                  </label>
+                  <label class="ac-field">Country
+                    <span class="ac-combo" data-list="country"><input type="text" value="India" autocomplete="off"><div class="ac-combo__menu"></div></span>
+                  </label>
+                  <label class="ac-field">State
+                    <span class="ac-combo" data-list="state"><input type="text" placeholder="Enter State" autocomplete="off"><div class="ac-combo__menu"></div></span>
+                  </label>
+                  <label class="ac-field">District
+                    <span class="ac-combo" data-list="district"><input id="acDistrictInput" type="text" placeholder="Enter District" autocomplete="off"><div class="ac-combo__menu"></div></span>
+                  </label>
+                  <label class="ac-field">Pin Code
+                    <input class="ac-input" type="text" placeholder="Enter Pincode">
+                  </label>
+                </div>
+              </div>
+
+              <div class="ac-field" style="margin-top:16px">
+                <span class="ac-label">Upload Photograph</span>
+                <button class="ac-upload" type="button" id="acPhotoBtn">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 16V8"/><path d="M8 12l4-4 4 4"/><path d="M4 20h16"/></svg>
+                  Click to Upload
+                </button>
+                <input type="file" id="acPhotoInput" accept="image/*" hidden>
+              </div>
+
+              <div class="ac-remind">
+                <div class="ac-inline">
+                  <span class="ac-label">Remind after</span>
+                  <input class="ac-input" type="text" placeholder="Enter number of ...">
+                  <span class="ac-combo" data-list="recur"><input type="text" placeholder="Select Recurri..." autocomplete="off"><div class="ac-combo__menu"></div></span>
+                  <span class="ac-muted">from Now</span>
+                </div>
+                <div class="ac-inline">
+                  <span class="ac-label">When amount &gt;</span>
+                  <input class="ac-input" type="text" placeholder="Enter amount">
+                  <label class="ac-check"><input type="checkbox" checked> Recurring</label>
+                </div>
+              </div>
+              <div class="ac-notes">
+                <label class="ac-check"><input type="checkbox" checked> Notification</label>
+                <label class="ac-check"><input type="checkbox" checked> Email</label>
+                <label class="ac-check"><input type="checkbox" checked> WhatsApp</label>
+                <label class="ac-radio"><input type="radio" name="mailType" checked> Predefined mail</label>
+                <label class="ac-radio"><input type="radio" name="mailType"> Dynamic mail</label>
+              </div>
+            </div>
+          </section>
+
+          <section class="ac-panel" data-step="1" hidden>
+            <div class="ac-card">
+              <div class="ac-client-select">
+                <span class="ac-combo" data-list="customer"><input type="text" value="Client" autocomplete="off"><div class="ac-combo__menu"></div></span>
+              </div>
+              <div id="acSignatories">
+                <div class="ac-sig">
+                  <div class="ac-sig-head"><span>Authorised Signatory 1</span></div>
+                  <div class="ac-grid">
+                    <label class="ac-field">Name<input class="ac-input" type="text" placeholder="name"></label>
+                    <label class="ac-field">Designation
+                      <span class="ac-with-minus">
+                        <input class="ac-input" type="text" placeholder="designation">
+                        <button class="ac-sig-minus" type="button" aria-label="Remove signatory"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14"/></svg></button>
+                      </span>
+                    </label>
+                    <label class="ac-field">Mobile<input class="ac-input" type="text" placeholder="mobile"></label>
+                    <label class="ac-field">Email<input class="ac-input" type="text" placeholder="email"></label>
+                    <label class="ac-field">Pan No.<input class="ac-input" type="text" placeholder="PAN number"></label>
+                    <label class="ac-field">Aadhar<input class="ac-input" type="text" placeholder="AADHAR number"></label>
+                    <div class="ac-field"><span class="ac-label">Make Primary for Communication</span>
+                      <div class="ac-radios">
+                        <label class="ac-radio"><input type="radio" name="primary1" checked> Yes</label>
+                        <label class="ac-radio"><input type="radio" name="primary1"> No</label>
+                      </div>
+                    </div>
+                    <label class="ac-field">Din No<input class="ac-input" type="text" placeholder="DIN No"></label>
+                    <label class="ac-field ac-field--full">Address<textarea class="ac-textarea" placeholder="Address"></textarea></label>
+                    <label class="ac-field ac-field--full">Other<input class="ac-input" type="text" placeholder="Other"></label>
+                  </div>
+                </div>
+              </div>
+              <button class="ac-add-auth" type="button" id="acAddSig">+ Add Other authorised</button>
+            </div>
+          </section>
+
+          <section class="ac-panel" data-step="2" hidden>
+            <div class="ac-card">
+              <div class="ac-docs-bar">
+                <span class="ac-docs-field">Customer :
+                  <span class="ac-combo" data-list="customer"><input type="text" value="(TE3) testing" autocomplete="off"><div class="ac-combo__menu"></div></span>
+                </span>
+                <span class="ac-docs-field">Search Document :
+                  <input class="ac-input" type="search" placeholder="search">
+                </span>
+              </div>
+              <div class="ac-docs-head">
+                <h3>Documents</h3>
+                <div class="ac-icon-btns">
+                  <button class="ac-icon-btn" type="button" aria-label="Upload"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 16V8"/><path d="M8 12l4-4 4 4"/><path d="M4 20h16"/></svg></button>
+                  <button class="ac-icon-btn" type="button" aria-label="Add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+                  <button class="ac-icon-btn" type="button" aria-label="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 8v8"/><path d="M8 12l4 4 4-4"/><path d="M4 20h16"/></svg></button>
+                  <button class="ac-icon-btn" type="button" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 19l1.5-4A8 8 0 1119 12a8 8 0 01-12 6.5L5 19z"/></svg></button>
+                  <button class="ac-icon-btn" type="button" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></button>
+                  <span class="ac-toggle"><button class="ac-switch is-on" type="button" id="acTableToggle"></button> Table</span>
+                </div>
+              </div>
+              <div class="ac-loc">Location : / <a href="#">Testing</a></div>
+              <div class="ac-table-wrap">
+                <table class="ac-table" id="acDocsTable">
+                  <thead>
+                    <tr>
+                      <th>File Name</th><th>Expiry</th><th>Tags</th><th>Actions</th>
+                      <th style="text-align:right"><span class="ac-toggle">Client Access <button class="ac-switch" type="button" id="acClientAccess"></button> <span id="acClientAccessLbl">No</span></span></th>
+                    </tr>
+                  </thead>
+                  <tbody id="acDocsBody">
+                    <tr>
+                      <td>
+                        <div class="ac-doc-name">
+                          <span class="ac-doc-name__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span>
+                          <a href="#" class="ac-doc-name__link">GST_Registration.pdf</a>
+                        </div>
+                      </td>
+                      <td>31/03/2027</td>
+                      <td><span class="ac-tag">GST</span> <span class="ac-tag ac-tag--blue">KYC</span></td>
+                      <td>
+                        <span class="ac-acts">
+                          <button class="ac-act" type="button" aria-label="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 8v8"/><path d="M8 12l4 4 4-4"/><path d="M4 20h16"/></svg></button>
+                          <button class="ac-act" type="button" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
+                          <button class="ac-act ac-act--del" type="button" aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16"/><path d="M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2"/><path d="M6.5 7l.8 12.2A1.5 1.5 0 008.8 20.5h6.4a1.5 1.5 0 001.5-1.3L17.5 7"/></svg></button>
+                        </span>
+                      </td>
+                      <td style="text-align:right"><span class="ac-toggle"><button class="ac-switch is-on" type="button" aria-label="Client access"></button> <span>Yes</span></span></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="ac-doc-name">
+                          <span class="ac-doc-name__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span>
+                          <a href="#" class="ac-doc-name__link">PAN_Card.pdf</a>
+                        </div>
+                      </td>
+                      <td>—</td>
+                      <td><span class="ac-tag">Identity</span></td>
+                      <td>
+                        <span class="ac-acts">
+                          <button class="ac-act" type="button" aria-label="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 8v8"/><path d="M8 12l4 4 4-4"/><path d="M4 20h16"/></svg></button>
+                          <button class="ac-act" type="button" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
+                          <button class="ac-act ac-act--del" type="button" aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16"/><path d="M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2"/><path d="M6.5 7l.8 12.2A1.5 1.5 0 008.8 20.5h6.4a1.5 1.5 0 001.5-1.3L17.5 7"/></svg></button>
+                        </span>
+                      </td>
+                      <td style="text-align:right"><span class="ac-toggle"><button class="ac-switch" type="button" aria-label="Client access"></button> <span>No</span></span></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="ac-doc-name">
+                          <span class="ac-doc-name__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span>
+                          <a href="#" class="ac-doc-name__link">Aadhaar_Front.jpg</a>
+                        </div>
+                      </td>
+                      <td>15/08/2031</td>
+                      <td><span class="ac-tag ac-tag--amber">KYC</span></td>
+                      <td>
+                        <span class="ac-acts">
+                          <button class="ac-act" type="button" aria-label="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 8v8"/><path d="M8 12l4 4 4-4"/><path d="M4 20h16"/></svg></button>
+                          <button class="ac-act" type="button" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
+                          <button class="ac-act ac-act--del" type="button" aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16"/><path d="M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2"/><path d="M6.5 7l.8 12.2A1.5 1.5 0 008.8 20.5h6.4a1.5 1.5 0 001.5-1.3L17.5 7"/></svg></button>
+                        </span>
+                      </td>
+                      <td style="text-align:right"><span class="ac-toggle"><button class="ac-switch is-on" type="button" aria-label="Client access"></button> <span>Yes</span></span></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="ac-doc-name">
+                          <span class="ac-doc-name__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h7l2 2h9v11a2 2 0 01-2 2H3a2 2 0 01-2-2V9a2 2 0 012-2z"/></svg></span>
+                          <a href="#" class="ac-doc-name__link">Invoices</a>
+                        </div>
+                      </td>
+                      <td>—</td>
+                      <td><span class="ac-tag ac-tag--purple">Folder</span></td>
+                      <td>
+                        <span class="ac-acts">
+                          <button class="ac-act" type="button" aria-label="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 8v8"/><path d="M8 12l4 4 4-4"/><path d="M4 20h16"/></svg></button>
+                          <button class="ac-act" type="button" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
+                          <button class="ac-act ac-act--del" type="button" aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16"/><path d="M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2"/><path d="M6.5 7l.8 12.2A1.5 1.5 0 008.8 20.5h6.4a1.5 1.5 0 001.5-1.3L17.5 7"/></svg></button>
+                        </span>
+                      </td>
+                      <td style="text-align:right"><span class="ac-toggle"><button class="ac-switch" type="button" aria-label="Client access"></button> <span>No</span></span></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="ac-doc-name">
+                          <span class="ac-doc-name__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span>
+                          <a href="#" class="ac-doc-name__link">Partnership_Deed.pdf</a>
+                        </div>
+                      </td>
+                      <td>30/11/2028</td>
+                      <td><span class="ac-tag">Legal</span> <span class="ac-tag ac-tag--blue">Contract</span></td>
+                      <td>
+                        <span class="ac-acts">
+                          <button class="ac-act" type="button" aria-label="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 8v8"/><path d="M8 12l4 4 4-4"/><path d="M4 20h16"/></svg></button>
+                          <button class="ac-act" type="button" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
+                          <button class="ac-act ac-act--del" type="button" aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16"/><path d="M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2"/><path d="M6.5 7l.8 12.2A1.5 1.5 0 008.8 20.5h6.4a1.5 1.5 0 001.5-1.3L17.5 7"/></svg></button>
+                        </span>
+                      </td>
+                      <td style="text-align:right"><span class="ac-toggle"><button class="ac-switch is-on" type="button" aria-label="Client access"></button> <span>Yes</span></span></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="ac-empty" id="acDocsEmpty" hidden>
+                  <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="12" y="18" width="40" height="30" rx="3"/><path d="M12 28h40"/><path d="M24 46c0-4 16-4 16 0"/></svg>
+                  <div>No data</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="ac-panel" data-step="3" hidden>
+            <div class="ac-card">
+              <div class="ac-table-head">
+                <span></span>
+                <button class="ac-add-pw" type="button" id="acAddPw">+ Add Password</button>
+              </div>
+              <div class="ac-table-wrap">
+                <table class="ac-table">
+                  <thead>
+                    <tr>
+                      <th>Portal</th><th>Username</th><th>Passwords</th><th>Last Updated</th><th>Updated By</th><th>Remarks</th><th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="acPwBody">
+                    <tr data-portal="Income Tax" data-user="simrankshyp11@gmail.com" data-pass="Kamal@123" data-url="https://www.incometax.gov.in" data-remarks="">
+                      <td>Income Tax</td>
+                      <td>simrankshyp11@gmail.com</td>
+                      <td>**********</td>
+                      <td>18/08/2026</td>
+                      <td>CA CloudDesk</td>
+                      <td><button class="ac-link" type="button" data-ac-view>View</button></td>
+                      <td>
+                        <span class="ac-acts">
+                          <button class="ac-act ac-act--del" type="button" data-ac-del aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2"/><path d="M6.5 7l.8 12.2A1.5 1.5 0 008.8 20.5h6.4a1.5 1.5 0 001.5-1.3L17.5 7"/><path d="M10 11v6M14 11v6"/></svg></button>
+                          <button class="ac-act" type="button" data-ac-edit aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
+                          <a class="ac-act" href="https://www.incometax.gov.in" target="_blank" rel="noopener" aria-label="Open portal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M10 14l8-8M14 6h4v4"/></svg></a>
+                          <button class="ac-act" type="button" data-ac-remarks aria-label="Remarks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3a9 9 0 00-9 9c0 1.7.5 3.3 1.3 4.7L3 21l4.6-1.2A9 9 0 1012 3z"/><circle cx="8.5" cy="12" r="1.15" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.15" fill="currentColor" stroke="none"/><circle cx="15.5" cy="12" r="1.15" fill="currentColor" stroke="none"/></svg></button>
+                          <button class="ac-act" type="button" data-ac-logs aria-label="Password logs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M6 4h12v13.2A2.8 2.8 0 0115.2 20H8.8A2.8 2.8 0 016 17.2V4z"/><path d="M9 8.5h6M9 12h6"/><path d="M9.2 19.6c1-1.8 4.6-1.8 5.6 0"/></svg></button>
+                        </span>
+                      </td>
+                    </tr>
+                    <tr data-portal="MCA" data-user="simrankshyp11@gmail.com" data-pass="Kamal@123" data-url="https://www.mca.gov.in" data-remarks="">
+                      <td>MCA</td>
+                      <td>simrankshyp11@gmail.com</td>
+                      <td>**********</td>
+                      <td>18/08/2026</td>
+                      <td>CA CloudDesk</td>
+                      <td><button class="ac-link" type="button" data-ac-view>View</button></td>
+                      <td>
+                        <span class="ac-acts">
+                          <button class="ac-act ac-act--del" type="button" data-ac-del aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2"/><path d="M6.5 7l.8 12.2A1.5 1.5 0 008.8 20.5h6.4a1.5 1.5 0 001.5-1.3L17.5 7"/><path d="M10 11v6M14 11v6"/></svg></button>
+                          <button class="ac-act" type="button" data-ac-edit aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
+                          <a class="ac-act" href="https://www.mca.gov.in" target="_blank" rel="noopener" aria-label="Open portal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M10 14l8-8M14 6h4v4"/></svg></a>
+                          <button class="ac-act" type="button" data-ac-remarks aria-label="Remarks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3a9 9 0 00-9 9c0 1.7.5 3.3 1.3 4.7L3 21l4.6-1.2A9 9 0 1012 3z"/><circle cx="8.5" cy="12" r="1.15" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.15" fill="currentColor" stroke="none"/><circle cx="15.5" cy="12" r="1.15" fill="currentColor" stroke="none"/></svg></button>
+                          <button class="ac-act" type="button" data-ac-logs aria-label="Password logs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M6 4h12v13.2A2.8 2.8 0 0115.2 20H8.8A2.8 2.8 0 016 17.2V4z"/><path d="M9 8.5h6M9 12h6"/><path d="M9.2 19.6c1-1.8 4.6-1.8 5.6 0"/></svg></button>
+                        </span>
+                      </td>
+                    </tr>
+                    <tr data-portal="IEC" data-user="simrankshyp11@gmail.com" data-pass="Kamal@123" data-url="https://www.dgft.gov.in" data-remarks="">
+                      <td>IEC</td>
+                      <td>simrankshyp11@gmail.com</td>
+                      <td>**********</td>
+                      <td>18/08/2026</td>
+                      <td>CA CloudDesk</td>
+                      <td><button class="ac-link" type="button" data-ac-view>View</button></td>
+                      <td>
+                        <span class="ac-acts">
+                          <button class="ac-act ac-act--del" type="button" data-ac-del aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2"/><path d="M6.5 7l.8 12.2A1.5 1.5 0 008.8 20.5h6.4a1.5 1.5 0 001.5-1.3L17.5 7"/><path d="M10 11v6M14 11v6"/></svg></button>
+                          <button class="ac-act" type="button" data-ac-edit aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
+                          <a class="ac-act" href="https://www.dgft.gov.in" target="_blank" rel="noopener" aria-label="Open portal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M10 14l8-8M14 6h4v4"/></svg></a>
+                          <button class="ac-act" type="button" data-ac-remarks aria-label="Remarks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3a9 9 0 00-9 9c0 1.7.5 3.3 1.3 4.7L3 21l4.6-1.2A9 9 0 1012 3z"/><circle cx="8.5" cy="12" r="1.15" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.15" fill="currentColor" stroke="none"/><circle cx="15.5" cy="12" r="1.15" fill="currentColor" stroke="none"/></svg></button>
+                          <button class="ac-act" type="button" data-ac-logs aria-label="Password logs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M6 4h12v13.2A2.8 2.8 0 0115.2 20H8.8A2.8 2.8 0 016 17.2V4z"/><path d="M9 8.5h6M9 12h6"/><path d="M9.2 19.6c1-1.8 4.6-1.8 5.6 0"/></svg></button>
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="ac-empty" id="acPwEmpty" hidden>
+                  <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="12" y="18" width="40" height="30" rx="3"/><path d="M12 28h40"/><path d="M24 46c0-4 16-4 16 0"/></svg>
+                  <div>No data</div>
+                </div>
+              </div>
+              <div class="ac-pager">
+                <button class="ac-btn" type="button" disabled style="min-width:32px;padding:0">‹</button>
+                <span class="ac-page-num">1</span>
+                <span>of 1</span>
+                <button class="ac-btn" type="button" disabled style="min-width:32px;padding:0">›</button>
+                <span class="ac-count" id="acPwCount">3 / 3</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="ac-panel" data-step="4" hidden>
+            <div class="ac-card">
+              <h3 style="margin:0 0 12px;font-size:16px">Services</h3>
+              <div class="ac-svc-item" id="acSvcItem">
+                <button class="ac-svc-toggle" type="button" id="acSvcToggle">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg>
+                  Manufacturing
+                </button>
+                <div class="ac-svc-body">
+                  <div class="ac-svc-row">
+                    <input type="checkbox">
+                    <span>Goods (MFGA1)</span>
+                    <span class="ac-seg"><button type="button" class="is-on">Invoice</button><button type="button">Proforma</button></span>
+                    <span class="ac-combo" data-list="frequency"><input type="text" placeholder="Frequency" autocomplete="off"><div class="ac-combo__menu"></div></span>
+                    <span class="ac-combo" data-list="branch"><input type="text" placeholder="Branch" autocomplete="off"><div class="ac-combo__menu"></div></span>
+                    <span class="ac-combo" data-list="initial"><input type="text" placeholder="Invoice Initial" autocomplete="off"><div class="ac-combo__menu"></div></span>
+                  </div>
+                  <div class="ac-svc-row">
+                    <input type="checkbox">
+                    <span>Manufacturing (MF000)</span>
+                    <span class="ac-seg"><button type="button" class="is-on">Invoice</button><button type="button">Proforma</button></span>
+                    <span class="ac-combo" data-list="frequency"><input type="text" placeholder="Frequency" autocomplete="off"><div class="ac-combo__menu"></div></span>
+                    <span class="ac-combo" data-list="branch"><input type="text" placeholder="Branch" autocomplete="off"><div class="ac-combo__menu"></div></span>
+                    <span class="ac-combo" data-list="initial"><input type="text" placeholder="Invoice Initial" autocomplete="off"><div class="ac-combo__menu"></div></span>
+                  </div>
+                </div>
+              </div>
+              <div class="ac-svc-foot">
+                <span>Page <strong>1</strong> of <strong>1</strong> · Total: <strong>1</strong></span>
+                <div class="ac-svc-pages">
+                  <button type="button" disabled>Prev</button>
+                  <button type="button" class="is-on">1</button>
+                  <button type="button" disabled>Next</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="ac-panel" data-step="5" hidden>
+            <div class="ac-card">
+              <div class="ac-others-head">
+                <h3>Others</h3>
+                <button class="ac-ghost" type="button" id="acCustomFields">Add Custom Fields</button>
+              </div>
+              <label class="ac-field" style="max-width:420px">Client Group
+                <input class="ac-input" type="text" placeholder="Client Group">
+              </label>
+              <div class="ac-local">
+                <span class="ac-label">Local Links</span>
+                <button class="ac-local-btn" type="button" id="acLocalPath">Add Local Path</button>
+              </div>
+              <div class="ac-checks">
+                <label class="ac-check"><input type="checkbox"> Allow Email</label>
+                <label class="ac-check"><input type="checkbox"> Allow Notifications</label>
+                <label class="ac-check"><input type="checkbox"> Allow SMS</label>
+                <label class="ac-check"><input type="checkbox"> Send Ledger Monthly</label>
+              </div>
+            </div>
+          </section>
+
+          <div class="ac-nav">
+            <button class="ac-btn" type="button" id="acPrev">Previous</button>
+            <button class="ac-btn ac-btn--primary" type="button" id="acNext">Next</button>
+            <span id="acLastBtns" hidden>
+              <button class="ac-btn ac-btn--primary" type="button" id="acSaveLogin">Save &amp; Allow Login</button>
+              <button class="ac-btn ac-btn--primary" type="button" id="acFinish">Finish</button>
+            </span>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="ac-scrim" id="acPwModal">
+    <div class="ac-modal">
+      <div class="ac-modal__head">
+        <h2>Client Software</h2>
+        <button class="ac-close" type="button" id="acPwClose" aria-label="Close">×</button>
+      </div>
+      <form class="ac-modal__form" id="acPwForm">
+        <label class="is-caps">LOGIN PORTAL <span class="ac-req">*</span></label>
+        <span class="ac-combo" data-list="portal" id="acPwPortal"><input id="acPwPortalInput" type="text" placeholder="Select" autocomplete="off"><div class="ac-combo__menu"></div></span>
+        <label for="acPwUser">Username :</label>
+        <input id="acPwUser" type="text" value="simrankshyp11@gmail.com">
+        <label for="acPwPass">Password :</label>
+        <span class="ac-gstin">
+          <input id="acPwPass" type="password" value="Kamal@123">
+          <button class="ac-gstin__btn" type="button" id="acPwToggle" aria-label="Show password" style="background:transparent;color:#8c8c8c">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3l18 18"/><path d="M10.6 10.6A3 3 0 0013.4 13.4"/><path d="M9.9 5.1A10.8 10.8 0 0122 12s-2.2 3.8-5.8 5.6"/><path d="M6.1 6.1C3.8 7.7 2 12 2 12s4 7 10 7c1.4 0 2.7-.3 3.9-.8"/></svg>
+          </button>
+        </span>
+        <button class="ac-submit" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="ac-scrim" id="acRemarksModal">
+    <div class="ac-modal" style="width:min(640px,95vw)">
+      <div class="ac-modal__head">
+        <h2>Remarks</h2>
+        <button class="ac-close" type="button" id="acRemarksClose" aria-label="Close">×</button>
+      </div>
+      <form class="ac-modal__form" id="acRemarksForm">
+        <label for="acRemarksInput">Remarks :</label>
+        <input id="acRemarksInput" type="text" placeholder="Remarks" autocomplete="off" style="background:#fff">
+        <button class="ac-submit" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="ac-scrim" id="acLogsModal">
+    <div class="ac-modal" style="width:min(980px,96vw);overflow:auto">
+      <div class="ac-modal__head">
+        <h2>Password Logs</h2>
+        <button class="ac-close" type="button" id="acLogsClose" aria-label="Close">×</button>
+      </div>
+      <div style="padding:8px 18px 18px;overflow:auto">
+        <table class="ac-table" id="acLogsTable">
+          <thead>
+            <tr>
+              <th>S. No.</th><th>Updated By</th><th>Portal</th><th>Username</th><th>Passwords</th><th>Last Updated</th><th>Description</th>
+            </tr>
+          </thead>
+          <tbody id="acLogsBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/crm-add-client.js?v=7"></script>
+</body>
+</html>

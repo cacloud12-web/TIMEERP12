@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organization — TimeERP</title>
+  <meta name="description" content="Organization data, subscription, branches, credits, and documents.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/my-profile.css?v=46">
+  <link rel="stylesheet" href="css/organization.css?v=15">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="shell-top-checkin is-checked-in is-orange" id="shellTopCheckInBtn">Check Out</button>
+            <time class="shell-top-clock" id="shellTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn shell-top-icon" id="shellCalBtn" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn shell-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <a class="shell-account" id="profileBtn" href="my_profile.html" aria-label="Open profile">
+              <span class="shell-account__org" aria-hidden="true">
+                <img src="assets/favicon-mark.png" alt="" width="28" height="28">
+              </span>
+              <span class="shell-account__name">CA Cloud..</span>
+              <span class="shell-account__user" aria-hidden="true">
+                <img src="assets/favicon-mark.png" alt="" width="28" height="28">
+              </span>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="mp-page org-page" id="orgPage">
+
+          <nav class="mp-mod-nav" aria-label="Profile modules">
+                        <div class="mp-mod-nav__pills">
+              <a href="my_profile.html" class="mp-mod-pill">Profile</a>
+              <a href="organization.html" class="mp-mod-pill is-active" aria-current="page">Organization</a>
+              <a href="hrms.html" class="mp-mod-pill">HRMS</a>
+              <a href="payroll.html" class="mp-mod-pill">Payroll</a>
+              <a href="import_utility.html" class="mp-mod-pill">Import Utility</a>
+              <a href="notification.html" class="mp-mod-pill">Notification</a>
+              <a href="settings.html" class="mp-mod-pill">Settings</a>
+              <a href="app_setup.html" class="mp-mod-pill">Setup</a>
+            </div>
+            <div class="mp-mod-nav__actions">
+              <button type="button" class="mp-mod-icon-btn" aria-label="Trash" title="Trash">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 5h6"/><path d="M10 5V4h4v1"/><path d="M4.5 7.5h15"/><path d="M7 7.5l.9 12.2a1 1 0 0 0 1 .9h6.2a1 1 0 0 0 1-.9L17 7.5"/></svg>
+              </button>
+              <button type="button" class="mp-mod-icon-btn" aria-label="Unlock" title="Unlock">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><circle cx="12" cy="16" r="1" fill="currentColor" stroke="none"/><path d="M16 11V7.5a4 4 0 0 0-7.6-1.7"/></svg>
+              </button>
+              <button type="button" class="mp-mod-icon-btn" aria-label="Logout" title="Logout">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 4a8 8 0 1 0 0 16"/><path d="M12 12h8"/><path d="M17.5 9l3 3-3 3"/></svg>
+              </button>
+            </div>
+          </nav>
+
+          <div class="org-body">
+            <div class="org-subtabs" role="tablist" aria-label="Organization sections">
+              <button type="button" class="org-subtab is-active" data-org-tab="data" role="tab" aria-selected="true">Organization Data</button>
+              <button type="button" class="org-subtab" data-org-tab="portal" role="tab" aria-selected="false">Portal Menus</button>
+              <button type="button" class="org-subtab" data-org-tab="branch" role="tab" aria-selected="false">Branch Data</button>
+              <button type="button" class="org-subtab" data-org-tab="credits" role="tab" aria-selected="false">Credits</button>
+              <button type="button" class="org-subtab" data-org-tab="document" role="tab" aria-selected="false">Organization Document</button>
+            </div>
+
+            <section class="org-pane is-active" data-org-pane="data" aria-labelledby="orgDataTitle">
+              <article class="org-card">
+                <h1 class="org-card__title" id="orgDataTitle">Organization Data &amp; Subscription</h1>
+                <div class="org-data">
+                  <div class="org-logo-col">
+                    <div class="org-logo-wrap">
+                      <div class="org-logo">
+                        <img src="assets/favicon-mark.png" alt="Organization logo" width="140" height="140">
+                      </div>
+                      <button type="button" class="org-logo-edit" id="orgLogoEdit" aria-label="Upload organization picture">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+                      </button>
+                      <input type="file" id="orgLogoInput" accept="image/*" hidden>
+                    </div>
+                    <p class="org-logo-label">Upload Organization Picture</p>
+                  </div>
+
+                  <div class="org-fields">
+                    <div class="org-field">
+                      <span>Organization Name</span>
+                      <strong>CA CloudDesk - Demo Account</strong>
+                    </div>
+                    <div class="org-field">
+                      <span>Address</span>
+                      <strong>159 &amp; 160 Balaji Enclave, Govindpuram Ghaziabad UP-201013</strong>
+                    </div>
+                    <div class="org-field">
+                      <span>Country</span>
+                      <strong>INDIA</strong>
+                    </div>
+                    <div class="org-field">
+                      <span>State</span>
+                      <strong>UTTAR PRADESH</strong>
+                    </div>
+                    <div class="org-field">
+                      <span>City</span>
+                      <strong>GHAZIABAD</strong>
+                    </div>
+                    <div class="org-field">
+                      <span>Profession</span>
+                      <strong>Accountant</strong>
+                    </div>
+                    <div class="org-field">
+                      <span>Subscription Plan</span>
+                      <strong><button type="button" class="org-link" id="orgPlanLink">GOLD+ (30GB)</button></strong>
+                    </div>
+                    <div class="org-field">
+                      <span>Plan Size</span>
+                      <strong>100GB <button type="button" class="org-link" id="orgRequestUpdate">Request update</button></strong>
+                    </div>
+                    <div class="org-field">
+                      <span>Left Size</span>
+                      <strong>97.87GB</strong>
+                    </div>
+                    <div class="org-field">
+                      <span>Used Size</span>
+                      <strong>2.13 GB</strong>
+                    </div>
+                    <div class="org-field">
+                      <span>Valid Till</span>
+                      <strong>21/07/2027</strong>
+                    </div>
+                    <div class="org-field">
+                      <span>Allowed IPs</span>
+                      <strong>Not configured <button type="button" class="org-link" id="orgSetIp">Set IP</button></strong>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </section>
+
+            <section class="org-pane" data-org-pane="portal" hidden>
+              <article class="org-card org-card--portal">
+                <h1 class="org-card__title" id="orgPortalTitle">Customer Portal Menus</h1>
+                <p class="org-portal-note">Menus turned off here are hidden for every customer in this organization. Dashboard is always visible and cannot be turned off.</p>
+                <ul class="org-portal-list" id="orgPortalList" aria-labelledby="orgPortalTitle">
+                  <li>
+                    <span>All Services</span>
+                    <button type="button" class="org-portal-toggle is-on" role="switch" aria-checked="true" data-portal-menu="all-services"><span class="org-portal-toggle__label">On</span></button>
+                  </li>
+                  <li>
+                    <span>My Tasks</span>
+                    <button type="button" class="org-portal-toggle is-on" role="switch" aria-checked="true" data-portal-menu="my-tasks"><span class="org-portal-toggle__label">On</span></button>
+                  </li>
+                  <li>
+                    <span>Appointments</span>
+                    <button type="button" class="org-portal-toggle is-on" role="switch" aria-checked="true" data-portal-menu="appointments"><span class="org-portal-toggle__label">On</span></button>
+                  </li>
+                  <li>
+                    <span>Documents</span>
+                    <button type="button" class="org-portal-toggle is-on" role="switch" aria-checked="true" data-portal-menu="documents"><span class="org-portal-toggle__label">On</span></button>
+                  </li>
+                  <li>
+                    <span>Form 15 CA/CB</span>
+                    <button type="button" class="org-portal-toggle is-on" role="switch" aria-checked="true" data-portal-menu="form-15"><span class="org-portal-toggle__label">On</span></button>
+                  </li>
+                  <li>
+                    <span>Service Requests</span>
+                    <button type="button" class="org-portal-toggle is-on" role="switch" aria-checked="true" data-portal-menu="service-requests"><span class="org-portal-toggle__label">On</span></button>
+                  </li>
+                  <li>
+                    <span>Personal Docs Vault</span>
+                    <button type="button" class="org-portal-toggle is-on" role="switch" aria-checked="true" data-portal-menu="personal-docs"><span class="org-portal-toggle__label">On</span></button>
+                  </li>
+                  <li>
+                    <span>Create Documents</span>
+                    <button type="button" class="org-portal-toggle is-on" role="switch" aria-checked="true" data-portal-menu="create-documents"><span class="org-portal-toggle__label">On</span></button>
+                  </li>
+                  <li>
+                    <span>Chat</span>
+                    <button type="button" class="org-portal-toggle is-on" role="switch" aria-checked="true" data-portal-menu="chat"><span class="org-portal-toggle__label">On</span></button>
+                  </li>
+                  <li>
+                    <span>Switch User</span>
+                    <button type="button" class="org-portal-toggle is-on" role="switch" aria-checked="true" data-portal-menu="switch-user"><span class="org-portal-toggle__label">On</span></button>
+                  </li>
+                  <li>
+                    <span>Invoices</span>
+                    <button type="button" class="org-portal-toggle is-on" role="switch" aria-checked="true" data-portal-menu="invoices"><span class="org-portal-toggle__label">On</span></button>
+                  </li>
+                  <li>
+                    <span>Make Payments</span>
+                    <button type="button" class="org-portal-toggle is-on" role="switch" aria-checked="true" data-portal-menu="make-payments"><span class="org-portal-toggle__label">On</span></button>
+                  </li>
+                  <li>
+                    <span>Ledger</span>
+                    <button type="button" class="org-portal-toggle is-on" role="switch" aria-checked="true" data-portal-menu="ledger"><span class="org-portal-toggle__label">On</span></button>
+                  </li>
+                  <li>
+                    <span>Feedback</span>
+                    <button type="button" class="org-portal-toggle is-on" role="switch" aria-checked="true" data-portal-menu="feedback"><span class="org-portal-toggle__label">On</span></button>
+                  </li>
+                </ul>
+              </article>
+            </section>
+
+            <section class="org-pane" data-org-pane="branch" hidden>
+              <article class="org-card org-card--branch">
+                <h2 class="org-branch-title">My Branch</h2>
+                <div class="org-branch-toolbar">
+                  <div class="org-branch-toolbar__left">
+                    <div class="org-filter org-state-filter" id="orgStateFilter">
+                      <span>Filters:</span>
+                      <div class="org-state-combo">
+                        <input type="text" id="orgBranchState" class="org-state-combo__input" placeholder="State" aria-label="Filter by state" autocomplete="off" aria-autocomplete="list" aria-expanded="false" aria-controls="orgStateList">
+                        <svg class="org-state-combo__search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                        <ul class="org-state-combo__list" id="orgStateList" role="listbox" hidden></ul>
+                      </div>
+                    </div>
+                    <div class="org-cols-wrap">
+                      <button type="button" class="org-icon-btn org-icon-btn--cols" id="orgBranchCols" aria-label="Columns" title="Columns" aria-expanded="false" aria-controls="orgColsMenu">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                          <rect x="5" y="4" width="14" height="16" rx="1.5"/><path d="M5 9.33h14M5 14.67h14"/><path d="M8 6.85h5M8 12h5M8 17.15h5"/>
+                        </svg>
+                        <svg class="org-icon-btn__caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                      </button>
+                      <div class="org-cols-menu" id="orgColsMenu" hidden role="dialog" aria-label="Columns">
+                        <div class="org-cols-menu__head">
+                          <span class="org-cols-menu__title">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                              <rect x="5" y="4" width="14" height="16" rx="1.5"/><path d="M5 9.33h14M5 14.67h14"/><path d="M8 6.85h5M8 12h5M8 17.15h5"/>
+                            </svg>
+                            Columns
+                          </span>
+                          <button type="button" class="org-cols-menu__all" id="orgColsSelectAll">Select All</button>
+                        </div>
+                        <ul class="org-cols-menu__list" id="orgColsList">
+                          <li><span class="org-cols-drag" aria-hidden="true"></span><label><input type="checkbox" data-col="sno" checked> S. No.</label></li>
+                          <li><span class="org-cols-drag" aria-hidden="true"></span><label><input type="checkbox" data-col="name" checked> Name</label></li>
+                          <li><span class="org-cols-drag" aria-hidden="true"></span><label><input type="checkbox" data-col="2fa" checked> 2FA Enabled</label></li>
+                          <li><span class="org-cols-drag" aria-hidden="true"></span><label><input type="checkbox" data-col="tag" checked> Tag Line</label></li>
+                          <li><span class="org-cols-drag" aria-hidden="true"></span><label><input type="checkbox" data-col="gst" checked> GST NO.</label></li>
+                          <li><span class="org-cols-drag" aria-hidden="true"></span><label><input type="checkbox" data-col="pan" checked> PAN NO.</label></li>
+                          <li><span class="org-cols-drag" aria-hidden="true"></span><label><input type="checkbox" data-col="udyam" checked> Udyam Reg No</label></li>
+                          <li><span class="org-cols-drag" aria-hidden="true"></span><label><input type="checkbox" data-col="mobile" checked> Mobile</label></li>
+                          <li><span class="org-cols-drag" aria-hidden="true"></span><label><input type="checkbox" data-col="email"> Email</label></li>
+                          <li><span class="org-cols-drag" aria-hidden="true"></span><label><input type="checkbox" data-col="city" checked> City</label></li>
+                          <li><span class="org-cols-drag" aria-hidden="true"></span><label><input type="checkbox" data-col="state"> State</label></li>
+                          <li><span class="org-cols-drag" aria-hidden="true"></span><label><input type="checkbox" data-col="pincode"> Pincode</label></li>
+                          <li><span class="org-cols-drag" aria-hidden="true"></span><label><input type="checkbox" data-col="address"> Permanent Address</label></li>
+                          <li><span class="org-cols-drag" aria-hidden="true"></span><label><input type="checkbox" data-col="default" checked> Default Branch</label></li>
+                          <li><span class="org-cols-drag" aria-hidden="true"></span><label><input type="checkbox" data-col="invoice-init"> Invoice initials</label></li>
+                          <li><span class="org-cols-drag" aria-hidden="true"></span><label><input type="checkbox" data-col="invoice-type"> Invoice Number Type</label></li>
+                          <li><span class="org-cols-drag" aria-hidden="true"></span><label><input type="checkbox" data-col="other"> Other Text</label></li>
+                          <li><span class="org-cols-drag" aria-hidden="true"></span><label><input type="checkbox" data-col="actions" checked> Take Actions</label></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <button type="button" class="org-icon-btn org-icon-btn--add" id="orgBranchAdd" aria-label="Add branch" title="Add branch">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                  </button>
+                </div>
+
+                <div class="org-table-wrap">
+                  <table class="org-table org-table--branch" id="orgBranchTable">
+                    <thead>
+                      <tr>
+                        <th data-col="sno">S. No.</th>
+                        <th data-col="name">Name</th>
+                        <th data-col="2fa">2FA Enabled</th>
+                        <th data-col="tag">Tag Line</th>
+                        <th data-col="gst">GST NO.</th>
+                        <th data-col="pan">PAN NO.</th>
+                        <th data-col="udyam">Udyam Reg No</th>
+                        <th data-col="mobile">Mobile</th>
+                        <th data-col="email" hidden>Email</th>
+                        <th data-col="city">City</th>
+                        <th data-col="state" hidden>State</th>
+                        <th data-col="pincode" hidden>Pincode</th>
+                        <th data-col="address" hidden>Permanent Address</th>
+                        <th data-col="default">Default Branch</th>
+                        <th data-col="invoice-init" hidden>Invoice initials</th>
+                        <th data-col="invoice-type" hidden>Invoice Number Type</th>
+                        <th data-col="other" hidden>Other Text</th>
+                        <th data-col="actions">Take Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td data-col="sno">1</td>
+                        <td data-col="name">CA CloudDesk</td>
+                        <td data-col="2fa">Yes</td>
+                        <td data-col="tag">Demo Account</td>
+                        <td data-col="gst">--</td>
+                        <td data-col="pan">AABCT1234D</td>
+                        <td data-col="udyam">--</td>
+                        <td data-col="mobile">9540175500</td>
+                        <td data-col="email" hidden>--</td>
+                        <td data-col="city">GHAZIABAD</td>
+                        <td data-col="state" hidden>UTTAR PRADESH</td>
+                        <td data-col="pincode" hidden>201013</td>
+                        <td data-col="address" hidden>--</td>
+                        <td data-col="default">Yes</td>
+                        <td data-col="invoice-init" hidden>--</td>
+                        <td data-col="invoice-type" hidden>--</td>
+                        <td data-col="other" hidden>--</td>
+                        <td data-col="actions" class="org-row-actions">
+                          <button type="button" class="org-act org-act--edit" aria-label="Edit" data-branch-edit><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
+                          <button type="button" class="org-act org-act--del" aria-label="Delete" data-branch-del><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M10 7V5a1 1 0 011-1h2a1 1 0 011 1v2"/><path d="M6 7l1 13a2 2 0 002 2h6a2 2 0 002-2l1-13"/><path d="M10 11v7M14 11v7"/></svg></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td data-col="sno">2</td>
+                        <td data-col="name">Bluemon Wealth Management</td>
+                        <td data-col="2fa">No</td>
+                        <td data-col="tag">--</td>
+                        <td data-col="gst">09BUNPB0614B</td>
+                        <td data-col="pan">--</td>
+                        <td data-col="udyam">--</td>
+                        <td data-col="mobile">9876543210</td>
+                        <td data-col="email" hidden>--</td>
+                        <td data-col="city">AGRA</td>
+                        <td data-col="state" hidden>UTTAR PRADESH</td>
+                        <td data-col="pincode" hidden>--</td>
+                        <td data-col="address" hidden>--</td>
+                        <td data-col="default">No</td>
+                        <td data-col="invoice-init" hidden>--</td>
+                        <td data-col="invoice-type" hidden>--</td>
+                        <td data-col="other" hidden>--</td>
+                        <td data-col="actions" class="org-row-actions">
+                          <button type="button" class="org-act org-act--edit" aria-label="Edit" data-branch-edit><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
+                          <button type="button" class="org-act org-act--del" aria-label="Delete" data-branch-del><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M10 7V5a1 1 0 011-1h2a1 1 0 011 1v2"/><path d="M6 7l1 13a2 2 0 002 2h6a2 2 0 002-2l1-13"/><path d="M10 11v7M14 11v7"/></svg></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td data-col="sno">3</td>
+                        <td data-col="name">Law Seva Management Private Limited</td>
+                        <td data-col="2fa">Yes</td>
+                        <td data-col="tag">Tax Professionals</td>
+                        <td data-col="gst">09AAECL1834A</td>
+                        <td data-col="pan">AABCL5678E</td>
+                        <td data-col="udyam">UDYAM-UP-01-0001234</td>
+                        <td data-col="mobile">9810012345</td>
+                        <td data-col="email" hidden>--</td>
+                        <td data-col="city">NEW DELHI</td>
+                        <td data-col="state" hidden>DELHI</td>
+                        <td data-col="pincode" hidden>--</td>
+                        <td data-col="address" hidden>--</td>
+                        <td data-col="default">No</td>
+                        <td data-col="invoice-init" hidden>--</td>
+                        <td data-col="invoice-type" hidden>--</td>
+                        <td data-col="other" hidden>--</td>
+                        <td data-col="actions" class="org-row-actions">
+                          <button type="button" class="org-act org-act--edit" aria-label="Edit" data-branch-edit><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
+                          <button type="button" class="org-act org-act--del" aria-label="Delete" data-branch-del><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M10 7V5a1 1 0 011-1h2a1 1 0 011 1v2"/><path d="M6 7l1 13a2 2 0 002 2h6a2 2 0 002-2l1-13"/><path d="M10 11v7M14 11v7"/></svg></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td data-col="sno">4</td>
+                        <td data-col="name">saurabh bharadwaj</td>
+                        <td data-col="2fa">No</td>
+                        <td data-col="tag">--</td>
+                        <td data-col="gst">--</td>
+                        <td data-col="pan">--</td>
+                        <td data-col="udyam">--</td>
+                        <td data-col="mobile">9999988888</td>
+                        <td data-col="email" hidden>--</td>
+                        <td data-col="city">MEERUT</td>
+                        <td data-col="state" hidden>UTTAR PRADESH</td>
+                        <td data-col="pincode" hidden>--</td>
+                        <td data-col="address" hidden>--</td>
+                        <td data-col="default">No</td>
+                        <td data-col="invoice-init" hidden>--</td>
+                        <td data-col="invoice-type" hidden>--</td>
+                        <td data-col="other" hidden>--</td>
+                        <td data-col="actions" class="org-row-actions">
+                          <button type="button" class="org-act org-act--edit" aria-label="Edit" data-branch-edit><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
+                          <button type="button" class="org-act org-act--del" aria-label="Delete" data-branch-del><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M10 7V5a1 1 0 011-1h2a1 1 0 011 1v2"/><path d="M6 7l1 13a2 2 0 002 2h6a2 2 0 002-2l1-13"/><path d="M10 11v7M14 11v7"/></svg></button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="org-foot">
+                  <div class="org-pager">
+                    <button type="button" disabled aria-label="Previous">‹</button>
+                    <span class="org-pager__num">1</span>
+                    <span>of 1</span>
+                    <button type="button" disabled aria-label="Next">›</button>
+                  </div>
+                  <div class="org-count">4 / 4</div>
+                </div>
+              </article>
+            </section>
+
+            <section class="org-pane" data-org-pane="credits" hidden>
+              <article class="org-card">
+                <div class="org-credits-top">
+                  <h2 class="org-credits-balance">Total Available Credits : <span id="orgCreditBalance">40.00</span>
+                    <span class="org-coin" aria-hidden="true">★</span>
+                  </h2>
+
+                  <div class="org-credit-form">
+                    <label class="org-credit-field">
+                      <span>Add credits to Balance</span>
+                      <input type="number" id="orgCreditAmount" min="1" step="1" placeholder="">
+                    </label>
+                    <div class="org-credit-quick">
+                      <button type="button" data-credit-add="500">+ 500</button>
+                      <button type="button" data-credit-add="800">+ 800</button>
+                      <button type="button" data-credit-add="1000">+ 1000</button>
+                      <button type="button" data-credit-add="1200">+ 1200</button>
+                    </div>
+                    <label class="org-credit-field">
+                      <span>Coupon</span>
+                      <input type="text" id="orgCoupon" placeholder="Coupon">
+                    </label>
+                    <button type="button" class="org-credit-submit" id="orgAddCredits">Add credits to Balance</button>
+                  </div>
+                </div>
+
+                <div class="org-tx-head">
+                  <h3>Transaction History</h3>
+                  <div class="org-tx-tools">
+                    <div class="org-tx-range" id="orgTxRangeWrap">
+                      <button type="button" class="org-tx-range__trigger" id="orgTxRangeBtn" aria-haspopup="dialog" aria-expanded="false" aria-label="Month range">
+                        <span class="org-tx-range__text is-placeholder" id="orgTxRangeText">Start month → End month</span>
+                        <svg class="org-tx-range__cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>
+                      </button>
+                      <div class="org-monthpicker" id="orgMonthpicker" hidden role="dialog" aria-label="Choose month range">
+                        <div class="org-monthpicker__panels">
+                          <div class="org-month-panel">
+                            <div class="org-month-panel__head">
+                              <button type="button" class="org-month-nav" data-org-nav="prev-year" aria-label="Previous year">&lt;&lt;</button>
+                              <span class="org-month-panel__label" id="orgYearLeft">2026</span>
+                            </div>
+                            <div class="org-month-grid" id="orgMonthLeft"></div>
+                          </div>
+                          <div class="org-month-panel">
+                            <div class="org-month-panel__head">
+                              <span class="org-month-panel__label" id="orgYearRight">2027</span>
+                              <button type="button" class="org-month-nav" data-org-nav="next-year" aria-label="Next year">&gt;&gt;</button>
+                            </div>
+                            <div class="org-month-grid" id="orgMonthRight"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <button type="button" class="org-icon-btn org-icon-btn--dl" id="orgTxDownload" aria-label="Download" title="Download">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                        <path d="M7.5 17a4.5 4.5 0 01.4-9 5.5 5.5 0 0110.4 1.6A3.5 3.5 0 0118 17"/>
+                        <path d="M12 11v7M9.5 15.5L12 18l2.5-2.5"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="org-tx-list" id="orgTxList">
+                  <article class="org-tx">
+                    <div class="org-tx__when"><strong>20/11/2025</strong><span>12:02 AM</span></div>
+                    <div class="org-tx__desc">GSTIN Notice Payment - LAKHMAN TRADERS</div>
+                    <div class="org-tx__amt">25 <span class="org-tx__c">c</span></div>
+                    <div class="org-tx__type">DEBIT</div>
+                    <div class="org-tx__status is-ok">SUCCESS!</div>
+                  </article>
+                  <article class="org-tx">
+                    <div class="org-tx__when"><strong>18/11/2025</strong><span>09:14 AM</span></div>
+                    <div class="org-tx__desc">Credits Top-up</div>
+                    <div class="org-tx__amt">1000 <span class="org-tx__c">c</span></div>
+                    <div class="org-tx__type">CREDIT</div>
+                    <div class="org-tx__status is-ok">SUCCESS!</div>
+                  </article>
+                  <article class="org-tx">
+                    <div class="org-tx__when"><strong>12/11/2025</strong><span>04:40 PM</span></div>
+                    <div class="org-tx__desc">WhatsApp Campaign Credits</div>
+                    <div class="org-tx__amt">120 <span class="org-tx__c">c</span></div>
+                    <div class="org-tx__type">DEBIT</div>
+                    <div class="org-tx__status is-ok">SUCCESS!</div>
+                  </article>
+                  <article class="org-tx">
+                    <div class="org-tx__when"><strong>05/11/2025</strong><span>11:22 AM</span></div>
+                    <div class="org-tx__desc">Coupon Redeem Attempt</div>
+                    <div class="org-tx__amt">500 <span class="org-tx__c">c</span></div>
+                    <div class="org-tx__type">CREDIT</div>
+                    <div class="org-tx__status is-fail">FAILED!</div>
+                  </article>
+                  <article class="org-tx">
+                    <div class="org-tx__when"><strong>01/11/2025</strong><span>08:05 AM</span></div>
+                    <div class="org-tx__desc">SMS Notification Bundle</div>
+                    <div class="org-tx__amt">40 <span class="org-tx__c">c</span></div>
+                    <div class="org-tx__type">DEBIT</div>
+                    <div class="org-tx__status is-ok">SUCCESS!</div>
+                  </article>
+                  <article class="org-tx">
+                    <div class="org-tx__when"><strong>28/10/2025</strong><span>07:18 PM</span></div>
+                    <div class="org-tx__desc">Email Credits Purchase</div>
+                    <div class="org-tx__amt">800 <span class="org-tx__c">c</span></div>
+                    <div class="org-tx__type">CREDIT</div>
+                    <div class="org-tx__status is-ok">SUCCESS!</div>
+                  </article>
+                  <article class="org-tx">
+                    <div class="org-tx__when"><strong>20/10/2025</strong><span>02:33 PM</span></div>
+                    <div class="org-tx__desc">GSTIN Notice Payment - DEMO CLIENT</div>
+                    <div class="org-tx__amt">25 <span class="org-tx__c">c</span></div>
+                    <div class="org-tx__type">DEBIT</div>
+                    <div class="org-tx__status is-ok">SUCCESS!</div>
+                  </article>
+                </div>
+
+                <div class="org-foot">
+                  <div class="org-pager">
+                    <button type="button" disabled aria-label="Previous">‹</button>
+                    <input type="text" value="1" aria-label="Page" class="org-pager__input">
+                    <span>of 2</span>
+                    <button type="button" aria-label="Next">›</button>
+                  </div>
+                  <div class="org-count">7 / 13</div>
+                </div>
+              </article>
+            </section>
+
+            <section class="org-pane" data-org-pane="document" hidden>
+              <article class="org-card">
+                <div class="org-docs-head">
+                  <h2 class="org-docs-title">Documents</h2>
+                  <div class="org-docs-controls">
+                    <div class="org-docs-actions">
+                      <button type="button" class="org-docs-icon-btn" id="orgDocUpload" aria-label="Upload" title="Upload">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M12 16V5"/>
+                          <path d="M8 9l4-4 4 4"/>
+                          <path d="M4 19h16"/>
+                        </svg>
+                      </button>
+                      <button type="button" class="org-docs-icon-btn" id="orgDocNew" aria-label="Add" title="Add">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                          <path d="M12 5v14M5 12h14"/>
+                        </svg>
+                      </button>
+                      <label class="org-docs-switch" title="Table view">
+                        <input type="checkbox" id="orgDocTableView" checked>
+                        <span class="org-docs-switch__track">
+                          <span class="org-docs-switch__label">Table</span>
+                          <span class="org-docs-switch__knob" aria-hidden="true"></span>
+                        </span>
+                      </label>
+                    </div>
+                    <div class="org-docs-filters">
+                      <div class="org-docs-select">
+                        <select id="orgDocFilter" aria-label="Document filter">
+                          <option>Employee</option>
+                          <option>Organization</option>
+                          <option>Policy</option>
+                        </select>
+                      </div>
+                      <input type="search" id="orgDocSearch" placeholder="search" aria-label="Search documents">
+                    </div>
+                  </div>
+                </div>
+
+                <p class="org-docs-path">Location : / <button type="button" class="org-link">CA CloudDesk - Demo Account</button></p>
+
+                <div class="org-docs-grid" id="orgDocsGrid" hidden>
+                  <button type="button" class="org-doc-tile org-doc-tile--pdf" data-doc-card="Leave Policy.pdf" aria-label="Leave Policy.pdf">
+                    <span class="org-doc-tile__icon" aria-hidden="true">
+                      <svg viewBox="0 0 72 88" fill="none">
+                        <path d="M10 4h36l16 16v60a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4z" fill="#eef2f7" stroke="#d7dee8"/>
+                        <path d="M46 4v16h16" fill="#dbe3ee" stroke="#d7dee8"/>
+                        <rect x="4" y="40" width="64" height="22" fill="#ef4444"/>
+                        <text x="36" y="56" text-anchor="middle" font-size="14" font-weight="800" fill="#fff" font-family="Inter, Arial, sans-serif">PDF</text>
+                      </svg>
+                    </span>
+                    <span class="org-doc-tile__name">Leave Polic...</span>
+                  </button>
+                  <button type="button" class="org-doc-tile org-doc-tile--folder" data-doc-card="Circular" aria-label="Circular folder">
+                    <span class="org-doc-tile__icon" aria-hidden="true">
+                      <svg viewBox="0 0 88 72" fill="none">
+                        <path d="M8 22a6 6 0 0 1 6-6h18l6 6h36a6 6 0 0 1 6 6v34a6 6 0 0 1-6 6H14a6 6 0 0 1-6-6V22z" fill="#5dade2"/>
+                        <path d="M8 28h72v-4a6 6 0 0 0-6-6H38l-6-6H14a6 6 0 0 0-6 6v10z" fill="#85c1e9"/>
+                      </svg>
+                    </span>
+                    <span class="org-doc-tile__name">Circular</span>
+                  </button>
+                </div>
+
+                <div class="org-table-wrap" id="orgDocsTableWrap">
+                  <table class="org-table org-table--docs">
+                    <thead>
+                      <tr>
+                        <th>File Name</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="orgDocBody">
+                      <tr data-doc-row data-doc-type="folder">
+                        <td>
+                          <div class="org-file" data-doc-view>
+                            <span class="org-file__drag" aria-hidden="true"></span>
+                            <span class="org-file__icon org-file__icon--folder" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/></svg>
+                            </span>
+                            <div class="org-file__info">
+                              <strong data-doc-name>Circular</strong>
+                              <div class="org-file__meta"><span>0</span><span>0</span><span>0</span></div>
+                            </div>
+                          </div>
+                          <div class="org-file-edit" data-doc-edit-ui hidden>
+                            <input type="text" class="org-file-edit__input" data-doc-input value="Circular" aria-label="Rename file">
+                            <button type="button" class="org-file-edit__ok" data-doc-save aria-label="Save">✓</button>
+                            <button type="button" class="org-file-edit__cancel" data-doc-cancel aria-label="Cancel">×</button>
+                          </div>
+                        </td>
+                        <td class="org-row-actions">
+                          <button type="button" class="org-act org-act--dl is-disabled" aria-label="Download" data-doc-dl disabled>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M8 11l4 4 4-4"/><path d="M5 21h14M5 21v-2M19 21v-2"/></svg>
+                          </button>
+                          <button type="button" class="org-act org-act--return" aria-label="Return" data-doc-share>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14H4V9"/><path d="M20 20v-6a5 5 0 00-5-5H4"/></svg>
+                          </button>
+                          <button type="button" class="org-act org-act--del" aria-label="Delete" data-doc-del>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M10 7V5a1 1 0 011-1h2a1 1 0 011 1v2"/><path d="M6 7l1 13a2 2 0 002 2h6a2 2 0 002-2l1-13"/><path d="M10 11v7M14 11v7"/></svg>
+                          </button>
+                          <button type="button" class="org-act org-act--edit" aria-label="Edit" data-doc-edit>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr data-doc-row data-doc-type="file">
+                        <td>
+                          <div class="org-file" data-doc-view>
+                            <span class="org-file__drag" aria-hidden="true"></span>
+                            <span class="org-file__icon org-file__icon--file" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 3h7l5 5v13a1 1 0 01-1 1H7a1 1 0 01-1-1V4a1 1 0 011-1z"/><path d="M14 3v5h5"/></svg>
+                            </span>
+                            <div class="org-file__info">
+                              <strong data-doc-name>Leave Policy.pdf</strong>
+                            </div>
+                          </div>
+                          <div class="org-file-edit" data-doc-edit-ui hidden>
+                            <input type="text" class="org-file-edit__input" data-doc-input value="Leave Policy.pdf" aria-label="Rename file">
+                            <button type="button" class="org-file-edit__ok" data-doc-save aria-label="Save">✓</button>
+                            <button type="button" class="org-file-edit__cancel" data-doc-cancel aria-label="Cancel">×</button>
+                          </div>
+                        </td>
+                        <td class="org-row-actions">
+                          <button type="button" class="org-act org-act--dl" aria-label="Download" data-doc-dl>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M8 11l4 4 4-4"/><path d="M5 21h14M5 21v-2M19 21v-2"/></svg>
+                          </button>
+                          <button type="button" class="org-act org-act--return" aria-label="Return" data-doc-share>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14H4V9"/><path d="M20 20v-6a5 5 0 00-5-5H4"/></svg>
+                          </button>
+                          <button type="button" class="org-act org-act--del" aria-label="Delete" data-doc-del>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M10 7V5a1 1 0 011-1h2a1 1 0 011 1v2"/><path d="M6 7l1 13a2 2 0 002 2h6a2 2 0 002-2l1-13"/><path d="M10 11v7M14 11v7"/></svg>
+                          </button>
+                          <button type="button" class="org-act org-act--edit" aria-label="Edit" data-doc-edit>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </article>
+            </section>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="org-modal" id="orgFolderModal" hidden aria-hidden="true">
+    <div class="org-modal__overlay" data-folder-close></div>
+    <div class="org-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="orgFolderModalTitle">
+      <header class="org-modal__head">
+        <h2 id="orgFolderModalTitle">Create A new Folder</h2>
+        <button type="button" class="org-modal__close" data-folder-close aria-label="Close">×</button>
+      </header>
+      <form class="org-modal__body" id="orgFolderForm" novalidate>
+        <div class="org-folder-field">
+          <label for="orgFolderName">Folder Name :</label>
+          <input type="text" id="orgFolderName" placeholder="Folder Name" autocomplete="off" required>
+        </div>
+        <button type="submit" class="org-folder-create" id="orgFolderCreate">Create</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="org-loc-modal" id="orgLocationModal" hidden aria-hidden="true">
+    <div class="org-loc-modal__overlay" data-location-close></div>
+    <div class="org-loc-modal__card" role="dialog" aria-modal="true" aria-label="Location path">
+      <button type="button" class="org-loc-modal__close" data-location-close aria-label="Close">×</button>
+      <p class="org-loc-modal__text">
+        <span>Location</span>
+        <strong>:</strong>
+        <em>/</em>
+        <button type="button" class="org-link">CA CloudDesk - Demo Account</button>
+      </p>
+    </div>
+  </div>
+
+  <div class="org-popconfirm" id="orgDeleteConfirm" hidden role="dialog" aria-label="Delete confirmation">
+    <div class="org-popconfirm__inner">
+      <div class="org-popconfirm__msg">
+        <span class="org-popconfirm__warn" aria-hidden="true">!</span>
+        <span>Are you sure to delete this?</span>
+      </div>
+      <div class="org-popconfirm__actions">
+        <button type="button" class="org-popconfirm__no" id="orgDeleteNo">No</button>
+        <button type="button" class="org-popconfirm__yes" id="orgDeleteYes">Yes</button>
+      </div>
+    </div>
+    <span class="org-popconfirm__arrow" aria-hidden="true"></span>
+  </div>
+
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/organization.js?v=15"></script>
+</body>
+</html>

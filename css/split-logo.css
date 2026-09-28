@@ -1,0 +1,39 @@
+.sidebar__brand-split {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  flex-shrink: 0;
+}
+.sidebar__brand-mark,
+.sidebar__brand-wordmark {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: filter .2s ease, color .2s ease;
+}
+.sidebar__brand-mark {
+  line-height: 0;
+  flex-shrink: 0;
+}
+.sidebar__brand-wordmark {
+  font-family: Inter, Segoe UI, Helvetica, Arial, sans-serif;
+  font-size: clamp(16px, 2.2vw, 20px);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1;
+  white-space: nowrap;
+}
+.sidebar__logo-svg--mark {
+  display: block;
+  height: 32px;
+  width: 32px;
+}
+.sidebar__logo-time { color: #083530; }
+.sidebar__logo-erp { color: #25b7a7; }
+.sidebar__brand-mark:hover,
+.sidebar__brand-wordmark:hover {
+  filter: drop-shadow(0 4px 12px rgba(37, 183, 167, .2));
+}
+.sidebar__brand-wordmark:hover .sidebar__logo-erp { color: #1a9e8f; }

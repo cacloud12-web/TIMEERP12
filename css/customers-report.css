@@ -1,0 +1,171 @@
+/* Customers Report — TimeERP */
+.cr-page {
+  padding: 16px 20px 28px;
+  background: #f0f2f5;
+  min-height: 100%;
+  margin: -16px calc(var(--content-pad-x, 16px) * -1) -24px;
+}
+.cr-back-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.cr-back {
+  width: 28px; height: 28px; border: none; border-radius: 6px;
+  background: #25B7A7; color: #fff;
+  display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer; text-decoration: none;
+}
+.cr-back:hover { background: #1FA896; }
+.cr-back svg { width: 14px; height: 14px; }
+.cr-back-title { font-size: 15px; font-weight: 600; color: #334155; }
+
+.cr-card {
+  background: #fff; border: 1px solid #e5e7eb; border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, .04);
+  padding: 18px 20px; margin-bottom: 16px;
+}
+.cr-card__head {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 18px;
+}
+.cr-card__title { font-size: 18px; font-weight: 600; color: #25B7A7; margin: 0; }
+.cr-type-select {
+  margin-left: auto; min-width: 220px; height: 36px; padding: 0 12px;
+  border: 1px solid #d1d5db; border-radius: 6px; font: inherit; font-size: 13px;
+  background: #fff; color: #1e293b;
+}
+.cr-collapse {
+  height: 36px; padding: 0 14px; border: 1px solid #d1d5db; border-radius: 6px;
+  background: #fff; font-size: 13px; font-weight: 500; color: #334155;
+  cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+}
+.cr-collapse svg { width: 14px; height: 14px; transition: transform .2s; }
+.cr-card.is-collapsed .cr-collapse svg { transform: rotate(-90deg); }
+.cr-card.is-collapsed .cr-filters,
+.cr-card.is-collapsed .cr-generate { display: none; }
+
+.cr-filters { max-width: 360px; margin-bottom: 18px; }
+.cr-field label {
+  display: block; font-size: 13px; font-weight: 500; color: #374151; margin-bottom: 6px;
+}
+.cr-month-wrap { position: relative; }
+.cr-month-wrap input {
+  width: 100%; height: 38px; padding: 0 36px 0 12px; border: 1px solid #d1d5db;
+  border-radius: 6px; font: inherit; font-size: 13px; background: #fff;
+  color: #1e293b; box-sizing: border-box; cursor: pointer;
+}
+.cr-month-wrap.is-open input { border-color: #25b7a7; }
+.cr-cal {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  width: 16px; height: 16px; color: #94a3b8; pointer-events: none;
+}
+
+.cr-monthpicker {
+  position: absolute; z-index: 40; top: calc(100% + 6px); left: 0;
+  background: #fff; border: 1px solid #e5e7eb; border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, .12); padding: 12px;
+  width: min(420px, 92vw);
+}
+.cr-monthpicker__panels { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.cr-month-panel__head {
+  display: flex; align-items: center; gap: 6px; margin-bottom: 10px;
+}
+.cr-month-panel__head button {
+  width: 28px; height: 28px; border: none; background: transparent;
+  color: #64748b; border-radius: 4px; cursor: pointer; font-size: 12px;
+}
+.cr-month-panel__head button:hover { background: #f1f5f9; color: #25b7a7; }
+.cr-month-panel__label {
+  flex: 1; text-align: center; font-size: 14px; font-weight: 700; color: #1e3a5f;
+}
+.cr-month-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;
+}
+.cr-month-btn {
+  height: 34px; border: none; border-radius: 4px; background: transparent;
+  font-size: 13px; color: #1e293b; cursor: pointer;
+}
+.cr-month-btn:hover { background: #e6f4ff; }
+.cr-month-btn.is-selected { background: #25b7a7; color: #fff; font-weight: 600; }
+.cr-month-btn.is-in-range { background: #e6f4ff; }
+
+.cr-generate { display: flex; justify-content: center; }
+.cr-btn {
+  height: 40px; padding: 0 28px; border: none; border-radius: 6px;
+  background: #25B7A7; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer;
+}
+.cr-btn:hover { background: #1FA896; }
+
+.cr-result { display: none; }
+.cr-result.is-visible { display: block; }
+
+.cr-chart-wrap { padding: 8px 4px 12px; }
+.cr-chart {
+  display: grid; grid-template-columns: 40px 1fr; gap: 8px; min-height: 260px;
+}
+.cr-chart__y {
+  display: flex; flex-direction: column; justify-content: space-between;
+  align-items: flex-end; padding: 8px 0 40px;
+  font-size: 11px; color: #94a3b8; font-variant-numeric: tabular-nums;
+}
+.cr-chart__plot {
+  position: relative; border-left: 1px solid #e5e7eb; border-bottom: 1px solid #e5e7eb;
+  padding: 8px 8px 0; min-height: 240px;
+}
+.cr-chart__grid {
+  position: absolute; inset: 8px 8px 40px 0;
+  background-image: repeating-linear-gradient(
+    to top,
+    transparent 0,
+    transparent calc(100% / 4 - 1px),
+    #f1f5f9 calc(100% / 4 - 1px),
+    #f1f5f9 calc(100% / 4)
+  );
+  pointer-events: none;
+}
+.cr-bars {
+  position: relative; z-index: 1; height: calc(100% - 40px);
+  display: flex; align-items: flex-end; justify-content: space-between;
+  padding: 0 4px;
+}
+.cr-bar-col {
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+  height: 100%; flex: 1; position: relative; max-width: 48px;
+}
+.cr-bar {
+  width: 28px; border-radius: 3px 3px 0 0; background: #25b7a7; min-height: 0;
+}
+.cr-bar-label {
+  position: absolute; bottom: -34px; left: 50%; transform: translateX(-50%);
+  font-size: 10px; color: #64748b; white-space: nowrap;
+}
+
+.cr-summary-row {
+  display: flex; align-items: center; gap: 28px; flex-wrap: wrap;
+  padding: 8px 4px 14px; font-size: 14px; font-weight: 600; color: #1e3a5f;
+}
+.cr-excel {
+  margin-left: auto; height: 34px; padding: 0 12px; border: 1px solid #d1d5db;
+  border-radius: 6px; background: #fff; font-size: 12px; font-weight: 700;
+  letter-spacing: .04em; color: #166534; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.cr-excel:hover { background: #f0fdf4; }
+.cr-excel svg { width: 16px; height: 16px; }
+
+.cr-table-wrap {
+  overflow-x: auto; border: 1px solid #e5e7eb; border-radius: 8px;
+}
+.cr-table {
+  width: 100%; border-collapse: collapse; font-size: 13px; min-width: 420px;
+}
+.cr-table th {
+  background: #f1f5f9; color: #1e3a5f; font-weight: 700;
+  text-align: left; padding: 12px 16px;
+}
+.cr-table td {
+  padding: 12px 16px; border-top: 1px solid #e5e7eb; color: #1e293b;
+}
+.cr-table tbody tr:hover { background: #f8fafc; }
+
+@media (max-width: 900px) {
+  .cr-type-select { margin-left: 0; width: 100%; }
+  .cr-monthpicker__panels { grid-template-columns: 1fr; }
+  .cr-filters { max-width: none; }
+}

@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DSC Report | TimeERP CRM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/crm-dsc.css?v=6">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="crm-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="crm-top-clock" id="crmTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn crm-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn crm-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">3</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="crm-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="home.html" class="dropdown__item"><strong>Go to home</strong><span>Module hub overview</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="dsc-page">
+          <div id="dscReportView">
+          <div class="dsc-head">
+            <h1 class="dsc-title">DSC Report</h1>
+            <div class="dsc-tools">
+              <button class="dsc-add" type="button" id="dscAddBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                Add DSC
+              </button>
+              <button class="dsc-excel" type="button" id="dscExcelBtn" title="Export Excel">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 2.75h7.5L19.25 7.5V20.5a.75.75 0 01-.75.75H7a.75.75 0 01-.75-.75V3.5A.75.75 0 017 2.75z" stroke="#217346" stroke-width="1.5" stroke-linejoin="round"/><path d="M14.5 2.75V7.5h4.75" stroke="#217346" stroke-width="1.5" stroke-linejoin="round"/><path d="M9.2 10.2l5.6 7.6M14.8 10.2l-5.6 7.6" stroke="#217346" stroke-width="1.8" stroke-linecap="round"/></svg>
+                EXCEL
+              </button>
+              <div class="dsc-filter-wrap">
+                <button class="dsc-filter" type="button" id="dscFilterBtn" title="Filter" aria-label="Filter" aria-expanded="false">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 5h16l-6 7v5l-4 2v-7L4 5z"/></svg>
+                </button>
+                <div class="dsc-filter-pop" id="dscFilterPop" hidden>
+                  <div class="dsc-filter-pop__head">
+                    <span class="dsc-filter-pop__title">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16l-6 7v5l-4 2v-7L4 5z"/></svg>
+                      Filter
+                    </span>
+                    <button class="dsc-filter-pop__reset" type="button" id="dscFilterReset">Reset</button>
+                  </div>
+                  <div class="dsc-filter-acc" id="dscFilterAcc">
+                    <button class="dsc-filter-acc__btn" type="button" id="dscFilterAccBtn">
+                      <span class="dsc-filter-acc__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+                      Responsible
+                    </button>
+                    <div class="dsc-filter-acc__body" hidden>
+                      <div class="dsc-filter-select" id="dscRespSelect">
+                        <input type="text" id="dscRespInput" placeholder="Responsible" autocomplete="off">
+                        <span class="dsc-filter-select__icon" aria-hidden="true">
+                          <svg class="dsc-filter-select__caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                          <svg class="dsc-filter-select__search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                        </span>
+                        <div class="dsc-filter-select__menu" id="dscRespMenu"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dsc-stats" aria-label="DSC summary" role="group">
+            <button type="button" class="dsc-stat dsc-stat--total is-selected" data-dsc-filter="all" aria-pressed="true">
+              <strong id="dscTotal">2</strong><span>Total</span>
+            </button>
+            <button type="button" class="dsc-stat dsc-stat--active" data-dsc-filter="active" aria-pressed="false">
+              <strong id="dscActive">1</strong><span>Active</span>
+            </button>
+            <button type="button" class="dsc-stat dsc-stat--expiring" data-dsc-filter="expiring" aria-pressed="false">
+              <strong id="dscExpiring">0</strong><span>Expiring In (15 Days)</span>
+            </button>
+            <button type="button" class="dsc-stat dsc-stat--expired" data-dsc-filter="expired" aria-pressed="false">
+              <strong id="dscExpired">1</strong><span>Expired</span>
+            </button>
+          </div>
+
+          <div class="dsc-card">
+            <div class="dsc-table-wrap">
+              <table class="dsc-table" aria-label="DSC report">
+                <thead>
+                  <tr>
+                    <th>Created Date</th>
+                    <th>Expiry Date</th>
+                    <th>DSC Number</th>
+                    <th>Handed Over</th>
+                    <th>Receiver</th>
+                    <th>Services</th>
+                    <th>Branch</th>
+                    <th>Is Handed Over To Client</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="dscTableBody">
+                  <tr data-dsc-status="active">
+                    <td>10/04/2026</td>
+                    <td>07/04/2028 03:42:48 am</td>
+                    <td>1234</td>
+                    <td>Kamal Kant Sharma</td>
+                    <td>Ankit Sharma</td>
+                    <td><a class="dsc-link" href="#" data-view-services>View</a></td>
+                    <td>CA CloudDesk</td>
+                    <td>Yes</td>
+                    <td>
+                      <span class="dsc-actions">
+                        <a class="dsc-act dsc-act--edit" href="#" data-edit-dsc aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15.2 5.3l3.5 3.5"/><path d="M4 20l4.1-.9L18.9 8.3a1.8 1.8 0 00-2.5-2.5L5.6 16.6 4 20z"/></svg></a>
+                        <a class="dsc-act dsc-act--delete" href="#" data-delete-dsc aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2"/><path d="M6.5 7l.8 12.2A1.5 1.5 0 008.8 20.5h6.4a1.5 1.5 0 001.5-1.3L17.5 7"/><path d="M10 11v6M14 11v6"/></svg></a>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr data-dsc-status="expired">
+                    <td>11/04/2026</td>
+                    <td>15/05/2026 22:10:13 pm</td>
+                    <td>1234567890</td>
+                    <td>Kamal Kant Sharma</td>
+                    <td>Ankit Sharma</td>
+                    <td><a class="dsc-link" href="#" data-view-services>View</a></td>
+                    <td>Law Seva Management Private Limited</td>
+                    <td>No</td>
+                    <td>
+                      <span class="dsc-actions">
+                        <a class="dsc-act dsc-act--edit" href="#" data-edit-dsc aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15.2 5.3l3.5 3.5"/><path d="M4 20l4.1-.9L18.9 8.3a1.8 1.8 0 00-2.5-2.5L5.6 16.6 4 20z"/></svg></a>
+                        <a class="dsc-act dsc-act--delete" href="#" data-delete-dsc aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2"/><path d="M6.5 7l.8 12.2A1.5 1.5 0 008.8 20.5h6.4a1.5 1.5 0 001.5-1.3L17.5 7"/><path d="M10 11v6M14 11v6"/></svg></a>
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="dsc-foot">
+              <div class="dsc-pager">
+                <button class="dsc-page-btn" type="button" aria-label="Previous page" disabled>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <span class="dsc-page-num">1</span>
+                <span class="dsc-page-of">of 1</span>
+                <button class="dsc-page-btn" type="button" aria-label="Next page" disabled>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+              </div>
+              <span class="dsc-count" id="dscCount">2 / 2</span>
+            </div>
+          </div>
+          </div>
+
+          <div id="dscAddView" hidden>
+            <div class="dsc-add-head">
+              <h1 class="dsc-add-title">Add DSC</h1>
+              <button class="dsc-view-link" type="button" id="dscViewLink">View DSC</button>
+            </div>
+            <form class="dsc-add-form" id="dscAddForm" autocomplete="off">
+              <div class="dsc-add-grid">
+                <div class="dsc-add-col">
+                  <label class="dsc-field"><span>Client <em>*</em></span>
+                    <div class="dsc-combo dsc-combo--tags" data-combo="client">
+                      <div class="dsc-combo__box">
+                        <span class="dsc-chip">law seva management private limited<button type="button" class="dsc-chip__x" aria-label="Remove">×</button></span>
+                        <input type="text" placeholder="Client">
+                      </div>
+                      <div class="dsc-combo__menu"></div>
+                    </div>
+                  </label>
+                  <label class="dsc-field"><span>Pan No.</span><input type="text" value="FHQPM2001H" placeholder="Pan No."></label>
+                  <label class="dsc-field"><span>Name of DSC Holder</span><input type="text" placeholder="Name Of DSC Holder"></label>
+                  <label class="dsc-field"><span>Email <em>*</em></span><input type="email" value="info@lawseva.com" placeholder="Email"></label>
+                  <label class="dsc-field"><span>Valid From</span>
+                    <div class="dsc-date" data-date>
+                      <input type="text" placeholder="Valid From" readonly>
+                      <button type="button" class="dsc-date__icon" aria-label="Open calendar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></button>
+                    </div>
+                  </label>
+                  <label class="dsc-field"><span>Service</span><input type="text" placeholder="Service"></label>
+                  <label class="dsc-field"><span>Handed Over By</span>
+                    <div class="dsc-combo" data-combo="people">
+                      <div class="dsc-combo__box"><input type="text" placeholder="Handed Over By"><span class="dsc-combo__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></span></div>
+                      <div class="dsc-combo__menu"></div>
+                    </div>
+                  </label>
+                  <label class="dsc-field"><span>Received By <em>*</em></span>
+                    <div class="dsc-combo" data-combo="people">
+                      <div class="dsc-combo__box"><input type="text" placeholder="Received By"><span class="dsc-combo__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></span></div>
+                      <div class="dsc-combo__menu"></div>
+                    </div>
+                  </label>
+                  <label class="dsc-field"><span>Physical Location</span><input type="text" placeholder="Physical Location"></label>
+                  <label class="dsc-field"><span>Category</span>
+                    <div class="dsc-combo" data-combo="category">
+                      <div class="dsc-combo__box"><input type="text" placeholder="Category"><span class="dsc-combo__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></span></div>
+                      <div class="dsc-combo__menu"></div>
+                    </div>
+                  </label>
+                  <label class="dsc-field"><span>DSC Number</span><input type="text" placeholder="DSC Number"></label>
+                </div>
+                <div class="dsc-add-col">
+                  <label class="dsc-field"><span>DSC Type <em>*</em></span>
+                    <div class="dsc-combo" data-combo="type">
+                      <div class="dsc-combo__box"><input type="text" placeholder="DSC Type"><span class="dsc-combo__caret" aria-hidden="true">▾</span></div>
+                      <div class="dsc-combo__menu"></div>
+                    </div>
+                  </label>
+                  <label class="dsc-field"><span>Password</span><input type="password" placeholder="Password"></label>
+                  <label class="dsc-field"><span>DIN No.</span><input type="text" placeholder="DIN No."></label>
+                  <label class="dsc-field"><span>Mobile <em>*</em></span><input type="text" value="9818092280" placeholder="Mobile"></label>
+                  <label class="dsc-field"><span>Valid To</span>
+                    <div class="dsc-date" data-date>
+                      <input type="text" placeholder="Valid To" readonly>
+                      <button type="button" class="dsc-date__icon" aria-label="Open calendar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></button>
+                    </div>
+                  </label>
+                  <label class="dsc-check"><input type="checkbox"><span>Is handed over to client</span></label>
+                  <label class="dsc-field"><span>Handed Over On</span>
+                    <div class="dsc-date" data-date>
+                      <input type="text" placeholder="Handed Over On" readonly>
+                      <button type="button" class="dsc-date__icon" aria-label="Open calendar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></button>
+                    </div>
+                  </label>
+                  <label class="dsc-field"><span>Received On</span>
+                    <div class="dsc-date" data-date>
+                      <input type="text" placeholder="Received On" readonly>
+                      <button type="button" class="dsc-date__icon" aria-label="Open calendar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></button>
+                    </div>
+                  </label>
+                  <label class="dsc-field"><span>Branch</span>
+                    <div class="dsc-combo" data-combo="branch">
+                      <div class="dsc-combo__box"><input type="text" placeholder="Branch"><span class="dsc-combo__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></span></div>
+                      <div class="dsc-combo__menu"></div>
+                    </div>
+                  </label>
+                  <label class="dsc-field"><span>Signing Person</span>
+                    <div class="dsc-combo" data-combo="signer">
+                      <div class="dsc-combo__box"><input type="text" placeholder="Signing Person"><span class="dsc-combo__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></span></div>
+                      <div class="dsc-combo__menu"></div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+              <div class="dsc-docs">
+                <span class="dsc-docs__label">Any additional documents</span>
+                <button class="dsc-docs__btn" type="button" id="dscAddDocBtn">+ Add Document</button>
+                <input type="file" id="dscDocInput" hidden>
+              </div>
+              <label class="dsc-field dsc-notes"><span>Notes</span><textarea placeholder="Notes" rows="5"></textarea></label>
+              <div class="dsc-add-actions">
+                <button class="dsc-btn dsc-btn--primary" type="submit">Save</button>
+                <button class="dsc-btn" type="button" id="dscAddCancel">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="dsc-scrim" id="dscModal" role="dialog" aria-modal="true" aria-labelledby="dscModalTitle">
+    <div class="dsc-modal">
+      <button class="dsc-close" type="button" id="dscCloseBtn" aria-label="Close">×</button>
+      <h2 id="dscModalTitle">Add DSC</h2>
+      <div class="dsc-form">
+        <label for="dscNumber">DSC Number</label>
+        <input id="dscNumber" type="text" placeholder="DSC Number">
+        <label for="dscExpiry">Expiry Date</label>
+        <input id="dscExpiry" type="text" placeholder="DD/MM/YYYY">
+        <label for="dscHanded">Handed Over</label>
+        <input id="dscHanded" type="text" placeholder="Handed Over">
+        <label for="dscReceiver">Receiver</label>
+        <input id="dscReceiver" type="text" placeholder="Receiver">
+        <label for="dscBranch">Branch</label>
+        <input id="dscBranch" type="text" placeholder="Branch">
+        <label for="dscClient">Handed Over To Client</label>
+        <select id="dscClient"><option>Yes</option><option selected>No</option></select>
+      </div>
+      <div class="dsc-modal__actions">
+        <button class="dsc-btn dsc-btn--primary" type="button" id="dscSaveBtn">Save</button>
+        <button class="dsc-btn" type="button" id="dscCancelBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dsc-scrim" id="dscServicesModal" role="dialog" aria-modal="true" aria-labelledby="dscServicesTitle">
+    <div class="dsc-modal dsc-services">
+      <div class="dsc-services__head">
+        <h3 id="dscServicesTitle">Services</h3>
+        <button class="dsc-close" type="button" id="dscServicesClose" aria-label="Close">×</button>
+      </div>
+      <div class="dsc-services__body">
+        <div class="dsc-service-item">Accounting</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dsc-confirm" id="dscDeleteConfirm">
+    <p>Are you sure to delete this?</p>
+    <div class="dsc-confirm__actions">
+      <button class="dsc-btn" type="button" id="dscDeleteNo">No</button>
+      <button class="dsc-btn dsc-btn--primary" type="button" id="dscDeleteYes">Yes</button>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/crm-dsc.js?v=1"></script>
+  <script>
+    (function () {
+      var clock = document.getElementById('crmTopClock');
+      function tickClock() {
+        if (!clock) return;
+        var now = new Date();
+        clock.textContent = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+      }
+      tickClock();
+      setInterval(tickClock, 30000);
+
+      var modal = document.getElementById('dscModal');
+      var title = document.getElementById('dscModalTitle');
+      var body = document.getElementById('dscTableBody');
+      var confirm = document.getElementById('dscDeleteConfirm');
+      var pendingRow = null;
+      var editingRow = null;
+
+      var reportView = document.getElementById('dscReportView');
+      var addView = document.getElementById('dscAddView');
+      function showAddView() { reportView.hidden = true; addView.hidden = false; }
+      function showReportView() { addView.hidden = true; reportView.hidden = false; }
+
+      document.getElementById('dscAddBtn').addEventListener('click', showAddView);
+      document.getElementById('dscViewLink').addEventListener('click', showReportView);
+      document.getElementById('dscAddCancel').addEventListener('click', showReportView);
+      document.getElementById('dscAddForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (window.DashboardShell) DashboardShell.toast('Saved', 'DSC details saved.');
+        showReportView();
+      });
+      document.getElementById('dscAddDocBtn').addEventListener('click', function () {
+        document.getElementById('dscDocInput').click();
+      });
+      function refreshCount() {
+        var rows = body.querySelectorAll('tr');
+        var visible = 0;
+        rows.forEach(function (tr) { if (tr.style.display !== 'none') visible++; });
+        var n = rows.length;
+        document.getElementById('dscCount').textContent = visible + ' / ' + n;
+        document.getElementById('dscTotal').textContent = n;
+      }
+
+      /* Summary cards filter the table */
+      (function initStatCards() {
+        var stats = document.querySelectorAll('[data-dsc-filter]');
+        function applyFilter(filter) {
+          stats.forEach(function (card) {
+            var on = card.getAttribute('data-dsc-filter') === filter;
+            card.classList.toggle('is-selected', on);
+            card.setAttribute('aria-pressed', on ? 'true' : 'false');
+          });
+          body.querySelectorAll('tr').forEach(function (tr) {
+            var status = tr.getAttribute('data-dsc-status') || '';
+            var show = filter === 'all' || status === filter;
+            tr.style.display = show ? '' : 'none';
+          });
+          refreshCount();
+        }
+        stats.forEach(function (card) {
+          card.addEventListener('click', function () {
+            applyFilter(card.getAttribute('data-dsc-filter') || 'all');
+          });
+        });
+      })();
+
+      var servicesModal = document.getElementById('dscServicesModal');
+      function openServices() { servicesModal.classList.add('is-open'); }
+      function closeServices() { servicesModal.classList.remove('is-open'); }
+
+      document.getElementById('dscServicesClose').addEventListener('click', closeServices);
+      servicesModal.addEventListener('click', function (e) { if (e.target === servicesModal) closeServices(); });
+      document.getElementById('dscExcelBtn').addEventListener('click', function () {
+        if (window.DashboardShell) DashboardShell.toast('Excel', 'DSC report download started.');
+      });
+      var filterBtn = document.getElementById('dscFilterBtn');
+      var filterPop = document.getElementById('dscFilterPop');
+      var filterAcc = document.getElementById('dscFilterAcc');
+      var filterAccBtn = document.getElementById('dscFilterAccBtn');
+      var respSelect = document.getElementById('dscRespSelect');
+      var respInput = document.getElementById('dscRespInput');
+      var respMenu = document.getElementById('dscRespMenu');
+      var RESPONSIBLE = ['Tarun Gaur', 'Suhanshi Rawat', 'SONIYA KASHYAP', 'Hardik rawat', 'SIMRAN KASHYAP', 'Aastha Tyagi', 'Shivam Kumar', 'Aakash'];
+      function renderResp(q) {
+        var qq = (q || '').toLowerCase();
+        var names = RESPONSIBLE.filter(function (n) { return !qq || n.toLowerCase().indexOf(qq) !== -1; });
+        respMenu.innerHTML = names.map(function (n) {
+          var active = n === respInput.value ? ' is-active' : '';
+          return '<div class="dsc-filter-select__item' + active + '">' + n + '</div>';
+        }).join('');
+      }
+      function openRespMenu() {
+        renderResp(respInput.value);
+        respSelect.classList.add('is-open');
+      }
+      function closeFilter() {
+        filterPop.hidden = true;
+        filterBtn.classList.remove('is-on');
+        filterBtn.setAttribute('aria-expanded', 'false');
+        respSelect.classList.remove('is-open');
+      }
+      filterBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (filterPop.hidden) {
+          filterPop.hidden = false;
+          filterBtn.classList.add('is-on');
+          filterBtn.setAttribute('aria-expanded', 'true');
+        } else closeFilter();
+      });
+      filterAccBtn.addEventListener('click', function () {
+        var open = filterAcc.classList.toggle('is-open');
+        filterAcc.querySelector('.dsc-filter-acc__body').hidden = !open;
+        if (!open) respSelect.classList.remove('is-open');
+      });
+      respInput.addEventListener('focus', openRespMenu);
+      respInput.addEventListener('click', openRespMenu);
+      respInput.addEventListener('input', openRespMenu);
+      respMenu.addEventListener('mousedown', function (e) {
+        var item = e.target.closest('.dsc-filter-select__item');
+        if (!item) return;
+        e.preventDefault();
+        respInput.value = item.textContent;
+        respSelect.classList.remove('is-open');
+      });
+      document.getElementById('dscFilterReset').addEventListener('click', function () {
+        respInput.value = '';
+        filterAcc.classList.remove('is-open');
+        filterAcc.querySelector('.dsc-filter-acc__body').hidden = true;
+        respSelect.classList.remove('is-open');
+      });
+      document.addEventListener('click', function (e) {
+        if (!e.target.closest('.dsc-filter-wrap')) closeFilter();
+        else if (!e.target.closest('#dscRespSelect')) respSelect.classList.remove('is-open');
+      });
+
+      body.addEventListener('click', function (e) {
+        var view = e.target.closest('[data-view-services]');
+        var edit = e.target.closest('[data-edit-dsc]');
+        var del = e.target.closest('[data-delete-dsc]');
+        if (view) {
+          e.preventDefault();
+          openServices();
+        }
+        if (edit) {
+          e.preventDefault();
+          editingRow = edit.closest('tr');
+          showAddView();
+        }
+        if (del) {
+          e.preventDefault();
+          pendingRow = del.closest('tr');
+          var rect = del.getBoundingClientRect();
+          confirm.style.top = Math.max(16, rect.top - 90) + 'px';
+          confirm.style.left = Math.max(16, rect.left - 220) + 'px';
+          confirm.classList.add('is-open');
+        }
+      });
+      document.getElementById('dscDeleteNo').addEventListener('click', function () {
+        confirm.classList.remove('is-open');
+        pendingRow = null;
+      });
+      document.getElementById('dscDeleteYes').addEventListener('click', function () {
+        if (pendingRow) pendingRow.remove();
+        confirm.classList.remove('is-open');
+        pendingRow = null;
+        refreshCount();
+      });
+      document.addEventListener('click', function (e) {
+        if (!confirm.classList.contains('is-open')) return;
+        if (e.target.closest('#dscDeleteConfirm') || e.target.closest('[data-delete-dsc]')) return;
+        confirm.classList.remove('is-open');
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeFilter();
+          closeServices();
+          confirm.classList.remove('is-open');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

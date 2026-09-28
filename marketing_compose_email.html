@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Send Email — TimeERP Marketing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/marketing-compose-email.css?v=1">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="crm-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="crm-top-clock" id="crmTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn crm-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn crm-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">3</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="crm-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="home.html#module/marketing" class="dropdown__item"><strong>Marketing</strong><span>Back to module hub</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="mce-page">
+          <header class="mce-header">
+            <a class="mce-back" href="marketing_send_email.html" aria-label="Back to inbox">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <h1 class="mce-title">E Mail</h1>
+          </header>
+
+          <div class="mce-panel">
+            <div class="mce-panel__head">
+              <div class="mce-tabs" role="tablist">
+                <button type="button" class="mce-tab is-active" role="tab" aria-selected="true">Send Email</button>
+              </div>
+              <div class="mce-panel__actions">
+                <a class="mce-btn mce-btn--mail" href="marketing_send_email.html" title="Inbox" aria-label="Inbox">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+                </a>
+                <span class="mce-icon-wrap">
+                  <button class="mce-btn mce-btn--gear" type="button" id="mceSettings" title="Settings" aria-label="Settings" aria-haspopup="true" aria-expanded="false">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06a1.65 1.65 0 00-.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9c.26.604.852.997 1.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+                  </button>
+                  <div class="mce-pop mce-pop--settings" id="mceSettingsPop" hidden>
+                    <div class="mce-pop__caret" aria-hidden="true"></div>
+                    <button type="button" class="mce-pop__item" data-mce-action="template">Add Email Template</button>
+                    <button type="button" class="mce-pop__item" data-mce-action="footer">Add Footer</button>
+                    <button type="button" class="mce-pop__item" data-mce-action="smtp">SMTP &amp; IMAP</button>
+                    <button type="button" class="mce-pop__item" data-mce-action="sent">Sent Emails</button>
+                  </div>
+                </span>
+              </div>
+            </div>
+
+            <div class="mce-body">
+              <form class="mce-form" id="mceForm" novalidate>
+                <div class="mce-form__main">
+                  <div class="mce-row">
+                    <label class="mce-label" for="mceSmtp">SMTP</label>
+                    <span class="mce-combo" data-list="smtp"><input type="text" id="mceSmtp" placeholder="Select a SMTP" autocomplete="off"><svg class="mce-combo__search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><div class="mce-combo__menu"></div></span>
+                  </div>
+                  <div class="mce-row">
+                    <label class="mce-label" for="mceTemplate">Template</label>
+                    <span class="mce-combo" data-list="template"><input type="text" id="mceTemplate" placeholder="Select a template" autocomplete="off"><svg class="mce-combo__search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><div class="mce-combo__menu"></div></span>
+                  </div>
+                  <div class="mce-row">
+                    <span class="mce-label">Send To<span class="mce-req">*</span></span>
+                    <div class="mce-radios" role="radiogroup" aria-label="Send to">
+                      <label class="mce-radio"><input type="radio" name="sendTo" value="client" checked> Client</label>
+                      <label class="mce-radio"><input type="radio" name="sendTo" value="group"> Client Group</label>
+                    </div>
+                  </div>
+                  <div class="mce-row" id="mceClientRow">
+                    <label class="mce-label" for="mceClient">Client<span class="mce-req">*</span></label>
+                    <div class="mce-client-wrap">
+                      <span class="mce-combo" data-list="client"><input type="text" id="mceClient" placeholder="" autocomplete="off"><svg class="mce-combo__search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><div class="mce-combo__menu"></div></span>
+                      <a class="mce-quick-link" href="crm_add_client.html">Add Quick Client</a>
+                    </div>
+                  </div>
+                  <div class="mce-row">
+                    <label class="mce-label" for="mceAddEmail">Additional Email</label>
+                    <input class="mce-input" type="text" id="mceAddEmail" autocomplete="off">
+                  </div>
+                  <div class="mce-row">
+                    <label class="mce-label" for="mceCc">CC Email</label>
+                    <input class="mce-input" type="text" id="mceCc" autocomplete="off">
+                  </div>
+                  <div class="mce-row">
+                    <label class="mce-label" for="mceSubject">Subject<span class="mce-req">*</span></label>
+                    <input class="mce-input" type="text" id="mceSubject" autocomplete="off">
+                  </div>
+                  <div class="mce-row mce-row--editor">
+                    <span class="mce-label">Content</span>
+                    <div class="mce-editor" data-field="content" id="mceEditorContent">
+                      <div class="mce-editor__toolbar">
+                        <button type="button" class="mce-editor__tb" title="Undo" data-cmd="undo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 14l-4-4 4-4"/><path d="M5 10h11a4 4 0 010 8h-1"/></svg></button>
+                        <button type="button" class="mce-editor__tb" title="Redo" data-cmd="redo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 14l4-4-4-4"/><path d="M19 10H8a4 4 0 000 8h1"/></svg></button>
+                        <span class="mce-editor__fmt-wrap">
+                          <button type="button" class="mce-editor__fmt" id="mceFmtContent" aria-haspopup="true" aria-expanded="false">Paragraph <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+                          <div class="mce-editor__fmt-menu" id="mceFmtContentMenu" hidden>
+                            <button type="button" class="is-active" data-fmt="p">Paragraph</button>
+                            <button type="button" data-fmt="h1">Heading 1</button>
+                            <button type="button" data-fmt="h2">Heading 2</button>
+                            <button type="button" data-fmt="h3">Heading 3</button>
+                            <button type="button" data-fmt="h4">Heading 4</button>
+                            <button type="button" data-fmt="h5">Heading 5</button>
+                            <button type="button" data-fmt="h6">Heading 6</button>
+                            <button type="button" data-fmt="pre">Preformatted</button>
+                          </div>
+                        </span>
+                        <span class="mce-editor__more-wrap">
+                          <button type="button" class="mce-editor__more" id="mceMoreContent" aria-haspopup="true" aria-expanded="false">⋯</button>
+                          <div class="mce-editor__more-menu" id="mceMoreContentMenu" hidden>
+                            <div class="mce-editor__more-row">
+                              <button type="button" title="Bold" data-cmd="bold"><b>B</b></button>
+                              <button type="button" title="Italic" data-cmd="italic"><i>I</i></button>
+                              <button type="button" title="Highlight" data-cmd="hilite">▾</button>
+                              <button type="button" title="Emoji" data-cmd="emoji">☺</button>
+                              <button type="button" title="Source" data-cmd="code">&lt;&gt;</button>
+                            </div>
+                            <div class="mce-editor__more-row">
+                              <button type="button" title="Align left" data-cmd="justifyLeft">≡</button>
+                              <button type="button" title="Align center" data-cmd="justifyCenter">≡</button>
+                              <button type="button" title="Align right" data-cmd="justifyRight">≡</button>
+                              <button type="button" title="Justify" data-cmd="justifyFull">≡</button>
+                            </div>
+                            <div class="mce-editor__more-row">
+                              <button type="button" title="Bullet list" data-cmd="insertUnorderedList">•</button>
+                              <button type="button" title="Numbered list" data-cmd="insertOrderedList">1.</button>
+                              <button type="button" title="Table" data-cmd="table">⊞</button>
+                            </div>
+                          </div>
+                        </span>
+                      </div>
+                      <div class="mce-editor__area" contenteditable="true" id="mceContentArea" data-placeholder=""></div>
+                      <div class="mce-editor__status"><span class="mce-editor__tag">p</span><span class="mce-editor__words" id="mceContentWords">0 words</span></div>
+                    </div>
+                  </div>
+                  <div class="mce-row">
+                    <label class="mce-label" for="mceFooterTpl">Footer Template</label>
+                    <span class="mce-combo" data-list="footer"><input type="text" id="mceFooterTpl" placeholder="Select a Footer template" autocomplete="off"><svg class="mce-combo__search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><div class="mce-combo__menu"></div></span>
+                  </div>
+                  <div class="mce-row mce-row--editor">
+                    <span class="mce-label">Footer Content</span>
+                    <div class="mce-editor" data-field="footer" id="mceEditorFooter">
+                      <div class="mce-editor__toolbar">
+                        <button type="button" class="mce-editor__tb" title="Undo" data-cmd="undo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 14l-4-4 4-4"/><path d="M5 10h11a4 4 0 010 8h-1"/></svg></button>
+                        <button type="button" class="mce-editor__tb" title="Redo" data-cmd="redo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 14l4-4-4-4"/><path d="M19 10H8a4 4 0 000 8h1"/></svg></button>
+                        <span class="mce-editor__fmt-wrap">
+                          <button type="button" class="mce-editor__fmt" id="mceFmtFooter" aria-haspopup="true" aria-expanded="false">Paragraph <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+                          <div class="mce-editor__fmt-menu" id="mceFmtFooterMenu" hidden>
+                            <button type="button" class="is-active" data-fmt="p">Paragraph</button>
+                            <button type="button" data-fmt="h1">Heading 1</button>
+                            <button type="button" data-fmt="h2">Heading 2</button>
+                            <button type="button" data-fmt="h3">Heading 3</button>
+                            <button type="button" data-fmt="h4">Heading 4</button>
+                            <button type="button" data-fmt="h5">Heading 5</button>
+                            <button type="button" data-fmt="h6">Heading 6</button>
+                            <button type="button" data-fmt="pre">Preformatted</button>
+                          </div>
+                        </span>
+                        <span class="mce-editor__more-wrap">
+                          <button type="button" class="mce-editor__more" id="mceMoreFooter" aria-haspopup="true" aria-expanded="false">⋯</button>
+                          <div class="mce-editor__more-menu" id="mceMoreFooterMenu" hidden>
+                            <div class="mce-editor__more-row">
+                              <button type="button" title="Bold" data-cmd="bold"><b>B</b></button>
+                              <button type="button" title="Italic" data-cmd="italic"><i>I</i></button>
+                              <button type="button" title="Highlight" data-cmd="hilite">▾</button>
+                              <button type="button" title="Emoji" data-cmd="emoji">☺</button>
+                              <button type="button" title="Source" data-cmd="code">&lt;&gt;</button>
+                            </div>
+                            <div class="mce-editor__more-row">
+                              <button type="button" title="Align left" data-cmd="justifyLeft">≡</button>
+                              <button type="button" title="Align center" data-cmd="justifyCenter">≡</button>
+                              <button type="button" title="Align right" data-cmd="justifyRight">≡</button>
+                              <button type="button" title="Justify" data-cmd="justifyFull">≡</button>
+                            </div>
+                            <div class="mce-editor__more-row">
+                              <button type="button" title="Bullet list" data-cmd="insertUnorderedList">•</button>
+                              <button type="button" title="Numbered list" data-cmd="insertOrderedList">1.</button>
+                              <button type="button" title="Table" data-cmd="table">⊞</button>
+                            </div>
+                          </div>
+                        </span>
+                      </div>
+                      <div class="mce-editor__area" contenteditable="true" id="mceFooterArea" data-placeholder=""></div>
+                      <div class="mce-editor__status"><span class="mce-editor__tag">p</span><span class="mce-editor__words" id="mceFooterWords">0 words</span></div>
+                    </div>
+                  </div>
+                  <div class="mce-row">
+                    <span class="mce-label">Attachment</span>
+                    <button type="button" class="mce-attach" id="mceAttachBtn">+ Add Attachment</button>
+                    <input type="file" id="mceAttachInput" hidden multiple>
+                  </div>
+                  <div class="mce-actions">
+                    <button type="button" class="mce-action mce-action--primary" id="mceSend">Send Email</button>
+                    <button type="button" class="mce-action mce-action--primary" id="mceSchedule">Schedule and Send</button>
+                    <button type="button" class="mce-action mce-action--ghost" id="mceReset">Reset</button>
+                  </div>
+                </div>
+
+                <aside class="mce-vars" aria-label="Template variables">
+                  <h2 class="mce-vars__title">Template Variables</h2>
+                  <p class="mce-vars__hint">Variables for <strong>Generic</strong>. Focus Subject, Content, or Footer Content, then click a variable to insert.</p>
+                  <p class="mce-vars__target">Inserting into: <strong id="mceInsertTarget">Content</strong></p>
+                  <div class="mce-vars__warn">
+                    <span class="mce-vars__warn-ico" aria-hidden="true">!</span>
+                    <div>
+                      <strong>Do not modify placeholder keys</strong>
+                      <p>Keys inserted from here (e.g. {CLIENT_NAME}) are replaced automatically when sending. Do not edit, rename, or remove them.</p>
+                    </div>
+                  </div>
+                  <div class="mce-vars__btns">
+                    <button type="button" class="mce-var-btn" data-var="{CLIENT_NAME}">Client Name</button>
+                    <button type="button" class="mce-var-btn" data-var="{CA_ORG_NAME}">CA Organization Name</button>
+                    <button type="button" class="mce-var-btn" data-var="{SENDER_NAME}">Sender Name</button>
+                  </div>
+                </aside>
+              </form>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/marketing-compose-email.js?v=5"></script>
+</body>
+</html>

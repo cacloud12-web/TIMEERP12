@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /scripts/
+Disallow: /timeerp%20blog/
+Disallow: /timeerp blog/
+
+Sitemap: https://timeerp.com/sitemap.xml

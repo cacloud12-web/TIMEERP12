@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Infographics — TimeERP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/infographics-client.css?v=1">
+</head>
+<body>
+  <header class="igc-header">
+    <div class="igc-header__inner">
+      <a class="igc-logo" href="home.html" aria-label="TimeERP home">
+        <img src="assets/logo-nav.svg" alt="TimeERP" width="140" height="36">
+      </a>
+      <nav class="igc-nav" aria-label="Client navigation">
+        <a href="infographics.html">Home</a>
+        <a href="infographics_client.html" class="is-active">Infographics</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="igc-main">
+    <section class="igc-hero">
+      <p class="igc-hero__eyebrow">EXPLORE TEMPLATES</p>
+      <h1 class="igc-hero__title">Best Infographics</h1>
+      <p class="igc-hero__desc">Use our expertly crafted TIME ERP infographic templates to boost client engagement and retention. Perfect for businesses, our templates turn ERP insights into clear, professional visuals.</p>
+      <div class="igc-search-wrap">
+        <input type="search" id="igcSearch" placeholder="Search..." aria-label="Search templates">
+        <button type="button" class="igc-search-btn" id="igcSearchBtn" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <section class="igc-gallery">
+      <div class="igc-gallery__bar">
+        <span class="igc-gallery__count" id="igcPageCount">Showing Page: 1 of 1</span>
+        <div class="igc-gallery__tools">
+          <label class="igc-gallery__filter">
+            Category:
+            <select id="igcCategory" aria-label="Filter by category">
+              <option value="None">None</option>
+            </select>
+          </label>
+          <button type="button" class="igc-filter-search" id="igcFilterSearch" aria-label="Apply filter">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="igc-grid" id="igcGrid"></div>
+    </section>
+  </main>
+
+  <script src="js/infographics-client.js?v=1"></script>
+</body>
+</html>

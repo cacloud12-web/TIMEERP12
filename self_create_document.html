@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Self Create Document — TimeERP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/self-create-document.css?v=2">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="scd-top-checkout" id="crmTopCheckOutBtn">Check Out</button>
+            <time class="scd-top-clock" id="scdTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn scd-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn scd-top-icon" id="notifBtn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile">
+                <span class="topbar__avatar">CA</span>
+                <span class="topbar__profile-meta"><strong>CA CloudDesk</strong><span>Admin</span></span>
+                <svg class="scd-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="home.html" class="dropdown__item"><strong>Dashboard</strong><span>Back to home</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="scd-page">
+
+          <!-- Header -->
+          <div class="scd-header">
+            <a class="scd-back" href="document_vault.html" aria-label="Back to Document Vault">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <span class="scd-header__title">Self Create Document</span>
+          </div>
+
+          <!-- Tabs -->
+          <div class="scd-tabs" id="scdTabs">
+            <button class="scd-tab is-active" data-tab="create">Create document</button>
+            <button class="scd-tab" data-tab="view">View Created document</button>
+            <button class="scd-tab" data-tab="custom">Custom Document Creation</button>
+          </div>
+
+          <!-- ═══ Tab 1: Create document ═══ -->
+          <div class="scd-panel is-active" id="panel-create">
+            <div class="scd-form">
+              <div class="scd-row">
+                <span class="scd-row__label">Search Template :</span>
+                <div class="scd-row__field">
+                  <svg class="scd-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                  <input type="text" class="scd-search-input" id="scdTemplate" placeholder="Search Document Type">
+                </div>
+              </div>
+              <div class="scd-row">
+                <span class="scd-row__label">Client :</span>
+                <div class="scd-row__field scd-combo" id="scdClientCombo">
+                  <input type="text" class="scd-combo__input" id="scdClientInput" placeholder="Add customer to communicate via Email &amp; SMS" autocomplete="off">
+                  <svg class="scd-combo__search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                  <div class="scd-combo__menu" id="scdClientMenu" role="listbox"></div>
+                </div>
+              </div>
+              <div class="scd-row">
+                <span class="scd-row__label">Category<span class="scd-req">*</span> :</span>
+                <div class="scd-row__field scd-combo" id="scdCatCombo">
+                  <input type="text" class="scd-combo__input" id="scdCatInput" placeholder="Category" autocomplete="off">
+                  <svg class="scd-combo__search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                  <div class="scd-combo__menu" id="scdCatMenu" role="listbox"></div>
+                </div>
+              </div>
+              <div class="scd-row">
+                <span class="scd-row__label">Sub Category<span class="scd-req">*</span> :</span>
+                <div class="scd-row__field">
+                  <select class="scd-select" id="scdSubCat">
+                    <option value="">Sub Category</option>
+                  </select>
+                  <svg class="scd-select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+              </div>
+              <div class="scd-row">
+                <span class="scd-row__label">Document Type<span class="scd-req">*</span> :</span>
+                <div class="scd-row__field scd-combo" id="scdDocTypeCombo">
+                  <input type="text" class="scd-combo__input" id="scdDocTypeInput" placeholder="Document Type" autocomplete="off">
+                  <svg class="scd-combo__search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                  <div class="scd-combo__menu" id="scdDocTypeMenu" role="listbox"></div>
+                </div>
+              </div>
+              <div class="scd-row">
+                <span class="scd-row__label">Document Name :</span>
+                <div class="scd-row__field">
+                  <input type="text" class="scd-text-input" id="scdDocName" placeholder="Document Name / Client Identification / Filename (Primarily, this is the labeling of the documents for your refere...">
+                </div>
+              </div>
+              <button class="scd-save" id="scdSaveCreate">Save</button>
+            </div>
+          </div>
+
+          <!-- ═══ Tab 2: View Created document ═══ -->
+          <div class="scd-panel" id="panel-view">
+            <div class="scd-filter">
+              <select id="scdViewClient">
+                <option value="">Client</option>
+              </select>
+            </div>
+            <div class="scd-vtable-wrap">
+              <table class="scd-vtable" id="scdViewTable">
+                <thead>
+                  <tr>
+                    <th>S. No.</th>
+                    <th>Client</th>
+                    <th>Document Name <span class="scd-sort">⇅</span></th>
+                    <th>Created On <span class="scd-sort">⇅</span></th>
+                    <th>Created By <span class="scd-sort">⇅</span></th>
+                    <th>Category <span class="scd-sort">⇅</span></th>
+                    <th>Sub Category <span class="scd-sort">⇅</span></th>
+                    <th>Document Type <span class="scd-sort">⇅</span></th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="scdViewBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- ═══ Tab 3: Custom Document Creation ═══ -->
+          <div class="scd-panel" id="panel-custom">
+            <div class="scd-form">
+              <div class="scd-row">
+                <span class="scd-row__label">Category<span class="scd-req">*</span> :</span>
+                <div class="scd-row__field scd-combo" id="scdCustomCatCombo">
+                  <input type="text" class="scd-combo__input" id="scdCustomCatInput" placeholder="Category" autocomplete="off">
+                  <svg class="scd-combo__search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                  <div class="scd-combo__menu" id="scdCustomCatMenu" role="listbox"></div>
+                </div>
+              </div>
+              <div class="scd-row">
+                <span class="scd-row__label">Sub Category<span class="scd-req">*</span> :</span>
+                <div class="scd-row__field">
+                  <select class="scd-select" id="scdCustomSubCat">
+                    <option value="">Sub Category</option>
+                  </select>
+                  <svg class="scd-select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+              </div>
+              <div class="scd-row">
+                <span class="scd-row__label">Description :</span>
+                <div class="scd-row__field">
+                  <div class="scd-editor-wrap">
+                    <div class="scd-editor-toolbar">
+                      <button title="Undo">↩</button><button title="Redo">↪</button>
+                      <div class="scd-sep"></div>
+                      <select><option>Paragraph</option><option>Heading 1</option><option>Heading 2</option></select>
+                      <div class="scd-sep"></div>
+                      <button title="Bold"><b>B</b></button><button title="Italic"><i>I</i></button><button title="Highlight">🖊</button>
+                      <div class="scd-sep"></div>
+                      <button title="Emoji">☺</button><button title="Code">&lt;&gt;</button>
+                      <div class="scd-sep"></div>
+                      <button title="Align Left">≡</button><button title="Align Center">≡</button><button title="Align Right">≡</button><button title="Justify">≡</button>
+                      <div class="scd-sep"></div>
+                      <button title="More">⋯</button>
+                    </div>
+                    <div class="scd-editor-area" contenteditable="true" id="scdEditor"></div>
+                    <div class="scd-editor-footer"><span>p</span><span id="scdWordCount">0 words</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="scd-row">
+                <span class="scd-row__label">Upload Document :</span>
+                <div class="scd-row__field scd-upload-row">
+                  <button class="scd-upload-btn" id="scdUploadBtn">⬆ Click to Upload</button>
+                  <input type="file" id="scdUploadFile" hidden>
+                </div>
+              </div>
+              <button class="scd-save" id="scdSaveCustom">Save</button>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <footer class="scd-app-footer"></footer>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/self-create-document.js?v=2"></script>
+</body>
+</html>

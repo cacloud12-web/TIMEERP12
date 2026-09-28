@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="../assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="../assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Expense — TIME ERP HRMS</title>
+  <meta name="description" content="Track pending, approved, and rejected expenses in TIME ERP.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/my-expense.css?v=me8">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="../home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="../assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search in expense..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">3</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <button type="button" class="topbar__icon-btn" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">TE</span>
+                <span class="topbar__profile-meta"><strong>Admin</strong><span>TimeERP</span></span>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="../home.html" class="dropdown__item"><strong>Go to home</strong><span>Module hub overview</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="me-page" id="mePage">
+          <header class="me-header">
+            <a class="me-back" href="../home.html#module/hrms" aria-label="Back to HRMS">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <h1 class="me-title">My Expense</h1>
+          </header>
+
+          <section class="me-card">
+            <nav class="me-tabs" aria-label="Expense sections">
+              <div class="me-tabs__list" role="tablist">
+                <button type="button" class="me-tab is-active" role="tab" aria-selected="true" data-tab="pending">Pending Expenses</button>
+                <button type="button" class="me-tab" role="tab" aria-selected="false" data-tab="approved">Approved Expenses</button>
+                <button type="button" class="me-tab" role="tab" aria-selected="false" data-tab="rejected">Rejected Expenses</button>
+              </div>
+            </nav>
+
+            <div class="me-toolbar">
+              <div class="me-toolbar__actions" id="meToolbarActions"></div>
+            </div>
+
+            <div class="me-table-wrap">
+              <table class="me-table" id="meTable">
+                <thead><tr id="meTableHead"></tr></thead>
+                <tbody id="meTableBody"></tbody>
+              </table>
+              <div class="me-empty" id="meEmpty">
+                <div class="me-empty__icon" aria-hidden="true">
+                  <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75">
+                    <path d="M10 28l6-8h32l6 8"/>
+                    <path d="M10 28h44v22a4 4 0 01-4 4H14a4 4 0 01-4-4V28z"/>
+                    <path d="M10 28h14l4 6h12l4-6h14"/>
+                  </svg>
+                </div>
+                <p>No data</p>
+              </div>
+            </div>
+
+            <footer class="me-pagination">
+              <div class="me-pagination__left">
+                <select id="mePageSize" class="me-page-size" aria-label="Rows per page">
+                  <option value="10" selected>10</option>
+                  <option value="20">20</option>
+                  <option value="50">50</option>
+                </select>
+              </div>
+              <div class="me-pagination__center">
+                <button type="button" class="me-page-nav" disabled aria-label="Previous page">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <input type="text" class="me-page-input" value="1" readonly aria-label="Current page">
+                <span class="me-page-of">of 1</span>
+                <button type="button" class="me-page-nav" disabled aria-label="Next page">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+              </div>
+              <div class="me-pagination__right"><span class="me-count">0 / 0</span></div>
+            </footer>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="me-modal-scrim" id="meAddModal" hidden>
+    <div class="me-add-modal" role="dialog" aria-modal="true" aria-labelledby="meAddTitle">
+      <div class="me-add-modal__head">
+        <h2 id="meAddTitle">Add Expense</h2>
+        <button type="button" class="me-modal__close" id="meAddClose" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <form class="me-add-modal__body" id="meAddForm" onsubmit="return false;">
+        <div class="me-add-meta">
+          <span>Manager Name: <strong>Kamal Kant Sharma</strong></span>
+          <span>Date: <strong id="meAddToday">17-08-2026</strong></span>
+        </div>
+        <div id="meExpenseBlocks"></div>
+        <div class="me-add-actions">
+          <button type="button" class="me-add-plus" id="meAddBlock" aria-label="Add expense row">+</button>
+          <label class="me-billable"><input type="checkbox" id="meBillable"> Billable</label>
+        </div>
+        <div class="me-add-submit-wrap">
+          <button type="submit" class="me-submit" id="meSubmit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="me-modal-scrim" id="meBillModal" hidden>
+    <div class="me-bill-modal" role="dialog" aria-modal="true" aria-labelledby="meBillTitle">
+      <div class="me-bill-modal__head">
+        <h2 id="meBillTitle">Bill Details</h2>
+        <button type="button" class="me-modal__close" id="meBillClose" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div class="me-bill-modal__body">
+        <div class="me-bill-table-wrap">
+          <table class="me-bill-table">
+            <thead>
+              <tr>
+                <th>S. No.</th>
+                <th>Expense Type</th>
+                <th>Amount</th>
+                <th>Attachment</th>
+                <th>Expense Date</th>
+                <th>Remarks</th>
+              </tr>
+            </thead>
+            <tbody id="meBillBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="me-del-pop" id="meDelPop" hidden role="dialog" aria-label="Confirm delete">
+    <div class="me-del-pop__inner">
+      <div class="me-del-pop__msg">
+        <span class="me-del-pop__icon" aria-hidden="true">!</span>
+        <span>Are you sure to delete this?</span>
+      </div>
+      <div class="me-del-pop__actions">
+        <button type="button" class="me-del-pop__no" id="meDelNo">No</button>
+        <button type="button" class="me-del-pop__yes" id="meDelYes">Yes</button>
+      </div>
+    </div>
+    <span class="me-del-pop__arrow" aria-hidden="true"></span>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/my-expense.js?v=me8"></script>
+</body>
+</html>

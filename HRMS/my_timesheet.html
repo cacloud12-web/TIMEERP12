@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="../assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="../assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timesheet — TIME ERP HRMS</title>
+  <meta name="description" content="View approved, rejected, and pending timesheets in TIME ERP.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/my-timesheet.css?v=mts6">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="../home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="../assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search in timesheet..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">3</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <button type="button" class="topbar__icon-btn" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">TE</span>
+                <span class="topbar__profile-meta"><strong>Admin</strong><span>TimeERP</span></span>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="../home.html" class="dropdown__item"><strong>Go to home</strong><span>Module hub overview</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="mts-page" id="mtsPage">
+          <header class="mts-header">
+            <a class="mts-back" href="../home.html#module/hrms" aria-label="Back to HRMS">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <h1 class="mts-title">Timesheet</h1>
+          </header>
+
+          <section class="mts-card">
+            <div class="mts-tabs-row">
+              <nav class="mts-tabs" aria-label="Timesheet sections">
+                <div class="mts-tabs__list" role="tablist">
+                  <button type="button" class="mts-tab is-active" role="tab" aria-selected="true" data-tab="approved">Approved Timesheet</button>
+                  <button type="button" class="mts-tab" role="tab" aria-selected="false" data-tab="rejected">Rejected Timesheet</button>
+                  <button type="button" class="mts-tab" role="tab" aria-selected="false" data-tab="pending">Pending Timesheet</button>
+                  <button type="button" class="mts-tab" role="tab" aria-selected="false" data-tab="suggest">Suggest Modification</button>
+                </div>
+              </nav>
+              <button type="button" class="mts-add-btn" id="mtsAddBtn" aria-label="Add timesheet" title="Add">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+              </button>
+            </div>
+
+            <div class="mts-toolbar">
+              <div class="mts-range-wrap">
+                <span class="mts-range-label">Select Range :</span>
+                <button type="button" class="mts-range-trigger" id="mtsRangeTrigger" aria-haspopup="dialog" aria-expanded="false">
+                  <span class="mts-range-trigger__text" id="mtsRangeText">10-08-2026 &nbsp;→&nbsp; 17-08-2026</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="mts-table-wrap">
+              <table class="mts-table" id="mtsTable">
+                <thead><tr id="mtsTableHead"></tr></thead>
+                <tbody id="mtsTableBody"></tbody>
+              </table>
+              <div class="mts-empty" id="mtsEmpty">
+                <div class="mts-empty__icon" aria-hidden="true">
+                  <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75">
+                    <path d="M10 28l6-8h32l6 8"/>
+                    <path d="M10 28h44v22a4 4 0 01-4 4H14a4 4 0 01-4-4V28z"/>
+                    <path d="M10 28h14l4 6h12l4-6h14"/>
+                  </svg>
+                </div>
+                <p>No data</p>
+              </div>
+            </div>
+
+            <section class="mts-policy" aria-label="Timesheet policy">
+              <h2 class="mts-policy__title">Timesheet Policy</h2>
+              <div class="mts-policy__empty">
+                <div class="mts-policy__icon" aria-hidden="true">
+                  <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 24h40v28a4 4 0 01-4 4H16a4 4 0 01-4-4V24z"/>
+                    <path d="M22 24V16a10 10 0 0120 0v8"/>
+                    <path d="M28 36h8M28 44h12"/>
+                  </svg>
+                </div>
+                <p>No timesheet policy has been configured for your organization.</p>
+              </div>
+            </section>
+          </section>
+
+          <section class="mts-sum-card" aria-label="Monthly summary">
+            <div class="mts-sum-head">
+              <div class="mts-sum-picker">
+                <button type="button" class="mts-sum-month-btn" id="mtsSumMonthBtn" aria-expanded="false">
+                  <span id="mtsSumMonthLabel">2026-08</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                </button>
+                <div class="mts-sum-month-pop" id="mtsSumMonthPop" hidden>
+                  <div class="mts-sum-month-pop__head">
+                    <button type="button" data-sum-year="-1" aria-label="Previous year">&lt;&lt;</button>
+                    <strong id="mtsSumYearLabel">2026</strong>
+                    <button type="button" data-sum-year="1" aria-label="Next year">&gt;&gt;</button>
+                  </div>
+                  <div class="mts-sum-month-pop__grid" id="mtsSumMonthGrid"></div>
+                </div>
+              </div>
+              <h2 class="mts-sum-title" id="mtsSumTitle">Summary for the month August 2026</h2>
+            </div>
+            <div class="mts-sum-grid" id="mtsSumGrid">
+              <dl>
+                <div><dt>Employee</dt><dd class="mts-sum-emp" id="mtsSumEmployee">Ca Ram Kumar</dd></div>
+                <div><dt>Total Day</dt><dd id="mtsSumTotalDay">31</dd></div>
+                <div><dt>Holidays/ Weekly Offs</dt><dd id="mtsSumHolidays">2</dd></div>
+                <div><dt>Total Working Days</dt><dd id="mtsSumWorkingDays">29</dd></div>
+                <div><dt>Leave Count</dt><dd id="mtsSumLeaveCount">0</dd></div>
+                <div><dt>Hourly Leaves</dt><dd id="mtsSumHourlyLeaves">0</dd></div>
+                <div><dt>Out Duty</dt><dd id="mtsSumOutDuty">0</dd></div>
+                <div><dt>Total Absent</dt><dd id="mtsSumAbsent">3</dd></div>
+                <div><dt>Total Payable Days</dt><dd id="mtsSumPayableDays">14</dd></div>
+              </dl>
+              <dl>
+                <div><dt>Full Day Count</dt><dd id="mtsSumFullDay">12</dd></div>
+                <div><dt>Half Day Count</dt><dd id="mtsSumHalfDay">0</dd></div>
+                <div><dt>Total Work Hours</dt><dd id="mtsSumTotalHours">106:00</dd></div>
+                <div><dt>Actual Work Hours</dt><dd id="mtsSumActualHours">98:07</dd></div>
+                <div><dt>Extra / Loss</dt><dd id="mtsSumExtraLoss">12</dd></div>
+                <div><dt>Incomplete Work Hour (Days)</dt><dd id="mtsSumIncomplete">3</dd></div>
+                <div><dt>No of Late Coming</dt><dd id="mtsSumLateComing">1</dd></div>
+              </dl>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="mts-range-pop" id="mtsRangePop" hidden>
+    <div class="mts-range-pop__header">
+      <div class="mts-range-pop__nav mts-range-pop__nav--left">
+        <button type="button" data-nav="prev-year" aria-label="Previous year">&lt;&lt;</button>
+        <button type="button" data-nav="prev-month" aria-label="Previous month">&lt;</button>
+      </div>
+      <div class="mts-range-pop__titles">
+        <span id="mtsCalTitleLeft">Aug 2026</span>
+        <span id="mtsCalTitleRight">Sep 2026</span>
+      </div>
+      <div class="mts-range-pop__nav mts-range-pop__nav--right">
+        <button type="button" data-nav="next-month" aria-label="Next month">&gt;</button>
+        <button type="button" data-nav="next-year" aria-label="Next year">&gt;&gt;</button>
+      </div>
+    </div>
+    <div class="mts-range-pop__cals" id="mtsRangeCals"></div>
+  </div>
+
+  <div class="mts-modal-scrim" id="mtsAddModal" hidden>
+    <div class="mts-add-modal" role="dialog" aria-modal="true" aria-labelledby="mtsAddTitle">
+      <div class="mts-add-modal__head">
+        <h2 id="mtsAddTitle">Add Timesheet</h2>
+        <button type="button" class="mts-modal__close" id="mtsAddClose" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <form class="mts-add-modal__body" id="mtsAddForm" onsubmit="return false;">
+        <div class="mts-add-grid">
+          <label class="mts-field">
+            <span>Select Date <em>*</em></span>
+            <button type="button" class="mts-date-btn" id="mtsDateBtn" aria-haspopup="dialog" aria-expanded="false">
+              <span id="mtsDateText">14-08-2026</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+          </label>
+          <div class="mts-field">
+            <span>Select Hours</span>
+            <div class="mts-hours-row">
+              <button type="button" class="mts-time-btn" id="mtsTimeBtn" aria-haspopup="dialog" aria-expanded="false">
+                <span id="mtsTimeText">11:42</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
+              </button>
+              <label class="mts-check"><input type="checkbox" id="mtsSpecifyTime"> Specify Time</label>
+            </div>
+          </div>
+          <label class="mts-field">
+            <span>Client</span>
+            <select id="mtsClient" aria-label="Client">
+              <option value="" disabled selected hidden>Select Client</option>
+              <option value="internal">Internal</option>
+              <option value="acme">Acme Corp</option>
+              <option value="nova">Nova Services</option>
+            </select>
+          </label>
+          <label class="mts-field">
+            <span>Branch <em>*</em></span>
+            <select id="mtsBranch" required aria-label="Branch">
+              <option value="TimeErp Demo" selected>TimeErp Demo</option>
+              <option value="Head Office">Head Office</option>
+              <option value="Delhi">Delhi</option>
+            </select>
+          </label>
+          <label class="mts-field mts-field--full">
+            <span>Service</span>
+            <select id="mtsService" aria-label="Service">
+              <option value="" disabled selected hidden>Select Service</option>
+              <option value="gst">GST Filing</option>
+              <option value="audit">Audit</option>
+              <option value="payroll">Payroll</option>
+              <option value="consulting">Consulting</option>
+            </select>
+          </label>
+          <label class="mts-field mts-field--full">
+            <span>Task</span>
+            <select id="mtsTask" aria-label="Task">
+              <option value="" disabled selected hidden>Select Task</option>
+              <option value="review">Document Review</option>
+              <option value="filing">Return Filing</option>
+              <option value="call">Client Call</option>
+              <option value="report">Report Preparation</option>
+            </select>
+          </label>
+          <label class="mts-field mts-field--full">
+            <span>Remark</span>
+            <textarea id="mtsRemark" rows="3" placeholder="Remarks"></textarea>
+          </label>
+          <label class="mts-billable"><span>Billable</span> <input type="checkbox" id="mtsBillable" checked></label>
+        </div>
+        <div class="mts-add-submit-wrap">
+          <button type="submit" class="mts-create" id="mtsCreate">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="mts-single-cal" id="mtsSingleCal" hidden>
+    <div class="mts-single-cal__head">
+      <div class="mts-single-cal__nav">
+        <button type="button" data-nav="prev-year" aria-label="Previous year">&lt;&lt;</button>
+        <button type="button" data-nav="prev-month" aria-label="Previous month">&lt;</button>
+      </div>
+      <span id="mtsSingleCalTitle">Aug 2026</span>
+      <div class="mts-single-cal__nav">
+        <button type="button" data-nav="next-month" aria-label="Next month">&gt;</button>
+        <button type="button" data-nav="next-year" aria-label="Next year">&gt;&gt;</button>
+      </div>
+    </div>
+    <div class="mts-single-cal__grid" id="mtsSingleCalGrid"></div>
+    <button type="button" class="mts-single-cal__today" id="mtsSingleCalToday">Today</button>
+  </div>
+
+  <div class="mts-time-pop" id="mtsTimePop" hidden>
+    <div class="mts-time-pop__cols">
+      <div class="mts-time-pop__col" id="mtsHourList" role="listbox" aria-label="Hours"></div>
+      <div class="mts-time-pop__col" id="mtsMinuteList" role="listbox" aria-label="Minutes"></div>
+    </div>
+    <div class="mts-time-pop__foot">
+      <button type="button" class="mts-time-pop__now" id="mtsTimeNow">Now</button>
+      <button type="button" class="mts-time-pop__ok" id="mtsTimeOk">OK</button>
+    </div>
+  </div>
+
+  <div class="mts-modal-scrim" id="mtsTaskModal" hidden>
+    <div class="mts-task-modal" role="dialog" aria-modal="true" aria-labelledby="mtsTaskTitle">
+      <div class="mts-task-modal__head">
+        <h2 id="mtsTaskTitle">Task Details</h2>
+        <div class="mts-task-modal__tools">
+          <button type="button" class="mts-icon-tool" aria-label="Download" title="Download">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12M8 11l4 4 4-4"/><path d="M5 21h14"/></svg>
+          </button>
+          <button type="button" class="mts-modal__close" id="mtsTaskClose" aria-label="Close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="mts-task-modal__body">
+        <div class="mts-task-table-wrap">
+          <table class="mts-task-table">
+            <thead>
+              <tr>
+                <th>TASK ID</th>
+                <th>Task Name</th>
+                <th>Current Stage</th>
+                <th>Status</th>
+                <th>Tags</th>
+                <th>Comments</th>
+                <th>Invoice Details</th>
+                <th>Due Date</th>
+                <th>Download PDF</th>
+              </tr>
+            </thead>
+            <tbody id="mtsTaskBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mts-modal-scrim" id="mtsInvoiceModal" hidden>
+    <div class="mts-invoice-modal" role="dialog" aria-modal="true" aria-labelledby="mtsInvoiceTitle">
+      <div class="mts-invoice-modal__head">
+        <h2 id="mtsInvoiceTitle">Invoice</h2>
+        <button type="button" class="mts-modal__close" id="mtsInvoiceClose" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <form class="mts-invoice-modal__body" id="mtsInvoiceForm" onsubmit="return false;">
+        <div class="mts-invoice-row">
+          <span class="mts-invoice-label">Invoice Type <em>*</em></span>
+          <div class="mts-invoice-radios">
+            <label><input type="radio" name="mtsInvType" value="proforma"> Proforma</label>
+            <label><input type="radio" name="mtsInvType" value="invoice" checked> Invoice</label>
+          </div>
+        </div>
+        <div class="mts-invoice-row">
+          <span class="mts-invoice-label">Branch <em>*</em></span>
+          <select id="mtsInvBranch" required>
+            <option value="CA CloudDesk" selected>CA CloudDesk</option>
+            <option value="Bluemon Wealth Management">Bluemon Wealth Management</option>
+            <option value="Law Seva Management Private Limited">Law Seva Management Private Limited</option>
+            <option value="saurabh bharadwaj">saurabh bharadwaj</option>
+          </select>
+        </div>
+        <div class="mts-invoice-row">
+          <span class="mts-invoice-label">Invoice Date</span>
+          <div class="mts-invoice-date">
+            <input type="text" id="mtsInvDate" value="17/08/2026" readonly>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+          </div>
+        </div>
+        <div class="mts-invoice-row">
+          <span class="mts-invoice-label">Task</span>
+          <input type="text" id="mtsInvTask" value="Client consultation call" readonly>
+        </div>
+        <div class="mts-invoice-row">
+          <span class="mts-invoice-label">Team</span>
+          <select id="mtsInvTeam">
+            <option value="" disabled selected hidden>Select Team</option>
+            <option value="GST">GST</option>
+            <option value="Team 1">Team 1</option>
+            <option value="GST Team">GST Team</option>
+          </select>
+        </div>
+        <div class="mts-invoice-row">
+          <span class="mts-invoice-label">Exp. Pay Date</span>
+          <div class="mts-invoice-date is-muted">
+            <input type="text" id="mtsInvPayDate" value="01/09/2026" readonly>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+          </div>
+        </div>
+        <div class="mts-invoice-row">
+          <span class="mts-invoice-label">Price</span>
+          <input type="text" id="mtsInvPrice" placeholder="Price">
+        </div>
+        <div class="mts-invoice-row">
+          <span class="mts-invoice-label">Description</span>
+          <input type="text" id="mtsInvDesc" placeholder="Description">
+        </div>
+        <div class="mts-invoice-row">
+          <span class="mts-invoice-label">Task HSN</span>
+          <select id="mtsInvHsn">
+            <option value="" disabled selected hidden>Select HSN</option>
+            <option value="NA">NA (NA)</option>
+            <option value="998232">998232 (Individual tax preparation and planning services)</option>
+            <option value="998222">998222 (Accounting and bookkeeping services)</option>
+          </select>
+        </div>
+        <div class="mts-invoice-row">
+          <span class="mts-invoice-label">Discount</span>
+          <input type="text" id="mtsInvDiscount" placeholder="Discount">
+        </div>
+        <div class="mts-invoice-row">
+          <span class="mts-invoice-label">Invoice Initial <em>*</em></span>
+          <select id="mtsInvInitial" required>
+            <option value="001/26-27" selected>001/26-27</option>
+            <option value="TM/000">TM/000</option>
+            <option value="201/001">201/001</option>
+            <option value="005/001">005/001</option>
+          </select>
+        </div>
+        <div class="mts-invoice-submit-wrap">
+          <button type="submit" class="mts-invoice-submit" id="mtsInvSubmit">Add Invoice</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="mts-modal-scrim" id="mtsCommentsModal" hidden>
+    <div class="mts-comments-modal" role="dialog" aria-modal="true" aria-labelledby="mtsCommentsTitle">
+      <div class="mts-comments-modal__head">
+        <h2 id="mtsCommentsTitle">Comments</h2>
+        <button type="button" class="mts-modal__close" id="mtsCommentsClose" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div class="mts-comments-modal__body">
+        <div class="mts-comment-compose">
+          <span class="mts-comment-avatar" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </span>
+          <div class="mts-comment-input-wrap">
+            <input type="text" class="mts-comment-input" placeholder="Add a comment" aria-label="Add a comment">
+            <button type="button" class="mts-comment-mic" aria-label="Voice input" title="Voice input">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 14a3 3 0 003-3V7a3 3 0 10-6 0v4a3 3 0 003 3z"/><path d="M19 11a7 7 0 01-14 0M12 18v3"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/my-timesheet.js?v=mts6"></script>
+</body>
+</html>

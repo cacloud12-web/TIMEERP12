@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings — TimeERP</title>
+  <meta name="description" content="Organization settings for SMTP, fields, portal policy, WhatsApp, tags, and integrations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HRMS/css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/my-profile.css?v=46">
+  <link rel="stylesheet" href="css/module-hub.css?v=4">
+  <style>
+    /* Settings hub tiles — force MY EXPENSE style */
+    .mh-page .mh-grid {
+      display: grid !important;
+      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      gap: 16px !important;
+    }
+    .mh-page .mh-card {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 14px !important;
+      min-height: 168px !important;
+      padding: 28px 16px 22px !important;
+      background: #fff !important;
+      border: 1px solid #ccebe8 !important;
+      border-radius: 22px !important;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06) !important;
+      text-align: center !important;
+      text-decoration: none !important;
+      color: inherit !important;
+    }
+    .mh-page .mh-card__art {
+      width: 76px !important;
+      height: 76px !important;
+      border-radius: 20px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      background: linear-gradient(160deg, #e8f8f6 0%, #fff 72%) !important;
+      border: 1px solid #d7efec !important;
+      box-shadow: 0 8px 18px rgba(37, 183, 167, 0.1) !important;
+      flex-shrink: 0 !important;
+    }
+    .mh-page .mh-card__art img {
+      width: 48px !important;
+      height: 48px !important;
+      object-fit: contain !important;
+    }
+    .mh-page .mh-card__label {
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.06em !important;
+      text-transform: uppercase !important;
+      color: #2f6f69 !important;
+      line-height: 1.35 !important;
+      margin: 0 !important;
+    }
+    @media (max-width: 1200px) {
+      .mh-page .mh-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+    }
+    @media (max-width: 900px) {
+      .mh-page .mh-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+    }
+    @media (max-width: 560px) {
+      .mh-page .mh-grid { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="shell-top-checkin is-checked-in is-orange" id="shellTopCheckInBtn">Check Out</button>
+            <time class="shell-top-clock" id="shellTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn shell-top-icon" id="shellCalBtn" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn shell-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <a class="shell-account" id="profileBtn" href="my_profile.html" aria-label="Open profile">
+              <span class="shell-account__org" aria-hidden="true"><img src="assets/favicon-mark.png" alt="" width="28" height="28"></span>
+              <span class="shell-account__name">CA Cloud..</span>
+              <span class="shell-account__user" aria-hidden="true"><img src="assets/favicon-mark.png" alt="" width="28" height="28"></span>
+            </a>
+          </div>
+        </div>
+      </header>
+      <main class="main">
+        <div class="mp-page mh-page">
+          <nav class="mp-mod-nav" aria-label="Profile modules">
+            <div class="mp-mod-nav__pills">
+              <a href="my_profile.html" class="mp-mod-pill">Profile</a><a href="organization.html" class="mp-mod-pill">Organization</a><a href="hrms.html" class="mp-mod-pill">HRMS</a><a href="payroll.html" class="mp-mod-pill">Payroll</a><a href="import_utility.html" class="mp-mod-pill">Import Utility</a><a href="notification.html" class="mp-mod-pill">Notification</a><a href="settings.html" class="mp-mod-pill is-active" aria-current="page">Settings</a><a href="app_setup.html" class="mp-mod-pill">Setup</a>
+            </div>
+            <div class="mp-mod-nav__actions">
+              <button type="button" class="mp-mod-icon-btn" aria-label="Trash" title="Trash">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 5h6"/><path d="M10 5V4h4v1"/><path d="M4.5 7.5h15"/><path d="M7 7.5l.9 12.2a1 1 0 0 0 1 .9h6.2a1 1 0 0 0 1-.9L17 7.5"/></svg>
+              </button>
+              <button type="button" class="mp-mod-icon-btn" aria-label="Unlock" title="Unlock">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><circle cx="12" cy="16" r="1" fill="currentColor" stroke="none"/><path d="M16 11V7.5a4 4 0 0 0-7.6-1.7"/></svg>
+              </button>
+              <button type="button" class="mp-mod-icon-btn" aria-label="Logout" title="Logout">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 4a8 8 0 1 0 0 16"/><path d="M12 12h8"/><path d="M17.5 9l3 3-3 3"/></svg>
+              </button>
+            </div>
+          </nav>
+          <div class="mh-body">
+            <div class="mh-grid">
+              <a class="mh-card" href="smtp_configuration.html">
+                <span class="mh-card__art" aria-hidden="true"><img src="assets/home-icons/task-email.svg" alt=""></span>
+                <span class="mh-card__label">SMTP Configuration</span>
+              </a>
+              <a class="mh-card" href="custom_fields.html">
+                <span class="mh-card__art" aria-hidden="true"><img src="assets/home-icons/task-custom.svg" alt=""></span>
+                <span class="mh-card__label">Custom fields</span>
+              </a>
+              <a class="mh-card" href="client_portal_policy.html">
+                <span class="mh-card__art" aria-hidden="true"><img src="assets/home-icons/task-policy.svg" alt=""></span>
+                <span class="mh-card__label">Client Portal Policy</span>
+              </a>
+              <a class="mh-card" href="whatsapp_settings.html">
+                <span class="mh-card__art" aria-hidden="true"><img src="assets/home-icons/task-whatsapp.svg" alt=""></span>
+                <span class="mh-card__label">WhatsApp</span>
+              </a>
+              <a class="mh-card" href="tags.html">
+                <span class="mh-card__art" aria-hidden="true"><img src="assets/home-icons/task-pin.svg" alt=""></span>
+                <span class="mh-card__label">Tags</span>
+              </a>
+              <a class="mh-card" href="accounts.html">
+                <span class="mh-card__art" aria-hidden="true"><img src="assets/home-icons/task-ledger.svg" alt=""></span>
+                <span class="mh-card__label">Accounts</span>
+              </a>
+              <a class="mh-card" href="shortcuts.html">
+                <span class="mh-card__art" aria-hidden="true"><img src="assets/home-icons/task-bolt.svg" alt=""></span>
+                <span class="mh-card__label">Short Cuts</span>
+              </a>
+              <a class="mh-card" href="integration.html">
+                <span class="mh-card__art" aria-hidden="true"><img src="assets/home-icons/task-api.svg" alt=""></span>
+                <span class="mh-card__label">Integration</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="HRMS/js/dashboard-shell.js?v=unlock1"></script>
+
+</body>
+</html>

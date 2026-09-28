@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="../favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="../assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="../assets/favicon-mark.png?v=13">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salary Slip — TIME ERP HRMS</title>
+  <meta name="description" content="View monthly salary slips and payslip details in TIME ERP.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard-shell.css?v=sidebar-light1">
+  <link rel="stylesheet" href="css/salary-slip.css?v=ss2">
+</head>
+<body>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+  <div class="app-shell" id="top">
+    <aside class="sidebar" id="sidebar" aria-label="Modules">
+      <div class="sidebar__brand">
+        <a href="../home.html" class="sidebar__brand-logo" aria-label="TimeERP home">
+          <img src="../assets/logo-nav.svg" alt="TimeERP" width="196" height="48">
+        </a>
+      </div>
+      <div class="sidebar__toolbar" role="group" aria-label="Search and create">
+        <button type="button" class="sidebar__search-btn" id="sidebarSearchToggle" aria-label="Focus search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="sidebar__create-btn" id="sidebarCreate">
+          <span class="sidebar__create-icon" aria-hidden="true">+</span>
+          <span>Create</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarList" aria-label="Module navigation"></nav>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open modules menu">☰</button>
+          <div class="topbar__search" role="search">
+            <input type="search" id="globalSearch" placeholder="Search..." autocomplete="off" aria-label="Search">
+          </div>
+          <div class="topbar__actions">
+            <button type="button" class="ss-top-checkin is-in" id="ssTopCheckInBtn">Check In</button>
+            <time class="ss-top-clock" id="ssTopClock" datetime="">--:--</time>
+            <button type="button" class="topbar__icon-btn ss-top-icon" aria-label="Calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            </button>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__icon-btn ss-top-icon" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3a6 6 0 00-6 6v3.5l-1.5 2.5h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>
+                <span class="topbar__badge">3</span>
+              </button>
+              <div class="dropdown" id="notifDropdown" role="menu" aria-label="Notifications">
+                <div class="dropdown__title">Notifications</div>
+                <div id="notifList"></div>
+              </div>
+            </div>
+            <div class="topbar__menu" style="position:relative">
+              <button type="button" class="topbar__profile" id="profileBtn" aria-label="Profile" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar__avatar">TE</span>
+                <span class="topbar__profile-meta"><strong>Admin</strong><span>TimeERP</span></span>
+                <svg class="ss-profile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+                <div class="dropdown__title">Account</div>
+                <a href="../home.html" class="dropdown__item"><strong>Go to home</strong><span>Module hub overview</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="ss-page" id="ssPage">
+          <header class="ss-header">
+            <a class="ss-back" href="../home.html#module/hrms" aria-label="Back to HRMS">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+            <h1 class="ss-title">Salary Slip</h1>
+          </header>
+
+          <section class="ss-card" aria-label="My Salary Slip">
+            <div class="ss-toolbar">
+              <h2 class="ss-card-title">My Salary Slip</h2>
+              <div class="ss-toolbar__actions">
+                <button type="button" class="ss-month-btn" id="ssMonthBtn" aria-haspopup="dialog" aria-expanded="false">
+                  <span id="ssMonthText">07/2026</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                </button>
+                <button type="button" class="ss-icon-btn" id="ssColumnsBtn" title="Columns" aria-label="Columns" aria-haspopup="true" aria-expanded="false">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="1.5"/><path d="M5 9.33h14M5 14.67h14"/><path d="M8 6.85h5M8 12h5M8 17.15h5"/></svg>
+                  <svg class="ss-icon-btn__caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="ss-table-wrap">
+              <table class="ss-table" id="ssTable">
+                <thead><tr id="ssTableHead"></tr></thead>
+                <tbody id="ssTableBody"></tbody>
+              </table>
+              <div class="ss-empty" id="ssEmpty" aria-live="polite" hidden>
+                <div class="ss-empty__icon" aria-hidden="true">
+                  <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.75">
+                    <path d="M10 28l6-8h32l6 8"/>
+                    <path d="M10 28h44v22a4 4 0 01-4 4H14a4 4 0 01-4-4V28z"/>
+                    <path d="M10 28h14l4 6h12l4-6h14"/>
+                  </svg>
+                </div>
+                <p>No data</p>
+              </div>
+            </div>
+
+            <footer class="ss-pagination" aria-label="Table pagination">
+              <div class="ss-pagination__left"></div>
+              <div class="ss-pagination__center">
+                <button type="button" class="ss-page-nav" id="ssPrev" aria-label="Previous page" disabled>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <input type="text" class="ss-page-input" id="ssPageInput" value="1" aria-label="Current page" readonly>
+                <span class="ss-page-of">of <span id="ssPageTotal">1</span></span>
+                <button type="button" class="ss-page-nav" id="ssNext" aria-label="Next page" disabled>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+              </div>
+              <div class="ss-pagination__right">
+                <span class="ss-count" id="ssCount">1 / 1</span>
+              </div>
+            </footer>
+          </section>
+
+          <footer class="ss-app-footer" aria-label="App footer"></footer>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="ss-pop ss-pop--columns" id="ssColumnsPop" hidden>
+    <div class="ss-pop__caret" aria-hidden="true"></div>
+    <div class="ss-pop__head">
+      <span class="ss-pop__title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="1.5"/><path d="M5 9.33h14M5 14.67h14"/><path d="M8 6.85h5M8 12h5M8 17.15h5"/></svg>
+        Columns
+      </span>
+      <button type="button" class="ss-pop__link" id="ssSelectAllCols">Select All</button>
+    </div>
+    <ul class="ss-pop__list" id="ssColumnsList"></ul>
+  </div>
+
+  <div class="ss-month-pop" id="ssMonthPop" hidden role="dialog" aria-label="Select month">
+    <div class="ss-month-pop__head">
+      <button type="button" class="ss-month-nav" id="ssYearPrev" aria-label="Previous year">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <span class="ss-month-pop__year" id="ssPickerYear">2026</span>
+      <button type="button" class="ss-month-nav" id="ssYearNext" aria-label="Next year">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+    <div class="ss-month-pop__grid" id="ssMonthGrid"></div>
+  </div>
+
+  <div class="ss-modal-scrim" id="ssDetailsModal" hidden>
+    <div class="ss-details-modal" role="dialog" aria-modal="true" aria-labelledby="ssDetailsTitle">
+      <div class="ss-details-modal__head">
+        <h2 id="ssDetailsTitle">Details</h2>
+        <button type="button" class="ss-modal__close" id="ssDetailsClose" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div class="ss-details-modal__body">
+        <h3 class="ss-details-sub">In Payslip</h3>
+        <table class="ss-details-table">
+          <thead>
+            <tr>
+              <th scope="col">S. No.</th>
+              <th scope="col">Name</th>
+              <th scope="col">Taxable</th>
+              <th scope="col">Value</th>
+            </tr>
+          </thead>
+          <tbody id="ssDetailsBody"></tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3" class="ss-details-total-label">Total</td>
+              <td class="ss-details-total-value" id="ssDetailsTotal">67500</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script src="js/dashboard-shell.js?v=unlock1"></script>
+  <script src="js/salary-slip.js?v=ss3"></script>
+</body>
+</html>

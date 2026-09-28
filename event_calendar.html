@@ -2,15 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" href="assets/image0.png" type="image/png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=13" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=13" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=13" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=13">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Event Calendar | TimeERP</title>
-  <meta name="description" content="Plan and track meetings, tasks, project milestones, compliance deadlines, leave, and billing due dates in the TIME ERP Event Calendar.">
+  <meta name="description" content="TIME ERP Event Calendar — track Project Management milestones, Billing Management due dates, Compliance Management deadlines, Leave & Holidays, CRM meetings, and Document Vault expiries.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
-  <link rel="stylesheet" href="css/site-nav.css">
+  <link rel="stylesheet" href="css/site-nav.css?v=13">
   <link rel="stylesheet" href="css/site-footer.css">
   <style>
     :root {
@@ -149,7 +153,7 @@
     .ec-toolbar__actions { display: flex; gap: 8px; flex-wrap: wrap; margin-left: auto; }
 
     .ec-filters {
-      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;
     }
     .ec-chip {
       display: inline-flex; align-items: center; gap: 8px;
@@ -166,6 +170,64 @@
       width: 8px; height: 8px; border-radius: 50%;
       background: var(--dot, var(--primary));
     }
+    .ec-power {
+      display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+      margin-bottom: 20px; padding: 12px 14px;
+      background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
+    }
+    .ec-power label {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 650; color: var(--muted);
+    }
+    .ec-power select {
+      padding: 7px 10px; border: 1px solid var(--border); border-radius: 8px;
+      background: #fafefe; color: var(--heading); font-weight: 600; font-size: 13px;
+    }
+    .ec-power select:focus {
+      outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,183,167,.12);
+    }
+    .ec-toggle {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-left: auto; font-size: 13px; font-weight: 650; color: var(--heading);
+      cursor: pointer; user-select: none;
+    }
+    .ec-toggle input { accent-color: var(--primary); width: 16px; height: 16px; }
+    .ec-pill.is-overdue {
+      background: #fde8e8; border-left-color: #c0392b !important; color: #8b1e14;
+    }
+    .ec-pill.is-due-soon {
+      background: #fff4e0; border-left-color: #b7791f !important;
+    }
+    .ec-overdue-item {
+      display: flex; gap: 10px; width: 100%; text-align: left;
+      padding: 10px; border-radius: 12px; border: 1px solid #f5d0d0;
+      background: #fff8f8; margin-bottom: 8px;
+      transition: border-color .15s, transform .15s;
+    }
+    .ec-overdue-item:hover { border-color: #c0392b; transform: translateX(3px); }
+    .ec-overdue-item strong { display: block; font-size: 13px; color: var(--heading); }
+    .ec-overdue-item span { font-size: 11px; color: #c0392b; font-weight: 650; }
+    .ec-workload { display: flex; flex-direction: column; gap: 8px; }
+    .ec-wl-row {
+      display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center;
+      font-size: 12px;
+    }
+    .ec-wl-row strong { color: var(--heading); font-weight: 650; }
+    .ec-wl-bar {
+      grid-column: 1 / -1; height: 6px; border-radius: 999px; background: #eef4f3; overflow: hidden;
+    }
+    .ec-wl-bar i {
+      display: block; height: 100%; border-radius: 999px;
+      background: linear-gradient(90deg, var(--primary), #17c3b2);
+    }
+    .ec-wl-count { font-weight: 700; color: var(--primary-dark); font-size: 12px; }
+    .ec-drawer__actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .ec-module-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 12px; border-radius: 999px; font-size: 12px; font-weight: 700;
+      background: var(--primary-light); color: var(--primary-dark); border: 1px solid #b8e8e2;
+    }
+    .ec-module-link:hover { background: #d8f5f1; }
 
     .ec-layout {
       display: grid;
@@ -434,23 +496,31 @@
     .ec-action .material-symbols-outlined { font-size: 20px; color: var(--primary); }
     .ec-action strong { font-size: 12px; font-weight: 700; color: var(--heading); line-height: 1.3; }
 
-    /* Drawer */
+    /* Event detail — centered modal (not side drawer) */
     .ec-drawer-backdrop {
-      position: fixed; inset: 0; background: rgba(8,53,48,.35);
-      opacity: 0; visibility: hidden; transition: opacity .2s, visibility .2s; z-index: 1200;
+      position: fixed; inset: 0; background: rgba(8,53,48,.4); z-index: 1200;
+      opacity: 0; visibility: hidden; transition: opacity .2s, visibility .2s;
+      display: grid; place-items: center; padding: 20px;
     }
     .ec-drawer-backdrop.is-open { opacity: 1; visibility: visible; }
     .ec-drawer {
-      position: fixed; top: 0; right: 0; bottom: 0; width: min(420px, 100%);
-      background: #fff; z-index: 1201; transform: translateX(100%);
-      transition: transform .28s cubic-bezier(.2,0,0,1);
-      box-shadow: -20px 0 60px rgba(8,53,48,.15);
+      width: min(560px, 100%); max-height: min(90vh, 720px);
+      background: #fff; z-index: 1201;
+      border-radius: 18px; border: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
       display: flex; flex-direction: column;
+      transform: translateY(14px) scale(.98);
+      opacity: 0;
+      transition: transform .25s cubic-bezier(.2,0,0,1), opacity .25s;
+      overflow: hidden;
     }
-    .ec-drawer.is-open { transform: translateX(0); }
+    .ec-drawer-backdrop.is-open .ec-drawer {
+      transform: none; opacity: 1;
+    }
     .ec-drawer__head {
       display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
       padding: 20px 20px 14px; border-bottom: 1px solid #eef4f3;
+      flex-shrink: 0;
     }
     .ec-drawer__head h2 { font-size: 18px; font-weight: 700; color: var(--heading); line-height: 1.3; }
     .ec-drawer__close {
@@ -458,7 +528,7 @@
       display: grid; place-items: center; flex-shrink: 0;
     }
     .ec-drawer__close:hover { background: var(--primary-light); border-color: var(--primary); }
-    .ec-drawer__body { padding: 18px 20px; overflow: auto; flex: 1; }
+    .ec-drawer__body { padding: 18px 20px; overflow: auto; flex: 1; min-height: 0; }
     .ec-drawer__desc { color: var(--muted); font-size: 14px; margin-bottom: 18px; }
     .ec-drawer__grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
@@ -469,9 +539,10 @@
     .ec-drawer__field--full { grid-column: 1 / -1; }
     .ec-drawer__foot {
       padding: 14px 20px; border-top: 1px solid #eef4f3; display: flex; gap: 8px; flex-wrap: wrap;
+      flex-shrink: 0; background: #fff;
     }
 
-    /* Modal */
+    /* Create / edit modal — centered */
     .ec-modal-backdrop {
       position: fixed; inset: 0; background: rgba(8,53,48,.4); z-index: 1300;
       opacity: 0; visibility: hidden; transition: opacity .2s, visibility .2s;
@@ -479,12 +550,13 @@
     }
     .ec-modal-backdrop.is-open { opacity: 1; visibility: visible; }
     .ec-modal {
-      width: min(520px, 100%); background: #fff; border-radius: 18px;
+      width: min(560px, 100%); background: #fff; border-radius: 18px;
       box-shadow: var(--shadow-lg); border: 1px solid var(--border);
-      transform: translateY(12px); transition: transform .25s;
+      transform: translateY(14px) scale(.98); opacity: 0;
+      transition: transform .25s, opacity .25s;
       max-height: 90vh; overflow: auto;
     }
-    .ec-modal-backdrop.is-open .ec-modal { transform: none; }
+    .ec-modal-backdrop.is-open .ec-modal { transform: none; opacity: 1; }
     .ec-modal__head {
       display: flex; align-items: center; justify-content: space-between;
       padding: 18px 20px; border-bottom: 1px solid #eef4f3;
@@ -506,13 +578,14 @@
     }
 
     .ec-toast {
-      position: fixed; bottom: 24px; right: 24px; z-index: 1400;
+      position: fixed; bottom: 24px; left: 50%; z-index: 1400;
+      transform: translateX(-50%) translateY(10px);
       padding: 12px 16px; border-radius: 12px; background: var(--heading); color: #fff;
       font-size: 13px; font-weight: 600; box-shadow: var(--shadow-lg);
-      opacity: 0; transform: translateY(10px); pointer-events: none;
+      opacity: 0; pointer-events: none;
       transition: opacity .2s, transform .2s;
     }
-    .ec-toast.is-visible { opacity: 1; transform: none; }
+    .ec-toast.is-visible { opacity: 1; transform: translateX(-50%) translateY(0); }
 
     @media (max-width: 1100px) {
       :root { --pad-x: 40px; }
@@ -525,6 +598,9 @@
       .ec-actions { grid-template-columns: 1fr; }
       .ec-form__row { grid-template-columns: 1fr; }
       .ec-toolbar__actions { margin-left: 0; width: 100%; }
+      .ec-drawer__grid { grid-template-columns: 1fr; }
+      .ec-drawer__foot { flex-direction: column; }
+      .ec-drawer__foot .btn { width: 100%; margin-left: 0 !important; justify-content: center; }
     }
   </style>
 </head>
@@ -536,13 +612,13 @@
       <p class="ec-label">Resources</p>
       <header class="ec-hero">
         <h1>Event Calendar</h1>
-        <p>Plan, schedule, and track meetings, tasks, project milestones, compliance deadlines, and employee events from one centralized calendar.</p>
+        <p>Track meetings, Project Management milestones, Billing Management due dates, Compliance Management deadlines, Leave &amp; Holidays, and HRMS events — all mapped to real TIME ERP modules.</p>
       </header>
 
       <div class="ec-toolbar">
         <div class="ec-search">
           <span class="material-symbols-outlined" aria-hidden="true">search</span>
-          <input type="search" id="ecSearch" placeholder="Search events, clients, projects…" aria-label="Search events">
+          <input type="search" id="ecSearch" placeholder="Search events, clients, projects, modules…" aria-label="Search events">
         </div>
         <div class="ec-views" role="tablist" aria-label="Calendar views">
           <button type="button" class="ec-view-btn is-active" data-view="month" role="tab" aria-selected="true">Month</button>
@@ -564,23 +640,46 @@
       </div>
 
       <div class="ec-filters" id="ecFilters" aria-label="Event categories"></div>
+      <div class="ec-power" aria-label="Advanced filters">
+        <label>Assignee
+          <select id="ecFilterAssignee" aria-label="Filter by assignee"><option value="">All</option></select>
+        </label>
+        <label>Priority
+          <select id="ecFilterPriority" aria-label="Filter by priority">
+            <option value="">All</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </select>
+        </label>
+        <label>Status
+          <select id="ecFilterStatus" aria-label="Filter by status">
+            <option value="">All</option>
+            <option value="Scheduled">Scheduled</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </label>
+        <label class="ec-toggle"><input type="checkbox" id="ecDueOnly"> Due dates focus</label>
+        <label class="ec-toggle" style="margin-left:0"><input type="checkbox" id="ecHideDone"> Hide completed</label>
+      </div>
 
       <div class="ec-layout">
         <section class="ec-board" aria-label="Calendar board">
           <div class="ec-board__head">
             <h2 id="ecBoardTitle">Month view</h2>
-            <span class="ec-board__hint">Drag events between days · Click for details</span>
+            <span class="ec-board__hint">Drag to reschedule · Click for details · Overdue highlighted</span>
           </div>
           <div id="ecBoardBody"></div>
         </section>
 
         <aside class="ec-side">
-          <section class="ec-card" aria-labelledby="ecUpcomingTitle">
+          <section class="ec-card" aria-labelledby="ecOverdueTitle">
             <div class="ec-card__head">
-              <h3 id="ecUpcomingTitle">Upcoming Events</h3>
-              <span id="ecUpcomingCount">0</span>
+              <h3 id="ecOverdueTitle">Overdue &amp; due soon</h3>
+              <span id="ecOverdueCount">0</span>
             </div>
-            <div id="ecUpcomingList"></div>
+            <div id="ecOverdueList"></div>
           </section>
 
           <section class="ec-card" aria-labelledby="ecTodayTitle">
@@ -591,16 +690,33 @@
             <div class="ec-timeline" id="ecTodayTimeline"></div>
           </section>
 
+          <section class="ec-card" aria-labelledby="ecUpcomingTitle">
+            <div class="ec-card__head">
+              <h3 id="ecUpcomingTitle">Upcoming Events</h3>
+              <span id="ecUpcomingCount">0</span>
+            </div>
+            <div id="ecUpcomingList"></div>
+          </section>
+
+          <section class="ec-card" aria-labelledby="ecWorkloadTitle">
+            <div class="ec-card__head">
+              <h3 id="ecWorkloadTitle">Team workload</h3>
+              <span>This week</span>
+            </div>
+            <div class="ec-workload" id="ecWorkload"></div>
+          </section>
+
           <section class="ec-card" aria-labelledby="ecActionsTitle">
             <div class="ec-card__head">
               <h3 id="ecActionsTitle">Quick Actions</h3>
             </div>
             <div class="ec-actions">
-              <button type="button" class="ec-action" data-create="meetings"><span class="material-symbols-outlined" aria-hidden="true">event</span><strong>Create Event</strong></button>
-              <button type="button" class="ec-action" data-create="client"><span class="material-symbols-outlined" aria-hidden="true">groups</span><strong>Schedule Meeting</strong></button>
-              <button type="button" class="ec-action" data-create="milestones"><span class="material-symbols-outlined" aria-hidden="true">flag</span><strong>Add Project Milestone</strong></button>
-              <button type="button" class="ec-action" data-create="compliance"><span class="material-symbols-outlined" aria-hidden="true">gavel</span><strong>Add Compliance Deadline</strong></button>
-              <button type="button" class="ec-action" data-create="tasks"><span class="material-symbols-outlined" aria-hidden="true">notifications</span><strong>Add Reminder</strong></button>
+              <button type="button" class="ec-action" data-create="client"><span class="material-symbols-outlined" aria-hidden="true">groups</span><strong>Client Meeting</strong></button>
+              <button type="button" class="ec-action" data-create="milestones"><span class="material-symbols-outlined" aria-hidden="true">flag</span><strong>Project Milestone</strong></button>
+              <button type="button" class="ec-action" data-create="compliance"><span class="material-symbols-outlined" aria-hidden="true">gavel</span><strong>Compliance Deadline</strong></button>
+              <button type="button" class="ec-action" data-create="billing"><span class="material-symbols-outlined" aria-hidden="true">receipt_long</span><strong>Billing Due Date</strong></button>
+              <button type="button" class="ec-action" data-create="leave"><span class="material-symbols-outlined" aria-hidden="true">beach_access</span><strong>Leave / Holiday</strong></button>
+              <button type="button" class="ec-action" data-create="tasks"><span class="material-symbols-outlined" aria-hidden="true">task_alt</span><strong>Task Reminder</strong></button>
             </div>
           </section>
         </aside>
@@ -608,17 +724,21 @@
     </div>
   </main>
 
-  <div class="ec-drawer-backdrop" id="ecDrawerBackdrop" hidden></div>
-  <aside class="ec-drawer" id="ecDrawer" aria-hidden="true" role="dialog" aria-labelledby="ecDrawerTitle">
-    <div class="ec-drawer__head">
-      <h2 id="ecDrawerTitle">Event</h2>
-      <button type="button" class="ec-drawer__close" id="ecDrawerClose" aria-label="Close"><span class="material-symbols-outlined">close</span></button>
-    </div>
-    <div class="ec-drawer__body" id="ecDrawerBody"></div>
-    <div class="ec-drawer__foot">
-      <button type="button" class="btn btn--ghost btn--sm" id="ecDrawerClose2">Close</button>
-    </div>
-  </aside>
+  <div class="ec-drawer-backdrop" id="ecDrawerBackdrop" hidden>
+    <aside class="ec-drawer" id="ecDrawer" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="ecDrawerTitle">
+      <div class="ec-drawer__head">
+        <h2 id="ecDrawerTitle">Event</h2>
+        <button type="button" class="ec-drawer__close" id="ecDrawerClose" aria-label="Close"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <div class="ec-drawer__body" id="ecDrawerBody"></div>
+      <div class="ec-drawer__foot">
+        <button type="button" class="btn btn--ghost btn--sm" id="ecDrawerEdit">Edit</button>
+        <button type="button" class="btn btn--ghost btn--sm" id="ecDrawerComplete">Mark complete</button>
+        <button type="button" class="btn btn--ghost btn--sm" id="ecDrawerDelete" style="color:#c0392b;border-color:#f5d0d0">Delete</button>
+        <button type="button" class="btn btn--primary btn--sm" id="ecDrawerClose2" style="margin-left:auto">Close</button>
+      </div>
+    </aside>
+  </div>
 
   <div class="ec-modal-backdrop" id="ecModalBackdrop" hidden>
     <div class="ec-modal" role="dialog" aria-modal="true" aria-labelledby="ecModalTitle">
@@ -697,7 +817,7 @@
     <div class="container">
       <div class="footer__main">
         <div class="footer__brand">
-          <a href="home1.html" class="footer__logo" aria-label="TimeERP home">
+          <a href="index.html" class="footer__logo" aria-label="TimeERP home">
             <img src="assets/image01-footer.svg" alt="TimeERP" width="196" height="48" loading="lazy">
           </a>
           <p class="footer__desc">One Platform. Complete Business Management. Enterprise ERP for modern businesses.</p>
@@ -712,11 +832,12 @@
           <div class="footer__col">
             <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Products</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
             <h3 class="footer__col-title">Products</h3>
-            <ul class="footer__links">
-              <li><a href="home1.html#products">Modules</a></li>
-              <li><a href="home1.html#benefits">Benefits</a></li>
-              <li><a href="home1.html#project-management">Project Management</a></li>
-              <li><a href="home1.html#solutions">Platform</a></li>
+                        <ul class="footer__links">
+              <li><a href="features.html">Features</a></li>
+              <li><a href="hrms.html">HRMS</a></li>
+              <li><a href="crm.html">CRM</a></li>
+              <li><a href="project_management.html">Project Management</a></li>
+              <li><a href="billing.html">Billing</a></li>
               <li><a href="price.html">Pricing</a></li>
             </ul>
           </div>
@@ -737,6 +858,7 @@
               <li><a href="about.html">About Us</a></li>
               <li><a href="Our_Presence.html">Our Presence</a></li>
               <li><a href="careers.html">Careers</a></li>
+              <li><a href="blog.html">Blog</a></li>
               <li><a href="contact_sales.html">Contact</a></li>
             </ul>
           </div>
@@ -744,7 +866,7 @@
             <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Support</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
             <h3 class="footer__col-title">Support</h3>
             <ul class="footer__links">
-              <li><a href="real_time_support.html">Help Center</a></li>
+              <li><a href="help_centre.html">Help Center</a></li>
               <li><a href="contact_sales.html">Sales</a></li>
               <li><a href="custom_quote.html">Get a Quote</a></li>
             </ul>
@@ -755,8 +877,10 @@
         <div class="footer__connect-item">
           <span class="footer__connect-label">Visit us</span>
           <address class="footer__address">
-            BM-08, Ansal Sumedha Building, RDC,<br>
-            Ghaziabad, Delhi NCR, UP 201002
+            <a class="footer__address-link" href="https://www.google.com/maps/search/?api=1&query=Ansal+Sumedha+Building+RDC+Ghaziabad+201002" target="_blank" rel="noopener noreferrer" aria-label="View office location on Google Maps">
+              BM-08, Ansal Sumedha Building, RDC,<br>
+              Ghaziabad, Delhi NCR, UP 201002
+            </a>
           </address>
           <div class="footer__quick">
             <a class="footer__quick-btn" href="#" data-book-demo>Book Demo</a>
@@ -786,571 +910,16 @@
         <nav class="footer__legal" aria-label="Legal">
           <a href="privacy.html">Privacy</a>
           <a href="terms.html">Terms</a>
+          <a href="security.html">Security</a>
           <a href="contact_sales.html">Contact Us</a>
         </nav>
       </div>
     </div>
   </footer>
 
-  <script>
-  (function () {
-    'use strict';
-
-    var CATEGORIES = [
-      { id: 'meetings', label: 'Meetings', color: '#25b7a7' },
-      { id: 'tasks', label: 'Tasks', color: '#243F64' },
-      { id: 'milestones', label: 'Project Milestones', color: '#0d7a6e' },
-      { id: 'client', label: 'Client Meetings', color: '#17C3B2' },
-      { id: 'employee', label: 'Employee Events', color: '#3d8bfd' },
-      { id: 'compliance', label: 'Compliance Deadlines', color: '#c0392b' },
-      { id: 'billing', label: 'Billing Due Dates', color: '#b7791f' },
-      { id: 'leave', label: 'Leave & Holidays', color: '#6b7c93' }
-    ];
-
-    var catMap = {};
-    CATEGORIES.forEach(function (c) { catMap[c.id] = c; });
-
-    var events = [
-      { id: 'e1', title: 'GST monthly return review', date: '2026-07-18', time: '10:00', end: '11:00', category: 'compliance', priority: 'High', status: 'Scheduled', assignee: 'Priya Sharma', project: 'Compliance FY26', client: 'Sharma Traders', module: 'Compliance', desc: 'Prepare and review GSTR pack for filing.', notes: 'Link supporting invoices from Document Vault.' },
-      { id: 'e2', title: 'Client kickoff — Nexus Pvt Ltd', date: '2026-07-18', time: '14:00', end: '15:00', category: 'client', priority: 'High', status: 'Scheduled', assignee: 'Rahul Mehta', project: 'Nexus Onboarding', client: 'Nexus Pvt Ltd', module: 'CRM', desc: 'Kickoff meeting for engagement scope and deliverables.', notes: '' },
-      { id: 'e3', title: 'Task reminder — Audit query pack', date: '2026-07-18', time: '16:30', end: '17:00', category: 'tasks', priority: 'Medium', status: 'In Progress', assignee: 'Ankit Verma', project: 'Statutory Audit', client: 'Mehta & Co', module: 'Task Management', desc: 'Follow up on pending audit queries.', notes: 'Share status with client via Client Desk.' },
-      { id: 'e4', title: 'Invoice due — INV-1048', date: '2026-07-20', time: '09:00', end: '09:30', category: 'billing', priority: 'High', status: 'Scheduled', assignee: 'Finance Desk', project: '', client: 'Orbit Foods', module: 'Billing', desc: 'Payment follow-up for outstanding invoice.', notes: 'UPI AutoPay / BharatPe status check.' },
-      { id: 'e5', title: 'Project milestone — Site handover draft', date: '2026-07-21', time: '11:00', end: '12:30', category: 'milestones', priority: 'Medium', status: 'Scheduled', assignee: 'Sneha Kapoor', project: 'Greenfield Tower A', client: 'BuildRight Infra', module: 'Project Management', desc: 'Internal review of handover checklist and worklogs.', notes: '' },
-      { id: 'e6', title: 'Team standup', date: '2026-07-22', time: '09:30', end: '10:00', category: 'meetings', priority: 'Low', status: 'Scheduled', assignee: 'Operations', project: '', client: 'Internal', module: 'Communication', desc: 'Weekly operations sync.', notes: '' },
-      { id: 'e7', title: 'EPFO remittance deadline', date: '2026-07-15', time: '17:00', end: '17:30', category: 'compliance', priority: 'High', status: 'Completed', assignee: 'HR Payroll', project: '', client: 'Internal', module: 'Compliance', desc: 'EPFO remittance cutoff.', notes: '' },
-      { id: 'e8', title: 'Leave — Casual (A. Sharma)', date: '2026-07-23', time: '00:00', end: '23:59', category: 'leave', priority: 'Low', status: 'Scheduled', assignee: 'A. Sharma', project: '', client: 'Internal', module: 'Leave Management', desc: 'Approved casual leave.', notes: 'Attendance lock awareness.' },
-      { id: 'e9', title: 'DSC expiry — Partner token', date: '2026-07-24', time: '10:00', end: '10:30', category: 'compliance', priority: 'High', status: 'Scheduled', assignee: 'Admin', project: '', client: 'Internal', module: 'Document Vault', desc: 'Renew DSC tracked in Document Vault.', notes: 'Update DSC Tracker after renewal.' },
-      { id: 'e10', title: 'Agreement renewal pack', date: '2026-07-25', time: '15:00', end: '16:00', category: 'tasks', priority: 'Medium', status: 'Scheduled', assignee: 'Legal Desk', project: 'MSA Renewals', client: 'Nexus Pvt Ltd', module: 'Document Vault', desc: 'Prepare outward agreement package.', notes: '' },
-      { id: 'e11', title: 'Employee birthday — R. Verma', date: '2026-07-27', time: '00:00', end: '23:59', category: 'employee', priority: 'Low', status: 'Scheduled', assignee: 'HRMS', project: '', client: 'Internal', module: 'HRMS', desc: 'Team birthday reminder from employee profile.', notes: '' },
-      { id: 'e12', title: 'Company holiday — Optional', date: '2026-07-19', time: '00:00', end: '23:59', category: 'leave', priority: 'Low', status: 'Scheduled', assignee: 'HRMS', project: '', client: 'Internal', module: 'Leave Management', desc: 'Holiday calendar entry.', notes: '' },
-      { id: 'e13', title: 'Payment follow-up call', date: '2026-07-28', time: '12:00', end: '12:30', category: 'billing', priority: 'Medium', status: 'Scheduled', assignee: 'Collections', project: '', client: 'Pixel Soft', module: 'Billing', desc: 'Follow up on overdue receipt.', notes: '' },
-      { id: 'e14', title: 'CRM demo with prospect', date: '2026-07-29', time: '16:00', end: '17:00', category: 'client', priority: 'Medium', status: 'Scheduled', assignee: 'Sales', project: 'Pipeline', client: 'Lead — Apex Retail', module: 'CRM', desc: 'Product walkthrough for CRM and Billing modules.', notes: '' },
-      { id: 'e15', title: 'Document expiry — Lease scan', date: '2026-07-30', time: '11:00', end: '11:30', category: 'tasks', priority: 'High', status: 'Scheduled', assignee: 'Document Desk', project: '', client: 'Internal', module: 'Document Vault', desc: 'Review expiring lease document in vault.', notes: 'Trigger inward/outward if renewed.' }
-    ];
-
-    var state = {
-      view: 'month',
-      cursor: new Date(2026, 6, 1),
-      today: new Date(2026, 6, 18),
-      selectedDate: '2026-07-18',
-      filters: CATEGORIES.map(function (c) { return c.id; }),
-      query: '',
-      dragId: null
-    };
-
-    var els = {
-      filters: document.getElementById('ecFilters'),
-      board: document.getElementById('ecBoardBody'),
-      boardTitle: document.getElementById('ecBoardTitle'),
-      period: document.getElementById('ecPeriodLabel'),
-      upcoming: document.getElementById('ecUpcomingList'),
-      upcomingCount: document.getElementById('ecUpcomingCount'),
-      todayTimeline: document.getElementById('ecTodayTimeline'),
-      todayDate: document.getElementById('ecTodayDate'),
-      search: document.getElementById('ecSearch'),
-      drawer: document.getElementById('ecDrawer'),
-      drawerBackdrop: document.getElementById('ecDrawerBackdrop'),
-      drawerTitle: document.getElementById('ecDrawerTitle'),
-      drawerBody: document.getElementById('ecDrawerBody'),
-      modal: document.getElementById('ecModalBackdrop'),
-      form: document.getElementById('ecCreateForm'),
-      catSelect: document.getElementById('ecEvCat'),
-      toast: document.getElementById('ecToast')
-    };
-
-    function pad(n) { return n < 10 ? '0' + n : String(n); }
-    function toISO(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
-    function parseISO(s) {
-      var p = s.split('-');
-      return new Date(+p[0], +p[1] - 1, +p[2]);
-    }
-    function sameDay(a, b) {
-      return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
-    }
-    function startOfWeek(d) {
-      var x = new Date(d.getFullYear(), d.getMonth(), d.getDate());
-      var day = (x.getDay() + 6) % 7;
-      x.setDate(x.getDate() - day);
-      return x;
-    }
-    function monthLabel(d) {
-      return d.toLocaleString('en-IN', { month: 'long', year: 'numeric' });
-    }
-    function formatTime(t) {
-      if (!t || t === '00:00') return 'All day';
-      var h = +t.slice(0, 2), m = t.slice(3), ap = h >= 12 ? 'PM' : 'AM';
-      h = h % 12 || 12;
-      return h + ':' + m + ' ' + ap;
-    }
-    function escapeHtml(s) {
-      return String(s).replace(/[&<>"']/g, function (c) {
-        return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
-      });
-    }
-
-    function filteredEvents() {
-      var q = state.query.trim().toLowerCase();
-      return events.filter(function (e) {
-        if (state.filters.indexOf(e.category) === -1) return false;
-        if (!q) return true;
-        var hay = [e.title, e.assignee, e.client, e.project, e.module, e.desc].join(' ').toLowerCase();
-        return hay.indexOf(q) !== -1;
-      });
-    }
-
-    function eventsOn(dateStr) {
-      return filteredEvents().filter(function (e) { return e.date === dateStr; });
-    }
-
-    function renderFilters() {
-      els.filters.innerHTML = CATEGORIES.map(function (c) {
-        var on = state.filters.indexOf(c.id) !== -1;
-        return '<button type="button" class="ec-chip' + (on ? ' is-active' : '') + '" data-filter="' + c.id + '">'
-          + '<span class="ec-chip__dot" style="--dot:' + c.color + '"></span>' + escapeHtml(c.label) + '</button>';
-      }).join('');
-    }
-
-    function renderPeriod() {
-      if (state.view === 'month') els.period.textContent = monthLabel(state.cursor);
-      else if (state.view === 'week') {
-        var s = startOfWeek(state.cursor), e = new Date(s); e.setDate(e.getDate() + 6);
-        els.period.textContent = s.getDate() + '–' + e.getDate() + ' ' + e.toLocaleString('en-IN', { month: 'short', year: 'numeric' });
-      } else if (state.view === 'day') {
-        els.period.textContent = state.cursor.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' });
-      } else {
-        els.period.textContent = monthLabel(state.cursor);
-      }
-      els.boardTitle.textContent = ({ month: 'Month view', week: 'Week view', day: 'Day view', agenda: 'Agenda view' })[state.view];
-    }
-
-    function renderMonth() {
-      var y = state.cursor.getFullYear(), m = state.cursor.getMonth();
-      var first = new Date(y, m, 1);
-      var start = startOfWeek(first);
-      var selected = state.selectedDate || toISO(state.today);
-      var html = '<div class="ec-month">'
-        + '<div class="ec-month__toolbar"><div class="ec-month__legend">'
-        + CATEGORIES.slice(0, 5).map(function (c) {
-          return '<span><i style="background:' + c.color + '"></i>' + escapeHtml(c.label) + '</span>';
-        }).join('')
-        + '</div></div>'
-        + '<div class="ec-selected-bar' + (selected ? ' is-visible' : '') + '" id="ecSelectedBar">'
-        + '<div><strong id="ecSelectedLabel"></strong> <span id="ecSelectedMeta"></span></div>'
-        + '<button type="button" class="btn btn--ghost btn--sm" data-create-on-selected>Add event</button></div>'
-        + '<div class="ec-weekdays">'
-        + ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(function (d) { return '<span>' + d + '</span>'; }).join('')
-        + '</div><div class="ec-days">';
-      for (var i = 0; i < 42; i++) {
-        var day = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i);
-        var iso = toISO(day);
-        var muted = day.getMonth() !== m;
-        var isToday = sameDay(day, state.today);
-        var isSelected = iso === selected;
-        var dayEvents = eventsOn(iso);
-        var shown = dayEvents.slice(0, 3);
-        var more = dayEvents.length - shown.length;
-        var preview = dayEvents.slice(0, 4).map(function (ev) { return '<li>' + escapeHtml(ev.title) + '</li>'; }).join('');
-        html += '<div class="ec-day' + (muted ? ' is-muted' : '') + (isToday ? ' is-today' : '') + (isSelected ? ' is-selected' : '') + '" data-date="' + iso + '" role="button" tabindex="0">'
-          + '<div class="ec-day__top"><span class="ec-day__num">' + day.getDate() + '</span>'
-          + (dayEvents.length ? '<span class="ec-day__count">' + dayEvents.length + '</span>' : '')
-          + '</div><div class="ec-day__events">';
-        shown.forEach(function (ev) {
-          var color = catMap[ev.category] ? catMap[ev.category].color : '#25b7a7';
-          html += '<button type="button" class="ec-pill" draggable="true" data-id="' + ev.id + '" style="border-left-color:' + color + '" title="' + escapeHtml(ev.title) + '">'
-            + '<span class="ec-pill__dot" style="background:' + color + '"></span><span class="ec-pill__text">' + escapeHtml(ev.title) + '</span></button>';
-        });
-        if (more > 0) html += '<button type="button" class="ec-pill ec-pill--more" data-date-more="' + iso + '">+' + more + ' more</button>';
-        html += '</div>';
-        if (preview) html += '<div class="ec-day-preview has-content"><strong>' + dayEvents.length + ' event' + (dayEvents.length > 1 ? 's' : '') + '</strong><ul>' + preview + '</ul></div>';
-        html += '</div>';
-      }
-      html += '</div></div>';
-      els.board.innerHTML = html;
-      updateSelectedBar(selected);
-      bindDragDrop();
-    }
-
-    function updateSelectedBar(iso) {
-      var label = document.getElementById('ecSelectedLabel');
-      var meta = document.getElementById('ecSelectedMeta');
-      if (!label || !meta || !iso) return;
-      var d = parseISO(iso);
-      var list = eventsOn(iso);
-      label.textContent = d.toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' });
-      meta.textContent = list.length ? (list.length + ' event' + (list.length > 1 ? 's' : '') + ' scheduled') : 'No events — click Add event to schedule';
-    }
-
-    function renderTimeGrid(days) {
-      var hours = [9, 10, 11, 12, 13, 14, 15, 16, 17];
-      var html = '<div class="ec-timegrid"><div class="ec-timegrid__table" style="--cols:' + days.length + '">';
-      html += '<div class="ec-timegrid__corner"></div>';
-      days.forEach(function (d) {
-        var iso = toISO(d);
-        html += '<div class="ec-timegrid__dayhead' + (sameDay(d, state.today) ? ' is-today' : '') + '">'
-          + d.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric' }) + '</div>';
-      });
-      hours.forEach(function (h) {
-        html += '<div class="ec-timegrid__hour">' + pad(h) + ':00</div>';
-        days.forEach(function (d) {
-          var iso = toISO(d);
-          var slot = eventsOn(iso).filter(function (e) {
-            var eh = +(e.time || '00:00').slice(0, 2);
-            return eh === h;
-          });
-          html += '<div class="ec-timegrid__cell">';
-          slot.forEach(function (ev) {
-            var color = catMap[ev.category] ? catMap[ev.category].color : '#25b7a7';
-            html += '<button type="button" class="ec-timegrid__event" data-id="' + ev.id + '" style="background:' + color + '">' + escapeHtml(ev.title) + '</button>';
-          });
-          html += '</div>';
-        });
-      });
-      html += '</div></div>';
-      els.board.innerHTML = html;
-    }
-
-    function renderWeek() {
-      var s = startOfWeek(state.cursor);
-      var days = [];
-      for (var i = 0; i < 7; i++) days.push(new Date(s.getFullYear(), s.getMonth(), s.getDate() + i));
-      renderTimeGrid(days);
-    }
-
-    function renderDay() {
-      renderTimeGrid([new Date(state.cursor.getFullYear(), state.cursor.getMonth(), state.cursor.getDate())]);
-    }
-
-    function renderAgenda() {
-      var list = filteredEvents().slice().sort(function (a, b) {
-        return a.date === b.date ? a.time.localeCompare(b.time) : a.date.localeCompare(b.date);
-      });
-      var month = state.cursor.getMonth(), year = state.cursor.getFullYear();
-      list = list.filter(function (e) {
-        var d = parseISO(e.date);
-        return d.getMonth() === month && d.getFullYear() === year;
-      });
-      if (!list.length) {
-        els.board.innerHTML = '<div class="ec-empty"><span class="material-symbols-outlined">event_busy</span><p>No events match your filters for this period.</p></div>';
-        return;
-      }
-      var groups = {};
-      list.forEach(function (e) {
-        if (!groups[e.date]) groups[e.date] = [];
-        groups[e.date].push(e);
-      });
-      var html = '<div class="ec-agenda">';
-      Object.keys(groups).sort().forEach(function (date) {
-        var label = parseISO(date).toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' });
-        html += '<div class="ec-agenda__group"><div class="ec-agenda__date">' + label + '</div>';
-        groups[date].forEach(function (ev) {
-          var color = catMap[ev.category] ? catMap[ev.category].color : '#25b7a7';
-          html += '<button type="button" class="ec-agenda__item" data-id="' + ev.id + '">'
-            + '<span class="ec-agenda__bar" style="background:' + color + '"></span>'
-            + '<span><span class="ec-agenda__title">' + escapeHtml(ev.title) + '</span>'
-            + '<span class="ec-agenda__meta">' + formatTime(ev.time) + ' · ' + escapeHtml(ev.assignee) + ' · ' + escapeHtml(ev.module) + '</span></span></button>';
-        });
-        html += '</div>';
-      });
-      html += '</div>';
-      els.board.innerHTML = html;
-    }
-
-    function renderBoard() {
-      renderPeriod();
-      if (state.view === 'month') renderMonth();
-      else if (state.view === 'week') renderWeek();
-      else if (state.view === 'day') renderDay();
-      else renderAgenda();
-    }
-
-    function renderUpcoming() {
-      var todayISO = toISO(state.today);
-      var list = filteredEvents().filter(function (e) { return e.date >= todayISO; })
-        .sort(function (a, b) { return a.date === b.date ? a.time.localeCompare(b.time) : a.date.localeCompare(b.date); })
-        .slice(0, 5);
-      els.upcomingCount.textContent = list.length + ' shown';
-      if (!list.length) {
-        els.upcoming.innerHTML = '<div class="ec-empty" style="padding:20px"><p>No upcoming events.</p></div>';
-        return;
-      }
-      els.upcoming.innerHTML = list.map(function (ev) {
-        var d = parseISO(ev.date);
-        var pClass = ev.priority === 'High' ? 'ec-badge--high' : (ev.priority === 'Medium' ? 'ec-badge--medium' : 'ec-badge--low');
-        return '<button type="button" class="ec-up-item" data-id="' + ev.id + '">'
-          + '<span class="ec-up-date"><strong>' + d.getDate() + '</strong><span>' + d.toLocaleString('en-IN', { month: 'short' }) + '</span></span>'
-          + '<span class="ec-up-body"><strong>' + escapeHtml(ev.title) + '</strong>'
-          + '<p>' + formatTime(ev.time) + ' · ' + escapeHtml(ev.assignee) + '</p>'
-          + '<span class="ec-badges"><span class="ec-badge ' + pClass + '">' + escapeHtml(ev.priority) + '</span>'
-          + '<span class="ec-badge ec-badge--status">' + escapeHtml(ev.status) + '</span></span></span></button>';
-      }).join('');
-    }
-
-    function renderToday() {
-      els.todayDate.textContent = state.today.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' });
-      var list = eventsOn(toISO(state.today)).slice().sort(function (a, b) { return a.time.localeCompare(b.time); });
-      if (!list.length) {
-        els.todayTimeline.innerHTML = '<div class="ec-empty" style="padding:16px"><p>No activities scheduled today.</p></div>';
-        return;
-      }
-      els.todayTimeline.innerHTML = list.map(function (ev) {
-        return '<div class="ec-tl-row">'
-          + '<div class="ec-tl-time">' + formatTime(ev.time) + '</div>'
-          + '<div class="ec-tl-rail"><span class="ec-tl-dot" style="background:' + (catMap[ev.category] ? catMap[ev.category].color : '#25b7a7') + '"></span></div>'
-          + '<button type="button" class="ec-tl-card" data-id="' + ev.id + '"><strong>' + escapeHtml(ev.title) + '</strong><span>' + escapeHtml(ev.module) + ' · ' + escapeHtml(ev.assignee) + '</span></button>'
-          + '</div>';
-      }).join('');
-    }
-
-    function openDrawer(id) {
-      var ev = events.filter(function (e) { return e.id === id; })[0];
-      if (!ev) return;
-      var cat = catMap[ev.category];
-      els.drawerTitle.textContent = ev.title;
-      els.drawerBody.innerHTML =
-        '<p class="ec-drawer__desc">' + escapeHtml(ev.desc || 'No description.') + '</p>'
-        + '<div class="ec-drawer__grid">'
-        + field('Date', parseISO(ev.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }))
-        + field('Time', formatTime(ev.time) + (ev.end && ev.end !== '23:59' ? ' – ' + formatTime(ev.end) : ''))
-        + field('Category', cat ? cat.label : ev.category)
-        + field('Priority', ev.priority)
-        + field('Status', ev.status)
-        + field('Assigned Employee', ev.assignee)
-        + field('Related Project', ev.project || '—')
-        + field('Related Client', ev.client || '—')
-        + field('TIME ERP Module', ev.module, true)
-        + field('Notes', ev.notes || '—', true)
-        + '</div>';
-      els.drawer.classList.add('is-open');
-      els.drawer.setAttribute('aria-hidden', 'false');
-      els.drawerBackdrop.hidden = false;
-      els.drawerBackdrop.classList.add('is-open');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function field(label, value, full) {
-      return '<div class="ec-drawer__field' + (full ? ' ec-drawer__field--full' : '') + '"><span>' + label + '</span><strong>' + escapeHtml(value) + '</strong></div>';
-    }
-
-    function closeDrawer() {
-      els.drawer.classList.remove('is-open');
-      els.drawer.setAttribute('aria-hidden', 'true');
-      els.drawerBackdrop.classList.remove('is-open');
-      els.drawerBackdrop.hidden = true;
-      document.body.style.overflow = '';
-    }
-
-    function openModal(presetCat) {
-      els.catSelect.innerHTML = CATEGORIES.map(function (c) {
-        return '<option value="' + c.id + '">' + escapeHtml(c.label) + '</option>';
-      }).join('');
-      els.form.reset();
-      document.getElementById('ecEvDate').value = state.selectedDate || toISO(state.today);
-      document.getElementById('ecEvTime').value = '10:00';
-      document.getElementById('ecEvPriority').value = 'Medium';
-      document.getElementById('ecEvStatus').value = 'Scheduled';
-      els.catSelect.value = presetCat || 'meetings';
-      els.modal.hidden = false;
-      els.modal.classList.add('is-open');
-      document.body.style.overflow = 'hidden';
-      setTimeout(function () { document.getElementById('ecEvTitle').focus(); }, 30);
-    }
-
-    function closeModal() {
-      els.modal.classList.remove('is-open');
-      els.modal.hidden = true;
-      document.body.style.overflow = '';
-    }
-
-    function toast(msg) {
-      els.toast.textContent = msg;
-      els.toast.classList.add('is-visible');
-      setTimeout(function () { els.toast.classList.remove('is-visible'); }, 2200);
-    }
-
-    function bindDragDrop() {
-      els.board.querySelectorAll('.ec-pill[draggable]').forEach(function (pill) {
-        pill.addEventListener('dragstart', function (e) {
-          state.dragId = pill.getAttribute('data-id');
-          pill.classList.add('is-dragging');
-          e.dataTransfer.setData('text/plain', state.dragId);
-          e.dataTransfer.effectAllowed = 'move';
-        });
-        pill.addEventListener('dragend', function () {
-          pill.classList.remove('is-dragging');
-          state.dragId = null;
-          els.board.querySelectorAll('.ec-day.is-drop').forEach(function (d) { d.classList.remove('is-drop'); });
-        });
-      });
-      els.board.querySelectorAll('.ec-day').forEach(function (day) {
-        day.addEventListener('dragover', function (e) {
-          e.preventDefault();
-          day.classList.add('is-drop');
-        });
-        day.addEventListener('dragleave', function () { day.classList.remove('is-drop'); });
-        day.addEventListener('drop', function (e) {
-          e.preventDefault();
-          day.classList.remove('is-drop');
-          var id = e.dataTransfer.getData('text/plain') || state.dragId;
-          var date = day.getAttribute('data-date');
-          var ev = events.filter(function (x) { return x.id === id; })[0];
-          if (!ev || !date) return;
-          ev.date = date;
-          toast('Moved "' + ev.title + '" to ' + date);
-          renderAll();
-        });
-      });
-    }
-
-    function renderAll() {
-      renderFilters();
-      renderBoard();
-      renderUpcoming();
-      renderToday();
-    }
-
-    document.addEventListener('click', function (e) {
-      var filter = e.target.closest('[data-filter]');
-      var viewBtn = e.target.closest('[data-view]');
-      var openEv = e.target.closest('[data-id]');
-      var create = e.target.closest('[data-create]');
-      var createOnSelected = e.target.closest('[data-create-on-selected]');
-      var more = e.target.closest('[data-date-more]');
-      var dayCell = e.target.closest('.ec-day[data-date]');
-
-      if (filter) {
-        var id = filter.getAttribute('data-filter');
-        var idx = state.filters.indexOf(id);
-        if (idx === -1) state.filters.push(id);
-        else if (state.filters.length > 1) state.filters.splice(idx, 1);
-        renderAll();
-        return;
-      }
-      if (viewBtn) {
-        document.querySelectorAll('.ec-view-btn').forEach(function (b) {
-          b.classList.toggle('is-active', b === viewBtn);
-          b.setAttribute('aria-selected', b === viewBtn ? 'true' : 'false');
-        });
-        state.view = viewBtn.getAttribute('data-view');
-        renderBoard();
-        return;
-      }
-      if (more) {
-        state.view = 'agenda';
-        state.cursor = parseISO(more.getAttribute('data-date-more'));
-        document.querySelectorAll('.ec-view-btn').forEach(function (b) {
-          var on = b.getAttribute('data-view') === 'agenda';
-          b.classList.toggle('is-active', on);
-          b.setAttribute('aria-selected', on ? 'true' : 'false');
-        });
-        renderBoard();
-        return;
-      }
-      if (openEv && !openEv.classList.contains('ec-pill--more')) {
-        openDrawer(openEv.getAttribute('data-id'));
-        return;
-      }
-      if (createOnSelected) {
-        openModal('meetings');
-        document.getElementById('ecEvDate').value = state.selectedDate || toISO(state.today);
-        return;
-      }
-      if (create) {
-        openModal(create.getAttribute('data-create'));
-        return;
-      }
-      if (dayCell && state.view === 'month' && !e.target.closest('.ec-pill')) {
-        state.selectedDate = dayCell.getAttribute('data-date');
-        renderMonth();
-      }
-    });
-
-    document.getElementById('ecPrev').addEventListener('click', function () {
-      if (state.view === 'month' || state.view === 'agenda') state.cursor.setMonth(state.cursor.getMonth() - 1);
-      else if (state.view === 'week') state.cursor.setDate(state.cursor.getDate() - 7);
-      else state.cursor.setDate(state.cursor.getDate() - 1);
-      renderBoard();
-    });
-    document.getElementById('ecNext').addEventListener('click', function () {
-      if (state.view === 'month' || state.view === 'agenda') state.cursor.setMonth(state.cursor.getMonth() + 1);
-      else if (state.view === 'week') state.cursor.setDate(state.cursor.getDate() + 7);
-      else state.cursor.setDate(state.cursor.getDate() + 1);
-      renderBoard();
-    });
-    document.getElementById('ecToday').addEventListener('click', function () {
-      state.cursor = new Date(state.today.getFullYear(), state.today.getMonth(), state.today.getDate());
-      renderBoard();
-    });
-    document.getElementById('ecCreateBtn').addEventListener('click', function () { openModal('meetings'); });
-    document.getElementById('ecDrawerClose').addEventListener('click', closeDrawer);
-    document.getElementById('ecDrawerClose2').addEventListener('click', closeDrawer);
-    els.drawerBackdrop.addEventListener('click', closeDrawer);
-    document.getElementById('ecModalClose').addEventListener('click', closeModal);
-    document.getElementById('ecModalCancel').addEventListener('click', closeModal);
-    els.modal.addEventListener('click', function (e) { if (e.target === els.modal) closeModal(); });
-
-    var searchTimer = null;
-    if (els.search) {
-      els.search.addEventListener('input', function () {
-        clearTimeout(searchTimer);
-        searchTimer = setTimeout(function () {
-          state.query = els.search.value;
-          renderAll();
-        }, 150);
-      });
-    }
-
-    els.form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var fd = new FormData(els.form);
-      var title = String(fd.get('title') || '').trim();
-      var date = String(fd.get('date') || '').trim();
-      if (!title || !date) { toast('Please enter event name and date'); return; }
-      var id = 'e' + Date.now();
-      var cat = String(fd.get('category') || 'meetings');
-      var time = String(fd.get('time') || '10:00');
-      var moduleHint = {
-        meetings: 'Communication', tasks: 'Task Management', milestones: 'Project Management',
-        client: 'CRM', employee: 'HRMS', compliance: 'Compliance', billing: 'Billing', leave: 'Leave Management'
-      };
-      if (state.filters.indexOf(cat) === -1) state.filters.push(cat);
-      events.push({
-        id: id,
-        title: title,
-        date: date,
-        time: time,
-        end: time,
-        category: cat,
-        priority: String(fd.get('priority') || 'Medium'),
-        status: String(fd.get('status') || 'Scheduled'),
-        assignee: String(fd.get('assignee') || 'Unassigned'),
-        project: String(fd.get('project') || ''),
-        client: String(fd.get('client') || ''),
-        module: moduleHint[cat] || 'TIME ERP',
-        desc: String(fd.get('desc') || ''),
-        notes: ''
-      });
-      state.selectedDate = date;
-      state.cursor = parseISO(date);
-      if (state.view === 'agenda') state.view = 'month';
-      document.querySelectorAll('.ec-view-btn').forEach(function (b) {
-        var on = b.getAttribute('data-view') === state.view;
-        b.classList.toggle('is-active', on);
-        b.setAttribute('aria-selected', on ? 'true' : 'false');
-      });
-      closeModal();
-      toast('Event created: ' + title);
-      renderAll();
-      openDrawer(id);
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') { closeDrawer(); closeModal(); }
-    });
-
-    renderAll();
-  })();
-  </script>
-  <script src="js/site-nav.js" defer></script>
+  <script src="js/event-calendar.js" defer></script>
+  <script src="js/site-nav.js?v=13" defer></script>
   <script src="js/footer-accordion.js" defer></script>
+  <script src="js/site-footer.js?v=6"></script>
 </body>
 </html>

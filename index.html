@@ -2,23 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico?v=14" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=14" sizes="any">
+  <link rel="icon" href="assets/favicon-32.png?v=14" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/favicon-mark.png?v=14" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/favicon-mark.png?v=14">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TimeERP. One Platform. Complete Business Management.</title>
   <meta name="description" content="TimeERP is an enterprise cloud ERP platform for CA firms, construction, real estate, MSME, and professional services. HRMS, CRM, payroll, billing, projects, and more.">
   <meta name="theme-color" content="#25B7A7">
-  <link rel="canonical" href="https://timeerp.com/home1.html">
+  <link rel="canonical" href="https://timeerp.com/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="TimeERP. One Platform. Complete Business Management.">
   <meta property="og:description" content="Enterprise cloud ERP for CA firms, construction, real estate, MSME, and professional services. HRMS, CRM, payroll, billing, projects, and more.">
-  <meta property="og:url" content="https://timeerp.com/home1.html">
-  <meta property="og:image" content="assets/image0-transparent.png">
+  <meta property="og:url" content="https://timeerp.com/">
+  <meta property="og:image" content="https://timeerp.com/assets/image0-transparent.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="TimeERP. One Platform. Complete Business Management.">
   <meta name="twitter:description" content="Enterprise cloud ERP for CA firms, construction, real estate, MSME, and professional services.">
+  <meta name="twitter:image" content="https://timeerp.com/assets/image0-transparent.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #25b7a7;
@@ -56,7 +62,7 @@
     a{color:inherit;text-decoration:none}
     button,input{font-family:inherit;font-size:16px}
     ul{list-style:none}
-    h1,h2,h3,.section-title,.hero__title,.module-row h3,.industry-card h3,.hub__detail h3{
+    h1,h2,h3,.section-title,.hero__title,.module-row h3,.industry-card h3,.hub__detail h3,.hub__detail-title{
       background:var(--heading-gradient);
       -webkit-background-clip:text;
       background-clip:text;
@@ -68,7 +74,7 @@
       line-height:var(--heading-title-line-height);
     }
     h1,.hero__title{font-size:clamp(1.75rem,2.8vw,2.25rem)}
-    h3,.module-row h3,.industry-card h3,.hub__detail h3{font-size:18px}
+    h3,.module-row h3,.industry-card h3,.hub__detail h3,.hub__detail-title{font-size:18px}
     .container{width:min(var(--max),100% - var(--pad)*2);margin-inline:auto}
     .section{padding:var(--section) 0;position:relative}
     .eyebrow{
@@ -120,8 +126,16 @@
     .nav{position:fixed;top:0;left:0;right:0;z-index:1100;padding:14px 0;background:#fff;border-bottom:1px solid rgba(232,238,242,.9);box-shadow:0 4px 24px rgba(0,0,0,.04);transition:background .3s,box-shadow .3s,padding .3s}
     .nav.is-scrolled{padding:8px 0;background:#fff;box-shadow:0 8px 32px rgba(36,63,100,.08);border-bottom:1px solid rgba(232,238,242,.8)}
     .nav__inner{display:flex;align-items:center;gap:12px;position:relative;z-index:2;min-height:48px}
-    .nav__logo{position:relative;z-index:2;flex-shrink:0;display:flex;align-items:center}
-    .nav__logo img{height:34px;width:auto;display:block}
+    .nav__logo{position:relative;z-index:2;flex-shrink:0;display:inline-flex;align-items:center;gap:6px;margin-left:-2px}
+    .nav__logo-mark,.nav__logo-wordmark{display:inline-flex;align-items:center;text-decoration:none;border-radius:10px;transition:filter .28s ease}
+    .nav__logo-mark{padding:2px;line-height:0}
+    .nav__logo-wordmark{padding:2px 4px 2px 0;font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif;font-size:clamp(18px,4.5vw,27px);font-weight:700;letter-spacing:-.6px;line-height:1}
+    .nav__logo-time{color:#083530}
+    .nav__logo-erp{color:#25b7a7}
+    .nav__logo-mark:hover,.nav__logo-wordmark:hover{filter:drop-shadow(0 8px 18px rgba(37,183,167,.22))}
+    .nav__logo img,.nav__logo-svg{height:clamp(27px,6.8vw,40px);width:auto;display:block}
+    .nav__logo .logo-hand{transform-origin:center center;transition:none}
+    .nav__logo-wordmark:hover .nav__logo-erp{color:#1a9e8f}
     .nav__menu{
       display:flex;
       align-items:center;
@@ -384,7 +398,7 @@
 
     /* Hero */
     .hero{padding:calc(100px + var(--section)) 0 var(--section);background:radial-gradient(ellipse 80% 60% at 70% 0%,rgba(37,183,167,.12),transparent),radial-gradient(ellipse 50% 40% at 10% 20%,rgba(36,63,100,.06),transparent),var(--bg);overflow:hidden}
-    .hero__grid{display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:center}
+    .hero__grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
     .hero__title{margin-bottom:20px;background:none;-webkit-background-clip:unset;background-clip:unset;-webkit-text-fill-color:#000;color:#000;filter:none}
     .hero__title span{background:none;-webkit-background-clip:unset;background-clip:unset;-webkit-text-fill-color:#000;color:#000;filter:none}
     .hero__sub{font-size:16px;color:var(--text-muted);max-width:520px;margin-bottom:32px;line-height:1.7}
@@ -393,7 +407,7 @@
     .hero__badge{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:var(--text-body)}
     .hero__badge-dot{width:8px;height:8px;border-radius:50%;background:var(--primary)}
     .hero__visual{position:relative;min-height:480px}
-    .hero__dashboard{position:relative;border-radius:24px;border:1px solid var(--border);background:linear-gradient(180deg,#fff 0%,#f4fafa 100%);box-shadow:var(--shadow-lg);padding:24px;z-index:2}
+    .hero__dashboard{position:relative;border-radius:24px;border:1px solid var(--border);background:linear-gradient(180deg,#fff 0%,#f4fafa 100%);box-shadow:var(--shadow-lg);padding:24px;z-index:2;contain:layout style}
     .hero__dash-bar{display:flex;gap:6px;margin-bottom:16px}
     .hero__dash-bar span{width:10px;height:10px;border-radius:50%;background:#e8eef2}
     .hero__dash-bar span:first-child{background:#ff6b6b}.hero__dash-bar span:nth-child(2){background:#ffd93d}.hero__dash-bar span:nth-child(3){background:#6bcb77}
@@ -404,9 +418,13 @@
     .float-card{position:absolute;padding:14px 18px;border-radius:16px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border:1px solid var(--border);box-shadow:var(--shadow);font-size:14px;font-weight:600;color:var(--heading-dark);animation:float 6s ease-in-out infinite;z-index:3}
     .float-card--1{top:8%;right:-4%;animation-delay:0s}
     .float-card--2{top:42%;left:-8%;animation-delay:1.5s}
-    .float-card--3{bottom:18%;right:6%;animation-delay:3s}
-    .float-card--4{top:20%;left:10%;animation-delay:4.5s;font-size:12px}
+    .float-card--3{top:42%;right:6%;animation-delay:3s}
+    .float-card--4{top:8%;left:10%;animation-delay:4.5s;font-size:12px}
   @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+    @media (prefers-reduced-motion:reduce){
+      .float-card,.glow{animation:none!important}
+      html{scroll-behavior:auto}
+    }
 
     /* Trust */
     .trust{background:var(--secondary);color:#fff;padding:56px 0}
@@ -418,7 +436,72 @@
     .industries__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:0}
     .industry-card{padding:32px;border-radius:var(--radius);background:var(--card);border:1px solid var(--border);display:block;text-decoration:none;color:inherit;transition:transform .25s,box-shadow .25s}
     .industry-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
-    .industry-card__icon{font-size:2.5rem;margin-bottom:16px}
+    .industry-card__icon{
+      width:64px;
+      height:64px;
+      margin-bottom:16px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:14px;
+      background:linear-gradient(145deg,rgba(37,183,167,.14),rgba(23,195,178,.06));
+      border:1px solid rgba(37,183,167,.22);
+      box-shadow:0 4px 14px rgba(37,183,167,.1);
+      font-size:0;
+      line-height:1;
+      overflow:hidden;
+      flex-shrink:0;
+      transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+    }
+    .industry-card__icon img{
+      width:64px;
+      height:64px;
+      object-fit:contain;
+      object-position:center;
+      display:block;
+      filter:contrast(1.06) saturate(1.14);
+      transform:scale(1.6);
+      transform-origin:center;
+      transition:transform .22s ease,filter .22s ease;
+    }
+    .industry-card:hover .industry-card__icon{
+      transform:translateY(-2px);
+      border-color:rgba(37,183,167,.38);
+      box-shadow:0 8px 20px rgba(37,183,167,.18);
+    }
+    .industry-card:hover .industry-card__icon img{
+      transform:scale(1.66);
+      filter:contrast(1.08) saturate(1.2);
+    }
+    #startup-launch-pad .industry-card__icon--startup{
+      background:transparent;
+      border:none;
+      box-shadow:none;
+      overflow:visible;
+      width:64px;
+      height:64px;
+      padding:0;
+    }
+    #startup-launch-pad .industry-card:hover .industry-card__icon--startup{
+      border:none;
+      box-shadow:none;
+      background:transparent;
+      transform:translateY(-2px);
+    }
+    #startup-launch-pad .startup-icon{
+      width:64px;
+      height:64px;
+      object-fit:contain;
+      object-position:center;
+      display:block;
+      transform:none;
+      filter:none;
+      transition:transform .22s ease;
+    }
+    #startup-launch-pad .industry-card:hover .startup-icon{
+      transform:scale(1.06);
+      filter:none;
+    }
     .industry-card h3{margin-bottom:10px}
     .industry-card p{font-size:14px;color:var(--text-muted);margin-bottom:20px;line-height:1.6}
     .industry-card a,.industry-card > span:last-child{font-size:14px;font-weight:600;color:var(--primary)}
@@ -451,7 +534,11 @@
     .hub__detail{text-align:left;padding:28px;border-radius:var(--radius);background:rgba(255,255,255,.85);backdrop-filter:blur(16px);border:1px solid var(--border);box-shadow:var(--shadow);min-height:280px;display:flex;flex-direction:column;justify-content:center;transition:opacity .3s,transform .3s}
     .hub__detail-icon{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,#e8f8f6,#fff);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
     .hub__detail-icon img{width:32px;height:32px}
-    .hub__detail h3{margin-bottom:10px}
+    .hub__detail h3,.hub__detail-title{margin-bottom:10px}
+    .hub__detail-title{display:inline-block;cursor:pointer;text-decoration:none}
+    .hub__detail-title:hover,.hub__detail-title:focus-visible{
+      -webkit-text-fill-color:var(--primary);color:var(--primary);outline:none;
+    }
     .hub__detail p{font-size:14px;color:var(--text-muted);line-height:1.65;margin-bottom:16px}
     .hub__detail-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
     .hub__detail-tag{font-size:11px;font-weight:600;padding:5px 10px;border-radius:999px;background:#eef8f6;color:var(--primary-dark)}
@@ -563,6 +650,162 @@
       object-fit:contain;
       display:block;
     }
+    .sticky-card-section .card-image--dashboard-preview{
+      padding:0;
+      position:relative;
+      overflow:hidden;
+      align-items:stretch;
+      justify-content:stretch;
+      background:linear-gradient(140deg,#edf9f8 0%,#f8fffe 55%,#e6f6f5 100%);
+    }
+    .dashboard-preview{
+      position:relative;
+      width:100%;
+      height:100%;
+      border-radius:var(--radius);
+      overflow:hidden;
+      isolation:isolate;
+      background:radial-gradient(circle at 12% 18%,rgba(37,183,167,.22),transparent 48%),radial-gradient(circle at 88% 88%,rgba(36,63,100,.12),transparent 52%),linear-gradient(145deg,#f3fcfb 0%,#f9fffe 100%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .dashboard-preview__window{
+      width:min(94%,560px);
+      border-radius:26px;
+      background:rgba(255,255,255,.82);
+      border:1px solid rgba(37,183,167,.2);
+      box-shadow:0 16px 34px rgba(20,91,84,.12);
+      padding:20px 24px 24px;
+      position:relative;
+    }
+    .dashboard-preview__chrome{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:16px;
+    }
+    .dashboard-preview__title{
+      margin-left:10px;
+      font-size:12px;
+      font-weight:700;
+      color:#1c5f59;
+      letter-spacing:.02em;
+    }
+    .dashboard-preview__dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:#f77f7f;
+    }
+    .dashboard-preview__dot--yellow{background:#ffc44d}
+    .dashboard-preview__dot--green{background:#6dcf87}
+    .dashboard-preview__grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+    }
+    .dashboard-preview__grid--compact{
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:10px;
+    }
+    .dashboard-preview__grid--compact .dashboard-preview__metric{
+      min-height:88px;
+      padding:10px 9px;
+    }
+    .dashboard-preview__metric{
+      border:1px solid rgba(37,183,167,.24);
+      border-radius:14px;
+      padding:14px 12px;
+      background:rgba(255,255,255,.94);
+      min-height:104px;
+    }
+    .dashboard-preview__value{
+      font-size:24px;
+      font-weight:700;
+      color:#0b4a45;
+      line-height:1;
+      margin-bottom:5px;
+      letter-spacing:-.02em;
+    }
+    .dashboard-preview__label{
+      font-size:9px;
+      letter-spacing:.08em;
+      color:#6b8d8a;
+      text-transform:uppercase;
+      font-weight:600;
+    }
+    .dashboard-preview__chip{
+      position:absolute;
+      z-index:3;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 15px;
+      border-radius:22px;
+      background:rgba(255,255,255,.9);
+      border:1px solid rgba(37,183,167,.2);
+      color:#0f4a45;
+      font-size:12px;
+      font-weight:700;
+      box-shadow:0 8px 18px rgba(16,76,71,.1);
+      white-space:nowrap;
+      transition:transform .25s ease,box-shadow .25s ease;
+      animation:none;
+      will-change:transform;
+      transform:translateZ(0);
+      backface-visibility:hidden;
+    }
+    .sticky-card-section .card:hover .dashboard-preview__chip{
+      animation:dashboardChipFloat 4.8s ease-in-out infinite;
+    }
+    .dashboard-preview__chip:hover{
+      transform:translateY(-2px);
+      box-shadow:0 12px 24px rgba(16,76,71,.14);
+      animation-play-state:paused;
+    }
+    .dashboard-preview__chip-dot{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:linear-gradient(135deg,var(--primary),var(--accent));
+      flex:0 0 auto;
+    }
+    .dashboard-preview__chip--a{top:10%;left:5%}
+    .dashboard-preview__chip--b{top:11%;right:7%}
+    .dashboard-preview__chip--c{left:7%;bottom:12%}
+    .dashboard-preview__chip--d{right:10%;bottom:8%}
+    .dashboard-preview__chip--e{top:49%;left:1.5%}
+    .dashboard-preview__chip--f{top:50%;right:1.5%;display:none}
+    .dashboard-preview__chip--g{left:39%;bottom:4%;display:none}
+    .dashboard-preview__chip--h{left:36%;top:2.5%;display:none}
+    .dashboard-preview__chip--desktop-hide{display:none}
+    .dashboard-preview__chip--a{animation-delay:0s}
+    .dashboard-preview__chip--b{animation-delay:.7s}
+    .dashboard-preview__chip--c{animation-delay:1.2s}
+    .dashboard-preview__chip--d{animation-delay:1.7s}
+    .dashboard-preview__chip--e{animation-delay:.35s}
+    .dashboard-preview__chip--f{animation-delay:.95s}
+    .dashboard-preview__chip--g{animation-delay:1.45s}
+    .dashboard-preview__chip--h{animation-delay:1.9s}
+    @keyframes dashboardChipFloat{
+      0%,100%{transform:translateY(0)}
+      25%{transform:translateY(-5px)}
+      50%{transform:translateY(-1px)}
+      75%{transform:translateY(-7px)}
+    }
+    @media (prefers-reduced-motion: reduce){
+      .dashboard-preview__chip{animation:none}
+    }
+    @media (max-width:1360px){
+      .dashboard-preview__chip--e{display:none}
+      .dashboard-preview__chip--f{display:inline-flex}
+    }
+    @media (max-width:1100px){
+      .dashboard-preview__chip--g{display:inline-flex}
+      .dashboard-preview__chip--h{display:inline-flex}
+      .dashboard-preview__chip--f{display:none}
+    }
     .sticky-card-section .module-row__icon{
       width:64px;
       height:64px;
@@ -579,6 +822,21 @@
       background-clip:text;
       -webkit-text-fill-color:transparent;
       filter:var(--heading-glow-filter);
+    }
+    .sticky-card-section .home-module-heading{
+      display:inline-block;
+      cursor:pointer;
+      color:inherit;
+      text-decoration:none;
+      transition:color .25s ease,transform .25s ease,text-shadow .25s ease,-webkit-text-fill-color .25s ease;
+    }
+    .sticky-card-section .home-module-heading:hover,
+    .sticky-card-section .home-module-heading:focus-visible{
+      transform:translateY(-2px);
+      -webkit-text-fill-color:var(--primary);
+      color:var(--primary);
+      text-shadow:0 2px 10px rgba(37,183,167,.25);
+      outline:none;
     }
     .sticky-card-section .card-description{
       font-size:16px;
@@ -648,6 +906,17 @@
       }
       .sticky-card-section .card-features{grid-template-columns:1fr}
       .sticky-card-section .card-heading{font-size:20px}
+      .dashboard-preview__window{width:92%;padding:16px 14px 18px}
+      .dashboard-preview__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .dashboard-preview__grid--compact{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .dashboard-preview__value{font-size:22px}
+      .dashboard-preview__label{font-size:9px}
+      .dashboard-preview__chip{font-size:11px;padding:8px 12px;border-radius:16px}
+      .dashboard-preview__chip--a{top:8%;left:4%}
+      .dashboard-preview__chip--b{top:8%;right:4%}
+      .dashboard-preview__chip--c{left:5%;bottom:8%}
+      .dashboard-preview__chip--d{right:6%;bottom:7%}
+      .dashboard-preview__chip--e,.dashboard-preview__chip--f,.dashboard-preview__chip--g,.dashboard-preview__chip--h{display:none}
     }
     /* Feature sections */
     .feature-section{padding:var(--section) 0}
@@ -1041,10 +1310,33 @@
     }
 
     /* Mobile */
-    .mobile__phones{display:flex;justify-content:center;gap:24px;margin-top:48px;flex-wrap:wrap}
-    .phone{width:200px;padding:12px;border-radius:28px;background:var(--secondary);box-shadow:var(--shadow-lg)}
-    .phone__screen{aspect-ratio:9/16;border-radius:20px;background:linear-gradient(180deg,#eef8f6,#fff);padding:16px;font-size:11px}
-    .phone__screen strong{display:block;font-size:14px;color:var(--heading-dark);margin-bottom:8px}
+    .mobile__phones{display:flex;justify-content:center;gap:24px;margin-top:48px;flex-wrap:wrap;align-items:flex-end}
+    .phone{width:220px;padding:0;background:none;border-radius:0;box-shadow:none;flex:0 0 auto}
+    .phone__device{position:relative;width:100%;line-height:0}
+    .phone__frame{width:100%;height:auto;display:block;pointer-events:none;position:relative;z-index:1}
+    .phone__screen{
+      position:absolute;inset:23% 21% 9% 9%;z-index:2;padding:10% 6px 0;
+      overflow:hidden;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;
+      text-align:center;min-width:0;font-size:11px;line-height:1.2;
+    }
+    .phone__device--shot .phone__frame{z-index:3}
+    .phone__screen--shot{
+      inset:2.7% 6.3% 2.8% 6%;
+      z-index:1;padding:0;display:block;border-radius:22px;background:#fff;
+    }
+    .phone__shot{
+      position:absolute;inset:0;width:100%;height:100%;
+      object-fit:cover;object-position:center top;display:block;
+    }
+    .phone__preview-title{font-size:11px;font-weight:700;color:var(--heading-dark);margin:0 0 8px;line-height:1.2;width:100%}
+    .phone__preview-hero{
+      width:100%;height:40px;border-radius:6px;margin-bottom:8px;flex-shrink:0;
+      background:linear-gradient(90deg,var(--primary),var(--accent));opacity:.32;
+    }
+    .phone__preview-line{width:100%;height:5px;background:#e8eef2;border-radius:3px;margin-bottom:5px;flex-shrink:0}
+    .phone__preview-line--short{width:68%}
+    @media (max-width:1100px){.phone{width:190px}}
+    @media (max-width:768px){.mobile__phones{gap:16px}.phone{width:160px}}
 
     /* Security / Integrations */
     .icon-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:16px;margin-top:40px}
@@ -1267,6 +1559,30 @@
       color:rgba(255,255,255,.72);
       margin-bottom:16px;
     }
+    .footer__address-link{
+      display:block;
+      color:inherit;
+      text-decoration:none;
+      border-radius:8px;
+      background-image:linear-gradient(currentColor, currentColor);
+      background-position:0 100%;
+      background-repeat:no-repeat;
+      background-size:0 1px;
+      transition:color .2s ease, background-size .25s ease;
+      width:fit-content;
+      max-width:100%;
+      cursor:pointer;
+    }
+    .footer__address-link:hover,
+    .footer__address-link:focus-visible{
+      color:#fff;
+      background-size:100% 1px;
+    }
+    .footer__address-link:focus-visible{
+      outline:2px solid var(--accent, #25b7a7);
+      outline-offset:4px;
+    }
+
     .footer__quick{
       display:flex;
       flex-wrap:wrap;
@@ -1420,7 +1736,32 @@
       .footer__connect-item:last-child{grid-column:auto}
       .footer__bar{flex-direction:column;align-items:flex-start}
       .hero__visual{min-height:360px}
+      .hero__dashboard{padding:18px}
+      .hero__dash-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+      .hero__dash-stat{padding:14px 12px}
+      .hero__dash-stat strong{font-size:17px}
+      .hero__dash-stat span{font-size:11px;letter-spacing:.05em}
       .float-card{display:none}
+      .hub .section-lead{margin-bottom:26px}
+      .hub__stage{
+        max-width:520px;
+        min-height:340px;
+        margin-inline:auto;
+      }
+      .hub__node-icon{width:46px;height:46px;border-radius:14px}
+      .hub__node-icon img{width:24px;height:24px}
+      .hub__node-label{
+        font-size:11px;
+        padding:4px 9px;
+        max-width:92px;
+        overflow:hidden;
+        text-overflow:ellipsis;
+      }
+      .hub__detail{
+        margin-top:10px;
+        padding:22px;
+      }
+      .hub__detail h3,.hub__detail-title{font-size:20px}
       .book-demo-modal__grid{grid-template-columns:1fr}
       .book-demo-modal__left{border-right:none;border-bottom:1px solid var(--border);padding-right:0;padding-bottom:24px;margin-bottom:8px}
       .book-demo-modal__dialog{padding:24px 20px;overflow:auto}
@@ -1433,6 +1774,48 @@
         background:linear-gradient(180deg,rgba(255,255,255,0) 0%,#fff 24%);
         border-top:1px solid var(--border);
       }
+    }
+    @media(max-width:560px){
+      .hero{padding-top:calc(96px + env(safe-area-inset-top, 0px))}
+      .hero__cta{gap:10px}
+      .hero__cta .btn{
+        padding:12px 20px;
+        min-height:44px;
+      }
+      .nav__actions .btn{padding:10px 14px;font-size:13px}
+      .nav__toggle{width:40px;height:40px}
+      .hub__stage{
+        max-width:100%;
+        min-height:300px;
+      }
+      .hub__center{
+        width:120px;
+        height:120px;
+        font-size:1.02rem;
+      }
+      .hub__center span{font-size:10px}
+      .hub__node-label{
+        max-width:82px;
+        font-size:10px;
+        padding:3px 8px;
+      }
+      .hub__detail{
+        border-radius:16px;
+        padding:18px;
+      }
+      .hub__detail p{font-size:13px}
+    }
+    @media(max-width:420px){
+      .hero__dash-grid{grid-template-columns:1fr}
+      .hero__dashboard{padding:16px}
+      .hub__stage{
+        min-height:280px;
+        transform:scale(.92);
+        transform-origin:top center;
+      }
+      .hub__node-label{display:none}
+      .hub__node-icon{width:42px;height:42px;border-radius:12px}
+      .hub__node-icon img{width:22px;height:22px}
     }
 
     /* Book Demo Modal */
@@ -1618,6 +2001,44 @@
       color:#c0392b;
     }
     .book-demo-field.is-error .book-demo-field__error{min-height:14px}
+    .book-demo-captcha__row{
+      display:flex;
+      align-items:stretch;
+      gap:8px;
+    }
+    .book-demo-captcha__canvas{
+      flex:0 0 auto;
+      width:148px;
+      height:46px;
+      border-radius:10px;
+      background:#e8f7f5;
+      display:block;
+    }
+    .book-demo-captcha__refresh{
+      flex:0 0 auto;
+      width:42px;
+      border:1px solid rgba(13,58,53,.12);
+      border-radius:10px;
+      background:#fff;
+      color:#0d7a6e;
+      font-size:18px;
+      line-height:1;
+      cursor:pointer;
+      font-family:inherit;
+    }
+    .book-demo-captcha__refresh:hover{
+      background:#f3fbfa;
+      border-color:rgba(37,183,167,.45);
+    }
+    .book-demo-captcha__row input{
+      flex:1 1 auto;
+      min-width:0;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .book-demo-field.is-error .book-demo-captcha__canvas{
+      box-shadow:0 0 0 3px rgba(229,115,115,.12);
+    }
     .book-demo-modal__submit-wrap{
       margin-top:10px;
     }
@@ -1699,8 +2120,10 @@
       .book-demo-modal__dialog{padding:32px 28px}
     }
   </style>
-  <link rel="stylesheet" href="css/chatbot-widget.css">
-  <link rel="stylesheet" href="css/site-nav.css">
+  <link rel="stylesheet" href="css/chatbot-widget.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="css/chatbot-widget.css"></noscript>
+  <link rel="stylesheet" href="css/site-nav.css?v=13">
+  <link rel="stylesheet" href="css/workspace-loader.css?v=1">
   <style>
     /* Ensure AI chat launcher stays visible above home1 chrome */
     .cb-widget {
@@ -1731,7 +2154,23 @@
     
   </style>
 </head>
-<body>
+<body class="ws-loading">
+  <div class="ws-loader" id="wsLoader" role="status" aria-live="polite" aria-label="Loading TimeERP workspace">
+    <div class="ws-loader__card">
+      <div class="ws-loader__brand">
+        <img src="assets/favicon-mark.png" alt="" width="36" height="36">
+        <div class="ws-loader__brand-text">Time<span>ERP</span></div>
+      </div>
+      <div class="ws-loader__spinner" aria-hidden="true">
+        <span class="ws-loader__ring"></span>
+        <span class="ws-loader__ring"></span>
+        <span class="ws-loader__ring"></span>
+      </div>
+      <h1 class="ws-loader__title">TimeERP</h1>
+      <p class="ws-loader__sub">Loading your workspace</p>
+      <div class="ws-loader__dots" aria-hidden="true"><span></span><span></span><span></span></div>
+    </div>
+  </div>
   <div class="glow" id="glow" aria-hidden="true"></div>
 
   
@@ -1746,10 +2185,10 @@
           <p class="hero__sub">TimeERP helps CA firms, construction, real estate, and growing businesses run HR, CRM, payroll, projects, billing, and operations from one intelligent cloud platform.</p>
           <div class="hero__cta">
             <a class="btn btn--primary" href="#" data-book-demo>Book Demo</a>
-            <a class="btn btn--ghost" href="#" data-book-demo>Watch Demo</a>
+            <a class="btn btn--ghost" href="watch_demo.html">Watch Demo</a>
           </div>
           <div class="hero__badges">
-            <span class="hero__badge"><span class="hero__badge-dot"></span> AI Powered</span>
+            <span class="hero__badge"><span class="hero__badge-dot"></span> Reliable</span>
             <span class="hero__badge"><span class="hero__badge-dot"></span> Cloud Based</span>
             <span class="hero__badge"><span class="hero__badge-dot"></span> 99.8% Uptime</span>
           </div>
@@ -1791,7 +2230,7 @@
         <h2 class="section-title" id="industries-title">Built for your industry</h2>
         <p class="section-lead">Purpose-built workflows for the sectors that power India's economy.</p>
         <div class="industries__grid">
-          <article class="industry-card card"><div class="industry-card__icon">🏗️</div><h3>Construction</h3><p>Manage projects, labour, materials, and billing across multiple sites.</p><a href="construction.html">Learn More</a></article><article class="industry-card card"><div class="industry-card__icon">🏢</div><h3>Real Estate</h3><p>Track properties, clients, agreements, and commission workflows.</p><a href="real_Estate.html">Learn More</a></article><article class="industry-card card"><div class="industry-card__icon">🔑</div><h3>Property Dealer</h3><p>Lead management, site visits, and deal closure in one place.</p><a href="property_dealer.html">Learn More</a></article><article class="industry-card card"><div class="industry-card__icon">📊</div><h3>Chartered Accountant</h3><p>Client tasks, compliance deadlines, billing, and document vault.</p><a href="CA.html">Learn More</a></article><a class="industry-card card" href="msme.html"><div class="industry-card__icon">🏭</div><h3>MSME</h3><p>Affordable ERP for growing businesses, HR, CRM, and operations.</p><span>Learn More</span></a><article class="industry-card card"><div class="industry-card__icon">💼</div><h3>Professional Services</h3><p>Time tracking, client billing, and project delivery at scale.</p><a href="contact_sales.html">Learn More</a></article>
+          <article class="industry-card card"><div class="industry-card__icon"><img src="assets/industry-icons/1.png" alt="" loading="lazy"></div><h3>Construction</h3><p>Manage projects, labour, materials, and billing across multiple sites.</p><a href="construction.html">Learn More</a></article><article class="industry-card card"><div class="industry-card__icon"><img src="assets/industry-icons/2.png" alt="" loading="lazy"></div><h3>Real Estate</h3><p>Track properties, clients, agreements, and commission workflows.</p><a href="real_Estate.html">Learn More</a></article><article class="industry-card card"><div class="industry-card__icon"><img src="assets/industry-icons/3.png" alt="" loading="lazy"></div><h3>Property Dealer</h3><p>Lead management, site visits, and deal closure in one place.</p><a href="property_dealer.html">Learn More</a></article><article class="industry-card card"><div class="industry-card__icon"><img src="assets/industry-icons/4.png" alt="" loading="lazy"></div><h3>Chartered Accountant</h3><p>Client tasks, compliance deadlines, billing, and document vault.</p><a href="CA.html">Learn More</a></article><a class="industry-card card" href="msme.html"><div class="industry-card__icon"><img src="assets/industry-icons/5.png" alt="" loading="lazy"></div><h3>MSME</h3><p>Affordable ERP for growing businesses, HR, CRM, and operations.</p><span>Learn More</span></a><article class="industry-card card"><div class="industry-card__icon"><img src="assets/industry-icons/6.png" alt="" loading="lazy"></div><h3>Professional Services</h3><p>Time tracking, client billing, and project delivery at scale.</p><a href="contact_sales.html">Learn More</a></article>
         </div>
       </div>
     </section>
@@ -1812,7 +2251,7 @@
           </div>
           <div class="hub__detail reveal" id="hubDetail" aria-live="polite">
             <div class="hub__detail-icon" id="hubDetailIcon"></div>
-            <h3 id="hubDetailTitle">Select a module</h3>
+            <h3><a class="hub__detail-title" id="hubDetailTitle" href="#products">Select a module</a></h3>
             <p id="hubDetailDesc">Hover or click any module around the hub to see how it connects to TimeERP in real time.</p>
             <div class="hub__detail-tags" id="hubDetailTags"></div>
             <a class="hub__detail-link" id="hubDetailLink" href="#products">Explore all modules</a>
@@ -1833,184 +2272,631 @@
           <article class="card" id="dashboard">
             <div class="card-content">
               <img class="module-row__icon" src="assets/home-icons/dashboard.svg" alt="" width="64" height="64" loading="lazy">
-              <h3 class="card-heading">Dashboard</h3>
-              <p class="card-description">Real-time business overview with KPIs, revenue analytics, attendance summary, and project status in one view.</p>
+              <h3 class="card-heading"><a class="home-module-heading" href="dashboard.html">Dashboard</a></h3>
+              <p class="card-description">Real-time business overview with revenue analytics, attendance summary, project status, and critical alerts in one view.</p>
               <ul class="card-features">
                 <li class="card-feature-text">Business Overview</li>
                 <li class="card-feature-text">Revenue Analytics</li>
                 <li class="card-feature-text">Attendance Summary</li>
                 <li class="card-feature-text">Project Status</li>
               </ul>
-              <a class="btn btn--primary" href="home.html">Explore Module</a>
+              <a class="btn btn--primary" href="dashboard.html">Explore Dashboard</a>
             </div>
-            <div class="card-image"><img src="assets/home-icons/dashboard.svg" alt="Dashboard" loading="lazy"></div>
+            <div class="card-image card-image--dashboard-preview" aria-hidden="true">
+              <div class="dashboard-preview">
+                <div class="dashboard-preview__window">
+                  <div class="dashboard-preview__chrome">
+                    <span class="dashboard-preview__dot"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--yellow"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--green"></span>
+                    <span class="dashboard-preview__title">Dashboard Overview</span>
+                  </div>
+                  <div class="dashboard-preview__grid">
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">128</p>
+                      <p class="dashboard-preview__label">Employees Active</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">14</p>
+                      <p class="dashboard-preview__label">Leave Requests</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">36</p>
+                      <p class="dashboard-preview__label">Pending Approvals</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">82</p>
+                      <p class="dashboard-preview__label">Today's Attendance</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">09</p>
+                      <p class="dashboard-preview__label">Ongoing Projects</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">24</p>
+                      <p class="dashboard-preview__label">Open Client Tasks</p>
+                    </div>
+                  </div>
+                </div>
+                <span class="dashboard-preview__chip dashboard-preview__chip--a"><span class="dashboard-preview__chip-dot"></span>Attendance synced</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--b"><span class="dashboard-preview__chip-dot"></span>12 documents uploaded</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--c"><span class="dashboard-preview__chip-dot"></span>Payroll processed</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--d"><span class="dashboard-preview__chip-dot"></span>3 new clients added</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--e"><span class="dashboard-preview__chip-dot"></span>8 leave requests approved</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--f"><span class="dashboard-preview__chip-dot"></span>Timesheet submitted</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--g"><span class="dashboard-preview__chip-dot"></span>6 tasks completed</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--h"><span class="dashboard-preview__chip-dot"></span>4 approvals pending</span>
+              </div>
+            </div>
           </article>
 
           <article class="card" id="hrms">
             <div class="card-content">
               <img class="module-row__icon" src="assets/home-icons/hrms.svg" alt="" width="64" height="64" loading="lazy">
-              <h3 class="card-heading">HRMS</h3>
-              <p class="card-description">Hire, onboard, manage, and retain your workforce from one intelligent HR hub.</p>
+              <h3 class="card-heading"><a class="home-module-heading" href="hrms.html">HRMS</a></h3>
+              <p class="card-description">Human Resource Management System to hire, onboard, manage, and retain your workforce from one intelligent HR hub covering attendance, leave, expense, timesheet, payroll, and HR approvals.</p>
               <ul class="card-features">
-                <li class="card-feature-text">Employees</li>
-                <li class="card-feature-text">Recruitment</li>
-                <li class="card-feature-text">Onboarding</li>
-                <li class="card-feature-text">Policies</li>
+                <li class="card-feature-text">Hire &amp; onboard</li>
+                <li class="card-feature-text">Track attendance</li>
+                <li class="card-feature-text">Manage leave</li>
+                <li class="card-feature-text">Run payroll</li>
+                <li class="card-feature-text">Approve &amp; report</li>
               </ul>
-              <a class="btn btn--primary" href="home.html">Explore Module</a>
+              <a class="btn btn--primary" href="hrms.html">Explore HRMS</a>
             </div>
-            <div class="card-image"><img src="assets/home-icons/hrms.svg" alt="HRMS" loading="lazy"></div>
+            <div class="card-image card-image--dashboard-preview" aria-hidden="true">
+              <div class="dashboard-preview">
+                <div class="dashboard-preview__window">
+                  <div class="dashboard-preview__chrome">
+                    <span class="dashboard-preview__dot"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--yellow"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--green"></span>
+                    <span class="dashboard-preview__title">HRMS Overview</span>
+                  </div>
+                  <div class="dashboard-preview__grid">
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">17</p>
+                      <p class="dashboard-preview__label">Hire &amp; onboard</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">24</p>
+                      <p class="dashboard-preview__label">Track attendance</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">09</p>
+                      <p class="dashboard-preview__label">Manage leave</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">31</p>
+                      <p class="dashboard-preview__label">Run payroll</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">06</p>
+                      <p class="dashboard-preview__label">Approve &amp; report</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">28</p>
+                      <p class="dashboard-preview__label">Core workforce modules</p>
+                    </div>
+                  </div>
+                </div>
+                <span class="dashboard-preview__chip dashboard-preview__chip--a"><span class="dashboard-preview__chip-dot"></span>Recruitment, profiles, onboarding</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--b"><span class="dashboard-preview__chip-dot"></span>Biometric, geo, shifts, overtime</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--c"><span class="dashboard-preview__chip-dot"></span>Leave balances, holidays, approvals</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--d"><span class="dashboard-preview__chip-dot"></span>PF, ESI, TDS, payslips</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--e"><span class="dashboard-preview__chip-dot"></span>Manager approvals &amp; HRMS reports</span>
+              </div>
+            </div>
           </article>
 
           <article class="card" id="payroll">
             <div class="card-content">
               <img class="module-row__icon" src="assets/home-icons/payroll.svg" alt="" width="64" height="64" loading="lazy">
-              <h3 class="card-heading">Payroll</h3>
-              <p class="card-description">Automate salary processing, statutory compliance, and payslip distribution.</p>
+              <h3 class="card-heading"><a class="home-module-heading" href="payroll.html">Payroll</a></h3>
+              <p class="card-description">Run accurate payroll with statutory compliance, approvals, and audit-ready reports across the complete salary lifecycle.</p>
               <ul class="card-features">
                 <li class="card-feature-text">Salary Structure</li>
                 <li class="card-feature-text">PF &amp; ESI</li>
                 <li class="card-feature-text">TDS</li>
                 <li class="card-feature-text">Payslips</li>
+                <li class="card-feature-text">Reimbursements</li>
+                <li class="card-feature-text">Payroll Reports</li>
               </ul>
-              <a class="btn btn--primary" href="home.html">Explore Module</a>
+              <a class="btn btn--primary" href="payroll.html">Explore Payroll</a>
             </div>
-            <div class="card-image"><img src="assets/home-icons/payroll.svg" alt="Payroll" loading="lazy"></div>
+            <div class="card-image card-image--dashboard-preview" aria-hidden="true">
+              <div class="dashboard-preview">
+                <div class="dashboard-preview__window">
+                  <div class="dashboard-preview__chrome">
+                    <span class="dashboard-preview__dot"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--yellow"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--green"></span>
+                    <span class="dashboard-preview__title">Payroll Overview</span>
+                  </div>
+                  <div class="dashboard-preview__grid">
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">08</p>
+                      <p class="dashboard-preview__label">Salary Structure</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">19</p>
+                      <p class="dashboard-preview__label">PF &amp; ESI</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">27</p>
+                      <p class="dashboard-preview__label">TDS</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">14</p>
+                      <p class="dashboard-preview__label">Payslips</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">33</p>
+                      <p class="dashboard-preview__label">Bonuses</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">05</p>
+                      <p class="dashboard-preview__label">Reimbursements</p>
+                    </div>
+                  </div>
+                </div>
+                <span class="dashboard-preview__chip dashboard-preview__chip--a"><span class="dashboard-preview__chip-dot"></span>Bank transfer file ready</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--b"><span class="dashboard-preview__chip-dot"></span>CTC summary generated</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--c"><span class="dashboard-preview__chip-dot"></span>Payslips published</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--d"><span class="dashboard-preview__chip-dot"></span>PF &amp; ESI calculated</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--e"><span class="dashboard-preview__chip-dot"></span>TDS deduction validated</span>
+              </div>
+            </div>
           </article>
 
           <article class="card" id="attendance">
             <div class="card-content">
               <img class="module-row__icon" src="assets/home-icons/attendance.svg" alt="" width="64" height="64" loading="lazy">
-              <h3 class="card-heading">Attendance</h3>
-              <p class="card-description">Biometric, geo, and shift-based attendance with real-time tracking.</p>
+              <h3 class="card-heading"><a class="home-module-heading" href="attendance.html">Attendance</a></h3>
+              <p class="card-description">Smart attendance workflows for daily marking, approvals, shifts, overtime, and audit-ready reports across desktop and mobile.</p>
               <ul class="card-features">
                 <li class="card-feature-text">Daily Attendance</li>
-                <li class="card-feature-text">Shifts</li>
-                <li class="card-feature-text">Biometric</li>
-                <li class="card-feature-text">Overtime</li>
+                <li class="card-feature-text">Shift Management</li>
+                <li class="card-feature-text">Late Entry</li>
+                <li class="card-feature-text">Overtime Tracking</li>
+                <li class="card-feature-text">Attendance Approval</li>
               </ul>
-              <a class="btn btn--primary" href="home.html">Explore Module</a>
+              <a class="btn btn--primary" href="attendance.html">Explore Attendance</a>
             </div>
-            <div class="card-image"><img src="assets/home-icons/attendance.svg" alt="Attendance" loading="lazy"></div>
+            <div class="card-image card-image--dashboard-preview" aria-hidden="true">
+              <div class="dashboard-preview">
+                <div class="dashboard-preview__window">
+                  <div class="dashboard-preview__chrome">
+                    <span class="dashboard-preview__dot"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--yellow"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--green"></span>
+                    <span class="dashboard-preview__title">Attendance Overview</span>
+                  </div>
+                  <div class="dashboard-preview__grid">
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">26</p>
+                      <p class="dashboard-preview__label">Daily Attendance</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">07</p>
+                      <p class="dashboard-preview__label">Shift Management</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">41</p>
+                      <p class="dashboard-preview__label">Late Entry</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">12</p>
+                      <p class="dashboard-preview__label">Overtime Tracking</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">29</p>
+                      <p class="dashboard-preview__label">Attendance Approval</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">18</p>
+                      <p class="dashboard-preview__label">Attendance Reports</p>
+                    </div>
+                  </div>
+                </div>
+                <span class="dashboard-preview__chip dashboard-preview__chip--a"><span class="dashboard-preview__chip-dot"></span>Attendance Lock enabled</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--b"><span class="dashboard-preview__chip-dot"></span>Desktop &amp; Mobile Mark</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--c"><span class="dashboard-preview__chip-dot"></span>Face Upload Option active</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--d"><span class="dashboard-preview__chip-dot"></span>Leave Context visible</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--e"><span class="dashboard-preview__chip-dot"></span>Approval queue updated</span>
+              </div>
+            </div>
           </article>
 
           <article class="card" id="leave">
             <div class="card-content">
               <img class="module-row__icon" src="assets/home-icons/leave.svg" alt="" width="64" height="64" loading="lazy">
-              <h3 class="card-heading">Leave Management</h3>
-              <p class="card-description">Streamlined leave requests, approvals, and balance management.</p>
+              <h3 class="card-heading"><a class="home-module-heading" href="leave.html">Leave Management</a></h3>
+              <p class="card-description">Comprehensive leave management with policy control, approval workflow, team visibility, proof upload, and reporting in one place.</p>
               <ul class="card-features">
                 <li class="card-feature-text">Leave Types</li>
-                <li class="card-feature-text">Approvals</li>
+                <li class="card-feature-text">Leave Policies</li>
+                <li class="card-feature-text">Leave Requests</li>
                 <li class="card-feature-text">Holiday Calendar</li>
-                <li class="card-feature-text">Balance</li>
+                <li class="card-feature-text">Leave Balance</li>
+                <li class="card-feature-text">Approval Workflow</li>
               </ul>
-              <a class="btn btn--primary" href="home.html">Explore Module</a>
+              <a class="btn btn--primary" href="leave.html">Explore Leave</a>
             </div>
-            <div class="card-image"><img src="assets/home-icons/leave.svg" alt="Leave Management" loading="lazy"></div>
+            <div class="card-image card-image--dashboard-preview" aria-hidden="true">
+              <div class="dashboard-preview">
+                <div class="dashboard-preview__window">
+                  <div class="dashboard-preview__chrome">
+                    <span class="dashboard-preview__dot"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--yellow"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--green"></span>
+                    <span class="dashboard-preview__title">Leave Overview</span>
+                  </div>
+                  <div class="dashboard-preview__grid">
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">13</p>
+                      <p class="dashboard-preview__label">Leave Types</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">27</p>
+                      <p class="dashboard-preview__label">Leave Policies</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">04</p>
+                      <p class="dashboard-preview__label">Leave Requests</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">32</p>
+                      <p class="dashboard-preview__label">Holiday Calendar</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">16</p>
+                      <p class="dashboard-preview__label">Leave History</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">25</p>
+                      <p class="dashboard-preview__label">Leave Reports</p>
+                    </div>
+                  </div>
+                </div>
+                <span class="dashboard-preview__chip dashboard-preview__chip--a"><span class="dashboard-preview__chip-dot"></span>Approval workflow enabled</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--b"><span class="dashboard-preview__chip-dot"></span>Half-Day Leave available</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--c"><span class="dashboard-preview__chip-dot"></span>Team Coverage status visible</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--d"><span class="dashboard-preview__chip-dot"></span>Attendance Link connected</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--e"><span class="dashboard-preview__chip-dot"></span>Proof Upload supported</span>
+              </div>
+            </div>
           </article>
 
           <article class="card" id="expense">
             <div class="card-content">
               <img class="module-row__icon" src="assets/home-icons/expense.svg" alt="" width="64" height="64" loading="lazy">
-              <h3 class="card-heading">Expense</h3>
-              <p class="card-description">Capture, approve, and reimburse business expenses effortlessly.</p>
+              <h3 class="card-heading"><a class="home-module-heading" href="expense.html">Expense</a></h3>
+              <p class="card-description">End-to-end expense management for employee claims, travel costs, receipt handling, and finance visibility with faster approvals.</p>
               <ul class="card-features">
-                <li class="card-feature-text">Claims</li>
-                <li class="card-feature-text">Travel</li>
-                <li class="card-feature-text">Reimbursement</li>
-                <li class="card-feature-text">Reports</li>
+                <li class="card-feature-text">Employee Expense Claims</li>
+                <li class="card-feature-text">Travel Expenses</li>
+                <li class="card-feature-text">Receipt Upload</li>
+                <li class="card-feature-text">Invoice Attachment</li>
+                <li class="card-feature-text">Approval Workflow</li>
+                <li class="card-feature-text">Budget Control</li>
               </ul>
-              <a class="btn btn--primary" href="home.html">Explore Module</a>
+              <a class="btn btn--primary" href="expense.html">Explore Expense</a>
             </div>
-            <div class="card-image"><img src="assets/home-icons/expense.svg" alt="Expense" loading="lazy"></div>
+            <div class="card-image card-image--dashboard-preview" aria-hidden="true">
+              <div class="dashboard-preview">
+                <div class="dashboard-preview__window">
+                  <div class="dashboard-preview__chrome">
+                    <span class="dashboard-preview__dot"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--yellow"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--green"></span>
+                    <span class="dashboard-preview__title">Expense Overview</span>
+                  </div>
+                  <div class="dashboard-preview__grid">
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">34</p>
+                      <p class="dashboard-preview__label">Employee Expense Claims</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">11</p>
+                      <p class="dashboard-preview__label">Travel Expenses</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">22</p>
+                      <p class="dashboard-preview__label">Receipt Upload</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">07</p>
+                      <p class="dashboard-preview__label">Invoice Attachment</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">28</p>
+                      <p class="dashboard-preview__label">Budget Control</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">15</p>
+                      <p class="dashboard-preview__label">Approval Workflow</p>
+                    </div>
+                  </div>
+                </div>
+                <span class="dashboard-preview__chip dashboard-preview__chip--a"><span class="dashboard-preview__chip-dot"></span>Centralised expense tracking</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--b"><span class="dashboard-preview__chip-dot"></span>Faster approval workflow</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--c"><span class="dashboard-preview__chip-dot"></span>Budget control enabled</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--d"><span class="dashboard-preview__chip-dot"></span>Real-time financial visibility</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--e"><span class="dashboard-preview__chip-dot"></span>Invoice attachments verified</span>
+              </div>
+            </div>
           </article>
 
           <article class="card" id="timesheet">
             <div class="card-content">
               <img class="module-row__icon" src="assets/home-icons/timesheet.svg" alt="" width="64" height="64" loading="lazy">
-              <h3 class="card-heading">Timesheet</h3>
-              <p class="card-description">Track billable hours and productivity with weekly approvals.</p>
+              <h3 class="card-heading"><a class="home-module-heading" href="timesheet.html">Timesheet</a></h3>
+              <p class="card-description">Comprehensive timesheet workflows for daily and monthly tracking, approvals, utilization insights, and leave-aware planning.</p>
               <ul class="card-features">
                 <li class="card-feature-text">Daily Timesheet</li>
-                <li class="card-feature-text">Billable Hours</li>
-                <li class="card-feature-text">Approval</li>
-                <li class="card-feature-text">Reports</li>
+                <li class="card-feature-text">Monthly View</li>
+                <li class="card-feature-text">Non-Billable Hours</li>
+                <li class="card-feature-text">Task Wise Entry</li>
+                <li class="card-feature-text">Timesheet Approval</li>
+                <li class="card-feature-text">Manager Dashboard</li>
+                <li class="card-feature-text">Utilization Report</li>
+                <li class="card-feature-text">Leave Integration</li>
               </ul>
-              <a class="btn btn--primary" href="home.html">Explore Module</a>
+              <a class="btn btn--primary" href="timesheet.html">Explore Timesheet</a>
             </div>
-            <div class="card-image"><img src="assets/home-icons/timesheet.svg" alt="Timesheet" loading="lazy"></div>
+            <div class="card-image card-image--dashboard-preview" aria-hidden="true">
+              <div class="dashboard-preview">
+                <div class="dashboard-preview__window">
+                  <div class="dashboard-preview__chrome">
+                    <span class="dashboard-preview__dot"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--yellow"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--green"></span>
+                    <span class="dashboard-preview__title">Timesheet Overview</span>
+                  </div>
+                  <div class="dashboard-preview__grid">
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">68</p>
+                      <p class="dashboard-preview__label">Daily Timesheet</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">17</p>
+                      <p class="dashboard-preview__label">Monthly View</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">42</p>
+                      <p class="dashboard-preview__label">Non-Billable Hours</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">09</p>
+                      <p class="dashboard-preview__label">Task Wise Entry</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">26</p>
+                      <p class="dashboard-preview__label">Timesheet Approval</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">35</p>
+                      <p class="dashboard-preview__label">Utilization Report</p>
+                    </div>
+                  </div>
+                </div>
+                <span class="dashboard-preview__chip dashboard-preview__chip--a"><span class="dashboard-preview__chip-dot"></span>Manager dashboard overview</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--b"><span class="dashboard-preview__chip-dot"></span>Leave integration synced</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--c"><span class="dashboard-preview__chip-dot"></span>Monthly entries reviewed</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--d"><span class="dashboard-preview__chip-dot"></span>Approval queue updated</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--e"><span class="dashboard-preview__chip-dot"></span>Task-wise timesheets tracked</span>
+              </div>
+            </div>
           </article>
 
           <article class="card" id="crm">
             <div class="card-content">
               <img class="module-row__icon" src="assets/home-icons/crm.svg" alt="" width="64" height="64" loading="lazy">
-              <h3 class="card-heading">CRM</h3>
-              <p class="card-description">Manage leads, pipeline, and customer relationships to close more deals.</p>
+              <h3 class="card-heading"><a class="home-module-heading" href="crm.html">CRM</a></h3>
+              <p class="card-description">Manage lead capture, follow-ups, quotations, customer records, and activity tracking from one connected CRM workspace.</p>
               <ul class="card-features">
-                <li class="card-feature-text">Leads</li>
-                <li class="card-feature-text">Pipeline</li>
+                <li class="card-feature-text">Lead Management</li>
+                <li class="card-feature-text">Sales Pipeline</li>
+                <li class="card-feature-text">Customer Database</li>
                 <li class="card-feature-text">Quotations</li>
                 <li class="card-feature-text">Follow-ups</li>
+                <li class="card-feature-text">Tasks</li>
+                <li class="card-feature-text">Activity Timeline</li>
+                <li class="card-feature-text">Customer Portal</li>
               </ul>
-              <a class="btn btn--primary" href="home.html">Explore Module</a>
+              <a class="btn btn--primary" href="crm.html">Explore CRM</a>
             </div>
-            <div class="card-image"><img src="assets/home-icons/crm.svg" alt="CRM" loading="lazy"></div>
-          </article>
-
-          <article class="card" id="client-desk">
-            <div class="card-content">
-              <img class="module-row__icon" src="assets/home-icons/client-desk.svg" alt="" width="64" height="64" loading="lazy">
-              <h3 class="card-heading">Client Desk</h3>
-              <p class="card-description">Client portal for documents, requests, and secure collaboration.</p>
-              <ul class="card-features">
-                <li class="card-feature-text">Client Portal</li>
-                <li class="card-feature-text">Documents</li>
-                <li class="card-feature-text">Service Requests</li>
-                <li class="card-feature-text">Messages</li>
-              </ul>
-              <a class="btn btn--primary" href="home.html">Explore Module</a>
+            <div class="card-image card-image--dashboard-preview" aria-hidden="true">
+              <div class="dashboard-preview">
+                <div class="dashboard-preview__window">
+                  <div class="dashboard-preview__chrome">
+                    <span class="dashboard-preview__dot"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--yellow"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--green"></span>
+                    <span class="dashboard-preview__title">CRM Overview</span>
+                  </div>
+                  <div class="dashboard-preview__grid dashboard-preview__grid--compact">
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">67</p>
+                      <p class="dashboard-preview__label">Lead Management</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">18</p>
+                      <p class="dashboard-preview__label">Sales Pipeline</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">42</p>
+                      <p class="dashboard-preview__label">Customer Database</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">09</p>
+                      <p class="dashboard-preview__label">Follow-ups</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">25</p>
+                      <p class="dashboard-preview__label">Quotations</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">31</p>
+                      <p class="dashboard-preview__label">Tasks</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">14</p>
+                      <p class="dashboard-preview__label">Activity Timeline</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">53</p>
+                      <p class="dashboard-preview__label">Customer Portal</p>
+                    </div>
+                  </div>
+                </div>
+                <span class="dashboard-preview__chip dashboard-preview__chip--a"><span class="dashboard-preview__chip-dot"></span>Capture, track, and assign leads</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--b"><span class="dashboard-preview__chip-dot"></span>Stages, conversion, forecasting</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--c"><span class="dashboard-preview__chip-dot"></span>Calls, emails, meetings tracked</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--d"><span class="dashboard-preview__chip-dot"></span>Assign, track, and close tasks</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--e"><span class="dashboard-preview__chip-dot"></span>Customer requests via portal</span>
+              </div>
             </div>
-            <div class="card-image"><img src="assets/home-icons/client-desk.svg" alt="Client Desk" loading="lazy"></div>
           </article>
 
           <article class="card" id="communication">
             <div class="card-content">
               <img class="module-row__icon" src="assets/home-icons/communication.svg" alt="" width="64" height="64" loading="lazy">
-              <h3 class="card-heading">Communication Center</h3>
-              <p class="card-description">Unified notifications across email, SMS, and WhatsApp.</p>
+              <h3 class="card-heading"><a class="home-module-heading" href="communication.html">Communication Center</a></h3>
+              <p class="card-description">Run cross-channel communication from one hub with notifications, broadcast messaging, templates, campaigns, and delivery logs.</p>
               <ul class="card-features">
-                <li class="card-feature-text">Email</li>
+                <li class="card-feature-text">Notifications</li>
                 <li class="card-feature-text">SMS</li>
+                <li class="card-feature-text">Email</li>
                 <li class="card-feature-text">WhatsApp</li>
+                <li class="card-feature-text">Broadcast</li>
+                <li class="card-feature-text">Templates</li>
                 <li class="card-feature-text">Campaigns</li>
+                <li class="card-feature-text">Logs</li>
               </ul>
-              <a class="btn btn--primary" href="home.html">Explore Module</a>
+              <a class="btn btn--primary" href="communication.html">Explore Communication</a>
             </div>
-            <div class="card-image"><img src="assets/home-icons/communication.svg" alt="Communication Center" loading="lazy"></div>
+            <div class="card-image card-image--dashboard-preview" aria-hidden="true">
+              <div class="dashboard-preview">
+                <div class="dashboard-preview__window">
+                  <div class="dashboard-preview__chrome">
+                    <span class="dashboard-preview__dot"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--yellow"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--green"></span>
+                    <span class="dashboard-preview__title">Communication Overview</span>
+                  </div>
+                  <div class="dashboard-preview__grid">
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">64</p>
+                      <p class="dashboard-preview__label">Notifications</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">12</p>
+                      <p class="dashboard-preview__label">SMS</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">37</p>
+                      <p class="dashboard-preview__label">Email</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">09</p>
+                      <p class="dashboard-preview__label">WhatsApp</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">28</p>
+                      <p class="dashboard-preview__label">Campaigns</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">45</p>
+                      <p class="dashboard-preview__label">Logs</p>
+                    </div>
+                  </div>
+                </div>
+                <span class="dashboard-preview__chip dashboard-preview__chip--a"><span class="dashboard-preview__chip-dot"></span>Broadcast messages queued</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--b"><span class="dashboard-preview__chip-dot"></span>Templates synced</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--c"><span class="dashboard-preview__chip-dot"></span>Email and SMS delivery tracked</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--d"><span class="dashboard-preview__chip-dot"></span>WhatsApp channel active</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--e"><span class="dashboard-preview__chip-dot"></span>Notification center updated</span>
+              </div>
+            </div>
           </article>
 
           <article class="card" id="whatsapp-api">
             <div class="card-content">
               <img class="module-row__icon" src="assets/home-icons/whatsapp-api.svg" alt="" width="64" height="64" loading="lazy">
-              <h3 class="card-heading">WhatsApp API</h3>
-              <p class="card-description">Enterprise WhatsApp automation with templates and webhooks.</p>
+              <h3 class="card-heading"><a class="home-module-heading" href="whatsapp_api.html">WhatsApp API</a></h3>
+              <p class="card-description">Connect Meta WhatsApp Business API for templates, webhook automation, interactive messaging, and document sharing workflows.</p>
               <ul class="card-features">
-                <li class="card-feature-text">Templates</li>
-                <li class="card-feature-text">Webhooks</li>
-                <li class="card-feature-text">Automation</li>
-                <li class="card-feature-text">Delivery Reports</li>
+                <li class="card-feature-text">Official WhatsApp Business API</li>
+                <li class="card-feature-text">Message Templates</li>
+                <li class="card-feature-text">Webhook Events</li>
+                <li class="card-feature-text">Session &amp; Free-form Replies</li>
+                <li class="card-feature-text">Media &amp; Document Sharing</li>
+                <li class="card-feature-text">Interactive Messages</li>
+                <li class="card-feature-text">Authentication Messages</li>
+                <li class="card-feature-text">ERP Automation Rules</li>
               </ul>
-              <a class="btn btn--primary" href="home.html">Explore Module</a>
+              <a class="btn btn--primary" href="whatsapp_api.html">Explore WhatsApp API</a>
             </div>
-            <div class="card-image"><img src="assets/home-icons/whatsapp-api.svg" alt="WhatsApp API" loading="lazy"></div>
+            <div class="card-image card-image--dashboard-preview" aria-hidden="true">
+              <div class="dashboard-preview">
+                <div class="dashboard-preview__window">
+                  <div class="dashboard-preview__chrome">
+                    <span class="dashboard-preview__dot"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--yellow"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--green"></span>
+                    <span class="dashboard-preview__title">WhatsApp API Overview</span>
+                  </div>
+                  <div class="dashboard-preview__grid dashboard-preview__grid--compact">
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">73</p>
+                      <p class="dashboard-preview__label">Official WhatsApp Business API</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">16</p>
+                      <p class="dashboard-preview__label">Message Templates</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">41</p>
+                      <p class="dashboard-preview__label">Webhook Events</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">08</p>
+                      <p class="dashboard-preview__label">Session &amp; Free-form Replies</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">27</p>
+                      <p class="dashboard-preview__label">Media &amp; Document Sharing</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">54</p>
+                      <p class="dashboard-preview__label">Interactive Messages</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">19</p>
+                      <p class="dashboard-preview__label">Authentication Messages</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">62</p>
+                      <p class="dashboard-preview__label">ERP Automation Rules</p>
+                    </div>
+                  </div>
+                </div>
+                <span class="dashboard-preview__chip dashboard-preview__chip--a"><span class="dashboard-preview__chip-dot"></span>Cloud API connection active</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--b"><span class="dashboard-preview__chip-dot"></span>Approved template messaging ready</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--c"><span class="dashboard-preview__chip-dot"></span>Delivery events syncing to logs</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--d"><span class="dashboard-preview__chip-dot"></span>Quick reply interactions enabled</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--e"><span class="dashboard-preview__chip-dot"></span>PDF and media sharing supported</span>
+              </div>
+            </div>
           </article>
 
           <article class="card" id="document-vault">
             <div class="card-content">
               <img class="module-row__icon" src="assets/home-icons/document-vault.svg" alt="" width="64" height="64" loading="lazy">
-              <h3 class="card-heading">Document Management</h3>
-              <p class="card-description">Store, organize, and control business documents with secure sharing, version tracking, approvals, and compliance-ready records.</p>
+              <h3 class="card-heading"><a class="home-module-heading" href="document_management.html">Document Vault</a></h3>
+              <p class="card-description">Centralize document operations with secure storage, agreement creation, inward/outward tracking, sharing, and version control.</p>
               <ul class="card-features">
                 <li class="card-feature-text">Store Documents</li>
                 <li class="card-feature-text">Create Agreement</li>
@@ -2020,21 +2906,59 @@
                 <li class="card-feature-text">Document Version Control</li>
                 <li class="card-feature-text">Document Search</li>
                 <li class="card-feature-text">Document Categories</li>
-                <li class="card-feature-text">Document Approval Workflow</li>
-                <li class="card-feature-text">Document History</li>
-                <li class="card-feature-text">DSC Tracker</li>
-                <li class="card-feature-text">Fixed Asset Register</li>
               </ul>
-              <a class="btn btn--primary" href="home.html">Explore Module</a>
+              <a class="btn btn--primary" href="document_management.html">Explore Document Vault</a>
             </div>
-            <div class="card-image"><img src="assets/home-icons/document-vault.svg" alt="Document Management" loading="lazy"></div>
+            <div class="card-image card-image--dashboard-preview" aria-hidden="true">
+              <div class="dashboard-preview">
+                <div class="dashboard-preview__window">
+                  <div class="dashboard-preview__chrome">
+                    <span class="dashboard-preview__dot"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--yellow"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--green"></span>
+                    <span class="dashboard-preview__title">Document Vault Overview</span>
+                  </div>
+                  <div class="dashboard-preview__grid">
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">81</p>
+                      <p class="dashboard-preview__label">Store Documents</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">14</p>
+                      <p class="dashboard-preview__label">Create Agreement</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">37</p>
+                      <p class="dashboard-preview__label">Inward Documents</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">09</p>
+                      <p class="dashboard-preview__label">Outward Documents</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">26</p>
+                      <p class="dashboard-preview__label">Document Sharing</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">48</p>
+                      <p class="dashboard-preview__label">Document Version Control</p>
+                    </div>
+                  </div>
+                </div>
+                <span class="dashboard-preview__chip dashboard-preview__chip--a"><span class="dashboard-preview__chip-dot"></span>Secure document vault active</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--b"><span class="dashboard-preview__chip-dot"></span>Incoming/outgoing status tracking</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--c"><span class="dashboard-preview__chip-dot"></span>Sharing access under control</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--d"><span class="dashboard-preview__chip-dot"></span>Version history updated</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--e"><span class="dashboard-preview__chip-dot"></span>Search and categories enabled</span>
+              </div>
+            </div>
           </article>
 
           <article class="card" id="project-management">
             <div class="card-content">
               <img class="module-row__icon" src="assets/home-icons/project-management.svg" alt="" width="64" height="64" loading="lazy">
-              <h3 class="card-heading">Project Management</h3>
-              <p class="card-description">Plan, assign, and deliver client work across teams with recurring tasks, mobile access, timesheets, billing, and profit visibility in one workspace.</p>
+              <h3 class="card-heading"><a class="home-module-heading" href="project_management.html">Project Management</a></h3>
+              <p class="card-description">Manage complete task delivery across teams and clients with assignment, reminders, mobile work updates, and timesheet control.</p>
               <ul class="card-features">
                 <li class="card-feature-text">Multi Assign</li>
                 <li class="card-feature-text">Multi Customer</li>
@@ -2048,18 +2972,58 @@
                 <li class="card-feature-text">Task Reminder</li>
                 <li class="card-feature-text">Task Timesheet</li>
                 <li class="card-feature-text">Task Permission</li>
-                <li class="card-feature-text">Task Billing</li>
-                <li class="card-feature-text">Profit / Loss Report</li>
               </ul>
-              <a class="btn btn--primary" href="home.html">Explore Module</a>
+              <a class="btn btn--primary" href="project_management.html">Explore Projects</a>
             </div>
-            <div class="card-image"><img src="assets/home-icons/project-management.svg" alt="Project Management" loading="lazy"></div>
+            <div class="card-image card-image--dashboard-preview" aria-hidden="true">
+              <div class="dashboard-preview">
+                <div class="dashboard-preview__window">
+                  <div class="dashboard-preview__chrome">
+                    <span class="dashboard-preview__dot"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--yellow"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--green"></span>
+                    <span class="dashboard-preview__title">Project Overview</span>
+                  </div>
+                  <div class="dashboard-preview__grid">
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">76</p>
+                      <p class="dashboard-preview__label">Multi Assign</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">23</p>
+                      <p class="dashboard-preview__label">Multi Customer</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">49</p>
+                      <p class="dashboard-preview__label">Multi Client</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">11</p>
+                      <p class="dashboard-preview__label">Create Task</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">34</p>
+                      <p class="dashboard-preview__label">Recurring Task</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">58</p>
+                      <p class="dashboard-preview__label">Task Service Master</p>
+                    </div>
+                  </div>
+                </div>
+                <span class="dashboard-preview__chip dashboard-preview__chip--a"><span class="dashboard-preview__chip-dot"></span>Task in Mobile App enabled</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--b"><span class="dashboard-preview__chip-dot"></span>Share Task with Client active</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--c"><span class="dashboard-preview__chip-dot"></span>Bulk Action in Task available</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--d"><span class="dashboard-preview__chip-dot"></span>Task Reminder notifications on</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--e"><span class="dashboard-preview__chip-dot"></span>Task Timesheet and permissions set</span>
+              </div>
+            </div>
           </article>
 
           <article class="card" id="billing">
             <div class="card-content">
               <img class="module-row__icon" src="assets/home-icons/billing.svg" alt="" width="64" height="64" loading="lazy">
-              <h3 class="card-heading">Billing Management</h3>
+              <h3 class="card-heading"><a class="home-module-heading" href="billing.html">Billing Management</a></h3>
               <p class="card-description">Configure billing setup and branches, then manage invoices, receipts, ledgers, adjustments, and integrated digital payments in one flow.</p>
               <ul class="card-features">
                 <li class="card-feature-text">Setup</li>
@@ -2075,15 +3039,57 @@
                 <li class="card-feature-text">BharatPe Integration</li>
                 <li class="card-feature-text">UPI AutoPay</li>
               </ul>
-              <a class="btn btn--primary" href="home.html">Explore Module</a>
+              <a class="btn btn--primary" href="billing.html">Explore Billing</a>
             </div>
-            <div class="card-image"><img src="assets/home-icons/billing.svg" alt="Billing Management" loading="lazy"></div>
+            <div class="card-image card-image--dashboard-preview" aria-hidden="true">
+              <div class="dashboard-preview">
+                <div class="dashboard-preview__window">
+                  <div class="dashboard-preview__chrome">
+                    <span class="dashboard-preview__dot"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--yellow"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--green"></span>
+                    <span class="dashboard-preview__title">Billing Overview</span>
+                  </div>
+                  <div class="dashboard-preview__grid">
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">57</p>
+                      <p class="dashboard-preview__label">Setup</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">14</p>
+                      <p class="dashboard-preview__label">Add New Branch</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">39</p>
+                      <p class="dashboard-preview__label">Invoice</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">08</p>
+                      <p class="dashboard-preview__label">Proforma Invoice</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">26</p>
+                      <p class="dashboard-preview__label">Receipt</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">43</p>
+                      <p class="dashboard-preview__label">Ledger</p>
+                    </div>
+                  </div>
+                </div>
+                <span class="dashboard-preview__chip dashboard-preview__chip--a"><span class="dashboard-preview__chip-dot"></span>Adjustment and CN tracked</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--b"><span class="dashboard-preview__chip-dot"></span>DN and reported transactions ready</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--c"><span class="dashboard-preview__chip-dot"></span>BharatPe integration connected</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--d"><span class="dashboard-preview__chip-dot"></span>UPI AutoPay active</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--e"><span class="dashboard-preview__chip-dot"></span>Billing branch setup complete</span>
+              </div>
+            </div>
           </article>
 
           <article class="card" id="compliance">
             <div class="card-content">
               <img class="module-row__icon" src="assets/home-icons/task-audit.svg" alt="" width="64" height="64" loading="lazy">
-              <h3 class="card-heading">Compliance Management</h3>
+              <h3 class="card-heading"><a class="home-module-heading" href="compliance_management.html">Compliance Management</a></h3>
               <p class="card-description">Stay audit-ready with centralized statutory reporting for GST, ESIC, EPFO, gratuity, and TDS across your organization.</p>
               <ul class="card-features">
                 <li class="card-feature-text">GST Reports</li>
@@ -2092,41 +3098,171 @@
                 <li class="card-feature-text">Gratuity Management</li>
                 <li class="card-feature-text">TDS Reports</li>
               </ul>
-              <a class="btn btn--primary" href="home.html">Explore Compliance →</a>
+              <a class="btn btn--primary" href="compliance_management.html">Explore Compliance</a>
             </div>
-            <div class="card-image"><img src="assets/home-icons/task-audit.svg" alt="Compliance Management" loading="lazy"></div>
+            <div class="card-image card-image--dashboard-preview" aria-hidden="true">
+              <div class="dashboard-preview">
+                <div class="dashboard-preview__window">
+                  <div class="dashboard-preview__chrome">
+                    <span class="dashboard-preview__dot"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--yellow"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--green"></span>
+                    <span class="dashboard-preview__title">Compliance Overview</span>
+                  </div>
+                  <div class="dashboard-preview__grid">
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">63</p>
+                      <p class="dashboard-preview__label">GST Reports</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">12</p>
+                      <p class="dashboard-preview__label">ESIC Reports</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">38</p>
+                      <p class="dashboard-preview__label">EPFO Reports</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">07</p>
+                      <p class="dashboard-preview__label">Gratuity Management</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">29</p>
+                      <p class="dashboard-preview__label">TDS Reports</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">44</p>
+                      <p class="dashboard-preview__label">Statutory Readiness</p>
+                    </div>
+                  </div>
+                </div>
+                <span class="dashboard-preview__chip dashboard-preview__chip--a"><span class="dashboard-preview__chip-dot"></span>Centralized GST reporting</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--b"><span class="dashboard-preview__chip-dot"></span>ESIC compliance readiness</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--c"><span class="dashboard-preview__chip-dot"></span>EPFO statutory tracking</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--d"><span class="dashboard-preview__chip-dot"></span>Gratuity management active</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--e"><span class="dashboard-preview__chip-dot"></span>TDS compliance reports ready</span>
+              </div>
+            </div>
           </article>
 
           <article class="card" id="website">
             <div class="card-content">
               <img class="module-row__icon" src="assets/home-icons/website.svg" alt="" width="64" height="64" loading="lazy">
-              <h3 class="card-heading">Website</h3>
-              <p class="card-description">Build landing pages, blogs, and forms with built-in SEO tools.</p>
+              <h3 class="card-heading"><a class="home-module-heading" href="website.html">Website</a></h3>
+              <p class="card-description">Manage your public website content from one place, from company profile and services to blogs, gallery, and page updates.</p>
               <ul class="card-features">
-                <li class="card-feature-text">Website Builder</li>
-                <li class="card-feature-text">Landing Pages</li>
-                <li class="card-feature-text">Blog</li>
-                <li class="card-feature-text">SEO</li>
+                <li class="card-feature-text">Company Details</li>
+                <li class="card-feature-text">Main Dashboard</li>
+                <li class="card-feature-text">My Services</li>
+                <li class="card-feature-text">Blogs</li>
+                <li class="card-feature-text">About Us</li>
+                <li class="card-feature-text">Gallery</li>
               </ul>
-              <a class="btn btn--primary" href="home.html">Explore Module</a>
+              <a class="btn btn--primary" href="website.html">Explore Website</a>
             </div>
-            <div class="card-image"><img src="assets/home-icons/website.svg" alt="Website" loading="lazy"></div>
+            <div class="card-image card-image--dashboard-preview" aria-hidden="true">
+              <div class="dashboard-preview">
+                <div class="dashboard-preview__window">
+                  <div class="dashboard-preview__chrome">
+                    <span class="dashboard-preview__dot"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--yellow"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--green"></span>
+                    <span class="dashboard-preview__title">Website Overview</span>
+                  </div>
+                  <div class="dashboard-preview__grid">
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">72</p>
+                      <p class="dashboard-preview__label">Company Details</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">18</p>
+                      <p class="dashboard-preview__label">Main Dashboard</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">43</p>
+                      <p class="dashboard-preview__label">My Services</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">09</p>
+                      <p class="dashboard-preview__label">Blogs</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">27</p>
+                      <p class="dashboard-preview__label">About Us</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">56</p>
+                      <p class="dashboard-preview__label">Gallery</p>
+                    </div>
+                  </div>
+                </div>
+                <span class="dashboard-preview__chip dashboard-preview__chip--a"><span class="dashboard-preview__chip-dot"></span>Update logos, map, and contact</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--b"><span class="dashboard-preview__chip-dot"></span>Control homepage sections</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--c"><span class="dashboard-preview__chip-dot"></span>Publish practice blogs</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--d"><span class="dashboard-preview__chip-dot"></span>Manage service visibility</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--e"><span class="dashboard-preview__chip-dot"></span>Share event photos in gallery</span>
+              </div>
+            </div>
           </article>
 
           <article class="card" id="inventory">
             <div class="card-content">
               <img class="module-row__icon" src="assets/home-icons/task-asset.svg" alt="" width="64" height="64" loading="lazy">
-              <h3 class="card-heading">Inventory</h3>
-              <p class="card-description">Stock management and warehouse operations, launching soon.</p>
+              <h3 class="card-heading"><a class="home-module-heading" href="inventory_management.html">Inventory</a></h3>
+              <p class="card-description">Control stock, warehouses, procurement, and traceability from one inventory workspace built for multi-location operations.</p>
               <ul class="card-features">
-                <li class="card-feature-text">Stock Tracking</li>
+                <li class="card-feature-text">Stock Overview</li>
+                <li class="card-feature-text">Item Master</li>
                 <li class="card-feature-text">Warehouses</li>
                 <li class="card-feature-text">Purchase Orders</li>
-                <li class="card-feature-text">Reports</li>
+                <li class="card-feature-text">Goods Receipt (GRN)</li>
+                <li class="card-feature-text">Batch &amp; Serial Tracking</li>
               </ul>
-              <a class="btn btn--primary" href="contact_sales.html">Join Waitlist</a>
+              <a class="btn btn--primary" href="inventory_management.html">Explore Inventory</a>
             </div>
-            <div class="card-image"><img src="assets/home-icons/task-asset.svg" alt="Inventory" loading="lazy"></div>
+            <div class="card-image card-image--dashboard-preview" aria-hidden="true">
+              <div class="dashboard-preview">
+                <div class="dashboard-preview__window">
+                  <div class="dashboard-preview__chrome">
+                    <span class="dashboard-preview__dot"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--yellow"></span>
+                    <span class="dashboard-preview__dot dashboard-preview__dot--green"></span>
+                    <span class="dashboard-preview__title">Inventory Overview</span>
+                  </div>
+                  <div class="dashboard-preview__grid">
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">62</p>
+                      <p class="dashboard-preview__label">Stock Overview</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">17</p>
+                      <p class="dashboard-preview__label">Item Master</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">39</p>
+                      <p class="dashboard-preview__label">Warehouses</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">24</p>
+                      <p class="dashboard-preview__label">Purchase Orders</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">08</p>
+                      <p class="dashboard-preview__label">Goods Receipt (GRN)</p>
+                    </div>
+                    <div class="dashboard-preview__metric">
+                      <p class="dashboard-preview__value">45</p>
+                      <p class="dashboard-preview__label">Batch &amp; Serial Tracking</p>
+                    </div>
+                  </div>
+                </div>
+                <span class="dashboard-preview__chip dashboard-preview__chip--a"><span class="dashboard-preview__chip-dot"></span>Live stock by item and location</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--b"><span class="dashboard-preview__chip-dot"></span>SKUs, UOM, and item attributes</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--c"><span class="dashboard-preview__chip-dot"></span>Multi-location stock hubs</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--d"><span class="dashboard-preview__chip-dot"></span>Raise and track procurement</span>
+                <span class="dashboard-preview__chip dashboard-preview__chip--e"><span class="dashboard-preview__chip-dot"></span>Trace lots and serial numbers</span>
+              </div>
+            </div>
           </article>
         </div>
       </div>
@@ -2142,47 +3278,47 @@
         <div class="mkt-sol__layout">
           <div class="mkt-sol__features" role="tablist" aria-label="Marketing features" id="mktFeatList">
             <button type="button" class="mkt-sol__feat is-active" role="tab" aria-selected="true" data-mkt="0">
-              <span class="mkt-sol__feat-icon" aria-hidden="true"><img src="assets/home-icons/website.svg" alt=""></span>
+              <span class="mkt-sol__feat-icon" aria-hidden="true"><img loading="lazy" decoding="async" src="assets/home-icons/website.svg" alt=""></span>
               <span class="mkt-sol__feat-label">Website Management</span>
             </button>
             <button type="button" class="mkt-sol__feat" role="tab" aria-selected="false" data-mkt="1">
-              <span class="mkt-sol__feat-icon" aria-hidden="true"><img src="assets/home-icons/task-lead.svg" alt=""></span>
+              <span class="mkt-sol__feat-icon" aria-hidden="true"><img loading="lazy" decoding="async" src="assets/home-icons/task-lead.svg" alt=""></span>
               <span class="mkt-sol__feat-label">Lead Management</span>
             </button>
             <button type="button" class="mkt-sol__feat" role="tab" aria-selected="false" data-mkt="2">
-              <span class="mkt-sol__feat-icon" aria-hidden="true"><img src="assets/home-icons/task-users.svg" alt=""></span>
+              <span class="mkt-sol__feat-icon" aria-hidden="true"><img loading="lazy" decoding="async" src="assets/home-icons/task-users.svg" alt=""></span>
               <span class="mkt-sol__feat-label">Community</span>
             </button>
             <button type="button" class="mkt-sol__feat" role="tab" aria-selected="false" data-mkt="3">
-              <span class="mkt-sol__feat-icon" aria-hidden="true"><img src="assets/home-icons/task-media.svg" alt=""></span>
+              <span class="mkt-sol__feat-icon" aria-hidden="true"><img loading="lazy" decoding="async" src="assets/home-icons/task-media.svg" alt=""></span>
               <span class="mkt-sol__feat-label">Infographics</span>
             </button>
             <button type="button" class="mkt-sol__feat" role="tab" aria-selected="false" data-mkt="4">
-              <span class="mkt-sol__feat-icon" aria-hidden="true"><img src="assets/home-icons/task-sms.svg" alt=""></span>
+              <span class="mkt-sol__feat-icon" aria-hidden="true"><img loading="lazy" decoding="async" src="assets/home-icons/task-sms.svg" alt=""></span>
               <span class="mkt-sol__feat-label">SMS Campaigns</span>
             </button>
             <button type="button" class="mkt-sol__feat" role="tab" aria-selected="false" data-mkt="5">
-              <span class="mkt-sol__feat-icon" aria-hidden="true"><img src="assets/home-icons/task-bell.svg" alt=""></span>
+              <span class="mkt-sol__feat-icon" aria-hidden="true"><img loading="lazy" decoding="async" src="assets/home-icons/task-bell.svg" alt=""></span>
               <span class="mkt-sol__feat-label">Notifications</span>
             </button>
             <button type="button" class="mkt-sol__feat" role="tab" aria-selected="false" data-mkt="6">
-              <span class="mkt-sol__feat-icon" aria-hidden="true"><img src="assets/home-icons/task-email.svg" alt=""></span>
+              <span class="mkt-sol__feat-icon" aria-hidden="true"><img loading="lazy" decoding="async" src="assets/home-icons/task-email.svg" alt=""></span>
               <span class="mkt-sol__feat-label">Email Marketing</span>
             </button>
             <button type="button" class="mkt-sol__feat" role="tab" aria-selected="false" data-mkt="7">
-              <span class="mkt-sol__feat-icon" aria-hidden="true"><img src="assets/home-icons/task-whatsapp.svg" alt=""></span>
+              <span class="mkt-sol__feat-icon" aria-hidden="true"><img loading="lazy" decoding="async" src="assets/home-icons/task-whatsapp.svg" alt=""></span>
               <span class="mkt-sol__feat-label">WhatsApp Marketing</span>
             </button>
             <button type="button" class="mkt-sol__feat" role="tab" aria-selected="false" data-mkt="8">
-              <span class="mkt-sol__feat-icon" aria-hidden="true"><img src="assets/home-icons/task-campaign.svg" alt=""></span>
+              <span class="mkt-sol__feat-icon" aria-hidden="true"><img loading="lazy" decoding="async" src="assets/home-icons/task-campaign.svg" alt=""></span>
               <span class="mkt-sol__feat-label">Google Ads</span>
             </button>
             <button type="button" class="mkt-sol__feat" role="tab" aria-selected="false" data-mkt="9">
-              <span class="mkt-sol__feat-icon" aria-hidden="true"><img src="assets/home-icons/task-analytics.svg" alt=""></span>
+              <span class="mkt-sol__feat-icon" aria-hidden="true"><img loading="lazy" decoding="async" src="assets/home-icons/task-analytics.svg" alt=""></span>
               <span class="mkt-sol__feat-label">Meta Ads</span>
             </button>
             <button type="button" class="mkt-sol__feat" role="tab" aria-selected="false" data-mkt="10">
-              <span class="mkt-sol__feat-icon" aria-hidden="true"><img src="assets/home-icons/task-broadcast.svg" alt=""></span>
+              <span class="mkt-sol__feat-icon" aria-hidden="true"><img loading="lazy" decoding="async" src="assets/home-icons/task-broadcast.svg" alt=""></span>
               <span class="mkt-sol__feat-label">Broadcast Campaigns</span>
             </button>
           </div>
@@ -2190,7 +3326,7 @@
           <div class="mkt-sol__panel" id="mktPanel" role="tabpanel" aria-live="polite">
             <article class="mkt-sol__card card">
               <div class="mkt-sol__card-icon" aria-hidden="true">
-                <img src="assets/home-icons/task-campaign.svg" alt="" id="mktCardIcon">
+                <img loading="lazy" decoding="async" src="assets/home-icons/task-campaign.svg" alt="" id="mktCardIcon">
               </div>
               <h3>Marketing</h3>
               <p class="mkt-sol__card-desc">Centralize your digital marketing, lead generation, communication, campaigns, and customer engagement in one unified marketing platform.</p>
@@ -2198,7 +3334,7 @@
                 <strong class="mkt-sol__active-title" id="mktActiveTitle">Website Management</strong>
                 <p class="mkt-sol__active-desc" id="mktActiveDesc">Create and manage your company website, landing pages, blogs, and SEO content.</p>
               </div>
-              <a class="btn btn--primary mkt-sol__cta" href="#marketing">Explore Marketing →</a>
+              <a class="btn btn--primary mkt-sol__cta" href="market.html">Explore Marketing →</a>
             </article>
           </div>
         </div>
@@ -2267,19 +3403,19 @@
         <p class="section-lead">Built for early stage teams that need HR, CRM, billing, and operations in one place without enterprise complexity.</p>
         <div class="industries__grid">
           <article class="industry-card card">
-            <div class="industry-card__icon">🚀</div>
+            <div class="industry-card__icon industry-card__icon--startup"><img class="startup-icon" src="assets/startup-icons/quick-setup.svg" alt="" loading="lazy"></div>
             <h3>Quick Setup</h3>
             <p>Go live in days with ready workflows for hiring, attendance, tasks, and client billing.</p>
             <a href="#" data-book-demo>Book a Demo</a>
           </article>
           <article class="industry-card card">
-            <div class="industry-card__icon">📦</div>
+            <div class="industry-card__icon industry-card__icon--startup"><img class="startup-icon" src="assets/startup-icons/startup-essentials.svg" alt="" loading="lazy"></div>
             <h3>Startup Essentials</h3>
             <p>HRMS, CRM, payroll, and task management bundled for growing teams and founders.</p>
             <a href="#products">Explore Modules</a>
           </article>
           <article class="industry-card card">
-            <div class="industry-card__icon">📈</div>
+            <div class="industry-card__icon industry-card__icon--startup"><img class="startup-icon" src="assets/startup-icons/scale-growth.svg" alt="" loading="lazy"></div>
             <h3>Scale with Confidence</h3>
             <p>Start lean, then expand into projects, documents, and compliance as your business grows.</p>
             <a href="contact_sales.html">Talk to Sales</a>
@@ -2309,7 +3445,7 @@
           <div>
             <h3 style="font-size:18px;font-weight:600;margin-bottom:16px;color:var(--heading-dark);background:none;-webkit-text-fill-color:var(--heading-dark);filter:none">Plan projects. Assign tasks. Track profitability.</h3>
             <p style="color:var(--text-muted);line-height:1.7;margin-bottom:20px">Explore the full Project Management module for multi-client delivery, recurring work, timesheets, and profit &amp; loss reporting.</p>
-            <a class="btn btn--primary" href="#project-management">Explore Project Management</a>
+            <a class="btn btn--primary" href="project_management.html">Explore Project Management</a>
           </div>
         </div>
       </div>
@@ -2322,7 +3458,46 @@
         <h2 class="section-title" id="mobile-title">Your business in your pocket</h2>
         <p class="section-lead">Attendance, leave, tasks, notifications, and projects, anywhere.</p>
         <div class="mobile__phones">
-          <div class="phone"><div class="phone__screen"><strong>Attendance</strong><div style="height:60px;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:8px;opacity:.3;margin-top:12px"></div><div style="height:8px;background:#e8eef2;border-radius:4px;margin-top:8px"></div><div style="height:8px;background:#e8eef2;border-radius:4px;margin-top:6px;width:70%"></div></div></div><div class="phone"><div class="phone__screen"><strong>Leave</strong><div style="height:60px;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:8px;opacity:.3;margin-top:12px"></div><div style="height:8px;background:#e8eef2;border-radius:4px;margin-top:8px"></div><div style="height:8px;background:#e8eef2;border-radius:4px;margin-top:6px;width:70%"></div></div></div><div class="phone"><div class="phone__screen"><strong>Tasks</strong><div style="height:60px;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:8px;opacity:.3;margin-top:12px"></div><div style="height:8px;background:#e8eef2;border-radius:4px;margin-top:8px"></div><div style="height:8px;background:#e8eef2;border-radius:4px;margin-top:6px;width:70%"></div></div></div><div class="phone"><div class="phone__screen"><strong>Notifications</strong><div style="height:60px;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:8px;opacity:.3;margin-top:12px"></div><div style="height:8px;background:#e8eef2;border-radius:4px;margin-top:8px"></div><div style="height:8px;background:#e8eef2;border-radius:4px;margin-top:6px;width:70%"></div></div></div><div class="phone"><div class="phone__screen"><strong>Projects</strong><div style="height:60px;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:8px;opacity:.3;margin-top:12px"></div><div style="height:8px;background:#e8eef2;border-radius:4px;margin-top:8px"></div><div style="height:8px;background:#e8eef2;border-radius:4px;margin-top:6px;width:70%"></div></div></div>
+          <div class="phone">
+            <div class="phone__device phone__device--shot">
+              <img class="phone__frame" src="assets/phone-frame-transparent.png" alt="" width="388" height="780" loading="lazy">
+              <div class="phone__screen phone__screen--shot">
+                <img class="phone__shot" src="assets/phone-screens/dashboard-demo.png" alt="TimeERP Dashboard" loading="lazy">
+              </div>
+            </div>
+          </div>
+          <div class="phone">
+            <div class="phone__device phone__device--shot">
+              <img class="phone__frame" src="assets/phone-frame-transparent.png" alt="" width="388" height="780" loading="lazy">
+              <div class="phone__screen phone__screen--shot">
+                <img class="phone__shot" src="assets/phone-screens/hrms-dashboard.png" alt="TimeERP HRMS dashboard" loading="lazy">
+              </div>
+            </div>
+          </div>
+          <div class="phone">
+            <div class="phone__device phone__device--shot">
+              <img class="phone__frame" src="assets/phone-frame-transparent.png" alt="" width="388" height="780" loading="lazy">
+              <div class="phone__screen phone__screen--shot">
+                <img class="phone__shot" src="assets/phone-screens/attendance-preview.png" alt="TimeERP Attendance Preview" loading="lazy">
+              </div>
+            </div>
+          </div>
+          <div class="phone">
+            <div class="phone__device phone__device--shot">
+              <img class="phone__frame" src="assets/phone-frame-transparent.png" alt="" width="388" height="780" loading="lazy">
+              <div class="phone__screen phone__screen--shot">
+                <img class="phone__shot" src="assets/phone-screens/billing-demo.png" alt="TimeERP Billing" loading="lazy">
+              </div>
+            </div>
+          </div>
+          <div class="phone">
+            <div class="phone__device phone__device--shot">
+              <img class="phone__frame" src="assets/phone-frame-transparent.png" alt="" width="388" height="780" loading="lazy">
+              <div class="phone__screen phone__screen--shot">
+                <img class="phone__shot" src="assets/phone-screens/view-customer.png" alt="TimeERP View Customer" loading="lazy">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -2406,7 +3581,7 @@
             <ul class="footer__links">
               <li><a href="#products">Modules</a></li>
               <li><a href="#benefits">Benefits</a></li>
-              <li><a href="#project-management">Project Management</a></li>
+              <li><a href="#task-management">Project Management</a></li>
               <li><a href="#solutions">Platform</a></li>
               <li><a href="price.html">Pricing</a></li>
             </ul>
@@ -2428,6 +3603,7 @@
               <li><a href="about.html">About Us</a></li>
               <li><a href="Our_Presence.html">Our Presence</a></li>
               <li><a href="careers.html">Careers</a></li>
+              <li><a href="blog.html">Blog</a></li>
               <li><a href="contact_sales.html">Contact</a></li>
             </ul>
           </div>
@@ -2435,7 +3611,7 @@
             <button type="button" class="footer__col-toggle" aria-expanded="false"><span>Support</span><span class="footer__col-chevron" aria-hidden="true">⌄</span></button>
             <h3 class="footer__col-title">Support</h3>
             <ul class="footer__links">
-              <li><a href="real_time_support.html">Help Center</a></li>
+              <li><a href="help_centre.html">Help Center</a></li>
               <li><a href="contact_sales.html">Sales</a></li>
               <li><a href="custom_quote.html">Get a Quote</a></li>
             </ul>
@@ -2447,8 +3623,10 @@
         <div class="footer__connect-item">
           <span class="footer__connect-label">Visit us</span>
           <address class="footer__address">
-            BM-08, Ansal Sumedha Building, RDC,<br>
-            Ghaziabad, Delhi NCR, UP 201002
+            <a class="footer__address-link" href="https://www.google.com/maps/search/?api=1&query=Ansal+Sumedha+Building+RDC+Ghaziabad+201002" target="_blank" rel="noopener noreferrer" aria-label="View office location on Google Maps">
+              BM-08, Ansal Sumedha Building, RDC,<br>
+              Ghaziabad, Delhi NCR, UP 201002
+            </a>
           </address>
           <div class="footer__quick">
             <a class="footer__quick-btn" href="#" data-book-demo>Book Demo</a>
@@ -2479,6 +3657,7 @@
         <nav class="footer__legal" aria-label="Legal">
           <a href="privacy.html">Privacy</a>
           <a href="terms.html">Terms</a>
+          <a href="security.html">Security</a>
           <a href="contact_sales.html">Contact Us</a>
         </nav>
       </div>
@@ -2520,7 +3699,7 @@
               <header class="cb-header">
         <div class="cb-header__brand">
           <div class="cb-header__avatar" aria-hidden="true">
-            <img class="cb-header__ai-icon" src="assets/chatbot-ai-icon.svg" alt="" width="40" height="40">
+            <img class="cb-header__ai-icon" src="assets/chatbot-ai-icon.svg" alt="" width="40" height="40" loading="lazy" decoding="async">
             <span class="cb-header__online" title="Online"></span>
           </div>
           <div class="cb-header__text">
@@ -2608,118 +3787,10 @@
         </footer>
       </section>
     </div>
-  
-  <div class="book-demo-modal" id="bookDemoModal" role="dialog" aria-modal="true" aria-labelledby="bookDemoModalTitle" aria-hidden="true">
-    <div class="book-demo-modal__overlay" data-book-demo-close tabindex="-1"></div>
-    <div class="book-demo-modal__dialog" role="document">
-      <button type="button" class="book-demo-modal__close" data-book-demo-close aria-label="Close demo booking modal">×</button>
-      <div class="book-demo-modal__grid">
-        <div class="book-demo-modal__left">
-          <h2 id="bookDemoModalTitle">Book a Personalized Demo</h2>
-          <p>Discover how TIME ERP helps businesses streamline HR, Payroll, CRM, Projects, Finance, Attendance, Compliance, and Operations from one unified platform.</p>
-          <ul class="book-demo-modal__features">
-            <li>Personalized Product Walkthrough</li>
-            <li>Industry-Specific Demo</li>
-            <li>Live Q&amp;A Session</li>
-            <li>Implementation Guidance</li>
-            <li>Pricing Consultation</li>
-          </ul>
-        </div>
-        <div class="book-demo-modal__right">
-          <p class="book-demo-modal__form-title">Request a Demo</p>
-          <form class="book-demo-modal__form" id="bookDemoForm" novalidate>
-            <div class="book-demo-modal__form-grid">
-            <div class="book-demo-field" data-field="fullName">
-              <label for="bookDemoFullName">Full Name <span aria-hidden="true">*</span></label>
-              <input type="text" id="bookDemoFullName" name="fullName" autocomplete="name" required aria-required="true">
-              <span class="book-demo-field__error" id="bookDemoErrFullName" role="alert"></span>
-            </div>
-            <div class="book-demo-field" data-field="companyName">
-              <label for="bookDemoCompanyName">Company Name <span aria-hidden="true">*</span></label>
-              <input type="text" id="bookDemoCompanyName" name="companyName" autocomplete="organization" required aria-required="true">
-              <span class="book-demo-field__error" id="bookDemoErrCompanyName" role="alert"></span>
-            </div>
-            <div class="book-demo-field" data-field="email">
-              <label for="bookDemoEmail">Work Email <span aria-hidden="true">*</span></label>
-              <input type="email" id="bookDemoEmail" name="email" autocomplete="email" required aria-required="true">
-              <span class="book-demo-field__error" id="bookDemoErrEmail" role="alert"></span>
-            </div>
-            <div class="book-demo-field" data-field="phone">
-              <label for="bookDemoPhone">Phone Number <span aria-hidden="true">*</span></label>
-              <input type="tel" id="bookDemoPhone" name="phone" inputmode="numeric" autocomplete="tel" required aria-required="true">
-              <span class="book-demo-field__error" id="bookDemoErrPhone" role="alert"></span>
-            </div>
-            <div class="book-demo-field" data-field="industry">
-              <label for="bookDemoIndustry">Industry <span aria-hidden="true">*</span></label>
-              <select id="bookDemoIndustry" name="industry" required aria-required="true">
-                <option value="">Select industry</option>
-                <option>Chartered Accountant</option>
-                <option>Construction</option>
-                <option>Real Estate</option>
-                <option>Property Dealer</option>
-                <option>Manufacturing</option>
-                <option>MSME</option>
-                <option>Retail</option>
-                <option>Healthcare</option>
-                <option>Education</option>
-                <option>IT Services</option>
-                <option>Other</option>
-              </select>
-              <span class="book-demo-field__error" id="bookDemoErrIndustry" role="alert"></span>
-            </div>
-            <div class="book-demo-field" data-field="companySize">
-              <label for="bookDemoCompanySize">Company Size <span aria-hidden="true">*</span></label>
-              <select id="bookDemoCompanySize" name="companySize" required aria-required="true">
-                <option value="">Select company size</option>
-                <option>1–10</option>
-                <option>11–25</option>
-                <option>26–50</option>
-                <option>51–100</option>
-                <option>101–250</option>
-                <option>250+</option>
-              </select>
-              <span class="book-demo-field__error" id="bookDemoErrCompanySize" role="alert"></span>
-            </div>
-            <div class="book-demo-field book-demo-field--full" data-field="requirements">
-              <label for="bookDemoRequirements">Requirements</label>
-              <textarea id="bookDemoRequirements" name="requirements" rows="2"></textarea>
-              <span class="book-demo-field__error" id="bookDemoErrRequirements" role="alert"></span>
-            </div>
-            <div class="book-demo-field book-demo-field--full" data-field="hearAbout">
-              <label for="bookDemoHearAbout">How did you hear about us?</label>
-              <select id="bookDemoHearAbout" name="hearAbout">
-                <option value="">Select option</option>
-                <option>Google</option>
-                <option>LinkedIn</option>
-                <option>Facebook</option>
-                <option>Instagram</option>
-                <option>YouTube</option>
-                <option>Referral</option>
-                <option>Existing Client</option>
-                <option>Other</option>
-              </select>
-              <span class="book-demo-field__error" id="bookDemoErrHearAbout" role="alert"></span>
-            </div>
-            </div>
-            <div class="book-demo-modal__submit-wrap">
-              <button type="submit" class="btn btn--primary book-demo-modal__submit" id="bookDemoSubmit">
-                <span class="book-demo-modal__submit-text">Book Demo</span>
-                <span class="book-demo-modal__spinner" aria-hidden="true"></span>
-              </button>
-              <p class="book-demo-modal__privacy">By clicking Book Demo, you agree to our <a href="privacy.html">Privacy Policy</a></p>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="book-demo-toast" id="bookDemoToast" role="status" aria-live="polite" hidden>
-    <h3>Demo Booked Successfully!</h3>
-    <p>Thank you for your interest in TIME ERP. Our team will contact you shortly to schedule your personalized demo.</p>
-  </div>
+  <!-- Book Demo modal is injected by js/book-demo-modal.js on all pages -->
 
-  <script src="js/book-demo-modal.js" defer></script>
+  <script src="js/book-demo-modal.js?v=21" defer></script>
   <script src="js/chatbot-widget.js" defer></script>
 
   <script src="js/benefits-cycle.js" defer></script>
@@ -2728,10 +3799,23 @@
   (function(){
   'use strict';
     var glow=document.getElementById('glow');
+    var reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var glowRaf=0, glowX=0, glowY=0;
 
-    document.addEventListener('mousemove',function(e){
-      if(glow&&window.innerWidth>768){glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'}
-    });
+    if(glow&&!reduceMotion){
+      document.addEventListener('mousemove',function(e){
+        if(window.innerWidth<=768)return;
+        glowX=e.clientX; glowY=e.clientY;
+        if(glowRaf)return;
+        glowRaf=requestAnimationFrame(function(){
+          glowRaf=0;
+          glow.style.left=glowX+'px';
+          glow.style.top=glowY+'px';
+        });
+      },{passive:true});
+    } else if(glow){
+      glow.style.display='none';
+    }
 
     var reveals=document.querySelectorAll('.reveal');
     var io=new IntersectionObserver(function(entries){
@@ -2747,6 +3831,7 @@
       var obs=new IntersectionObserver(function(entries){
         if(entries[0].isIntersecting&&!started){
           started=true;
+          if(reduceMotion){el.textContent=(isDecimal?target.toFixed(1):String(target))+suffix;obs.disconnect();return;}
           var start=0,dur=1800,startTime=null;
           function step(ts){
             if(!startTime)startTime=ts;
@@ -2775,15 +3860,15 @@
     (function initHub(){
       var ICON='assets/home-icons/';
       var modules=[
-        {id:'hrms',label:'HRMS',desc:'Manage employees, recruitment, onboarding, and HR policies from one hub.',tags:['Employees','Recruitment','Policies'],link:'#hrms'},
-        {id:'crm',label:'CRM',desc:'Track leads, pipeline, quotations, and customer relationships end-to-end.',tags:['Leads','Pipeline','Follow-ups'],link:'#crm'},
-        {id:'payroll',label:'Payroll',desc:'Process salaries, PF, ESI, TDS, and payslips with full compliance.',tags:['Salary','PF & ESI','Payslips'],link:'#payroll'},
-        {id:'billing',label:'Billing',desc:'Create invoices, receipts, ledgers, and GST reports seamlessly.',tags:['Invoice','Receipt','GST'],link:'#billing'},
-        {id:'project-management',label:'Projects',desc:'Plan, execute, monitor, and deliver projects from initiation to completion with centralized project planning, team collaboration, task execution, worklogs, billing, and profitability tracking.',tags:['Create Task','Task Billing','Multi Client'],link:'#project-management'},
-        {id:'document-vault',label:'Documents',desc:'Secure vault with agreements, inward/outward registers, and DSC tracking.',tags:['Vault','Agreements','DSC'],link:'#document-vault'},
-        {id:'communication',label:'Communication',desc:'Unified email, SMS, WhatsApp notifications and campaign tools.',tags:['Email','SMS','WhatsApp'],link:'#communication'},
-        {id:'website',label:'Website',desc:'Build landing pages, blogs, forms, and SEO-optimized sites.',tags:['Builder','Blog','SEO'],link:'#website'},
-        {id:'inventory',label:'Inventory',desc:'Stock and warehouse management, coming soon to TimeERP.',tags:['Stock','Warehouses','PO'],link:'#inventory',icon:'task-asset.svg'}
+        {id:'hrms',label:'HRMS',desc:'Manage employees, recruitment, onboarding, and HR policies from one hub.',tags:['Employees','Recruitment','Policies'],link:'hrms.html'},
+        {id:'crm',label:'CRM',desc:'Track leads, pipeline, quotations, and customer relationships end-to-end.',tags:['Leads','Pipeline','Follow-ups'],link:'crm.html'},
+        {id:'payroll',label:'Payroll',desc:'Process salaries, PF, ESI, TDS, and payslips with full compliance.',tags:['Salary','PF & ESI','Payslips'],link:'payroll.html'},
+        {id:'billing',label:'Billing',desc:'Create invoices, receipts, ledgers, and GST reports seamlessly.',tags:['Invoice','Receipt','GST'],link:'billing.html'},
+        {id:'project-management',label:'Projects',desc:'Plan, execute, monitor, and deliver projects from initiation to completion with centralized project planning, team collaboration, task execution, worklogs, billing, and profitability tracking.',tags:['Create Task','Task Billing','Multi Client'],link:'project_management.html'},
+        {id:'document-vault',label:'Document Vault',desc:'Secure vault with agreements, inward/outward registers, and DSC tracking.',tags:['Vault','Agreements','DSC'],link:'document_management.html'},
+        {id:'communication',label:'Communication',desc:'Unified email, SMS, WhatsApp notifications and campaign tools.',tags:['Email','SMS','WhatsApp'],link:'communication.html'},
+        {id:'website',label:'Website',desc:'Build landing pages, blogs, forms, and SEO-optimized sites.',tags:['Builder','Blog','SEO'],link:'market.html'},
+        {id:'inventory',label:'Inventory',desc:'Stock and warehouse management with tracking, POs, and reports.',tags:['Stock','Warehouses','PO'],link:'inventory_management.html',icon:'task-asset.svg'}
       ];
       var stage=document.getElementById('hubStage');
       var svg=document.getElementById('hubSvg');
@@ -2807,15 +3892,22 @@
         btn.className='hub__node';
         btn.setAttribute('data-index',i);
         btn.setAttribute('aria-label',m.label);
-        btn.innerHTML='<span class="hub__node-icon"><img src="'+iconSrc(m)+'" alt=""></span><span class="hub__node-label">'+m.label+'</span>';
+        btn.innerHTML='<span class="hub__node-icon"><img loading="lazy" decoding="async" src="'+iconSrc(m)+'" alt=""></span><span class="hub__node-label">'+m.label+'</span>';
         nodesEl.appendChild(btn);
         nodeEls.push(btn);
         btn.addEventListener('mouseenter',function(){paused=true;setActive(i)});
         btn.addEventListener('mouseleave',function(){paused=false});
         btn.addEventListener('click',function(){
           setActive(i);
-          var target=document.querySelector(m.link);
-          if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
+          var link=m.link||'';
+          if(/\.html(?:#|$)/.test(link) || link.indexOf('http')===0){
+            window.location.href=link;
+            return;
+          }
+          if(link.charAt(0)==='#'){
+            var target=document.querySelector(link);
+            if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
+          }
         });
       });
 
@@ -2827,8 +3919,9 @@
         if(i<0)return;
         var m=modules[i];
         detailTitle.textContent=m.label;
+        detailTitle.href=m.link||'#products';
         detailDesc.textContent=m.desc;
-        detailIcon.innerHTML='<img src="'+iconSrc(m)+'" alt="">';
+        detailIcon.innerHTML='<img loading="lazy" decoding="async" src="'+iconSrc(m)+'" alt="">';
         detailTags.innerHTML=m.tags.map(function(t){return '<span class="hub__detail-tag">'+t+'</span>'}).join('');
         detailLink.href=m.link;
         detailLink.textContent='Explore '+m.label;
@@ -2968,6 +4061,18 @@
   })();
   </script>
   <script src="js/footer-accordion.js" defer></script>
-  <script src="js/site-nav.js" defer></script>
+  <script src="js/site-nav.js?v=17" defer></script>
+  <script>
+  (function () {
+    var el = document.getElementById('wsLoader');
+    if (!el) return;
+    setTimeout(function () {
+      el.classList.add('is-done');
+      document.body.classList.remove('ws-loading');
+      setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 400);
+    }, 1000);
+  })();
+  </script>
+  <script src="js/site-footer.js?v=6"></script>
 </body>
 </html>
