@@ -301,40 +301,10 @@
     .pricing-card.is-selected .pricing-card__select-hint{opacity:0}
 
     /* Shared feature detail board */
-    .pricing-detail-board{
-      max-width:960px;margin:32px auto 0;padding:28px 28px 24px;
-      background:#fff;border:1px solid #e8f2f1;border-radius:20px;
-      box-shadow:0 4px 18px rgba(8,53,48,.04);
-      transition:border-color .3s,box-shadow .3s;
+    .pricing-addon-slot{
+      max-width:480px;margin:32px auto 0;padding:0 4px;
     }
-    .pricing-detail-board.is-active{
-      border-color:rgba(37,183,167,.4);
-      box-shadow:0 12px 36px rgba(37,183,167,.1);
-    }
-    .pricing-detail-board__header{margin-bottom:20px}
-    .pricing-detail-board__title{
-      font-size:20px;font-weight:700;color:var(--heading-dark);margin:0 0 4px;
-      transition:color .2s;
-    }
-    .pricing-detail-board__sub{font-size:13px;color:var(--text-muted);margin:0}
-    .pricing-detail-board__body{
-      display:flex;gap:32px;flex-wrap:wrap;
-    }
-    .pricing-detail-board__col{
-      flex:1;min-width:240px;
-      padding:18px 20px;border-radius:14px;
-      background:var(--primary-light);border:1px solid rgba(37,183,167,.15);
-      transition:opacity .3s,transform .3s;
-    }
-    .pricing-detail-board__col--plus{
-      background:#fff;border:1px solid rgba(37,183,167,.35);
-    }
-    .pricing-detail-board__col-title{
-      font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
-      color:var(--primary-dark);margin:0 0 12px;
-    }
-    .pricing-detail-board__col .pricing-card__features{gap:10px}
-    .pricing-detail-board__col .pricing-card__features li{font-size:13px}
+    .pricing-addon-slot .pricing-card{height:100%}
 
     .pricing-note{
       margin-top:28px;font-size:13px;color:var(--text-muted);text-align:center;
@@ -574,8 +544,40 @@
             </div>
           </article>
 
-          <!-- Employee Monitoring (add-on) -->
-          <article class="pricing-card pricing-card--popular reveal" data-plan="employee-monitoring">
+          <!-- Gold Plus -->
+          <article class="pricing-card pricing-card--popular reveal" data-plan="gold-plus">
+            <span class="pricing-card__ribbon">MOST POPULAR</span>
+            <div class="pricing-card__title-row">
+              <h2 class="pricing-card__name">Gold Plus</h2>
+              <span class="pricing-card__badge"><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84L18 6.8l-4 3.9.94 5.5L10 13.4l-4.94 2.8.94-5.5-4-3.9 5.61-.96z"/></svg> Recommended</span>
+            </div>
+            <p class="pricing-card__desc">All Gold features plus advanced tools for scaling businesses, billing, automation, WhatsApp &amp; more.</p>
+            <div class="pricing-card__price-wrap">
+              <div class="pricing-card__price" data-price-1="3499" data-price-3="6998">₹3,499</div>
+              <div class="pricing-card__price-note">
+                <span class="pricing-card__price-period">/year, per employee</span>
+                <span class="pricing-card__term-label">(1 Year plan)</span>
+              </div>
+            </div>
+            <a class="pricing-card__cta" href="contact_sales.html">Get Started</a>
+            <div class="pricing-card__features-block">
+              <p class="pricing-card__features-label">Gold Plus exclusive:</p>
+              <ul class="pricing-card__features">
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Advanced billing &amp; invoices <span class="pricing-card__tag">Pro</span></li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>1,000 GB storage per seat <span class="pricing-card__tag">Pro</span></li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>GST notice auto-fetch <span class="pricing-card__tag">New</span></li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>WhatsApp integration <span class="pricing-card__tag">New</span></li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited no of companies</li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>API integration</li>
+                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Free website</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <!-- Employee Monitoring add-on (below Gold / Gold Plus) -->
+        <div class="pricing-addon-slot reveal">
+          <article class="pricing-card pricing-card--popular" data-plan="employee-monitoring">
             <span class="pricing-card__ribbon">ADD-ON</span>
             <div class="pricing-card__title-row">
               <h2 class="pricing-card__name">Employee Monitoring</h2>
@@ -602,40 +604,6 @@
           </article>
         </div>
 
-        <!-- Shared feature detail board -->
-        <div class="pricing-detail-board reveal" id="pricingBoard">
-          <div class="pricing-detail-board__header">
-            <h3 class="pricing-detail-board__title" id="boardTitle">Gold Plan Features</h3>
-            <p class="pricing-detail-board__sub" id="boardSub">Click a card above to compare features</p>
-          </div>
-          <div class="pricing-detail-board__body" id="boardBody">
-            <div class="pricing-detail-board__col" id="boardGold">
-              <p class="pricing-detail-board__col-title">Gold</p>
-              <ul class="pricing-card__features">
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited employee records &amp; CRM</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Attendance, leave &amp; basic payroll</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Web portal and mobile app</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Project management</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Document storage &amp; sharing</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Secure team chat</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Basic billing &amp; invoices</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>500 GB storage per seat</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>In-app announcements</li>
-              </ul>
-            </div>
-            <div class="pricing-detail-board__col pricing-detail-board__col--plus" id="boardEmpMonitor" style="display:none">
-              <p class="pricing-detail-board__col-title">Employee Monitoring</p>
-              <ul class="pricing-card__features">
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>No. of employees as per plan</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Real-time activity &amp; attendance visibility</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Idle / productivity insights</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Issue alerts &amp; monitoring reports</li>
-                <li><span class="pricing-card__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Centralised dashboard with TimeERP</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
         <p class="pricing-note reveal">Need a custom package for multi-branch or enterprise rollout? <a href="custom_quote.html">Get a custom quote</a> or <a href="contact_sales.html">talk to sales</a>.</p>
       </div>
     </section>
@@ -650,7 +618,7 @@
           </div>
           <div class="faq__item">
             <button type="button" class="faq__q" aria-expanded="false">Can I switch plans later?<span aria-hidden="true">+</span></button>
-            <div class="faq__a"><p>Yes. You can add Employee Monitoring to your Gold plan anytime. Our team will help set it up for your remaining term.</p></div>
+            <div class="faq__a"><p>Yes. You can upgrade from Gold to Gold Plus anytime, and add Employee Monitoring as an add-on. Our team will help prorate the difference for your remaining term.</p></div>
           </div>
           <div class="faq__item">
             <button type="button" class="faq__q" aria-expanded="false">Is there a free trial?<span aria-hidden="true">+</span></button>
@@ -789,7 +757,7 @@
       var currencyBtns = document.querySelectorAll('.pricing-currency__btn');
       var priceEls = document.querySelectorAll('.pricing-card__price');
       var termLabels = document.querySelectorAll('.pricing-card__term-label');
-      var periodElsGold = document.querySelectorAll('[data-plan="gold"] .pricing-card__price-period');
+      var periodElsGold = document.querySelectorAll('[data-plan="gold"] .pricing-card__price-period, [data-plan="gold-plus"] .pricing-card__price-period');
       var periodElsFlat = document.querySelectorAll('.pricing-card__price-period--flat');
       if (!termBtns.length || !priceEls.length) return;
 
@@ -865,42 +833,17 @@
   </script>
   <script>
     (function () {
-      var cards = document.querySelectorAll('.pricing-card');
-      var board = document.getElementById('pricingBoard');
-      var boardTitle = document.getElementById('boardTitle');
-      var boardSub = document.getElementById('boardSub');
-      var boardGold = document.getElementById('boardGold');
-      var boardEmpMonitor = document.getElementById('boardEmpMonitor');
-      if (!cards.length || !board) return;
-
-      function selectCard(plan) {
-        cards.forEach(function (c) {
-          c.classList.toggle('is-selected', c.getAttribute('data-plan') === plan);
-        });
-        board.classList.add('is-active');
-        if (plan === 'gold') {
-          boardTitle.textContent = 'Gold Plan Features';
-          boardSub.textContent = '9 core features included';
-          boardGold.style.display = '';
-          if (boardEmpMonitor) boardEmpMonitor.style.display = 'none';
-        } else {
-          boardTitle.textContent = 'Employee Monitoring Features';
-          boardSub.textContent = '₹10,000 /year · employees as per plan';
-          boardGold.style.display = 'none';
-          if (boardEmpMonitor) boardEmpMonitor.style.display = '';
-        }
-        board.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
-
+      var cards = document.querySelectorAll('.pricing-grid .pricing-card');
+      if (!cards.length) return;
       cards.forEach(function (card) {
         card.style.cursor = 'pointer';
         card.addEventListener('click', function (e) {
           if (e.target.closest('.pricing-card__cta')) return;
-          selectCard(card.getAttribute('data-plan'));
+          cards.forEach(function (c) {
+            c.classList.toggle('is-selected', c === card);
+          });
         });
       });
-
-      selectCard('gold');
     })();
   </script>
   <script>
